@@ -135,22 +135,6 @@ footer {
     color: var(--gray-3);
 }
 
-.delta-accent {
-    position: relative;
-    display: inline-block;
-    line-height: 1; /* evita desalineación vertical */
-}
-
-.delta-accent::after {
-    content: "´";
-    position: absolute;
-    top: -0.25em;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1em;
-    line-height: 1;
-}
-
 /* ===== DESKTOP ===== */
 @media (min-width: 768px) {
     body {
