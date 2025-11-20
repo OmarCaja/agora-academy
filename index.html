@@ -16,6 +16,9 @@
         <!-- Styles -->
         <link rel="stylesheet" href="styles.css" />
 
+        <!-- JavaScript (defer ensures it runs after HTML is parsed) -->
+        <script src="script.js" defer></script>
+
         <!-- Favicon -->
         <link
             rel="icon"
@@ -60,6 +63,13 @@
     <body>
         <div class="container">
             <header>
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Cambiar tema"
+                >
+                    <span id="themeIcon">🌒</span>
+                </button>
                 <h1>ÁGORA</h1>
                 <p class="subtitle">Academia de Matemáticas en Cuenca</p>
             </header>

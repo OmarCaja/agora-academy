@@ -1,13 +1,31 @@
 /* ===== VARIABLES ===== */
 :root {
-    --gray-0: #f4f4f4;
-    --gray-1: #e5e5e5;
-    --gray-3: #777;
-    --gray-4: #555;
-    --gray-5: #444;
-    --gray-7: #2a2a2a;
+    /* Light mode colors */
+    --bg-primary: #f4f4f4;
+    --bg-secondary: #e5e5e5;
+    --text-primary: #2a2a2a;
+    --text-secondary: #444;
+    --text-tertiary: #555;
+    --text-muted: #777;
+    --border-color: #2a2a2a;
+    --accent: #2a2a2a;
+    --shadow-color: #2a2a2a;
 
     --radius: 0px;
+    --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+    /* Dark mode colors */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2a2a2a;
+    --text-primary: #f4f4f4;
+    --text-secondary: #e5e5e5;
+    --text-tertiary: #d0d0d0;
+    --text-muted: #999;
+    --border-color: #f4f4f4;
+    --accent: #f4f4f4;
+    --shadow-color: #000;
 }
 
 /* ===== RESET ===== */
@@ -17,15 +35,18 @@
     box-sizing: border-box;
 }
 
-/* ===== GLOBAL ===== */
+/* ===== GLOBAL STYLES ===== */
 body {
     font-family: "Space Mono", monospace;
-    background: var(--gray-0);
-    color: var(--gray-7);
+    background: var(--bg-primary);
+    color: var(--text-primary);
     line-height: 1.6;
     padding: 20px;
     font-size: 18px;
     animation: fadeIn 0.6s ease-in;
+    transition:
+        background var(--transition),
+        color var(--transition);
 }
 
 @keyframes fadeIn {
@@ -43,11 +64,13 @@ body {
     padding: 0 10px;
 }
 
+/* ===== HEADER ===== */
 header {
     text-align: center;
     padding: 20px 0;
-    border-bottom: 2px solid var(--gray-7);
+    border-bottom: 2px solid var(--border-color);
     margin-bottom: 40px;
+    position: relative;
 }
 
 h1 {
@@ -59,10 +82,80 @@ h1 {
 
 .subtitle {
     font-size: clamp(1.1rem, 2vw, 1.1rem);
-    color: var(--gray-4);
+    color: var(--text-muted);
     margin-top: 10px;
 }
 
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 4px 8px;
+    cursor: pointer;
+    font-family: "Space Mono", monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--radius);
+    transition: all var(--transition);
+    box-shadow: 3px 3px 0 var(--shadow-color);
+    z-index: 100;
+}
+
+.theme-toggle:hover {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--shadow-color);
+}
+
+.theme-toggle:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow-color);
+}
+
+/* Icon bounce effect */
+#themeIcon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:active #themeIcon {
+    transform: scale(0.8);
+}
+
+/* ===== THEME TRANSITION ANIMATION ===== */
+/* Smooth transition only for backgrounds and borders when changing theme */
+body.theme-changing {
+    transition: background-color 0.6s ease;
+}
+
+body.theme-changing .info-box,
+body.theme-changing .theme-toggle,
+body.theme-changing .level-tag {
+    transition:
+        background-color 0.6s ease,
+        border-color 0.6s ease,
+        box-shadow 0.6s ease;
+}
+
+/* No transition for text colors - instant change for better Safari performance */
+body.theme-changing h1,
+body.theme-changing h2,
+body.theme-changing h3,
+body.theme-changing p,
+body.theme-changing span,
+body.theme-changing a,
+body.theme-changing .value,
+body.theme-changing .label,
+body.theme-changing .subtitle {
+    transition: none;
+}
+
+/* ===== SECTIONS ===== */
 section {
     margin-bottom: 40px;
     animation: slideIn 0.6s ease-out backwards;
@@ -79,43 +172,50 @@ section {
     }
 }
 
+/* Staggered animation delays */
 section:nth-child(2) {
-    animation-delay: 0.1s;
-}
-section:nth-child(3) {
     animation-delay: 0.2s;
 }
-section:nth-child(4) {
+
+section:nth-child(3) {
     animation-delay: 0.3s;
 }
 
+section:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* ===== TYPOGRAPHY ===== */
 h2 {
     font-size: clamp(1.3rem, 3vw, 1.8rem);
     margin-bottom: 20px;
     margin-top: 10px;
-    border-left: 4px solid var(--gray-7);
+    border-left: 4px solid var(--accent);
     padding-left: 15px;
 }
 
 p {
     font-size: 1rem;
     margin-bottom: 15px;
-    color: var(--gray-5);
+    color: var(--text-tertiary);
 }
 
 address {
     font-style: normal;
 }
 
+/* ===== INFO BOX ===== */
 .info-box {
-    box-shadow: 5px 5px 0 var(--gray-7);
-    background: var(--gray-1);
-    border: 2px solid var(--gray-7);
+    box-shadow: 5px 5px 0 var(--shadow-color);
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
     padding: 25px;
     margin-bottom: 20px;
     border-radius: var(--radius);
+    transition: all var(--transition);
 }
 
+/* ===== CONTACT ===== */
 .contact-item {
     display: flex;
     flex-direction: column;
@@ -132,16 +232,17 @@ address {
 
 .value {
     font-size: 1rem;
-    color: var(--gray-4);
+    color: var(--text-muted);
 }
 
 .value a {
-    color: var(--gray-7);
+    color: var(--text-primary);
     text-decoration: none;
-    border-bottom: 1px solid var(--gray-7);
-    transition: opacity 0.2s;
+    border-bottom: 1px solid var(--border-color);
+    transition: opacity var(--transition);
 }
 
+/* ===== LEVEL TAGS ===== */
 .levels {
     display: flex;
     flex-wrap: wrap;
@@ -150,24 +251,26 @@ address {
 }
 
 .level-tag {
-    background: var(--gray-7);
-    color: var(--gray-0);
+    background: var(--accent);
+    color: var(--bg-primary);
     padding: 10px 20px;
     font-size: 0.9rem;
-    border: 2px solid var(--gray-7);
+    border: 2px solid var(--border-color);
     border-radius: var(--radius);
+    transition: all var(--transition);
 }
 
+/* ===== FOOTER ===== */
 footer {
     text-align: center;
     padding-top: 20px;
     margin-top: 40px;
-    border-top: 2px solid var(--gray-7);
+    border-top: 2px solid var(--border-color);
     font-size: 0.85rem;
-    color: var(--gray-3);
+    color: var(--text-muted);
 }
 
-/* ===== DESKTOP ===== */
+/* ===== RESPONSIVE - DESKTOP ===== */
 @media (min-width: 768px) {
     body {
         padding: 40px;
