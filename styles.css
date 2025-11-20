@@ -12,7 +12,7 @@
     --shadow-color: #2a2a2a;
 
     --radius: 0px;
-    --transition: 0.3s ease;
+    --transition: 0.5s ease;
 }
 
 [data-theme="dark"] {
@@ -78,6 +78,13 @@ h1 {
     font-weight: 700;
     letter-spacing: -2px;
     margin-bottom: 10px;
+    cursor: default;
+    user-select: none;
+    transition: transform var(--transition);
+}
+
+h1:active {
+    transform: scale(0.98);
 }
 
 .subtitle {
@@ -107,42 +114,32 @@ h1 {
     z-index: 100;
 }
 
-.theme-toggle:hover {
-    transform: translate(1px, 1px);
-    box-shadow: 2px 2px 0 var(--shadow-color);
-}
+@media (hover: hover) and (pointer: fine) {
+    .theme-toggle:hover {
+        transform: translate(1px, 1px);
+        box-shadow: 2px 2px 0 var(--shadow-color);
+    }
 
-.theme-toggle:active {
-    transform: translate(3px, 3px);
-    box-shadow: 0 0 0 var(--shadow-color);
-}
-
-/* Icon bounce effect */
-#themeIcon {
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.theme-toggle:active #themeIcon {
-    transform: scale(0.8);
+    .level-tag:hover {
+        transform: translate(1px, 1px);
+        box-shadow: 2px 2px 0 var(--shadow-color);
+    }
 }
 
 /* ===== THEME TRANSITION ANIMATION ===== */
-/* Smooth transition only for backgrounds and borders when changing theme */
 body.theme-changing {
-    transition: background-color 0.6s ease;
+    transition: background-color var(--transition);
 }
 
 body.theme-changing .info-box,
 body.theme-changing .theme-toggle,
 body.theme-changing .level-tag {
     transition:
-        background-color 0.6s ease,
-        border-color 0.6s ease,
-        box-shadow 0.6s ease;
+        background-color var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
 }
 
-/* No transition for text colors - instant change for better Safari performance */
 body.theme-changing h1,
 body.theme-changing h2,
 body.theme-changing h3,
@@ -172,7 +169,6 @@ section {
     }
 }
 
-/* Staggered animation delays */
 section:nth-child(2) {
     animation-delay: 0.2s;
 }
@@ -251,10 +247,10 @@ address {
 }
 
 .level-tag {
-    background: var(--accent);
-    color: var(--bg-primary);
+    background: var(--bg-secondary);
     padding: 10px 20px;
     font-size: 0.9rem;
+    box-shadow: 5px 5px 0 var(--shadow-color);
     border: 2px solid var(--border-color);
     border-radius: var(--radius);
     transition: all var(--transition);
@@ -268,6 +264,30 @@ footer {
     border-top: 2px solid var(--border-color);
     font-size: 0.85rem;
     color: var(--text-muted);
+}
+
+/* ===== EASTER EGG - PI DIGITS ===== */
+.pi-digit {
+    position: fixed;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--accent);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    animation: pifall 3s ease-in forwards;
+}
+
+@keyframes pifall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(360deg);
+    }
 }
 
 /* ===== RESPONSIVE - DESKTOP ===== */
