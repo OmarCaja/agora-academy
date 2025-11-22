@@ -13,7 +13,7 @@ const THEMES = {
 };
 
 const THEME_ICONS = {
-  [THEMES.LIGHT]: "🌒",
+  [THEMES.LIGHT]: "🌑",
   [THEMES.DARK]: "😎",
 };
 
@@ -159,14 +159,14 @@ levelTags.forEach((tag) => {
 const initScrollAnimations = () => {
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
+    rootMargin: "0px 0px -100px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        // Optional: stop observing after animation
+        // Stop observing after animation
         observer.unobserve(entry.target);
       }
     });
@@ -175,7 +175,17 @@ const initScrollAnimations = () => {
   // Observe all elements with fade-in class
   const fadeElements = document.querySelectorAll(".fade-in");
   fadeElements.forEach((element) => {
-    observer.observe(element);
+    // Check if element is already in viewport on page load
+    const rect = element.getBoundingClientRect();
+    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (isInViewport) {
+      // Show immediately if already visible
+      element.classList.add("visible");
+    } else {
+      // Observe if not visible yet
+      observer.observe(element);
+    }
   });
 };
 
