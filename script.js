@@ -14,7 +14,7 @@ const THEMES = {
 
 const THEME_ICONS = {
   [THEMES.LIGHT]: "🌑",
-  [THEMES.DARK]: "😎",
+  [THEMES.DARK]: "☀️",
 };
 
 const THEME_LABELS = {
