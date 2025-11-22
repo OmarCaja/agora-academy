@@ -92,7 +92,6 @@ header {
     padding: var(--spacing-md) 0;
     border-bottom: var(--border-width) solid var(--border-color);
     margin-bottom: var(--spacing-lg);
-    position: relative;
 }
 
 h1 {
@@ -117,31 +116,31 @@ h1:active {
 
 /* ===== THEME TOGGLE BUTTON ===== */
 .theme-toggle {
-    position: absolute;
-    top: var(--spacing-md);
-    right: 0;
-    background: var(--bg-secondary);
-    border: var(--border-width) solid var(--border-color);
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
     color: var(--text-primary);
-    padding: 4px 8px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
     cursor: pointer;
-    font-family: var(--font-family);
     font-size: 1.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: var(--radius);
     transition: all var(--transition);
-    box-shadow: 3px 3px 0 var(--shadow-color);
-    z-index: 100;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
 }
 
-/* Hover effects only on desktop with fine pointers */
-@media (hover: hover) and (pointer: fine) {
-    .theme-toggle:hover {
-        transform: translate(1px, 1px);
-        box-shadow: 2px 2px 0 var(--shadow-color);
-    }
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
 }
 
 /* ===== THEME TRANSITION ANIMATION ===== */
