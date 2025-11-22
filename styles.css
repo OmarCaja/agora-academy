@@ -1,6 +1,6 @@
-/* ===== VARIABLES ===== */
+/* ===== CSS VARIABLES ===== */
 :root {
-    /* Light mode colors */
+    /* Light theme colors */
     --bg-primary: #f4f4f4;
     --bg-secondary: #e5e5e5;
     --text-primary: #2a2a2a;
@@ -9,14 +9,34 @@
     --text-muted: #777;
     --border-color: #2a2a2a;
     --accent: #2a2a2a;
-    --shadow-color: #2a2a2a;
+    --shadow-color: rgba(42, 42, 42, 0.3);
 
+    /* Layout & Spacing */
+    --max-width: 800px;
+    --spacing-xs: 10px;
+    --spacing-sm: 15px;
+    --spacing-md: 20px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+
+    /* Visual effects */
     --radius: 0px;
-    --transition: 0.5s ease;
+    --transition-speed: 0.5s;
+    --transition: var(--transition-speed) ease;
+    --border-width: 2px;
+    --shadow-offset: 5px;
+
+    /* Typography */
+    --font-family: "Space Mono", monospace;
+    --font-size-base: 18px;
+    --font-size-sm: 0.85rem;
+    --font-size-md: 0.9rem;
+    --font-size-lg: 1rem;
+    --line-height: 1.6;
 }
 
+/* Dark theme colors */
 [data-theme="dark"] {
-    /* Dark mode colors */
     --bg-primary: #1a1a1a;
     --bg-secondary: #2a2a2a;
     --text-primary: #f4f4f4;
@@ -25,30 +45,31 @@
     --text-muted: #999;
     --border-color: #f4f4f4;
     --accent: #f4f4f4;
-    --shadow-color: #000;
+    --shadow-color: rgba(244, 244, 244, 0.3);
 }
 
-/* ===== RESET ===== */
+/* ===== GLOBAL RESET ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ===== GLOBAL STYLES ===== */
+/* ===== BASE STYLES ===== */
 body {
-    font-family: "Space Mono", monospace;
+    font-family: var(--font-family);
     background: var(--bg-primary);
     color: var(--text-primary);
-    line-height: 1.6;
-    padding: 20px;
-    font-size: 18px;
+    line-height: var(--line-height);
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
     animation: fadeIn 0.6s ease-in;
     transition:
         background var(--transition),
         color var(--transition);
 }
 
+/* Fade in animation on page load */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -58,18 +79,19 @@ body {
     }
 }
 
+/* Main container */
 .container {
-    max-width: 800px;
+    max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 var(--spacing-xs);
 }
 
 /* ===== HEADER ===== */
 header {
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 2px solid var(--border-color);
-    margin-bottom: 40px;
+    padding: var(--spacing-md) 0;
+    border-bottom: var(--border-width) solid var(--border-color);
+    margin-bottom: var(--spacing-lg);
     position: relative;
 }
 
@@ -77,7 +99,7 @@ h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     letter-spacing: -2px;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-xs);
     cursor: default;
     user-select: none;
     transition: transform var(--transition);
@@ -90,20 +112,20 @@ h1:active {
 .subtitle {
     font-size: clamp(1.1rem, 2vw, 1.1rem);
     color: var(--text-muted);
-    margin-top: 10px;
+    margin-top: var(--spacing-xs);
 }
 
 /* ===== THEME TOGGLE BUTTON ===== */
 .theme-toggle {
     position: absolute;
-    top: 20px;
+    top: var(--spacing-md);
     right: 0;
     background: var(--bg-secondary);
-    border: 2px solid var(--border-color);
+    border: var(--border-width) solid var(--border-color);
     color: var(--text-primary);
     padding: 4px 8px;
     cursor: pointer;
-    font-family: "Space Mono", monospace;
+    font-family: var(--font-family);
     font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -114,13 +136,9 @@ h1:active {
     z-index: 100;
 }
 
+/* Hover effects only on desktop with fine pointers */
 @media (hover: hover) and (pointer: fine) {
     .theme-toggle:hover {
-        transform: translate(1px, 1px);
-        box-shadow: 2px 2px 0 var(--shadow-color);
-    }
-
-    .level-tag:hover {
         transform: translate(1px, 1px);
         box-shadow: 2px 2px 0 var(--shadow-color);
     }
@@ -131,6 +149,7 @@ body.theme-changing {
     transition: background-color var(--transition);
 }
 
+/* Animate background, borders and shadows during theme change */
 body.theme-changing .info-box,
 body.theme-changing .theme-toggle,
 body.theme-changing .level-tag {
@@ -140,6 +159,7 @@ body.theme-changing .level-tag {
         box-shadow var(--transition);
 }
 
+/* Disable text color transitions during theme change to avoid flickering */
 body.theme-changing h1,
 body.theme-changing h2,
 body.theme-changing h3,
@@ -154,10 +174,11 @@ body.theme-changing .subtitle {
 
 /* ===== SECTIONS ===== */
 section {
-    margin-bottom: 40px;
+    margin-bottom: var(--spacing-lg);
     animation: slideIn 0.6s ease-out backwards;
 }
 
+/* Slide in animation */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -169,14 +190,13 @@ section {
     }
 }
 
+/* Stagger section animations */
 section:nth-child(2) {
     animation-delay: 0.2s;
 }
-
 section:nth-child(3) {
     animation-delay: 0.3s;
 }
-
 section:nth-child(4) {
     animation-delay: 0.4s;
 }
@@ -184,15 +204,15 @@ section:nth-child(4) {
 /* ===== TYPOGRAPHY ===== */
 h2 {
     font-size: clamp(1.3rem, 3vw, 1.8rem);
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-xs);
     border-left: 4px solid var(--accent);
-    padding-left: 15px;
+    padding-left: var(--spacing-sm);
 }
 
 p {
-    font-size: 1rem;
-    margin-bottom: 15px;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
     color: var(--text-tertiary);
 }
 
@@ -202,11 +222,11 @@ address {
 
 /* ===== INFO BOX ===== */
 .info-box {
-    box-shadow: 5px 5px 0 var(--shadow-color);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
     background: var(--bg-secondary);
-    border: 2px solid var(--border-color);
+    border: var(--border-width) solid var(--border-color);
     padding: 25px;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-md);
     border-radius: var(--radius);
     transition: all var(--transition);
 }
@@ -216,18 +236,18 @@ address {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-md);
 }
 
 .label {
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: var(--font-size-md);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .value {
-    font-size: 1rem;
+    font-size: var(--font-size-lg);
     color: var(--text-muted);
 }
 
@@ -242,44 +262,46 @@ address {
 .levels {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 20px;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
 }
 
 .level-tag {
     background: var(--bg-secondary);
-    padding: 10px 20px;
-    font-size: 0.9rem;
-    box-shadow: 5px 5px 0 var(--shadow-color);
-    border: 2px solid var(--border-color);
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-md);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+    border: var(--border-width) solid var(--border-color);
     border-radius: var(--radius);
     transition: all var(--transition);
+    /* Disable iOS Safari tap highlight */
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* ===== FOOTER ===== */
 footer {
     text-align: center;
-    padding-top: 20px;
-    margin-top: 40px;
-    border-top: 2px solid var(--border-color);
-    font-size: 0.85rem;
+    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    border-top: var(--border-width) solid var(--border-color);
+    font-size: var(--font-size-sm);
     color: var(--text-muted);
 }
 
-/* ===== EASTER EGG - PI DIGITS ===== */
+/* ===== EASTER EGG - FALLING PI DIGITS ===== */
 .pi-digit {
     position: fixed;
-    font-family: "Space Mono", monospace;
+    font-family: var(--font-family);
     font-weight: 700;
     font-size: 2rem;
     color: var(--accent);
     pointer-events: none;
     z-index: 9999;
     opacity: 0;
-    animation: pifall 3s ease-in forwards;
+    animation: piFall 3s ease-in forwards;
 }
 
-@keyframes pifall {
+@keyframes piFall {
     0% {
         opacity: 1;
         transform: translateY(0) rotate(0deg);
@@ -293,15 +315,15 @@ footer {
 /* ===== RESPONSIVE - DESKTOP ===== */
 @media (min-width: 768px) {
     body {
-        padding: 40px;
+        padding: var(--spacing-lg);
     }
 
     header {
-        padding: 60px 0;
+        padding: var(--spacing-xl) 0;
     }
 
     section {
-        margin-bottom: 60px;
+        margin-bottom: var(--spacing-xl);
     }
 
     .info-box {
@@ -311,7 +333,7 @@ footer {
     .contact-item {
         flex-direction: row;
         align-items: baseline;
-        gap: 15px;
+        gap: var(--spacing-sm);
     }
 
     .label {
