@@ -3,6 +3,7 @@
 // DOM elements
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
+const themeText = document.getElementById("themeText");
 const html = document.documentElement;
 
 // Theme configuration
@@ -14,6 +15,11 @@ const THEMES = {
 const THEME_ICONS = {
   [THEMES.LIGHT]: "🌒",
   [THEMES.DARK]: "😎",
+};
+
+const THEME_LABELS = {
+  [THEMES.LIGHT]: "Cambiar a tema oscuro",
+  [THEMES.DARK]: "Cambiar a tema claro",
 };
 
 const STORAGE_KEY = "theme";
@@ -43,13 +49,15 @@ const applyTheme = (theme) => {
   // Add transition class for smooth theme change
   document.body.classList.add("theme-changing");
 
-  // Update HTML attribute and icon
+  // Update HTML attribute, icon, and accessibility text
   if (theme === THEMES.DARK) {
     html.setAttribute("data-theme", THEMES.DARK);
     themeIcon.textContent = THEME_ICONS[THEMES.DARK];
+    themeText.textContent = THEME_LABELS[THEMES.DARK];
   } else {
     html.removeAttribute("data-theme");
     themeIcon.textContent = THEME_ICONS[THEMES.LIGHT];
+    themeText.textContent = THEME_LABELS[THEMES.LIGHT];
   }
 
   // Save preference
@@ -142,3 +150,34 @@ const levelTags = document.querySelectorAll(".level-tag");
 levelTags.forEach((tag) => {
   tag.addEventListener("click", triggerPiEasterEgg);
 });
+
+// ===== SCROLL ANIMATIONS (INTERSECTION OBSERVER) =====
+
+/**
+ * Initialize intersection observer for scroll animations
+ */
+const initScrollAnimations = () => {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        // Optional: stop observing after animation
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with fade-in class
+  const fadeElements = document.querySelectorAll(".fade-in");
+  fadeElements.forEach((element) => {
+    observer.observe(element);
+  });
+};
+
+// Initialize scroll animations when DOM is ready
+initScrollAnimations();

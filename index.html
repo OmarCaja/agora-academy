@@ -3,7 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Ágora - Academia de Matemáticas</title>
+        <title>Ágora - Academia de Matemáticas en Cuenca</title>
+
+        <!-- SEO Meta Tags -->
+        <meta
+            name="description"
+            content="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3."
+        />
+        <meta
+            name="keywords"
+            content="academia matemáticas Cuenca, clases matemáticas ESO, clases matemáticas bachillerato, academia Cuenca, Ágora"
+        />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,7 +49,7 @@
         <meta property="og:title" content="Ágora - Academia de Matemáticas" />
         <meta
             property="og:description"
-            content="Academia de matemáticas en Cuenca."
+            content="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato."
         />
         <meta
             property="og:image"
@@ -66,15 +76,18 @@
                 <button
                     class="theme-toggle"
                     id="themeToggle"
-                    aria-label="Cambiar tema"
+                    aria-label="Cambiar entre tema claro y oscuro"
                 >
-                    <span id="themeIcon">🌒</span>
+                    <span id="themeIcon" aria-hidden="true">🌑</span>
+                    <span class="sr-only" id="themeText"
+                        >Cambiar a tema oscuro</span
+                    >
                 </button>
                 <h1>ÁGORA</h1>
                 <p class="subtitle">Academia de Matemáticas en Cuenca</p>
             </header>
 
-            <section>
+            <section class="fade-in">
                 <h2>Sobre Nosotros</h2>
 
                 <p>
@@ -92,7 +105,7 @@
                 </div>
             </section>
 
-            <section>
+            <section class="fade-in">
                 <h2>¿Por qué Ágora?</h2>
 
                 <div class="info-box">
@@ -112,16 +125,23 @@
                 </div>
             </section>
 
-            <section>
+            <section class="fade-in">
                 <h2>Contacto</h2>
 
                 <div class="info-box">
                     <div class="contact-item">
                         <span class="label">Dirección:</span>
                         <address class="value">
-                            Calle Fermín Caballero, 3<br />
-                            Planta 6<br />
-                            Cuenca
+                            <a
+                                href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="map-link"
+                            >
+                                📍 Calle Fermín Caballero, 3<br />
+                                Planta 6<br />
+                                Cuenca
+                            </a>
                         </address>
                     </div>
 

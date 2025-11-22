@@ -288,6 +288,45 @@ footer {
     color: var(--text-muted);
 }
 
+/* ===== ACCESSIBILITY ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== MAP LINK ===== */
+.map-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-color);
+    transition: opacity var(--transition);
+}
+
+.map-link:hover {
+    opacity: 0.7;
+}
+
 /* ===== EASTER EGG - FALLING PI DIGITS ===== */
 .pi-digit {
     position: fixed;
