@@ -65,8 +65,8 @@ body {
     font-size: var(--font-size-base);
     animation: fadeIn 0.6s ease-in;
     transition:
-        background var(--transition),
-        color var(--transition);
+            background var(--transition),
+            color var(--transition);
 }
 
 /* Fade in animation on page load */
@@ -115,6 +115,122 @@ h1:active {
     margin-top: var(--spacing-xs);
 }
 
+/* ===== MATH SYMBOL MENU BUTTON ===== */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+}
+
+.menu-toggle:hover {
+    opacity: 0.7;
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+.menu-symbol {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1;
+    transition: all var(--transition);
+}
+
+/* Symbol animation when menu is open */
+.menu-toggle.active .menu-symbol {
+    transform: rotate(180deg);
+}
+
+/* ===== MENU OVERLAY ===== */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-primary);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+    padding-top: 80px;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--spacing-lg);
+    max-width: 500px;
+    width: 100%;
+}
+
+.menu-item {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 12px 20px;
+    border-left: 3px solid transparent;
+    transition: all var(--transition);
+    display: block;
+}
+
+.menu-item:hover {
+    color: var(--text-primary);
+    border-left-color: var(--border-color);
+    padding-left: 25px;
+}
+
+.menu-item.active {
+    color: var(--text-primary);
+    border-left-color: var(--accent);
+    font-weight: 700;
+}
+
+.menu-group {
+    margin-top: var(--spacing-sm);
+}
+
+.menu-group-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    padding: 8px 20px;
+    display: block;
+    font-weight: 700;
+}
+
+.menu-subitem {
+    font-size: 1rem;
+    padding-left: 40px;
+}
+
+.menu-subitem:hover {
+    padding-left: 45px;
+}
+
 /* ===== THEME TOGGLE BUTTON ===== */
 .theme-toggle {
     position: fixed;
@@ -129,7 +245,7 @@ h1:active {
     cursor: pointer;
     font-size: 1.5rem;
     transition: all var(--transition);
-    z-index: 1000;
+    z-index: 1001;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -152,11 +268,12 @@ body.theme-changing {
 /* Animate background, borders and shadows during theme change */
 body.theme-changing .info-box,
 body.theme-changing .theme-toggle,
-body.theme-changing .level-tag {
+body.theme-changing .level-tag,
+body.theme-changing .menu-overlay {
     transition:
-        background-color var(--transition),
-        border-color var(--transition),
-        box-shadow var(--transition);
+            background-color var(--transition),
+            border-color var(--transition),
+            box-shadow var(--transition);
 }
 
 /* Disable text color transitions during theme change to avoid flickering */
@@ -168,7 +285,8 @@ body.theme-changing span,
 body.theme-changing a,
 body.theme-changing .value,
 body.theme-changing .label,
-body.theme-changing .subtitle {
+body.theme-changing .subtitle,
+body.theme-changing .menu-symbol {
     transition: none;
 }
 
@@ -204,6 +322,10 @@ section:nth-child(4) {
     animation-delay: 0.4s;
 }
 
+section:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
 /* ===== TYPOGRAPHY ===== */
 h2 {
     font-size: clamp(1.3rem, 3vw, 1.8rem);
@@ -211,6 +333,12 @@ h2 {
     margin-top: var(--spacing-xs);
     border-left: 4px solid var(--accent);
     padding-left: var(--spacing-sm);
+}
+
+h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
 }
 
 p {
@@ -232,6 +360,53 @@ address {
     margin-bottom: var(--spacing-md);
     border-radius: var(--radius);
     transition: all var(--transition);
+}
+
+/* ===== PROPERTY BOX (for potencias page) ===== */
+.property-box {
+    margin-bottom: var(--spacing-md);
+}
+
+.property-box h3 {
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.formula {
+    font-weight: 400;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    padding: 15px;
+    margin: var(--spacing-sm) 0;
+    text-align: left;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.example {
+    margin: 5px 0;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* KaTeX font styling */
+.katex {
+    font-size: 1.1em;
+}
+
+.formula .katex {
+    font-size: 1.15em;
+}
+
+/* Force inline display for KaTeX to prevent line breaks */
+.katex-display {
+    display: inline !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.katex-html {
+    display: inline !important;
 }
 
 /* ===== CONTACT ===== */
@@ -309,8 +484,8 @@ footer {
     opacity: 0;
     transform: translateY(30px);
     transition:
-        opacity 0.6s ease-out,
-        transform 0.6s ease-out;
+            opacity 0.6s ease-out,
+            transform 0.6s ease-out;
 }
 
 .fade-in.visible {
@@ -381,5 +556,13 @@ footer {
 
     .label {
         min-width: 120px;
+    }
+
+    .menu-item {
+        font-size: 1.5rem;
+    }
+
+    .menu-subitem {
+        font-size: 1.2rem;
     }
 }

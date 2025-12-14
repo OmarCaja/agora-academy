@@ -87,12 +87,49 @@ themeToggle.addEventListener("click", toggleTheme);
 
 // Listen for system theme changes (only if user hasn't set a preference)
 window
-  .matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", (e) => {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      applyTheme(e.matches ? THEMES.DARK : THEMES.LIGHT);
-    }
-  });
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        applyTheme(e.matches ? THEMES.DARK : THEMES.LIGHT);
+      }
+    });
+
+// ===== HAMBURGER MENU =====
+
+const menuToggle = document.getElementById("menuToggle");
+const menuOverlay = document.getElementById("menuOverlay");
+
+/**
+ * Toggle the menu open/closed
+ */
+const toggleMenu = () => {
+  menuToggle.classList.toggle("active");
+  menuOverlay.classList.toggle("active");
+
+  // Prevent body scroll when menu is open
+  if (menuOverlay.classList.contains("active")) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+};
+
+// Event listener for menu toggle button
+menuToggle.addEventListener("click", toggleMenu);
+
+// Close menu when clicking outside the nav
+menuOverlay.addEventListener("click", (e) => {
+  if (e.target === menuOverlay) {
+    toggleMenu();
+  }
+});
+
+// Close menu when pressing Escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && menuOverlay.classList.contains("active")) {
+    toggleMenu();
+  }
+});
 
 // ===== EASTER EGG - FALLING PI DIGITS =====
 
@@ -121,8 +158,8 @@ const createFallingDigit = () => {
 
   // Random animation duration
   const duration =
-    ANIMATION_DURATION_MIN +
-    Math.random() * (ANIMATION_DURATION_MAX - ANIMATION_DURATION_MIN);
+      ANIMATION_DURATION_MIN +
+      Math.random() * (ANIMATION_DURATION_MAX - ANIMATION_DURATION_MIN);
   digit.style.animationDuration = `${duration}s`;
 
   document.body.appendChild(digit);
@@ -191,3 +228,18 @@ const initScrollAnimations = () => {
 
 // Initialize scroll animations when DOM is ready
 initScrollAnimations();
+
+// ===== KATEX INITIALIZATION =====
+
+// Wait for KaTeX auto-render to load, then render all math
+document.addEventListener("DOMContentLoaded", function() {
+  if (window.renderMathInElement) {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$", right: "$", display: true},
+        {left: "$", right: "$", display: false}
+      ],
+      throwOnError: false
+    });
+  }
+});
