@@ -101,7 +101,7 @@ const menuOverlay = document.getElementById("menuOverlay");
 const menuSymbol = document.querySelector(".menu-symbol");
 
 // Math symbols for animation
-const MATH_SYMBOLS = ["+", "-", "π", "X", "÷", "="];
+const MATH_SYMBOLS = ["+", "-", "π", "x", "÷", "="];
 
 /**
  * Animate the menu symbol by cycling through math characters
@@ -144,9 +144,9 @@ const toggleMenu = () => {
 
   // Prevent body scroll when menu is open
   if (menuOverlay.classList.contains("active")) {
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("menu-open");
   } else {
-    document.body.style.overflow = "";
+    document.body.classList.remove("menu-open");
   }
 };
 

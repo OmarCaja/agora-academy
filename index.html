@@ -1,190 +1,162 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Theme color for Safari browser bars (light theme) -->
+    <meta name="theme-color" content="#f4f4f4" media="(prefers-color-scheme: light)" />
+    <!-- Theme color for Safari browser bars (dark theme) -->
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+
     <title>Ágora - Academia de Matemáticas en Cuenca</title>
 
     <!-- SEO Meta Tags -->
-    <meta
-            name="description"
-            content="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3."
-    />
-    <meta
-            name="keywords"
-            content="academia matemáticas Cuenca, clases matemáticas ESO, clases matemáticas bachillerato, academia Cuenca, Ágora"
-    />
+    <meta name="description"
+        content="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3." />
+    <meta name="keywords"
+        content="academia matemáticas Cuenca, clases matemáticas ESO, clases matemáticas bachillerato, academia Cuenca, Ágora" />
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
-            rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="styles.css" />
 
     <!-- JavaScript (defer ensures it runs after HTML is parsed) -->
     <script src="script.js" defer></script>
 
     <!-- Favicon -->
-    <link
-            rel="icon"
-            type="image/png"
-            href="favicon/favicon-96x96.png"
-            sizes="96x96"
-    />
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg"/>
-    <link rel="shortcut icon" href="favicon/favicon.ico"/>
-    <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="favicon/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="favicon/site.webmanifest"/>
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
 
     <!-- Open Graph (for WhatsApp, Facebook, LinkedIn, etc.) -->
-    <meta property="og:title" content="Ágora - Academia de Matemáticas"/>
-    <meta
-            property="og:description"
-            content="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato."
-    />
-    <meta
-            property="og:image"
-            content="https://www.agoraacademy.es/favicon/logo.png"
-    />
-    <meta property="og:url" content="https://www.agoraacademy.es/"/>
-    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Ágora - Academia de Matemáticas" />
+    <meta property="og:description"
+        content="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato." />
+    <meta property="og:image" content="https://www.agoraacademy.es/favicon/logo.png" />
+    <meta property="og:url" content="https://www.agoraacademy.es/" />
+    <meta property="og:type" content="website" />
 
     <!-- Twitter Card (for Twitter sharing) -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="Ágora - Academia de Matemáticas"/>
-    <meta
-            name="twitter:description"
-            content="Academia de matemáticas en Cuenca."
-    />
-    <meta
-            name="twitter:image"
-            content="https://www.agoraacademy.es/favicon/logo.png"
-    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ágora - Academia de Matemáticas" />
+    <meta name="twitter:description" content="Academia de matemáticas en Cuenca." />
+    <meta name="twitter:image" content="https://www.agoraacademy.es/favicon/logo.png" />
 </head>
+
 <body>
-<!-- Math Symbol Menu Button -->
-<button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación">
-    <span class="menu-symbol">π</span>
-</button>
+    <!-- Math Symbol Menu Button -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación">
+        <span class="menu-symbol">π</span>
+    </button>
 
-<!-- Menu Overlay -->
-<div class="menu-overlay" id="menuOverlay">
-    <nav class="menu-nav">
-        <a href="index.html" class="menu-item active">Inicio</a>
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <nav class="menu-nav">
+            <a href="index.html" class="menu-item active">Inicio</a>
 
-        <div class="menu-group">
-            <span class="menu-group-title">Material Educativo</span>
-            <a href="potencias.html" class="menu-item menu-subitem">Propiedades de las Potencias</a>
-            <!-- Futuras páginas aquí -->
-            <!-- <a href="ecuaciones.html" class="menu-item menu-subitem">Ecuaciones</a> -->
-            <!-- <a href="geometria.html" class="menu-item menu-subitem">Geometría</a> -->
-        </div>
+            <div class="menu-group">
+                <span class="menu-group-title">Material Educativo</span>
+                <a href="potencias.html" class="menu-item menu-subitem">Propiedades de las Potencias</a>
+                <!-- Futuras páginas aquí -->
+                <!-- <a href="ecuaciones.html" class="menu-item menu-subitem">Ecuaciones</a> -->
+                <!-- <a href="geometria.html" class="menu-item menu-subitem">Geometría</a> -->
+            </div>
 
-        <!-- Ejemplo de otro grupo futuro -->
-        <!-- <div class="menu-group">
+            <!-- Ejemplo de otro grupo futuro -->
+            <!-- <div class="menu-group">
             <span class="menu-group-title">Recursos</span>
             <a href="ejercicios.html" class="menu-item menu-subitem">Ejercicios</a>
             <a href="examenes.html" class="menu-item menu-subitem">Exámenes</a>
         </div> -->
-    </nav>
-</div>
+        </nav>
+    </div>
 
-<div class="container">
-    <header>
-        <button
-                class="theme-toggle"
-                id="themeToggle"
-                aria-label="Cambiar entre tema claro y oscuro"
-        >
-            <span id="themeIcon" aria-hidden="true">🌑</span>
-            <span class="sr-only" id="themeText"
-            >Cambiar a tema oscuro</span
-            >
-        </button>
+    <div class="container">
+        <header>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar entre tema claro y oscuro">
+                <span id="themeIcon" aria-hidden="true">🌑</span>
+                <span class="sr-only" id="themeText">Cambiar a tema oscuro</span>
+            </button>
 
-        <h1>ÁGORA</h1>
-        <p class="subtitle">Academia de Matemáticas en Cuenca</p>
-    </header>
+            <h1>ÁGORA</h1>
+            <p class="subtitle">Academia de Matemáticas en Cuenca</p>
+        </header>
 
-    <section class="fade-in">
-        <h2>Sobre Nosotros</h2>
+        <section class="fade-in">
+            <h2>Sobre Nosotros</h2>
 
-        <p>
-            En
-            <strong>Ágora</strong> nos especializamos en la enseñanza de
-            matemáticas para estudiantes de E.S.O. y Bachillerato en
-            Cuenca. Con nuestros <strong>grupos reducidos</strong>, cada
-            alumno recibe una atención personalizada y un seguimiento
-            cercano de su progreso.
-        </p>
-
-        <div class="levels">
-            <span class="level-tag">E.S.O.</span>
-            <span class="level-tag">BACHILLERATO</span>
-        </div>
-    </section>
-
-    <section class="fade-in">
-        <h2>¿Por qué Ágora?</h2>
-
-        <div class="info-box">
-            <p style="margin-bottom: 15px">
-                ✓ <strong>Grupos</strong> reducidos para atención
-                personalizada
+            <p>
+                En
+                <strong>Ágora</strong> nos especializamos en la enseñanza de
+                matemáticas para estudiantes de E.S.O. y Bachillerato en
+                Cuenca. Con nuestros <strong>grupos reducidos</strong>, cada
+                alumno recibe una atención personalizada y un seguimiento
+                cercano de su progreso.
             </p>
-            <p style="margin-bottom: 15px">
-                ✓ Mejora del <strong>proceso de aprendizaje</strong>
-            </p>
-            <p style="margin-bottom: 15px">
-                ✓ Fomento del <strong>razonamiento lógico</strong>
-            </p>
-            <p style="margin-bottom: 0">
-                ✓ Impulso del <strong>pensamiento abstracto</strong>
-            </p>
-        </div>
-    </section>
 
-    <section class="fade-in">
-        <h2>Contacto</h2>
-
-        <div class="info-box">
-            <div class="contact-item">
-                <span class="label">Dirección:</span>
-                <address class="value">
-                    <a
-                            href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="map-link"
-                    >
-                        📍 Calle Fermín Caballero, 3<br/>
-                        Planta 6<br/>
-                        Cuenca
-                    </a>
-                </address>
+            <div class="levels">
+                <span class="level-tag">E.S.O.</span>
+                <span class="level-tag">BACHILLERATO</span>
             </div>
+        </section>
 
-            <div class="contact-item">
-                <span class="label">Teléfono:</span>
-                <span class="value">
-                            <a href="tel:+34649021173">649 021 173</a>
-                        </span>
+        <section class="fade-in">
+            <h2>¿Por qué Ágora?</h2>
+
+            <div class="info-box">
+                <p style="margin-bottom: 15px">
+                    ✓ <strong>Grupos</strong> reducidos para atención
+                    personalizada
+                </p>
+                <p style="margin-bottom: 15px">
+                    ✓ Mejora del <strong>proceso de aprendizaje</strong>
+                </p>
+                <p style="margin-bottom: 15px">
+                    ✓ Fomento del <strong>razonamiento lógico</strong>
+                </p>
+                <p style="margin-bottom: 0">
+                    ✓ Impulso del <strong>pensamiento abstracto</strong>
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <p>© 2025 Ágora - Academia de Matemáticas</p>
-    </footer>
-</div>
+        <section class="fade-in">
+            <h2>Contacto</h2>
+
+            <div class="info-box">
+                <div class="contact-item">
+                    <span class="label">Dirección:</span>
+                    <address class="value">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
+                            target="_blank" rel="noopener noreferrer" class="map-link">
+                            📍 Calle Fermín Caballero, 3<br />
+                            Planta 6<br />
+                            Cuenca
+                        </a>
+                    </address>
+                </div>
+
+                <div class="contact-item">
+                    <span class="label">Teléfono:</span>
+                    <span class="value">
+                        <a href="tel:+34649021173">649 021 173</a>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Ágora - Academia de Matemáticas</p>
+        </footer>
+    </div>
 </body>
+
 </html>
