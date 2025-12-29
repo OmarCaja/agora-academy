@@ -12,3 +12,44 @@ const { label } = Astro.props;
         <slot />
     </span>
 </div>
+
+<style>
+    .contact-item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .label {
+        font-weight: 700;
+        font-size: var(--font-size-md);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .value {
+        font-size: var(--font-size-lg);
+        color: var(--text-muted);
+    }
+
+    .value :global(a) {
+        color: var(--text-primary);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border-color);
+        transition: opacity var(--transition);
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+        .contact-item {
+            flex-direction: row;
+            align-items: baseline;
+            gap: var(--spacing-sm);
+        }
+
+        .label {
+            min-width: 120px;
+        }
+    }
+</style>

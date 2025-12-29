@@ -6,6 +6,10 @@ interface Props {
 }
 
 const { title, description, currentPage = "index" } = Astro.props;
+
+import Menu from "../components/Menu.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -87,57 +91,14 @@ const { title, description, currentPage = "index" } = Astro.props;
   </head>
 
   <body>
-    <!-- Math Symbol Menu Button -->
-    <button
-      class="menu-toggle"
-      id="menuToggle"
-      aria-label="Abrir menú de navegación"
-    >
-      <span class="menu-symbol">π</span>
-    </button>
+    <Menu currentPage={currentPage} />
 
-    <!-- Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay">
-      <nav class="menu-nav">
-        <a
-          href="/"
-          class:list={["menu-item", { active: currentPage === "index" }]}
-          >Inicio</a
-        >
-
-        <div class="menu-group">
-          <span class="menu-group-title">Material Educativo</span>
-          <a
-            href="/potencias"
-            class:list={[
-              "menu-item",
-              "menu-subitem",
-              { active: currentPage === "potencias" },
-            ]}
-          >
-            Propiedades de las Potencias
-          </a>
-          <!-- Futuras páginas aquí -->
-        </div>
-      </nav>
-    </div>
-
-    <!-- Theme Toggle Button -->
-    <button
-      class="theme-toggle"
-      id="themeToggle"
-      aria-label="Cambiar entre tema claro y oscuro"
-    >
-      <span id="themeIcon" aria-hidden="true">🌑</span>
-      <span class="sr-only" id="themeText">Cambiar a tema oscuro</span>
-    </button>
+    <ThemeToggle />
 
     <div class="container">
       <slot />
 
-      <footer>
-        <p>© 2025 Ágora - Academia de Matemáticas</p>
-      </footer>
+      <Footer />
     </div>
 
     <style is:global>
@@ -145,8 +106,6 @@ const { title, description, currentPage = "index" } = Astro.props;
     </style>
 
     <script>
-      import "../scripts/theme.js";
-      import "../scripts/menu.js";
       import "../scripts/animations.js";
     </script>
   </body>

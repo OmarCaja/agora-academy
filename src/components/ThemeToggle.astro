@@ -1,0 +1,46 @@
+---
+
+---
+
+<button
+    class="theme-toggle"
+    id="themeToggle"
+    aria-label="Cambiar entre tema claro y oscuro"
+>
+    <span id="themeIcon" aria-hidden="true">🌑</span>
+    <span class="sr-only" id="themeText">Cambiar a tema oscuro</span>
+</button>
+
+<script>
+    import "../scripts/theme.js";
+</script>
+
+<style>
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: all var(--transition);
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+    }
+
+    .theme-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    .theme-toggle:active {
+        transform: scale(0.95);
+    }
+</style>

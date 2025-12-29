@@ -1,0 +1,177 @@
+---
+interface Props {
+    currentPage?: string;
+}
+
+const { currentPage } = Astro.props;
+---
+
+<!-- Math Symbol Menu Button -->
+<button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Abrir menú de navegación"
+>
+    <span class="menu-symbol">π</span>
+</button>
+
+<!-- Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay">
+    <nav class="menu-nav">
+        <a
+            href="/"
+            class:list={["menu-item", { active: currentPage === "index" }]}
+            >Inicio</a
+        >
+
+        <div class="menu-group">
+            <span class="menu-group-title">Material Educativo</span>
+            <a
+                href="/potencias"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "potencias" },
+                ]}
+            >
+                Propiedades de las Potencias
+            </a>
+            <!-- Futuras páginas aquí -->
+        </div>
+    </nav>
+</div>
+
+<script>
+    import "../scripts/menu.js";
+</script>
+
+<style>
+    /* ===== MATH SYMBOL MENU BUTTON ===== */
+    .menu-toggle {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: transparent;
+        border: none;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        cursor: pointer;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition);
+    }
+
+    .menu-toggle:hover {
+        opacity: 0.7;
+    }
+
+    .menu-toggle:active {
+        transform: scale(0.95);
+    }
+
+    .menu-symbol {
+        font-size: 2.2rem;
+        font-weight: 400;
+        color: var(--text-primary);
+        line-height: 1;
+        transition: all var(--transition);
+    }
+
+    /* ===== MENU OVERLAY ===== */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100vh;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        min-height: 100dvh;
+        background: var(--bg-primary);
+        z-index: 1000;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transition);
+        padding-top: 80px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    :global(.menu-overlay.active) {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .menu-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: var(--spacing-lg);
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .menu-item {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        padding: 12px 20px;
+        border-left: 3px solid transparent;
+        transition: all var(--transition);
+        display: block;
+    }
+
+    .menu-item:hover {
+        color: var(--text-primary);
+        border-left-color: var(--border-color);
+        padding-left: 25px;
+    }
+
+    .menu-item.active {
+        color: var(--text-primary);
+        border-left-color: var(--accent);
+        font-weight: 700;
+    }
+
+    .menu-group {
+        margin-top: var(--spacing-sm);
+    }
+
+    .menu-group-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        padding: 8px 20px;
+        display: block;
+        font-weight: 700;
+    }
+
+    .menu-subitem {
+        font-size: 1rem;
+        padding-left: 40px;
+    }
+
+    .menu-subitem:hover {
+        padding-left: 45px;
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+        .menu-item {
+            font-size: 1.5rem;
+        }
+
+        .menu-subitem {
+            font-size: 1.2rem;
+        }
+    }
+</style>

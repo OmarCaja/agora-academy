@@ -11,3 +11,37 @@ const { title, subtitle } = Astro.props;
     <h1>{title}</h1>
     {subtitle && <p class="subtitle">{subtitle}</p>}
 </header>
+<style>
+    header {
+        text-align: center;
+        padding: var(--spacing-md) 0;
+        border-bottom: var(--border-width) solid var(--border-color);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        letter-spacing: -2px;
+        margin-bottom: var(--spacing-xs);
+        cursor: default;
+        user-select: none;
+        transition: transform var(--transition);
+    }
+
+    h1:active {
+        transform: scale(0.98);
+    }
+
+    .subtitle {
+        font-size: clamp(1.1rem, 2vw, 1.1rem);
+        color: var(--text-muted);
+        margin-top: var(--spacing-xs);
+    }
+
+    @media (min-width: 768px) {
+        header {
+            padding: var(--spacing-xl) 0;
+        }
+    }
+</style>
