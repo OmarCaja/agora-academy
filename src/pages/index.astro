@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import InfoBox from "../components/InfoBox.astro";
+import LevelTags from "../components/LevelTags.astro";
+import ContactItem from "../components/ContactItem.astro";
+---
+
+<BaseLayout
+	title="Ágora - Academia de Matemáticas en Cuenca"
+	description="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3."
+	currentPage="index"
+>
+	<Header title="ÁGORA" subtitle="Academia de Matemáticas en Cuenca" />
+
+	<section class="fade-in">
+		<h2>Sobre Nosotros</h2>
+
+		<p>
+			En
+			<strong>Ágora</strong> nos especializamos en la enseñanza de matemáticas
+			para estudiantes de E.S.O. y Bachillerato en Cuenca. Con nuestros <strong
+				>grupos reducidos</strong
+			>, cada alumno recibe una atención personalizada y un seguimiento
+			cercano de su progreso.
+		</p>
+
+		<LevelTags />
+	</section>
+
+	<section class="fade-in">
+		<h2>¿Por qué Ágora?</h2>
+
+		<InfoBox>
+			<p style="margin-bottom: 15px">
+				✓ <strong>Grupos</strong> reducidos para atención personalizada
+			</p>
+			<p style="margin-bottom: 15px">
+				✓ Mejora del <strong>proceso de aprendizaje</strong>
+			</p>
+			<p style="margin-bottom: 15px">
+				✓ Fomento del <strong>razonamiento lógico</strong>
+			</p>
+			<p style="margin-bottom: 0">
+				✓ Impulso del <strong>pensamiento abstracto</strong>
+			</p>
+		</InfoBox>
+	</section>
+
+	<section class="fade-in">
+		<h2>Contacto</h2>
+
+		<InfoBox>
+			<ContactItem label="Dirección">
+				<address>
+					<a
+						href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="map-link"
+					>
+						📍 Calle Fermín Caballero, 3<br />
+						Planta 6<br />
+						Cuenca
+					</a>
+				</address>
+			</ContactItem>
+
+			<ContactItem label="Teléfono">
+				<a href="tel:+34649021173">649 021 173</a>
+			</ContactItem>
+		</InfoBox>
+	</section>
+</BaseLayout>

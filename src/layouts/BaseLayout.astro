@@ -1,0 +1,153 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  currentPage?: string;
+}
+
+const { title, description, currentPage = "index" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- Theme color for Safari browser bars (light theme) -->
+    <meta
+      name="theme-color"
+      content="#f4f4f4"
+      media="(prefers-color-scheme: light)"
+    />
+    <!-- Theme color for Safari browser bars (dark theme) -->
+    <meta
+      name="theme-color"
+      content="#1a1a1a"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <title>{title}</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="academia matemáticas Cuenca, clases matemáticas ESO, clases matemáticas bachillerato, academia Cuenca, Ágora"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <!-- Open Graph (for WhatsApp, Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta
+      property="og:image"
+      content="https://www.agoraacademy.es/favicon/logo.png"
+    />
+    <meta property="og:url" content="https://www.agoraacademy.es/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card (for Twitter sharing) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content="https://www.agoraacademy.es/favicon/logo.png"
+    />
+
+    <!-- Additional head content (e.g., KaTeX) -->
+    <slot name="head" />
+  </head>
+
+  <body>
+    <!-- Math Symbol Menu Button -->
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Abrir menú de navegación"
+    >
+      <span class="menu-symbol">π</span>
+    </button>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+      <nav class="menu-nav">
+        <a
+          href="/"
+          class:list={["menu-item", { active: currentPage === "index" }]}
+          >Inicio</a
+        >
+
+        <div class="menu-group">
+          <span class="menu-group-title">Material Educativo</span>
+          <a
+            href="/potencias"
+            class:list={[
+              "menu-item",
+              "menu-subitem",
+              { active: currentPage === "potencias" },
+            ]}
+          >
+            Propiedades de las Potencias
+          </a>
+          <!-- Futuras páginas aquí -->
+        </div>
+      </nav>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button
+      class="theme-toggle"
+      id="themeToggle"
+      aria-label="Cambiar entre tema claro y oscuro"
+    >
+      <span id="themeIcon" aria-hidden="true">🌑</span>
+      <span class="sr-only" id="themeText">Cambiar a tema oscuro</span>
+    </button>
+
+    <div class="container">
+      <slot />
+
+      <footer>
+        <p>© 2025 Ágora - Academia de Matemáticas</p>
+      </footer>
+    </div>
+
+    <style is:global>
+      @import "../styles/global.css";
+    </style>
+
+    <script>
+      import "../scripts/theme.js";
+      import "../scripts/menu.js";
+      import "../scripts/animations.js";
+    </script>
+  </body>
+</html>

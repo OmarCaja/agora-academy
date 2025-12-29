@@ -1,0 +1,151 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import PropertyBox from "../components/PropertyBox.astro";
+---
+
+<BaseLayout
+    title="Propiedades de las Potencias - Ágora"
+    description="Aprende las propiedades de las potencias: exponente cero, uno, negativo, operaciones con potencias. Material educativo de Ágora Academia de Matemáticas."
+    currentPage="potencias"
+>
+    <Fragment slot="head">
+        <!-- KaTeX for math rendering -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+            integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+            crossorigin="anonymous"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+            integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+            crossorigin="anonymous"></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+            crossorigin="anonymous"></script>
+    </Fragment>
+
+    <Header title="PROPIEDADES DE LAS POTENCIAS" />
+
+    <section class="fade-in">
+        <h2>Potencias Básicas</h2>
+
+        <PropertyBox
+            title="Potencia de exponente cero"
+            formula="$a^0 = 1$"
+            example="$6^0 = 1$"
+        />
+
+        <PropertyBox
+            title="Potencia de exponente uno"
+            formula="$a^1 = a$"
+            example="$6^1 = 6$"
+        />
+    </section>
+
+    <section class="fade-in">
+        <h2>Signos en las Potencias</h2>
+
+        <div class="info-box property-box">
+            <h3>Exponente par</h3>
+            <p>
+                Las potencias de <strong>exponente par</strong> son siempre <strong
+                    >positivas</strong
+                >.
+            </p>
+            <p class="formula">$(-a)^n = a^n$</p>
+            <p class="example"></p>
+            <p class="example">$2^6 = 64$</p>
+            <p class="example">$(-2)^6 = 64$</p>
+        </div>
+
+        <div class="info-box property-box">
+            <h3>Exponente impar</h3>
+            <p>
+                Las potencias de <strong>exponente impar</strong> tienen el <strong
+                    >mismo signo</strong
+                > que la
+                <strong>base</strong>.
+            </p>
+            <p class="formula">$(-a)^n = -a^n$</p>
+            <p class="example"></p>
+            <p class="example">$2^3 = 8$</p>
+            <p class="example">$(-2)^3 = -8$</p>
+        </div>
+    </section>
+
+    <section class="fade-in">
+        <h2>Operaciones con Potencias</h2>
+
+        <PropertyBox
+            title="Multiplicación con la misma base"
+            formula="$a^m \\cdot a^n = a^{m+n}$"
+            example="$7^5 \\cdot 7^2 = 7^{5+2} = 7^7$"
+        />
+
+        <PropertyBox
+            title="División con la misma base"
+            formula="$a^m : a^n = a^{m-n}$"
+            example="$7^5 : 7^2 = 7^{5-2} = 7^3$"
+        />
+
+        <PropertyBox
+            title="Potencia de una potencia"
+            formula="$(a^m)^n = a^{m \\cdot n}$"
+            example="$(7^5)^3 = 7^{5 \\times 3} = 7^{15}$"
+        />
+
+        <PropertyBox
+            title="Multiplicación con el mismo exponente"
+            formula="$a^n \\cdot b^n = (a \\cdot b)^n$"
+            example="$2^3 \\cdot 4^3 = (2 \\cdot 4)^3 = 8^3$"
+        />
+
+        <PropertyBox
+            title="División con el mismo exponente"
+            formula="$a^n : b^n = (a : b)^n$"
+            example="$6^3 : 3^3 = (6 : 3)^3 = 2^3$"
+        />
+    </section>
+
+    <section class="fade-in">
+        <h2>Exponentes Especiales</h2>
+
+        <PropertyBox
+            title="Exponente entero negativo"
+            formula="$a^{-n} = \\frac{1}{a^n}$"
+            example="$2^{-3} = \\frac{1}{2^3} = \\frac{1}{8}$"
+        />
+
+        <PropertyBox
+            title="Exponente racional"
+            formula="$a^{\\frac{m}{n}} = \\sqrt[n]{a^m}$"
+            example="$8^{\\frac{2}{3}} = \\sqrt[3]{8^2} = \\sqrt[3]{64} = 4$"
+        />
+
+        <PropertyBox
+            title="Exponente racional y negativo"
+            formula="$a^{-\\frac{m}{n}} = \\frac{1}{\\sqrt[n]{a^m}}$"
+            example="$4^{-\\frac{3}{2}} = \\frac{1}{\\sqrt{4^3}} = \\frac{1}{8}$"
+        />
+    </section>
+
+    <script>
+        // KaTeX initialization
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$", right: "$", display: true },
+                        { left: "$", right: "$", display: false },
+                    ],
+                    throwOnError: false,
+                });
+            }
+        });
+    </script>
+</BaseLayout>

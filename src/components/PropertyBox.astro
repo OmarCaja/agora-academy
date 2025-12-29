@@ -1,0 +1,17 @@
+---
+interface Props {
+    title: string;
+    formula: string;
+    example?: string;
+    description?: string;
+}
+
+const { title, formula, example, description } = Astro.props;
+---
+
+<div class="info-box property-box">
+    <h3>{title}</h3>
+    {description && <p>{description}</p>}
+    <p class="formula" set:html={formula} />
+    {example && <p class="example" set:html={example} />}
+</div>
