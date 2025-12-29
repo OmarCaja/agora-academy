@@ -1,0 +1,153 @@
+---
+
+---
+
+<header class="global-nav">
+    <div class="nav-content">
+        <button
+            class="nav-btn menu-btn"
+            id="menuToggle"
+            aria-label="Abrir menú de navegación"
+        >
+            <span class="menu-symbol">π</span>
+        </button>
+
+        <a href="/" class="nav-logo" aria-label="Agorá Academy">
+            <!-- Inlining SVG to ensure we can control it if needed, or just img -->
+            <img src="/favicon/favicon.svg" alt="Agorá Academy" />
+        </a>
+
+        <button
+            class="nav-btn theme-btn"
+            id="themeToggle"
+            aria-label="Cambiar entre tema claro y oscuro"
+        >
+            <span id="themeIcon" aria-hidden="true">🌑</span>
+            <span class="sr-only" id="themeText">Cambiar a tema oscuro</span>
+        </button>
+    </div>
+</header>
+<script>
+    import "../scripts/theme.js";
+    // We don't import menu.js here because Menu.astro handles it (and the overlay)
+    // But we need to make sure Menu.astro is present in the layout.
+</script>
+
+<style>
+    .global-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 48px;
+        z-index: 2000; /* Higher than menu overlay? No, menu overlay is 1000. 
+                     Wait, if overlay is screen covering, nav should be on top? 
+                     Typically nav is on top of content, but menu overlay covers EVERYTHING including nav. 
+                     Apple's menu usually covers the nav or transforms usage.
+                     Let's verify Menu.astro z-index. It was 1000. 
+                     If I put nav at 2000, it stays on top of menu overlay.
+                     If I want standard drawer behavior, overlay is usually ON TOP of everything.
+                     Let's check Menu.astro styles again. 
+                     Button was 1001. Overlay 1000. 
+                     So button remains clickable? 
+                     Yes, button was fixed. 
+                     So nav should be slightly lower than overlay if overlay covers header, 
+                     OR nav stays on top if the "close" button is inside the nav. 
+                     Current Menu.astro overlay covers entire screen (top:0).
+                     And standard apple menu behavior: The header transforms into the close button.
+                     Let's keep nav at z-index 1001 (like the old button) so it's visible. 
+                  */
+        background-color: rgba(
+            22,
+            22,
+            24,
+            0.8
+        ); /* Apple-like dark semi-transparent */
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    /* Light mode override for nav background if desired, but Apple often keeps dark header or adaptive. 
+     Let's handle light mode via CSS var if we have them. 
+     Global CSS likely implies variables. 
+     But for "Apple Style", it's often consistent or dark. 
+     Let's stick to dark glass for now, or use variables if available.
+  */
+
+    :global([data-theme="light"]) .global-nav {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .nav-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: #f5f5f7; /* Apple light grey text */
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 100%;
+        transition: opacity 0.3s;
+    }
+
+    :global([data-theme="light"]) .nav-btn {
+        color: #1d1d1f;
+    }
+
+    .nav-btn:hover {
+        opacity: 0.7;
+    }
+
+    .menu-symbol,
+    #themeIcon {
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+
+    .menu-symbol {
+        font-size: 1.5rem; /* Make Pi bigger */
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        opacity: 0.9;
+        transition: opacity 0.3s;
+    }
+
+    .nav-logo:hover {
+        opacity: 1;
+    }
+
+    .nav-logo img {
+        height: 18px; /* Apple logo is usually small ~16-20px */
+        width: auto;
+        display: block;
+    }
+
+    /* Adjust body padding to prevent content hiding behind fixed header */
+    /* This needs to be global or applied in layout. */
+
+    @media (max-width: 768px) {
+        .nav-content {
+            padding: 0 16px;
+        }
+    }
+</style>

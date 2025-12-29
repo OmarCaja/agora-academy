@@ -6,15 +6,6 @@ interface Props {
 const { currentPage } = Astro.props;
 ---
 
-<!-- Math Symbol Menu Button -->
-<button
-    class="menu-toggle"
-    id="menuToggle"
-    aria-label="Abrir menú de navegación"
->
-    <span class="menu-symbol">π</span>
-</button>
-
 <!-- Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay">
     <nav class="menu-nav">
@@ -46,40 +37,6 @@ const { currentPage } = Astro.props;
 </script>
 
 <style>
-    /* ===== MATH SYMBOL MENU BUTTON ===== */
-    .menu-toggle {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background: transparent;
-        border: none;
-        width: 40px;
-        height: 40px;
-        padding: 0;
-        cursor: pointer;
-        z-index: 1001;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all var(--transition);
-    }
-
-    .menu-toggle:hover {
-        opacity: 0.7;
-    }
-
-    .menu-toggle:active {
-        transform: scale(0.95);
-    }
-
-    .menu-symbol {
-        font-size: 2.2rem;
-        font-weight: 400;
-        color: var(--text-primary);
-        line-height: 1;
-        transition: all var(--transition);
-    }
-
     /* ===== MENU OVERLAY ===== */
     .menu-overlay {
         position: fixed;
