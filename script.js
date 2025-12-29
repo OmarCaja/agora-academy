@@ -103,6 +103,9 @@ const menuSymbol = document.querySelector(".menu-symbol");
 // Math symbols for animation
 const MATH_SYMBOLS = ["+", "-", "π", "x", "÷", "="];
 
+// Variable to store scroll position
+let scrollPosition = 0;
+
 /**
  * Animate the menu symbol by cycling through math characters
  * @param {string} finalSymbol - The symbol to settle on
@@ -144,9 +147,17 @@ const toggleMenu = () => {
 
   // Prevent body scroll when menu is open
   if (menuOverlay.classList.contains("active")) {
+    // Save current scroll position
+    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    // Apply fixed position with negative top to maintain visual position
+    document.body.style.top = `-${scrollPosition}px`;
     document.body.classList.add("menu-open");
   } else {
+    // Remove fixed position
     document.body.classList.remove("menu-open");
+    document.body.style.top = '';
+    // Restore scroll position
+    window.scrollTo(0, scrollPosition);
   }
 };
 
