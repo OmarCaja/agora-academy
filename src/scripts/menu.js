@@ -17,7 +17,7 @@ let scrollPosition = 0;
 const animateMenuSymbol = (finalSymbol) => {
     let iterations = 0;
     const maxIterations = 10;
-    const intervalTime = 50;
+    const intervalTime = 100;
 
     const interval = setInterval(() => {
         menuSymbol.innerText = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
