@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Katex from "../components/Katex.astro";
+
+export async function getStaticPaths() {
+    const topics = await getCollection("topics");
+    return topics.map((entry) => ({
+        params: { slug: entry.id },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+    title={`${entry.data.title} - Ágora`}
+    description={entry.data.description ||
+        `Aprende sobre ${entry.data.title} en Ágora Academia de Matemáticas.`}
+    currentPage={entry.id}
+>
+    <Fragment slot="head">
+        <Katex />
+    </Fragment>
+
+    <Header title={entry.data.title.toUpperCase()} />
+
+    <div class="content-section">
+        <Content />
+    </div>
+</BaseLayout>
+
+<style>
+    /* Add some basic styling for the markdown content if needed */
+    /* Container for the rendered markdown */
+    .content-section {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+</style>
