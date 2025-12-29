@@ -87,17 +87,41 @@ themeToggle.addEventListener("click", toggleTheme);
 
 // Listen for system theme changes (only if user hasn't set a preference)
 window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) => {
-      if (!localStorage.getItem(STORAGE_KEY)) {
-        applyTheme(e.matches ? THEMES.DARK : THEMES.LIGHT);
-      }
-    });
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", (e) => {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      applyTheme(e.matches ? THEMES.DARK : THEMES.LIGHT);
+    }
+  });
 
 // ===== HAMBURGER MENU =====
 
 const menuToggle = document.getElementById("menuToggle");
 const menuOverlay = document.getElementById("menuOverlay");
+const menuSymbol = document.querySelector(".menu-symbol");
+
+// Math symbols for animation
+const MATH_SYMBOLS = ["+", "-", "π", "X", "÷", "="];
+
+/**
+ * Animate the menu symbol by cycling through math characters
+ * @param {string} finalSymbol - The symbol to settle on
+ */
+const animateMenuSymbol = (finalSymbol) => {
+  let iterations = 0;
+  const maxIterations = 10;
+  const intervalTime = 50;
+
+  const interval = setInterval(() => {
+    menuSymbol.innerText = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
+    iterations++;
+
+    if (iterations >= maxIterations) {
+      clearInterval(interval);
+      menuSymbol.innerText = finalSymbol;
+    }
+  }, intervalTime);
+};
 
 /**
  * Toggle the menu open/closed
@@ -105,6 +129,18 @@ const menuOverlay = document.getElementById("menuOverlay");
 const toggleMenu = () => {
   menuToggle.classList.toggle("active");
   menuOverlay.classList.toggle("active");
+
+  // Get current symbol to avoid picking the same one
+  const currentSymbol = menuSymbol.innerText;
+  let randomSymbol;
+
+  // Pick a random symbol different from the current one
+  do {
+    randomSymbol = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
+  } while (randomSymbol === currentSymbol);
+
+  // Animate to new random symbol
+  animateMenuSymbol(randomSymbol);
 
   // Prevent body scroll when menu is open
   if (menuOverlay.classList.contains("active")) {
@@ -158,8 +194,8 @@ const createFallingDigit = () => {
 
   // Random animation duration
   const duration =
-      ANIMATION_DURATION_MIN +
-      Math.random() * (ANIMATION_DURATION_MAX - ANIMATION_DURATION_MIN);
+    ANIMATION_DURATION_MIN +
+    Math.random() * (ANIMATION_DURATION_MAX - ANIMATION_DURATION_MIN);
   digit.style.animationDuration = `${duration}s`;
 
   document.body.appendChild(digit);
@@ -232,12 +268,12 @@ initScrollAnimations();
 // ===== KATEX INITIALIZATION =====
 
 // Wait for KaTeX auto-render to load, then render all math
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   if (window.renderMathInElement) {
     renderMathInElement(document.body, {
       delimiters: [
-        {left: "$", right: "$", display: true},
-        {left: "$", right: "$", display: false}
+        { left: "$", right: "$", display: true },
+        { left: "$", right: "$", display: false }
       ],
       throwOnError: false
     });

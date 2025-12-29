@@ -65,8 +65,8 @@ body {
     font-size: var(--font-size-base);
     animation: fadeIn 0.6s ease-in;
     transition:
-            background var(--transition),
-            color var(--transition);
+        background var(--transition),
+        color var(--transition);
 }
 
 /* Fade in animation on page load */
@@ -149,18 +149,14 @@ h1:active {
     transition: all var(--transition);
 }
 
-/* Symbol animation when menu is open */
-.menu-toggle.active .menu-symbol {
-    transform: rotate(180deg);
-}
 
 /* ===== MENU OVERLAY ===== */
 .menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
+    right: 0;
+    bottom: 0;
     background: var(--bg-primary);
     z-index: 1000;
     display: flex;
@@ -271,9 +267,9 @@ body.theme-changing .theme-toggle,
 body.theme-changing .level-tag,
 body.theme-changing .menu-overlay {
     transition:
-            background-color var(--transition),
-            border-color var(--transition),
-            box-shadow var(--transition);
+        background-color var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
 }
 
 /* Disable text color transitions during theme change to avoid flickering */
@@ -484,8 +480,8 @@ footer {
     opacity: 0;
     transform: translateY(30px);
     transition:
-            opacity 0.6s ease-out,
-            transform 0.6s ease-out;
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
 }
 
 .fade-in.visible {
