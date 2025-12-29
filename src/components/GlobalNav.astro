@@ -13,8 +13,19 @@
         </button>
 
         <a href="/" class="nav-logo" aria-label="Agorá Academy">
-            <!-- Inlining SVG to ensure we can control it if needed, or just img -->
-            <img src="/favicon/favicon.svg" alt="Agorá Academy" />
+            <svg
+                class="nav-logo-svg"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <g
+                    transform="matrix(12.166336633663366,0,0,12.166336633663366,8.084616048088165,186.50202995621333)"
+                >
+                    <path
+                        d="M5.64-14.22L7.47-14.22L7.51-14.18L7.55-14.22L9.38-14.22L14.95 0L0.16 0L5.64-14.22ZM7.52-10.30L4.74-2.64L10.36-2.64L7.52-10.30Z"
+                        fill="currentColor"></path>
+                </g>
+            </svg>
         </a>
 
         <button
@@ -40,45 +51,23 @@
         left: 0;
         right: 0;
         height: 48px;
-        z-index: 2000; /* Higher than menu overlay? No, menu overlay is 1000. 
-                     Wait, if overlay is screen covering, nav should be on top? 
-                     Typically nav is on top of content, but menu overlay covers EVERYTHING including nav. 
-                     Apple's menu usually covers the nav or transforms usage.
-                     Let's verify Menu.astro z-index. It was 1000. 
-                     If I put nav at 2000, it stays on top of menu overlay.
-                     If I want standard drawer behavior, overlay is usually ON TOP of everything.
-                     Let's check Menu.astro styles again. 
-                     Button was 1001. Overlay 1000. 
-                     So button remains clickable? 
-                     Yes, button was fixed. 
-                     So nav should be slightly lower than overlay if overlay covers header, 
-                     OR nav stays on top if the "close" button is inside the nav. 
-                     Current Menu.astro overlay covers entire screen (top:0).
-                     And standard apple menu behavior: The header transforms into the close button.
-                     Let's keep nav at z-index 1001 (like the old button) so it's visible. 
-                  */
-        background-color: rgba(
-            22,
-            22,
-            24,
-            0.8
-        ); /* Apple-like dark semi-transparent */
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        transition: background-color 0.3s ease;
-    }
+        z-index: 1001;
 
-    /* Light mode override for nav background if desired, but Apple often keeps dark header or adaptive. 
-     Let's handle light mode via CSS var if we have them. 
-     Global CSS likely implies variables. 
-     But for "Apple Style", it's often consistent or dark. 
-     Let's stick to dark glass for now, or use variables if available.
-  */
-
-    :global([data-theme="light"]) .global-nav {
+        /* Light Theme (Default) */
         background-color: rgba(255, 255, 255, 0.8);
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        transition:
+            background-color 0.3s ease,
+            border-color 0.3s ease;
+    }
+
+    /* Dark Theme Override */
+    :global([data-theme="dark"]) .global-nav {
+        background-color: rgba(22, 22, 24, 0.8);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-content {
@@ -95,22 +84,24 @@
         background: transparent;
         border: none;
         cursor: pointer;
-        color: #f5f5f7; /* Apple light grey text */
         padding: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         width: 40px;
         height: 100%;
-        transition: opacity 0.3s;
-    }
+        transition: color 0.3s ease;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+        opacity: 1 !important;
 
-    :global([data-theme="light"]) .nav-btn {
+        /* Light Theme Text */
         color: #1d1d1f;
     }
 
-    .nav-btn:hover {
-        opacity: 0.7;
+    /* Dark Theme Text Overlay */
+    :global([data-theme="dark"]) .nav-btn {
+        color: #f5f5f7;
     }
 
     .menu-symbol,
@@ -120,7 +111,7 @@
     }
 
     .menu-symbol {
-        font-size: 1.5rem; /* Make Pi bigger */
+        font-size: 1.5rem;
     }
 
     .nav-logo {
@@ -128,16 +119,20 @@
         align-items: center;
         justify-content: center;
         height: 100%;
-        opacity: 0.9;
-        transition: opacity 0.3s;
+        transition: color 0.3s ease;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+        opacity: 1 !important;
+        /* Light Theme Text (matches nav-btn) */
+        color: #1d1d1f;
     }
 
-    .nav-logo:hover {
-        opacity: 1;
+    :global([data-theme="dark"]) .nav-logo {
+        color: #f5f5f7;
     }
 
-    .nav-logo img {
-        height: 18px; /* Apple logo is usually small ~16-20px */
+    .nav-logo-svg {
+        height: 20px;
         width: auto;
         display: block;
     }
