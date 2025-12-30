@@ -37,7 +37,7 @@ const { currentPage } = Astro.props;
                     { active: currentPage === "propiedades-operaciones" },
                 ]}
             >
-                Propiedades de las Operaciones
+                Propiedades de las operaciones
             </a>
             <a
                 href="/divisibilidad"
@@ -59,7 +59,7 @@ const { currentPage } = Astro.props;
                     { active: currentPage === "fracciones" },
                 ]}
             >
-                Operaciones con Fracciones
+                Operaciones con fracciones
             </a>
         </div>
 
@@ -74,7 +74,7 @@ const { currentPage } = Astro.props;
                     { active: currentPage === "identidades-notables" },
                 ]}
             >
-                Identidades Notables
+                Identidades notables
             </a>
         </div>
 
@@ -89,7 +89,7 @@ const { currentPage } = Astro.props;
                     { active: currentPage === "potencias" },
                 ]}
             >
-                Propiedades de las Potencias
+                Propiedades de las potencias
             </a>
             <a
                 href="/raices"
@@ -100,7 +100,7 @@ const { currentPage } = Astro.props;
                     { active: currentPage === "raices" },
                 ]}
             >
-                Propiedades de las Raíces
+                Propiedades de las raíces
             </a>
             <a
                 href="/logaritmos"
@@ -111,7 +111,7 @@ const { currentPage } = Astro.props;
                     { active: currentPage === "logaritmos" },
                 ]}
             >
-                Propiedades de los Logaritmos
+                Propiedades de los logaritmos
             </a>
         </div>
     </nav>
@@ -130,10 +130,9 @@ const { currentPage } = Astro.props;
         right: 0;
         bottom: 0;
         width: 100%;
+        /* Use dvh for dynamic viewport height support in modern Safari */
         height: 100vh;
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
-        min-height: 100dvh;
+        height: 100dvh;
         background: var(--bg-primary);
         z-index: 1000;
         display: flex;
@@ -144,6 +143,7 @@ const { currentPage } = Astro.props;
         transition: opacity var(--transition);
         padding-top: 40px;
         overflow-y: auto;
+        overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -163,7 +163,7 @@ const { currentPage } = Astro.props;
         flex-direction: column;
         gap: 5px;
         padding: var(--spacing-lg);
-        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+        padding-bottom: calc(120px + env(safe-area-inset-bottom));
         max-width: 500px;
         width: 100%;
     }

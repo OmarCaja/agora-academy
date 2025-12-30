@@ -1,5 +1,5 @@
 {
-    "title": "Propiedades de los Logaritmos",
+    "title": "Propiedades de los logaritmos",
     "description": "Aprende la definición de logaritmo y sus propiedades fundamentales: logaritmo de un producto, cociente, potencia y cambio de base.",
     "sections": [
         {
@@ -24,7 +24,7 @@
             ]
         },
         {
-            "title": "Propiedades Operativas",
+            "title": "Propiedades operativas",
             "items": [
                 {
                     "title": "Logaritmo de un producto",
@@ -44,7 +44,7 @@
             ]
         },
         {
-            "title": "Propiedades Avanzadas",
+            "title": "Propiedades avanzadas",
             "items": [
                 {
                     "title": "Logaritmo de una raíz",

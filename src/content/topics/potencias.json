@@ -1,9 +1,9 @@
 {
-    "title": "Propiedades de las Potencias",
+    "title": "Propiedades de las potencias",
     "description": "Aprende las propiedades de las potencias: exponente cero, uno, negativo, operaciones con potencias. Material educativo de Ágora Academia de Matemáticas.",
     "sections": [
         {
-            "title": "Potencias Básicas",
+            "title": "Potencias básicas",
             "items": [
                 {
                     "title": "Potencia de exponente cero",
@@ -18,7 +18,7 @@
             ]
         },
         {
-            "title": "Signos en las Potencias",
+            "title": "Signos en las potencias",
             "items": [
                 {
                     "title": "Exponente par",
@@ -35,7 +35,7 @@
             ]
         },
         {
-            "title": "Operaciones con Potencias",
+            "title": "Operaciones con potencias",
             "items": [
                 {
                     "title": "Multiplicación con la misma base",
@@ -65,7 +65,7 @@
             ]
         },
         {
-            "title": "Exponentes Especiales",
+            "title": "Exponentes especiales",
             "items": [
                 {
                     "title": "Exponente entero negativo",

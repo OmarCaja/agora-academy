@@ -3,10 +3,16 @@
     "description": "Descomposición factorial de números y cálculo de divisores comunes y múltiplos comunes.",
     "sections": [
         {
-            "title": "Descomposición Factorial",
+            "title": "Descomposición factorial",
             "items": [
                 {
-                    "title": "Factores Primos",
+                    "title": "Número primo",
+                    "formula": "$p \\in \\{2, 3, 5, 7, 11, \\dots\\}$",
+                    "example": "$13$ es primo, $14$ no lo es ($2 \\cdot 7$)",
+                    "description": "Un número es primo si solo tiene dos divisores: el 1 y él mismo."
+                },
+                {
+                    "title": "Factores primos",
                     "formula": "$n = p_1^{a} \\cdot p_2^{b} \\cdot p_3^{c} \\dots$",
                     "example": "$60 = 2^2 \\cdot 3 \\cdot 5$",
                     "description": "Cualquier número compuesto se puede expresar como un producto único de números primos elevados a ciertas potencias."
@@ -14,7 +20,7 @@
             ]
         },
         {
-            "title": "Máximo Común Divisor (m.c.d.)",
+            "title": "Máximo común divisor (m.c.d.)",
             "items": [
                 {
                     "title": "Regla del m.c.d.",
@@ -25,7 +31,7 @@
             ]
         },
         {
-            "title": "Mínimo Común Múltiplo (m.c.m.)",
+            "title": "Mínimo común múltiplo (m.c.m.)",
             "items": [
                 {
                     "title": "Regla del m.c.m.",
@@ -36,7 +42,7 @@
             ]
         },
         {
-            "title": "Propiedad Importante",
+            "title": "Propiedad importante",
             "items": [
                 {
                     "title": "Relación entre m.c.d. y m.c.m.",

@@ -16,12 +16,11 @@
 ></script>
 
 <script is:inline>
-    /**
-     * Initialize KaTeX rendering
-     * Defined on window to be accessible across navigations and avoid duplicate listeners
-     */
-    if (!window.initKatex) {
-        window.initKatex = function () {
+    (function () {
+        /**
+         * Initialize KaTeX rendering
+         */
+        const initKatex = function () {
             if (typeof renderMathInElement === "function" && document.body) {
                 renderMathInElement(document.body, {
                     delimiters: [
@@ -35,15 +34,25 @@
             }
         };
 
-        // Re-run on every Astro page swap and load
-        // We only add these listeners ONCE globally
-        document.addEventListener("astro:page-load", window.initKatex);
-        document.addEventListener("astro:after-swap", window.initKatex);
-    }
+        // Persistent check to ensure rendering happens as soon as possible
+        let renderInterval = setInterval(() => {
+            if (typeof renderMathInElement === "function" && document.body) {
+                initKatex();
+                clearInterval(renderInterval);
+            }
+        }, 50);
 
-    // Run immediately for the current page content
-    window.initKatex();
+        // Stop checking after 3 seconds to avoid battery drain if something fails
+        setTimeout(() => clearInterval(renderInterval), 3000);
 
-    // Small fallback for cases where the script might run before DOM is fully settled
-    setTimeout(window.initKatex, 0);
+        // Standard Astro lifecycle listeners (only add once)
+        if (!window.katexListenersAdded) {
+            document.addEventListener("astro:page-load", initKatex);
+            document.addEventListener("astro:after-swap", initKatex);
+            window.katexListenersAdded = true;
+        }
+
+        // Global exposure for debugging or manual triggers
+        window.initKatex = initKatex;
+    })();
 </script>

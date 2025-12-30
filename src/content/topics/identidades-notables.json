@@ -1,18 +1,18 @@
 {
-    "title": "Identidades Notables Básicas",
+    "title": "Identidades notables básicas",
     "description": "Reglas algebraicas fundamentales para resolver productos de binomios de segundo grado sin realizar la multiplicación paso a paso.",
     "sections": [
         {
-            "title": "Binomios al Cuadrado",
+            "title": "Binomios al cuadrado",
             "items": [
                 {
-                    "title": "Cuadrado de una Suma",
+                    "title": "Cuadrado de una suma",
                     "formula": "$(a + b)^2 = a^2 + 2ab + b^2$",
                     "example": "$(x + 3)^2 = x^2 + 6x + 9$",
                     "description": "El cuadrado del primer término, más el doble producto del primero por el segundo, más el cuadrado del segundo."
                 },
                 {
-                    "title": "Cuadrado de una Diferencia",
+                    "title": "Cuadrado de una diferencia",
                     "formula": "$(a - b)^2 = a^2 - 2ab + b^2$",
                     "example": "$(x - 5)^2 = x^2 - 10x + 25$",
                     "description": "El cuadrado del primer término, menos el doble producto del primero por el segundo, más el cuadrado del segundo."
@@ -20,19 +20,13 @@
             ]
         },
         {
-            "title": "Productos de Binomios",
+            "title": "Productos de binomios",
             "items": [
                 {
-                    "title": "Suma por Diferencia",
+                    "title": "Suma por diferencia",
                     "formula": "$(a + b)(a - b) = a^2 - b^2$",
                     "example": "$(x + 4)(x - 4) = x^2 - 16$",
                     "description": "El producto de una suma por su diferencia es igual a la diferencia de los cuadrados de ambos términos."
-                },
-                {
-                    "title": "Binomios con Término Común",
-                    "formula": "$(x + a)(x + b) = x^2 + (a + b)x + ab$",
-                    "example": "$(x + 2)(x + 3) = x^2 + 5x + 6$",
-                    "description": "El cuadrado del término común más la suma de los términos no comunes por el común, más el producto de los no comunes."
                 }
             ]
         }

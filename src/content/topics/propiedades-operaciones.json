@@ -1,24 +1,24 @@
 {
-    "title": "Propiedades de las Operaciones Numéricas",
+    "title": "Propiedades de las operaciones numéricas",
     "description": "Explora las reglas fundamentales de la aritmética: propiedades conmutativa, asociativa, distributiva, elementos neutros, inversos y el elemento absorbente.",
     "sections": [
         {
-            "title": "Propiedades Estructurales",
+            "title": "Propiedades estructurales",
             "items": [
                 {
-                    "title": "Propiedad Conmutativa",
+                    "title": "Propiedad conmutativa",
                     "formula": "$a + b = b + a$  /  $a \\cdot b = b \\cdot a$",
                     "example": "$5 + 3 = 3 + 5 = 8$  /  $4 \\cdot 2 = 2 \\cdot 4 = 8$",
                     "description": "El orden de los números no altera el resultado final de la operación."
                 },
                 {
-                    "title": "Propiedad Asociativa",
+                    "title": "Propiedad asociativa",
                     "formula": "$(a + b) + c = a + (b + c)$ / $(a \\cdot b) \\cdot c = a \\cdot (b \\cdot c)$",
                     "example": "$(2 + 3) + 4 = 5 + 4 = 9$ / $(2 \\cdot 3) \\cdot 4 = 6 \\cdot 4 = 24$",
                     "description": "La forma en que se agrupan los sumandos o factores no cambia el resultado."
                 },
                 {
-                    "title": "Propiedad Distributiva",
+                    "title": "Propiedad distributiva",
                     "formula": "$a \\cdot (b + c) = (a \\cdot b) + (a \\cdot c)$",
                     "example": "$3 \\cdot (4 + 5) = (3 \\cdot 4) + (3 \\cdot 5) = 12 + 15 = 27$",
                     "description": "Multiplicar un número por una suma es igual a sumar los productos de dicho número por cada sumando."
@@ -26,22 +26,22 @@
             ]
         },
         {
-            "title": "Elementos Especiales",
+            "title": "Elementos especiales",
             "items": [
                 {
-                    "title": "Elemento Neutro (Identidad)",
+                    "title": "Elemento neutro (identidad)",
                     "formula": "$a + 0 = a$ / $a \\cdot 1 = a$",
                     "example": "$12 + 0 = 12$ / $15 \\cdot 1 = 15$",
                     "description": "Existe un número que al ser operado con cualquier otro, mantiene el valor original de este último."
                 },
                 {
-                    "title": "Elemento Inverso (Simétrico)",
+                    "title": "Elemento inverso (simétrico)",
                     "formula": "$a + (-a) = 0$ / $a \\cdot (1/a) = 1$",
                     "example": "$7 + (-7) = 0$ / $4 \\cdot (1/4) = 1$",
                     "description": "Operar un número con su inverso devuelve el elemento neutro de dicha operación."
                 },
                 {
-                    "title": "Elemento Absorbente",
+                    "title": "Elemento absorbente",
                     "formula": "$a \\cdot 0 = 0$",
                     "example": "$1.234 \\cdot 0 = 0$",
                     "description": "En la multiplicación, cualquier número multiplicado por cero resulta siempre en cero."
