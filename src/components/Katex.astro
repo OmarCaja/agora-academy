@@ -21,18 +21,29 @@
     crossorigin="anonymous"></script>
 
 <script>
-    // KaTeX initialization
-    document.addEventListener("DOMContentLoaded", function () {
+    /**
+     * Initialize KaTeX rendering on the page content
+     */
+    const renderMath = () => {
         // @ts-ignore
-        if (window.renderMathInElement) {
+        if (typeof renderMathInElement === "function") {
             // @ts-ignore
             renderMathInElement(document.body, {
                 delimiters: [
-                    { left: "$", right: "$", display: true },
+                    { left: "$$", right: "$$", display: true },
                     { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true },
                 ],
                 throwOnError: false,
             });
+        } else {
+            // If the script isn't loaded yet, try again in a bit
+            // This can happen on first navigation to a page with KaTeX
+            setTimeout(renderMath, 100);
         }
-    });
+    };
+
+    // Initialize on every page load and client-side navigation
+    document.addEventListener("astro:page-load", renderMath);
 </script>

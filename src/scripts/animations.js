@@ -87,8 +87,8 @@ const initScrollAnimations = () => {
     });
 };
 
-// Initialize scroll animations when DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
+// Initialize scroll animations and easter egg when page is loaded
+document.addEventListener("astro:page-load", () => {
     initScrollAnimations();
 
     // Add click event to level tags for easter egg

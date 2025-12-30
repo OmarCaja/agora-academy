@@ -10,11 +10,13 @@ const { title, description, currentPage = "index" } = Astro.props;
 import GlobalNav from "../components/GlobalNav.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
+    <ClientRouter />
     <meta charset="UTF-8" />
     <meta
       name="viewport"

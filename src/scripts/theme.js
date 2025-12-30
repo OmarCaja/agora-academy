@@ -1,11 +1,5 @@
 // ===== THEME TOGGLE =====
 
-// DOM elements
-const themeToggle = document.getElementById("themeToggle");
-const themeIcon = document.getElementById("themeIcon");
-const themeText = document.getElementById("themeText");
-const html = document.documentElement;
-
 // Theme configuration
 const THEMES = {
     LIGHT: "light",
@@ -27,69 +21,76 @@ const THEME_CHANGE_DURATION = 500; // milliseconds
 
 /**
  * Get the initial theme based on user preference or system settings
- * @returns {string} The theme to apply ('light' or 'dark')
  */
 const getInitialTheme = () => {
-    // Check if user has a saved preference
     const savedTheme = localStorage.getItem(STORAGE_KEY);
-    if (savedTheme) {
-        return savedTheme;
-    }
-
-    // Check system preference
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    return prefersDark ? THEMES.DARK : THEMES.LIGHT;
+    if (savedTheme) return savedTheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? THEMES.DARK : THEMES.LIGHT;
 };
 
 /**
  * Apply a theme to the document
- * @param {string} theme - The theme to apply ('light' or 'dark')
  */
-const applyTheme = (theme) => {
-    // Add transition class for smooth theme change
+const applyTheme = (theme, themeIcon, themeText) => {
+    const html = document.documentElement;
     document.body.classList.add("theme-changing");
 
-    // Update HTML attribute, icon, and accessibility text
     if (theme === THEMES.DARK) {
         html.setAttribute("data-theme", THEMES.DARK);
-        themeIcon.textContent = THEME_ICONS[THEMES.DARK];
-        themeText.textContent = THEME_LABELS[THEMES.DARK];
+        if (themeIcon) themeIcon.textContent = THEME_ICONS[THEMES.DARK];
+        if (themeText) themeText.textContent = THEME_LABELS[THEMES.DARK];
     } else {
         html.removeAttribute("data-theme");
-        themeIcon.textContent = THEME_ICONS[THEMES.LIGHT];
-        themeText.textContent = THEME_LABELS[THEMES.LIGHT];
+        if (themeIcon) themeIcon.textContent = THEME_ICONS[THEMES.LIGHT];
+        if (themeText) themeText.textContent = THEME_LABELS[THEMES.LIGHT];
     }
 
-    // Save preference
     localStorage.setItem(STORAGE_KEY, theme);
 
-    // Remove transition class after animation completes
     setTimeout(() => {
         document.body.classList.remove("theme-changing");
     }, THEME_CHANGE_DURATION);
 };
 
 /**
- * Toggle between light and dark themes
+ * Initialize theme functionality
  */
-const toggleTheme = () => {
-    const currentTheme = html.getAttribute("data-theme");
-    const newTheme = currentTheme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
-    applyTheme(newTheme);
+const initTheme = () => {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeText = document.getElementById("themeText");
+    const html = document.documentElement;
+
+    if (!themeToggle || !themeIcon || !themeText) return;
+
+    // Apply initial theme state to UI elements
+    const currentTheme = html.getAttribute("data-theme") === THEMES.DARK ? THEMES.DARK : THEMES.LIGHT;
+    themeIcon.textContent = THEME_ICONS[currentTheme];
+    themeText.textContent = THEME_LABELS[currentTheme];
+
+    const toggleTheme = () => {
+        const isDark = html.getAttribute("data-theme") === THEMES.DARK;
+        const newTheme = isDark ? THEMES.LIGHT : THEMES.DARK;
+        applyTheme(newTheme, themeIcon, themeText);
+    };
+
+    themeToggle.addEventListener("click", toggleTheme);
 };
 
-// Initialize theme on page load
+// Immediate application to prevent FLASH (runs on every page load/navigation)
 const initialTheme = getInitialTheme();
-applyTheme(initialTheme);
+if (initialTheme === THEMES.DARK) {
+    document.documentElement.setAttribute("data-theme", THEMES.DARK);
+}
 
-// Event listeners
-themeToggle.addEventListener("click", toggleTheme);
+// Initialize UI elements and listeners
+document.addEventListener("astro:page-load", initTheme);
 
-// Listen for system theme changes (only if user hasn't set a preference)
-window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) => {
-        if (!localStorage.getItem(STORAGE_KEY)) {
-            applyTheme(e.matches ? THEMES.DARK : THEMES.LIGHT);
-        }
-    });
+// Listen for system theme changes
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+        const themeIcon = document.getElementById("themeIcon");
+        const themeText = document.getElementById("themeText");
+        applyTheme(e.matches ? THEMES.DARK : THEMES.LIGHT, themeIcon, themeText);
+    }
+});
