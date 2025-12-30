@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
-import Katex from "../components/Katex.astro";
 
 export async function getStaticPaths() {
     const topics = await getCollection("topics");
@@ -23,7 +22,6 @@ const { title, description, sections } = entry.data;
     currentPage={entry.id}
 >
     <Fragment slot="head">
-        <Katex />
         <script
             type="application/ld+json"
             is:inline
