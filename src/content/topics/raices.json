@@ -1,0 +1,52 @@
+{
+    "title": "Propiedades de las Raíces",
+    "description": "Aprende las propiedades de las raíces: raíz de un producto, cociente, potencia y raíz de una raíz. Material educativo de Ágora Academia de Matemáticas.",
+    "sections": [
+        {
+            "title": "Fundamentos",
+            "items": [
+                {
+                    "title": "Definición de raíz",
+                    "formula": "$\\sqrt[n]{a} = b \\iff b^n = a$",
+                    "example": "$\\sqrt{25} = 5 \\iff 5^2 = 25$"
+                }
+            ]
+        },
+        {
+            "title": "Propiedades de las Raíces",
+            "items": [
+                {
+                    "title": "Raíz de un producto",
+                    "formula": "$\\sqrt[n]{a \\cdot b} = \\sqrt[n]{a} \\cdot \\sqrt[n]{b}$",
+                    "example": "$\\sqrt{4 \\cdot 9} = \\sqrt{4} \\cdot \\sqrt{9} = 2 \\cdot 3 = 6$"
+                },
+                {
+                    "title": "Raíz de un cociente",
+                    "formula": "$\\sqrt[n]{\\frac{a}{b}} = \\frac{\\sqrt[n]{a}}{\\sqrt[n]{b}}$",
+                    "example": "$\\sqrt{\\frac{100}{4}} = \\frac{\\sqrt{100}}{\\sqrt{4}} = \\frac{10}{2} = 5$"
+                },
+                {
+                    "title": "Raíz de una potencia",
+                    "formula": "$\\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$",
+                    "example": "$\\sqrt{4^3} = (\\sqrt{4})^3 = 2^3 = 8$"
+                },
+                {
+                    "title": "Raíz de una raíz",
+                    "formula": "$\\sqrt[m]{\\sqrt[n]{a}} = \\sqrt[m \\cdot n]{a}$",
+                    "example": "$\\sqrt[3]{\\sqrt{64}} = \\sqrt[3 \\cdot 2]{64} = \\sqrt[6]{64} = 2$"
+                }
+            ]
+        },
+        {
+            "title": "Potencias y Raíces",
+            "items": [
+                {
+                    "title": "Exponente fraccionario",
+                    "formula": "$a^{\\frac{m}{n}} = \\sqrt[n]{a^m}$",
+                    "example": "$8^{\\frac{2}{3}} = \\sqrt[3]{8^2} = \\sqrt[3]{64} = 4$",
+                    "description": "Cualquier raíz puede expresarse como una potencia con <strong>exponente racional</strong>."
+                }
+            ]
+        }
+    ]
+}

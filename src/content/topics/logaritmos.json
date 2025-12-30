@@ -1,0 +1,62 @@
+{
+    "title": "Propiedades de los Logaritmos",
+    "description": "Aprende la definición de logaritmo y sus propiedades fundamentales: logaritmo de un producto, cociente, potencia y cambio de base.",
+    "sections": [
+        {
+            "title": "Definición",
+            "items": [
+                {
+                    "title": "Definición de logaritmo",
+                    "formula": "$\\log_a b = c \\iff a^c = b$",
+                    "example": "$\\log_2 8 = 3 \\iff 2^3 = 8$",
+                    "description": "El logaritmo es el exponente al que hay que elevar la base para obtener el número."
+                },
+                {
+                    "title": "Logaritmo de la base",
+                    "formula": "$\\log_a a = 1$",
+                    "example": "$\\log_5 5 = 1$"
+                },
+                {
+                    "title": "Logaritmo de uno",
+                    "formula": "$\\log_a 1 = 0$",
+                    "example": "$\\log_7 1 = 0$"
+                }
+            ]
+        },
+        {
+            "title": "Propiedades Operativas",
+            "items": [
+                {
+                    "title": "Logaritmo de un producto",
+                    "formula": "$\\log_a (M \\cdot N) = \\log_a M + \\log_a N$",
+                    "example": "$\\log_2 (4 \\cdot 8) = \\log_2 4 + \\log_2 8 = 2 + 3 = 5$"
+                },
+                {
+                    "title": "Logaritmo de un cociente",
+                    "formula": "$\\log_a (M / N) = \\log_a M - \\log_a N$",
+                    "example": "$\\log_2 (16 / 4) = \\log_2 16 - \\log_2 4 = 4 - 2 = 2$"
+                },
+                {
+                    "title": "Logaritmo de una potencia",
+                    "formula": "$\\log_a (M^n) = n \\cdot \\log_a M$",
+                    "example": "$\\log_3 (9^4) = 4 \\cdot \\log_3 9 = 4 \\cdot 2 = 8$"
+                }
+            ]
+        },
+        {
+            "title": "Propiedades Avanzadas",
+            "items": [
+                {
+                    "title": "Logaritmo de una raíz",
+                    "formula": "$\\log_a \\sqrt[n]{M} = \\frac{1}{n} \\log_a M$",
+                    "example": "$\\log_2 \\sqrt[3]{8} = \\frac{1}{3} \\log_2 8 = \\frac{1}{3} \\cdot 3 = 1$"
+                },
+                {
+                    "title": "Cambio de base",
+                    "formula": "$\\log_a M = \\frac{\\log_b M}{\\log_b a}$",
+                    "example": "$\\log_4 16 = \\frac{\\log_2 16}{\\log_2 4} = \\frac{4}{2} = 2$"
+                }
+            ]
+        }
+    ]
+}

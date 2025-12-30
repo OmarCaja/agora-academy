@@ -27,8 +27,38 @@ const { currentPage } = Astro.props;
             >
                 Propiedades de las Potencias
             </a>
-            <!-- Futuras páginas aquí -->
+            <a
+                href="/raices"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "raices" },
+                ]}
+            >
+                Propiedades de las Raíces
+            </a>
+            <a
+                href="/logaritmos"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "logaritmos" },
+                ]}
+            >
+                Propiedades de los Logaritmos
+            </a>
+            <a
+                href="/fracciones"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "fracciones" },
+                ]}
+            >
+                Operaciones con Fracciones
+            </a>
         </div>
+        <!-- Futuras páginas aquí -->
     </nav>
 </div>
 
