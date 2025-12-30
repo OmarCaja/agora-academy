@@ -19,6 +19,7 @@ const { currentPage } = Astro.props;
             <span class="menu-group-title">Aritmética</span>
             <a
                 href="/jerarquia"
+                data-astro-prefetch
                 class:list={[
                     "menu-item",
                     "menu-subitem",
@@ -29,6 +30,7 @@ const { currentPage } = Astro.props;
             </a>
             <a
                 href="/propiedades-operaciones"
+                data-astro-prefetch
                 class:list={[
                     "menu-item",
                     "menu-subitem",
@@ -39,6 +41,7 @@ const { currentPage } = Astro.props;
             </a>
             <a
                 href="/divisibilidad"
+                data-astro-prefetch
                 class:list={[
                     "menu-item",
                     "menu-subitem",
@@ -49,6 +52,7 @@ const { currentPage } = Astro.props;
             </a>
             <a
                 href="/fracciones"
+                data-astro-prefetch
                 class:list={[
                     "menu-item",
                     "menu-subitem",
@@ -63,6 +67,7 @@ const { currentPage } = Astro.props;
             <span class="menu-group-title">Álgebra</span>
             <a
                 href="/identidades-notables"
+                data-astro-prefetch
                 class:list={[
                     "menu-item",
                     "menu-subitem",
@@ -77,6 +82,7 @@ const { currentPage } = Astro.props;
             <span class="menu-group-title">Potencias y Logaritmos</span>
             <a
                 href="/potencias"
+                data-astro-prefetch
                 class:list={[
                     "menu-item",
                     "menu-subitem",
@@ -87,6 +93,7 @@ const { currentPage } = Astro.props;
             </a>
             <a
                 href="/raices"
+                data-astro-prefetch
                 class:list={[
                     "menu-item",
                     "menu-subitem",
@@ -97,6 +104,7 @@ const { currentPage } = Astro.props;
             </a>
             <a
                 href="/logaritmos"
+                data-astro-prefetch
                 class:list={[
                     "menu-item",
                     "menu-subitem",
@@ -134,9 +142,15 @@ const { currentPage } = Astro.props;
         opacity: 0;
         pointer-events: none;
         transition: opacity var(--transition);
-        padding-top: 80px;
+        padding-top: 40px;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+    }
+
+    @media (min-width: 768px) {
+        .menu-overlay {
+            padding-top: 80px;
+        }
     }
 
     :global(.menu-overlay.active) {
@@ -161,9 +175,8 @@ const { currentPage } = Astro.props;
         border-left: 3px solid transparent;
         transition: all var(--transition);
         display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        white-space: normal;
+        line-height: 1.4;
     }
 
     .menu-item:hover {
@@ -192,7 +205,7 @@ const { currentPage } = Astro.props;
 
     .menu-subitem {
         font-size: 1rem;
-        padding-left: 40px;
+        padding-left: 30px;
     }
 
     /* Responsive adjustments */

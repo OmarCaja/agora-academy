@@ -44,10 +44,16 @@ import { ClientRouter } from "astro:transitions";
       name="keywords"
       content="academia matemáticas Cuenca, clases matemáticas ESO, clases matemáticas bachillerato, academia Cuenca, Ágora"
     />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
@@ -76,7 +82,7 @@ import { ClientRouter } from "astro:transitions";
       property="og:image"
       content="https://www.agoraacademy.es/favicon/logo.png"
     />
-    <meta property="og:url" content="https://www.agoraacademy.es/" />
+    <meta property="og:url" content={Astro.url} />
     <meta property="og:type" content="website" />
 
     <!-- Twitter Card (for Twitter sharing) -->
@@ -87,6 +93,37 @@ import { ClientRouter } from "astro:transitions";
       name="twitter:image"
       content="https://www.agoraacademy.es/favicon/logo.png"
     />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Ágora - Academia de Matemáticas",
+        "image": "https://www.agoraacademy.es/favicon/logo.png",
+        "@id": "https://www.agoraacademy.es",
+        "url": "https://www.agoraacademy.es",
+        "telephone": "+34649021173",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle Fermín Caballero, 3, Planta 6, espacio Einstein",
+          "addressLocality": "Cuenca",
+          "postalCode": "16004",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.071,
+          "longitude": -2.137
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "16:00",
+          "closes": "20:00"
+        }
+      }
+    </script>
 
     <!-- Additional head content (e.g., KaTeX) -->
     <slot name="head" />
