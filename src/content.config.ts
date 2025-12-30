@@ -1,14 +1,20 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// potencias collection removed
-
-
 const topics = defineCollection({
-    loader: glob({ pattern: "**/*.md", base: "./src/content/topics" }),
+    loader: glob({ pattern: "**/*.json", base: "./src/content/topics" }),
     schema: z.object({
         title: z.string(),
-        description: z.string().optional(),
+        description: z.string(),
+        sections: z.array(z.object({
+            title: z.string(),
+            items: z.array(z.object({
+                title: z.string(),
+                formula: z.string(),
+                example: z.string(),
+                description: z.string().optional()
+            }))
+        }))
     })
 });
 

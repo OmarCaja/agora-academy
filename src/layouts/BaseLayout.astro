@@ -90,6 +90,34 @@ import { ClientRouter } from "astro:transitions";
 
     <!-- Additional head content (e.g., KaTeX) -->
     <slot name="head" />
+
+    <script is:inline>
+      const getTheme = () => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      };
+
+      const setTheme = (theme) => {
+        if (theme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      };
+
+      // Set initial theme
+      setTheme(getTheme());
+
+      // Re-apply theme after Astro page swap
+      document.addEventListener("astro:after-swap", () => setTheme(getTheme()));
+    </script>
   </head>
 
   <body>

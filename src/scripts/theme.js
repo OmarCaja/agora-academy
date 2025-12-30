@@ -77,12 +77,6 @@ const initTheme = () => {
     themeToggle.addEventListener("click", toggleTheme);
 };
 
-// Immediate application to prevent FLASH (runs on every page load/navigation)
-const initialTheme = getInitialTheme();
-if (initialTheme === THEMES.DARK) {
-    document.documentElement.setAttribute("data-theme", THEMES.DARK);
-}
-
 // Initialize UI elements and listeners
 document.addEventListener("astro:page-load", initTheme);
 

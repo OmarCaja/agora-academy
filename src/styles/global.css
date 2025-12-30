@@ -228,59 +228,6 @@ address {
     transition: all var(--transition);
 }
 
-/* ===== PROPERTY BOX (for potencias page) ===== */
-.property-box {
-    margin-bottom: var(--spacing-md);
-}
-
-.property-box h3 {
-    padding-bottom: var(--spacing-xs);
-    margin-bottom: var(--spacing-sm);
-}
-
-.formula {
-    font-weight: 400;
-    color: var(--text-primary);
-    background: var(--bg-primary);
-    padding: 15px;
-    margin: var(--spacing-sm) 0;
-    text-align: left;
-    white-space: nowrap;
-    overflow-x: auto;
-}
-
-.example {
-    margin: 5px 0;
-    text-align: left;
-    white-space: nowrap;
-}
-
-/* KaTeX font styling */
-.katex {
-    font-size: 1.1em;
-}
-
-.formula .katex {
-    font-size: 1.15em;
-}
-
-/* Force inline display for KaTeX to prevent line breaks */
-.katex-display {
-    display: inline !important;
-    margin: 0 !important;
-    text-align: left !important;
-}
-
-.katex-html {
-    display: inline !important;
-}
-
-
-
-
-
-
-
 /* ===== ACCESSIBILITY ===== */
 .sr-only {
     position: absolute;

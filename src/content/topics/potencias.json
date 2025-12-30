@@ -1,0 +1,88 @@
+{
+    "title": "Propiedades de las Potencias",
+    "description": "Aprende las propiedades de las potencias: exponente cero, uno, negativo, operaciones con potencias. Material educativo de Ágora Academia de Matemáticas.",
+    "sections": [
+        {
+            "title": "Potencias Básicas",
+            "items": [
+                {
+                    "title": "Potencia de exponente cero",
+                    "formula": "$a^0 = 1$",
+                    "example": "$6^0 = 1$"
+                },
+                {
+                    "title": "Potencia de exponente uno",
+                    "formula": "$a^1 = a$",
+                    "example": "$6^1 = 6$"
+                }
+            ]
+        },
+        {
+            "title": "Signos en las Potencias",
+            "items": [
+                {
+                    "title": "Exponente par",
+                    "formula": "$(-a)^n = a^n$",
+                    "example": "$2^6 = 64$<br>$(-2)^6 = 64$",
+                    "description": "Las potencias de <strong>exponente par</strong> son siempre <strong>positivas</strong>."
+                },
+                {
+                    "title": "Exponente impar",
+                    "formula": "$(-a)^n = -a^n$",
+                    "example": "$2^3 = 8$<br>$(-2)^3 = -8$",
+                    "description": "Las potencias de <strong>exponente impar</strong> tienen el <strong>mismo signo</strong> que la <strong>base</strong>."
+                }
+            ]
+        },
+        {
+            "title": "Operaciones con Potencias",
+            "items": [
+                {
+                    "title": "Multiplicación con la misma base",
+                    "formula": "$a^m \\cdot a^n = a^{m+n}$",
+                    "example": "$7^5 \\cdot 7^2 = 7^{5+2} = 7^7$"
+                },
+                {
+                    "title": "División con la misma base",
+                    "formula": "$a^m : a^n = a^{m-n}$",
+                    "example": "$7^5 : 7^2 = 7^{5-2} = 7^3$"
+                },
+                {
+                    "title": "Potencia de una potencia",
+                    "formula": "$(a^m)^n = a^{m \\cdot n}$",
+                    "example": "$(7^5)^3 = 7^{5 \\times 3} = 7^{15}$"
+                },
+                {
+                    "title": "Multiplicación con el mismo exponente",
+                    "formula": "$a^n \\cdot b^n = (a \\cdot b)^n$",
+                    "example": "$2^3 \\cdot 4^3 = (2 \\cdot 4)^3 = 8^3$"
+                },
+                {
+                    "title": "División con el mismo exponente",
+                    "formula": "$a^n : b^n = (a : b)^n$",
+                    "example": "$6^3 : 3^3 = (6 : 3)^3 = 2^3$"
+                }
+            ]
+        },
+        {
+            "title": "Exponentes Especiales",
+            "items": [
+                {
+                    "title": "Exponente entero negativo",
+                    "formula": "$a^{-n} = \\frac{1}{a^n}$",
+                    "example": "$2^{-3} = \\frac{1}{2^3} = \\frac{1}{8}$"
+                },
+                {
+                    "title": "Exponente racional",
+                    "formula": "$a^{\\frac{m}{n}} = \\sqrt[n]{a^m}$",
+                    "example": "$8^{\\frac{2}{3}} = \\sqrt[3]{8^2} = \\sqrt[3]{64} = 4$"
+                },
+                {
+                    "title": "Exponente racional y negativo",
+                    "formula": "$a^{-\\frac{m}{n}} = \\frac{1}{\\sqrt[n]{a^m}}$",
+                    "example": "$4^{-\\frac{3}{2}} = \\frac{1}{\\sqrt{4^3}} = \\frac{1}{8}$"
+                }
+            ]
+        }
+    ]
+}

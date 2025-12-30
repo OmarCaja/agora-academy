@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Katex from "../components/Katex.astro";
@@ -13,31 +13,86 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { title, description, sections } = entry.data;
 ---
 
 <BaseLayout
-    title={`${entry.data.title} - Ágora`}
-    description={entry.data.description ||
-        `Aprende sobre ${entry.data.title} en Ágora Academia de Matemáticas.`}
+    title={`${title} - Ágora`}
+    description={description ||
+        `Aprende sobre ${title} en Ágora Academia de Matemáticas.`}
     currentPage={entry.id}
 >
     <Fragment slot="head">
         <Katex />
     </Fragment>
 
-    <Header title={entry.data.title.toUpperCase()} />
+    <Header title={title.toUpperCase()} />
 
     <div class="content-section">
-        <Content />
+        {
+            sections.map((section) => (
+                <section class="fade-in">
+                    <h2>{section.title}</h2>
+                    {section.items.map((item) => (
+                        <div class="info-box property-box">
+                            <h3>{item.title}</h3>
+                            <p class="formula" set:html={item.formula} />
+                            <p>Ejemplo:</p>
+                            <p class="formula" set:html={item.example} />
+                            {item.description && (
+                                <p set:html={item.description} />
+                            )}
+                        </div>
+                    ))}
+                </section>
+            ))
+        }
     </div>
 </BaseLayout>
 
 <style>
-    /* Add some basic styling for the markdown content if needed */
-    /* Container for the rendered markdown */
     .content-section {
         max-width: 800px;
         margin: 0 auto;
+    }
+
+    /* Styles preserved from global/md structure */
+    .property-box {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .property-box h3 {
+        padding-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .formula {
+        font-weight: 400;
+        color: var(--text-primary);
+        background: var(--bg-primary);
+        padding: 15px;
+        margin: var(--spacing-sm) 0;
+        text-align: left;
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+
+    /* KaTeX overrides for specific display */
+    :global(.katex) {
+        font-size: 1.1em;
+    }
+
+    .formula :global(.katex) {
+        font-size: 1.15em;
+    }
+
+    :global(.katex-display) {
+        display: inline !important;
+        margin: 0 !important;
+        text-align: left !important;
+    }
+
+    :global(.katex-html) {
+        display: inline !important;
     }
 </style>
