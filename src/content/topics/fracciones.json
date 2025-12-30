@@ -6,25 +6,25 @@
             "title": "Suma y resta",
             "items": [
                 {
-                    "title": "Suma (Mismo denominador)",
+                    "title": "Suma (mismo denominador)",
                     "formula": "$\\frac{a}{c} + \\frac{b}{c} = \\frac{a + b}{c}$",
                     "example": "$\\frac{2}{7} + \\frac{3}{7} = \\frac{5}{7}$",
                     "description": "Se mantiene el denominador y se suman los numeradores."
                 },
                 {
-                    "title": "Resta (Mismo denominador)",
+                    "title": "Resta (mismo denominador)",
                     "formula": "$\\frac{a}{c} - \\frac{b}{c} = \\frac{a - b}{c}$",
                     "example": "$\\frac{5}{8} - \\frac{2}{8} = \\frac{3}{8}$",
                     "description": "Se mantiene el denominador y se restan los numeradores."
                 },
                 {
-                    "title": "Sumar (Distinto denominador)",
+                    "title": "Sumar (distinto denominador)",
                     "formula": "$\\frac{a}{b} + \\frac{c}{d} = \\frac{(m:b) \\cdot a + (m:d) \\cdot c}{m}$",
                     "example": "$\\frac{1}{4} + \\frac{1}{6} = \\frac{3}{12} + \\frac{2}{12} = \\frac{5}{12}$",
                     "description": "PASOS: 1. Hallar $m = \\text{mcm}(b,d)$. 2. Dividir $m$ entre cada denominador y multiplicar por su numerador. 3. Sumar los resultados."
                 },
                 {
-                    "title": "Restar (Distinto denominador)",
+                    "title": "Restar (distinto denominador)",
                     "formula": "$\\frac{a}{b} - \\frac{c}{d} = \\frac{(m:b) \\cdot a - (m:d) \\cdot c}{m}$",
                     "example": "$\\frac{3}{4} - \\frac{1}{6} = \\frac{9}{12} - \\frac{2}{12} = \\frac{7}{12}$",
                     "description": "PASOS: 1. Hallar $m = \\text{mcm}(b,d)$. 2. Dividir $m$ entre cada denominador y multiplicar por su numerador. 3. Restar los resultados."
