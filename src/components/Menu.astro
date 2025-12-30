@@ -16,7 +16,65 @@ const { currentPage } = Astro.props;
         >
 
         <div class="menu-group">
-            <span class="menu-group-title">Material Educativo</span>
+            <span class="menu-group-title">Aritmética</span>
+            <a
+                href="/jerarquia"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "jerarquia" },
+                ]}
+            >
+                Jerarquía de las operaciones
+            </a>
+            <a
+                href="/propiedades-operaciones"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "propiedades-operaciones" },
+                ]}
+            >
+                Propiedades de las Operaciones
+            </a>
+            <a
+                href="/divisibilidad"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "divisibilidad" },
+                ]}
+            >
+                Factorización de números
+            </a>
+            <a
+                href="/fracciones"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "fracciones" },
+                ]}
+            >
+                Operaciones con Fracciones
+            </a>
+        </div>
+
+        <div class="menu-group">
+            <span class="menu-group-title">Álgebra</span>
+            <a
+                href="/identidades-notables"
+                class:list={[
+                    "menu-item",
+                    "menu-subitem",
+                    { active: currentPage === "identidades-notables" },
+                ]}
+            >
+                Identidades Notables
+            </a>
+        </div>
+
+        <div class="menu-group">
+            <span class="menu-group-title">Potencias y Logaritmos</span>
             <a
                 href="/potencias"
                 class:list={[
@@ -47,18 +105,7 @@ const { currentPage } = Astro.props;
             >
                 Propiedades de los Logaritmos
             </a>
-            <a
-                href="/fracciones"
-                class:list={[
-                    "menu-item",
-                    "menu-subitem",
-                    { active: currentPage === "fracciones" },
-                ]}
-            >
-                Operaciones con Fracciones
-            </a>
         </div>
-        <!-- Futuras páginas aquí -->
     </nav>
 </div>
 
@@ -114,12 +161,14 @@ const { currentPage } = Astro.props;
         border-left: 3px solid transparent;
         transition: all var(--transition);
         display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .menu-item:hover {
         color: var(--text-primary);
         border-left-color: var(--border-color);
-        padding-left: 25px;
     }
 
     .menu-item.active {
@@ -144,10 +193,6 @@ const { currentPage } = Astro.props;
     .menu-subitem {
         font-size: 1rem;
         padding-left: 40px;
-    }
-
-    .menu-subitem:hover {
-        padding-left: 45px;
     }
 
     /* Responsive adjustments */

@@ -10,40 +10,45 @@
     crossorigin="anonymous"
 />
 <script
-    defer
+    is:inline
     src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
     integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
     crossorigin="anonymous"></script>
 <script
-    defer
+    is:inline
     src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
     integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
     crossorigin="anonymous"></script>
 
-<script>
+<script is:inline>
     /**
-     * Initialize KaTeX rendering on the page content
+     * Initialize KaTeX rendering
+     * Defined on window to be accessible across navigations and avoid duplicate listeners
      */
-    const renderMath = () => {
-        // @ts-ignore
-        if (typeof renderMathInElement === "function") {
-            // @ts-ignore
-            renderMathInElement(document.body, {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false },
-                    { left: "\\(", right: "\\)", display: false },
-                    { left: "\\[", right: "\\]", display: true },
-                ],
-                throwOnError: false,
-            });
-        } else {
-            // If the script isn't loaded yet, try again in a bit
-            // This can happen on first navigation to a page with KaTeX
-            setTimeout(renderMath, 100);
-        }
-    };
+    if (!window.initKatex) {
+        window.initKatex = function () {
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true },
+                    ],
+                    throwOnError: false,
+                });
+            }
+        };
 
-    // Initialize on every page load and client-side navigation
-    document.addEventListener("astro:page-load", renderMath);
+        // Re-run on every Astro page swap and load
+        // We only add these listeners ONCE globally
+        document.addEventListener("astro:page-load", window.initKatex);
+        document.addEventListener("astro:after-swap", window.initKatex);
+    }
+
+    // Run immediately for the current page content
+    window.initKatex();
+
+    // Small fallback for cases where the script might run before DOM is fully settled
+    setTimeout(window.initKatex, 0);
 </script>

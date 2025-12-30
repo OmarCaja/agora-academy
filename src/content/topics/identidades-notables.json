@@ -1,0 +1,40 @@
+{
+    "title": "Identidades Notables Básicas",
+    "description": "Reglas algebraicas fundamentales para resolver productos de binomios de segundo grado sin realizar la multiplicación paso a paso.",
+    "sections": [
+        {
+            "title": "Binomios al Cuadrado",
+            "items": [
+                {
+                    "title": "Cuadrado de una Suma",
+                    "formula": "$(a + b)^2 = a^2 + 2ab + b^2$",
+                    "example": "$(x + 3)^2 = x^2 + 6x + 9$",
+                    "description": "El cuadrado del primer término, más el doble producto del primero por el segundo, más el cuadrado del segundo."
+                },
+                {
+                    "title": "Cuadrado de una Diferencia",
+                    "formula": "$(a - b)^2 = a^2 - 2ab + b^2$",
+                    "example": "$(x - 5)^2 = x^2 - 10x + 25$",
+                    "description": "El cuadrado del primer término, menos el doble producto del primero por el segundo, más el cuadrado del segundo."
+                }
+            ]
+        },
+        {
+            "title": "Productos de Binomios",
+            "items": [
+                {
+                    "title": "Suma por Diferencia",
+                    "formula": "$(a + b)(a - b) = a^2 - b^2$",
+                    "example": "$(x + 4)(x - 4) = x^2 - 16$",
+                    "description": "El producto de una suma por su diferencia es igual a la diferencia de los cuadrados de ambos términos."
+                },
+                {
+                    "title": "Binomios con Término Común",
+                    "formula": "$(x + a)(x + b) = x^2 + (a + b)x + ab$",
+                    "example": "$(x + 2)(x + 3) = x^2 + 5x + 6$",
+                    "description": "El cuadrado del término común más la suma de los términos no comunes por el común, más el producto de los no comunes."
+                }
+            ]
+        }
+    ]
+}

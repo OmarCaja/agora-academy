@@ -1,0 +1,50 @@
+{
+    "title": "Factorización de números",
+    "description": "Descomposición factorial de números y cálculo de divisores comunes y múltiplos comunes.",
+    "sections": [
+        {
+            "title": "Descomposición Factorial",
+            "items": [
+                {
+                    "title": "Factores Primos",
+                    "formula": "$n = p_1^{a} \\cdot p_2^{b} \\cdot p_3^{c} \\dots$",
+                    "example": "$60 = 2^2 \\cdot 3 \\cdot 5$",
+                    "description": "Cualquier número compuesto se puede expresar como un producto único de números primos elevados a ciertas potencias."
+                }
+            ]
+        },
+        {
+            "title": "Máximo Común Divisor (m.c.d.)",
+            "items": [
+                {
+                    "title": "Regla del m.c.d.",
+                    "formula": "$\\text{Factores comunes al menor exponente}$",
+                    "example": "$\\text{m.c.d.}(12, 18) = \\text{m.c.d.}(2^2 \\cdot 3, 2 \\cdot 3^2) = 2 \\cdot 3 = 6$",
+                    "description": "El mayor número que divide exactamente a dos o más números a la vez."
+                }
+            ]
+        },
+        {
+            "title": "Mínimo Común Múltiplo (m.c.m.)",
+            "items": [
+                {
+                    "title": "Regla del m.c.m.",
+                    "formula": "$\\text{Comunes y no comunes al mayor exponente}$",
+                    "example": "$\\text{m.c.m.}(12, 18) = \\text{m.c.m.}(2^2 \\cdot 3, 2 \\cdot 3^2) = 2^2 \\cdot 3^2 = 36$",
+                    "description": "El número más pequeño que es múltiplo de todos los números del grupo."
+                }
+            ]
+        },
+        {
+            "title": "Propiedad Importante",
+            "items": [
+                {
+                    "title": "Relación entre m.c.d. y m.c.m.",
+                    "formula": "$a \\cdot b = \\text{m.c.d.}(a,b) \\cdot \\text{m.c.m.}(a,b)$",
+                    "example": "$12 \\cdot 18 = 6 \\cdot 36 = 216$",
+                    "description": "Para dos números cualesquiera, el producto de los números es igual al producto de su m.c.d. y su m.c.m."
+                }
+            ]
+        }
+    ]
+}

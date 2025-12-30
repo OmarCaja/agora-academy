@@ -1,6 +1,6 @@
 {
     "title": "Operaciones con Fracciones",
-    "description": "Guía completa sobre cómo realizar operaciones con fracciones: suma, resta, multiplicación, división y simplificación.",
+    "description": "Guía completa para dominar las fracciones: desde operaciones básicas hasta potencias e inversas.",
     "sections": [
         {
             "title": "Suma y Resta",
@@ -8,13 +8,14 @@
                 {
                     "title": "Mismo denominador",
                     "formula": "$\\frac{a}{c} \\pm \\frac{b}{c} = \\frac{a \\pm b}{c}$",
-                    "example": "$\\frac{2}{7} + \\frac{3}{7} = \\frac{5}{7}$"
+                    "example": "$\\frac{2}{7} + \\frac{3}{7} = \\frac{5}{7}$",
+                    "description": "Se mantiene el denominador y se suman o restan los numeradores."
                 },
                 {
                     "title": "Distinto denominador",
-                    "formula": "$\\frac{a}{b} \\pm \\frac{c}{d} = \\frac{a \\cdot d \\pm b \\cdot c}{b \\cdot d}$",
-                    "example": "$\\frac{1}{2} + \\frac{1}{3} = \\frac{1 \\cdot 3 + 2 \\cdot 1}{2 \\cdot 3} = \\frac{5}{6}$",
-                    "description": "Se suele utilizar el <strong>m.c.m.</strong> de los denominadores para simplificar los cálculos."
+                    "formula": "$\\frac{a}{b} \\pm \\frac{c}{d} = \\frac{(m:b) \\cdot a \\pm (m:d) \\cdot c}{m}$",
+                    "example": "$\\frac{1}{4} + \\frac{1}{6} = \\frac{3}{12} + \\frac{2}{12} = \\frac{5}{12}$",
+                    "description": "Donde $m = \\text{mcm}(b,d)$. Se divide el nuevo denominador entre el antiguo y se multiplica por el numerador."
                 }
             ]
         },
@@ -25,28 +26,47 @@
                     "title": "Multiplicación",
                     "formula": "$\\frac{a}{b} \\cdot \\frac{c}{d} = \\frac{a \\cdot c}{b \\cdot d}$",
                     "example": "$\\frac{2}{3} \\cdot \\frac{4}{5} = \\frac{8}{15}$",
-                    "description": "Se multiplica numerador por numerador y denominador por denominador."
+                    "description": "Se multiplica <strong>en línea</strong>: numerador por numerador y denominador por denominador."
                 },
                 {
                     "title": "División",
-                    "formula": "$\\frac{a}{b} : \\frac{c}{d} = \\frac{a \\cdot d}{b \\cdot c}$",
+                    "formula": "$\\frac{a}{b} : \\frac{c}{d} = \\frac{a}{b} \\cdot \\frac{d}{c} = \\frac{a \\cdot d}{b \\cdot c}$",
                     "example": "$\\frac{3}{4} : \\frac{2}{5} = \\frac{3 \\cdot 5}{4 \\cdot 2} = \\frac{15}{8}$",
-                    "description": "Se multiplica en cruz (numerador por denominador opuesto)."
+                    "description": "Se multiplica por la <strong>fracción inversa</strong> del divisor (multiplicación en cruz)."
                 }
             ]
         },
         {
-            "title": "Propiedades Adicionales",
+            "title": "Propiedades de Potencias",
+            "items": [
+                {
+                    "title": "Inversa de una fracción",
+                    "formula": "$(\\frac{a}{b})^{-1} = \\frac{b}{a}$",
+                    "example": "$(\\frac{3}{4})^{-1} = \\frac{4}{3}$",
+                    "description": "Un exponente negativo invierte la posición del numerador y el denominador."
+                },
+                {
+                    "title": "Potencia de una fracción",
+                    "formula": "$(\\frac{a}{b})^n = \\frac{a^n}{b^n}$",
+                    "example": "$(\\frac{2}{3})^3 = \\frac{2^3}{3^3} = \\frac{8}{27}$",
+                    "description": "El exponente afecta tanto al numerador como al denominador."
+                }
+            ]
+        },
+        {
+            "title": "Conceptos Adicionales",
             "items": [
                 {
                     "title": "Fracción de una cantidad",
                     "formula": "$\\frac{a}{b} \\text{ de } C = \\frac{a \\cdot C}{b}$",
-                    "example": "$\\frac{2}{3} \\text{ de } 15 = \\frac{2 \\cdot 15}{3} = 10$"
+                    "example": "$\\frac{2}{3} \\text{ de } 15 = 2 \\cdot (15 : 3) = 10$",
+                    "description": "Se multiplica la cantidad por el numerador y se divide por el denominador (o viceversa)."
                 },
                 {
-                    "title": "Inversa de una fracción",
-                    "formula": "(\\frac{a}{b})^{-1} = \\frac{b}{a}",
-                    "example": "(\\frac{3}{4})^{-1} = \\frac{4}{3}"
+                    "title": "Simplificación",
+                    "formula": "$\\frac{a \\cdot k}{b \\cdot k} = \\frac{a}{b}$",
+                    "example": "$\\frac{12}{18} = \\frac{6 \\cdot 2}{6 \\cdot 3} = \\frac{2}{3}$",
+                    "description": "Dividimos numerador y denominador por su <strong>máximo común divisor</strong> para obtener la fracción irreducible."
                 }
             ]
         }

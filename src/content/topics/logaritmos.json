@@ -9,7 +9,7 @@
                     "title": "Definición de logaritmo",
                     "formula": "$\\log_a b = c \\iff a^c = b$",
                     "example": "$\\log_2 8 = 3 \\iff 2^3 = 8$",
-                    "description": "El logaritmo es el exponente al que hay que elevar la base para obtener el número."
+                    "description": "El logaritmo es el exponente al que hay que elevar la base para obtener el argumento."
                 },
                 {
                     "title": "Logaritmo de la base",
