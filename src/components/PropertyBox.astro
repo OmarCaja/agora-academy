@@ -1,7 +1,9 @@
 ---
+import InfoBox from "./InfoBox.astro";
+
 interface Props {
     title: string;
-    formula: string;
+    formula?: string;
     example?: string;
     description?: string;
 }
@@ -9,9 +11,81 @@ interface Props {
 const { title, formula, example, description } = Astro.props;
 ---
 
-<div class="info-box property-box">
+<InfoBox class="property-box">
     <h3>{title}</h3>
-    {description && <p>{description}</p>}
-    <p class="formula" set:html={formula} />
-    {example && <p class="example" set:html={example} />}
-</div>
+
+    {
+        formula && (
+            <div class="formula-container">
+                <span class="sr-only">Fórmula:</span>
+                <div class="formula" set:html={formula} />
+            </div>
+        )
+    }
+
+    {
+        example && (
+            <div class="example-container">
+                <p class="example-label">Ejemplo:</p>
+                <div class="formula example-formula" set:html={example} />
+            </div>
+        )
+    }
+
+    {description && <div class="description" set:html={description} />}
+</InfoBox>
+
+<style>
+    .property-box h3 {
+        padding-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
+        border-bottom: 2px solid var(--border-color);
+        display: inline-block;
+    }
+
+    .formula-container,
+    .example-container {
+        margin: var(--spacing-md) 0;
+    }
+
+    .formula {
+        font-weight: 400;
+        color: var(--text-primary);
+        background: var(--bg-primary);
+        padding: 20px;
+        margin: var(--spacing-sm) 0;
+        text-align: left;
+        white-space: nowrap;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        transition: background var(--transition);
+        /* Mobile scroll smoothing */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .example-label {
+        font-weight: 700;
+        font-size: var(--font-size-sm);
+        text-transform: uppercase;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+    }
+
+    .description {
+        margin-top: var(--spacing-md);
+        font-size: var(--font-size-md);
+        color: var(--text-tertiary);
+        line-height: 1.6;
+    }
+
+    /* KaTeX overrides for formulas */
+    :global(.formula .katex-display) {
+        display: inline !important;
+        margin: 0 !important;
+    }
+
+    :global(.formula .katex) {
+        font-size: 1.2em;
+    }
+</style>

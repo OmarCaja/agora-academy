@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import PropertyBox from "../components/PropertyBox.astro";
 
 export async function getStaticPaths() {
     const topics = await getCollection("topics");
@@ -21,31 +22,6 @@ const { title, description, sections } = entry.data;
         `Aprende sobre ${title} en Ágora Academia de Matemáticas.`}
     currentPage={entry.id}
 >
-    <Fragment slot="head">
-        <script
-            type="application/ld+json"
-            is:inline
-            set:html={JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                itemListElement: [
-                    {
-                        "@type": "ListItem",
-                        position: 1,
-                        name: "Inicio",
-                        item: "https://www.agoraacademy.es",
-                    },
-                    {
-                        "@type": "ListItem",
-                        position: 2,
-                        name: title,
-                        item: Astro.url.toString(),
-                    },
-                ],
-            })}
-        />
-    </Fragment>
-
     <Header title={title.toUpperCase()} />
     <div class="content-section">
         {
@@ -53,15 +29,12 @@ const { title, description, sections } = entry.data;
                 <section class="fade-in">
                     <h2>{section.title}</h2>
                     {section.items.map((item) => (
-                        <div class="info-box property-box">
-                            <h3>{item.title}</h3>
-                            <p class="formula" set:html={item.formula} />
-                            <p>Ejemplo:</p>
-                            <p class="formula" set:html={item.example} />
-                            {item.description && (
-                                <p set:html={item.description} />
-                            )}
-                        </div>
+                        <PropertyBox
+                            title={item.title}
+                            formula={item.formula}
+                            example={item.example}
+                            description={item.description}
+                        />
                     ))}
                 </section>
             ))
@@ -73,45 +46,5 @@ const { title, description, sections } = entry.data;
     .content-section {
         max-width: 800px;
         margin: 0 auto;
-    }
-
-    /* Styles preserved from global/md structure */
-    .property-box {
-        margin-bottom: var(--spacing-md);
-    }
-
-    .property-box h3 {
-        padding-bottom: var(--spacing-xs);
-        margin-bottom: var(--spacing-sm);
-    }
-
-    .formula {
-        font-weight: 400;
-        color: var(--text-primary);
-        background: var(--bg-primary);
-        padding: 15px;
-        margin: var(--spacing-sm) 0;
-        text-align: left;
-        white-space: nowrap;
-        overflow-x: auto;
-    }
-
-    /* KaTeX overrides for specific display */
-    :global(.katex) {
-        font-size: 1.1em;
-    }
-
-    .formula :global(.katex) {
-        font-size: 1.15em;
-    }
-
-    :global(.katex-display) {
-        display: inline !important;
-        margin: 0 !important;
-        text-align: left !important;
-    }
-
-    :global(.katex-html) {
-        display: inline !important;
     }
 </style>

@@ -30,22 +30,41 @@ import ContactItem from "../components/ContactItem.astro";
 
 	<section class="fade-in">
 		<h2>¿Por qué Ágora?</h2>
-
 		<InfoBox>
-			<p style="margin-bottom: 15px">
-				✓ <strong>Grupos</strong> reducidos para atención personalizada
-			</p>
-			<p style="margin-bottom: 15px">
-				✓ Mejora del <strong>proceso de aprendizaje</strong>
-			</p>
-			<p style="margin-bottom: 15px">
-				✓ Fomento del <strong>razonamiento lógico</strong>
-			</p>
-			<p style="margin-bottom: 0">
-				✓ Impulso del <strong>pensamiento abstracto</strong>
-			</p>
+			<ul class="pros-list">
+				<li>
+					<strong>Grupos reducidos</strong> para atención personalizada
+				</li>
+				<li>Mejora del <strong>proceso de aprendizaje</strong></li>
+				<li>Fomento del <strong>razonamiento lógico</strong></li>
+				<li>Impulso del <strong>pensamiento abstracto</strong></li>
+			</ul>
 		</InfoBox>
 	</section>
+
+	<style>
+		.pros-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.pros-list li {
+			position: relative;
+			padding-left: 30px;
+			margin-bottom: 12px;
+			line-height: 1.4;
+		}
+		.pros-list li::before {
+			content: "✓";
+			position: absolute;
+			left: 0;
+			color: var(--accent);
+			font-weight: bold;
+		}
+		.pros-list li:last-child {
+			margin-bottom: 0;
+		}
+	</style>
 
 	<section class="fade-in">
 		<h2>Contacto</h2>

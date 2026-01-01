@@ -12,6 +12,7 @@ const { currentPage } = Astro.props;
         <a
             href="/"
             class:list={["menu-item", { active: currentPage === "index" }]}
+            aria-current={currentPage === "index" ? "page" : undefined}
             >Inicio</a
         >
 
@@ -25,6 +26,7 @@ const { currentPage } = Astro.props;
                     "menu-subitem",
                     { active: currentPage === "jerarquia" },
                 ]}
+                aria-current={currentPage === "jerarquia" ? "page" : undefined}
             >
                 Jerarquía de las operaciones
             </a>
@@ -36,6 +38,9 @@ const { currentPage } = Astro.props;
                     "menu-subitem",
                     { active: currentPage === "propiedades-operaciones" },
                 ]}
+                aria-current={currentPage === "propiedades-operaciones"
+                    ? "page"
+                    : undefined}
             >
                 Propiedades de las operaciones
             </a>
@@ -47,6 +52,9 @@ const { currentPage } = Astro.props;
                     "menu-subitem",
                     { active: currentPage === "divisibilidad" },
                 ]}
+                aria-current={currentPage === "divisibilidad"
+                    ? "page"
+                    : undefined}
             >
                 Factorización de números
             </a>
@@ -58,6 +66,7 @@ const { currentPage } = Astro.props;
                     "menu-subitem",
                     { active: currentPage === "fracciones" },
                 ]}
+                aria-current={currentPage === "fracciones" ? "page" : undefined}
             >
                 Operaciones con fracciones
             </a>
@@ -73,6 +82,9 @@ const { currentPage } = Astro.props;
                     "menu-subitem",
                     { active: currentPage === "identidades-notables" },
                 ]}
+                aria-current={currentPage === "identidades-notables"
+                    ? "page"
+                    : undefined}
             >
                 Identidades notables
             </a>
@@ -88,6 +100,7 @@ const { currentPage } = Astro.props;
                     "menu-subitem",
                     { active: currentPage === "potencias" },
                 ]}
+                aria-current={currentPage === "potencias" ? "page" : undefined}
             >
                 Propiedades de las potencias
             </a>
@@ -99,6 +112,7 @@ const { currentPage } = Astro.props;
                     "menu-subitem",
                     { active: currentPage === "raices" },
                 ]}
+                aria-current={currentPage === "raices" ? "page" : undefined}
             >
                 Propiedades de las raíces
             </a>
@@ -110,6 +124,7 @@ const { currentPage } = Astro.props;
                     "menu-subitem",
                     { active: currentPage === "logaritmos" },
                 ]}
+                aria-current={currentPage === "logaritmos" ? "page" : undefined}
             >
                 Propiedades de los logaritmos
             </a>
