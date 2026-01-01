@@ -86,16 +86,22 @@ import { ClientRouter } from "astro:transitions";
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasIQSqnWW"
-      crossorigin="anonymous"
     />
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+    ></script>
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    ></script>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" is:inline>
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "Ágora - Academia de Matemáticas",
+        "name": "Ágora - Academia de matemáticas",
         "image": "https://www.agoraacademy.es/favicon/logo.png",
         "@id": "https://www.agoraacademy.es",
         "url": "https://www.agoraacademy.es",
@@ -122,16 +128,6 @@ import { ClientRouter } from "astro:transitions";
         "description": "Academia especializada en matemáticas para E.S.O. y Bachillerato en Cuenca. Grupos reducidos y atención personalizada."
       }
     </script>
-    <script
-      is:inline
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
-      integrity="sha384-XjKyOOlGwcjNTAIQHIWDoAqh6SBAVBQ9LDXQ8i61zp5ID0lCPWutQ98ELXJLz0RP"
-      crossorigin="anonymous"></script>
-    <script
-      is:inline
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-      integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
-      crossorigin="anonymous"></script>
 
     <script is:inline>
       const renderMath = () => {
@@ -148,7 +144,16 @@ import { ClientRouter } from "astro:transitions";
         }
       };
 
-      document.addEventListener("astro:page-load", renderMath);
+      // Run on initial load
+      document.addEventListener("DOMContentLoaded", renderMath);
+      // Run after every View Transition
+      document.addEventListener("astro:page-load", () => {
+        renderMath();
+        // Fallback for slower swaps
+        setTimeout(renderMath, 100);
+      });
+      // Immediate execution fallback
+      renderMath();
 
       const getTheme = () => {
         if (
