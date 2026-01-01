@@ -264,10 +264,6 @@ address {
     transition: opacity var(--transition);
 }
 
-.map-link:hover {
-    opacity: 0.7;
-}
-
 /* ===== EASTER EGG - FALLING PI DIGITS ===== */
 .pi-digit {
     position: fixed;

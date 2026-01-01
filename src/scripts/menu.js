@@ -31,7 +31,7 @@ const initMenu = () => {
         menuSymbol.classList.add("shuffling");
 
         let step = 0;
-        const totalSteps = 20; // More steps to make it feel like "shuffling"
+        const totalSteps = 10; // More steps to make it feel like "shuffling"
 
         morphInterval = setInterval(() => {
             // Change symbol rapidly
