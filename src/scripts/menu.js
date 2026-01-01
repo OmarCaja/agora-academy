@@ -16,24 +16,42 @@ const initMenu = () => {
     // Variable to store scroll position
     let scrollPosition = 0;
 
+    // For internal tracking of the morph interval
+    let morphInterval = null;
+
     /**
-     * Animate the menu symbol by cycling through math characters
+     * Animate the menu symbol with a "Card Shuffle" effect
      * @param {string} finalSymbol - The symbol to settle on
      */
     const animateMenuSymbol = (finalSymbol) => {
-        let iterations = 0;
-        const maxIterations = 10;
-        const intervalTime = 100;
+        if (morphInterval) clearInterval(morphInterval);
 
-        const interval = setInterval(() => {
+        // Phase 1: Start shuffling (visible but stylized)
+        menuSymbol.classList.remove("settled");
+        menuSymbol.classList.add("shuffling");
+
+        let step = 0;
+        const totalSteps = 20; // More steps to make it feel like "shuffling"
+
+        morphInterval = setInterval(() => {
+            // Change symbol rapidly
             menuSymbol.innerText = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
-            iterations++;
+            step++;
 
-            if (iterations >= maxIterations) {
-                clearInterval(interval);
+            // Phase 2: Slow down slightly towards the end
+            if (step >= totalSteps) {
+                clearInterval(morphInterval);
                 menuSymbol.innerText = finalSymbol;
+
+                // Phase 3: Settle and pop
+                menuSymbol.classList.remove("shuffling");
+
+                // Small delay to ensure the browser registers class removal before adding settled
+                requestAnimationFrame(() => {
+                    menuSymbol.classList.add("settled");
+                });
             }
-        }, intervalTime);
+        }, 60); // Constant speed for a mechanical shuffle feel
     };
 
     /**

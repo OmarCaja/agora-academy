@@ -188,9 +188,13 @@ import { ClientRouter } from "astro:transitions";
 
   <body>
     <GlobalNav />
-    <Menu currentPage={currentPage} />
+    <Menu
+      currentPage={currentPage}
+      transition:name="menu"
+      transition:animate="none"
+    />
 
-    <div class="container">
+    <div class="container" transition:animate="fade">
       <slot />
 
       <Footer />
