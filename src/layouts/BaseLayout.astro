@@ -130,6 +130,45 @@ import { ClientRouter } from "astro:transitions";
     </script>
 
     <script is:inline>
+      window.getTheme = () => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      };
+
+      window.updateThemeUI = (theme) => {
+        const themeIcon = document.getElementById("themeIcon");
+        const themeText = document.getElementById("themeText");
+        if (themeIcon) themeIcon.textContent = theme === "dark" ? "☀️" : "🌑";
+        if (themeText)
+          themeText.textContent =
+            theme === "dark" ? "Cambiar a tema claro" : "Cambiar a tema oscuro";
+      };
+
+      window.setTheme = (theme) => {
+        if (theme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+        window.updateThemeUI(theme);
+      };
+
+      // Apply initial theme
+      window.setTheme(window.getTheme());
+
+      // Handle View Transitions
+      document.addEventListener("astro:after-swap", () => {
+        window.setTheme(window.getTheme());
+      });
+
+      // Handle Math Rendering
       const renderMath = () => {
         if (typeof renderMathInElement === "function") {
           renderMathInElement(document.body, {
@@ -144,39 +183,12 @@ import { ClientRouter } from "astro:transitions";
         }
       };
 
-      // Run on initial load
       document.addEventListener("DOMContentLoaded", renderMath);
-      // Run after every View Transition
-      document.addEventListener("astro:page-load", () => {
-        renderMath();
-        // Fallback for slower swaps
-        setTimeout(renderMath, 100);
-      });
-      // Immediate execution fallback
-      renderMath();
-
-      const getTheme = () => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
-        }
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      };
-
-      const setTheme = (theme) => {
-        if (theme === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        } else {
-          document.documentElement.removeAttribute("data-theme");
-        }
-      };
-
-      setTheme(getTheme());
-      document.addEventListener("astro:after-swap", () => setTheme(getTheme()));
+      document.addEventListener("astro:page-load", renderMath);
+      // Fallback for slower swaps
+      document.addEventListener("astro:after-swap", () =>
+        setTimeout(renderMath, 100),
+      );
     </script>
   </head>
 

@@ -1,55 +1,29 @@
 // ===== THEME TOGGLE =====
 
-// Theme configuration
-const THEMES = {
-    LIGHT: "light",
-    DARK: "dark",
-};
-
-const THEME_ICONS = {
-    [THEMES.LIGHT]: "🌑",
-    [THEMES.DARK]: "☀️",
-};
-
-const THEME_LABELS = {
-    [THEMES.LIGHT]: "Cambiar a tema oscuro",
-    [THEMES.DARK]: "Cambiar a tema claro",
-};
-
 const STORAGE_KEY = "theme";
-const THEME_CHANGE_DURATION = 500; // milliseconds
 
-/**
- * Get the initial theme based on user preference or system settings
- */
-const getInitialTheme = () => {
-    const savedTheme = localStorage.getItem(STORAGE_KEY);
-    if (savedTheme) return savedTheme;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? THEMES.DARK : THEMES.LIGHT;
-};
-
-/**
- * Apply a theme to the document
- */
-const applyTheme = (theme, themeIcon, themeText) => {
+const toggleTheme = () => {
     const html = document.documentElement;
-    document.body.classList.add("theme-changing");
+    const currentTheme = html.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-    if (theme === THEMES.DARK) {
-        html.setAttribute("data-theme", THEMES.DARK);
-        if (themeIcon) themeIcon.textContent = THEME_ICONS[THEMES.DARK];
-        if (themeText) themeText.textContent = THEME_LABELS[THEMES.DARK];
+    // Apply theme using the function from BaseLayout (if available) or manually
+    if (window.setTheme) {
+        window.setTheme(newTheme);
     } else {
-        html.removeAttribute("data-theme");
-        if (themeIcon) themeIcon.textContent = THEME_ICONS[THEMES.LIGHT];
-        if (themeText) themeText.textContent = THEME_LABELS[THEMES.LIGHT];
+        // Fallback if BaseLayout's inline script isn't available for some reason
+        if (newTheme === "dark") {
+            html.setAttribute("data-theme", "dark");
+        } else {
+            html.removeAttribute("data-theme");
+        }
+        const themeIcon = document.getElementById("themeIcon");
+        const themeText = document.getElementById("themeText");
+        if (themeIcon) themeIcon.textContent = newTheme === "dark" ? "☀️" : "🌑";
+        if (themeText) themeText.textContent = newTheme === "dark" ? "Cambiar a tema claro" : "Cambiar a tema oscuro";
     }
 
-    localStorage.setItem(STORAGE_KEY, theme);
-
-    setTimeout(() => {
-        document.body.classList.remove("theme-changing");
-    }, THEME_CHANGE_DURATION);
+    localStorage.setItem(STORAGE_KEY, newTheme);
 };
 
 /**
@@ -57,34 +31,30 @@ const applyTheme = (theme, themeIcon, themeText) => {
  */
 const initTheme = () => {
     const themeToggle = document.getElementById("themeToggle");
-    const themeIcon = document.getElementById("themeIcon");
-    const themeText = document.getElementById("themeText");
-    const html = document.documentElement;
+    if (!themeToggle) return;
 
-    if (!themeToggle || !themeIcon || !themeText) return;
-
-    // Apply initial theme state to UI elements
-    const currentTheme = html.getAttribute("data-theme") === THEMES.DARK ? THEMES.DARK : THEMES.LIGHT;
-    themeIcon.textContent = THEME_ICONS[currentTheme];
-    themeText.textContent = THEME_LABELS[currentTheme];
-
-    const toggleTheme = () => {
-        const isDark = html.getAttribute("data-theme") === THEMES.DARK;
-        const newTheme = isDark ? THEMES.LIGHT : THEMES.DARK;
-        applyTheme(newTheme, themeIcon, themeText);
-    };
-
+    // Remove existing listener if any (to prevent multiple listeners on persisted elements)
+    themeToggle.removeEventListener("click", toggleTheme);
     themeToggle.addEventListener("click", toggleTheme);
+
+    // Sync UI state with applied theme
+    const currentTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    if (window.updateThemeUI) {
+        window.updateThemeUI(currentTheme);
+    }
 };
 
-// Initialize UI elements and listeners
+// Initialize after every navigation
 document.addEventListener("astro:page-load", initTheme);
 
-// Listen for system theme changes
+// Handle system theme changes
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
     if (!localStorage.getItem(STORAGE_KEY)) {
-        const themeIcon = document.getElementById("themeIcon");
-        const themeText = document.getElementById("themeText");
-        applyTheme(e.matches ? THEMES.DARK : THEMES.LIGHT, themeIcon, themeText);
+        const newTheme = e.matches ? "dark" : "light";
+        if (window.setTheme) {
+            window.setTheme(newTheme);
+        } else {
+            document.documentElement.setAttribute("data-theme", newTheme);
+        }
     }
 });
