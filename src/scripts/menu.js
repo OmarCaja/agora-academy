@@ -104,6 +104,16 @@ const initMenu = () => {
         });
     });
 
+    // Accordion Logic
+    nodes.overlay.querySelectorAll('[data-accordion]').forEach(group => {
+        const trigger = group.querySelector('.accordion-trigger');
+        if (trigger) {
+            trigger.addEventListener('click', () => {
+                group.classList.toggle('active');
+            });
+        }
+    });
+
     window.addEventListener('hashchange', updateHashActiveState);
     updateHashActiveState();
 };
