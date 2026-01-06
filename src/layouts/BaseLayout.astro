@@ -130,45 +130,41 @@ import { ClientRouter } from "astro:transitions";
     </script>
 
     <script is:inline>
-      window.getTheme = () => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
-        }
+      const getTheme = () => {
+        const stored =
+          typeof localStorage !== "undefined" && localStorage.getItem("theme");
+        if (stored) return stored;
         return window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
           : "light";
       };
 
-      window.updateThemeUI = (theme) => {
-        const themeIcon = document.getElementById("themeIcon");
-        const themeText = document.getElementById("themeText");
-        if (themeIcon) themeIcon.textContent = theme === "dark" ? "☀️" : "🌑";
-        if (themeText)
-          themeText.textContent =
+      const updateUI = (theme) => {
+        const icon = document.getElementById("themeIcon");
+        const text = document.getElementById("themeText");
+        if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌑";
+        if (text)
+          text.textContent =
             theme === "dark" ? "Cambiar a tema claro" : "Cambiar a tema oscuro";
       };
 
       window.setTheme = (theme) => {
-        if (theme === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        } else {
+        document.documentElement.setAttribute("data-theme", theme);
+        if (theme !== "dark")
           document.documentElement.removeAttribute("data-theme");
-        }
-        window.updateThemeUI(theme);
+        updateUI(theme);
       };
 
-      // Apply initial theme
-      window.setTheme(window.getTheme());
+      window.updateThemeUI = updateUI;
+      window.getTheme = getTheme;
 
-      // Handle View Transitions
-      document.addEventListener("astro:after-swap", () => {
-        window.setTheme(window.getTheme());
-      });
+      // Initial apply
+      window.setTheme(getTheme());
 
-      // Handle Math Rendering
+      document.addEventListener("astro:after-swap", () =>
+        window.setTheme(getTheme()),
+      );
+
       const renderMath = () => {
         if (typeof renderMathInElement === "function") {
           renderMathInElement(document.body, {
@@ -185,7 +181,6 @@ import { ClientRouter } from "astro:transitions";
 
       document.addEventListener("DOMContentLoaded", renderMath);
       document.addEventListener("astro:page-load", renderMath);
-      // Fallback for slower swaps
       document.addEventListener("astro:after-swap", () =>
         setTimeout(renderMath, 100),
       );

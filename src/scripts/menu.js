@@ -4,163 +4,108 @@
  * Initialize the menu functionality
  */
 const initMenu = () => {
-    const menuToggle = document.getElementById("menuToggle");
-    const menuOverlay = document.getElementById("menuOverlay");
-    const menuSymbol = document.querySelector(".menu-symbol");
+    const nodes = {
+        toggle: document.getElementById("menuToggle"),
+        overlay: document.getElementById("menuOverlay"),
+        symbol: document.querySelector(".menu-symbol")
+    };
 
-    if (!menuToggle || !menuOverlay || !menuSymbol) return;
+    if (!nodes.toggle || !nodes.overlay || !nodes.symbol) return;
 
-    // Math symbols for animation
     const MATH_SYMBOLS = ["+", "-", "π", "x", "÷", "="];
-
-    // Variable to store scroll position
     let scrollPosition = 0;
-
-    // For internal tracking of the morph interval
     let morphInterval = null;
 
     /**
-     * Animate the menu symbol with a "Card Shuffle" effect
-     * @param {string} finalSymbol - The symbol to settle on
+     * Animate the menu symbol with a shuffling effect
      */
     const animateMenuSymbol = (finalSymbol) => {
         if (morphInterval) clearInterval(morphInterval);
 
-        // Phase 1: Start shuffling (visible but stylized)
-        menuSymbol.classList.remove("settled");
-        menuSymbol.classList.add("shuffling");
+        nodes.symbol.classList.remove("settled");
+        nodes.symbol.classList.add("shuffling");
 
         let step = 0;
-        const totalSteps = 10; // More steps to make it feel like "shuffling"
+        const totalSteps = 10;
 
         morphInterval = setInterval(() => {
-            // Change symbol rapidly
-            menuSymbol.innerText = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
-            step++;
+            nodes.symbol.innerText = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
 
-            // Phase 2: Slow down slightly towards the end
-            if (step >= totalSteps) {
+            if (++step >= totalSteps) {
                 clearInterval(morphInterval);
-                menuSymbol.innerText = finalSymbol;
-
-                // Phase 3: Settle and pop
-                menuSymbol.classList.remove("shuffling");
-
-                // Small delay to ensure the browser registers class removal before adding settled
-                requestAnimationFrame(() => {
-                    menuSymbol.classList.add("settled");
-                });
+                nodes.symbol.innerText = finalSymbol;
+                nodes.symbol.classList.remove("shuffling");
+                requestAnimationFrame(() => nodes.symbol.classList.add("settled"));
             }
-        }, 60); // Constant speed for a mechanical shuffle feel
+        }, 60);
     };
 
     /**
      * Toggle the menu open/closed
-     * @param {boolean} animate - Whether to animate the menu symbol (default: true)
      */
     const toggleMenu = (animate = true) => {
-        menuToggle.classList.toggle("active");
-        menuOverlay.classList.toggle("active");
+        const isActive = nodes.overlay.classList.toggle("active");
+        nodes.toggle.classList.toggle("active", isActive);
 
-        // Only animate if requested
-        if (animate) {
-            // Get current symbol to avoid picking the same one
-            const currentSymbol = menuSymbol.innerText;
+        // Treat event objects as animate=true
+        if (animate !== false) {
+            const currentSymbol = nodes.symbol.innerText;
             let randomSymbol;
-
-            // Pick a random symbol different from the current one
             do {
                 randomSymbol = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
             } while (randomSymbol === currentSymbol);
-
-            // Animate to new random symbol
             animateMenuSymbol(randomSymbol);
         }
 
-        // Prevent body scroll when menu is open
-        if (menuOverlay.classList.contains("active")) {
-            // Save current scroll position
+        if (isActive) {
             scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            // Apply fixed position with negative top to maintain visual position
             document.body.style.top = `-${scrollPosition}px`;
             document.body.classList.add("menu-open");
+            updateHashActiveState();
         } else {
-            // Remove fixed position
             document.body.classList.remove("menu-open");
             document.body.style.top = '';
-            // Restore scroll position
             window.scrollTo(0, scrollPosition);
         }
     };
-
-    // Event listener for menu toggle button
-    menuToggle.addEventListener("click", toggleMenu);
-
-    // Close menu when clicking outside the nav
-    menuOverlay.addEventListener("click", (e) => {
-        if (e.target === menuOverlay) {
-            toggleMenu();
-        }
-    });
-
-    // Close menu when pressing Escape key
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && menuOverlay.classList.contains("active")) {
-            toggleMenu();
-        }
-    });
 
     /**
      * Update active state for Home and Contact links based on hash
      */
     const updateHashActiveState = () => {
-        const homeLink = menuOverlay.querySelector('.nav-home');
-        const contactLink = menuOverlay.querySelector('.nav-contacto');
         const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+        if (!isHomePage) return;
 
-        if (!homeLink || !contactLink || !isHomePage) return;
+        const homeLink = nodes.overlay.querySelector('.nav-home');
+        const contactLink = nodes.overlay.querySelector('.nav-contacto');
+        if (!homeLink || !contactLink) return;
 
-        const hasContactHash = window.location.hash === '#contacto';
-
-        if (hasContactHash) {
-            contactLink.classList.add('active');
-            homeLink.classList.remove('active');
-        } else {
-            homeLink.classList.add('active');
-            contactLink.classList.remove('active');
-        }
+        const isContact = window.location.hash === '#contacto';
+        homeLink.classList.toggle('active', !isContact);
+        contactLink.classList.toggle('active', isContact);
     };
 
-    // Close menu when clicking on links with data-close-menu attribute
-    const closeMenuLinks = menuOverlay.querySelectorAll('[data-close-menu]');
-    closeMenuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Update hash state immediately if it's a hash link
-            const href = link.getAttribute('href');
-            if (href && href.includes('#')) {
-                // Small timeout to let the hash change happen if it's on the same page
-                setTimeout(updateHashActiveState, 10);
-            }
+    // Event Listeners
+    nodes.toggle.addEventListener("click", () => toggleMenu(true));
 
-            if (menuOverlay.classList.contains("active")) {
-                toggleMenu(false); // Don't animate when closing via link
-            }
+    nodes.overlay.addEventListener("click", (e) => {
+        if (e.target === nodes.overlay) toggleMenu(true);
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && nodes.overlay.classList.contains("active")) toggleMenu(true);
+    });
+
+    nodes.overlay.querySelectorAll('[data-close-menu]').forEach(link => {
+        link.addEventListener('click', () => {
+            const href = link.getAttribute('href');
+            if (href?.includes('#')) setTimeout(updateHashActiveState, 10);
+            if (nodes.overlay.classList.contains("active")) toggleMenu(false);
         });
     });
 
-    // Update state when menu opens
-    menuToggle.addEventListener('click', () => {
-        if (menuOverlay.classList.contains('active')) {
-            updateHashActiveState();
-        }
-    });
-
-    // Update on hash change (e.g. back button or manual hash change)
     window.addEventListener('hashchange', updateHashActiveState);
-
-    // Initial update
     updateHashActiveState();
 };
 
-// Initialize on first load and after every navigation
 document.addEventListener("astro:page-load", initMenu);

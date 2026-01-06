@@ -136,43 +136,25 @@ body.menu-open {
 
 
 
-/* ===== THEME TRANSITION ANIMATION ===== */
+/* ===== THEME TRANSITIONS ===== */
 body.theme-changing {
     transition: background-color var(--transition);
 }
 
-/* Animate background, borders and shadows during theme change */
-body.theme-changing .info-box,
-body.theme-changing .theme-toggle,
-body.theme-changing .level-tag,
-body.theme-changing .menu-overlay {
-    transition:
-        background-color var(--transition),
-        border-color var(--transition),
-        box-shadow var(--transition);
+body.theme-changing :is(.info-box, .theme-toggle, .level-tag, .menu-overlay) {
+    transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
-/* Disable text color transitions during theme change to avoid flickering */
-body.theme-changing h1,
-body.theme-changing h2,
-body.theme-changing h3,
-body.theme-changing p,
-body.theme-changing span,
-body.theme-changing a,
-body.theme-changing .value,
-body.theme-changing .label,
-body.theme-changing .subtitle,
-body.theme-changing .menu-symbol {
+body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle, .menu-symbol) {
     transition: none;
 }
 
-/* ===== SECTIONS ===== */
+/* ===== CONTENT ===== */
 section {
     margin-bottom: var(--spacing-lg);
     animation: slideIn 0.6s ease-out backwards;
 }
 
-/* Slide in animation */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -185,7 +167,6 @@ section {
     }
 }
 
-/* Stagger section animations */
 section:nth-child(2) {
     animation-delay: 0.2s;
 }
@@ -194,19 +175,13 @@ section:nth-child(3) {
     animation-delay: 0.3s;
 }
 
-section:nth-child(4) {
+section:nth-child(n+4) {
     animation-delay: 0.4s;
 }
 
-section:nth-child(5) {
-    animation-delay: 0.5s;
-}
-
-/* ===== TYPOGRAPHY ===== */
 h2 {
     font-size: clamp(1.3rem, 3vw, 1.8rem);
-    margin-bottom: var(--spacing-md);
-    margin-top: var(--spacing-xs);
+    margin: var(--spacing-xs) 0 var(--spacing-md);
     border-left: 4px solid var(--accent);
     padding-left: var(--spacing-sm);
 }
@@ -218,7 +193,6 @@ h3 {
 }
 
 p {
-    font-size: var(--font-size-md);
     margin-bottom: var(--spacing-sm);
     color: var(--text-tertiary);
 }
