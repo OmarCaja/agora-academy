@@ -56,22 +56,26 @@ const initMenu = () => {
 
     /**
      * Toggle the menu open/closed
+     * @param {boolean} animate - Whether to animate the menu symbol (default: true)
      */
-    const toggleMenu = () => {
+    const toggleMenu = (animate = true) => {
         menuToggle.classList.toggle("active");
         menuOverlay.classList.toggle("active");
 
-        // Get current symbol to avoid picking the same one
-        const currentSymbol = menuSymbol.innerText;
-        let randomSymbol;
+        // Only animate if requested
+        if (animate) {
+            // Get current symbol to avoid picking the same one
+            const currentSymbol = menuSymbol.innerText;
+            let randomSymbol;
 
-        // Pick a random symbol different from the current one
-        do {
-            randomSymbol = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
-        } while (randomSymbol === currentSymbol);
+            // Pick a random symbol different from the current one
+            do {
+                randomSymbol = MATH_SYMBOLS[Math.floor(Math.random() * MATH_SYMBOLS.length)];
+            } while (randomSymbol === currentSymbol);
 
-        // Animate to new random symbol
-        animateMenuSymbol(randomSymbol);
+            // Animate to new random symbol
+            animateMenuSymbol(randomSymbol);
+        }
 
         // Prevent body scroll when menu is open
         if (menuOverlay.classList.contains("active")) {
@@ -105,6 +109,57 @@ const initMenu = () => {
             toggleMenu();
         }
     });
+
+    /**
+     * Update active state for Home and Contact links based on hash
+     */
+    const updateHashActiveState = () => {
+        const homeLink = menuOverlay.querySelector('.nav-home');
+        const contactLink = menuOverlay.querySelector('.nav-contacto');
+        const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+
+        if (!homeLink || !contactLink || !isHomePage) return;
+
+        const hasContactHash = window.location.hash === '#contacto';
+
+        if (hasContactHash) {
+            contactLink.classList.add('active');
+            homeLink.classList.remove('active');
+        } else {
+            homeLink.classList.add('active');
+            contactLink.classList.remove('active');
+        }
+    };
+
+    // Close menu when clicking on links with data-close-menu attribute
+    const closeMenuLinks = menuOverlay.querySelectorAll('[data-close-menu]');
+    closeMenuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Update hash state immediately if it's a hash link
+            const href = link.getAttribute('href');
+            if (href && href.includes('#')) {
+                // Small timeout to let the hash change happen if it's on the same page
+                setTimeout(updateHashActiveState, 10);
+            }
+
+            if (menuOverlay.classList.contains("active")) {
+                toggleMenu(false); // Don't animate when closing via link
+            }
+        });
+    });
+
+    // Update state when menu opens
+    menuToggle.addEventListener('click', () => {
+        if (menuOverlay.classList.contains('active')) {
+            updateHashActiveState();
+        }
+    });
+
+    // Update on hash change (e.g. back button or manual hash change)
+    window.addEventListener('hashchange', updateHashActiveState);
+
+    // Initial update
+    updateHashActiveState();
 };
 
 // Initialize on first load and after every navigation

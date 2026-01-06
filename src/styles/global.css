@@ -28,10 +28,9 @@
 
     /* Typography */
     --font-family: "Space Mono", monospace;
-    --font-size-base: 18px;
-    --font-size-sm: 0.85rem;
-    --font-size-md: 0.9rem;
-    --font-size-lg: 1rem;
+    --font-size-base: 16px;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
     --line-height: 1.6;
 }
 
@@ -85,7 +84,7 @@ body {
     padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
     padding-left: max(var(--spacing-md), env(safe-area-inset-left));
     padding-right: max(var(--spacing-md), env(safe-area-inset-right));
-    font-size: var(--font-size-base);
+    font-size: var(--font-size-md);
     transition:
         background var(--transition),
         color var(--transition);
@@ -219,7 +218,7 @@ h3 {
 }
 
 p {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     margin-bottom: var(--spacing-sm);
     color: var(--text-tertiary);
 }

@@ -9,12 +9,29 @@ const { currentPage } = Astro.props;
 <!-- Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay">
     <nav class="menu-nav">
-        <a
-            href="/"
-            class:list={["menu-item", { active: currentPage === "index" }]}
-            aria-current={currentPage === "index" ? "page" : undefined}
-            >Inicio</a
-        >
+        <div class="menu-group">
+            <a
+                href="/"
+                data-astro-prefetch
+                data-close-menu
+                class:list={[
+                    "menu-group-title",
+                    "menu-link",
+                    "nav-home",
+                    { active: currentPage === "index" },
+                ]}
+            >
+                Inicio
+            </a>
+            <a
+                href="/#contacto"
+                data-astro-prefetch
+                data-close-menu
+                class:list={["menu-item", "menu-subitem", "nav-contacto"]}
+            >
+                Contacto
+            </a>
+        </div>
 
         <div class="menu-group">
             <span class="menu-group-title">Aritmética</span>
@@ -184,7 +201,7 @@ const { currentPage } = Astro.props;
     }
 
     .menu-item {
-        font-size: 1.2rem;
+        font-size: 1.125rem;
         color: var(--text-muted);
         text-decoration: none;
         padding: 12px 20px;
@@ -211,27 +228,44 @@ const { currentPage } = Astro.props;
     }
 
     .menu-group-title {
-        font-size: 1rem;
+        font-size: 1.125rem;
         letter-spacing: 2px;
         color: var(--text-muted);
         padding: 8px 20px;
         display: block;
         font-weight: 700;
+        border-left: 3px solid transparent;
+        transition: all var(--transition);
+    }
+
+    .menu-group-title.active {
+        color: var(--text-primary);
+        border-left-color: var(--accent);
+    }
+
+    .menu-link {
+        text-decoration: none;
+        transition: all var(--transition);
+        cursor: pointer;
+    }
+
+    .menu-link:hover {
+        color: var(--text-primary);
     }
 
     .menu-subitem {
-        font-size: 1rem;
+        font-size: 1.125rem;
         padding-left: 30px;
     }
 
     /* Responsive adjustments */
     @media (min-width: 768px) {
         .menu-item {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
 
         .menu-subitem {
-            font-size: 1.2rem;
+            font-size: 1.125rem;
         }
     }
 </style>
