@@ -94,7 +94,7 @@ body {
     min-height: -webkit-fill-available;
 }
 
-/* Prevent scrolling when menu is open - Safari fix */
+/* Prevent scrolling when menu is open - Standard and Safari fix */
 body.menu-open {
     position: fixed;
     width: 100%;

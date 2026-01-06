@@ -21,7 +21,15 @@ const initMenu = () => {
         } else {
             document.body.classList.remove("menu-open");
             document.body.style.top = '';
+
+            // Temporarily disable smooth scroll to prevent jump animation
+            const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+            document.documentElement.style.scrollBehavior = 'auto';
+
             window.scrollTo(0, scrollPosition);
+
+            // Restore smooth scroll behavior
+            document.documentElement.style.scrollBehavior = originalScrollBehavior;
         }
     };
 
