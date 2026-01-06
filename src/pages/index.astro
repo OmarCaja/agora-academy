@@ -11,88 +11,90 @@ import ContactItem from "../components/ContactItem.astro";
 	description="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3."
 	currentPage="index"
 >
-	<Header title="ÁGORA" subtitle="Academia de matemáticas en Cuenca" />
+	<div class="content-section">
+		<Header title="ÁGORA" subtitle="Academia de matemáticas en Cuenca" />
 
-	<section class="fade-in">
-		<h2>Sobre nosotros</h2>
+		<section>
+			<h2>Sobre nosotros</h2>
 
-		<p>
-			En
-			<strong>Ágora</strong> nos especializamos en la enseñanza de matemáticas
-			para estudiantes de E.S.O. y Bachillerato en Cuenca. Con nuestros <strong
-				>grupos reducidos</strong
-			>, cada alumno recibe una atención personalizada y un seguimiento
-			cercano de su progreso.
-		</p>
+			<p>
+				En
+				<strong>Ágora</strong> nos especializamos en la enseñanza de matemáticas
+				para estudiantes de E.S.O. y Bachillerato en Cuenca. Con nuestros
+				<strong>grupos reducidos</strong>, cada alumno recibe una
+				atención personalizada y un seguimiento cercano de su progreso.
+			</p>
 
-		<LevelTags />
-	</section>
+			<LevelTags />
+		</section>
 
-	<section class="fade-in">
-		<h2>¿Por qué Ágora?</h2>
-		<InfoBox>
-			<ul class="pros-list">
-				<li>
-					<strong>Grupos reducidos</strong> para atención personalizada
-				</li>
-				<li>Mejora del <strong>proceso de aprendizaje</strong></li>
-				<li>Fomento del <strong>razonamiento lógico</strong></li>
-				<li>Impulso del <strong>pensamiento abstracto</strong></li>
-			</ul>
-		</InfoBox>
-	</section>
+		<section>
+			<h2>¿Por qué Ágora?</h2>
+			<InfoBox>
+				<ul class="pros-list">
+					<li>
+						<strong>Grupos reducidos</strong> para atención personalizada
+					</li>
+					<li>Mejora del <strong>proceso de aprendizaje</strong></li>
+					<li>Fomento del <strong>razonamiento lógico</strong></li>
+					<li>Impulso del <strong>pensamiento abstracto</strong></li>
+				</ul>
+			</InfoBox>
+		</section>
 
-	<style>
-		.pros-list {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-		}
-		.pros-list li {
-			position: relative;
-			padding-left: 30px;
-			margin-bottom: 12px;
-			line-height: 1.4;
-		}
-		.pros-list li::before {
-			content: "✓";
-			position: absolute;
-			left: 0;
-			color: var(--accent);
-			font-weight: bold;
-		}
-		.pros-list li:last-child {
-			margin-bottom: 0;
-		}
-	</style>
+		<style>
+			.pros-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.pros-list li {
+				position: relative;
+				padding-left: 30px;
+				margin-bottom: 12px;
+				line-height: 1.4;
+			}
+			.pros-list li::before {
+				content: "✓";
+				position: absolute;
+				left: 0;
+				color: var(--accent);
+				font-weight: bold;
+			}
+			.pros-list li:last-child {
+				margin-bottom: 0;
+			}
+		</style>
 
-	<section id="contacto" class="fade-in">
-		<h2>Contacto</h2>
+		<section id="contacto">
+			<h2>Contacto</h2>
 
-		<InfoBox>
-			<ContactItem label="Dirección">
-				<address>
-					<a
-						href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="map-link"
+			<InfoBox>
+				<ContactItem label="Dirección">
+					<address>
+						<a
+							href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="map-link"
+						>
+							📍 Calle Fermín Caballero, 3.<br />
+							Planta 6 [thegoodspace].<br />
+							Cuenca.
+						</a>
+					</address>
+				</ContactItem>
+
+				<ContactItem label="Teléfono">
+					<a href="tel:+34649021173">📞 649 021 173</a>
+				</ContactItem>
+
+				<ContactItem label="Email">
+					<a href="mailto:info@agoraacademy.es"
+						>✉️ info@agoraacademy.es</a
 					>
-						📍 Calle Fermín Caballero, 3.<br />
-						Planta 6 [thegoodspace].<br />
-						Cuenca.
-					</a>
-				</address>
-			</ContactItem>
-
-			<ContactItem label="Teléfono">
-				<a href="tel:+34649021173">📞 649 021 173</a>
-			</ContactItem>
-
-			<ContactItem label="Email">
-				<a href="mailto:info@agoraacademy.es">✉️ info@agoraacademy.es</a
-				>
-			</ContactItem>
-		</InfoBox>
-	</section>
+				</ContactItem>
+			</InfoBox>
+		</section>
+	</div>
 </BaseLayout>

@@ -61,7 +61,7 @@ const slugify = (text: string) => {
 
         {
             sections.map((section) => (
-                <section id={slugify(section.title)} class="fade-in">
+                <section id={slugify(section.title)}>
                     <h2>{section.title}</h2>
                     {section.items.map((item) => (
                         <PropertyBox
