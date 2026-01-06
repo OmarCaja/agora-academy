@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import PropertyBox from "../components/PropertyBox.astro";
+import TableOfContents from "../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
     const topics = await getCollection("topics");
@@ -14,6 +15,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { title, description, sections } = entry.data;
+
+// Helper to create URL-friendly IDs (must match TableOfContents.astro)
+const slugify = (text: string) => {
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^\w ]+/g, "")
+        .replace(/ +/g, "-");
+};
 ---
 
 <BaseLayout
@@ -22,11 +33,14 @@ const { title, description, sections } = entry.data;
         `Aprende sobre ${title} en Ágora Academia de Matemáticas.`}
     currentPage={entry.id}
 >
-    <Header title={title.toUpperCase()} />
     <div class="content-section">
+        <Header title={title.toUpperCase()} />
+
+        <TableOfContents sections={sections} />
+
         {
             sections.map((section) => (
-                <section class="fade-in">
+                <section id={slugify(section.title)} class="fade-in">
                     <h2>{section.title}</h2>
                     {section.items.map((item) => (
                         <PropertyBox

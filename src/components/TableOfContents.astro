@@ -1,0 +1,93 @@
+---
+interface Props {
+    sections: { title: string }[];
+}
+
+const { sections } = Astro.props;
+
+// Helper to create URL-friendly IDs
+const slugify = (text: string) => {
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^\w ]+/g, "")
+        .replace(/ +/g, "-");
+};
+---
+
+{
+    sections.length > 1 && (
+        <nav class="toc-container fade-in" aria-label="Índice de contenidos">
+            <div class="toc-header">Índice de contenidos</div>
+            <ul class="toc-list">
+                {sections.map((section) => (
+                    <li>
+                        <a href={`#${slugify(section.title)}`}>
+                            <span class="toc-bullet">→</span>
+                            {section.title}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    )
+}
+
+<style>
+    .toc-container {
+        background: var(--bg-secondary);
+        border: var(--border-width) solid var(--border-color);
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0
+            var(--shadow-color);
+    }
+
+    .toc-header {
+        font-family: var(--font-family);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: var(--spacing-sm);
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: var(--spacing-xs);
+    }
+
+    .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .toc-list a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        transition: all var(--transition);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+    }
+
+    .toc-list a:hover {
+        color: var(--text-primary);
+        transform: translateX(4px);
+    }
+
+    .toc-bullet {
+        color: var(--accent);
+        font-weight: bold;
+    }
+
+    @media (min-width: 768px) {
+        .toc-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--spacing-sm);
+        }
+    }
+</style>

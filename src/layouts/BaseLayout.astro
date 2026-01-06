@@ -10,11 +10,12 @@ const { title, description, currentPage = "index" } = Astro.props;
 import GlobalNav from "../components/GlobalNav.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
+import ReadingProgressBar from "../components/ReadingProgressBar.astro";
 import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" data-current-page={currentPage}>
   <head>
     <ClientRouter />
     <meta charset="UTF-8" />
@@ -190,9 +191,10 @@ import { ClientRouter } from "astro:transitions";
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido</a>
     <GlobalNav transition:persist />
+    <ReadingProgressBar transition:persist />
     <Menu currentPage={currentPage} transition:persist />
 
-    <main id="main-content" class="container">
+    <main id="main-content" class="container" transition:animate="fade">
       <slot />
 
       <Footer transition:persist />
