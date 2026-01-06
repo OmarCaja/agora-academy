@@ -16,6 +16,26 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { title, description, sections } = entry.data;
 
+// Detailed Course/LearningResource Schema
+const topicSchema = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: title,
+    description: description,
+    learningResourceType: "Tutorial",
+    educationalLevel: ["ESO", "Bachillerato"],
+    inLanguage: "es",
+    author: {
+        "@type": "Organization",
+        name: "Ágora Academia",
+    },
+    hasPart: sections.map((section) => ({
+        "@type": "LearningResource",
+        name: section.title,
+        learningResourceType: "Section",
+    })),
+};
+
 // Helper to create URL-friendly IDs (must match TableOfContents.astro)
 const slugify = (text: string) => {
     return text
@@ -32,6 +52,7 @@ const slugify = (text: string) => {
     description={description ||
         `Aprende sobre ${title} en Ágora Academia de Matemáticas.`}
     currentPage={entry.id}
+    schema={topicSchema}
 >
     <div class="content-section">
         <Header title={title.toUpperCase()} />
