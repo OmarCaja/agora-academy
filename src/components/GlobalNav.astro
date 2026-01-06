@@ -34,7 +34,7 @@
             id="menuToggle"
             aria-label="Abrir menú de navegación"
         >
-            <span class="menu-symbol">π</span>
+            <span class="menu-symbol accordion-icon"></span>
         </button>
     </div>
 </header>
@@ -109,44 +109,45 @@
         perspective: 500px;
     }
 
-    .menu-symbol,
+    .accordion-icon {
+        width: 14px;
+        height: 14px;
+        position: relative;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0.8;
+    }
+
+    .accordion-icon::before,
+    .accordion-icon::after {
+        content: "";
+        position: absolute;
+        background: currentColor;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Horizontal line */
+    .accordion-icon::before {
+        width: 14px;
+        height: 2px;
+        top: 6px;
+        left: 0;
+    }
+
+    /* Vertical line */
+    .accordion-icon::after {
+        width: 2px;
+        height: 14px;
+        top: 0;
+        left: 6px;
+    }
+
+    .menu-btn.active .accordion-icon {
+        transform: rotate(45deg);
+    }
+
     #themeIcon {
         font-size: 1.125rem;
         line-height: 1;
-    }
-
-    .menu-symbol {
-        font-size: 1.5rem;
-        display: inline-block;
-        transition:
-            transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-            filter 0.2s ease,
-            color 0.2s ease;
-        will-change: transform, filter;
-    }
-
-    /* Shuffling state: visible, blurry, and slightly larger */
-    .menu-symbol:global(.shuffling) {
-        filter: blur(1.5px);
-        transform: scale(1.4) rotate(-8deg);
-    }
-
-    /* Final pop state */
-    @keyframes symbol-pop {
-        0% {
-            transform: scale(1.4) rotate(8deg);
-        }
-        50% {
-            transform: scale(0.8) rotate(-4deg);
-        }
-        100% {
-            transform: scale(1) rotate(0);
-        }
-    }
-
-    .menu-symbol:global(.settled) {
-        animation: symbol-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)
-            forwards;
     }
 
     .nav-logo {
@@ -171,9 +172,6 @@
         width: auto;
         display: block;
     }
-
-    /* Adjust body padding to prevent content hiding behind fixed header */
-    /* This needs to be global or applied in layout. */
 
     @media (max-width: 768px) {
         .nav-content {

@@ -4,11 +4,46 @@ interface Props {
 }
 
 const { currentPage } = Astro.props;
+
+// Menu configuration for easier maintenance
+const menuGroups = [
+    {
+        title: "Aritmética",
+        items: [
+            { slug: "jerarquia", label: "Jerarquía de las operaciones" },
+            {
+                slug: "propiedades-operaciones",
+                label: "Propiedades de las operaciones",
+            },
+            { slug: "divisibilidad", label: "Factorización de números" },
+            { slug: "fracciones", label: "Operaciones con fracciones" },
+        ],
+    },
+    {
+        title: "Álgebra",
+        items: [
+            { slug: "identidades-notables", label: "Identidades notables" },
+        ],
+    },
+    {
+        title: "Potencias y logaritmos",
+        items: [
+            { slug: "potencias", label: "Propiedades de las potencias" },
+            { slug: "raices", label: "Propiedades de las raíces" },
+            { slug: "logaritmos", label: "Propiedades de los logaritmos" },
+        ],
+    },
+];
+
+// Helper to determine if a group should be open (active)
+const isGroupActive = (items: { slug: string }[]) =>
+    items.some((item) => item.slug === currentPage);
 ---
 
 <!-- Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay">
     <nav class="menu-nav">
+        <!-- Main links -->
         <div class="menu-group">
             <a
                 href="/"
@@ -33,171 +68,45 @@ const { currentPage } = Astro.props;
             </a>
         </div>
 
-        <div
-            class:list={[
-                "menu-group accordion",
-                {
-                    active: [
-                        "jerarquia",
-                        "propiedades-operaciones",
-                        "divisibilidad",
-                        "fracciones",
-                    ].includes(currentPage || ""),
-                },
-            ]}
-            data-accordion
-        >
-            <button class="menu-group-title accordion-trigger">
-                Aritmética
-                <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-content">
-                <a
-                    href="/jerarquia"
-                    data-astro-prefetch
+        <!-- Dynamic Category Accordions -->
+        {
+            menuGroups.map((group) => (
+                <div
                     class:list={[
-                        "menu-item",
-                        "menu-subitem",
-                        { active: currentPage === "jerarquia" },
+                        "menu-group accordion",
+                        { active: isGroupActive(group.items) },
                     ]}
-                    aria-current={currentPage === "jerarquia"
-                        ? "page"
-                        : undefined}
+                    data-accordion
                 >
-                    Jerarquía de las operaciones
-                </a>
-                <a
-                    href="/propiedades-operaciones"
-                    data-astro-prefetch
-                    class:list={[
-                        "menu-item",
-                        "menu-subitem",
-                        { active: currentPage === "propiedades-operaciones" },
-                    ]}
-                    aria-current={currentPage === "propiedades-operaciones"
-                        ? "page"
-                        : undefined}
-                >
-                    Propiedades de las operaciones
-                </a>
-                <a
-                    href="/divisibilidad"
-                    data-astro-prefetch
-                    class:list={[
-                        "menu-item",
-                        "menu-subitem",
-                        { active: currentPage === "divisibilidad" },
-                    ]}
-                    aria-current={currentPage === "divisibilidad"
-                        ? "page"
-                        : undefined}
-                >
-                    Factorización de números
-                </a>
-                <a
-                    href="/fracciones"
-                    data-astro-prefetch
-                    class:list={[
-                        "menu-item",
-                        "menu-subitem",
-                        { active: currentPage === "fracciones" },
-                    ]}
-                    aria-current={currentPage === "fracciones"
-                        ? "page"
-                        : undefined}
-                >
-                    Operaciones con fracciones
-                </a>
-            </div>
-        </div>
-
-        <div
-            class:list={[
-                "menu-group accordion",
-                { active: currentPage === "identidades-notables" },
-            ]}
-            data-accordion
-        >
-            <button class="menu-group-title accordion-trigger">
-                Álgebra
-                <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-content">
-                <a
-                    href="/identidades-notables"
-                    data-astro-prefetch
-                    class:list={[
-                        "menu-item",
-                        "menu-subitem",
-                        { active: currentPage === "identidades-notables" },
-                    ]}
-                    aria-current={currentPage === "identidades-notables"
-                        ? "page"
-                        : undefined}
-                >
-                    Identidades notables
-                </a>
-            </div>
-        </div>
-
-        <div
-            class:list={[
-                "menu-group accordion",
-                {
-                    active: ["potencias", "raices", "logaritmos"].includes(
-                        currentPage || "",
-                    ),
-                },
-            ]}
-            data-accordion
-        >
-            <button class="menu-group-title accordion-trigger">
-                Potencias y logaritmos
-                <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-content">
-                <a
-                    href="/potencias"
-                    data-astro-prefetch
-                    class:list={[
-                        "menu-item",
-                        "menu-subitem",
-                        { active: currentPage === "potencias" },
-                    ]}
-                    aria-current={currentPage === "potencias"
-                        ? "page"
-                        : undefined}
-                >
-                    Propiedades de las potencias
-                </a>
-                <a
-                    href="/raices"
-                    data-astro-prefetch
-                    class:list={[
-                        "menu-item",
-                        "menu-subitem",
-                        { active: currentPage === "raices" },
-                    ]}
-                    aria-current={currentPage === "raices" ? "page" : undefined}
-                >
-                    Propiedades de las raíces
-                </a>
-                <a
-                    href="/logaritmos"
-                    data-astro-prefetch
-                    class:list={[
-                        "menu-item",
-                        "menu-subitem",
-                        { active: currentPage === "logaritmos" },
-                    ]}
-                    aria-current={currentPage === "logaritmos"
-                        ? "page"
-                        : undefined}
-                >
-                    Propiedades de los logaritmos
-                </a>
-            </div>
-        </div>
+                    <button class="menu-group-title accordion-trigger">
+                        {group.title}
+                        <span class="accordion-icon" />
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            {group.items.map((item) => (
+                                <a
+                                    href={`/${item.slug}`}
+                                    data-astro-prefetch
+                                    class:list={[
+                                        "menu-item",
+                                        "menu-subitem",
+                                        { active: currentPage === item.slug },
+                                    ]}
+                                    aria-current={
+                                        currentPage === item.slug
+                                            ? "page"
+                                            : undefined
+                                    }
+                                >
+                                    {item.label}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
     </nav>
 </div>
 
@@ -350,48 +259,77 @@ const { currentPage } = Astro.props;
     }
 
     .accordion-content {
-        max-height: 0;
-        overflow: hidden;
+        display: grid;
+        grid-template-rows: 0fr;
         transition:
-            max-height var(--transition) cubic-bezier(0.4, 0, 0.2, 1),
-            opacity var(--transition) ease,
-            margin var(--transition) ease;
+            grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.4s ease,
+            margin 0.4s ease;
         opacity: 0;
+        overflow: hidden;
     }
 
     :global(.menu-group.active) .accordion-content {
-        max-height: 800px;
+        grid-template-rows: 1fr;
         opacity: 1;
         margin-top: 5px;
         margin-bottom: var(--spacing-sm);
     }
 
+    .accordion-inner {
+        min-height: 0; /* Crucial for grid rows transition */
+    }
+
     /* Reveal animation for items inside */
     .accordion-content .menu-item {
-        transform: translateY(-8px);
+        transform: translateY(-10px);
         opacity: 0;
         transition:
-            transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+            transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
             opacity 0.4s ease;
     }
 
     :global(.menu-group.active) .accordion-content .menu-item {
         transform: translateY(0);
         opacity: 1;
+        transition:
+            transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.1),
+            opacity 0.4s ease;
     }
 
-    /* Staggered delay for smoother feel */
-    .accordion-content .menu-item:nth-child(2) {
+    /* Staggered DELAYS */
+    /* ENTRANCE (top to bottom) */
+    :global(.menu-group.active) .accordion-content .menu-item:nth-child(1) {
         transition-delay: 0.05s;
     }
-    .accordion-content .menu-item:nth-child(3) {
+    :global(.menu-group.active) .accordion-content .menu-item:nth-child(2) {
         transition-delay: 0.1s;
     }
-    .accordion-content .menu-item:nth-child(4) {
+    :global(.menu-group.active) .accordion-content .menu-item:nth-child(3) {
         transition-delay: 0.15s;
     }
-    .accordion-content .menu-item:nth-child(5) {
+    :global(.menu-group.active) .accordion-content .menu-item:nth-child(4) {
         transition-delay: 0.2s;
+    }
+    :global(.menu-group.active) .accordion-content .menu-item:nth-child(5) {
+        transition-delay: 0.25s;
+    }
+
+    /* EXIT (bottom up) - Using nth-last-child ensures the LAST item always starts at 0s */
+    .accordion-content .menu-item:nth-last-child(1) {
+        transition-delay: 0s;
+    }
+    .accordion-content .menu-item:nth-last-child(2) {
+        transition-delay: 0.03s;
+    }
+    .accordion-content .menu-item:nth-last-child(3) {
+        transition-delay: 0.06s;
+    }
+    .accordion-content .menu-item:nth-last-child(4) {
+        transition-delay: 0.09s;
+    }
+    .accordion-content .menu-item:nth-last-child(5) {
+        transition-delay: 0.12s;
     }
 
     .menu-link {
