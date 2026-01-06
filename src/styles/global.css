@@ -161,7 +161,7 @@ body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle, .menu
 
 section {
     margin-bottom: var(--spacing-lg);
-    animation: pageContentEntrance 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+    /* animation: pageContentEntrance 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; */
 }
 
 @keyframes pageContentEntrance {

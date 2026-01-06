@@ -1,78 +1,112 @@
-const initMenu = () => {
+let scrollPosition = 0;
+
+// Named functions for event listeners to allow proper removal/addition
+const toggleMenu = () => {
     const nodes = {
         toggle: document.getElementById("menuToggle"),
         overlay: document.getElementById("menuOverlay"),
-        symbol: document.querySelector(".menu-symbol")
     };
 
-    if (!nodes.toggle || !nodes.overlay || !nodes.symbol) return;
+    if (!nodes.toggle || !nodes.overlay) return;
 
-    let scrollPosition = 0;
+    const isActive = nodes.overlay.classList.toggle("active");
+    nodes.toggle.classList.toggle("active", isActive);
 
-    const toggleMenu = () => {
-        const isActive = nodes.overlay.classList.toggle("active");
-        nodes.toggle.classList.toggle("active", isActive);
+    if (isActive) {
+        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        document.body.style.top = `-${scrollPosition}px`;
+        document.body.classList.add("menu-open");
+        updateHashActiveState();
+    } else {
+        document.body.classList.remove("menu-open");
+        document.body.style.top = '';
 
-        if (isActive) {
-            scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            document.body.style.top = `-${scrollPosition}px`;
-            document.body.classList.add("menu-open");
-            updateHashActiveState();
-        } else {
-            document.body.classList.remove("menu-open");
-            document.body.style.top = '';
+        // Temporarily disable smooth scroll to prevent jump animation
+        const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, scrollPosition);
+        document.documentElement.style.scrollBehavior = originalScrollBehavior;
+    }
+};
 
-            // Temporarily disable smooth scroll to prevent jump animation
-            const originalScrollBehavior = document.documentElement.style.scrollBehavior;
-            document.documentElement.style.scrollBehavior = 'auto';
+const updateHashActiveState = () => {
+    const overlay = document.getElementById("menuOverlay");
+    if (!overlay) return;
 
-            window.scrollTo(0, scrollPosition);
+    const isHomePage = ['/', '/index.html'].includes(window.location.pathname);
+    if (!isHomePage) return;
 
-            // Restore smooth scroll behavior
-            document.documentElement.style.scrollBehavior = originalScrollBehavior;
-        }
+    const homeLink = overlay.querySelector('.nav-home');
+    const contactLink = overlay.querySelector('.nav-contacto');
+    if (homeLink && contactLink) {
+        const isContact = window.location.hash === '#contacto';
+        homeLink.classList.toggle('active', !isContact);
+        contactLink.classList.toggle('active', isContact);
+    }
+};
+
+const handleOverlayClick = (e) => {
+    const overlay = document.getElementById("menuOverlay");
+    if (e.target === overlay) toggleMenu();
+};
+
+const handleCloseClick = (e) => {
+    const link = e.currentTarget;
+    if (link.getAttribute('href')?.includes('#')) setTimeout(updateHashActiveState, 10);
+    const overlay = document.getElementById("menuOverlay");
+    if (overlay && overlay.classList.contains("active")) toggleMenu();
+};
+
+const handleAccordionClick = (e) => {
+    e.currentTarget.closest('[data-accordion]')?.classList.toggle('active');
+};
+
+const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+        const overlay = document.getElementById("menuOverlay");
+        if (overlay && overlay.classList.contains("active")) toggleMenu();
+    }
+};
+
+const initMenu = () => {
+    const nodes = {
+        toggle: document.getElementById("menuToggle"),
+        overlay: document.getElementById("menuOverlay")
     };
 
-    const updateHashActiveState = () => {
-        const isHomePage = ['/', '/index.html'].includes(window.location.pathname);
-        if (!isHomePage) return;
+    if (!nodes.toggle || !nodes.overlay) return;
 
-        const homeLink = nodes.overlay.querySelector('.nav-home');
-        const contactLink = nodes.overlay.querySelector('.nav-contacto');
-        if (homeLink && contactLink) {
-            const isContact = window.location.hash === '#contacto';
-            homeLink.classList.toggle('active', !isContact);
-            contactLink.classList.toggle('active', isContact);
-        }
-    };
-
-    // Event Listeners
+    // Remove before adding to avoid duplicate listeners on persistent elements
+    nodes.toggle.removeEventListener("click", toggleMenu);
     nodes.toggle.addEventListener("click", toggleMenu);
 
-    nodes.overlay.addEventListener("click", (e) => {
-        if (e.target === nodes.overlay) toggleMenu();
-    });
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && nodes.overlay.classList.contains("active")) toggleMenu();
-    });
+    nodes.overlay.removeEventListener("click", handleOverlayClick);
+    nodes.overlay.addEventListener("click", handleOverlayClick);
 
     nodes.overlay.querySelectorAll('[data-close-menu]').forEach(link => {
-        link.addEventListener('click', () => {
-            if (link.getAttribute('href')?.includes('#')) setTimeout(updateHashActiveState, 10);
-            if (nodes.overlay.classList.contains("active")) toggleMenu();
-        });
+        link.removeEventListener('click', handleCloseClick);
+        link.addEventListener('click', handleCloseClick);
     });
 
     // Accordion Logic
     nodes.overlay.querySelectorAll('[data-accordion]').forEach(group => {
-        group.querySelector('.accordion-trigger')?.addEventListener('click', () => {
-            group.classList.toggle('active');
-        });
+        const trigger = group.querySelector('.accordion-trigger');
+        if (trigger) {
+            trigger.removeEventListener('click', handleAccordionClick);
+            trigger.addEventListener('click', handleAccordionClick);
+        }
     });
 
+    // Keys and hash
+    document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    window.removeEventListener('hashchange', updateHashActiveState);
     window.addEventListener('hashchange', updateHashActiveState);
+
+    // Initial state check
     updateHashActiveState();
 };
 
+// Listen for both initial load and subsequent navigation trought View Transitions
 document.addEventListener("astro:page-load", initMenu);

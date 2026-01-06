@@ -189,8 +189,9 @@ import "../styles/global.css";
       );
 
       const renderMath = () => {
-        if (typeof renderMathInElement === "function") {
-          renderMathInElement(document.body, {
+        const container = document.getElementById("main-content");
+        if (typeof renderMathInElement === "function" && container) {
+          renderMathInElement(container, {
             delimiters: [
               { left: "$$", right: "$$", display: true },
               { left: "$", right: "$", display: false },
@@ -202,11 +203,11 @@ import "../styles/global.css";
         }
       };
 
-      document.addEventListener("DOMContentLoaded", renderMath);
+      // Handle both initial load and subsequent navigation
       document.addEventListener("astro:page-load", renderMath);
-      document.addEventListener("astro:after-swap", () =>
-        setTimeout(renderMath, 100),
-      );
+
+      // We use after-swap to ensure math is rendered as early as possible during the transition
+      document.addEventListener("astro:after-swap", renderMath);
     </script>
   </head>
 
