@@ -1,41 +1,64 @@
-// ===== THEME TOGGLE =====
+/**
+ * Theme Toggle Functionality
+ * Handles switching between light and dark modes and persisting user preference.
+ */
 const STORAGE_KEY = "theme";
 
-const toggleTheme = () => {
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-    const newTheme = isDark ? "light" : "dark";
+const SELECTORS = {
+    toggleBtn: "themeToggle",
+    dataTheme: "data-theme"
+};
 
+const THEMES = {
+    dark: "dark",
+    light: "light"
+};
+
+/**
+ * Toggles the current theme and persists the choice.
+ */
+const toggleTheme = () => {
+    const isDark = document.documentElement.getAttribute(SELECTORS.dataTheme) === THEMES.dark;
+    const newTheme = isDark ? THEMES.light : THEMES.dark;
+
+    // Use globally exposed setter from BaseLayout if available
     if (window.setTheme) {
         window.setTheme(newTheme);
     } else {
-        // Fallback
-        document.documentElement.setAttribute("data-theme", newTheme);
+        // Fallback implementation
+        document.documentElement.setAttribute(SELECTORS.dataTheme, newTheme);
         if (window.updateThemeUI) window.updateThemeUI(newTheme);
     }
 
     localStorage.setItem(STORAGE_KEY, newTheme);
 };
 
+/**
+ * Initializes the theme toggle button listener.
+ */
 const initTheme = () => {
-    const btn = document.getElementById("themeToggle");
+    const btn = document.getElementById(SELECTORS.toggleBtn);
     if (!btn) return;
 
     btn.removeEventListener("click", toggleTheme);
     btn.addEventListener("click", toggleTheme);
 
-    // Sync UI with current attribute
+    // Sync button state with current theme
     if (window.updateThemeUI) {
-        const currentTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        const currentTheme = document.documentElement.getAttribute(SELECTORS.dataTheme) === THEMES.dark
+            ? THEMES.dark
+            : THEMES.light;
         window.updateThemeUI(currentTheme);
     }
 };
 
 document.addEventListener("astro:page-load", initTheme);
 
-// System preference listener
+// Listen for system preference changes (Dark Mode OS setting)
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    // Only auto-switch if the user hasn't manually set a preference
     if (!localStorage.getItem(STORAGE_KEY)) {
-        const newTheme = e.matches ? "dark" : "light";
+        const newTheme = e.matches ? THEMES.dark : THEMES.light;
         if (window.setTheme) window.setTheme(newTheme);
     }
 });

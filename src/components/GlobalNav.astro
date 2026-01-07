@@ -34,7 +34,7 @@
             id="menuToggle"
             aria-label="Abrir menú de navegación"
         >
-            <span class="menu-symbol accordion-icon"></span>
+            <span class="accordion-icon"></span>
         </button>
     </div>
 </header>
@@ -54,8 +54,8 @@
         z-index: 1001;
 
         /* Light Theme (Default) */
-        background-color: rgba(255, 255, 255, 0.8);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: var(--nav-bg);
+        border-bottom: 1px solid var(--nav-border);
 
         backdrop-filter: saturate(180%) blur(20px);
         -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -67,8 +67,8 @@
 
     /* Dark Theme Override */
     :global([data-theme="dark"]) .global-nav {
-        background-color: rgba(22, 22, 24, 0.8);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: var(--nav-bg);
+        border-bottom: 1px solid var(--nav-border);
     }
 
     .nav-content {
@@ -97,12 +97,13 @@
         opacity: 1;
 
         /* Light Theme Text */
-        color: #1d1d1f;
+        /* Light Theme Text */
+        color: var(--text-primary);
     }
 
     /* Dark Theme Text Overlay */
     :global([data-theme="dark"]) .nav-btn {
-        color: #f5f5f7;
+        color: var(--text-primary);
     }
 
     .menu-btn {
@@ -160,11 +161,12 @@
         outline: none;
         opacity: 1;
         /* Light Theme Text (matches nav-btn) */
-        color: #1d1d1f;
+        /* Light Theme Text (matches nav-btn) */
+        color: var(--text-primary);
     }
 
     :global([data-theme="dark"]) .nav-logo {
-        color: #f5f5f7;
+        color: var(--text-primary);
     }
 
     .nav-logo-svg {

@@ -11,6 +11,10 @@
     --accent: #2a2a2a;
     --shadow-color: rgba(42, 42, 42, 0.3);
 
+    /* Navigation */
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --nav-border: rgba(0, 0, 0, 0.1);
+
     /* Layout & Spacing */
     --max-width: 800px;
     --spacing-xs: 10px;
@@ -44,6 +48,9 @@
     --border-color: #f4f4f4;
     --accent: #f4f4f4;
     --shadow-color: rgba(244, 244, 244, 0.3);
+
+    --nav-bg: rgba(22, 22, 24, 0.8);
+    --nav-border: rgba(255, 255, 255, 0.1);
 }
 
 /* ===== GLOBAL RESET ===== */
@@ -56,6 +63,7 @@
 html {
     height: 100%;
     height: -webkit-fill-available;
+    /* Smooth scroll for anchor links */
     scroll-behavior: smooth;
     /* Height of .global-nav (48px) + some extra breathing room */
     scroll-padding-top: 70px;
@@ -153,7 +161,7 @@ body.theme-changing :is(.info-box, .theme-toggle, .level-tag, .menu-overlay) {
     transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
-body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle, .menu-symbol) {
+body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle) {
     transition: none;
 }
 
@@ -162,17 +170,7 @@ section {
     margin-bottom: var(--spacing-lg);
 }
 
-@keyframes pageContentEntrance {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 h2 {
     font-size: clamp(1.3rem, 3vw, 1.8rem);

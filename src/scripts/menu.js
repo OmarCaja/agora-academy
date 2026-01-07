@@ -1,112 +1,154 @@
+/**
+ * Global Menu Functionality
+ * Handles the mobile menu overlay, accordion behavior, and scroll locking.
+ */
+
 let scrollPosition = 0;
 
-// Named functions for event listeners to allow proper removal/addition
+const SELECTORS = {
+    toggle: "menuToggle",
+    overlay: "menuOverlay",
+    accordion: "[data-accordion]",
+    accordionTrigger: ".accordion-trigger",
+    closeMenu: "[data-close-menu]",
+    navHome: ".nav-home",
+    navContact: ".nav-contacto"
+};
+
+const CLASSES = {
+    active: "active",
+    menuOpen: "menu-open"
+};
+
+/**
+ * Toggles the menu overlay state.
+ * Handles locking the body scroll to prevent background scrolling (iOS safetey).
+ */
 const toggleMenu = () => {
-    const nodes = {
-        toggle: document.getElementById("menuToggle"),
-        overlay: document.getElementById("menuOverlay"),
-    };
+    const toggleBtn = document.getElementById(SELECTORS.toggle);
+    const overlay = document.getElementById(SELECTORS.overlay);
 
-    if (!nodes.toggle || !nodes.overlay) return;
+    if (!toggleBtn || !overlay) return;
 
-    const isActive = nodes.overlay.classList.toggle("active");
-    nodes.toggle.classList.toggle("active", isActive);
+    const isActive = overlay.classList.toggle(CLASSES.active);
+    toggleBtn.classList.toggle(CLASSES.active, isActive);
 
     if (isActive) {
-        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        // Lock body scroll
+        scrollPosition = window.scrollY;
         document.body.style.top = `-${scrollPosition}px`;
-        document.body.classList.add("menu-open");
-        updateHashActiveState();
+        document.body.classList.add(CLASSES.menuOpen);
+        updateActiveStateFromHash();
     } else {
-        document.body.classList.remove("menu-open");
-        document.body.style.top = '';
+        // Unlock body scroll
+        document.body.classList.remove(CLASSES.menuOpen);
+        document.body.style.top = "";
 
-        // Temporarily disable smooth scroll to prevent jump animation
-        const originalScrollBehavior = document.documentElement.style.scrollBehavior;
-        document.documentElement.style.scrollBehavior = 'auto';
+        // Restore scroll position immediately without smooth scrolling behavior
+        // to prevent jarring visual jump
+        document.documentElement.style.scrollBehavior = "auto";
         window.scrollTo(0, scrollPosition);
-        document.documentElement.style.scrollBehavior = originalScrollBehavior;
+        document.documentElement.style.removeProperty("scroll-behavior");
     }
 };
 
-const updateHashActiveState = () => {
-    const overlay = document.getElementById("menuOverlay");
+/**
+ * Updates the 'active' class for Home/Contact based on the URL hash.
+ */
+const updateActiveStateFromHash = () => {
+    const overlay = document.getElementById(SELECTORS.overlay);
     if (!overlay) return;
 
-    const isHomePage = ['/', '/index.html'].includes(window.location.pathname);
+    // Only relevant on the home page
+    const isHomePage = ["/", "/index.html"].includes(window.location.pathname);
     if (!isHomePage) return;
 
-    const homeLink = overlay.querySelector('.nav-home');
-    const contactLink = overlay.querySelector('.nav-contacto');
+    const homeLink = overlay.querySelector(SELECTORS.navHome);
+    const contactLink = overlay.querySelector(SELECTORS.navContact);
+
     if (homeLink && contactLink) {
-        const isContact = window.location.hash === '#contacto';
-        homeLink.classList.toggle('active', !isContact);
-        contactLink.classList.toggle('active', isContact);
+        const isContactSection = window.location.hash === "#contacto";
+        homeLink.classList.toggle(CLASSES.active, !isContactSection);
+        contactLink.classList.toggle(CLASSES.active, isContactSection);
     }
 };
 
 const handleOverlayClick = (e) => {
-    const overlay = document.getElementById("menuOverlay");
-    if (e.target === overlay) toggleMenu();
+    if (e.target.id === SELECTORS.overlay) toggleMenu();
 };
 
-const handleCloseClick = (e) => {
+const handleLinkClick = (e) => {
     const link = e.currentTarget;
-    if (link.getAttribute('href')?.includes('#')) setTimeout(updateHashActiveState, 10);
-    const overlay = document.getElementById("menuOverlay");
-    if (overlay && overlay.classList.contains("active")) toggleMenu();
+    // If it's an anchor link, give a tiny delay for hash update before checking state
+    if (link.getAttribute("href")?.includes("#")) {
+        setTimeout(updateActiveStateFromHash, 10);
+    }
+
+    // Close menu if it's currently suggested by the element (data-close-menu)
+    const overlay = document.getElementById(SELECTORS.overlay);
+    if (overlay?.classList.contains(CLASSES.active)) {
+        toggleMenu();
+    }
 };
 
-const handleAccordionClick = (e) => {
-    e.currentTarget.closest('[data-accordion]')?.classList.toggle('active');
+const handleAccordionToggle = (e) => {
+    const group = e.currentTarget.closest(SELECTORS.accordion);
+    group?.classList.toggle(CLASSES.active);
 };
 
 const handleKeyDown = (e) => {
     if (e.key === "Escape") {
-        const overlay = document.getElementById("menuOverlay");
-        if (overlay && overlay.classList.contains("active")) toggleMenu();
+        const overlay = document.getElementById(SELECTORS.overlay);
+        if (overlay?.classList.contains(CLASSES.active)) {
+            toggleMenu();
+        }
     }
 };
 
+/**
+ * Initializes all menu event listeners.
+ * Designed to be safe to run multiple times (removes old listeners first).
+ */
 const initMenu = () => {
-    const nodes = {
-        toggle: document.getElementById("menuToggle"),
-        overlay: document.getElementById("menuOverlay")
-    };
+    const toggleBtn = document.getElementById(SELECTORS.toggle);
+    const overlay = document.getElementById(SELECTORS.overlay);
 
-    if (!nodes.toggle || !nodes.overlay) return;
+    if (!toggleBtn || !overlay) return;
 
-    // Remove before adding to avoid duplicate listeners on persistent elements
-    nodes.toggle.removeEventListener("click", toggleMenu);
-    nodes.toggle.addEventListener("click", toggleMenu);
+    // 1. Toggle Button
+    toggleBtn.removeEventListener("click", toggleMenu);
+    toggleBtn.addEventListener("click", toggleMenu);
 
-    nodes.overlay.removeEventListener("click", handleOverlayClick);
-    nodes.overlay.addEventListener("click", handleOverlayClick);
+    // 2. Overlay Background Click
+    overlay.removeEventListener("click", handleOverlayClick);
+    overlay.addEventListener("click", handleOverlayClick);
 
-    nodes.overlay.querySelectorAll('[data-close-menu]').forEach(link => {
-        link.removeEventListener('click', handleCloseClick);
-        link.addEventListener('click', handleCloseClick);
+    // 3. Navigation Links (Close menu on click)
+    overlay.querySelectorAll(SELECTORS.closeMenu).forEach(link => {
+        link.removeEventListener("click", handleLinkClick);
+        link.addEventListener("click", handleLinkClick);
     });
 
-    // Accordion Logic
-    nodes.overlay.querySelectorAll('[data-accordion]').forEach(group => {
-        const trigger = group.querySelector('.accordion-trigger');
+    // 4. Accordion Triggers
+    overlay.querySelectorAll(SELECTORS.accordion).forEach(group => {
+        const trigger = group.querySelector(SELECTORS.accordionTrigger);
         if (trigger) {
-            trigger.removeEventListener('click', handleAccordionClick);
-            trigger.addEventListener('click', handleAccordionClick);
+            trigger.removeEventListener("click", handleAccordionToggle);
+            trigger.addEventListener("click", handleAccordionToggle);
         }
     });
 
-    // Keys and hash
+    // 5. Global Keyboard Events
     document.removeEventListener("keydown", handleKeyDown);
     document.addEventListener("keydown", handleKeyDown);
 
-    window.removeEventListener('hashchange', updateHashActiveState);
-    window.addEventListener('hashchange', updateHashActiveState);
+    // 6. Hash Change Events
+    window.removeEventListener("hashchange", updateActiveStateFromHash);
+    window.addEventListener("hashchange", updateActiveStateFromHash);
 
-    // Initial state check
-    updateHashActiveState();
+    // Initial check
+    updateActiveStateFromHash();
 };
 
-// Listen for both initial load and subsequent navigation trought View Transitions
+// Initialize on Astro page transitions
 document.addEventListener("astro:page-load", initMenu);
