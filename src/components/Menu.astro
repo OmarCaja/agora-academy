@@ -20,7 +20,7 @@ const isGroupActive = (items: { slug: string }[]) =>
             <div class="menu-group">
                 <a
                     href="/"
-                    data-astro-prefetch
+                    data-astro-prefetch="viewport"
                     data-close-menu
                     class:list={[
                         "menu-group-title",
@@ -33,7 +33,7 @@ const isGroupActive = (items: { slug: string }[]) =>
                 </a>
                 <a
                     href="/#contacto"
-                    data-astro-prefetch
+                    data-astro-prefetch="viewport"
                     data-close-menu
                     class:list={["menu-item", "menu-subitem", "nav-contacto"]}
                 >
@@ -60,7 +60,7 @@ const isGroupActive = (items: { slug: string }[]) =>
                                 {group.items.map((item) => (
                                     <a
                                         href={`/${item.slug}`}
-                                        data-astro-prefetch
+                                        data-astro-prefetch="viewport"
                                         data-close-menu
                                         class:list={[
                                             "menu-item",

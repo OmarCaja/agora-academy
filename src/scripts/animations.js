@@ -52,8 +52,6 @@ const initScrollAnimations = () => {
         const rect = el.getBoundingClientRect();
         // If element is already in view, show it immediately
         if (rect.top < window.innerHeight && rect.bottom > 0) {
-            // Avoid double fade/bounce on navigation by showing immediately
-            el.style.transition = "none";
             el.classList.add("visible");
         } else {
             observer.observe(el);
