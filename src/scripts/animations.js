@@ -42,7 +42,7 @@ const initScrollAnimations = () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
+                entry.target.classList.remove("scroll-hidden");
                 observer.unobserve(entry.target);
             }
         });
@@ -50,10 +50,9 @@ const initScrollAnimations = () => {
 
     document.querySelectorAll(".fade-in").forEach((el) => {
         const rect = el.getBoundingClientRect();
-        // If element is already in view, show it immediately
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            el.classList.add("visible");
-        } else {
+        // Only hide elements that are strictly below the visible viewport
+        if (rect.top >= window.innerHeight) {
+            el.classList.add("scroll-hidden");
             observer.observe(el);
         }
     });
