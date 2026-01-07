@@ -14,73 +14,78 @@ const isGroupActive = (items: { slug: string }[]) =>
 
 <!-- Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay">
-    <nav class="menu-nav">
-        <!-- Main links -->
-        <div class="menu-group">
-            <a
-                href="/"
-                data-astro-prefetch
-                data-close-menu
-                class:list={[
-                    "menu-group-title",
-                    "menu-link",
-                    "nav-home",
-                    { active: currentPage === "index" },
-                ]}
-            >
-                Inicio
-            </a>
-            <a
-                href="/#contacto"
-                data-astro-prefetch
-                data-close-menu
-                class:list={["menu-item", "menu-subitem", "nav-contacto"]}
-            >
-                Contacto
-            </a>
-        </div>
-
-        <!-- Dynamic Category Accordions -->
-        {
-            menuGroups.map((group) => (
-                <div
+    <div class="menu-accordion-inner">
+        <nav class="menu-nav">
+            <!-- Main links -->
+            <div class="menu-group">
+                <a
+                    href="/"
+                    data-astro-prefetch
+                    data-close-menu
                     class:list={[
-                        "menu-group accordion",
-                        { active: isGroupActive(group.items) },
+                        "menu-group-title",
+                        "menu-link",
+                        "nav-home",
+                        { active: currentPage === "index" },
                     ]}
-                    data-accordion
                 >
-                    <button class="menu-group-title accordion-trigger">
-                        {group.title}
-                        <span class="accordion-icon" />
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-inner">
-                            {group.items.map((item) => (
-                                <a
-                                    href={`/${item.slug}`}
-                                    data-astro-prefetch
-                                    data-close-menu
-                                    class:list={[
-                                        "menu-item",
-                                        "menu-subitem",
-                                        { active: currentPage === item.slug },
-                                    ]}
-                                    aria-current={
-                                        currentPage === item.slug
-                                            ? "page"
-                                            : undefined
-                                    }
-                                >
-                                    {item.label}
-                                </a>
-                            ))}
+                    Inicio
+                </a>
+                <a
+                    href="/#contacto"
+                    data-astro-prefetch
+                    data-close-menu
+                    class:list={["menu-item", "menu-subitem", "nav-contacto"]}
+                >
+                    Contacto
+                </a>
+            </div>
+
+            <!-- Dynamic Category Accordions -->
+            {
+                menuGroups.map((group) => (
+                    <div
+                        class:list={[
+                            "menu-group accordion",
+                            { active: isGroupActive(group.items) },
+                        ]}
+                        data-accordion
+                    >
+                        <button class="menu-group-title accordion-trigger">
+                            {group.title}
+                            <span class="accordion-icon" />
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-inner">
+                                {group.items.map((item) => (
+                                    <a
+                                        href={`/${item.slug}`}
+                                        data-astro-prefetch
+                                        data-close-menu
+                                        class:list={[
+                                            "menu-item",
+                                            "menu-subitem",
+                                            {
+                                                active:
+                                                    currentPage === item.slug,
+                                            },
+                                        ]}
+                                        aria-current={
+                                            currentPage === item.slug
+                                                ? "page"
+                                                : undefined
+                                        }
+                                    >
+                                        {item.label}
+                                    </a>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))
-        }
-    </nav>
+                ))
+            }
+        </nav>
+    </div>
 </div>
 
 <script>
@@ -91,37 +96,34 @@ const isGroupActive = (items: { slug: string }[]) =>
     /* ===== MENU OVERLAY ===== */
     .menu-overlay {
         position: fixed;
-        top: 0;
+        top: 48px;
         left: 0;
         right: 0;
-        bottom: 0;
-        width: 100%;
-        /* Use dvh for dynamic viewport height support in modern Safari */
-        height: 100vh;
-        height: 100dvh;
         background: var(--bg-primary);
         z-index: 1000;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
+        display: grid;
+        grid-template-rows: 0fr;
         opacity: 0;
         pointer-events: none;
-        transition: opacity var(--transition);
-        padding-top: 40px;
+        transition:
+            grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.4s ease;
+        max-height: calc(100dvh - 48px);
         overflow-y: auto;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
     }
 
-    @media (min-width: 768px) {
-        .menu-overlay {
-            padding-top: 80px;
-        }
-    }
-
-    :global(.menu-overlay.active) {
+    .menu-overlay.active {
+        grid-template-rows: 1fr;
         opacity: 1;
         pointer-events: all;
+    }
+
+    .menu-accordion-inner {
+        min-height: 0;
+        display: flex;
+        justify-content: center;
     }
 
     .menu-nav {
@@ -142,7 +144,6 @@ const isGroupActive = (items: { slug: string }[]) =>
         border-left: 3px solid transparent;
         transition: all var(--transition);
         display: block;
-        white-space: normal;
         line-height: 1.4;
     }
 
@@ -166,7 +167,6 @@ const isGroupActive = (items: { slug: string }[]) =>
         letter-spacing: 2px;
         color: var(--text-muted);
         padding: 8px 20px;
-        display: block;
         font-weight: 700;
         border-left: 3px solid transparent;
         transition: all var(--transition);
@@ -174,7 +174,6 @@ const isGroupActive = (items: { slug: string }[]) =>
         text-align: left;
         background: none;
         border: none;
-        border-bottom: 1px solid transparent;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -206,7 +205,6 @@ const isGroupActive = (items: { slug: string }[]) =>
         transition: transform var(--transition);
     }
 
-    /* Horizontal line */
     .accordion-icon::before {
         width: 12px;
         height: 2px;
@@ -214,7 +212,6 @@ const isGroupActive = (items: { slug: string }[]) =>
         left: 0;
     }
 
-    /* Vertical line */
     .accordion-icon::after {
         width: 2px;
         height: 12px;
@@ -222,13 +219,8 @@ const isGroupActive = (items: { slug: string }[]) =>
         left: 5px;
     }
 
-    :global(.menu-group.active) .accordion-icon {
+    .menu-group.active .accordion-icon {
         transform: rotate(45deg);
-    }
-
-    :global(.menu-group.active) .accordion-icon::after {
-        /* This effectively makes the plus a minus or just rotates the plus to an x */
-        /* transform: rotate(90deg); */
     }
 
     .accordion-content {
@@ -242,7 +234,7 @@ const isGroupActive = (items: { slug: string }[]) =>
         overflow: hidden;
     }
 
-    :global(.menu-group.active) .accordion-content {
+    .menu-group.active .accordion-content {
         grid-template-rows: 1fr;
         opacity: 1;
         margin-top: 5px;
@@ -250,59 +242,7 @@ const isGroupActive = (items: { slug: string }[]) =>
     }
 
     .accordion-inner {
-        min-height: 0; /* Crucial for grid rows transition */
-    }
-
-    /* Reveal animation for items inside */
-    .accordion-content .menu-item {
-        transform: translateY(-10px);
-        opacity: 0;
-        transition:
-            transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-            opacity 0.4s ease;
-    }
-
-    :global(.menu-group.active) .accordion-content .menu-item {
-        transform: translateY(0);
-        opacity: 1;
-        transition:
-            transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.1),
-            opacity 0.4s ease;
-    }
-
-    /* Staggered DELAYS */
-    /* ENTRANCE (top to bottom) */
-    :global(.menu-group.active) .accordion-content .menu-item:nth-child(1) {
-        transition-delay: 0.05s;
-    }
-    :global(.menu-group.active) .accordion-content .menu-item:nth-child(2) {
-        transition-delay: 0.1s;
-    }
-    :global(.menu-group.active) .accordion-content .menu-item:nth-child(3) {
-        transition-delay: 0.15s;
-    }
-    :global(.menu-group.active) .accordion-content .menu-item:nth-child(4) {
-        transition-delay: 0.2s;
-    }
-    :global(.menu-group.active) .accordion-content .menu-item:nth-child(5) {
-        transition-delay: 0.25s;
-    }
-
-    /* EXIT (bottom up) - Using nth-last-child ensures the LAST item always starts at 0s */
-    .accordion-content .menu-item:nth-last-child(1) {
-        transition-delay: 0s;
-    }
-    .accordion-content .menu-item:nth-last-child(2) {
-        transition-delay: 0.03s;
-    }
-    .accordion-content .menu-item:nth-last-child(3) {
-        transition-delay: 0.06s;
-    }
-    .accordion-content .menu-item:nth-last-child(4) {
-        transition-delay: 0.09s;
-    }
-    .accordion-content .menu-item:nth-last-child(5) {
-        transition-delay: 0.12s;
+        min-height: 0;
     }
 
     .menu-link {
