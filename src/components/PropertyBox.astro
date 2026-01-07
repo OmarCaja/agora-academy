@@ -9,30 +9,43 @@ interface Props {
 }
 
 const { title, formula, example, description } = Astro.props;
+
+import { renderMath } from "../utils/math";
+
+const processedFormula = formula ? renderMath(formula) : undefined;
+const processedExample = example ? renderMath(example) : undefined;
+const processedDescription = description ? renderMath(description) : undefined;
 ---
 
 <InfoBox class="property-box">
     <h3>{title}</h3>
 
     {
-        formula && (
+        processedFormula && (
             <div class="formula-container">
                 <span class="sr-only">Fórmula:</span>
-                <div class="formula" set:html={formula} />
+                <div class="formula" set:html={processedFormula} />
             </div>
         )
     }
 
     {
-        example && (
+        processedExample && (
             <div class="example-container">
                 <p class="example-label">Ejemplo:</p>
-                <div class="formula example-formula" set:html={example} />
+                <div
+                    class="formula example-formula"
+                    set:html={processedExample}
+                />
             </div>
         )
     }
 
-    {description && <div class="description" set:html={description} />}
+    {
+        processedDescription && (
+            <div class="description" set:html={processedDescription} />
+        )
+    }
 </InfoBox>
 
 <style>

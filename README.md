@@ -1,7 +1,6 @@
 # Ágora Academy - Academia de Matemáticas
 
-Modern web application built with **Astro** for a mathematics academy in Cuenca, Spain. 
-
+Modern web application built with **Astro 5** for a mathematics academy in Cuenca, Spain. This project focuses on high performance, excellent math rendering, and a premium user experience with smooth animations.
 
 ## 🚀 Project Structure
 
@@ -10,74 +9,63 @@ Modern web application built with **Astro** for a mathematics academy in Cuenca,
 ├── public/
 │   └── favicon/          # Favicon files and static assets
 ├── src/
-│   ├── components/       # Reusable Astro components with scoped styles
-│   │   ├── ContactItem.astro
-│   │   ├── Footer.astro
-│   │   ├── Header.astro
-│   │   ├── InfoBox.astro
-│   │   ├── Katex.astro      # Math rendering component
-│   │   ├── LevelTags.astro
-│   │   ├── Menu.astro       # Navigation menu component
-│   │   └── ThemeToggle.astro # Dark/Light mode toggle
+│   ├── components/       # Reusable Astro components
+│   │   ├── GlobalNav.astro   # Main navigation with logo and theme toggle
+│   │   ├── Menu.astro        # Full-screen animated overlay menu
+│   │   ├── PropertyBox.astro # Styled container for math formulas and examples
+│   │   ├── TableOfContents.astro # Dynamic TOC for topic pages
+│   │   ├── ReadingProgressBar.astro # Top progress bar
+│   │   └── ...
 │   ├── content/
-│   │   ├── topics/           # Markdown content for generated pages
-│   │   │   └── potencias.md  # Content for /potencias
-│   │   └── config.ts         # Content collection configuration
+│   │   └── topics/           # JSON data for math topics
+│   │       └── potencias.json # Data for /potencias
 │   ├── layouts/
-│   │   └── BaseLayout.astro  # Main layout wrapper
+│   │   └── BaseLayout.astro  # Main layout with View Transitions and KaTeX setup
 │   ├── pages/
-│   │   ├── [slug].astro      # Generic dynamic page generator
+│   │   ├── [slug].astro      # Dynamic page generator for topics
 │   │   └── index.astro       # Home page
 │   ├── scripts/
-│   │   ├── animations.js     # Scroll animations and easter eggs
-│   │   ├── menu.js          # Menu interaction logic
-│   │   └── theme.js         # Theme switching logic
-│   └── styles/
-│       └── global.css       # Global properties and Markdown utility classes
+│   │   ├── animations.js     # Scroll and interactive animations
+│   │   ├── menu.js           # Menu interaction logic
+│   │   └── theme.js          # Theme switching logic
+│   ├── styles/
+│   │   └── global.css        # Global CSS and design system tokens
+│   └── content.config.ts     # Content collections schema (Astro 5)
 └── package.json
 ```
 
 ## 🧩 Components
 
-The project uses a component-based architecture for better maintainability and style encapsulation.
+The project uses a modular component architecture:
 
-### BaseLayout.astro
-The main layout shell that orchestrates the common UI elements:
-- `Meta` tags and SEO
-- `<ThemeToggle />`
-- `<Menu />`
-- `<Footer />`
+### Layout & Navigation
+- **GlobalNav.astro**: Persistent header containing the logo and high-level navigation.
+- **Menu.astro**: Animated full-screen navigation overlay invoked from the navigation bar.
+- **ReadingProgressBar.astro**: Visual indicator of scroll progress on long content pages.
+- **TableOfContents.astro**: Automatically generates an interactive list of sections for topic pages.
 
-### UI Components
-- **Menu.astro** - Animated full-screen navigation overlay. Styles are scoped to the component.
-- **ThemeToggle.astro** - Button to switch between Light and Dark modes.
-- **Header.astro** - Standard page header with title and optional subtitle.
-- **Footer.astro** - Site footer.
-- **Katex.astro** - Auto-loads KaTeX libraries for rendering math formulas in the browser.
+### Content Elements
+- **PropertyBox.astro**: The core building block for math content. Handles rendering of titles, formulas, descriptions, and examples in a consistent, glassmorphic card.
+- **Header.astro**: standard section header.
+- **LevelTags.astro**: Visual indicators for educational levels (ESO/Bachillerato).
 
-### Content Components
-- **InfoBox.astro** - Styled container for highlighting information.
-- **ContactItem.astro** - Formatted label/value pair for contact details.
-- **LevelTags.astro** - Educational level badges.
+## 🎨 Key Features
 
-## 🎨 Features
+### 📄 Data-Driven Content (JSON Collections)
+Instead of flat Markdown, content is structured in **JSON** files.
+- **Type Safety**: Powered by Zod schemas in `src/content.config.ts`.
+- **Structured Rendering**: Automatically generates sections and subsections from data.
+- **Math Ready**: Native support for **LaTeX** via KaTeX across all content fields.
 
-### 📄 Dynamic Markdown Pages
-Create new educational pages instantly without writing code.
-- **Single Source of Truth**: Content lives in `src/content/topics/*.md`.
-- **Automatic Routing**: `src/pages/[slug].astro` automatically generates routes based on filenames (e.g., `topics/sumas.md` -> `/sumas`).
-- **Rich Formatting**: Supports standard Markdown and HTML wrappers.
-- **Math Ready**: All dynamic pages automatically support **LaTeX** math formulas via KaTeX (e.g., `$a^2 + b^2 = c^2$`).
-
-### 🌓 Theme System
-- Robust Light/Dark mode with system preference detection.
-- **Scoped Styles**: Component-specific styles are encapsulated, with global variables handling the theme colors.
-- **Smooth Transitions**: Global transition handling ensures a pleasant switch experience.
+### 🎭 Premium UX
+- **View Transitions**: Seamless navigation between pages using Astro's `ClientRouter`.
+- **Dark/Light Mode**: Full theme support with system preference detection and persistent storage.
+- **Custom Animations**: Smooth fade-ins and interaction effects using vanilla JS and CSS.
 
 ### ⚡ Performance
-- **Zero-JS by Default**: The site is statically generated.
-- **Vanilla Islands**: Interactive elements (Menu, Theme Toggle) use lightweight Vanilla JS, keeping the bundle size minimal.
-- **100/100 Lighthouse Score**.
+- **Statically Generated**: Maximum speed and SEO benefit.
+- **Optimized Scripts**: Minimal vanilla JS for interactivity.
+- **SEO Optimized**: Includes OpenGraph, Twitter cards, and Schema.org structured data (LocalBusiness & LearningResource).
 
 ## 🛠️ Commands
 
@@ -89,39 +77,39 @@ Create new educational pages instantly without writing code.
 
 ## 📝 Managing Content
 
-### Adding a New Page (e.g., "Logaritmos")
+### Adding a New Topic (e.g., "Logaritmos")
 
-1.  Create a new file: `src/content/topics/logaritmos.md`.
-2.  Add frontmatter and content:
-    ```markdown
-    ---
-    title: "Propiedades de los Logaritmos"
-    description: "Aprende todo sobre logaritmos..."
-    ---
-    
-    <section class="fade-in">
-      <h2>Logaritmo de un producto</h2>
-      <div class="info-box property-box">
-         <p class="formula">$\log(a \cdot b) = \log(a) + \log(b)$</p>
-      </div>
-    </section>
-    ```
-3.  The page is now available at `localhost:4321/logaritmos`.
-4.  (Optional) Add a link to it in `src/components/Menu.astro`.
-
-### Styling Content
-You can use standard Markdown or wrap content in special classes for the "Card" look:
-- `<div class="info-box">...</div>`: Standard card.
-- `<div class="info-box property-box">...</div>`: Card optimized for math properties.
-- Classes `.formula` and `.example` available for styling math blocks.
+1. Create `src/content/topics/logaritmos.json`.
+2. Follow the established schema:
+   ```json
+   {
+     "title": "Logaritmos",
+     "description": "Explora las propiedades de los logaritmos...",
+     "sections": [
+       {
+         "title": "Propiedad del Producto",
+         "items": [
+           {
+             "title": "Logaritmo de un producto",
+             "formula": "$\\log_a(x \\cdot y) = \\log_a(x) + \\log_a(y)$",
+             "description": "El logaritmo de un producto es la suma de los logaritmos.",
+             "example": "$\\log_2(8 \\cdot 4) = \\log_2(8) + \\log_2(4) = 3 + 2 = 5$"
+           }
+         ]
+       }
+     ]
+   }
+   ```
+3. The page is automatically generated at `/logaritmos`.
+4. Link it in `src/components/Menu.astro` to make it accessible.
 
 ## 📦 Tech Stack
 
-- **Astro ^5.16.6**
-- **KaTeX** (Math Rendering)
-- **Vanilla CSS** (Scoped & Global)
-- **Vanilla JS** (Interactivity)
+- **Astro 5.x**
+- **KaTeX** (Fast math rendering)
+- **Vanilla CSS** (Next-gen CSS with variables and nesting)
+- **Zod** (Content validation)
 
 ## 📄 License
 
-© 2025 Ágora - Academia de Matemáticas
+© 2026 Ágora - Academia de Matemáticas

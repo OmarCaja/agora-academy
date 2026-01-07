@@ -13,6 +13,7 @@ import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
 import ReadingProgressBar from "../components/ReadingProgressBar.astro";
 import { ClientRouter } from "astro:transitions";
+import "katex/dist/katex.min.css";
 import "../styles/global.css";
 ---
 
@@ -98,19 +99,8 @@ import "../styles/global.css";
       content={new URL("/favicon/logo.png", Astro.site)}
     />
 
-    <!-- KaTeX -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-    />
-    <script
-      is:inline
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
-    ></script>
-    <script
-      is:inline
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    ></script>
+    <!-- KaTeX CSS -->
+    <!-- (Imported in frontmatter for bundling) -->
 
     <!-- Structured Data (JSON-LD) -->
     <script
@@ -193,27 +183,6 @@ import "../styles/global.css";
         const theme = getTheme();
         ev.newDocument.documentElement.setAttribute("data-theme", theme);
       });
-
-      const renderMath = () => {
-        const container = document.getElementById("main-content");
-        if (typeof renderMathInElement === "function" && container) {
-          renderMathInElement(container, {
-            delimiters: [
-              { left: "$$", right: "$$", display: true },
-              { left: "$", right: "$", display: false },
-              { left: "\\(", right: "\\)", display: false },
-              { left: "\\[", right: "\\]", display: true },
-            ],
-            throwOnError: false,
-          });
-        }
-      };
-
-      // Handle both initial load and subsequent navigation
-      document.addEventListener("astro:page-load", renderMath);
-
-      // We use after-swap to ensure math is rendered as early as possible during the transition
-      document.addEventListener("astro:after-swap", renderMath);
     </script>
   </head>
 
