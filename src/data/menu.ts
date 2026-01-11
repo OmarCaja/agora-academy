@@ -32,6 +32,10 @@ export const menuGroups = [
                 slug: "estadistica-unidimensional",
                 label: "Estadística unidimensional",
             },
+            {
+                slug: "estadistica-bidimensional",
+                label: "Estadística bidimensional",
+            },
         ],
     },
 ];
