@@ -15,10 +15,11 @@ import { renderMath } from "../utils/math";
 const processedFormula = formula ? renderMath(formula) : undefined;
 const processedExample = example ? renderMath(example) : undefined;
 const processedDescription = description ? renderMath(description) : undefined;
+const processedTitle = renderMath(title);
 ---
 
 <InfoBox class="property-box">
-    <h3>{title}</h3>
+    <h3 set:html={processedTitle} />
 
     {
         processedFormula && (

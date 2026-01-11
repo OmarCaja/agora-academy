@@ -1,0 +1,119 @@
+{
+    "title": "Estadística Unidimensional",
+    "description": "Resumen estructurado de estadística unidimensional para 1º de Bachillerato: conceptos básicos, tablas de frecuencias y parámetros estadísticos.",
+    "sections": [
+        {
+            "title": "Conceptos Básicos",
+            "items": [
+                {
+                    "title": "Población y Muestra",
+                    "description": "<ul><li><strong>Población:</strong> Conjunto total de elementos objeto de estudio.</li><li><strong>Muestra:</strong> Subconjunto representativo de la población seleccionado para el estudio.</li><li><strong>Individuo:</strong> Cada uno de los elementos de la población.</li></ul>"
+                },
+                {
+                    "title": "Variable Estadística",
+                    "description": "Es la característica o propiedad que se estudia. Tipos:<br><ul><li><strong>Cualitativa:</strong> No se mide con números (ej. color de ojos).</li><li><strong>Cuantitativa Discreta:</strong> Toma valores aislados (ej. número de hermanos: 0, 1, 2...).</li><li><strong>Cuantitativa Continua:</strong> Puede tomar cualquier valor de un intervalo (ej. altura, peso).</li></ul>"
+                }
+            ]
+        },
+        {
+            "title": "Tablas de Frecuencias",
+            "items": [
+                {
+                    "title": "Frecuencias Simples",
+                    "formula": "$$h_i = \\frac{f_i}{N}$$",
+                    "description": "<ul><li><strong>Frecuencia absoluta ($f_i$):</strong> Número de veces que aparece un dato. La suma total es $N$.</li><li><strong>Frecuencia relativa ($h_i$):</strong> Proporción del dato respecto al total. $\\sum h_i = 1$.</li></ul>"
+                },
+                {
+                    "title": "Frecuencias Acumuladas",
+                    "formula": "$$F_i = f_1 + f_2 + ... + f_i$$",
+                    "description": "<ul><li><strong>Frecuencia absoluta acumulada ($F_i$):</strong> Suma de las frecuencias absolutas hasta la posición $i$.</li><li><strong>Frecuencia relativa acumulada ($H_i$):</strong> Suma de las frecuencias relativas hasta la posición $i$.</li></ul><br>Son fundamentales para calcular la mediana y los cuantiles."
+                }
+            ]
+        },
+        {
+            "title": "Gráficos Estadísticos",
+            "items": [
+                {
+                    "title": "Diagrama de Barras",
+                    "description": "Se utiliza para variables <strong>cualitativas</strong> o <strong>cuantitativas discretas</strong>. Las alturas de las barras son proporcionales a las frecuencias ($f_i$)."
+                },
+                {
+                    "title": "Histograma",
+                    "description": "Se utiliza para variables <strong>cuantitativas continuas</strong>. Las barras están unidas y su área es proporcional a la frecuencia."
+                },
+                {
+                    "title": "Polígono de Frecuencias",
+                    "description": "Línea que une los puntos medios de los techos de las barras."
+                },
+                {
+                    "title": "Diagrama de Sectores",
+                    "formula": "$$\\alpha_i = h_i \\cdot 360^\\circ$$",
+                    "description": "Círculo dividido en sectores con ángulos proporcionales a las frecuencias. Ideal para variables cualitativas."
+                }
+            ]
+        },
+        {
+            "title": "Parámetros de Centralización",
+            "items": [
+                {
+                    "title": "Media Aritmética",
+                    "formula": "$$\\bar{x} = \\frac{\\sum_{i=1}^{k} x_i \\cdot f_i}{N}$$",
+                    "example": "$$\\text{Datos: } 2, 3, 3, 5, 7 \\quad (N=5) \\\\ \\bar{x} = \\frac{2+3+3+5+7}{5} = \\frac{20}{5} = 4$$",
+                    "description": "Es el valor promedio de los datos. Es muy sensible a valores extremos."
+                },
+                {
+                    "title": "Moda ($M_o$)",
+                    "description": "Es el valor de la variable con mayor frecuencia absoluta ($f_i$)."
+                },
+                {
+                    "title": "Mediana ($M_e$)",
+                    "description": "Es el valor que ocupa la posición central cuando los datos están ordenados de menor a mayor. Se busca el primer valor donde la frecuencia acumulada $F_i \\ge N/2$."
+                }
+            ]
+        },
+        {
+            "title": "Parámetros de Dispersión",
+            "items": [
+                {
+                    "title": "Rango o Recorrido",
+                    "formula": "$$R = x_{max} - x_{min}$$",
+                    "description": "Diferencia entre el valor máximo y el mínimo. Mide la amplitud total de los datos."
+                },
+                {
+                    "title": "Varianza",
+                    "formula": "$$\\sigma^2 = \\frac{\\sum x_i^2 \\cdot f_i}{N} - \\bar{x}^2$$",
+                    "example": "$$\\text{Si } \\bar{x}=4 \\text{ y } \\frac{\\sum x_i^2 f_i}{N} = 18.5 \\\\ \\sigma^2 = 18.5 - 4^2 = 18.5 - 16 = 2.5$$",
+                    "description": "Promedio de los cuadrados de las distancias a la media. Es siempre positiva."
+                },
+                {
+                    "title": "Desviación Típica",
+                    "formula": "$$\\sigma = \\sqrt{\\sigma^2}$$",
+                    "example": "$$\\text{Si } \\sigma^2 = 2.5 \\rightarrow \\sigma = \\sqrt{2.5} \\approx 1.58$$",
+                    "description": "Raíz de la varianza. Se mide en las mismas unidades que los datos, lo que la hace más interpretable."
+                },
+                {
+                    "title": "Coeficiente de Variación",
+                    "formula": "$$CV = \\frac{\\sigma}{|\\bar{x}|}$$",
+                    "description": "Adimensional. Permite comparar la dispersión de poblaciones distintas (ej. peso de elefantes vs ratones). $CV < 0.1$ indica poca dispersión."
+                }
+            ]
+        },
+        {
+            "title": "Parámetros de Posición",
+            "items": [
+                {
+                    "title": "Cuartiles",
+                    "description": "Dividen la distribución en 4 partes.<br><ul><li><strong>$Q_1$ (25%):</strong> $F_i \\ge \\frac{N}{4}$.</li><li><strong>$Q_2$ (Mediana):</strong> $F_i \\ge \\frac{N}{2}$.</li><li><strong>$Q_3$ (75%):</strong> $F_i \\ge \\frac{3N}{4}$.</li></ul>"
+                },
+                {
+                    "title": "Percentiles ($P_k$)",
+                    "description": "Valor que deja por debajo el $k$% de los datos. Posición $= \\frac{k \\cdot N}{100}$."
+                },
+                {
+                    "title": "Diagrama de Caja y Bigotes",
+                    "description": "Representación gráfica basada en los cuartiles.<br><ul><li><strong>Caja:</strong> Va desde $Q_1$ a $Q_3$. La línea interior es la Mediana ($Me$). El ancho es el <strong>Rango Intercuartílico</strong> ($IQR = Q_3 - Q_1$).</li><li><strong>Bigotes:</strong> Se extienden hasta el mínimo y máximo (o hasta 1.5 veces el IQR si hay valores atípicos).</li></ul>"
+                }
+            ]
+        }
+    ]
+}

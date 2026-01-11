@@ -10,8 +10,8 @@ const topics = defineCollection({
             title: z.string(),
             items: z.array(z.object({
                 title: z.string(),
-                formula: z.string(),
-                example: z.string(),
+                formula: z.string().optional(),
+                example: z.string().optional(),
                 description: z.string().optional()
             }))
         }))

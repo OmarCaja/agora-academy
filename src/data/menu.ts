@@ -25,4 +25,13 @@ export const menuGroups = [
             { slug: "logaritmos", label: "Propiedades de los logaritmos" },
         ],
     },
+    {
+        title: "Estadística",
+        items: [
+            {
+                slug: "estadistica-unidimensional",
+                label: "Estadística unidimensional",
+            },
+        ],
+    },
 ];
