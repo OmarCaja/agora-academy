@@ -31,34 +31,12 @@
             ]
         },
         {
-            "title": "Gráficos Estadísticos",
-            "items": [
-                {
-                    "title": "Diagrama de Barras",
-                    "description": "Se utiliza para variables <strong>cualitativas</strong> o <strong>cuantitativas discretas</strong>. Las alturas de las barras son proporcionales a las frecuencias ($f_i$)."
-                },
-                {
-                    "title": "Histograma",
-                    "description": "Se utiliza para variables <strong>cuantitativas continuas</strong>. Las barras están unidas y su área es proporcional a la frecuencia."
-                },
-                {
-                    "title": "Polígono de Frecuencias",
-                    "description": "Línea que une los puntos medios de los techos de las barras."
-                },
-                {
-                    "title": "Diagrama de Sectores",
-                    "formula": "$$\\alpha_i = h_i \\cdot 360^\\circ$$",
-                    "description": "Círculo dividido en sectores con ángulos proporcionales a las frecuencias. Ideal para variables cualitativas."
-                }
-            ]
-        },
-        {
             "title": "Parámetros de Centralización",
             "items": [
                 {
                     "title": "Media Aritmética",
                     "formula": "$$\\bar{x} = \\frac{\\sum_{i=1}^{k} x_i \\cdot f_i}{N}$$",
-                    "example": "$$\\text{Datos: } 2, 3, 3, 5, 7 \\quad (N=5) \\\\ \\bar{x} = \\frac{2+3+3+5+7}{5} = \\frac{20}{5} = 4$$",
+                    "example": "$$\\begin{gathered}\\text{Datos: } 2, 3, 3, 5, 7 \\quad (N=5) \\\\ \\bar{x} = \\frac{2+3+3+5+7}{5} = \\frac{20}{5} = 4\\end{gathered}$$",
                     "description": "Es el valor promedio de los datos. Es muy sensible a valores extremos."
                 },
                 {
@@ -67,7 +45,7 @@
                 },
                 {
                     "title": "Mediana ($M_e$)",
-                    "description": "Es el valor que ocupa la posición central cuando los datos están ordenados de menor a mayor. Se busca el primer valor donde la frecuencia acumulada $F_i \\ge N/2$."
+                    "description": "Es el valor que ocupa la posición central.<ul><li><strong>$N$ impar:</strong> Es el dato central.</li><li><strong>$N$ par:</strong> Es la media de los dos datos centrales.</li></ul>En tablas con frecuencias, se busca el primer valor donde $F_i \\ge N/2$."
                 }
             ]
         },
@@ -82,7 +60,7 @@
                 {
                     "title": "Varianza",
                     "formula": "$$\\sigma^2 = \\frac{\\sum x_i^2 \\cdot f_i}{N} - \\bar{x}^2$$",
-                    "example": "$$\\text{Si } \\bar{x}=4 \\text{ y } \\frac{\\sum x_i^2 f_i}{N} = 18.5 \\\\ \\sigma^2 = 18.5 - 4^2 = 18.5 - 16 = 2.5$$",
+                    "example": "$$\\begin{gathered}\\text{Si } \\bar{x}=4 \\text{ y } \\frac{\\sum x_i^2 f_i}{N} = 18.5 \\\\ \\sigma^2 = 18.5 - 4^2 = 18.5 - 16 = 2.5\\end{gathered}$$",
                     "description": "Promedio de los cuadrados de las distancias a la media. Es siempre positiva."
                 },
                 {
