@@ -81,7 +81,7 @@
             "items": [
                 {
                     "title": "Cuartiles",
-                    "description": "Dividen la distribución en 4 partes.<br><ul><li><strong>$Q_1$ (25%):</strong> $F_i \\ge \\frac{N}{4}$.</li><li><strong>$Q_2$ (Mediana):</strong> $F_i \\ge \\frac{N}{2}$.</li><li><strong>$Q_3$ (75%):</strong> $F_i \\ge \\frac{3N}{4}$.</li></ul>"
+                    "description": "Dividen la distribución en 4 partes iguales ($Q_1$, $Q_2$, $Q_3$).<br><br>Para calcular el cuartil $Q_k$ ($k=1, 2, 3$), calculamos la posición $P = \\frac{k \\cdot N}{4}$:<br><ul><li>Si $P$ <strong>no es entero</strong>, redondeamos al siguiente entero. $Q_k$ es el valor en esa posición.</li><li>Si $P$ <strong>es entero</strong>, $Q_k$ es la media de los valores en las posiciones $P$ y $P+1$.</li></ul>"
                 },
                 {
                     "title": "Percentiles ($P_k$)",

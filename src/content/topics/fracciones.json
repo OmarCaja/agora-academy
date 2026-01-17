@@ -79,6 +79,12 @@
                     "formula": "$\\frac{a \\cdot k}{b \\cdot k} = \\frac{a}{b}$",
                     "example": "$\\frac{12}{18} = \\frac{6 \\cdot 2}{6 \\cdot 3} = \\frac{2}{3}$",
                     "description": "Dividimos numerador y denominador por su <strong>máximo común divisor</strong> para obtener la fracción irreducible."
+                },
+                {
+                    "title": "Fracciones equivalentes",
+                    "formula": "$\\frac{a}{b} = \\frac{c}{d} \\iff a \\cdot d = b \\cdot c$",
+                    "example": "$\\frac{2}{5} = \\frac{6}{15} \\iff 2 \\cdot 15 = 30 = 5 \\cdot 6$",
+                    "description": "Dos fracciones son equivalentes si el producto cruzado de sus términos es igual ($a \\cdot d = b \\cdot c$)."
                 }
             ]
         }
