@@ -89,7 +89,7 @@
                 },
                 {
                     "title": "Diagrama de Caja y Bigotes",
-                    "description": "Representación gráfica basada en los cuartiles.<br><ul><li><strong>Caja:</strong> Va desde $Q_1$ a $Q_3$. La línea interior es la Mediana ($Me$). El ancho es el <strong>Rango Intercuartílico</strong> ($IQR = Q_3 - Q_1$).</li><li><strong>Bigotes:</strong> Se extienden hasta el mínimo y máximo (o hasta 1.5 veces el IQR si hay valores atípicos).</li></ul>"
+                    "description": "Representación gráfica basada en los cuartiles.<br><ul><li><strong>Caja:</strong> Va desde $Q_1$ a $Q_3$. La línea interior es la Mediana ($Me$). El ancho es el <strong>Rango Intercuartílico</strong> ($IQR = Q_3 - Q_1$).</li><li><strong>Bigotes:</strong> Se extienden hasta el mínimo y máximo, o hasta 1.5 veces el IQR, el valor que sea menor.</li></ul>"
                 }
             ]
         }
