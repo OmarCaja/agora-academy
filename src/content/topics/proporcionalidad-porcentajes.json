@@ -1,0 +1,115 @@
+{
+    "title": "Razones, Proporcionalidad y Porcentajes",
+    "description": "Conceptos fundamentales para comprender la relación entre magnitudes, resolver problemas con reglas de tres y dominar el cálculo porcentual.",
+    "sections": [
+        {
+            "title": "Razón y Proporción",
+            "items": [
+                {
+                    "title": "Razón",
+                    "formula": "$\\frac{a}{b}$",
+                    "example": "La razón entre 10 y 5 es $\\frac{10}{5} = 2$.",
+                    "description": "Una razón es el cociente entre dos números o cantidades comparables."
+                },
+                {
+                    "title": "Proporción",
+                    "formula": "$\\frac{a}{b} = \\frac{c}{d}$",
+                    "example": "$\\frac{2}{3} = \\frac{4}{6}$",
+                    "description": "Una proporción es la igualdad entre dos razones. Se lee '$a$ es a $b$ como $c$ es a $d$'."
+                },
+                {
+                    "title": "Propiedad fundamental",
+                    "formula": "$a \\cdot d = b \\cdot c$",
+                    "example": "En $\\frac{2}{3} = \\frac{4}{6}$ se cumple $2 \\cdot 6 = 12$ y $3 \\cdot 4 = 12$.",
+                    "description": "En toda proporción, el producto de los extremos ($a$ y $d$) es igual al producto de los medios ($b$ y $c$)."
+                },
+                {
+                    "title": "Cálculo del término desconocido",
+                    "formula": "$x = \\frac{b \\cdot c}{a}$",
+                    "example": "$\\text{Hallar } x \\text{ en } \\frac{2}{5} = \\frac{4}{x} \\Rightarrow x = \\frac{5 \\cdot 4}{2} = 10$",
+                    "description": "Si desconocemos uno de los términos de una proporción, podemos hallarlo usando la propiedad fundamental."
+                }
+            ]
+        },
+        {
+            "title": "Tipos de Proporcionalidad",
+            "items": [
+                {
+                    "title": "Directamente Proporcionales",
+                    "formula": "$\\frac{y}{x} = k$",
+                    "example": "Si 1 kg de manzanas cuesta 2€, 2 kg costarán 4€.",
+                    "description": "El cociente entre los valores correspondientes es constante: $\\frac{y}{x} = k$ (constante de proporcionalidad)."
+                },
+                {
+                    "title": "Inversamente Proporcionales",
+                    "formula": "$x \\cdot y = k$",
+                    "example": "Si 2 obreros tardan 6 horas, 4 obreros tardarán 3 horas.",
+                    "description": "El producto de los valores correspondientes es constante: $x \\cdot y = k$ (constante de proporcionalidad)."
+                }
+            ]
+        },
+        {
+            "title": "Regla de Tres",
+            "items": [
+                {
+                    "title": "Regla de Tres Directa",
+                    "formula": "$x = \\frac{b \\cdot c}{a}$",
+                    "example": "$\\begin{matrix} A & B \\\\ a & b \\\\ c & x \\end{matrix} \\Rightarrow x = \\frac{b \\cdot c}{a}$",
+                    "description": "Se aplica cuando la relación entre las magnitudes es directa. Se multiplica en cruz."
+                },
+                {
+                    "title": "Regla de Tres Inversa",
+                    "formula": "$x = \\frac{a \\cdot b}{c}$",
+                    "example": "$\\begin{matrix} A & B \\\\ a & b \\\\ c & x \\end{matrix} \\Rightarrow x = \\frac{a \\cdot b}{c}$",
+                    "description": "Se aplica cuando la relación entre las magnitudes es inversa. Se multiplica en línea."
+                }
+            ]
+        },
+        {
+            "title": "Repartos Proporcionales",
+            "items": [
+                {
+                    "title": "Reparto Directamente Proporcional",
+                    "formula": "$x = \\frac{C \\cdot a}{S}, y = \\frac{C \\cdot b}{S}, z = \\frac{C \\cdot c}{S}$",
+                    "example": "Repartir 300 entre 2 y 4: $S=6 \\Rightarrow x = \\frac{300 \\cdot 2}{6} = 100, y = \\frac{300 \\cdot 4}{6} = 200$",
+                    "description": "Se reparte la cantidad total $C$ proporcionalmente a las partes $a, b, c...$ siendo $S$ la suma de las partes."
+                },
+                {
+                    "title": "Reparto Inversamente Proporcional",
+                    "formula": "$x = \\frac{C \\cdot \\frac{1}{a}}{S'}, y = \\frac{C \\cdot \\frac{1}{b}}{S'}$",
+                    "example": "Repartir 300 inv. prop. a 2 y 4: Inversos $\\frac{1}{2}, \\frac{1}{4}$. $S' = \\frac{3}{4} \\Rightarrow x = \\frac{300 \\cdot 1/2}{3/4} = 200$",
+                    "description": "Se hace un reparto directamente proporcional a los inversos de las partes ($1/a, 1/b, ...$). $S'$ es la suma de los inversos."
+                }
+            ]
+        },
+        {
+            "title": "Porcentajes",
+            "items": [
+                {
+                    "title": "Concepto",
+                    "formula": "$a\\% = \\frac{a}{100}$",
+                    "example": "$15\\% = \\frac{15}{100} = 0,15$",
+                    "description": "Un porcentaje es una fracción con denominador 100. Representa una parte de un total de 100 unidades."
+                },
+                {
+                    "title": "Porcentaje de una cantidad",
+                    "formula": "$a\\% \\text{ de } C = C \\cdot \\frac{a}{100}$",
+                    "example": "$20\\% \\text{ de } 50 = 50 \\cdot 0,20 = 10$",
+                    "description": "Para calcular el porcentaje de una cantidad, multiplicamos dicha cantidad por el tanto por ciento expresado como decimal."
+                },
+                {
+                    "title": "Aumentos porcentuales",
+                    "formula": "$C_{final} = C_{inicial} \\cdot (1 + \\frac{r}{100})$",
+                    "example": "Aumentar 40€ un 10%: $40 \\cdot 1,10 = 44€$",
+                    "description": "Para aumentar una cantidad un $r\\%$, multiplicamos por el índice de variación $IV = 1 + \\frac{r}{100}$."
+                },
+                {
+                    "title": "Disminuciones porcentuales",
+                    "formula": "$C_{final} = C_{inicial} \\cdot (1 - \\frac{r}{100})$",
+                    "example": "Rebajar 40€ un 10%: $40 \\cdot 0,90 = 36€$",
+                    "description": "Para disminuir una cantidad un $r\\%$, multiplicamos por el índice de variación $IV = 1 - \\frac{r}{100}$."
+                }
+            ]
+        }
+    ]
+}

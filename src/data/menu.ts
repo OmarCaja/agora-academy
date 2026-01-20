@@ -9,6 +9,10 @@ export const menuGroups = [
             },
             { slug: "divisibilidad", label: "Factorización de números" },
             { slug: "fracciones", label: "Operaciones con fracciones" },
+            {
+                slug: "proporcionalidad-porcentajes",
+                label: "Proporcionalidad y Porcentajes",
+            },
         ],
     },
     {
