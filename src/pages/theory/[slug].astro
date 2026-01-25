@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import PropertyBox from "../components/PropertyBox.astro";
-import TableOfContents from "../components/TableOfContents.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PropertyBox from "../../components/PropertyBox.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
     const topics = await getCollection("topics");
@@ -51,7 +51,7 @@ const slugify = (text: string) => {
     title={`${title} - Ágora`}
     description={description ||
         `Aprende sobre ${title} en Ágora Academia de Matemáticas.`}
-    currentPage={entry.id}
+    currentPage={`theory/${entry.id}`}
     schema={topicSchema}
 >
     <div class="content-section">

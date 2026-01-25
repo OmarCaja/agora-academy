@@ -5,11 +5,23 @@ interface Props {
 
 const { currentPage } = Astro.props;
 
-import { menuGroups } from "../data/menu.ts";
+import { menuSections } from "../data/menu.ts";
 
 // Helper to determine if a group should be open (active)
 const isGroupActive = (items: { slug: string }[]) =>
     items.some((item) => item.slug === currentPage);
+
+// Helper to determine if a section should be open (active)
+// Helper to determine if a section should be open (active)
+const isSectionActive = (section: any) => {
+    if (section.groups && section.groups.length > 0) {
+        return section.groups.some((group: any) => isGroupActive(group.items));
+    }
+    if (section.items && section.items.length > 0) {
+        return isGroupActive(section.items);
+    }
+    return false;
+};
 ---
 
 <!-- Menu Overlay -->
@@ -43,42 +55,93 @@ const isGroupActive = (items: { slug: string }[]) =>
 
             <!-- Dynamic Category Accordions -->
             {
-                menuGroups.map((group) => (
+                menuSections.map((section) => (
                     <div
                         class:list={[
                             "menu-group accordion",
-                            { active: isGroupActive(group.items) },
+                            { active: isSectionActive(section) },
                         ]}
                         data-accordion
                     >
                         <button class="menu-group-title accordion-trigger">
-                            {group.title}
+                            {section.title}
                             <span class="accordion-icon" />
                         </button>
                         <div class="accordion-content">
                             <div class="accordion-inner">
-                                {group.items.map((item) => (
-                                    <a
-                                        href={`/${item.slug}`}
-                                        data-astro-prefetch="viewport"
-                                        data-close-menu
-                                        class:list={[
-                                            "menu-item",
-                                            "menu-subitem",
-                                            {
-                                                active:
-                                                    currentPage === item.slug,
-                                            },
-                                        ]}
-                                        aria-current={
-                                            currentPage === item.slug
-                                                ? "page"
-                                                : undefined
-                                        }
-                                    >
-                                        {item.label}
-                                    </a>
-                                ))}
+                                {section.items &&
+                                    section.items.map((item) => (
+                                        <div class="menu-group nested">
+                                            <a
+                                                href={`/${item.slug}`}
+                                                data-astro-prefetch="viewport"
+                                                data-close-menu
+                                                class:list={[
+                                                    "menu-group-title",
+                                                    "menu-link",
+                                                    {
+                                                        active:
+                                                            currentPage ===
+                                                            item.slug,
+                                                    },
+                                                ]}
+                                                aria-current={
+                                                    currentPage === item.slug
+                                                        ? "page"
+                                                        : undefined
+                                                }
+                                            >
+                                                {item.label}
+                                            </a>
+                                        </div>
+                                    ))}
+                                {section.groups &&
+                                    section.groups.map((group) => (
+                                        <div
+                                            class:list={[
+                                                "menu-group accordion nested",
+                                                {
+                                                    active: isGroupActive(
+                                                        group.items,
+                                                    ),
+                                                },
+                                            ]}
+                                            data-accordion
+                                        >
+                                            <button class="menu-group-title accordion-trigger">
+                                                {group.title}
+                                                <span class="accordion-icon" />
+                                            </button>
+                                            <div class="accordion-content">
+                                                <div class="accordion-inner">
+                                                    {group.items.map((item) => (
+                                                        <a
+                                                            href={`/${item.slug}`}
+                                                            data-astro-prefetch="viewport"
+                                                            data-close-menu
+                                                            class:list={[
+                                                                "menu-item",
+                                                                "menu-subitem",
+                                                                {
+                                                                    active:
+                                                                        currentPage ===
+                                                                        item.slug,
+                                                                },
+                                                            ]}
+                                                            aria-current={
+                                                                currentPage ===
+                                                                item.slug
+                                                                    ? "page"
+                                                                    : undefined
+                                                            }
+                                                        >
+                                                            {item.label}
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                             </div>
                         </div>
                     </div>
@@ -168,12 +231,12 @@ const isGroupActive = (items: { slug: string }[]) =>
         color: var(--text-muted);
         padding: 8px 20px;
         font-weight: 700;
-        border-left: 3px solid transparent;
         transition: all var(--transition);
         width: 100%;
         text-align: left;
         background: none;
         border: none;
+        border-left: 3px solid transparent;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -219,7 +282,7 @@ const isGroupActive = (items: { slug: string }[]) =>
         left: 5px;
     }
 
-    .menu-group.active .accordion-icon {
+    .menu-group.active > .menu-group-title .accordion-icon {
         transform: rotate(45deg);
     }
 
@@ -234,7 +297,7 @@ const isGroupActive = (items: { slug: string }[]) =>
         overflow: hidden;
     }
 
-    .menu-group.active .accordion-content {
+    .menu-group.active > .accordion-content {
         grid-template-rows: 1fr;
         opacity: 1;
         margin-top: 5px;
@@ -269,5 +332,27 @@ const isGroupActive = (items: { slug: string }[]) =>
         .menu-subitem {
             font-size: 1.125rem;
         }
+    }
+
+    /* Nested accordion adjustments */
+    /* Nested accordion adjustments */
+    .menu-group.nested {
+        margin-top: 5px;
+    }
+
+    .menu-group.nested .menu-group-title {
+        font-size: 1rem;
+        opacity: 0.9;
+        font-weight: 600;
+        padding: 6px 20px 6px 35px;
+    }
+
+    .menu-group.nested .menu-item {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+
+    .menu-group.nested .menu-subitem {
+        padding-left: 50px;
     }
 </style>
