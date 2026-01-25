@@ -100,13 +100,13 @@
                 {
                     "title": "Aumentos porcentuales",
                     "formula": "$C_{final} = C_{inicial} \\cdot (1 + \\frac{r}{100})$",
-                    "example": "Aumentar 40€ un 10%: $40 \\cdot 1,10 = 44€$",
+                    "example": "Aumentar 40€ un 10%: $40 \\cdot 1,10 = 44$€",
                     "description": "Para aumentar una cantidad un $r\\%$, multiplicamos por el índice de variación $IV = 1 + \\frac{r}{100}$."
                 },
                 {
                     "title": "Disminuciones porcentuales",
                     "formula": "$C_{final} = C_{inicial} \\cdot (1 - \\frac{r}{100})$",
-                    "example": "Rebajar 40€ un 10%: $40 \\cdot 0,90 = 36€$",
+                    "example": "Rebajar 40€ un 10%: $40 \\cdot 0,90 = 36$€",
                     "description": "Para disminuir una cantidad un $r\\%$, multiplicamos por el índice de variación $IV = 1 - \\frac{r}{100}$."
                 }
             ]

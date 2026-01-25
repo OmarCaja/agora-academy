@@ -34,6 +34,10 @@ export const menuSections = [
                         slug: "theory/identidades-notables",
                         label: "Identidades notables",
                     },
+                    {
+                        slug: "theory/matrices",
+                        label: "Matrices",
+                    },
                 ],
             },
             {
