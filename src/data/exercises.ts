@@ -24,6 +24,10 @@ export const exercisesData: Record<string, LevelData> = {
                         name: "Ejercicios de números enteros 1",
                         url: "/ejercicios/1-eso/numeros-enteros/numeros-enteros-1.pdf",
                     },
+                    {
+                        name: "Ejercicios de números enteros 2",
+                        url: "/ejercicios/1-eso/numeros-enteros/numeros-enteros-2.pdf",
+                    },
                 ],
             },
             {
@@ -32,6 +36,24 @@ export const exercisesData: Record<string, LevelData> = {
                     {
                         name: "Ejercicios de fracciones 1",
                         url: "/ejercicios/1-eso/fracciones/fracciones-1.pdf",
+                    },
+                    {
+                        name: "Ejercicios de fracciones 2",
+                        url: "/ejercicios/1-eso/fracciones/fracciones-2.pdf",
+                    },
+                ],
+            },
+        ],
+    },
+    "3-eso": {
+        title: "3º E.S.O.",
+        topics: [
+            {
+                title: "Ecuaciones",
+                pdfs: [
+                    {
+                        name: "Ejercicios de ecuaciones 1",
+                        url: "/ejercicios/3-eso/ecuaciones/ecuaciones-1.pdf",
                     },
                 ],
             },

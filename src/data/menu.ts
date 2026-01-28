@@ -80,6 +80,10 @@ export const menuSections = [
                 label: "1º E.S.O.",
             },
             {
+                slug: "exercises/3-eso",
+                label: "3º E.S.O.",
+            },
+            {
                 slug: "exercises/1-bach",
                 label: "1º Bachillerato",
             },
