@@ -1,0 +1,117 @@
+{
+    "title": "Probabilidad y Combinatoria",
+    "description": "Estudio de las diferentes formas de agrupar y ordenar elementos de un conjunto, junto con los fundamentos del cálculo de probabilidades.",
+    "sections": [
+        {
+            "title": "¿Cuál utilizar? Guía de decisión",
+            "items": [
+                {
+                    "title": "¿Importa el orden?",
+                    "description": "Es la primera pregunta. Si el orden de los elementos cambia el resultado (como en una contraseña), es Variación o Permutación. Si el orden NO importa (como elegir un grupo de amigos), es siempre una Combinación."
+                },
+                {
+                    "title": "¿Se usan todos los elementos?",
+                    "description": "Si importa el orden y usamos TODOS los elementos disponibles, es una Permutación. Si solo elegimos una parte del total, es una Variación."
+                },
+                {
+                    "title": "¿Se pueden repetir?",
+                    "description": "Una vez decidido el tipo (V, P o C), comprueba si el problema permite usar el mismo elemento varias veces. Si es así, utilizaremos la versión 'con repetición' de la fórmula."
+                }
+            ]
+        },
+        {
+            "title": "Combinatoria",
+            "items": [
+                {
+                    "title": "Permutaciones",
+                    "formula": "$P_n = n!$",
+                    "example": "¿De cuántas formas pueden sentarse 5 personas en un banco? $P_5 = 5! = 120$ formas.",
+                    "description": "Se utilizan todos los elementos del conjunto y el orden importa. No hay repetición."
+                },
+                {
+                    "title": "Permutaciones con repetición",
+                    "formula": "$PR_n^{a,b,c} = \\frac{n!}{a! \\cdot b! \\cdot c!}$",
+                    "example": "¿Cuántas palabras distintas se pueden formar con las letras de la palabra COCO? $PR_4^{2,2} = \\frac{4!}{2! \\cdot 2!} = 6$ palabras.",
+                    "description": "Se utilizan todos los elementos donde algunos están repetidos. El orden importa."
+                },
+                {
+                    "title": "Variaciones",
+                    "formula": "$V_n^k = \\frac{n!}{(n-k)!}$",
+                    "example": "¿Cuántos números de 3 cifras distintas se pueden formar con los dígitos 1, 2, 3, 4, 5? $V_5^3 = \\frac{5!}{2!} = 60$ números.",
+                    "description": "Se elige un subconjunto de $k$ elementos de un total de $n$. El orden importa y no hay repetición."
+                },
+                {
+                    "title": "Variaciones con repetición",
+                    "formula": "$VR_n^k = n^k$",
+                    "example": "¿Cuántos resultados posibles hay al lanzar una moneda 3 veces? $VR_2^3 = 2^3 = 8$ resultados.",
+                    "description": "Se elige un subconjunto de $k$ elementos pudiendo repetirse. El orden importa."
+                },
+                {
+                    "title": "Combinaciones",
+                    "formula": "$C_n^k = \\binom{n}{k} = \\frac{n!}{k!(n-k)!}$",
+                    "example": "En un grupo de 10 personas, ¿cuántos comités de 3 personas se pueden formar? $C_{10}^3 = \\frac{10!}{3!7!} = 120$ comités.",
+                    "description": "Se elige un subconjunto de $k$ elementos. El orden NO importa y no hay repetición."
+                },
+                {
+                    "title": "Combinaciones con repetición",
+                    "formula": "$CR_n^k = \\binom{n+k-1}{k}$",
+                    "example": "En una pastelería hay 4 tipos de pasteles. ¿De cuántas formas se pueden elegir 6 pasteles? $CR_4^6 = \\binom{4+6-1}{6} = \\binom{9}{6} = 84$ formas.",
+                    "description": "Se elige un subconjunto de $k$ elementos pudiendo repetirse. El orden NO importa."
+                }
+            ]
+        },
+        {
+            "title": "Fundamentos de Probabilidad",
+            "items": [
+                {
+                    "title": "Experimento aleatorio",
+                    "description": "Aquel cuyo resultado no se puede predecir con exactitud antes de realizarlo, incluso si se repite bajo las mismas condiciones."
+                },
+                {
+                    "title": "Espacio muestral ($E$ o $\\Omega$)",
+                    "description": "Conjunto formado por todos los resultados posibles de un experimento aleatorio."
+                },
+                {
+                    "title": "Sucesos elementales",
+                    "description": "Cada uno de los resultados simples e individuales que pueden ocurrir en un experimento aleatorio (componentes del espacio muestral)."
+                },
+                {
+                    "title": "Sucesos compuestos",
+                    "description": "Cualquier suceso que se puede descomponer en otros más simples; es decir, subconjuntos del espacio muestral formados por dos o más sucesos elementales."
+                },
+                {
+                    "title": "Operaciones con sucesos",
+                    "description": "Formas de combinar sucesos para obtener otros nuevos:<ul><li><strong>Unión ($A \\cup B$):</strong> Ocurre si sucede $A$, sucede $B$ o ambos a la vez.</li><li><strong>Intersección ($A \\cap B$):</strong> Ocurre si suceden simultáneamente $A$ y $B$.</li><li><strong>Diferencia ($A - B$):</strong> Ocurre si sucede $A$ pero no sucede $B$.</li></ul>"
+                },
+                {
+                    "title": "Ley de los Grandes Números",
+                    "description": "Establece que si repetimos un experimento aleatorio un número muy grande de veces, la frecuencia relativa de un suceso tiende a estabilizarse en torno a un valor fijo, que es su probabilidad."
+                },
+                {
+                    "title": "Regla de Laplace",
+                    "formula": "$P(A) = \\frac{\\text{Casos favorables}}{\\text{Casos posibles}}$",
+                    "example": "Al lanzar un dado, probabilidad de sacar un 5: $P(5) = \\frac{1}{6}$.",
+                    "description": "Si todos los sucesos elementales son equiprobables (tienen la misma probabilidad), la probabilidad de un suceso $A$ es el cociente entre el número de casos favorables a $A$ y el número de casos posibles."
+                },
+                {
+                    "title": "Probabilidad Condicionada",
+                    "formula": "$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$",
+                    "example": "La probabilidad de sacar un 6 en un dado sabiendo que es un número par: $\\frac{1}{3}$.",
+                    "description": "Es la probabilidad de que ocurra un suceso $A$ sabiendo que ha ocurrido previamente un suceso $B$. Es fundamental para analizar la dependencia entre sucesos."
+                },
+                {
+                    "title": "Sucesos Independientes",
+                    "formula": "$P(A \\cap B) = P(A) \\cdot P(B)$",
+                    "example": "Lanzar una moneda y un dado. El resultado de la moneda no afecta al del dado.",
+                    "description": "Dos sucesos son independientes si el hecho de que ocurra uno no influye en la probabilidad de que ocurra el otro. En este caso, $P(A|B) = P(A)$."
+                },
+                {
+                    "title": "Sucesos Dependientes",
+                    "formula": "$P(A \\cap B) = P(A) \\cdot P(B|A)$",
+                    "example": "Extraer dos cartas de una baraja sin reposición. La segunda extracción depende de la primera.",
+                    "description": "Dos sucesos son dependientes si el hecho de que ocurra uno influye en la probabilidad de que ocurra el otro. La probabilidad de que ocurran ambos es el producto de la probabilidad del primero por la probabilidad condicionada del segundo."
+                }
+            ]
+        }
+    ]
+}

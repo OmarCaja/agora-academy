@@ -28,6 +28,10 @@ export const exercisesData: Record<string, LevelData> = {
                         name: "Ejercicios de números enteros 2",
                         url: "/ejercicios/1-eso/numeros-enteros/numeros-enteros-2.pdf",
                     },
+                    {
+                        name: "Ejercicios de números enteros 3",
+                        url: "/ejercicios/1-eso/numeros-enteros/numeros-enteros-3.pdf",
+                    },
                 ],
             },
             {

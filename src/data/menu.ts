@@ -34,10 +34,7 @@ export const menuSections = [
                         slug: "theory/identidades-notables",
                         label: "Identidades notables",
                     },
-                    {
-                        slug: "theory/matrices",
-                        label: "Matrices",
-                    },
+
                 ],
             },
             {
@@ -58,7 +55,7 @@ export const menuSections = [
                 ],
             },
             {
-                title: "Estadística",
+                title: "Estadística y Probabilidad",
                 items: [
                     {
                         slug: "theory/estadistica-unidimensional",
@@ -67,6 +64,10 @@ export const menuSections = [
                     {
                         slug: "theory/estadistica-bidimensional",
                         label: "Estadística bidimensional",
+                    },
+                    {
+                        slug: "theory/probabilidad",
+                        label: "Probabilidad y Combinatoria",
                     },
                 ],
             },

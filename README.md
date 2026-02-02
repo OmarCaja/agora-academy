@@ -1,71 +1,72 @@
-# Ágora Academy - Academia de Matemáticas
+# Ágora Academy - Mathematics Academy
 
-Modern web application built with **Astro 5** for a mathematics academy in Cuenca, Spain. This project focuses on high performance, excellent math rendering, and a premium user experience with smooth animations.
+Modern web application built with **Astro 5** for Ágora Academy in Cuenca, Spain. This project focuses on high performance, excellent math rendering, and a premium user experience with smooth animations.
 
 ## 🚀 Project Structure
 
 ```
 /
 ├── public/
-│   └── favicon/          # Favicon files and static assets
+│   ├── favicon/          # Favicon files and static assets
+│   └── exercises/       # PDF repository for exercise worksheets by level
 ├── src/
 │   ├── components/       # Reusable Astro components
-│   │   ├── GlobalNav.astro   # Main navigation with logo and theme toggle
+│   │   ├── GlobalNav.astro   # Main navigation (logo and theme toggle)
 │   │   ├── Menu.astro        # Full-screen animated overlay menu
 │   │   ├── PropertyBox.astro # Styled container for math formulas and examples
 │   │   ├── TableOfContents.astro # Dynamic TOC for topic pages
-│   │   ├── ReadingProgressBar.astro # Top progress bar
 │   │   └── ...
 │   ├── content/
-│   │   └── topics/           # JSON data for math topics
-│   │       └── potencias.json # Data for /potencias
+│   │   └── topics/           # JSON data for theory topics
+│   ├── content.config.ts     # Content collections schema (Astro 5)
+│   ├── data/
+│   │   ├── menu.ts           # Dynamic navigation menu configuration
+│   │   └── exercises.ts      # Data structure for exercise PDFs
 │   ├── layouts/
 │   │   └── BaseLayout.astro  # Main layout with View Transitions and KaTeX setup
 │   ├── pages/
-│   │   ├── [slug].astro      # Dynamic page generator for topics
+│   │   ├── theory/
+│   │   │   └── [slug].astro  # Dynamic theory page generator
+│   │   ├── exercises/
+│   │   │   └── [slug].astro  # Dynamic exercise list generator
 │   │   └── index.astro       # Home page
 │   ├── scripts/
-│   │   ├── animations.js     # Scroll and interactive animations
-│   │   ├── menu.js           # Menu interaction logic
-│   │   └── theme.js          # Theme switching logic
-│   ├── styles/
-│   │   └── global.css        # Global CSS and design system tokens
-│   └── content.config.ts     # Content collections schema (Astro 5)
+│   │   ├── animations.js     # Scroll and interaction animations
+│   │   └── ...
+│   └── styles/
+│       └── global.css        # Design system and CSS variables
 └── package.json
 ```
 
-## 🧩 Components
+## 🧩 Key Components
 
-The project uses a modular component architecture:
-
-### Layout & Navigation
+### Design & Navigation
 - **GlobalNav.astro**: Persistent header containing the logo and high-level navigation.
-- **Menu.astro**: Animated full-screen navigation overlay invoked from the navigation bar.
-- **ReadingProgressBar.astro**: Visual indicator of scroll progress on long content pages.
-- **TableOfContents.astro**: Automatically generates an interactive list of sections for topic pages.
+- **Menu.astro**: Animated full-screen menu that uses configuration from `src/data/menu.ts`.
+- **ReadingProgressBar.astro**: Visual scroll progress indicator.
 
-### Content Elements
-- **PropertyBox.astro**: The core building block for math content. Handles rendering of titles, formulas, descriptions, and examples in a consistent, glassmorphic card.
-- **Header.astro**: standard section header.
+### Mathematical Content
+- **PropertyBox.astro**: The core building block for math content. Handles rendering of titles, formulas (KaTeX), descriptions, and examples in consistent, glassmorphic cards.
 - **LevelTags.astro**: Visual indicators for educational levels (ESO/Bachillerato).
 
 ## 🎨 Key Features
 
 ### 📄 Data-Driven Content (JSON Collections)
-Instead of flat Markdown, content is structured in **JSON** files.
+Theory content is managed through **JSON** files, enabling:
 - **Type Safety**: Powered by Zod schemas in `src/content.config.ts`.
-- **Structured Rendering**: Automatically generates sections and subsections from data.
-- **Math Ready**: Native support for **LaTeX** via KaTeX across all content fields.
+- **Math Ready**: Native **LaTeX** support via KaTeX across all content fields (titles, descriptions, examples).
+- **Scalability**: Pages are automatically generated when adding new files to `src/content/topics/`.
+
+### 📚 Exercise Management
+Dynamic listing system for PDF exercises:
+- PDFs are organized by level in `public/exercises/`.
+- Relationship mapping is defined in `src/data/exercises.ts`.
+- Exercise pages are dynamically generated based on the school level.
 
 ### 🎭 Premium UX
-- **View Transitions**: Seamless navigation between pages using Astro's `ClientRouter`.
-- **Dark/Light Mode**: Full theme support with system preference detection and persistent storage.
-- **Custom Animations**: Smooth fade-ins and interaction effects using vanilla JS and CSS.
-
-### ⚡ Performance
-- **Statically Generated**: Maximum speed and SEO benefit.
-- **Optimized Scripts**: Minimal vanilla JS for interactivity.
-- **SEO Optimized**: Includes OpenGraph, Twitter cards, and Schema.org structured data (LocalBusiness & LearningResource).
+- **View Transitions**: Seamless navigation without full page reloads.
+- **Dark/Light Mode**: Full support with system preference detection and persistence.
+- **Micro-Animations**: Smooth fade-ins and transformations using CSS and Vanilla JS.
 
 ## 🛠️ Commands
 
@@ -75,40 +76,22 @@ Instead of flat Markdown, content is structured in **JSON** files.
 | `npm run build` | Build production site to `./dist/` |
 | `npm run preview` | Preview production build locally |
 
-## 📝 Managing Content
+## 📝 Content Management
 
-### Adding a New Topic (e.g., "Logaritmos")
+### Adding a New Theory Topic
+1. Create a JSON file in `src/content/topics/`.
+2. Register it in `src/data/menu.ts` under the appropriate section.
 
-1. Create `src/content/topics/logaritmos.json`.
-2. Follow the established schema:
-   ```json
-   {
-     "title": "Logaritmos",
-     "description": "Explora las propiedades de los logaritmos...",
-     "sections": [
-       {
-         "title": "Propiedad del Producto",
-         "items": [
-           {
-             "title": "Logaritmo de un producto",
-             "formula": "$\\log_a(x \\cdot y) = \\log_a(x) + \\log_a(y)$",
-             "description": "El logaritmo de un producto es la suma de los logaritmos.",
-             "example": "$\\log_2(8 \\cdot 4) = \\log_2(8) + \\log_2(4) = 3 + 2 = 5$"
-           }
-         ]
-       }
-     ]
-   }
-   ```
-3. The page is automatically generated at `/logaritmos`.
-4. Link it in `src/components/Menu.astro` to make it accessible.
+### Adding New Exercises
+1. Upload the PDF to the corresponding folder in `public/exercises/`.
+2. Add the entry to the `exercisesData` object in `src/data/exercises.ts`.
 
 ## 📦 Tech Stack
 
-- **Astro 5.x**
-- **KaTeX** (Fast math rendering)
-- **Vanilla CSS** (Next-gen CSS with variables and nesting)
-- **Zod** (Content validation)
+- **Astro 5.x** (Island architecture and static generation)
+- **KaTeX** (High-performance math rendering)
+- **Vanilla CSS** (Modern variables, nesting, and styling)
+- **GitHub Actions** (Automated deployment to GitHub Pages)
 
 ## 📄 License
 
