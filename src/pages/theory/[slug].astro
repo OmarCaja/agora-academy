@@ -27,7 +27,7 @@ const topicSchema = {
     inLanguage: "es",
     author: {
         "@type": "Organization",
-        name: "Ágora Academia",
+        name: "Academia Ágora",
     },
     hasPart: sections.map((section) => ({
         "@type": "LearningResource",
@@ -50,7 +50,7 @@ const slugify = (text: string) => {
 <BaseLayout
     title={`${title} - Ágora`}
     description={description ||
-        `Aprende sobre ${title} en Ágora Academia de Matemáticas.`}
+        `Aprende sobre ${title} en Academia Ágora de Matemáticas.`}
     currentPage={`theory/${entry.id}`}
     schema={topicSchema}
 >

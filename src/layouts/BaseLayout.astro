@@ -85,7 +85,7 @@ import "../styles/global.css";
     />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Ágora Academia" />
+    <meta property="og:site_name" content="Academia Ágora" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -109,11 +109,18 @@ import "../styles/global.css";
       set:html={JSON.stringify([
         {
           "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Academia Ágora",
+          url: "https://agoraacademy.es/",
+          alternateName: ["Academia Ágora", "Ágora"],
+        },
+        {
+          "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          name: "Ágora - Academia de matemáticas",
-          image: "https://www.agoraacademy.es/favicon/logo.png",
-          "@id": "https://www.agoraacademy.es",
-          url: "https://www.agoraacademy.es",
+          name: "Academia Ágora",
+          image: "https://agoraacademy.es/favicon/logo.png",
+          "@id": "https://agoraacademy.es",
+          url: "https://agoraacademy.es",
           telephone: "+34649021173",
           email: "info@agoraacademy.es",
           address: {
