@@ -100,6 +100,7 @@ body {
         color var(--transition);
     min-height: 100%;
     min-height: -webkit-fill-available;
+    overflow-x: hidden;
 }
 
 /* Prevent scrolling when menu is open - Standard and Safari fix */
@@ -157,12 +158,34 @@ body.theme-changing {
     transition: background-color var(--transition);
 }
 
-body.theme-changing :is(.info-box, .theme-toggle, .level-tag, .menu-overlay) {
+body.theme-changing :is(.info-box, .theme-toggle, .level-tag, .menu-overlay, .diagram-tree) {
     transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle) {
     transition: none;
+}
+
+/* ===== UTILITIES ===== */
+.overflow-x-auto {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.diagram-tree {
+    font-family: var(--font-family);
+    padding: var(--spacing-md);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    white-space: pre;
+    overflow-x: auto;
+    color: var(--text-primary);
+    margin: var(--spacing-sm) 0;
+    transition: all var(--transition);
 }
 
 /* ===== CONTENT ===== */

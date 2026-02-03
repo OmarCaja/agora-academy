@@ -84,6 +84,15 @@ export const exercisesData: Record<string, LevelData> = {
                     },
                 ],
             },
+            {
+                title: "Probabilidad",
+                pdfs: [
+                    {
+                        name: "Ejercicios de Probabilidad 1",
+                        url: "/ejercicios/1-bach/probabilidad/probabilidad-1.pdf",
+                    },
+                ],
+            },
         ],
     },
 };
