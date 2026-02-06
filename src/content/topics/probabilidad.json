@@ -110,8 +110,8 @@
                 },
                 {
                     "title": "Sucesos compatibles e incompatibles",
-                    "description": "Dos sucesos son <strong>compatibles</strong> si pueden ocurrir a la vez ($A \\cap B \\neq \\emptyset$). Son <strong>incompatibles</strong> si no pueden ocurrir simultáneamente ($A \\cap B = \\emptyset$).",
-                    "example": "En un dado, 'sacar par' y 'sacar múltiplo de 3' son compatibles (el 6). 'Sacar par' y 'sacar impar' son incompatibles."
+                    "description": "Indican si dos sucesos pueden ocurrir al mismo tiempo o no:<br><ul><li><strong>Incompatibles:</strong> No tienen ningún resultado en común. Si ocurre uno, no puede ocurrir el otro ($A \\cap B = \\emptyset$).</li><li><strong>Compatibles:</strong> Tienen al menos un resultado en común. Pueden ocurrir simultáneamente ($A \\cap B \\neq \\emptyset$).</li></ul>",
+                    "example": "Al lanzar un dado:<br>• <strong>Incompatibles:</strong> 'Sacar un 1' y 'Sacar un 6' (imposible ambos a la vez).<br>• <strong>Compatibles:</strong> 'Sacar par' (2, 4, 6) y 'Sacar mayor que 3' (4, 5, 6). Si sale un 4 o un 6, ocurren los dos."
                 },
                 {
                     "title": "Suceso contrario o complementario ($\\bar{A}$)",
@@ -156,7 +156,7 @@
                     "example": "Si la probabilidad de lluvia es 0.3, la de que no llueva es $1 - 0.3 = 0.7$."
                 },
                 {
-                    "title": "Probabilidad de la unión sucesos compatibles",
+                    "title": "Unión de sucesos compatibles",
                     "formula": "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$",
                     "description": "Para calcular la probabilidad de que ocurra A o B, sumamos sus probabilidades y restamos la de su intersección (para no contarla dos veces).",
                     "example": "Si $P(A)=0.6$, $P(B)=0.4$ y $P(A \\cap B)=0.2$, entonces $P(A \\cup B) = 0.6 + 0.4 - 0.2 = 0.8$."
@@ -168,10 +168,10 @@
                     "example": "Al lanzar un dado, $P(\\text{sacar 1 o 2}) = P(1) + P(2) = \\frac{1}{6} + \\frac{1}{6} = \\frac{2}{6} = \\frac{1}{3}$."
                 },
                 {
-                    "title": "Probabilidad de la diferencia",
-                    "formula": "$P(A - B) = P(A) - P(A \\cap B)$",
-                    "description": "Probabilidad de que ocurra A pero no B.",
-                    "example": "Si $P(A)=0.5$ y la probabilidad de que ocurran ambos es $P(A \\cap B)=0.1$, entonces $P(A-B) = 0.5 - 0.1 = 0.4$."
+                    "title": "Probabilidad de $A$ y no $B$ ($A \\cap \\bar{B}$)",
+                    "formula": "$P(A \\cap \\bar{B}) = P(A) - P(A \\cap B)$",
+                    "description": "La probabilidad de que ocurra A y NO ocurra B es igual a la probabilidad de A quitándole su parte compartida con B.",
+                    "example": "Si $P(A)=0.5$ y la parte compartida es $P(A \\cap B)=0.1$, entonces la probabilidad de que ocurra solo A es $0.5 - 0.1 = 0.4$."
                 }
             ]
         },
