@@ -67,6 +67,9 @@ html {
     scroll-behavior: smooth;
     /* Height of .global-nav (48px) + some extra breathing room */
     scroll-padding-top: 70px;
+    /* Prevent horizontal overflow at the root level */
+    overflow-x: hidden;
+    width: 100%;
 }
 
 /* Extended background to prevent transparent areas on Safari over-scroll */
@@ -101,6 +104,8 @@ body {
     min-height: 100%;
     min-height: -webkit-fill-available;
     overflow-x: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* Prevent scrolling when menu is open - Standard and Safari fix */
@@ -183,6 +188,7 @@ body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle) {
     line-height: 1.5;
     white-space: pre;
     overflow-x: auto;
+    max-width: 100%;
     color: var(--text-primary);
     margin: var(--spacing-sm) 0;
     transition: all var(--transition);

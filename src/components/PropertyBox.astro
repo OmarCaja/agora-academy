@@ -69,13 +69,25 @@ const processedTitle = renderMath(title);
         padding: 20px;
         margin: var(--spacing-sm) 0;
         text-align: left;
-        white-space: nowrap;
+        white-space: pre-wrap; /* allow wrapping by default */
         overflow-x: auto;
+        max-width: 100%;
         border: 1px solid var(--border-color);
         border-radius: var(--radius);
         transition: background var(--transition);
         /* Mobile scroll smoothing */
         -webkit-overflow-scrolling: touch;
+    }
+
+    /* Dedicated formula container should remain nowrap to keep equations on one line if possible */
+    .formula-container .formula {
+        white-space: nowrap;
+    }
+
+    /* Example formula container should allow wrapping as it often contains descriptive text */
+    .example-formula {
+        white-space: normal;
+        line-height: 1.6;
     }
 
     .example-label {
