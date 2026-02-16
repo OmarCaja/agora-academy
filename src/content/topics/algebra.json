@@ -1,0 +1,89 @@
+{
+    "title": "Álgebra",
+    "description": "Introducción al lenguaje algebraico, manejo de monomios y polinomios, y resolución de ecuaciones de primer grado.",
+    "sections": [
+        {
+            "title": "Fundamentos del álgebra",
+            "items": [
+                {
+                    "title": "Expresión algebraica",
+                    "description": "Es una combinación de números y letras (incógnitas) relacionados mediante operaciones matemáticas (suma, resta, multiplicación, división, potencias).",
+                    "example": "$3x + 2y - 5$ es una expresión algebraica donde $x$ e $y$ son las letras."
+                },
+                {
+                    "title": "Monomio",
+                    "description": "Es una expresión algebraica sencilla formada por el producto de un número conocido (coeficiente) y una o varias letras con exponentes naturales (parte literal).",
+                    "example": "En el monomio $-5x^2y$, el coeficiente es $-5$ y la parte literal es $x^2y$."
+                },
+                {
+                    "title": "Grado de un monomio",
+                    "description": "Es la suma de los exponentes de las letras que forman su parte literal.",
+                    "example": "El grado de $7x^3y^2$ es $3 + 2 = 5$."
+                }
+            ]
+        },
+        {
+            "title": "Polinomios",
+            "items": [
+                {
+                    "title": "Polinomio",
+                    "description": "Es una expresión algebraica formada por la suma (o resta) de varios monomios no semejantes. Cada uno de los monomios se llama término del polinomio.",
+                    "example": "$P(x) = 4x^3 - 2x + 7$ es un polinomio con tres términos."
+                },
+                {
+                    "title": "Grado de un polinomio",
+                    "description": "Es el mayor de los grados de los monomios (términos) que lo componen.",
+                    "example": "En el polinomio $5x^4 - 2x^2 + 1$, el término de mayor grado es $5x^4$, por lo tanto, el grado del polinomio es 4."
+                },
+                {
+                    "title": "Término independiente",
+                    "description": "Es el término del polinomio que no tiene parte literal (el grado del monomio es cero).",
+                    "example": "En el polinomio $P(x) = 3x^2 - 5x + 8$, el término independiente es 8."
+                }
+            ]
+        },
+        {
+            "title": "Operaciones con monomios y polinomios",
+            "items": [
+                {
+                    "title": "Suma y resta",
+                    "description": "Solo se pueden sumar o restar monomios <strong>semejantes</strong> (aquellos que tienen la misma parte literal). Se suman o restan los coeficientes y se mantiene la misma parte literal.",
+                    "example": "$3x^2 + 5x^2 = 8x^2$. <br> No podemos sumar $3x^2 + 2x$ porque no son semejantes.",
+                    "formula": "$a \\cdot x^n \\pm b \\cdot x^n = (a \\pm b)x^n$"
+                },
+                {
+                    "title": "Multiplicación",
+                    "description": "Para multiplicar monomios, se multiplican los coeficientes entre sí y las partes literales entre sí (sumando los exponentes de las letras iguales). Para multiplicar un polinomio, se aplica la propiedad distributiva multiplicando cada término.",
+                    "example": "Monomios: $(2x^2) \\cdot (3x^3) = 6x^5$. <br> Polinomios: $2 \\cdot (x + 3) = 2x + 6$.",
+                    "formula": "$(a \\cdot x^n) \\cdot (b \\cdot x^m) = (a \\cdot b)x^{n+m}$"
+                },
+                {
+                    "title": "División de monomios",
+                    "description": "Se dividen los coeficientes y se restan los exponentes de las de las letras comunes en la parte literal.",
+                    "example": "$\\frac{10x^5}{2x^2} = 5x^{5-2} = 5x^3$",
+                    "formula": "$\\frac{a \\cdot x^n}{b \\cdot x^m} = (a/b)x^{n-m}$"
+                }
+            ]
+        },
+        {
+            "title": "Ecuaciones",
+            "items": [
+                {
+                    "title": "Ecuación",
+                    "description": "Es una igualdad entre dos expresiones algebraicas que solo es cierta para determinados valores de las letras (llamadas incógnitas).",
+                    "example": "$2x + 4 = 10$. Esta igualdad solo se cumple si $x = 3$."
+                },
+                {
+                    "title": "Ecuaciones equivalentes",
+                    "description": "Dos ecuaciones son equivalentes si tienen la misma solución. Se obtienen aplicando la <strong>regla de la suma</strong> (sumar/restar lo mismo en ambos lados) o la <strong>regla del producto</strong> (multiplicar/dividir por lo mismo en ambos lados, siempre que no sea cero).",
+                    "example": "$x + 2 = 5$ es equivalente a $x = 3$."
+                },
+                {
+                    "title": "Resolución paso a paso",
+                    "description": "Para resolver una ecuación buscamos obtener ecuaciones equivalentes cada vez más sencillas hasta despejar la incógnita.<br><br><strong>Ejemplo: $3x - 5 = 7$</strong><br><ol><li><strong>Sumamos 5</strong> en ambos miembros para aislar el término con x: <br> $3x - 5 + 5 = 7 + 5 \\Rightarrow 3x = 12$</li><li><strong>Dividimos por 3</strong> en ambos miembros para obtener la solución: <br> $\\frac{3x}{3} = \\frac{12}{3} \\Rightarrow x = 4$</li></ol>",
+                    "formula": "$x + a = b \\Rightarrow x + a - a = b - a \\Rightarrow x = b - a$"
+                }
+            ]
+        }
+    ]
+}

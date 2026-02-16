@@ -1,9 +1,9 @@
 {
-    "title": "Razones, Proporcionalidad y Porcentajes",
+    "title": "Razones, proporcionalidad y porcentajes",
     "description": "Conceptos fundamentales para comprender la relación entre magnitudes, resolver problemas con reglas de tres y dominar el cálculo porcentual.",
     "sections": [
         {
-            "title": "Razón y Proporción",
+            "title": "Razón y proporción",
             "items": [
                 {
                     "title": "Razón",
@@ -32,16 +32,16 @@
             ]
         },
         {
-            "title": "Tipos de Proporcionalidad",
+            "title": "Tipos de proporcionalidad",
             "items": [
                 {
-                    "title": "Directamente Proporcionales",
+                    "title": "Directamente proporcionales",
                     "formula": "$\\frac{y}{x} = k$",
                     "example": "Si 1 kg de manzanas cuesta 2€, 2 kg costarán 4€.",
                     "description": "El cociente entre los valores correspondientes es constante: $\\frac{y}{x} = k$ (constante de proporcionalidad)."
                 },
                 {
-                    "title": "Inversamente Proporcionales",
+                    "title": "Inversamente proporcionales",
                     "formula": "$x \\cdot y = k$",
                     "example": "Si 2 obreros tardan 6 horas, 4 obreros tardarán 3 horas.",
                     "description": "El producto de los valores correspondientes es constante: $x \\cdot y = k$ (constante de proporcionalidad)."
@@ -49,16 +49,16 @@
             ]
         },
         {
-            "title": "Regla de Tres",
+            "title": "Regla de tres",
             "items": [
                 {
-                    "title": "Regla de Tres Directa",
+                    "title": "Regla de tres directa",
                     "formula": "$x = \\frac{b \\cdot c}{a}$",
                     "example": "$\\begin{matrix} A & B \\\\ a & b \\\\ c & x \\end{matrix} \\Rightarrow x = \\frac{b \\cdot c}{a}$",
                     "description": "Se aplica cuando la relación entre las magnitudes es directa. Se multiplica en cruz."
                 },
                 {
-                    "title": "Regla de Tres Inversa",
+                    "title": "Regla de tres inversa",
                     "formula": "$x = \\frac{a \\cdot b}{c}$",
                     "example": "$\\begin{matrix} A & B \\\\ a & b \\\\ c & x \\end{matrix} \\Rightarrow x = \\frac{a \\cdot b}{c}$",
                     "description": "Se aplica cuando la relación entre las magnitudes es inversa. Se multiplica en línea."
@@ -66,16 +66,16 @@
             ]
         },
         {
-            "title": "Repartos Proporcionales",
+            "title": "Repartos proporcionales",
             "items": [
                 {
-                    "title": "Reparto Directamente Proporcional",
+                    "title": "Reparto directamente proporcional",
                     "formula": "$x = \\frac{C \\cdot a}{S}, y = \\frac{C \\cdot b}{S}, z = \\frac{C \\cdot c}{S}$",
                     "example": "Repartir 300 entre 2 y 4: $S=6 \\Rightarrow x = \\frac{300 \\cdot 2}{6} = 100, y = \\frac{300 \\cdot 4}{6} = 200$",
                     "description": "Se reparte la cantidad total $C$ proporcionalmente a las partes $a, b, c...$ siendo $S$ la suma de las partes."
                 },
                 {
-                    "title": "Reparto Inversamente Proporcional",
+                    "title": "Reparto inversamente proporcional",
                     "formula": "$x = \\frac{C \\cdot \\frac{1}{a}}{S'}, y = \\frac{C \\cdot \\frac{1}{b}}{S'}$",
                     "example": "Repartir 300 inv. prop. a 2 y 4: Inversos $\\frac{1}{2}, \\frac{1}{4}$. $S' = \\frac{3}{4} \\Rightarrow x = \\frac{300 \\cdot 1/2}{3/4} = 200$",
                     "description": "Se hace un reparto directamente proporcional a los inversos de las partes ($1/a, 1/b, ...$). $S'$ es la suma de los inversos."

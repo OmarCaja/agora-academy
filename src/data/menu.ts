@@ -23,7 +23,7 @@ export const menuSections = [
                     },
                     {
                         slug: "theory/proporcionalidad-porcentajes",
-                        label: "Proporcionalidad y Porcentajes",
+                        label: "Proporcionalidad y porcentajes",
                     },
                 ],
             },
@@ -33,6 +33,10 @@ export const menuSections = [
                     {
                         slug: "theory/identidades-notables",
                         label: "Identidades notables",
+                    },
+                    {
+                        slug: "theory/algebra",
+                        label: "Álgebra",
                     },
 
                 ],
@@ -67,7 +71,7 @@ export const menuSections = [
                     },
                     {
                         slug: "theory/probabilidad",
-                        label: "Probabilidad y Combinatoria",
+                        label: "Probabilidad y combinatoria",
                     },
                 ],
             },

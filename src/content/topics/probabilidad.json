@@ -1,5 +1,5 @@
 {
-    "title": "Probabilidad y Combinatoria",
+    "title": "Probabilidad y combinatoria",
     "description": "Estudio de las diferentes formas de agrupar y ordenar elementos de un conjunto, junto con los fundamentos del cálculo de probabilidades.",
     "sections": [
         {
@@ -61,7 +61,7 @@
             ]
         },
         {
-            "title": "Fundamentos de Probabilidad",
+            "title": "Fundamentos de probabilidad",
             "items": [
                 {
                     "title": "Experimento aleatorio",
@@ -96,7 +96,7 @@
             ]
         },
         {
-            "title": "Operaciones con Sucesos",
+            "title": "Operaciones con sucesos",
             "items": [
                 {
                     "title": "Unión ($A \\cup B$)",
@@ -131,7 +131,7 @@
             ]
         },
         {
-            "title": "Propiedades y Cálculo de Probabilidades",
+            "title": "Propiedades y cálculo de probabilidades",
             "items": [
                 {
                     "title": "Definición de probabilidad",
@@ -139,7 +139,7 @@
                     "example": "La probabilidad de que salga cara al lanzar una moneda es 0.5 (o 50%)."
                 },
                 {
-                    "title": "Ley de los Grandes Números",
+                    "title": "Ley de los grandes números",
                     "description": "Señala que al repetir un experimento muchas veces, la frecuencia relativa de un suceso tiende a estabilizarse en torno a su probabilidad teórica.",
                     "example": "Si lanzamos una moneda 1000 veces, la proporción de caras será muy próxima a 0.5."
                 },
@@ -176,43 +176,43 @@
             ]
         },
         {
-            "title": "Probabilidad Condicionada e Independencia",
+            "title": "Probabilidad condicionada e independencia",
             "items": [
                 {
-                    "title": "Probabilidad Condicionada",
+                    "title": "Probabilidad condicionada",
                     "formula": "$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$",
                     "description": "Es la probabilidad de que ocurra el suceso $A$ sabiendo que ya ha ocurrido el suceso $B$.",
                     "example": "En una urna con 3 bolas rojas y 2 azules, la probabilidad de que la segunda sea roja sabiendo que la primera fue azul (sin devolución) es $P(R_2|A_1) = \\frac{3}{4}$."
                 },
                 {
-                    "title": "Sucesos Independientes",
+                    "title": "Sucesos independientes",
                     "formula": "$P(A \\cap B) = P(A) \\cdot P(B)$",
                     "description": "Dos sucesos son independientes si la ocurrencia de uno no afecta a la probabilidad del otro. En este caso, $P(A|B) = P(A)$.",
                     "example": "Lanzar un dado y una moneda: sacar un 6 no influye en si sale cara o cruz."
                 },
                 {
-                    "title": "Sucesos Dependientes",
+                    "title": "Sucesos dependientes",
                     "formula": "$P(A \\cap B) = P(A) \\cdot P(B|A)$",
                     "description": "Dos sucesos son dependientes si la probabilidad de que ocurra uno se ve alterada por la ocurrencia del otro.",
                     "example": "Extraer dos cartas de una baraja sin devolver la primera a la mazo."
                 },
                 {
-                    "title": "Producto de Probabilidades",
+                    "title": "Producto de probabilidades",
                     "description": "Permite calcular la probabilidad de la intersección ($A \\cap B$) dependiendo de si son dependientes o independientes.",
                     "example": "Si son independientes: $P(A \\cap B) = P(A) \\cdot P(B)$. Si son dependientes: $P(A \\cap B) = P(A) \\cdot P(B|A)$."
                 }
             ]
         },
         {
-            "title": "Experimentos Compuestos",
+            "title": "Experimentos compuestos",
             "items": [
                 {
-                    "title": "Experimentos Compuestos",
+                    "title": "Experimentos compuestos",
                     "description": "Son procesos que ocurren en varias etapas (ej. elegir una caja y luego sacar una bola). La mejor forma de resolverlos es dibujando un <strong>Diagrama de Árbol</strong>.",
                     "example": "Imagina que tienes dos cajas:<br>• <strong>Caja 1:</strong> Tiene 8 bolas rojas y 2 azules ($P(R)=0.8$).<br>• <strong>Caja 2:</strong> Tiene 4 bolas rojas y 6 azules ($P(R)=0.4$).<br>Primero eliges una caja al azar (50% cada una) y luego sacas una bola."
                 },
                 {
-                    "title": "Diagrama de Decisión (Árbol)",
+                    "title": "Diagrama de decisión (árbol)",
                     "description": "Es el esquema visual para entender todos los pasos del ejemplo anterior:<br><br><div class='diagram-tree'><strong>INICIO</strong>\n├── <strong>Caja 1 (0.5)</strong> ─── 🔴 Roja (0.8)\n│                └── 🔵 Azul (0.2)\n└── <strong>Caja 2 (0.5)</strong> ─── 🔴 Roja (0.4)\n                 └── 🔵 Azul (0.6)</div><br><strong>Regla:</strong> Para hallar la probabilidad de un camino, multiplica sus ramas ($0.5 \\cdot 0.8$)."
                 },
                 {

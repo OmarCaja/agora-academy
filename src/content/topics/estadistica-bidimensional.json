@@ -1,16 +1,16 @@
 {
-    "title": "Estadística Bidimensional",
+    "title": "Estadística bidimensional",
     "description": "Estudio conjunto de dos variables para analizar la relación y dependencia entre ellas, incluyendo distribuciones, correlación y regresión lineal.",
     "sections": [
         {
-            "title": "Conceptos Básicos",
+            "title": "Conceptos básicos",
             "items": [
                 {
-                    "title": "¿Qué es la Estadística Bidimensional?",
+                    "title": "¿Qué es la estadística bidimensional?",
                     "description": "Rama de la estadística que se ocupa del estudio simultáneo de dos caracteres ($X, Y$) en los individuos de una población. Permite analizar si existe relación entre ambas variables."
                 },
                 {
-                    "title": "Frecuencia Conjunta ($f_{ij}$)",
+                    "title": "Frecuencia conjunta ($f_{ij}$)",
                     "description": "Es el número de individuos que presentan simultáneamente el valor $x_i$ de la primera variable y el valor $y_j$ de la segunda. La suma de todas las frecuencias conjuntas es el total de la población $N$."
                 }
             ]
@@ -19,11 +19,11 @@
             "title": "Distribuciones",
             "items": [
                 {
-                    "title": "Distribuciones Marginales",
+                    "title": "Distribuciones marginales",
                     "description": "Analiza el comportamiento de una sola variable ignorando la otra. Se obtienen sumando las frecuencias conjuntas por filas ($X$) o por columnas ($Y$).<br><ul><li><strong>Marginal de $X$:</strong> Distribución unidimensional de la variable $X$.</li><li><strong>Marginal de $Y$:</strong> Distribución unidimensional de la variable $Y$.</li></ul>"
                 },
                 {
-                    "title": "Distribuciones Condicionadas",
+                    "title": "Distribuciones condicionadas",
                     "description": "Es la distribución de una variable (por ejemplo $Y$) considerando solo los individuos que toman un valor concreto en la otra variable (por ejemplo $X = x_i$). Se estudia una fila o columna específica de la tabla de doble entrada."
                 }
             ]
@@ -42,30 +42,30 @@
             "title": "Correlación",
             "items": [
                 {
-                    "title": "Tipos de Correlación",
+                    "title": "Tipos de correlación",
                     "description": "La correlación indicia la relación o dependencia entre las variables. Puede clasificarse de varias formas:<br><ul><li><strong>Funcional:</strong> Existe una relación exacta, $y = f(x)$.</li><li><strong>Aleatoria:</strong> Existe relación estadística pero no exacta.</li><li><strong>Nula:</strong> No hay relación entre las variables.</li><li><strong>Directa (Positiva):</strong> Al aumentar una variable, aumenta la otra.</li><li><strong>Inversa (Negativa):</strong> Al aumentar una variable, la otra disminuye.</li><li><strong>Fuerte:</strong> La dependencia es alta (los puntos están muy cerca de la recta de regresión).</li><li><strong>Débil:</strong> La dependencia es baja (la nube de puntos es muy dispersa).</li></ul>"
                 },
                 {
-                    "title": "Coeficiente de Correlación Lineal ($r$)",
+                    "title": "Coeficiente de correlación lineal ($r$)",
                     "formula": "$$r = \\frac{\\sigma_{xy}}{\\sigma_x \\cdot \\sigma_y}$$",
                     "description": "Mide el grado de asociación lineal y el sentido de la correlación. Es adimensional y varía entre $-1$ y $1$.<br><ul><li>$r > 0$: Correlación directa.</li><li>$r < 0$: Correlación inversa.</li><li>$|r| \\approx 1$: Correlación fuerte (puntos alineados).</li><li>$r \\approx 0$: Correlación débil (nube de puntos redonda).</li></ul>"
                 }
             ]
         },
         {
-            "title": "Regresión Lineal",
+            "title": "Regresión lineal",
             "items": [
                 {
-                    "title": "Rectas de Regresión",
+                    "title": "Rectas de regresión",
                     "description": "Son las rectas que mejor se ajustan a la nube de puntos mediante el método de mínimos cuadrados. Permiten hacer estimaciones."
                 },
                 {
-                    "title": "Recta de Regresión de Y sobre X",
+                    "title": "Recta de regresión de Y sobre X",
                     "formula": "$$y - \\bar{y} = \\frac{\\sigma_{xy}}{\\sigma_x^2} (x - \\bar{x})$$",
                     "description": "Minimiza las distancias verticales. Se utiliza para estimar el valor de $Y$ suponiendo conocido un valor de $X$. El término $\\frac{\\sigma_{xy}}{\\sigma_x^2}$ es la pendiente de la recta."
                 },
                 {
-                    "title": "Recta de Regresión de X sobre Y",
+                    "title": "Recta de regresión de X sobre Y",
                     "formula": "$$x - \\bar{x} = \\frac{\\sigma_{xy}}{\\sigma_y^2} (y - \\bar{y})$$",
                     "description": "Minimiza las distancias horizontales. Se utiliza para estimar el valor de $X$ suponiendo conocido un valor de $Y$. No es la misma recta que la anterior (salvo dependencia funcional)."
                 }
