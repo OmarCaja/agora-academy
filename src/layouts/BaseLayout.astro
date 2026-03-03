@@ -54,6 +54,7 @@ import "../styles/global.css";
       name="keywords"
       content="academia matemáticas Cuenca, clases matemáticas ESO, Bachillerato, refuerzo escolar, matemáticas Cuenca"
     />
+    <meta name="application-name" content="Academia Ágora" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
     <!-- Fonts preconnect -->
@@ -102,18 +103,24 @@ import "../styles/global.css";
     <!-- KaTeX CSS -->
     <!-- (Imported in frontmatter for bundling) -->
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data (JSON-LD): WebSite — used by Google for site name in search results -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Academia Ágora",
+        url: "https://agoraacademy.es/",
+        alternateName: ["Academia Ágora", "Ágora"],
+      })}
+    />
+
+    <!-- Structured Data (JSON-LD): LocalBusiness + optional page schema -->
     <script
       type="application/ld+json"
       is:inline
       set:html={JSON.stringify([
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "Academia Ágora",
-          url: "https://agoraacademy.es/",
-          alternateName: ["Academia Ágora", "Ágora"],
-        },
         {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",

@@ -73,8 +73,23 @@ const updateActiveStateFromHash = () => {
     }
 };
 
-const handleOverlayClick = (e) => {
-    if (e.target.id === SELECTORS.overlay) toggleMenu();
+/**
+ * Closes the menu when the user clicks/taps anywhere outside
+ * the menu panel or the toggle button.
+ */
+const handleOutsideClick = (e) => {
+    const overlay = document.getElementById(SELECTORS.overlay);
+    const toggleBtn = document.getElementById(SELECTORS.toggle);
+
+    if (!overlay?.classList.contains(CLASSES.active)) return;
+
+    const nav = overlay.querySelector(".menu-nav");
+    const clickedInsideMenu = nav?.contains(e.target);
+    const clickedToggle = toggleBtn?.contains(e.target);
+
+    if (!clickedInsideMenu && !clickedToggle) {
+        toggleMenu();
+    }
 };
 
 const handleLinkClick = (e) => {
@@ -119,9 +134,9 @@ const initMenu = () => {
     toggleBtn.removeEventListener("click", toggleMenu);
     toggleBtn.addEventListener("click", toggleMenu);
 
-    // 2. Overlay Background Click
-    overlay.removeEventListener("click", handleOverlayClick);
-    overlay.addEventListener("click", handleOverlayClick);
+    // 2. Outside-click handler (document level, closes menu on tap outside)
+    document.removeEventListener("pointerdown", handleOutsideClick);
+    document.addEventListener("pointerdown", handleOutsideClick);
 
     // 3. Navigation Links (Close menu on click)
     overlay.querySelectorAll(SELECTORS.closeMenu).forEach(link => {
