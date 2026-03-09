@@ -73,6 +73,10 @@ export const menuSections = [
                         slug: "theory/probabilidad",
                         label: "Probabilidad y combinatoria",
                     },
+                    {
+                        slug: "theory/distribuciones-probabilidad",
+                        label: "Distribuciones de probabilidad",
+                    },
                 ],
             },
         ],

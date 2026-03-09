@@ -54,6 +54,14 @@ export const exercisesData: Record<string, LevelData> = {
                         name: "Ejercicios de álgebra 1",
                         url: "/ejercicios/1-eso/algebra/algebra-1.pdf",
                     },
+                    {
+                        name: "Ejercicios de álgebra 2",
+                        url: "/ejercicios/1-eso/algebra/algebra-2.pdf",
+                    },
+                    {
+                        name: "Ejercicios de álgebra 3",
+                        url: "/ejercicios/1-eso/algebra/algebra-3.pdf",
+                    },
                 ],
             },
         ],

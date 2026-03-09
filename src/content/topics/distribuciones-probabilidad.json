@@ -1,0 +1,104 @@
+{
+    "title": "Distribuciones de probabilidad",
+    "description": "Estudio de las variables aleatorias discretas y continuas, incluyendo la distribución binomial y la distribución normal estándar con su uso práctico en el cálculo de probabilidades.",
+    "sections": [
+        {
+            "title": "Variables aleatorias discretas",
+            "items": [
+                {
+                    "title": "Variable aleatoria discreta",
+                    "description": "Una <strong>variable aleatoria discreta</strong> $X$ es una función que asigna un valor numérico a cada resultado de un experimento aleatorio. Se llama <strong>discreta</strong> porque solo puede tomar valores aislados (finitos o infinitos numerables), como el número de caras al lanzar monedas o el número de goles en un partido.",
+                    "example": "Al lanzar dos dados, $X$ = «suma de los valores obtenidos» puede tomar los valores $2, 3, 4, \\ldots, 12$."
+                },
+                {
+                    "title": "Función de probabilidad",
+                    "formula": "$$P(X = x_i) = p_i, \\quad \\text{donde } \\sum_{i} p_i = 1 \\text{ y } p_i \\geq 0$$",
+                    "description": "La <strong>función de probabilidad</strong> (o distribución de probabilidad) asigna a cada valor posible $x_i$ de la variable su probabilidad $p_i$. Se suele representar en una tabla:",
+                    "example": "Sea $X$ = «número de caras al lanzar 2 monedas»:<br><br><table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 10px'>$x_i$</th><td style='border:1px solid var(--border-color);padding:6px 10px'>0</td><td style='border:1px solid var(--border-color);padding:6px 10px'>1</td><td style='border:1px solid var(--border-color);padding:6px 10px'>2</td></tr><tr><th style='border:1px solid var(--border-color);padding:6px 10px'>$p_i$</th><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\frac{1}{4}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\frac{2}{4}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\frac{1}{4}$</td></tr></table><br>Comprobación: $\\frac{1}{4} + \\frac{2}{4} + \\frac{1}{4} = 1$ ✓"
+                },
+                {
+                    "title": "Función de distribución",
+                    "formula": "$$F(x) = P(X \\leq x) = \\sum_{x_i \\leq x} p_i$$",
+                    "description": "La <strong>función de distribución acumulada</strong> $F(x)$ da la probabilidad de que la variable tome un valor menor o igual que $x$. Es una función escalonada que empieza en 0 y termina en 1.",
+                    "example": "Para el ejemplo anterior (2 monedas):<br><br><table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 10px'>$x$</th><td style='border:1px solid var(--border-color);padding:6px 10px'>$x \\lt 0$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$0 \\leq x \\lt 1$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$1 \\leq x \\lt 2$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$x \\geq 2$</td></tr><tr><th style='border:1px solid var(--border-color);padding:6px 10px'>$F(x)$</th><td style='border:1px solid var(--border-color);padding:6px 10px'>0</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\frac{1}{4}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\frac{3}{4}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>1</td></tr></table>"
+                },
+                {
+                    "title": "Media (esperanza matemática)",
+                    "formula": "$$\\mu = E(X) = \\sum_{i} x_i \\cdot p_i$$",
+                    "description": "La <strong>media</strong> o <strong>esperanza matemática</strong> $\\mu$ representa el valor promedio que esperamos obtener a largo plazo al repetir el experimento muchas veces. Es el «centro de gravedad» de la distribución.",
+                    "example": "Para $X$ = número de caras con 2 monedas:<br>$$\\mu = 0 \\cdot \\frac{1}{4} + 1 \\cdot \\frac{2}{4} + 2 \\cdot \\frac{1}{4} = 0 + \\frac{2}{4} + \\frac{2}{4} = 1$$<br>En promedio, al lanzar 2 monedas se obtiene 1 cara."
+                },
+                {
+                    "title": "Desviación típica",
+                    "formula": "$$\\sigma^2 = \\sum_{i} x_i^2 \\cdot p_i - \\mu^2 \\qquad \\sigma = \\sqrt{\\sigma^2}$$",
+                    "description": "La <strong>varianza</strong> $\\sigma^2$ mide la dispersión de la variable respecto a su media. La <strong>desviación típica</strong> $\\sigma$ es su raíz cuadrada y se expresa en las mismas unidades que la variable.",
+                    "example": "Para el ejemplo anterior ($\\mu = 1$):<br>$$\\sigma^2 = 0^2 \\cdot \\frac{1}{4} + 1^2 \\cdot \\frac{2}{4} + 2^2 \\cdot \\frac{1}{4} - 1^2 = 0 + \\frac{2}{4} + \\frac{4}{4} - 1 = \\frac{6}{4} - 1 = 0.5$$<br>$$\\sigma = \\sqrt{0.5} \\approx 0.71$$"
+                }
+            ]
+        },
+        {
+            "title": "Distribución binomial",
+            "items": [
+                {
+                    "title": "¿Cuándo se aplica?",
+                    "description": "La distribución binomial modela el número de éxitos en $n$ repeticiones <strong>independientes</strong> de un experimento con solo dos posibles resultados: <strong>éxito</strong> (probabilidad $p$) y <strong>fracaso</strong> (probabilidad $1-p$). Se escribe $X \\sim B(n, p)$.",
+                    "example": "<strong>Condiciones que deben cumplirse:</strong><ul><li>El experimento se repite un número fijo $n$ de veces.</li><li>Cada repetición es independiente de las demás.</li><li>Solo hay dos resultados posibles en cada repetición.</li><li>La probabilidad de éxito $p$ es constante en todas las repeticiones.</li></ul>"
+                },
+                {
+                    "title": "Función de probabilidad",
+                    "formula": "$$P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}, \\quad k = 0, 1, \\ldots, n$$",
+                    "description": "Donde $\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$ es el número combinatorio que cuenta las formas de elegir $k$ éxitos entre $n$ intentos.",
+                    "example": "Se lanza una moneda 5 veces. ¿Probabilidad de obtener exactamente 3 caras? Con $X \\sim B(5, 0.5)$:<br>$$P(X=3) = \\binom{5}{3} \\cdot 0.5^3 \\cdot 0.5^2 = 10 \\cdot 0.125 \\cdot 0.25 = 0.3125$$"
+                },
+                {
+                    "title": "Media, varianza y desviación típica",
+                    "formula": "$$\\mu = n \\cdot p \\qquad \\sigma^2 = n \\cdot p \\cdot (1-p) \\qquad \\sigma = \\sqrt{n \\cdot p \\cdot (1-p)}$$",
+                    "description": "Son fórmulas directas que evitan calcular toda la distribución. La media indica el número esperado de éxitos, la varianza mide la dispersión y la desviación típica se expresa en las mismas unidades que la variable.",
+                    "example": "Si $X \\sim B(20, 0.3)$ (20 preguntas de test, probabilidad de acertar 0.3):<br>$$\\mu = 20 \\cdot 0.3 = 6 \\text{ aciertos esperados}$$<br>$$\\sigma^2 = 20 \\cdot 0.3 \\cdot 0.7 = 4.2$$<br>$$\\sigma = \\sqrt{4.2} \\approx 2.05$$"
+                }
+            ]
+        },
+        {
+            "title": "Distribución normal",
+            "items": [
+                {
+                    "title": "La distribución normal",
+                    "description": "La <strong>distribución normal</strong> $X \\sim N(\\mu, \\sigma)$ es la distribución continua más importante. Su gráfica tiene forma de <strong>campana de Gauss</strong>, simétrica respecto a la media $\\mu$, con la mayoría de valores concentrados alrededor de ella. El parámetro $\\sigma$ controla su anchura: mayor $\\sigma$ implica curva más aplastada y dispersa.",
+                    "example": "Alturas de personas adultas, errores de medición, notas de un examen con muchos alumnos... son fenómenos que suelen seguir una distribución normal."
+                },
+                {
+                    "title": "Distribución normal estándar $N(0,1)$",
+                    "description": "La <strong>distribución normal estándar</strong> $Z \\sim N(0,1)$ es una normal con media $\\mu = 0$ y desviación típica $\\sigma = 1$. Para calcular probabilidades en cualquier distribución normal, se utilizan las <strong>tablas de la normal estándar</strong>, que dan el valor de la función de distribución acumulada:<br><br>$$\\Phi(z) = P(Z \\leq z)$$<br><br>Es decir, $\\Phi(z)$ es el área bajo la curva a la izquierda del valor $z$. La tabla siempre da la probabilidad <strong>acumulada desde $-\\infty$ hasta $z$</strong>.",
+                    "formula": "$$\\Phi(z) = P(Z \\leq z)$$"
+                },
+                {
+                    "title": "Cómo usar la tabla: propiedades clave",
+                    "description": "Con la tabla de la normal estándar solo obtenemos $P(Z \\leq z)$. Para otros casos usamos:<br><ul><li><strong>Cola derecha:</strong> $P(Z > z) = 1 - \\Phi(z)$</li><li><strong>Intervalo:</strong> $P(a < Z < b) = \\Phi(b) - \\Phi(a)$</li><li><strong>Valores negativos:</strong> $\\Phi(-z) = 1 - \\Phi(z)$ (por simetría)</li></ul>",
+                    "example": "<strong>Ejemplo:</strong> Calcular $P(Z > 1.5)$ y $P(-1 < Z < 2)$:<br><br>• $P(Z > 1.5) = 1 - \\Phi(1.5) = 1 - 0.9332 = 0.0668$<br>• $P(-1 < Z < 2) = \\Phi(2) - \\Phi(-1) = \\Phi(2) - (1 - \\Phi(1))$<br>$= 0.9772 - (1 - 0.8413) = 0.9772 - 0.1587 = 0.8185$"
+                },
+                {
+                    "title": "Tipificación: de $N(\\mu, \\sigma)$ a $N(0,1)$",
+                    "formula": "$$Z = \\frac{X - \\mu}{\\sigma}$$",
+                    "description": "Para calcular probabilidades con una normal cualquiera $X \\sim N(\\mu, \\sigma)$, se <strong>tipifica</strong> (estandariza) la variable restando la media y dividiendo por la desviación típica. Así se obtiene una variable $Z \\sim N(0,1)$ y se puede usar la tabla.",
+                    "example": "<strong>Ejemplo completo:</strong> Las notas de un examen siguen $X \\sim N(6, 1.5)$. ¿Qué porcentaje de alumnos sacó más de un 8?<br><br>1. Tipificamos: $z = \\dfrac{8 - 6}{1.5} = \\dfrac{2}{1.5} \\approx 1.33$<br>2. Buscamos en la tabla: $\\Phi(1.33) = 0.9082$<br>3. Cola derecha: $P(X > 8) = 1 - 0.9082 = 0.0918$<br><br>Aproximadamente el <strong>9.2% de los alumnos</strong> sacó más de un 8."
+                }
+            ]
+        },
+        {
+            "title": "Aproximación de la binomial a la normal",
+            "items": [
+                {
+                    "title": "Corrección de continuidad de Yates",
+                    "description": "Cuando $n$ es grande y $p$ no es extremo, la binomial $B(n,p)$ se puede aproximar por una normal $N(\\mu, \\sigma)$ con $\\mu = np$ y $\\sigma = \\sqrt{np(1-p)}$. Como la binomial es <strong>discreta</strong> y la normal es <strong>continua</strong>, se aplica la <strong>corrección por continuidad de Yates</strong>, que consiste en ampliar 0.5 el intervalo por cada lado antes de tipificar.<br><br><strong>Criterio de aplicación:</strong> $n \\cdot p \\geq 5$ y $n \\cdot (1-p) \\geq 5$.",
+                    "example": "<table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 8px'>Probabilidad original (discreta)</th><th style='border:1px solid var(--border-color);padding:6px 8px'>Aproximación continua (con Yates)</th></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X = k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(k - 0.5 \\lt X \\lt k + 0.5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\leq k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k + 0.5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\geq k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k - 0.5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k - 0.5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k + 0.5)$</td></tr></table>"
+                },
+                {
+                    "title": "Ejemplo de aproximación paso a paso",
+                    "formula": "$$Z = \\frac{X - \\mu}{\\sigma} = \\frac{X - np}{\\sqrt{np(1-p)}}$$",
+                    "description": "Una vez aplicada la corrección de Yates, se tipifica el valor corregido y se usa la tabla de la normal estándar.",
+                    "example": "<strong>Ejemplo:</strong> $X \\sim B(100, 0.4)$. Calcular $P(X \\leq 35)$.<br><br><strong>1. Comprobar criterio:</strong> $np = 40 \\geq 5$ y $n(1-p) = 60 \\geq 5$ ✓<br><strong>2. Parámetros:</strong> $\\mu = 100 \\cdot 0.4 = 40$, $\\quad \\sigma = \\sqrt{100 \\cdot 0.4 \\cdot 0.6} = \\sqrt{24} \\approx 4.90$<br><strong>3. Corrección de Yates</strong> ($X \\leq k \\to X \\lt k + 0.5$): $P(X \\leq 35) \\approx P(X \\lt 35.5)$<br><strong>4. Tipificar:</strong> $z = \\dfrac{35.5 - 40}{4.90} \\approx -0.92$<br><strong>5. Tabla</strong> (simetría): $\\Phi(-0.92) = 1 - \\Phi(0.92) = 1 - 0.8212 = \\mathbf{0.1788}$"
+                }
+            ]
+        }
+    ]
+}
