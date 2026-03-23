@@ -102,8 +102,14 @@ const processedTitle = renderMath(title);
         font-size: var(--font-size-md);
         color: var(--text-tertiary);
         line-height: 1.6;
-        overflow-x: auto;
-        max-width: 100%;
+        word-break: break-word;
+    }
+
+    :global(.description img), :global(.example-formula img) {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+        margin: var(--spacing-sm) auto;
     }
 
     /* KaTeX overrides for formulas */

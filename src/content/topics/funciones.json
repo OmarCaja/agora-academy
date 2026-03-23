@@ -1,0 +1,146 @@
+{
+    "title": "Funciones",
+    "description": "Introducción al concepto de función, dominio, recorrido, continuidad, tipos de discontinuidad, monotonía, curvatura, máximos y mínimos, puntos de corte, signo de la función, y simetría par o impar.",
+    "sections": [
+        {
+            "title": "Definición de función",
+            "items": [
+                {
+                    "title": "Función",
+                    "description": "Una función es una relación entre dos conjuntos, donde a cada elemento del primer conjunto (dominio) le corresponde un <strong>único</strong> elemento del segundo conjunto (recorrido). Se denota habitualmente como $f: A \\to B$ o $y = f(x)$.",
+                    "example": "La función $f(x) = 2x + 1$ asigna a cada valor de $x$ un valor único de $f(x)$. Por ejemplo: $f(3) = 7$, $f(0) = 1$, $f(-2) = -3$."
+                },
+                {
+                    "title": "Dominio",
+                    "description": "El <strong>dominio</strong> de una función es el conjunto de todos los valores de entrada para los cuales la función está definida. Al calcular el dominio hay que excluir los valores que hacen que la expresión sea indefinida: denominadores nulos, raíces de negativos, etc.",
+                    "example": "Para la función $f(x) = \\dfrac{1}{x}$, el dominio es $\\mathbb{R} \\setminus \\{0\\}$ porque no se puede dividir por cero. Para $g(x) = \\sqrt{x}$, el dominio es $[0, +\\infty)$ porque no existe la raíz cuadrada de números negativos en $\\mathbb{R}$."
+                },
+                {
+                    "title": "Recorrido (imagen)",
+                    "description": "El <strong>recorrido</strong> o imagen de una función es el conjunto de todos los valores de salida que puede tomar. Es decir, el conjunto de valores $f(x)$ cuando $x$ recorre todo el dominio.",
+                    "example": "Para $f(x) = x^2$, el recorrido es $[0, +\\infty)$ ya que los cuadrados son siempre no negativos. Para $f(x) = \\sin(x)$, el recorrido es $[-1, 1]$."
+                }
+            ]
+        },
+        {
+            "title": "Continuidad y discontinuidad",
+            "items": [
+                {
+                    "title": "Función continua",
+                    "description": "Una función es <strong>continua en un punto</strong> $x = a$ si se cumplen tres condiciones simultáneamente: <br>① $f(a)$ está definida.<br>② Existe $\\lim_{x \\to a} f(x)$.<br>③ $\\lim_{x \\to a} f(x) = f(a)$.<br><br>Una función es continua si lo es en todos los puntos de su dominio.",
+                    "example": "La función $f(x) = x^2$ es continua en todo $\\mathbb{R}$. Los polinomios, las funciones trigonométricas y la exponencial son siempre continuas en su dominio."
+                },
+                {
+                    "title": "Discontinuidad evitable",
+                    "description": "Se produce cuando existe el límite en el punto pero <strong>la función no está definida</strong> allí (o toma un valor distinto al límite). Se llama evitable porque se puede redefinir la función en ese punto para hacerla continua.",
+                    "example": "La función $f(x) = \\dfrac{x^2 - 1}{x - 1}$ es discontinua en $x = 1$, pero $\\lim_{x \\to 1} f(x) = 2$. Redefiniendo $f(1) = 2$ la función se vuelve continua. Observa el círculo hueco en $x=1$: indica que ese punto no está definido. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-evitable.png' alt='Gráfica de discontinuidad evitable: línea recta con un hueco en x=1' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Discontinuidad evitable en $x=1$</figcaption></figure>"
+                },
+                {
+                    "title": "Discontinuidad de salto finito",
+                    "description": "Los límites laterales <strong>existen ambos</strong> y son <strong>finitos</strong>, pero son diferentes entre sí. El <em>salto</em> es la diferencia entre el límite por la derecha y por la izquierda: $\\lim_{x \\to a^+} f(x) - \\lim_{x \\to a^-} f(x)$.",
+                    "example": "La función $f(x) = \\begin{cases} x & \\text{si } x < 0 \\\\ x + 1 & \\text{si } x \\geq 0 \\end{cases}$ tiene una discontinuidad de salto finito en $x = 0$. El salto vale $1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-salto.png' alt='Gráfica de discontinuidad de salto: dos ramas con un salto de 1 en x=0' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Discontinuidad de salto finito en $x=0$</figcaption></figure>"
+                },
+                {
+                    "title": "Discontinuidad de salto infinito",
+                    "description": "Alguno de los límites laterales (por la izquierda o por la derecha) es <strong>infinito</strong>. La función presenta una <em>asíntota vertical</em> en el punto de discontinuidad.",
+                    "example": "La función $f(x) = \\dfrac{1}{x}$ tiene una discontinuidad de salto infinito en $x = 0$, ya que $\\lim_{x \\to 0^+} f(x) = +\\infty$ y $\\lim_{x \\to 0^-} f(x) = -\\infty$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-salto-infinito.png' alt='Gráfica de f(x)=1/x con asíntota vertical en x=0 ilustrando discontinuidad de salto infinito' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Discontinuidad de salto infinito de $f(x)=\\frac{1}{x}$ en $x=0$</figcaption></figure>"
+                }
+            ]
+        },
+        {
+            "title": "Monotonía y curvatura",
+            "items": [
+                {
+                    "title": "Monotonía",
+                    "description": "Una función es <strong>creciente</strong> en un intervalo si a valores mayores de $x$ le corresponden valores mayores de $f(x)$. Es <strong>decreciente</strong> si a valores mayores de $x$ le corresponden valores menores de $f(x)$. Una función es <strong>constante</strong> si $f(x)$ no varía. Con derivadas: $f'(x) > 0$ implica creciente, $f'(x) < 0$ implica decreciente.",
+                    "example": "La función $f(x) = x^3 - 3x$ es creciente en $(-\\infty, -1)$ y en $(1, +\\infty)$, y decreciente en $(-1, 1)$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/monotonia-funcion.png' alt='Gráfica de f(x)=x³-3x con intervalos de crecimiento y decrecimiento marcados' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Intervalos de crecimiento (verde) y decrecimiento (rojo)</figcaption></figure>"
+                },
+                {
+                    "title": "Función cóncava",
+                    "description": "Una función es <strong>cóncava</strong> (cóncava hacia abajo) en un intervalo si su gráfica se encuentra <em>por debajo</em> de cualquier recta secante entre dos puntos del intervalo. Equivalentemente, su segunda derivada es negativa: $f''(x) < 0$.",
+                    "example": "La función $f(x) = -x^2$ es cóncava en todo $\\mathbb{R}$, ya que $f''(x) = -2 < 0$. Las líneas tangentes (rojas) quedan por encima de la curva. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/funcion-concava.png' alt='Parábola invertida con rectas tangentes por encima, ilustrando función cóncava' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>$f(x)=-x^2$ es cóncava: la curva queda bajo sus tangentes</figcaption></figure>"
+                },
+                {
+                    "title": "Función convexa",
+                    "description": "Una función es <strong>convexa</strong> (cóncava hacia arriba) en un intervalo si su gráfica se encuentra <em>por encima</em> de cualquier recta secante entre dos puntos del intervalo. Equivalentemente, su segunda derivada es positiva: $f''(x) > 0$.",
+                    "example": "La función $f(x) = x^2$ es convexa en todo $\\mathbb{R}$, ya que $f''(x) = 2 > 0$. Las líneas tangentes (rojas) quedan por debajo de la curva. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/funcion-convexa.png' alt='Parábola con rectas tangentes por debajo, ilustrando función convexa' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>$f(x)=x^2$ es convexa: la curva queda sobre sus tangentes</figcaption></figure>"
+                },
+                {
+                    "title": "Punto de inflexión",
+                    "description": "Un <strong>punto de inflexión</strong> es un punto donde la función cambia de cóncava a convexa (o viceversa). En él la segunda derivada se anula: $f''(x) = 0$, aunque esto es condición necesaria pero no suficiente.",
+                    "example": "La función $f(x) = x^3$ tiene un punto de inflexión en $x = 0$, ya que $f''(x) = 6x = 0$ en $x=0$ y la curvatura cambia de cóncava (para $x<0$) a convexa (para $x>0$)."
+                }
+            ]
+        },
+        {
+            "title": "Máximos y mínimos",
+            "items": [
+                {
+                    "title": "Máximo relativo",
+                    "description": "Un punto $x = a$ es un <strong>máximo relativo</strong> si $f(a) \\geq f(x)$ para todo $x$ en algún intervalo abierto que contenga a $a$. Es un pico local de la función. Si $f$ es derivable, se da cuando $f'(a) = 0$ y $f''(a) < 0$.",
+                    "example": "La función $f(x) = x^3 - 3x$ tiene un máximo relativo en $x = -1$, con $f(-1) = 2$. En este punto $f'(-1) = 0$ y $f''(-1) = -6 < 0$."
+                },
+                {
+                    "title": "Mínimo relativo",
+                    "description": "Un punto $x = a$ es un <strong>mínimo relativo</strong> si $f(a) \\leq f(x)$ para todo $x$ en algún intervalo abierto que contenga a $a$. Es un valle local de la función. Si $f$ es derivable, se da cuando $f'(a) = 0$ y $f''(a) > 0$.",
+                    "example": "La función $f(x) = x^3 - 3x$ tiene un mínimo relativo en $x = 1$, con $f(1) = -2$. En este punto $f'(1) = 0$ y $f''(1) = 6 > 0$."
+                },
+                {
+                    "title": "Máximo absoluto",
+                    "description": "Es el <strong>mayor valor</strong> que toma la función en todo su dominio. Puede no existir si la función no está acotada superiormente.",
+                    "example": "La función $f(x) = -x^2 + 4$ tiene un máximo absoluto en $x = 0$, con $f(0) = 4$, ya que $-x^2 + 4 \\leq 4$ para todo $x \\in \\mathbb{R}$."
+                },
+                {
+                    "title": "Mínimo absoluto",
+                    "description": "Es el <strong>menor valor</strong> que toma la función en todo su dominio. Puede no existir si la función no está acotada inferiormente.",
+                    "example": "La función $f(x) = x^2$ tiene un mínimo absoluto en $x = 0$, con $f(0) = 0$, ya que $x^2 \\geq 0$ para todo $x \\in \\mathbb{R}$."
+                }
+            ]
+        },
+        {
+            "title": "Puntos de corte con los ejes",
+            "items": [
+                {
+                    "title": "Cortes con los ejes X e Y",
+                    "description": "Son los puntos donde la gráfica cruza los ejes cartesianos.<br>• <strong>Eje Y</strong>: Se calcula haciendo $x=0$, dando lugar al punto $(0, f(0))$. Solo puede haber uno como máximo.<br>• <strong>Eje X (Ceros)</strong>: Se hallan resolviendo $f(x) = 0$. Puede haber ninguno, uno o varios puntos.",
+                    "example": "Para $f(x) = x^2 + x - 2$:<br>• <strong>Corte Y</strong>: $f(0) = -2 \\Rightarrow (0, -2)$.<br>• <strong>Cortes X</strong>: $x^2 + x - 2 = 0 \\Rightarrow x = -2,\\ x = 1 \\Rightarrow (-2, 0)$ y $(1, 0)$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/cortes-ejes.png' alt='Gráfica de f(x)=x²+x-2 mostrando cortes en X (-2,0) y (1,0) y corte en Y (0,-2)' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Puntos de corte de $f(x)=x^2+x-2$</figcaption></figure>"
+                }
+            ]
+        },
+        {
+            "title": "Signo de la función",
+            "items": [
+                {
+                    "title": "Ceros de una función",
+                    "description": "Los <strong>ceros</strong> (o raíces) de una función son los valores de $x$ para los cuales $f(x) = 0$. Geométricamente son los puntos donde la gráfica corta al eje $X$. Son el punto de partida para estudiar el signo de la función.",
+                    "example": "Los ceros de $f(x) = x^2 - 4$ son $x = -2$ y $x = 2$, ya que $(-2)^2 - 4 = 0$ y $2^2 - 4 = 0$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/zeros-funcion.png' alt='Gráfica de f(x)=x²-4 con los ceros marcados en x=-2 y x=2' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Ceros de $f(x)=x^2-4$ en $x=-2$ y $x=2$</figcaption></figure>"
+                },
+                {
+                    "title": "Signo de la función",
+                    "description": "El <strong>signo</strong> de una función indica en qué intervalos la función toma valores positivos ($f(x) > 0$, la gráfica está <em>por encima</em> del eje $X$) y en cuáles valores negativos ($f(x) < 0$, la gráfica está <em>por debajo</em>). Los ceros marcan los cambios de signo.",
+                    "example": "Para $f(x) = x^2 - 4$, los ceros son $x = \\pm 2$. La función es <span style='color:#e63946;font-weight:bold'>negativa</span> en $(-2, 2)$, ya que la parábola queda bajo el eje $X$, y <span style='color:#2dc653;font-weight:bold'>positiva</span> en $(-\\infty, -2) \\cup (2, +\\infty)$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/signo-funcion.png' alt='Gráfica de f(x)=x²-4 con zonas positivas en verde y zona negativa en rojo' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Zonas positivas (verde) y negativa (rojo) de $f(x)=x^2-4$</figcaption></figure>"
+                }
+            ]
+        },
+        {
+            "title": "Simetría",
+            "items": [
+                {
+                    "title": "Función par",
+                    "description": "Una función es <strong>par</strong> si $f(-x) = f(x)$ para todo $x$ en su dominio. Su gráfica es simétrica respecto al <em>eje Y</em>. Para comprobar si una función es par: sustituir $x$ por $-x$ y verificar que se obtiene la misma expresión.",
+                    "example": "La función $f(x) = x^2$ es par: $f(-x) = (-x)^2 = x^2 = f(x)$. Otros ejemplos: $\\cos(x)$, $|x|$, $x^4$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/funcion-par.png' alt='Gráfica de f(x)=x² mostrando simetría respecto al eje Y con dos puntos simétricos (-2,4) y (2,4)' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>$f(x)=x^2$ es par: simétrica respecto al eje $Y$</figcaption></figure>"
+                },
+                {
+                    "title": "Función impar",
+                    "description": "Una función es <strong>impar</strong> si $f(-x) = -f(x)$ para todo $x$ en su dominio. Su gráfica es simétrica respecto al <em>origen</em> de coordenadas. Nota: toda función impar verifica que $f(0) = 0$ (si $0$ está en su dominio).",
+                    "example": "La función $f(x) = x^3$ es impar: $f(-x) = (-x)^3 = -x^3 = -f(x)$. Otros ejemplos: $\\sin(x)$, $x$, $x^5$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/funcion-impar.png' alt='Gráfica de f(x)=x³ mostrando simetría respecto al origen con puntos (1,1) y (-1,-1)' style='max-width: 300px; height: auto; border-radius: 8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>$f(x)=x^3$ es impar: simétrica respecto al origen</figcaption></figure>"
+                },
+                {
+                    "title": "Función sin simetría",
+                    "description": "Una función que <strong>no es ni par ni impar</strong> no tiene simetría especial. La mayoría de las funciones son de este tipo. Para determinarlo basta comprobar que no se cumple ni $f(-x) = f(x)$ ni $f(-x) = -f(x)$.",
+                    "example": "La función $f(x) = x^2 + x$ no tiene simetría: $f(-x) = x^2 - x$, que no es igual a $f(x) = x^2 + x$ ni a $-f(x) = -x^2 - x$."
+                }
+            ]
+        }
+    ]
+}

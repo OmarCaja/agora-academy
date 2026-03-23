@@ -38,7 +38,19 @@ export const menuSections = [
                         slug: "theory/algebra",
                         label: "Álgebra",
                     },
-
+                ],
+            },
+            {
+                title: "Funciones y Límites",
+                items: [
+                    {
+                        slug: "theory/funciones",
+                        label: "Funciones",
+                    },
+                    {
+                        slug: "theory/limites",
+                        label: "Límites y Continuidad",
+                    },
                 ],
             },
             {
