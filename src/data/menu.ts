@@ -48,6 +48,10 @@ export const menuSections = [
                         label: "Funciones",
                     },
                     {
+                        slug: "theory/funciones-elementales",
+                        label: "Funciones elementales",
+                    },
+                    {
                         slug: "theory/limites",
                         label: "Límites y Continuidad",
                     },
@@ -103,6 +107,10 @@ export const menuSections = [
             {
                 slug: "exercises/3-eso",
                 label: "3º E.S.O.",
+            },
+            {
+                slug: "exercises/4-eso",
+                label: "4º E.S.O.",
             },
             {
                 slug: "exercises/1-bach",

@@ -141,6 +141,16 @@
                     "example": "La función $f(x) = x^2 + x$ no tiene simetría: $f(-x) = x^2 - x$, que no es igual a $f(x) = x^2 + x$ ni a $-f(x) = -x^2 - x$."
                 }
             ]
+        },
+        {
+            "title": "Periodicidad",
+            "items": [
+                {
+                    "title": "Función periódica",
+                    "description": "Una función es <strong>periódica</strong> si sus valores se repiten a intervalos regulares a lo largo del eje X. Matemáticamente, existe un número real $T > 0$ (llamado <em>periodo fundamental</em>) tal que $f(x + T) = f(x)$ para todo $x$ en su dominio. Las funciones trigonométricas son los ejemplos más clásicos.",
+                    "example": "La función senoidal $f(x) = \\sin(x)$ es periódica con un periodo de $T = 2\\pi$. Esto significa que su forma gráfica (la onda periódica) es exactamente igual cada $2\\pi$ unidades. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/funcion-periodica.png' alt='Gráfica de f(x)=sin(x) mostrando un patrón de ondas repetitivo y marcando el periodo T=2π' style='max-width:300px; height:auto; border-radius:8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>$f(x)=\\sin(x)$ es periódica de periodo $T=2\\pi$</figcaption></figure>"
+                }
+            ]
         }
     ]
 }

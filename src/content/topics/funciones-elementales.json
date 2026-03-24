@@ -1,0 +1,61 @@
+{
+    "title": "Funciones Elementales",
+    "description": "Estudio de los tipos básicos de funciones: polinómicas, racionales, radicales, exponenciales y logarítmicas.",
+    "sections": [
+        {
+            "title": "Funciones polinómicas",
+            "items": [
+                {
+                    "title": "Primer grado (Lineales y Afines)",
+                    "description": "Su gráfica es una recta con ecuación $f(x) = mx + n$. <br><br><strong>Dominio:</strong> Son todos los números reales ($\\mathbb{R}$), ya que siempre podemos calcular su valor. <br><br><strong>Recorrido:</strong> También son todos los reales ($\\mathbb{R}$), salvo en las rectas horizontales.",
+                    "example": "La función $f(x) = 2x - 1$ tiene pendiente $m = 2$ y corta al eje Y en $n = -1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/lineal.png' alt='Función lineal' style='max-width:300px; height:auto; border-radius:8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Gráfica de $f(x)=2x-1$</figcaption></figure>"
+                },
+                {
+                    "title": "Segundo grado (Cuadráticas)",
+                    "description": "Tienen la forma $f(x) = ax^2 + bx + c$ y su gráfica es una parábola. <br><br><strong>Dominio:</strong> Todos los números reales ($\\mathbb{R}$). <br><br><strong>Recorrido:</strong> Va desde el vértice hacia arriba (forma de U, $a>0$) o hacia abajo (forma de montaña, $a<0$).",
+                    "example": "Consideremos $f(x) = x^2 - 4x + 3$. Su vértice está en $x_v = \\frac{4}{2} = 2$. Evaluando, obtenemos $f(2) = -1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/cuadratica.png' alt='Función cuadrática' style='max-width:300px; height:auto; border-radius:8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Gráfica de $f(x)=x^2-4x+3$</figcaption></figure>"
+                }
+            ]
+        },
+        {
+            "title": "Funciones racionales",
+            "items": [
+                {
+                    "title": "Racionales (Cociente de polinomios)",
+                    "description": "Son divisiones entre polinomios: $f(x) = \\frac{P(x)}{Q(x)}$. <br><br><strong>Dominio:</strong> Son todos los números reales ($\\mathbb{R}$) menos los valores que hacen que el denominador sea $0$ (no se puede dividir por $0$). <br><br><strong>Recorrido:</strong> Son todos los reales ($\\mathbb{R}$) menos los valores donde haya asíntotas horizontales.",
+                    "example": "Para $f(x) = \\frac{1}{x-2} + 1$, la gráfica de la hipérbola base se ha trasladado $2$ unidades a la derecha y $1$ unidad hacia arriba. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/racional.png' alt='Función racional trasladada' style='max-width:300px; height:auto; border-radius:8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Gráfica con asíntotas en $x=2$ e $y=1$</figcaption></figure>"
+                }
+            ]
+        },
+        {
+            "title": "Funciones radicales",
+            "items": [
+                {
+                    "title": "Radicales",
+                    "description": "Son las funciones que tienen raíces, como $f(x) = \\sqrt{x}$. <br><br><strong>Dominio:</strong> Si la raíz es de índice par, lo de dentro debe ser positivo o $0$. Si es impar, pueden ser todos los reales ($\\mathbb{R}$). <br><br><strong>Recorrido:</strong> El resultado de una raíz par se toma siempre como positivo o cero: $[0, +\\infty)$.",
+                    "example": "Para la función $f(x) = \\sqrt{x+2}$, exigimos que $x+2 \\geq 0$, es decir, el dominio es $[-2, +\\infty)$. La curva empieza en $(-2, 0)$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/radical.png' alt='Función radical' style='max-width:300px; height:auto; border-radius:8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Gráfica de $f(x)=\\sqrt{x+2}$</figcaption></figure>"
+                }
+            ]
+        },
+        {
+            "title": "Funciones exponenciales",
+            "items": [
+                {
+                    "title": "Exponenciales",
+                    "description": "Tienen la incógnita en el exponente, por ejemplo $f(x) = 2^x$. <br><br><strong>Dominio:</strong> Son todos los números reales ($\\mathbb{R}$). <br><br><strong>Recorrido:</strong> Su resultado es siempre mayor que cero: $(0, +\\infty)$. Nunca dan cero ni valores negativos.",
+                    "example": "A continuación, podemos ver las gráficas de $f(x) = 2^x$ (creciente) y $g(x) = 0.5^x$ (decreciente). <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/exponencial.png' alt='Funciones exponenciales' style='max-width:300px; height:auto; border-radius:8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Gráficas de $2^x$ y $0.5^x$</figcaption></figure>"
+                }
+            ]
+        },
+        {
+            "title": "Funciones logarítmicas",
+            "items": [
+                {
+                    "title": "Logarítmicas",
+                    "description": "Tienen la forma $f(x) = \\log_a(x)$. Son la inversa de las exponenciales. <br><br><strong>Dominio:</strong> Lo de dentro del logaritmo debe ser mayor que $0$ (estríctamente positivo). <br><br><strong>Recorrido:</strong> Pueden dar cualquier resultado, así que son todos los números reales ($\\mathbb{R}$).",
+                    "example": "Observemos la gráfica de la función $f(x) = \\log_2(x)$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/logaritmica.png' alt='Función logarítmica' style='max-width:300px; height:auto; border-radius:8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>Gráfica de $f(x)=\\log_2(x)$</figcaption></figure>"
+                }
+            ]
+        }
+    ]
+}

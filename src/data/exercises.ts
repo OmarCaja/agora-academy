@@ -80,6 +80,20 @@ export const exercisesData: Record<string, LevelData> = {
             },
         ],
     },
+    "4-eso": {
+        title: "4º E.S.O.",
+        topics: [
+            {
+                title: "Funciones",
+                pdfs: [
+                    {
+                        name: "Ejercicios de funciones 1",
+                        url: "/ejercicios/4-eso/funciones/funciones-1.pdf",
+                    },
+                ],
+            },
+        ],
+    },
     "1-bach": {
         title: "1º Bachillerato",
         topics: [
@@ -98,6 +112,15 @@ export const exercisesData: Record<string, LevelData> = {
                     {
                         name: "Estadística bidimensional 1",
                         url: "/ejercicios/1-bach/estadistica/bidimensional/bidimensional-1.pdf",
+                    },
+                ],
+            },
+            {
+                title: "Límites",
+                pdfs: [
+                    {
+                        name: "Ejercicios de límites 1",
+                        url: "/ejercicios/1-bach/limites/limites-1.pdf",
                     },
                 ],
             },

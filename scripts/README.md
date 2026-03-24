@@ -1,6 +1,6 @@
 # Scripts
 
-## `generar-graficas-matematicas.py`
+## `generate-math-graphs.py`
 
 Generates mathematical graph images with **matplotlib** and saves them directly
 to `public/ejemplos/<folder>/` so Astro serves them in production.
@@ -16,7 +16,7 @@ pip3 install matplotlib numpy
 Always from the **project root**:
 
 ```bash
-python3 scripts/generar-graficas-matematicas.py
+python3 scripts/generate-math-graphs.py
 ```
 
 ### How to add a new graph
@@ -62,6 +62,6 @@ save(fig, 'my-graph.png')          # ← output filename
 
 When asking the AI to generate a new graph, give it this context:
 
-> *"Using the script `scripts/generar-graficas-matematicas.py` as a template,
+> *"Using the script `scripts/generate-math-graphs.py` as a template,
 > add a new graph for [description]. Save it as
 > `public/ejemplos/[folder]/[name].png` and update the corresponding JSON."*
