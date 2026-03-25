@@ -90,6 +90,14 @@ export const exercisesData: Record<string, LevelData> = {
                         name: "Ejercicios de funciones 1",
                         url: "/ejercicios/4-eso/funciones/funciones-1.pdf",
                     },
+                    {
+                        name: "Ejercicios de funciones 2",
+                        url: "/ejercicios/4-eso/funciones/funciones-2.pdf",
+                    },
+                    {
+                        name: "Ejercicios de funciones 3",
+                        url: "/ejercicios/4-eso/funciones/funciones-3.pdf",
+                    },
                 ],
             },
         ],
@@ -103,7 +111,7 @@ export const exercisesData: Record<string, LevelData> = {
                     {
                         name: "Estadística unidimensional 1",
                         url: "/ejercicios/1-bach/estadistica/unidimensional/unidimensional-1.pdf",
-                    },
+                    }
                 ],
             },
             {
@@ -113,6 +121,10 @@ export const exercisesData: Record<string, LevelData> = {
                         name: "Estadística bidimensional 1",
                         url: "/ejercicios/1-bach/estadistica/bidimensional/bidimensional-1.pdf",
                     },
+                    {
+                        name: "Estadística bidimensional 2",
+                        url: "/ejercicios/1-bach/estadistica/bidimensional/bidimensional-2.pdf",
+                    }
                 ],
             },
             {
