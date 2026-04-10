@@ -128,6 +128,15 @@ export const exercisesData: Record<string, LevelData> = {
                 ],
             },
             {
+                title: "Estadística",
+                pdfs: [
+                    {
+                        name: "Ejercicios de Estadística 1",
+                        url: "/ejercicios/1-bach/estadistica/estadistica-1.pdf",
+                    }
+                ],
+            },
+            {
                 title: "Límites",
                 pdfs: [
                     {
@@ -143,6 +152,10 @@ export const exercisesData: Record<string, LevelData> = {
                         name: "Ejercicios de Probabilidad 1",
                         url: "/ejercicios/1-bach/probabilidad/probabilidad-1.pdf",
                     },
+                    {
+                        name: "Ejercicios de Probabilidad 2",
+                        url: "/ejercicios/1-bach/probabilidad/probabilidad-2.pdf",
+                    }
                 ],
             },
         ],
