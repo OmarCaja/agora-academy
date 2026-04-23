@@ -103,16 +103,15 @@ import "../styles/global.css";
     <!-- KaTeX CSS -->
     <!-- (Imported in frontmatter for bundling) -->
 
-    <!-- Structured Data (JSON-LD): WebSite — used by Google for site name in search results -->
     <script
       type="application/ld+json"
       is:inline
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "Academia Ágora",
-        url: "https://agoraacademy.es/",
-        alternateName: ["Academia Ágora", "Ágora"],
+        "name": "Academia Ágora",
+        "alternateName": ["Ágora", "Agora Academy"],
+        "url": Astro.site
       })}
     />
 
@@ -125,9 +124,9 @@ import "../styles/global.css";
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           name: "Academia Ágora",
-          image: "https://agoraacademy.es/favicon/logo.png",
-          "@id": "https://agoraacademy.es",
-          url: "https://agoraacademy.es",
+          image: `${Astro.site}/favicon/logo.png`,
+          "@id": Astro.site,
+          url: Astro.site,
           telephone: "+34649021173",
           email: "info@agoraacademy.es",
           address: {
