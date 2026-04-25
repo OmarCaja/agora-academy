@@ -106,6 +106,15 @@ export const exercisesData: Record<string, LevelData> = {
         title: "1º Bachillerato",
         topics: [
             {
+                title: "Funciones",
+                pdfs: [
+                    {
+                        name: "Ejercicios de funciones 1",
+                        url: "/ejercicios/1-bach/funciones/funciones-1.pdf",
+                    }
+                ]
+            },
+            {
                 title: "Estadística unidimensional",
                 pdfs: [
                     {
