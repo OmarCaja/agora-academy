@@ -151,6 +151,36 @@
                     "example": "La función senoidal $f(x) = \\sin(x)$ es periódica con un periodo de $T = 2\\pi$. Esto significa que su forma gráfica (la onda periódica) es exactamente igual cada $2\\pi$ unidades. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/funcion-periodica.png' alt='Gráfica de f(x)=sin(x) mostrando un patrón de ondas repetitivo y marcando el periodo T=2π' style='max-width:300px; height:auto; border-radius:8px;'><figcaption style='font-size:0.85em;color:#666;margin-top:4px'>$f(x)=\\sin(x)$ es periódica de periodo $T=2\\pi$</figcaption></figure>"
                 }
             ]
+        },
+        {
+            "title": "Composición de funciones",
+            "items": [
+                {
+                    "title": "Composición de funciones",
+                    "description": "La <strong>composición de funciones</strong> consiste en aplicar una función al resultado de otra. Si tenemos dos funciones $f$ y $g$, la composición $(g \\circ f)(x)$ (se lee '$f$ compuesta con $g$') se define como $(g \\circ f)(x) = g(f(x))$. Es importante notar que el orden importa: en general, $(g \\circ f)(x) \\neq (f \\circ g)(x)$.",
+                    "example": "Sean $f(x) = x + 3$ y $g(x) = x^2$. <br>• $(g \\circ f)(x) = g(f(x)) = g(x + 3) = (x + 3)^2 = x^2 + 6x + 9$. <br>• $(f \\circ g)(x) = f(g(x)) = f(x^2) = x^2 + 3$."
+                }
+            ]
+        },
+        {
+            "title": "Función inversa",
+            "items": [
+                {
+                    "title": "Función inversa",
+                    "description": "La <strong>función inversa</strong> de una función $f$, denotada como $f^{-1}$, es aquella que 'deshace' la acción de $f$. Para que una función tenga inversa, debe ser biyectiva (cada valor del recorrido proviene de un único valor del dominio). Gráficamente, $f$ y $f^{-1}$ son simétricas respecto a la recta $y = x$.",
+                    "example": "Para $f(x) = 2x - 3$, su inversa es $f^{-1}(x) = \\dfrac{x + 3}{2}$. <br>Si calculamos $f(5) = 7$, entonces $f^{-1}(7) = \\dfrac{7 + 3}{2} = 5$."
+                },
+                {
+                    "title": "Cálculo de la función inversa",
+                    "description": "Para calcular la inversa de una función $f(x)$ seguimos estos pasos:<br>① Sustituimos $f(x)$ por $y$.<br>② Intercambiamos todas las $x$ por $y$ y viceversa.<br>③ Despejamos la nueva variable $y$.<br>④ La expresión final es $f^{-1}(x)$.",
+                    "example": "Calcular la inversa de $f(x) = \\dfrac{2x + 1}{x - 3}$:<br>1. $x = \\dfrac{2y + 1}{y - 3}$ (tras intercambiar variables)<br>2. $x(y - 3) = 2y + 1 \\Rightarrow xy - 3x = 2y + 1$<br>3. $xy - 2y = 3x + 1 \\Rightarrow y(x - 2) = 3x + 1$<br>4. $y = \\dfrac{3x + 1}{x - 2} \\Rightarrow f^{-1}(x) = \\dfrac{3x + 1}{x - 2}$"
+                },
+                {
+                    "title": "Composición con la inversa",
+                    "description": "Una propiedad fundamental de la función inversa es que al componer una función con su inversa, el resultado es la <strong>función identidad</strong> $I(x) = x$. Esto se cumple en ambos órdenes: $(f \\circ f^{-1})(x) = x$ y $(f^{-1} \\circ f)(x) = x$.",
+                    "example": "Usando $f(x) = 2x - 3$ y $f^{-1}(x) = \\dfrac{x + 3}{2}$: <br>$(f \\circ f^{-1})(x) = f\\left(\\dfrac{x+3}{2}\\right) = 2\\left(\\dfrac{x+3}{2}\\right) - 3 = (x + 3) - 3 = x$."
+                }
+            ]
         }
     ]
 }
