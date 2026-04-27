@@ -64,6 +64,15 @@ export const exercisesData: Record<string, LevelData> = {
                     },
                 ],
             },
+            {
+                title: "Proporcionalidad y porcentajes",
+                pdfs: [
+                    {
+                        name: "Ejercicios de proporcionalidad y porcentajes 1",
+                        url: "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-1.pdf",
+                    },
+                ],
+            },
         ],
     },
     "3-eso": {
