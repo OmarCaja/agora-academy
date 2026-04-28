@@ -71,6 +71,10 @@ export const exercisesData: Record<string, LevelData> = {
                         name: "Ejercicios de proporcionalidad y porcentajes 1",
                         url: "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-1.pdf",
                     },
+                    {
+                        name: "Ejercicios de proporcionalidad y porcentajes 2",
+                        url: "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-2.pdf",
+                    }
                 ],
             },
         ],
@@ -120,6 +124,10 @@ export const exercisesData: Record<string, LevelData> = {
                     {
                         name: "Ejercicios de funciones 1",
                         url: "/ejercicios/1-bach/funciones/funciones-1.pdf",
+                    },
+                    {
+                        name: "Ejercicios de funciones 2",
+                        url: "/ejercicios/1-bach/funciones/funciones-2.pdf",
                     }
                 ]
             },
