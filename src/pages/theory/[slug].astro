@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import PropertyBox from "../../components/PropertyBox.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
+import { slugify } from "../../utils/slugify";
 
 export async function getStaticPaths() {
     const topics = await getCollection("topics");
@@ -34,16 +35,6 @@ const topicSchema = {
         name: section.title,
         learningResourceType: "Section",
     })),
-};
-
-// Helper to create URL-friendly IDs (must match TableOfContents.astro)
-const slugify = (text: string) => {
-    return text
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^\w ]+/g, "")
-        .replace(/ +/g, "-");
 };
 ---
 

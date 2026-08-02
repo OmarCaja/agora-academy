@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import { exercisesData } from "../../data/exercises";
+import { slugify } from "../../utils/slugify";
 
 export async function getStaticPaths() {
     return Object.keys(exercisesData).map((level) => ({
@@ -16,16 +17,6 @@ const data = exercisesData[level];
 if (!data) {
     throw new Error(`Data not found for level: ${level}`);
 }
-
-// Helper to create URL-friendly IDs (must match TableOfContents.astro)
-const slugify = (text: string) => {
-    return text
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^\w ]+/g, "")
-        .replace(/ +/g, "-");
-};
 ---
 
 <BaseLayout

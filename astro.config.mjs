@@ -3,6 +3,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://agoraacademy.es',
+    site: 'https://www.agoraacademy.es',
     integrations: [sitemap()],
 })

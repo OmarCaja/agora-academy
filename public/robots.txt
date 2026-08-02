@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://agoraacademy.es/sitemap-index.xml
+Sitemap: https://www.agoraacademy.es/sitemap-index.xml

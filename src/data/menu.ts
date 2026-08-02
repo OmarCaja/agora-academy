@@ -117,6 +117,5 @@ export const menuSections = [
                 label: "1º Bachillerato",
             },
         ],
-        groups: [],
     },
 ];

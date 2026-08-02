@@ -1,19 +1,11 @@
 ---
+import { slugify } from "../utils/slugify";
+
 interface Props {
     sections: { title: string }[];
 }
 
 const { sections } = Astro.props;
-
-// Helper to create URL-friendly IDs
-const slugify = (text: string) => {
-    return text
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^\w ]+/g, "")
-        .replace(/ +/g, "-");
-};
 ---
 
 {
