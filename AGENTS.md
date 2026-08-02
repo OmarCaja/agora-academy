@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Static Astro 6 site (Spanish) for Ágora Academy. Content is data-driven JSON; pages are generated at build. Deploys to GitHub Pages on push to `main` via `.github/workflows/deploy.yml` (`site: https://agoraacademy.es`, served from `public/CNAME`).
+Static Astro 7 site (Spanish) for Ágora Academy. Content is data-driven JSON; pages are generated at build. Deploys to GitHub Pages on push to `main` via `.github/workflows/deploy.yml` (`site: https://agoraacademy.es`, served from `public/CNAME`).
 
 ## Commands
 

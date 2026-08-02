@@ -1,6 +1,6 @@
 # Ágora Academy - Mathematics Academy
 
-Modern web application built with **Astro 6** for Ágora Academy in Cuenca, Spain. This project focuses on high performance, excellent math rendering, and a premium user experience with smooth animations.
+Modern web application built with **Astro 7** for Ágora Academy in Cuenca, Spain. This project focuses on high performance, excellent math rendering, and a premium user experience with smooth animations.
 
 ## 🚀 Project Structure
 
@@ -18,7 +18,7 @@ Modern web application built with **Astro 6** for Ágora Academy in Cuenca, Spai
 │   │   └── ...
 │   ├── content/
 │   │   └── topics/           # JSON data for theory topics
-│   ├── content.config.ts     # Content collections schema (Astro 6)
+│   ├── content.config.ts     # Content collections schema (Astro 7)
 │   ├── data/
 │   │   ├── menu.ts           # Dynamic navigation menu configuration
 │   │   └── exercises.ts      # Data structure for exercise PDFs
@@ -28,7 +28,7 @@ Modern web application built with **Astro 6** for Ágora Academy in Cuenca, Spai
 │   │   ├── theory/
 │   │   │   └── [slug].astro  # Dynamic theory page generator
 │   │   ├── exercises/
-│   │   │   └── [slug].astro  # Dynamic exercise list generator
+│   │   │   └── [level].astro  # Dynamic exercise list generator
 │   │   └── index.astro       # Home page
 │   ├── scripts/
 │   │   ├── animations.js     # Scroll and interaction animations
@@ -88,7 +88,7 @@ Dynamic listing system for PDF exercises:
 
 ## 📦 Tech Stack
 
-- **Astro 6.x** (Island architecture and static generation)
+- **Astro 7.x** (Island architecture and static generation)
 - **KaTeX** (High-performance math rendering)
 - **Vanilla CSS** (Modern variables, nesting, and styling)
 - **GitHub Actions** (Automated deployment to GitHub Pages)
