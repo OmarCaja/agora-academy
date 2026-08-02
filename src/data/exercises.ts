@@ -163,6 +163,19 @@ export const exercisesData: Record<string, LevelData> = {
                 ],
             },
             {
+                title: "Exámenes",
+                pdfs: [
+                    {
+                        name: "Funciones, límites y derivadas 1",
+                        url: "/ejercicios/1-bach/examenes/funciones-lmites-derivadas-1.pdf",
+                    },
+                    {
+                        name: "Operaciones, ecuaciones e inecuaciones 1",
+                        url: "/ejercicios/1-bach/examenes/operaciones-ecuaciones-inecuaciones-1.pdf",
+                    },
+                ],
+            },
+            {
                 title: "Límites",
                 pdfs: [
                     {

@@ -1,6 +1,6 @@
 # Ágora Academy - Mathematics Academy
 
-Modern web application built with **Astro 5** for Ágora Academy in Cuenca, Spain. This project focuses on high performance, excellent math rendering, and a premium user experience with smooth animations.
+Modern web application built with **Astro 6** for Ágora Academy in Cuenca, Spain. This project focuses on high performance, excellent math rendering, and a premium user experience with smooth animations.
 
 ## 🚀 Project Structure
 
@@ -8,7 +8,7 @@ Modern web application built with **Astro 5** for Ágora Academy in Cuenca, Spai
 /
 ├── public/
 │   ├── favicon/          # Favicon files and static assets
-│   └── exercises/       # PDF repository for exercise worksheets by level
+│   └── ejercicios/       # PDF repository for exercise worksheets by level
 ├── src/
 │   ├── components/       # Reusable Astro components
 │   │   ├── GlobalNav.astro   # Main navigation (logo and theme toggle)
@@ -18,7 +18,7 @@ Modern web application built with **Astro 5** for Ágora Academy in Cuenca, Spai
 │   │   └── ...
 │   ├── content/
 │   │   └── topics/           # JSON data for theory topics
-│   ├── content.config.ts     # Content collections schema (Astro 5)
+│   ├── content.config.ts     # Content collections schema (Astro 6)
 │   ├── data/
 │   │   ├── menu.ts           # Dynamic navigation menu configuration
 │   │   └── exercises.ts      # Data structure for exercise PDFs
@@ -59,7 +59,7 @@ Theory content is managed through **JSON** files, enabling:
 
 ### 📚 Exercise Management
 Dynamic listing system for PDF exercises:
-- PDFs are organized by level in `public/exercises/`.
+- PDFs are organized by level in `public/ejercicios/`.
 - Relationship mapping is defined in `src/data/exercises.ts`.
 - Exercise pages are dynamically generated based on the school level.
 
@@ -72,9 +72,9 @@ Dynamic listing system for PDF exercises:
 
 | Command | Action |
 |---------|--------|
-| `npm run dev` | Start dev server at `localhost:4321` |
-| `npm run build` | Build production site to `./dist/` |
-| `npm run preview` | Preview production build locally |
+| `pnpm dev` | Start dev server at `localhost:4321` |
+| `pnpm build` | Build production site to `./dist/` |
+| `pnpm preview` | Preview production build locally |
 
 ## 📝 Content Management
 
@@ -83,12 +83,12 @@ Dynamic listing system for PDF exercises:
 2. Register it in `src/data/menu.ts` under the appropriate section.
 
 ### Adding New Exercises
-1. Upload the PDF to the corresponding folder in `public/exercises/`.
+1. Upload the PDF to the corresponding folder in `public/ejercicios/`.
 2. Add the entry to the `exercisesData` object in `src/data/exercises.ts`.
 
 ## 📦 Tech Stack
 
-- **Astro 5.x** (Island architecture and static generation)
+- **Astro 6.x** (Island architecture and static generation)
 - **KaTeX** (High-performance math rendering)
 - **Vanilla CSS** (Modern variables, nesting, and styling)
 - **GitHub Actions** (Automated deployment to GitHub Pages)
