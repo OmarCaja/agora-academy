@@ -173,6 +173,10 @@ export const exercisesData: Record<string, LevelData> = {
                         name: "Operaciones, ecuaciones e inecuaciones 1",
                         url: "/ejercicios/1-bach/examenes/operaciones-ecuaciones-inecuaciones-1.pdf",
                     },
+                    {
+                        name: "Operaciones, ecuaciones e inecuaciones 2",
+                        url: "/ejercicios/1-bach/examenes/operaciones-ecuaciones-inecuaciones-2.pdf",
+                    },
                 ],
             },
             {
