@@ -43,7 +43,7 @@
             "items": [
                 {
                     "title": "Tipos de correlación",
-                    "description": "La correlación indicia la relación o dependencia entre las variables. Puede clasificarse de varias formas:<br><ul><li><strong>Funcional:</strong> Existe una relación exacta, $y = f(x)$.</li><li><strong>Aleatoria:</strong> Existe relación estadística pero no exacta.</li><li><strong>Nula:</strong> No hay relación entre las variables.</li><li><strong>Directa (Positiva):</strong> Al aumentar una variable, aumenta la otra.</li><li><strong>Inversa (Negativa):</strong> Al aumentar una variable, la otra disminuye.</li><li><strong>Fuerte:</strong> La dependencia es alta (los puntos están muy cerca de la recta de regresión).</li><li><strong>Débil:</strong> La dependencia es baja (la nube de puntos es muy dispersa).</li></ul>"
+                    "description": "La correlación indica la relación o dependencia entre las variables. Puede clasificarse de varias formas:<br><ul><li><strong>Funcional:</strong> Existe una relación exacta, $y = f(x)$.</li><li><strong>Aleatoria:</strong> Existe relación estadística pero no exacta.</li><li><strong>Nula:</strong> No hay relación entre las variables.</li><li><strong>Directa (Positiva):</strong> Al aumentar una variable, aumenta la otra.</li><li><strong>Inversa (Negativa):</strong> Al aumentar una variable, la otra disminuye.</li><li><strong>Fuerte:</strong> La dependencia es alta (los puntos están muy cerca de la recta de regresión).</li><li><strong>Débil:</strong> La dependencia es baja (la nube de puntos es muy dispersa).</li></ul>"
                 },
                 {
                     "title": "Coeficiente de correlación lineal ($r$)",

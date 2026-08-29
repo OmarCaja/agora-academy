@@ -8,7 +8,7 @@ import ContactItem from "../components/ContactItem.astro";
 
 <BaseLayout
 	title="Academia Ágora - Academia de matemáticas en Cuenca"
-	description="Academia de matemáticas en Cuenca especializada en E.S.O. y Bachillerato. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3."
+	description="Academia de matemáticas en Cuenca para Primaria, E.S.O. y Bachillerato. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3."
 	currentPage="index"
 >
 	<div class="content-section">
@@ -19,12 +19,25 @@ import ContactItem from "../components/ContactItem.astro";
 
 			<p>
 				En <strong>Ágora</strong> nos especializamos en la enseñanza de matemáticas
-				para estudiantes de E.S.O. y Bachillerato en Cuenca. Con nuestros
+				para estudiantes de Primaria, E.S.O. y Bachillerato en Cuenca. Con nuestros
 				<strong>grupos reducidos</strong>, cada alumno recibe una
 				atención personalizada y un seguimiento cercano de su progreso.
 			</p>
 
 			<LevelTags />
+		</section>
+
+		<section class="fade-in">
+			<h2>Recursos</h2>
+			<InfoBox>
+				<p>
+					Ponemos a tu disposición 					<strong>apuntes digitales</strong>, <strong>ejercicios</strong> y <strong>exámenes</strong> para que
+					puedas practicar y reforzar lo aprendido en clase.
+				</p>
+				<a href="/exercises/1-eso" class="resource-link">
+					Ver ejercicios y materiales →
+				</a>
+			</InfoBox>
 		</section>
 
 		<section class="fade-in">
@@ -42,6 +55,17 @@ import ContactItem from "../components/ContactItem.astro";
 		</section>
 
 		<style>
+			.resource-link {
+				display: inline-block;
+				margin-top: var(--spacing-md);
+				color: var(--accent);
+				font-weight: 600;
+				text-decoration: none;
+				transition: all var(--transition);
+			}
+			.resource-link:hover {
+				text-decoration: underline;
+			}
 			.pros-list {
 				list-style: none;
 				padding: 0;

@@ -59,7 +59,7 @@
                 },
                 {
                     "title": "División de monomios",
-                    "description": "Se dividen los coeficientes y se restan los exponentes de las de las letras comunes en la parte literal.",
+                    "description": "Se dividen los coeficientes y se restan los exponentes de las letras comunes en la parte literal.",
                     "example": "$\\frac{10x^5}{2x^2} = 5x^{5-2} = 5x^3$",
                     "formula": "$\\frac{a \\cdot x^n}{b \\cdot x^m} = (a/b)x^{n-m}$"
                 }

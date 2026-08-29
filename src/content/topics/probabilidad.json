@@ -194,7 +194,7 @@
                     "title": "Sucesos dependientes",
                     "formula": "$P(A \\cap B) = P(A) \\cdot P(B|A)$",
                     "description": "Dos sucesos son dependientes si la probabilidad de que ocurra uno se ve alterada por la ocurrencia del otro.",
-                    "example": "Extraer dos cartas de una baraja sin devolver la primera a la mazo."
+                    "example": "Extraer dos cartas de una baraja sin devolver la primera al mazo."
                 },
                 {
                     "title": "Producto de probabilidades",
