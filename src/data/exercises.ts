@@ -170,6 +170,10 @@ export const exercisesData: Record<string, LevelData> = {
                         url: "/ejercicios/1-bach/examenes/funciones-limites-derivadas-1.pdf",
                     },
                     {
+                        name: "Funciones y límites 1",
+                        url: "/ejercicios/1-bach/examenes/funciones-limites-1.pdf",
+                    },
+                    {
                         name: "Operaciones, ecuaciones e inecuaciones 1",
                         url: "/ejercicios/1-bach/examenes/operaciones-ecuaciones-inecuaciones-1.pdf",
                     },

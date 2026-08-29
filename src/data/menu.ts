@@ -58,7 +58,7 @@ export const menuSections = [
                 ],
             },
             {
-                title: "Potencias y logaritmos",
+                title: "Potencias, raíces y logaritmos",
                 items: [
                     {
                         slug: "theory/potencias",

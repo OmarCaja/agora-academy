@@ -1,6 +1,6 @@
 {
     "title": "Propiedades de las raíces",
-    "description": "Aprende las propiedades de las raíces: raíz de un producto, cociente, potencia y raíz de una raíz. Material educativo de Academia Ágora de Matemáticas.",
+    "description": "Aprende las propiedades de las raíces: raíz de un producto, cociente, potencia, raíz de una raíz y racionalización. Material educativo de Academia Ágora de Matemáticas.",
     "sections": [
         {
             "title": "Fundamentos",
@@ -34,6 +34,23 @@
                     "title": "Raíz de una raíz",
                     "formula": "$\\sqrt[m]{\\sqrt[n]{a}} = \\sqrt[m \\cdot n]{a}$",
                     "example": "$\\sqrt[3]{\\sqrt{64}} = \\sqrt[3 \\cdot 2]{64} = \\sqrt[6]{64} = 2$"
+                }
+            ]
+        },
+        {
+            "title": "Racionalización de raíces",
+            "items": [
+                {
+                    "title": "Raíz en el denominador",
+                    "formula": "$\\frac{a}{\\sqrt[n]{b^k}} = \\frac{a}{\\sqrt[n]{b^k}} \\cdot \\frac{\\sqrt[n]{b^{n-k}}}{\\sqrt[n]{b^{n-k}}} = \\frac{a \\cdot \\sqrt[n]{b^{n-k}}}{b}$",
+                    "example": "$\\frac{3}{\\sqrt{5}} = \\frac{3}{\\sqrt{5}} \\cdot \\frac{\\sqrt{5}}{\\sqrt{5}} = \\frac{3\\sqrt{5}}{5}$",
+                    "description": "Se multiplica por $\\sqrt[n]{b^{n-k}}$ para que la suma de exponentes dentro de la raíz dé $n$ ($k + (n-k) = n$), y el denominador se reduzca a $b$. Si $k=1$, basta con multiplicar por la propia raíz."
+                },
+                {
+                    "title": "Binomio con raíz en el denominador",
+                    "formula": "$\\frac{a}{c + \\sqrt{d}} = \\frac{a}{c + \\sqrt{d}} \\cdot \\frac{c - \\sqrt{d}}{c - \\sqrt{d}} = \\frac{a(c - \\sqrt{d})}{c^2 - d}$",
+                    "example": "$\\frac{2}{3 + \\sqrt{5}} = \\frac{2(3 - \\sqrt{5})}{9 - 5} = \\frac{2(3 - \\sqrt{5})}{4} = \\frac{3 - \\sqrt{5}}{2}$",
+                    "description": "Se multiplica por el <strong>conjugado</strong> del denominador (se cambia el signo central). Al aplicar la <em>suma por diferencia</em> se obtiene una diferencia de cuadrados $(c+\\sqrt{d})(c-\\sqrt{d}) = c^2 - d$, eliminando la raíz."
                 }
             ]
         },
