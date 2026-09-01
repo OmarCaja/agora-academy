@@ -1,6 +1,8 @@
 {
     "title": "Funciones Elementales",
     "description": "Estudio de los tipos básicos de funciones: polinómicas, racionales, radicales, exponenciales y logarítmicas.",
+    "menuGroup": "Funciones y Límites",
+    "menuOrder": 2,
     "sections": [
         {
             "title": "Funciones polinómicas",

@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import InfoBox from "../components/InfoBox.astro";
+---
+
+<BaseLayout
+    title="Página no encontrada - 404 | Academia Ágora"
+    description="La página que buscas no existe o ha sido movida. Vuelve a la página principal de Academia Ágora."
+    currentPage="404"
+>
+    <div class="content-section">
+        <Header title="404" subtitle="Página no encontrada" />
+
+        <section class="fade-in">
+            <InfoBox>
+                <div class="not-found-body">
+                    <p class="error-msg">
+                        Parece que esta página no existe, ha cambiado de dirección o se ha movido.
+                    </p>
+                    <p>Puedes volver al inicio o explorar nuestros materiales:</p>
+
+                    <div class="action-links">
+                        <a href="/" class="action-btn primary-btn">
+                            ← Volver al inicio
+                        </a>
+                        <a href="/exercises/1-eso" class="action-btn secondary-btn">
+                            Ver ejercicios
+                        </a>
+                        <a href="/theory/algebra" class="action-btn secondary-btn">
+                            Ver teoría
+                        </a>
+                    </div>
+                </div>
+            </InfoBox>
+        </section>
+    </div>
+</BaseLayout>
+
+<style>
+    .content-section {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .not-found-body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .error-msg {
+        font-size: 1.1rem;
+        color: var(--text-primary);
+        line-height: 1.5;
+    }
+
+    .action-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-sm);
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 20px;
+        font-family: var(--font-family);
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: var(--radius);
+        border: var(--border-width) solid var(--border-color);
+        transition: all var(--transition);
+        box-shadow: 2px 2px 0 var(--shadow-color);
+    }
+
+    .action-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0 var(--shadow-color);
+    }
+
+    .primary-btn {
+        background: var(--accent);
+        color: var(--bg-primary);
+    }
+
+    .secondary-btn {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+    }
+</style>

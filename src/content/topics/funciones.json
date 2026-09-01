@@ -1,6 +1,8 @@
 {
     "title": "Funciones",
     "description": "Introducción al concepto de función, dominio, recorrido, continuidad, tipos de discontinuidad, monotonía, curvatura, máximos y mínimos, puntos de corte, signo de la función, y simetría par o impar.",
+    "menuGroup": "Funciones y Límites",
+    "menuOrder": 1,
     "sections": [
         {
             "title": "Definición de función",

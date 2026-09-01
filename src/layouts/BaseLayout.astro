@@ -4,15 +4,19 @@ interface Props {
   description: string;
   currentPage?: string;
   schema?: object;
+  showProgressBar?: boolean;
 }
 
-const { title, description, currentPage = "index", schema } = Astro.props;
+const { title, description, currentPage = "index", schema, showProgressBar = false } = Astro.props;
 
 import GlobalNav from "../components/GlobalNav.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
 import ReadingProgressBar from "../components/ReadingProgressBar.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
 import { ClientRouter } from "astro:transitions";
+import "@fontsource/space-mono/400.css";
+import "@fontsource/space-mono/700.css";
 import "katex/dist/katex.min.css";
 import "../styles/global.css";
 ---
@@ -56,14 +60,6 @@ import "../styles/global.css";
     />
     <meta name="application-name" content="Academia Ágora" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-
-    <!-- Fonts preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- Favicon & Manifest -->
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
@@ -176,8 +172,6 @@ import "../styles/global.css";
 
       window.setTheme = (theme) => {
         document.documentElement.setAttribute("data-theme", theme);
-        if (theme !== "dark")
-          document.documentElement.removeAttribute("data-theme");
         updateUI(theme);
       };
 
@@ -202,13 +196,15 @@ import "../styles/global.css";
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido</a>
     <GlobalNav transition:persist />
-    <ReadingProgressBar transition:persist />
+    {showProgressBar && <ReadingProgressBar transition:persist />}
     <Menu currentPage={currentPage} transition:persist />
 
     <main id="main-content" class="container">
       <slot />
       <Footer />
     </main>
+
+    <ScrollToTop transition:persist />
 
     <script>
       import "../scripts/animations.js";

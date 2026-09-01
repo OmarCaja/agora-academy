@@ -1,6 +1,8 @@
 {
     "title": "Límites y Continuidad",
     "description": "Estudio del límite de una función, resolución de indeterminaciones, asíntotas cartesianas y tipos de discontinuidad.",
+    "menuGroup": "Funciones y Límites",
+    "menuOrder": 3,
     "sections": [
         {
             "title": "Concepto de límite",

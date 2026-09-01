@@ -1,0 +1,103 @@
+---
+interface BreadcrumbItem {
+    label: string;
+    href?: string;
+}
+
+interface Props {
+    items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, "") : "https://agoraacademy.es";
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.label,
+        ...(item.href ? { item: `${siteUrl}${item.href}` } : {}),
+    })),
+};
+---
+
+<nav aria-label="Miga de pan" class="breadcrumbs-container">
+    <ol class="breadcrumbs-list">
+        {
+            items.map((item, idx) => {
+                const isLast = idx === items.length - 1;
+                return (
+                    <li class="breadcrumb-item">
+                        {item.href && !isLast ? (
+                            <a href={item.href} class="breadcrumb-link">
+                                {item.label}
+                            </a>
+                        ) : (
+                            <span class="breadcrumb-current" aria-current={isLast ? "page" : undefined}>
+                                {item.label}
+                            </span>
+                        )}
+                        {!isLast && <span class="breadcrumb-separator" aria-hidden="true">/</span>}
+                    </li>
+                );
+            })
+        }
+    </ol>
+</nav>
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+
+<style>
+    .breadcrumbs-container {
+        margin-bottom: var(--spacing-sm);
+        padding: 4px 0;
+    }
+
+    .breadcrumbs-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 6px;
+        font-size: 0.88rem;
+    }
+
+    .breadcrumb-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .breadcrumb-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color var(--transition);
+    }
+
+    .breadcrumb-link:hover {
+        color: var(--text-primary);
+        text-decoration: underline;
+    }
+
+    .breadcrumb-separator {
+        color: var(--text-muted);
+        opacity: 0.6;
+        user-select: none;
+    }
+
+    .breadcrumb-current {
+        color: var(--text-primary);
+        font-weight: 700;
+    }
+
+    @media print {
+        .breadcrumbs-container {
+            display: none !important;
+        }
+    }
+</style>

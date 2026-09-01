@@ -20,7 +20,7 @@ import ContactItem from "../components/ContactItem.astro";
 			<p>
 				En <strong>Ágora</strong> nos especializamos en la enseñanza de matemáticas
 				para estudiantes de Primaria, E.S.O. y Bachillerato en Cuenca. Con
-				nuestros <strong> grupos reducidos</strong>, cada alumno recibe
+				nuestros <strong>grupos reducidos</strong>, cada alumno recibe
 				una atención personalizada y un seguimiento cercano de su
 				progreso.
 			</p>
@@ -29,17 +29,43 @@ import ContactItem from "../components/ContactItem.astro";
 		</section>
 
 		<section class="fade-in">
-			<h2>Recursos</h2>
+			<h2>Recursos y Materiales</h2>
 			<InfoBox>
 				<p>
 					Ponemos a tu disposición <strong>apuntes digitales</strong>, <strong
-						>ejercicios</strong
-					> y <strong>exámenes</strong> para que puedas practicar y reforzar
-					lo aprendido en clase.
+						>ejercicios resueltos</strong
+					> y <strong>modelos de examen</strong> clasificados por niveles para reforzar
+					lo aprendido en clase:
 				</p>
-				<a href="/exercises/1-eso" class="resource-link">
-					Ver ejercicios y materiales →
-				</a>
+
+				<div class="resource-grid">
+					<a href="/exercises/1-eso" class="resource-card">
+						<span class="resource-card-level">1º E.S.O.</span>
+						<span class="resource-card-desc">Enteros, fracciones, álgebra y porcentajes</span>
+						<span class="resource-card-arrow">Ver ejercicios →</span>
+					</a>
+					<a href="/exercises/3-eso" class="resource-card">
+						<span class="resource-card-level">3º E.S.O.</span>
+						<span class="resource-card-desc">Ecuaciones y problemas</span>
+						<span class="resource-card-arrow">Ver ejercicios →</span>
+					</a>
+					<a href="/exercises/4-eso" class="resource-card">
+						<span class="resource-card-level">4º E.S.O.</span>
+						<span class="resource-card-desc">Funciones, gráficas y propiedades</span>
+						<span class="resource-card-arrow">Ver ejercicios →</span>
+					</a>
+					<a href="/exercises/1-bach" class="resource-card">
+						<span class="resource-card-level">1º Bachillerato</span>
+						<span class="resource-card-desc">Límites, estadística, probabilidad y exámenes</span>
+						<span class="resource-card-arrow">Ver ejercicios →</span>
+					</a>
+				</div>
+
+				<div class="theory-cta-wrapper">
+					<a href="/theory/algebra" class="theory-cta-link">
+						📚 Explorar apuntes y fórmulas de Teoría →
+					</a>
+				</div>
 			</InfoBox>
 		</section>
 
@@ -57,41 +83,6 @@ import ContactItem from "../components/ContactItem.astro";
 			</InfoBox>
 		</section>
 
-		<style>
-			.resource-link {
-				display: inline-block;
-				margin-top: var(--spacing-md);
-				color: var(--accent);
-				font-weight: 600;
-				text-decoration: none;
-				transition: all var(--transition);
-			}
-			.resource-link:hover {
-				text-decoration: underline;
-			}
-			.pros-list {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-			}
-			.pros-list li {
-				position: relative;
-				padding-left: 30px;
-				margin-bottom: 12px;
-				line-height: 1.4;
-			}
-			.pros-list li::before {
-				content: "✓";
-				position: absolute;
-				left: 0;
-				color: var(--accent);
-				font-weight: bold;
-			}
-			.pros-list li:last-child {
-				margin-bottom: 0;
-			}
-		</style>
-
 		<section id="contacto" class="fade-in">
 			<h2>Contacto</h2>
 
@@ -104,8 +95,7 @@ import ContactItem from "../components/ContactItem.astro";
 							rel="noopener noreferrer"
 							class="map-link"
 						>
-							📍 Calle Fermín Caballero, 3 (edificio Máster).<br
-							/>
+							📍 Calle Fermín Caballero, 3 (edificio Máster).<br />
 							Planta 6 [thegoodspace].<br />
 							Cuenca.
 						</a>
@@ -125,3 +115,100 @@ import ContactItem from "../components/ContactItem.astro";
 		</section>
 	</div>
 </BaseLayout>
+
+<style>
+	.resource-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--spacing-sm);
+		margin: var(--spacing-md) 0 var(--spacing-sm);
+	}
+
+	@media (min-width: 600px) {
+		.resource-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.resource-card {
+		display: flex;
+		flex-direction: column;
+		padding: 14px;
+		background: var(--bg-primary);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius);
+		text-decoration: none;
+		color: var(--text-primary);
+		box-shadow: 2px 2px 0 var(--shadow-color);
+		transition: all var(--transition);
+	}
+
+	.resource-card:hover {
+		transform: translate(-2px, -2px);
+		border-color: var(--accent);
+		box-shadow: 4px 4px 0 var(--shadow-color);
+	}
+
+	.resource-card-level {
+		font-weight: 700;
+		font-size: 1.05rem;
+		color: var(--text-primary);
+		margin-bottom: 4px;
+	}
+
+	.resource-card-desc {
+		font-size: 0.88rem;
+		color: var(--text-muted);
+		line-height: 1.4;
+		margin-bottom: 8px;
+		flex: 1;
+	}
+
+	.resource-card-arrow {
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: var(--accent);
+	}
+
+	.theory-cta-wrapper {
+		margin-top: var(--spacing-sm);
+		padding-top: var(--spacing-xs);
+	}
+
+	.theory-cta-link {
+		display: inline-block;
+		color: var(--text-primary);
+		font-weight: 700;
+		text-decoration: none;
+		border-bottom: 2px solid var(--accent);
+		padding-bottom: 2px;
+		transition: all var(--transition);
+	}
+
+	.theory-cta-link:hover {
+		color: var(--accent);
+		padding-left: 4px;
+	}
+
+	.pros-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.pros-list li {
+		position: relative;
+		padding-left: 30px;
+		margin-bottom: 12px;
+		line-height: 1.4;
+	}
+	.pros-list li::before {
+		content: "✓";
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+		font-weight: bold;
+	}
+	.pros-list li:last-child {
+		margin-bottom: 0;
+	}
+</style>

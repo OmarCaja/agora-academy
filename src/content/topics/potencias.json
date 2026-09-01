@@ -1,6 +1,8 @@
 {
     "title": "Propiedades de las potencias",
     "description": "Aprende las propiedades de las potencias: exponente cero, uno, negativo, operaciones con potencias. Material educativo de Academia Ágora de Matemáticas.",
+    "menuGroup": "Potencias, raíces y logaritmos",
+    "menuOrder": 1,
     "sections": [
         {
             "title": "Potencias básicas",

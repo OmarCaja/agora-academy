@@ -1,6 +1,8 @@
 {
     "title": "Propiedades de las operaciones",
     "description": "Explora las reglas fundamentales de la aritmética: propiedades conmutativa, asociativa, distributiva, elementos neutros, inversos y el elemento absorbente.",
+    "menuGroup": "Aritmética",
+    "menuOrder": 2,
     "sections": [
         {
             "title": "Propiedades estructurales",

@@ -1,0 +1,111 @@
+---
+---
+
+<button
+    id="scrollToTopBtn"
+    class="scroll-to-top"
+    aria-label="Volver arriba"
+    title="Volver arriba"
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="scroll-icon"
+        aria-hidden="true"
+    >
+        <polyline points="18 15 12 9 6 15" />
+    </svg>
+</button>
+
+<script>
+    function initScrollToTop() {
+        const btn = document.getElementById("scrollToTopBtn");
+        if (!btn) return;
+
+        function checkScroll() {
+            if (!btn) return;
+            const scrolled = window.scrollY || document.documentElement.scrollTop;
+            if (scrolled > 350) {
+                btn.classList.add("visible");
+            } else {
+                btn.classList.remove("visible");
+            }
+        }
+
+        window.addEventListener("scroll", checkScroll, { passive: true });
+        checkScroll();
+
+        btn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+    }
+
+    document.addEventListener("astro:page-load", initScrollToTop);
+</script>
+
+<style>
+    .scroll-to-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 44px;
+        height: 44px;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        border: var(--border-width) solid var(--border-color);
+        border-radius: var(--radius);
+        box-shadow: 3px 3px 0 var(--shadow-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 990;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+            opacity var(--transition),
+            visibility var(--transition),
+            transform var(--transition),
+            background var(--transition),
+            box-shadow var(--transition);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .scroll-to-top:hover {
+        background: var(--accent);
+        color: var(--bg-primary);
+        transform: translateY(-2px);
+        box-shadow: 5px 5px 0 var(--shadow-color);
+    }
+
+    .scroll-to-top:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--shadow-color);
+    }
+
+    .scroll-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    @media print {
+        .scroll-to-top {
+            display: none !important;
+        }
+    }
+</style>

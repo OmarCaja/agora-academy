@@ -1,6 +1,8 @@
 {
     "title": "Distribuciones de probabilidad",
     "description": "Estudio de las variables aleatorias discretas y continuas, incluyendo la distribución binomial y la distribución normal estándar con su uso práctico en el cálculo de probabilidades.",
+    "menuGroup": "Estadística y Probabilidad",
+    "menuOrder": 4,
     "sections": [
         {
             "title": "Variables aleatorias discretas",

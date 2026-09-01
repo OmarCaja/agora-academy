@@ -1,0 +1,116 @@
+---
+interface PagerItem {
+    title: string;
+    slug: string;
+    group?: string;
+}
+
+interface Props {
+    prev?: PagerItem;
+    next?: PagerItem;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{
+    (prev || next) && (
+        <nav class="topic-pager" aria-label="Navegación entre temas">
+            <div class="pager-col pager-prev">
+                {prev && (
+                    <a href={`/${prev.slug}`} class="pager-card" rel="prev">
+                        <span class="pager-direction">← Tema anterior</span>
+                        {prev.group && <span class="pager-group">{prev.group}</span>}
+                        <span class="pager-title">{prev.title}</span>
+                    </a>
+                )}
+            </div>
+
+            <div class="pager-col pager-next">
+                {next && (
+                    <a href={`/${next.slug}`} class="pager-card" rel="next">
+                        <span class="pager-direction">Tema siguiente →</span>
+                        {next.group && <span class="pager-group">{next.group}</span>}
+                        <span class="pager-title">{next.title}</span>
+                    </a>
+                )}
+            </div>
+        </nav>
+    )
+}
+
+<style>
+    .topic-pager {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-xl);
+        padding-top: var(--spacing-lg);
+        border-top: 1px dashed var(--border-color);
+    }
+
+    @media (min-width: 600px) {
+        .topic-pager {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .pager-col {
+        display: flex;
+    }
+
+    .pager-next {
+        justify-content: flex-end;
+    }
+
+    .pager-next .pager-card {
+        text-align: right;
+    }
+
+    .pager-card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 16px;
+        background: var(--bg-secondary);
+        border: var(--border-width) solid var(--border-color);
+        border-radius: var(--radius);
+        text-decoration: none;
+        color: var(--text-primary);
+        box-shadow: 2px 2px 0 var(--shadow-color);
+        transition: all var(--transition);
+    }
+
+    .pager-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0 var(--shadow-color);
+        border-color: var(--accent);
+    }
+
+    .pager-direction {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    .pager-group {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-bottom: 2px;
+    }
+
+    .pager-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    @media print {
+        .topic-pager {
+            display: none !important;
+        }
+    }
+</style>

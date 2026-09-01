@@ -1,210 +1,47 @@
-export interface PdfLink {
-    name: string;
-    url: string;
-}
+// Exercise configuration & override maps
+// Dropping a PDF into public/ejercicios/<level>/<topic>/ auto-discovers it.
+// Entries here are only needed if you want custom formatting different from auto-derived titles.
 
-export interface Topic {
-    title: string;
-    pdfs: PdfLink[];
-}
+export const levelOrder: string[] = [
+    "1-eso",
+    "2-eso",
+    "3-eso",
+    "4-eso",
+    "1-bach",
+    "2-bach",
+];
 
-export interface LevelData {
-    title: string;
-    topics: Topic[];
-}
+export const levelTitleOverrides: Record<string, string> = {
+    "1-eso": "1º E.S.O.",
+    "2-eso": "2º E.S.O.",
+    "3-eso": "3º E.S.O.",
+    "4-eso": "4º E.S.O.",
+    "1-bach": "1º Bachillerato",
+    "2-bach": "2º Bachillerato",
+};
 
-export const exercisesData: Record<string, LevelData> = {
-    "1-eso": {
-        title: "1º E.S.O.",
-        topics: [
-            {
-                title: "Números enteros",
-                pdfs: [
-                    {
-                        name: "Ejercicios de números enteros 1",
-                        url: "/ejercicios/1-eso/numeros-enteros/numeros-enteros-1.pdf",
-                    },
-                    {
-                        name: "Ejercicios de números enteros 2",
-                        url: "/ejercicios/1-eso/numeros-enteros/numeros-enteros-2.pdf",
-                    },
-                    {
-                        name: "Ejercicios de números enteros 3",
-                        url: "/ejercicios/1-eso/numeros-enteros/numeros-enteros-3.pdf",
-                    },
-                ],
-            },
-            {
-                title: "Fracciones",
-                pdfs: [
-                    {
-                        name: "Ejercicios de fracciones 1",
-                        url: "/ejercicios/1-eso/fracciones/fracciones-1.pdf",
-                    },
-                    {
-                        name: "Ejercicios de fracciones 2",
-                        url: "/ejercicios/1-eso/fracciones/fracciones-2.pdf",
-                    },
-                ],
-            },
-            {
-                title: "Álgebra",
-                pdfs: [
-                    {
-                        name: "Ejercicios de álgebra 1",
-                        url: "/ejercicios/1-eso/algebra/algebra-1.pdf",
-                    },
-                    {
-                        name: "Ejercicios de álgebra 2",
-                        url: "/ejercicios/1-eso/algebra/algebra-2.pdf",
-                    },
-                    {
-                        name: "Ejercicios de álgebra 3",
-                        url: "/ejercicios/1-eso/algebra/algebra-3.pdf",
-                    },
-                ],
-            },
-            {
-                title: "Proporcionalidad y porcentajes",
-                pdfs: [
-                    {
-                        name: "Ejercicios de proporcionalidad y porcentajes 1",
-                        url: "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-1.pdf",
-                    },
-                    {
-                        name: "Ejercicios de proporcionalidad y porcentajes 2",
-                        url: "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-2.pdf",
-                    }
-                ],
-            },
-        ],
-    },
-    "3-eso": {
-        title: "3º E.S.O.",
-        topics: [
-            {
-                title: "Ecuaciones",
-                pdfs: [
-                    {
-                        name: "Ejercicios de ecuaciones 1",
-                        url: "/ejercicios/3-eso/ecuaciones/ecuaciones-1.pdf",
-                    },
-                ],
-            },
-        ],
-    },
-    "4-eso": {
-        title: "4º E.S.O.",
-        topics: [
-            {
-                title: "Funciones",
-                pdfs: [
-                    {
-                        name: "Ejercicios de funciones 1",
-                        url: "/ejercicios/4-eso/funciones/funciones-1.pdf",
-                    },
-                    {
-                        name: "Ejercicios de funciones 2",
-                        url: "/ejercicios/4-eso/funciones/funciones-2.pdf",
-                    },
-                    {
-                        name: "Ejercicios de funciones 3",
-                        url: "/ejercicios/4-eso/funciones/funciones-3.pdf",
-                    },
-                ],
-            },
-        ],
-    },
-    "1-bach": {
-        title: "1º Bachillerato",
-        topics: [
-            {
-                title: "Funciones",
-                pdfs: [
-                    {
-                        name: "Ejercicios de funciones 1",
-                        url: "/ejercicios/1-bach/funciones/funciones-1.pdf",
-                    },
-                    {
-                        name: "Ejercicios de funciones 2",
-                        url: "/ejercicios/1-bach/funciones/funciones-2.pdf",
-                    }
-                ]
-            },
-            {
-                title: "Estadística unidimensional",
-                pdfs: [
-                    {
-                        name: "Estadística unidimensional 1",
-                        url: "/ejercicios/1-bach/estadistica/unidimensional/unidimensional-1.pdf",
-                    }
-                ],
-            },
-            {
-                title: "Estadística bidimensional",
-                pdfs: [
-                    {
-                        name: "Estadística bidimensional 1",
-                        url: "/ejercicios/1-bach/estadistica/bidimensional/bidimensional-1.pdf",
-                    },
-                    {
-                        name: "Estadística bidimensional 2",
-                        url: "/ejercicios/1-bach/estadistica/bidimensional/bidimensional-2.pdf",
-                    }
-                ],
-            },
-            {
-                title: "Estadística",
-                pdfs: [
-                    {
-                        name: "Ejercicios de Estadística 1",
-                        url: "/ejercicios/1-bach/estadistica/estadistica-1.pdf",
-                    }
-                ],
-            },
-            {
-                title: "Exámenes",
-                pdfs: [
-                    {
-                        name: "Funciones, límites y derivadas 1",
-                        url: "/ejercicios/1-bach/examenes/funciones-limites-derivadas-1.pdf",
-                    },
-                    {
-                        name: "Funciones y límites 1",
-                        url: "/ejercicios/1-bach/examenes/funciones-limites-1.pdf",
-                    },
-                    {
-                        name: "Operaciones, ecuaciones e inecuaciones 1",
-                        url: "/ejercicios/1-bach/examenes/operaciones-ecuaciones-inecuaciones-1.pdf",
-                    },
-                    {
-                        name: "Operaciones, ecuaciones e inecuaciones 2",
-                        url: "/ejercicios/1-bach/examenes/operaciones-ecuaciones-inecuaciones-2.pdf",
-                    },
-                ],
-            },
-            {
-                title: "Límites",
-                pdfs: [
-                    {
-                        name: "Ejercicios de límites 1",
-                        url: "/ejercicios/1-bach/limites/limites-1.pdf",
-                    },
-                ],
-            },
-            {
-                title: "Probabilidad",
-                pdfs: [
-                    {
-                        name: "Ejercicios de Probabilidad 1",
-                        url: "/ejercicios/1-bach/probabilidad/probabilidad-1.pdf",
-                    },
-                    {
-                        name: "Ejercicios de Probabilidad 2",
-                        url: "/ejercicios/1-bach/probabilidad/probabilidad-2.pdf",
-                    }
-                ],
-            },
-        ],
-    },
+export const topicTitleOverrides: Record<string, string> = {
+    "proporcionalidad": "Proporcionalidad y porcentajes",
+    "numeros-enteros": "Números enteros",
+    "estadistica/unidimensional": "Estadística unidimensional",
+    "estadistica/bidimensional": "Estadística bidimensional",
+    "estadistica": "Estadística",
+};
+
+export const pdfNameOverrides: Record<string, string> = {
+    // 1º ESO
+    "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-1.pdf":
+        "Ejercicios de proporcionalidad y porcentajes 1",
+    "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-2.pdf":
+        "Ejercicios de proporcionalidad y porcentajes 2",
+
+    // 1º Bachillerato Exámenes
+    "/ejercicios/1-bach/examenes/funciones-limites-derivadas-1.pdf":
+        "Funciones, límites y derivadas 1",
+    "/ejercicios/1-bach/examenes/funciones-limites-1.pdf":
+        "Funciones y límites 1",
+    "/ejercicios/1-bach/examenes/operaciones-ecuaciones-inecuaciones-1.pdf":
+        "Operaciones, ecuaciones e inecuaciones 1",
+    "/ejercicios/1-bach/examenes/operaciones-ecuaciones-inecuaciones-2.pdf":
+        "Operaciones, ecuaciones e inecuaciones 2",
 };

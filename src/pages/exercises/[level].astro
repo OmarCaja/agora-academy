@@ -1,18 +1,21 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
-import { exercisesData } from "../../data/exercises";
+import { discoverExercises } from "../../utils/discoverExercises";
 import { slugify } from "../../utils/slugify";
 
 export async function getStaticPaths() {
+    const exercisesData = discoverExercises();
     return Object.keys(exercisesData).map((level) => ({
         params: { level },
     }));
 }
 
 const { level } = Astro.params;
-const data = exercisesData[level];
+const exercisesData = discoverExercises();
+const data = level ? exercisesData[level] : null;
 
 if (!data) {
     throw new Error(`Data not found for level: ${level}`);
@@ -23,59 +26,340 @@ if (!data) {
     title={`Ejercicios ${data.title} - Ágora`}
     description={`Ejercicios de matemáticas para ${data.title}`}
     currentPage={`exercises/${level}`}
+    showProgressBar={true}
 >
     <div class="content-section">
+        <Breadcrumbs
+            items={[
+                { label: "Inicio", href: "/" },
+                { label: "Ejercicios" },
+                { label: data.title },
+            ]}
+        />
         <Header title={`EJERCICIOS ${data.title.toUpperCase()}`} />
 
-        <TableOfContents sections={data.topics} />
-
-        {
-            data.topics.map((topic) => (
-                <section
-                    id={slugify(topic.title)}
-                    class="topic-section fade-in"
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <svg
+                    class="search-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
                 >
-                    <h2>{topic.title}</h2>
-                    <ul class="pdf-list">
-                        {topic.pdfs.map((pdf) => (
-                            <li>
-                                <a
-                                    href={pdf.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="pdf-link"
-                                >
-                                    <div class="pdf-icon-wrapper">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="pdf-icon"
-                                        >
-                                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                                            <polyline points="14 2 14 8 20 8" />
-                                        </svg>
-                                    </div>
-                                    <span class="pdf-text">{pdf.name}</span>
-                                    <span class="arrow">→</span>
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-            ))
-        }
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                    type="search"
+                    id="exerciseSearch"
+                    placeholder="Buscar ejercicios..."
+                    aria-label="Buscar ejercicios (pulsa / para enfocar)"
+                    autocomplete="off"
+                />
+                <kbd class="search-kbd" id="searchKbd" aria-hidden="true">/</kbd>
+                <button
+                    type="button"
+                    id="clearSearch"
+                    class="clear-btn"
+                    aria-label="Limpiar búsqueda"
+                    style="display: none;"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="clear-icon"
+                    >
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <p id="searchCount" class="search-count" aria-live="polite"></p>
+        </div>
+
+        <div id="tocWrapper">
+            <TableOfContents sections={data.topics} />
+        </div>
+
+        <div id="topicsContainer">
+            {
+                data.topics.map((topic) => (
+                    <section
+                        id={slugify(topic.title)}
+                        class="topic-section fade-in"
+                        data-topic-section
+                        data-topic-title={topic.title}
+                    >
+                        <h2>{topic.title}</h2>
+                        <ul class="pdf-list">
+                            {topic.pdfs.map((pdf) => (
+                                <li data-pdf-item data-pdf-name={pdf.name}>
+                                    <a
+                                        href={pdf.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="pdf-link"
+                                    >
+                                        <div class="pdf-icon-wrapper">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="pdf-icon"
+                                            >
+                                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                                <polyline points="14 2 14 8 20 8" />
+                                            </svg>
+                                        </div>
+                                        <span class="pdf-text">{pdf.name}</span>
+                                        <span class="arrow">→</span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                ))
+            }
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>No se han encontrado ejercicios que coincidan con la búsqueda.</p>
+        </div>
     </div>
 </BaseLayout>
+
+<script>
+    import { normalizeText } from "../../utils/normalizeText";
+
+    function initExerciseFilter() {
+        const input = document.getElementById("exerciseSearch") as HTMLInputElement | null;
+        const clearBtn = document.getElementById("clearSearch") as HTMLButtonElement | null;
+        const kbdBadge = document.getElementById("searchKbd");
+        const sections = document.querySelectorAll<HTMLElement>("[data-topic-section]");
+        const tocWrapper = document.getElementById("tocWrapper");
+        const noResults = document.getElementById("noResults");
+        const searchCount = document.getElementById("searchCount");
+
+        if (!input) return;
+
+        function updateKbdVisibility() {
+            if (!kbdBadge || !input) return;
+            const isFocused = document.activeElement === input;
+            const hasValue = input.value.trim().length > 0;
+            kbdBadge.style.display = isFocused || hasValue ? "none" : "inline-flex";
+        }
+
+        function updateSearch() {
+            if (!input) return;
+            const rawValue = input.value.trim();
+            const query = normalizeText(rawValue);
+            let totalMatches = 0;
+            let visibleSections = 0;
+
+            if (clearBtn) {
+                clearBtn.style.display = rawValue.length > 0 ? "flex" : "none";
+            }
+            updateKbdVisibility();
+
+            sections.forEach((section) => {
+                const topicTitle = normalizeText(section.dataset.topicTitle || "");
+                const items = section.querySelectorAll<HTMLElement>("[data-pdf-item]");
+                let sectionMatches = 0;
+
+                items.forEach((item) => {
+                    const name = normalizeText(item.dataset.pdfName || "");
+                    const matches = query === "" || name.includes(query) || topicTitle.includes(query);
+                    item.style.display = matches ? "" : "none";
+                    if (matches) {
+                        sectionMatches++;
+                        totalMatches++;
+                    }
+                });
+
+                if (sectionMatches > 0) {
+                    section.style.display = "";
+                    visibleSections++;
+                } else {
+                    section.style.display = "none";
+                }
+            });
+
+            if (tocWrapper) {
+                tocWrapper.style.display = query ? "none" : "";
+            }
+
+            if (noResults) {
+                noResults.style.display = visibleSections === 0 ? "block" : "none";
+            }
+
+            if (searchCount) {
+                if (query) {
+                    searchCount.textContent = `${totalMatches} ${totalMatches === 1 ? "ejercicio encontrado" : "ejercicios encontrados"}`;
+                } else {
+                    searchCount.textContent = "";
+                }
+            }
+        }
+
+        input.addEventListener("input", updateSearch);
+        input.addEventListener("focus", updateKbdVisibility);
+        input.addEventListener("blur", updateKbdVisibility);
+
+        if (clearBtn) {
+            clearBtn.addEventListener("click", () => {
+                input.value = "";
+                updateSearch();
+                input.focus();
+            });
+        }
+
+        // Global keyboard shortcut ('/' or Cmd/Ctrl + K to focus search)
+        function handleKeydown(e: KeyboardEvent) {
+            const target = e.target as HTMLElement | null;
+            const isTyping = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+            
+            if (!isTyping && e.key === "/") {
+                e.preventDefault();
+                input?.focus();
+            } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+                e.preventDefault();
+                input?.focus();
+            } else if (e.key === "Escape" && document.activeElement === input) {
+                input?.blur();
+            }
+        }
+
+        document.addEventListener("keydown", handleKeydown);
+    }
+
+    document.addEventListener("astro:page-load", initExerciseFilter);
+</script>
 
 <style>
     .content-section {
         max-width: 800px;
         margin: 0 auto;
+    }
+
+    .search-container {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .search-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 14px;
+        width: 18px;
+        height: 18px;
+        color: var(--text-muted);
+        pointer-events: none;
+    }
+
+    #exerciseSearch {
+        width: 100%;
+        padding: 12px 68px 12px 42px;
+        font-family: var(--font-family);
+        font-size: 1rem;
+        color: var(--text-primary);
+        background: var(--bg-secondary);
+        border: var(--border-width) solid var(--border-color);
+        border-radius: var(--radius);
+        outline: none;
+        box-shadow: 2px 2px 0 var(--shadow-color);
+        transition: all var(--transition);
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    /* Disable native search cancel / clear buttons */
+    #exerciseSearch::-webkit-search-cancel-button,
+    #exerciseSearch::-webkit-search-decoration,
+    #exerciseSearch::-webkit-search-results-button,
+    #exerciseSearch::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+        appearance: none;
+        display: none;
+    }
+
+    #exerciseSearch:focus {
+        border-color: var(--accent);
+        box-shadow: 4px 4px 0 var(--shadow-color);
+    }
+
+    .search-kbd {
+        position: absolute;
+        right: 14px;
+        font-family: var(--font-family);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        padding: 2px 6px;
+        border-radius: var(--radius);
+        pointer-events: none;
+        box-shadow: 1px 1px 0 var(--shadow-color);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .clear-btn {
+        position: absolute;
+        right: 10px;
+        background: transparent;
+        border: none;
+        padding: 6px;
+        cursor: pointer;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius);
+        transition: color var(--transition), transform var(--transition);
+    }
+
+    .clear-btn:hover {
+        color: var(--text-primary);
+        transform: scale(1.1);
+    }
+
+    .clear-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .search-count {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-top: 6px;
+        min-height: 1.2em;
+    }
+
+    .no-results {
+        padding: var(--spacing-lg);
+        text-align: center;
+        background: var(--bg-secondary);
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+        margin-top: var(--spacing-lg);
     }
 
     .topic-section {
@@ -151,5 +435,14 @@ if (!data) {
     .pdf-link:hover .arrow {
         opacity: 1;
         transform: translateX(5px);
+    }
+
+    @media (max-width: 480px) {
+        .search-kbd {
+            display: none !important;
+        }
+        #exerciseSearch {
+            padding-right: 42px;
+        }
     }
 </style>

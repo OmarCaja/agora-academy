@@ -6,6 +6,8 @@ const topics = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
+        menuGroup: z.string().optional(),   // e.g. "Álgebra" — which nav group to appear in
+        menuOrder: z.number().optional(),   // sort order within the group
         sections: z.array(z.object({
             title: z.string(),
             items: z.array(z.object({

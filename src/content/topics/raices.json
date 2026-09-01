@@ -1,6 +1,8 @@
 {
     "title": "Propiedades de las raíces",
     "description": "Aprende las propiedades de las raíces: raíz de un producto, cociente, potencia, raíz de una raíz y racionalización. Material educativo de Academia Ágora de Matemáticas.",
+    "menuGroup": "Potencias, raíces y logaritmos",
+    "menuOrder": 2,
     "sections": [
         {
             "title": "Fundamentos",

@@ -77,6 +77,17 @@ const processedTitle = renderMath(title);
         transition: background var(--transition);
         /* Mobile scroll smoothing */
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-color) transparent;
+    }
+
+    .formula::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .formula::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: var(--radius);
     }
 
     /* Dedicated formula container should remain nowrap to keep equations on one line if possible */

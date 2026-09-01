@@ -102,7 +102,7 @@ body {
         color var(--transition);
     min-height: 100%;
     min-height: -webkit-fill-available;
-    overflow-x: hidden;
+    overflow-x: clip; /* 'hidden' breaks backdrop-filter by creating a stacking context; 'clip' clips without that side-effect */
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
@@ -121,6 +121,12 @@ body.menu-open #main-content {
 
 #main-content {
     transition: filter var(--transition);
+}
+
+/* Nav blur — must live here: LightningCSS strips backdrop-filter from scoped component styles */
+.global-nav {
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
 }
 
 /* Focus styles for accessibility */
@@ -309,21 +315,41 @@ address {
     }
 }
 
-/* Print styles */
+/* Print styles for clean exam / study sheet printing */
 @media print {
-
     .global-nav,
-    .menu-overlay {
+    .menu-overlay,
+    .search-container,
+    .progress-container,
+    .scroll-to-top,
+    .skip-link {
         display: none !important;
     }
 
     body {
-        background: white;
-        color: black;
+        background: #ffffff !important;
+        color: #000000 !important;
         padding: 0;
     }
 
     .container {
         max-width: 100%;
+        padding-top: 0;
+    }
+
+    /* Prevent cutting formulas or content cards in half across printed pages */
+    .property-box,
+    .info-box,
+    .formula-container,
+    .example-container,
+    section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .formula {
+        background: #f8f8f8 !important;
+        color: #000000 !important;
+        border: 1px solid #cccccc !important;
     }
 }

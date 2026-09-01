@@ -1,6 +1,8 @@
 {
     "title": "Identidades notables básicas",
     "description": "Reglas algebraicas fundamentales para resolver productos de binomios de segundo grado sin realizar la multiplicación paso a paso.",
+    "menuGroup": "Álgebra",
+    "menuOrder": 1,
     "sections": [
         {
             "title": "Binomios al cuadrado",

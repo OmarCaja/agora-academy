@@ -1,6 +1,8 @@
 {
     "title": "Factorización de números",
     "description": "Descomposición factorial de números y cálculo de divisores comunes y múltiplos comunes.",
+    "menuGroup": "Aritmética",
+    "menuOrder": 3,
     "sections": [
         {
             "title": "Descomposición factorial",

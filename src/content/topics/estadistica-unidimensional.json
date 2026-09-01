@@ -1,6 +1,8 @@
 {
     "title": "Estadística unidimensional",
     "description": "Resumen estructurado de estadística unidimensional para 1º de Bachillerato: conceptos básicos, tablas de frecuencias y parámetros estadísticos.",
+    "menuGroup": "Estadística y Probabilidad",
+    "menuOrder": 1,
     "sections": [
         {
             "title": "Conceptos básicos",

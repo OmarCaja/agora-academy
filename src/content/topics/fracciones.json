@@ -1,6 +1,8 @@
 {
     "title": "Operaciones con fracciones",
     "description": "Guía completa para dominar las fracciones: desde operaciones básicas hasta potencias e inversas.",
+    "menuGroup": "Aritmética",
+    "menuOrder": 4,
     "sections": [
         {
             "title": "Suma y resta",

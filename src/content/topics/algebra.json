@@ -1,6 +1,8 @@
 {
     "title": "Álgebra",
     "description": "Introducción al lenguaje algebraico, manejo de monomios y polinomios, y resolución de ecuaciones de primer grado.",
+    "menuGroup": "Álgebra",
+    "menuOrder": 2,
     "sections": [
         {
             "title": "Fundamentos del álgebra",

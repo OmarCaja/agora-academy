@@ -57,8 +57,7 @@
         background-color: var(--nav-bg);
         border-bottom: 1px solid var(--nav-border);
 
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        /* backdrop-filter is declared in global.css to avoid LightningCSS stripping it */
         transition:
             background-color 0.3s ease,
             border-color 0.3s ease;
