@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SearchBox from "../../components/SearchBox.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import { discoverExercises } from "../../utils/discoverExercises";
 import { slugify } from "../../utils/slugify";
@@ -38,54 +39,12 @@ if (!data) {
         />
         <Header title={`EJERCICIOS ${data.title.toUpperCase()}`} />
 
-        <div class="search-container">
-            <div class="search-input-wrapper">
-                <svg
-                    class="search-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input
-                    type="search"
-                    id="exerciseSearch"
-                    placeholder="Buscar ejercicios..."
-                    aria-label="Buscar ejercicios (pulsa / para enfocar)"
-                    autocomplete="off"
-                />
-                <kbd class="search-kbd" id="searchKbd" aria-hidden="true">/</kbd>
-                <button
-                    type="button"
-                    id="clearSearch"
-                    class="clear-btn"
-                    aria-label="Limpiar búsqueda"
-                    style="display: none;"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="clear-icon"
-                    >
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-            <p id="searchCount" class="search-count" aria-live="polite"></p>
-        </div>
+        <SearchBox
+            placeholder="Buscar ejercicios..."
+            label="Buscar ejercicios (pulsa / para enfocar)"
+            countSingular="ejercicio encontrado"
+            countPlural="ejercicios encontrados"
+        />
 
         <div id="tocWrapper">
             <TableOfContents sections={data.topics} />
@@ -97,13 +56,18 @@ if (!data) {
                     <section
                         id={slugify(topic.title)}
                         class="topic-section fade-in"
-                        data-topic-section
-                        data-topic-title={topic.title}
+                        data-search-section
+                        data-search-text={topic.title}
                     >
-                        <h2>{topic.title}</h2>
+                        <div class="topic-heading">
+                            <h2>{topic.title}</h2>
+                            <span class="topic-count">
+                                {topic.pdfs.length} {topic.pdfs.length === 1 ? "ejercicio" : "ejercicios"}
+                            </span>
+                        </div>
                         <ul class="pdf-list">
                             {topic.pdfs.map((pdf) => (
-                                <li data-pdf-item data-pdf-name={pdf.name}>
+                                <li data-search-item data-search-text={pdf.name}>
                                     <a
                                         href={pdf.url}
                                         target="_blank"
@@ -142,215 +106,10 @@ if (!data) {
     </div>
 </BaseLayout>
 
-<script>
-    import { normalizeText } from "../../utils/normalizeText";
-
-    function initExerciseFilter() {
-        const input = document.getElementById("exerciseSearch") as HTMLInputElement | null;
-        const clearBtn = document.getElementById("clearSearch") as HTMLButtonElement | null;
-        const kbdBadge = document.getElementById("searchKbd");
-        const sections = document.querySelectorAll<HTMLElement>("[data-topic-section]");
-        const tocWrapper = document.getElementById("tocWrapper");
-        const noResults = document.getElementById("noResults");
-        const searchCount = document.getElementById("searchCount");
-
-        if (!input) return;
-
-        function updateKbdVisibility() {
-            if (!kbdBadge || !input) return;
-            const isFocused = document.activeElement === input;
-            const hasValue = input.value.trim().length > 0;
-            kbdBadge.style.display = isFocused || hasValue ? "none" : "inline-flex";
-        }
-
-        function updateSearch() {
-            if (!input) return;
-            const rawValue = input.value.trim();
-            const query = normalizeText(rawValue);
-            let totalMatches = 0;
-            let visibleSections = 0;
-
-            if (clearBtn) {
-                clearBtn.style.display = rawValue.length > 0 ? "flex" : "none";
-            }
-            updateKbdVisibility();
-
-            sections.forEach((section) => {
-                const topicTitle = normalizeText(section.dataset.topicTitle || "");
-                const items = section.querySelectorAll<HTMLElement>("[data-pdf-item]");
-                let sectionMatches = 0;
-
-                items.forEach((item) => {
-                    const name = normalizeText(item.dataset.pdfName || "");
-                    const matches = query === "" || name.includes(query) || topicTitle.includes(query);
-                    item.style.display = matches ? "" : "none";
-                    if (matches) {
-                        sectionMatches++;
-                        totalMatches++;
-                    }
-                });
-
-                if (sectionMatches > 0) {
-                    section.style.display = "";
-                    visibleSections++;
-                } else {
-                    section.style.display = "none";
-                }
-            });
-
-            if (tocWrapper) {
-                tocWrapper.style.display = query ? "none" : "";
-            }
-
-            if (noResults) {
-                noResults.style.display = visibleSections === 0 ? "block" : "none";
-            }
-
-            if (searchCount) {
-                if (query) {
-                    searchCount.textContent = `${totalMatches} ${totalMatches === 1 ? "ejercicio encontrado" : "ejercicios encontrados"}`;
-                } else {
-                    searchCount.textContent = "";
-                }
-            }
-        }
-
-        input.addEventListener("input", updateSearch);
-        input.addEventListener("focus", updateKbdVisibility);
-        input.addEventListener("blur", updateKbdVisibility);
-
-        if (clearBtn) {
-            clearBtn.addEventListener("click", () => {
-                input.value = "";
-                updateSearch();
-                input.focus();
-            });
-        }
-
-        // Global keyboard shortcut ('/' or Cmd/Ctrl + K to focus search)
-        function handleKeydown(e: KeyboardEvent) {
-            const target = e.target as HTMLElement | null;
-            const isTyping = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
-            
-            if (!isTyping && e.key === "/") {
-                e.preventDefault();
-                input?.focus();
-            } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-                e.preventDefault();
-                input?.focus();
-            } else if (e.key === "Escape" && document.activeElement === input) {
-                input?.blur();
-            }
-        }
-
-        document.addEventListener("keydown", handleKeydown);
-    }
-
-    document.addEventListener("astro:page-load", initExerciseFilter);
-</script>
-
 <style>
     .content-section {
         max-width: 800px;
         margin: 0 auto;
-    }
-
-    .search-container {
-        margin-bottom: var(--spacing-md);
-    }
-
-    .search-input-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-    }
-
-    .search-icon {
-        position: absolute;
-        left: 14px;
-        width: 18px;
-        height: 18px;
-        color: var(--text-muted);
-        pointer-events: none;
-    }
-
-    #exerciseSearch {
-        width: 100%;
-        padding: 12px 68px 12px 42px;
-        font-family: var(--font-family);
-        font-size: 1rem;
-        color: var(--text-primary);
-        background: var(--bg-secondary);
-        border: var(--border-width) solid var(--border-color);
-        border-radius: var(--radius);
-        outline: none;
-        box-shadow: 2px 2px 0 var(--shadow-color);
-        transition: all var(--transition);
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
-    /* Disable native search cancel / clear buttons */
-    #exerciseSearch::-webkit-search-cancel-button,
-    #exerciseSearch::-webkit-search-decoration,
-    #exerciseSearch::-webkit-search-results-button,
-    #exerciseSearch::-webkit-search-results-decoration {
-        -webkit-appearance: none;
-        appearance: none;
-        display: none;
-    }
-
-    #exerciseSearch:focus {
-        border-color: var(--accent);
-        box-shadow: 4px 4px 0 var(--shadow-color);
-    }
-
-    .search-kbd {
-        position: absolute;
-        right: 14px;
-        font-family: var(--font-family);
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        background: var(--bg-primary);
-        border: 1px solid var(--border-color);
-        padding: 2px 6px;
-        border-radius: var(--radius);
-        pointer-events: none;
-        box-shadow: 1px 1px 0 var(--shadow-color);
-        align-items: center;
-        justify-content: center;
-    }
-
-    .clear-btn {
-        position: absolute;
-        right: 10px;
-        background: transparent;
-        border: none;
-        padding: 6px;
-        cursor: pointer;
-        color: var(--text-muted);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: var(--radius);
-        transition: color var(--transition), transform var(--transition);
-    }
-
-    .clear-btn:hover {
-        color: var(--text-primary);
-        transform: scale(1.1);
-    }
-
-    .clear-icon {
-        width: 16px;
-        height: 16px;
-    }
-
-    .search-count {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        margin-top: 6px;
-        min-height: 1.2em;
     }
 
     .no-results {
@@ -366,65 +125,90 @@ if (!data) {
         margin-bottom: var(--spacing-xl);
     }
 
+    .topic-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--spacing-sm);
+        flex-wrap: wrap;
+    }
+
+    .topic-heading h2 {
+        margin-bottom: 0;
+    }
+
+    .topic-count {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-muted);
+        white-space: nowrap;
+        margin-bottom: var(--spacing-md);
+    }
+
     .pdf-list {
         list-style: none;
         padding: 0;
         margin: 0;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: var(--spacing-sm);
     }
 
     .pdf-link {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        height: 100%;
         text-decoration: none;
         color: var(--text-primary);
         font-weight: 500;
         transition: all var(--transition);
-        padding: 16px;
-        border: 1px solid var(--border-color);
+        padding: var(--spacing-md);
+        border: var(--border-width) solid var(--border-color);
         border-radius: var(--radius);
         background: var(--bg-secondary);
-        box-shadow: 2px 2px 0 var(--shadow-color);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
     }
 
     .pdf-link:hover {
         background: var(--bg-primary);
         border-color: var(--accent);
         transform: translate(-2px, -2px);
-        box-shadow: 4px 4px 0 var(--shadow-color);
+        box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0 var(--shadow-color);
     }
 
     .pdf-icon-wrapper {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 15px;
-        color: var(--text-muted);
-        transition: color var(--transition);
+        width: 40px;
+        height: 40px;
+        color: var(--accent);
+        transition: transform var(--transition);
         background: var(--bg-primary);
-        padding: 8px;
         border-radius: var(--radius);
-        border: 1px solid var(--nav-border);
+        border: 1px solid var(--border-color);
     }
 
     .pdf-icon {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
     }
 
     .pdf-link:hover .pdf-icon-wrapper {
-        color: var(--accent);
-        border-color: var(--accent);
+        transform: scale(1.08);
     }
 
     .pdf-text {
         flex: 1;
         font-size: 1.05rem;
+        line-height: 1.35;
     }
 
     .arrow {
+        align-self: flex-end;
         font-weight: bold;
         opacity: 0.5;
         transition: all var(--transition);
@@ -435,14 +219,5 @@ if (!data) {
     .pdf-link:hover .arrow {
         opacity: 1;
         transform: translateX(5px);
-    }
-
-    @media (max-width: 480px) {
-        .search-kbd {
-            display: none !important;
-        }
-        #exerciseSearch {
-            padding-right: 42px;
-        }
     }
 </style>

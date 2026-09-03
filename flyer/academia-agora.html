@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Academia Ágora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  @page{ size:A4; margin:0; }
+
+  :root{
+    --bg-primary:#f4f4f4;
+    --bg-secondary:#e5e5e5;
+    --text-primary:#2a2a2a;
+    --text-secondary:#444;
+    --text-muted:#777;
+    --border-color:#2a2a2a;
+    --accent:#2a2a2a;
+    --shadow-color:rgba(42,42,42,0.3);
+
+    --dark-bg:#1a1a1a;
+    --dark-bg2:#2a2a2a;
+    --dark-text:#f4f4f4;
+    --dark-border:#f4f4f4;
+    --dark-muted:#9a9a9a;
+    --dark-shadow:rgba(244,244,244,0.3);
+
+    --border-width:2px;
+    --shadow-offset:5px;
+    --font-family:"Space Mono", monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+
+  body{
+    width:210mm;
+    height:297mm;
+    background:var(--bg-primary);
+    color:var(--text-primary);
+    font-family:var(--font-family);
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .band{ padding:8mm 16mm; }
+
+  /* ---------------- HERO ---------------- */
+  .hero{
+    background:var(--dark-bg);
+    color:var(--dark-text);
+    flex:none;
+    position:relative;
+  }
+  .hero-logo{
+    position:absolute;
+    top:8mm;
+    right:16mm;
+    height:34px;
+    width:auto;
+    color:var(--dark-text);
+  }
+  .eyebrow{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.2em;
+    margin:0 0 8mm;
+  }
+  h1.wordmark{
+    font-weight:700;
+    font-style:italic;
+    font-size:85px;
+    line-height:.9;
+    margin:0 0 6mm;
+    letter-spacing:-.01em;
+  }
+  .sub{
+    font-size:16px;
+    line-height:1.7;
+    color:#c9c9c9;
+    margin:0 0 5mm;
+  }
+  .highlight{
+    font-size:16px;
+    font-weight:700;
+    color:var(--dark-text);
+    margin:0;
+  }
+
+  /* ---------------- MIDDLE ---------------- */
+  .mid{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8mm;
+  }
+
+  .levels{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:5mm;
+  }
+  .level-tag{
+    background:var(--bg-secondary);
+    border:var(--border-width) solid var(--border-color);
+    box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+    padding:5mm 9mm;
+    font-size:22px;
+    font-weight:700;
+    white-space:nowrap;
+  }
+
+  .reasons-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:6mm 8mm;
+  }
+  .reason-card{
+    display:flex;
+    flex-direction:column;
+    background:var(--bg-secondary);
+    border:var(--border-width) solid var(--border-color);
+    box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+    padding:5mm;
+  }
+  .reason-icon{ width:30px; height:30px; color:var(--accent); margin-bottom:3mm; }
+  .reason-card strong{ font-size:16px; font-weight:700; margin-bottom:1.5mm; }
+  .reason-card span{ font-size:16px; font-weight:700; color:var(--text-primary); line-height:1.4; }
+
+  /* ---------------- FOOTER ---------------- */
+  .footer{
+    background:var(--dark-bg);
+    color:var(--dark-text);
+    flex:none;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    margin:0 0 5mm;
+  }
+  .section-head h2{ margin:0; font-size:22px; font-weight:700; flex-shrink:0; }
+  .section-head::after{
+    content:"";
+    flex:1;
+    height:1px;
+    align-self:center;
+    background:var(--dark-border);
+    opacity:.35;
+    margin-left:10px;
+  }
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:10mm;
+    align-items:start;
+  }
+  address{
+    font-style:normal;
+    font-size:15px;
+    line-height:1.4;
+  }
+  dl.meta{ margin:0 0 4mm; font-size:15px; line-height:1.6; }
+  dl.meta dt{ display:inline; color:var(--dark-muted); }
+  dl.meta dd{ display:inline; margin:0 0 0 6px; }
+  dl.meta div{ display:block; }
+
+  .qr-block{ display:flex; align-items:center; gap:5mm; }
+  .qr-block svg{ width:23mm; height:23mm; flex:none; background:var(--dark-text); }
+  .qr-block svg rect{ fill:var(--dark-bg); }
+  .qr-caption{ font-size:12px; color:var(--dark-muted); line-height:1.5; max-width:34mm; }
+</style>
+</head>
+<body>
+
+  <section class="band hero">
+    <svg class="hero-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="matrix(12.166336633663366,0,0,12.166336633663366,8.084616048088165,186.50202995621333)">
+        <path d="M5.64-14.22L7.47-14.22L7.51-14.18L7.55-14.22L9.38-14.22L14.95 0L0.16 0L5.64-14.22ZM7.52-10.30L4.74-2.64L10.36-2.64L7.52-10.30Z" fill="currentColor"></path>
+      </g>
+    </svg>
+    <p class="eyebrow">ACADEMIA DE MATEMÁTICAS · CUENCA</p>
+    <h1 class="wordmark">Ágora</h1>
+    <p class="sub">Primaria · E.S.O. · Bachillerato<br>Grupos reducidos y atención personalizada.</p>
+    <p class="highlight">También disponemos de apuntes y ejercicios en la web.</p>
+  </section>
+
+  <section class="band mid">
+    <div class="levels">
+      <span class="level-tag">Primaria</span>
+      <span class="level-tag">E.S.O.</span>
+      <span class="level-tag">Bachillerato</span>
+    </div>
+
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="15" r="2.4"/><circle cx="14" cy="9" r="2.4"/><circle cx="18.5" cy="16" r="2.4"/></svg>
+        <strong>Grupos reducidos</strong>
+        <span>para una atención personalizada</span>
+      </div>
+      <div class="reason-card">
+        <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="14.5" width="3.2" height="6"/><rect x="10.4" y="9.5" width="3.2" height="11"/><rect x="16.8" y="4.5" width="3.2" height="16"/></svg>
+        <strong>Mejora del proceso</strong>
+        <span>de aprendizaje</span>
+      </div>
+      <div class="reason-card">
+        <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6.4" y1="6.4" x2="17.6" y2="6.4"/><line x1="6.4" y1="6.4" x2="11.4" y2="17.4"/><line x1="17.6" y1="6.4" x2="12.6" y2="17.4"/><circle cx="6.4" cy="6.4" r="2" fill="currentColor" stroke="none"/><circle cx="17.6" cy="6.4" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="18" r="2" fill="currentColor" stroke="none"/></svg>
+        <strong>Razonamiento lógico</strong>
+        <span>como base del aprendizaje</span>
+      </div>
+      <div class="reason-card">
+        <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="14" r="6"/><path d="M16.5 4 L22 15.5 L11 15.5 Z"/></svg>
+        <strong>Pensamiento abstracto</strong>
+        <span>aplicado a problemas reales</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band footer">
+    <div class="section-head">
+      <h2>Contacto</h2>
+    </div>
+    <div class="contact-grid">
+      <address>
+        Calle Fermín Caballero, 3 (edificio Máster).<br>
+        Planta 6 [thegoodspace].<br>
+        Cuenca.
+      </address>
+      <div>
+        <dl class="meta">
+          <div><dt>Tel.</dt><dd>649 021 173</dd></div>
+          <div><dt>Email</dt><dd>info@agoraacademy.es</dd></div>
+          <div><dt>Web</dt><dd>www.agoraacademy.es</dd></div>
+        </dl>
+        <div class="qr-block">
+          <svg viewBox="0 0 148 148" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><rect x="16" y="16" width="28" height="4"/><rect x="52" y="16" width="4" height="4"/><rect x="64" y="16" width="4" height="4"/><rect x="72" y="16" width="4" height="4"/><rect x="84" y="16" width="12" height="4"/><rect x="104" y="16" width="28" height="4"/><rect x="16" y="20" width="4" height="4"/><rect x="40" y="20" width="4" height="4"/><rect x="48" y="20" width="8" height="4"/><rect x="60" y="20" width="12" height="4"/><rect x="84" y="20" width="16" height="4"/><rect x="104" y="20" width="4" height="4"/><rect x="128" y="20" width="4" height="4"/><rect x="16" y="24" width="4" height="4"/><rect x="24" y="24" width="12" height="4"/><rect x="40" y="24" width="4" height="4"/><rect x="64" y="24" width="4" height="4"/><rect x="76" y="24" width="4" height="4"/><rect x="104" y="24" width="4" height="4"/><rect x="112" y="24" width="12" height="4"/><rect x="128" y="24" width="4" height="4"/><rect x="16" y="28" width="4" height="4"/><rect x="24" y="28" width="12" height="4"/><rect x="40" y="28" width="4" height="4"/><rect x="52" y="28" width="8" height="4"/><rect x="64" y="28" width="8" height="4"/><rect x="80" y="28" width="4" height="4"/><rect x="88" y="28" width="8" height="4"/><rect x="104" y="28" width="4" height="4"/><rect x="112" y="28" width="12" height="4"/><rect x="128" y="28" width="4" height="4"/><rect x="16" y="32" width="4" height="4"/><rect x="24" y="32" width="12" height="4"/><rect x="40" y="32" width="4" height="4"/><rect x="48" y="32" width="8" height="4"/><rect x="64" y="32" width="8" height="4"/><rect x="80" y="32" width="8" height="4"/><rect x="92" y="32" width="4" height="4"/><rect x="104" y="32" width="4" height="4"/><rect x="112" y="32" width="12" height="4"/><rect x="128" y="32" width="4" height="4"/><rect x="16" y="36" width="4" height="4"/><rect x="40" y="36" width="4" height="4"/><rect x="56" y="36" width="4" height="4"/><rect x="72" y="36" width="16" height="4"/><rect x="92" y="36" width="4" height="4"/><rect x="104" y="36" width="4" height="4"/><rect x="128" y="36" width="4" height="4"/><rect x="16" y="40" width="28" height="4"/><rect x="48" y="40" width="4" height="4"/><rect x="56" y="40" width="4" height="4"/><rect x="64" y="40" width="4" height="4"/><rect x="72" y="40" width="4" height="4"/><rect x="80" y="40" width="4" height="4"/><rect x="88" y="40" width="4" height="4"/><rect x="96" y="40" width="4" height="4"/><rect x="104" y="40" width="28" height="4"/><rect x="52" y="44" width="4" height="4"/><rect x="60" y="44" width="8" height="4"/><rect x="76" y="44" width="4" height="4"/><rect x="84" y="44" width="16" height="4"/><rect x="16" y="48" width="4" height="4"/><rect x="24" y="48" width="4" height="4"/><rect x="32" y="48" width="4" height="4"/><rect x="40" y="48" width="4" height="4"/><rect x="60" y="48" width="8" height="4"/><rect x="80" y="48" width="12" height="4"/><rect x="96" y="48" width="4" height="4"/><rect x="112" y="48" width="4" height="4"/><rect x="124" y="48" width="4" height="4"/><rect x="20" y="52" width="8" height="4"/><rect x="36" y="52" width="4" height="4"/><rect x="44" y="52" width="20" height="4"/><rect x="68" y="52" width="4" height="4"/><rect x="76" y="52" width="8" height="4"/><rect x="96" y="52" width="12" height="4"/><rect x="116" y="52" width="4" height="4"/><rect x="128" y="52" width="4" height="4"/><rect x="20" y="56" width="8" height="4"/><rect x="32" y="56" width="16" height="4"/><rect x="60" y="56" width="8" height="4"/><rect x="72" y="56" width="16" height="4"/><rect x="104" y="56" width="4" height="4"/><rect x="120" y="56" width="12" height="4"/><rect x="16" y="60" width="8" height="4"/><rect x="28" y="60" width="12" height="4"/><rect x="44" y="60" width="12" height="4"/><rect x="60" y="60" width="4" height="4"/><rect x="68" y="60" width="8" height="4"/><rect x="80" y="60" width="8" height="4"/><rect x="92" y="60" width="4" height="4"/><rect x="112" y="60" width="4" height="4"/><rect x="124" y="60" width="4" height="4"/><rect x="20" y="64" width="4" height="4"/><rect x="28" y="64" width="4" height="4"/><rect x="40" y="64" width="4" height="4"/><rect x="52" y="64" width="8" height="4"/><rect x="64" y="64" width="4" height="4"/><rect x="72" y="64" width="8" height="4"/><rect x="84" y="64" width="4" height="4"/><rect x="96" y="64" width="12" height="4"/><rect x="116" y="64" width="4" height="4"/><rect x="124" y="64" width="8" height="4"/><rect x="20" y="68" width="16" height="4"/><rect x="44" y="68" width="8" height="4"/><rect x="56" y="68" width="4" height="4"/><rect x="72" y="68" width="8" height="4"/><rect x="84" y="68" width="4" height="4"/><rect x="96" y="68" width="16" height="4"/><rect x="116" y="68" width="4" height="4"/><rect x="128" y="68" width="4" height="4"/><rect x="20" y="72" width="12" height="4"/><rect x="36" y="72" width="12" height="4"/><rect x="52" y="72" width="8" height="4"/><rect x="68" y="72" width="4" height="4"/><rect x="100" y="72" width="12" height="4"/><rect x="116" y="72" width="4" height="4"/><rect x="124" y="72" width="8" height="4"/><rect x="24" y="76" width="4" height="4"/><rect x="44" y="76" width="4" height="4"/><rect x="60" y="76" width="8" height="4"/><rect x="76" y="76" width="4" height="4"/><rect x="84" y="76" width="8" height="4"/><rect x="104" y="76" width="4" height="4"/><rect x="116" y="76" width="4" height="4"/><rect x="124" y="76" width="4" height="4"/><rect x="40" y="80" width="4" height="4"/><rect x="48" y="80" width="8" height="4"/><rect x="60" y="80" width="4" height="4"/><rect x="80" y="80" width="8" height="4"/><rect x="96" y="80" width="16" height="4"/><rect x="116" y="80" width="4" height="4"/><rect x="124" y="80" width="8" height="4"/><rect x="24" y="84" width="8" height="4"/><rect x="36" y="84" width="4" height="4"/><rect x="60" y="84" width="12" height="4"/><rect x="76" y="84" width="16" height="4"/><rect x="96" y="84" width="12" height="4"/><rect x="116" y="84" width="8" height="4"/><rect x="128" y="84" width="4" height="4"/><rect x="16" y="88" width="4" height="4"/><rect x="24" y="88" width="4" height="4"/><rect x="40" y="88" width="12" height="4"/><rect x="56" y="88" width="8" height="4"/><rect x="72" y="88" width="20" height="4"/><rect x="100" y="88" width="4" height="4"/><rect x="108" y="88" width="4" height="4"/><rect x="124" y="88" width="8" height="4"/><rect x="20" y="92" width="4" height="4"/><rect x="28" y="92" width="12" height="4"/><rect x="48" y="92" width="4" height="4"/><rect x="56" y="92" width="4" height="4"/><rect x="68" y="92" width="8" height="4"/><rect x="80" y="92" width="16" height="4"/><rect x="104" y="92" width="4" height="4"/><rect x="116" y="92" width="4" height="4"/><rect x="124" y="92" width="4" height="4"/><rect x="16" y="96" width="4" height="4"/><rect x="32" y="96" width="4" height="4"/><rect x="40" y="96" width="4" height="4"/><rect x="56" y="96" width="4" height="4"/><rect x="72" y="96" width="8" height="4"/><rect x="88" y="96" width="4" height="4"/><rect x="96" y="96" width="20" height="4"/><rect x="48" y="100" width="4" height="4"/><rect x="56" y="100" width="8" height="4"/><rect x="72" y="100" width="8" height="4"/><rect x="92" y="100" width="8" height="4"/><rect x="112" y="100" width="4" height="4"/><rect x="120" y="100" width="12" height="4"/><rect x="16" y="104" width="28" height="4"/><rect x="56" y="104" width="4" height="4"/><rect x="64" y="104" width="8" height="4"/><rect x="84" y="104" width="4" height="4"/><rect x="92" y="104" width="8" height="4"/><rect x="104" y="104" width="4" height="4"/><rect x="112" y="104" width="8" height="4"/><rect x="124" y="104" width="8" height="4"/><rect x="16" y="108" width="4" height="4"/><rect x="40" y="108" width="4" height="4"/><rect x="52" y="108" width="4" height="4"/><rect x="60" y="108" width="4" height="4"/><rect x="76" y="108" width="4" height="4"/><rect x="96" y="108" width="4" height="4"/><rect x="112" y="108" width="8" height="4"/><rect x="128" y="108" width="4" height="4"/><rect x="16" y="112" width="4" height="4"/><rect x="24" y="112" width="12" height="4"/><rect x="40" y="112" width="4" height="4"/><rect x="48" y="112" width="4" height="4"/><rect x="56" y="112" width="12" height="4"/><rect x="80" y="112" width="4" height="4"/><rect x="96" y="112" width="20" height="4"/><rect x="16" y="116" width="4" height="4"/><rect x="24" y="116" width="12" height="4"/><rect x="40" y="116" width="4" height="4"/><rect x="52" y="116" width="4" height="4"/><rect x="60" y="116" width="4" height="4"/><rect x="76" y="116" width="12" height="4"/><rect x="112" y="116" width="4" height="4"/><rect x="120" y="116" width="4" height="4"/><rect x="16" y="120" width="4" height="4"/><rect x="24" y="120" width="12" height="4"/><rect x="40" y="120" width="4" height="4"/><rect x="48" y="120" width="8" height="4"/><rect x="72" y="120" width="12" height="4"/><rect x="88" y="120" width="4" height="4"/><rect x="96" y="120" width="8" height="4"/><rect x="108" y="120" width="12" height="4"/><rect x="128" y="120" width="4" height="4"/><rect x="16" y="124" width="4" height="4"/><rect x="40" y="124" width="4" height="4"/><rect x="68" y="124" width="8" height="4"/><rect x="80" y="124" width="24" height="4"/><rect x="112" y="124" width="4" height="4"/><rect x="124" y="124" width="4" height="4"/><rect x="16" y="128" width="28" height="4"/><rect x="48" y="128" width="4" height="4"/><rect x="56" y="128" width="4" height="4"/><rect x="64" y="128" width="4" height="4"/><rect x="72" y="128" width="8" height="4"/><rect x="88" y="128" width="12" height="4"/><rect x="108" y="128" width="12" height="4"/><rect x="124" y="128" width="8" height="4"/></svg>
+          <span class="qr-caption">Escanea para ver apuntes<br>y ejercicios en la web</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

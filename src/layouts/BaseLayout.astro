@@ -162,9 +162,7 @@ import "../styles/global.css";
       };
 
       const updateUI = (theme) => {
-        const icon = document.getElementById("themeIcon");
         const text = document.getElementById("themeText");
-        if (icon) icon.textContent = theme === "dark" ? "☀️" : "🌑";
         if (text)
           text.textContent =
             theme === "dark" ? "Cambiar a tema claro" : "Cambiar a tema oscuro";

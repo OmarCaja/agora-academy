@@ -6,7 +6,7 @@
     --text-primary: #2a2a2a;
     --text-secondary: #444;
     --text-tertiary: #555;
-    --text-muted: #777;
+    --text-muted: #666;
     --border-color: #2a2a2a;
     --accent: #2a2a2a;
     --shadow-color: rgba(42, 42, 42, 0.3);
@@ -207,6 +207,8 @@ section {
 
 
 h2 {
+    font-family: var(--font-family);
+    font-weight: 600;
     font-size: clamp(1.3rem, 3vw, 1.8rem);
     margin: var(--spacing-xs) 0 var(--spacing-md);
     border-left: 4px solid var(--accent);

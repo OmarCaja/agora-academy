@@ -1,0 +1,179 @@
+---
+interface Props {
+    placeholder: string;
+    label: string;
+    countSingular: string;
+    countPlural: string;
+}
+
+const { placeholder, label, countSingular, countPlural } = Astro.props;
+---
+
+<div class="search-container">
+    <div class="search-input-wrapper">
+        <svg
+            class="search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+            type="search"
+            id="siteSearch"
+            placeholder={placeholder}
+            aria-label={label}
+            autocomplete="off"
+        />
+        <kbd class="search-kbd" id="searchKbd" aria-hidden="true">/</kbd>
+        <button
+            type="button"
+            id="clearSearch"
+            class="clear-btn"
+            aria-label="Limpiar búsqueda"
+            style="display: none;"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="clear-icon"
+            >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+    <p
+        id="searchCount"
+        class="search-count"
+        aria-live="polite"
+        data-count-singular={countSingular}
+        data-count-plural={countPlural}
+    >
+    </p>
+</div>
+
+<script>
+    import "../scripts/search.js";
+</script>
+
+<style>
+    .search-container {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .search-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 14px;
+        width: 18px;
+        height: 18px;
+        color: var(--text-muted);
+        pointer-events: none;
+    }
+
+    #siteSearch {
+        width: 100%;
+        padding: 12px 68px 12px 42px;
+        font-family: var(--font-family);
+        font-size: 1rem;
+        color: var(--text-primary);
+        background: var(--bg-secondary);
+        border: var(--border-width) solid var(--border-color);
+        border-radius: var(--radius);
+        outline: none;
+        box-shadow: 2px 2px 0 var(--shadow-color);
+        transition: all var(--transition);
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    /* Disable native search cancel / clear buttons */
+    #siteSearch::-webkit-search-cancel-button,
+    #siteSearch::-webkit-search-decoration,
+    #siteSearch::-webkit-search-results-button,
+    #siteSearch::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+        appearance: none;
+        display: none;
+    }
+
+    #siteSearch:focus {
+        border-color: var(--accent);
+        box-shadow: 4px 4px 0 var(--shadow-color);
+    }
+
+    .search-kbd {
+        position: absolute;
+        right: 14px;
+        font-family: var(--font-family);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        padding: 2px 6px;
+        border-radius: var(--radius);
+        pointer-events: none;
+        box-shadow: 1px 1px 0 var(--shadow-color);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .clear-btn {
+        position: absolute;
+        right: 10px;
+        background: transparent;
+        border: none;
+        padding: 6px;
+        cursor: pointer;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius);
+        transition: color var(--transition), transform var(--transition);
+    }
+
+    .clear-btn:hover {
+        color: var(--text-primary);
+        transform: scale(1.1);
+    }
+
+    .clear-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .search-count {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-top: 6px;
+        min-height: 1.2em;
+    }
+
+    @media (max-width: 480px) {
+        .search-kbd {
+            display: none !important;
+        }
+        #siteSearch {
+            padding-right: 42px;
+        }
+    }
+</style>

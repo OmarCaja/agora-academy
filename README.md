@@ -20,8 +20,7 @@ Modern web application built with **Astro 7** for Ágora Academy in Cuenca, Spai
 │   │   └── topics/           # JSON data for theory topics
 │   ├── content.config.ts     # Content collections schema (Astro 7)
 │   ├── data/
-│   │   ├── menu.ts           # Dynamic navigation menu configuration
-│   │   └── exercises.ts      # Data structure for exercise PDFs
+│   │   └── exercises.ts      # Exercise PDF title/order overrides
 │   ├── layouts/
 │   │   └── BaseLayout.astro  # Main layout with View Transitions and KaTeX setup
 │   ├── pages/
@@ -42,7 +41,7 @@ Modern web application built with **Astro 7** for Ágora Academy in Cuenca, Spai
 
 ### Design & Navigation
 - **GlobalNav.astro**: Persistent header containing the logo and high-level navigation.
-- **Menu.astro**: Animated full-screen menu that uses configuration from `src/data/menu.ts`.
+- **Menu.astro**: Animated full-screen menu. Builds its own nav tree at render time from the `topics` content collection and `discoverExercises()` — there is no separate menu config file.
 - **ReadingProgressBar.astro**: Visual scroll progress indicator.
 
 ### Mathematical Content
@@ -79,12 +78,12 @@ Dynamic listing system for PDF exercises:
 ## 📝 Content Management
 
 ### Adding a New Theory Topic
-1. Create a JSON file in `src/content/topics/`.
-2. Register it in `src/data/menu.ts` under the appropriate section.
+1. Create a JSON file in `src/content/topics/`, setting `menuGroup`/`menuOrder` to control its place in the menu.
+2. That's it — the topic page and menu entry are generated automatically at build time.
 
 ### Adding New Exercises
-1. Upload the PDF to the corresponding folder in `public/ejercicios/`.
-2. Add the entry to the `exercisesData` object in `src/data/exercises.ts`.
+1. Upload the PDF to the corresponding folder in `public/ejercicios/<level>/<topic>/`; it's auto-discovered at build time.
+2. Only edit `src/data/exercises.ts` if you need to override an auto-derived name/title.
 
 ## 📦 Tech Stack
 

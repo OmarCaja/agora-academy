@@ -1,0 +1,64 @@
+{
+    "title": "Derivadas",
+    "description": "Concepto de derivada, reglas básicas de derivación y tabla de derivadas de las funciones más comunes.",
+    "menuGroup": "Funciones y Límites",
+    "menuOrder": 4,
+    "sections": [
+        {
+            "title": "Concepto de derivada",
+            "items": [
+                {
+                    "title": "Definición de derivada",
+                    "description": "La <strong>derivada</strong> de una función $f(x)$ en un punto $x=a$, denotada $f'(a)$, mide la tasa de variación instantánea de la función en ese punto, es decir, la pendiente de la recta tangente a la curva en $x=a$. Se define como el límite: $f'(a) = \\lim_{h \\to 0} \\dfrac{f(a+h) - f(a)}{h}$.",
+                    "example": "Para $f(x) = x^2$ en $x=3$: $f'(3) = \\lim_{h \\to 0} \\dfrac{(3+h)^2 - 3^2}{h} = \\lim_{h \\to 0} \\dfrac{6h+h^2}{h} = \\lim_{h \\to 0} (6+h) = 6$."
+                },
+                {
+                    "title": "Función derivada",
+                    "description": "Si calculamos $f'(x)$ para un punto genérico $x$ en lugar de uno fijo $a$, obtenemos la <strong>función derivada</strong> $f'(x)$, que asigna a cada punto la pendiente de la tangente en ese punto. También se denota $\\dfrac{dy}{dx}$ o $y'$.",
+                    "example": "La función derivada de $f(x) = x^2$ es $f'(x) = 2x$. Así, $f'(3) = 6$, $f'(0) = 0$ y $f'(-1) = -2$."
+                }
+            ]
+        },
+        {
+            "title": "Reglas de derivación",
+            "items": [
+                {
+                    "title": "Suma y resta",
+                    "formula": "$(f \\pm g)' = f' \\pm g'$",
+                    "example": "Si $f(x) = x^3 + \\sin x$, entonces $f'(x) = 3x^2 + \\cos x$."
+                },
+                {
+                    "title": "Producto por constante",
+                    "formula": "$(k \\cdot f)' = k \\cdot f'$",
+                    "example": "Si $f(x) = 5x^4$, entonces $f'(x) = 5 \\cdot 4x^3 = 20x^3$."
+                },
+                {
+                    "title": "Producto de funciones",
+                    "formula": "$(f \\cdot g)' = f' \\cdot g + f \\cdot g'$",
+                    "example": "Si $f(x) = x^2 \\cdot \\ln x$: $f'(x) = 2x \\cdot \\ln x + x^2 \\cdot \\dfrac{1}{x} = 2x\\ln x + x$."
+                },
+                {
+                    "title": "Cociente de funciones",
+                    "formula": "$\\left(\\dfrac{f}{g}\\right)' = \\dfrac{f' \\cdot g - f \\cdot g'}{g^2}$",
+                    "example": "Si $f(x) = \\dfrac{x}{x+1}$: $f'(x) = \\dfrac{1\\cdot(x+1) - x\\cdot 1}{(x+1)^2} = \\dfrac{1}{(x+1)^2}$."
+                },
+                {
+                    "title": "Regla de la cadena",
+                    "formula": "$(f \\circ g)'(x) = f'(g(x)) \\cdot g'(x)$",
+                    "description": "Se usa para derivar <strong>funciones compuestas</strong>: se deriva la función «de fuera» dejando la de dentro igual, y se multiplica por la derivada de la función «de dentro».",
+                    "example": "Si $f(x) = \\sin(x^2)$, la función de fuera es $\\sin(u)$ y la de dentro $u=x^2$: $f'(x) = \\cos(x^2) \\cdot 2x$."
+                }
+            ]
+        },
+        {
+            "title": "Tabla de derivadas",
+            "items": [
+                {
+                    "title": "Derivadas de funciones elementales",
+                    "description": "Tabla con las derivadas más habituales, expresadas para una función compuesta $u=u(x)$ (aplicando la regla de la cadena).",
+                    "example": "<table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 10px'>Función</th><th style='border:1px solid var(--border-color);padding:6px 10px'>Derivada</th></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$k$ (constante)</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$0$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$x$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$1$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$u^n$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$n \\cdot u^{n-1} \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\sqrt{u}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{2\\sqrt{u}}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{1}{u}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$-\\dfrac{u'}{u^2}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$e^u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$e^u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$a^u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$a^u \\cdot \\ln a \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\ln u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{u}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\log_a u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{u \\cdot \\ln a}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\sin u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\cos u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\cos u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$-\\sin u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\tan u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$(1 + \\tan^2 u) \\cdot u'$</td></tr></table>"
+                }
+            ]
+        }
+    ]
+}

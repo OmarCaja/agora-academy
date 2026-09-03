@@ -7,7 +7,10 @@ const { label } = Astro.props;
 ---
 
 <div class="contact-item">
-    <span class="label">{label}:</span>
+    <div class="contact-item-head">
+        <slot name="icon" />
+        <span class="label">{label}:</span>
+    </div>
     <span class="value">
         <slot />
     </span>
@@ -19,6 +22,12 @@ const { label } = Astro.props;
         flex-direction: column;
         gap: 5px;
         margin-bottom: var(--spacing-md);
+    }
+
+    .contact-item-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .label {

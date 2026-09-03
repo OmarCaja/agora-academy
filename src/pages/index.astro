@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
 import InfoBox from "../components/InfoBox.astro";
 import LevelTags from "../components/LevelTags.astro";
 import ContactItem from "../components/ContactItem.astro";
@@ -12,10 +11,38 @@ import ContactItem from "../components/ContactItem.astro";
 	currentPage="index"
 >
 	<div class="content-section">
-		<Header title="ÁGORA" subtitle="Academia de matemáticas en Cuenca" />
+		<section class="hero fade-in">
+			<div class="hero-bg" aria-hidden="true"></div>
+
+			<h1 class="hero-title">
+				Ágora <span class="accent-italic">— Academia de matemáticas en Cuenca</span>
+			</h1>
+
+			<p class="hero-lede">
+				Clases de refuerzo para <strong>Primaria</strong>, <strong>E.S.O.</strong>{" "}
+				y <strong>Bachillerato</strong> en Cuenca, con grupos reducidos y un
+				seguimiento cercano del progreso de cada alumno.
+			</p>
+
+			<div class="hero-ctas">
+				<a href="/theory/algebra" class="btn btn-solid">
+					Explorar teoría <span aria-hidden="true">→</span>
+				</a>
+				<a href="/exercises/1-eso" class="btn btn-line">
+					Ver ejercicios <span aria-hidden="true">→</span>
+				</a>
+			</div>
+
+			<div class="hero-levels">
+				<LevelTags />
+			</div>
+		</section>
 
 		<section class="fade-in">
-			<h2>Sobre nosotros</h2>
+			<div class="section-head">
+				<span class="section-index" aria-hidden="true">01</span>
+				<h2>Sobre nosotros</h2>
+			</div>
 
 			<p>
 				En <strong>Ágora</strong> nos especializamos en la enseñanza de matemáticas
@@ -24,12 +51,13 @@ import ContactItem from "../components/ContactItem.astro";
 				una atención personalizada y un seguimiento cercano de su
 				progreso.
 			</p>
-
-			<LevelTags />
 		</section>
 
 		<section class="fade-in">
-			<h2>Recursos y Materiales</h2>
+			<div class="section-head">
+				<span class="section-index" aria-hidden="true">02</span>
+				<h2>Recursos y Materiales</h2>
+			</div>
 			<InfoBox>
 				<p>
 					Ponemos a tu disposición <strong>apuntes digitales</strong>, <strong
@@ -40,21 +68,25 @@ import ContactItem from "../components/ContactItem.astro";
 
 				<div class="resource-grid">
 					<a href="/exercises/1-eso" class="resource-card">
+						<span class="resource-card-index" aria-hidden="true">Nº 1</span>
 						<span class="resource-card-level">1º E.S.O.</span>
 						<span class="resource-card-desc">Enteros, fracciones, álgebra y porcentajes</span>
 						<span class="resource-card-arrow">Ver ejercicios →</span>
 					</a>
 					<a href="/exercises/3-eso" class="resource-card">
+						<span class="resource-card-index" aria-hidden="true">Nº 2</span>
 						<span class="resource-card-level">3º E.S.O.</span>
 						<span class="resource-card-desc">Ecuaciones y problemas</span>
 						<span class="resource-card-arrow">Ver ejercicios →</span>
 					</a>
 					<a href="/exercises/4-eso" class="resource-card">
+						<span class="resource-card-index" aria-hidden="true">Nº 3</span>
 						<span class="resource-card-level">4º E.S.O.</span>
 						<span class="resource-card-desc">Funciones, gráficas y propiedades</span>
 						<span class="resource-card-arrow">Ver ejercicios →</span>
 					</a>
 					<a href="/exercises/1-bach" class="resource-card">
+						<span class="resource-card-index" aria-hidden="true">Nº 4</span>
 						<span class="resource-card-level">1º Bachillerato</span>
 						<span class="resource-card-desc">Límites, estadística, probabilidad y exámenes</span>
 						<span class="resource-card-arrow">Ver ejercicios →</span>
@@ -63,31 +95,72 @@ import ContactItem from "../components/ContactItem.astro";
 
 				<div class="theory-cta-wrapper">
 					<a href="/theory/algebra" class="theory-cta-link">
-						📚 Explorar apuntes y fórmulas de Teoría →
+						Explorar apuntes y fórmulas de Teoría →
 					</a>
 				</div>
 			</InfoBox>
 		</section>
 
 		<section class="fade-in">
-			<h2>¿Por qué Ágora?</h2>
-			<InfoBox>
-				<ul class="pros-list">
-					<li>
-						<strong>Grupos reducidos</strong> para atención personalizada
-					</li>
-					<li>Mejora del <strong>proceso de aprendizaje</strong></li>
-					<li>Fomento del <strong>razonamiento lógico</strong></li>
-					<li>Impulso del <strong>pensamiento abstracto</strong></li>
-				</ul>
-			</InfoBox>
+			<div class="section-head">
+				<span class="section-index" aria-hidden="true">03</span>
+				<h2>¿Por qué Ágora?</h2>
+			</div>
+
+			<div class="reasons-grid">
+				<div class="reason-card">
+					<svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<circle cx="7" cy="15" r="2.4" />
+						<circle cx="14" cy="9" r="2.4" />
+						<circle cx="18.5" cy="16" r="2.4" />
+					</svg>
+					<strong>Grupos reducidos</strong>
+					<span>para una atención personalizada</span>
+				</div>
+				<div class="reason-card">
+					<svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<rect x="4" y="14.5" width="3.2" height="6" />
+						<rect x="10.4" y="9.5" width="3.2" height="11" />
+						<rect x="16.8" y="4.5" width="3.2" height="16" />
+					</svg>
+					<strong>Mejora del proceso</strong>
+					<strong>de aprendizaje</strong>
+				</div>
+				<div class="reason-card">
+					<svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<line x1="6.4" y1="6.4" x2="17.6" y2="6.4" />
+						<line x1="6.4" y1="6.4" x2="11.4" y2="17.4" />
+						<line x1="17.6" y1="6.4" x2="12.6" y2="17.4" />
+						<circle cx="6.4" cy="6.4" r="2" fill="currentColor" stroke="none" />
+						<circle cx="17.6" cy="6.4" r="2" fill="currentColor" stroke="none" />
+						<circle cx="12" cy="18" r="2" fill="currentColor" stroke="none" />
+					</svg>
+					<strong>Razonamiento lógico</strong>
+					<span>como base del aprendizaje</span>
+				</div>
+				<div class="reason-card">
+					<svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<circle cx="9.5" cy="14" r="6" />
+						<path d="M16.5 4 L22 15.5 L11 15.5 Z" />
+					</svg>
+					<strong>Pensamiento abstracto</strong>
+					<span>aplicado a problemas reales</span>
+				</div>
+			</div>
 		</section>
 
 		<section id="contacto" class="fade-in">
-			<h2>Contacto</h2>
+			<div class="section-head">
+				<span class="section-index" aria-hidden="true">04</span>
+				<h2>Contacto</h2>
+			</div>
 
 			<InfoBox>
 				<ContactItem label="Dirección">
+					<svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" />
+						<circle cx="12" cy="9.5" r="2.4" />
+					</svg>
 					<address>
 						<a
 							href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
@@ -95,7 +168,7 @@ import ContactItem from "../components/ContactItem.astro";
 							rel="noopener noreferrer"
 							class="map-link"
 						>
-							📍 Calle Fermín Caballero, 3 (edificio Máster).<br />
+							Calle Fermín Caballero, 3 (edificio Máster).<br />
 							Planta 6 [thegoodspace].<br />
 							Cuenca.
 						</a>
@@ -103,13 +176,18 @@ import ContactItem from "../components/ContactItem.astro";
 				</ContactItem>
 
 				<ContactItem label="Teléfono">
-					<a href="tel:+34649021173">📞 649 021 173</a>
+					<svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 5 5.1 1.5 1.5 0 0 1 6.5 3.5Z" />
+					</svg>
+					<a href="tel:+34649021173">649 021 173</a>
 				</ContactItem>
 
 				<ContactItem label="Email">
-					<a href="mailto:info@agoraacademy.es"
-						>✉️ info@agoraacademy.es</a
-					>
+					<svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<rect x="3.5" y="5.5" width="17" height="13" rx="0" />
+						<path d="M4 6.5L12 13L20 6.5" />
+					</svg>
+					<a href="mailto:info@agoraacademy.es">info@agoraacademy.es</a>
 				</ContactItem>
 			</InfoBox>
 		</section>
@@ -117,6 +195,155 @@ import ContactItem from "../components/ContactItem.astro";
 </BaseLayout>
 
 <style>
+	/* ===== HERO ===== */
+	.hero {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		background: var(--bg-secondary);
+		border: var(--border-width) solid var(--border-color);
+		box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+		padding: 36px 22px 30px;
+		margin-bottom: var(--spacing-lg);
+	}
+
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		--dot-color: rgba(42, 42, 42, 0.16);
+		background-image: radial-gradient(var(--dot-color) 1.4px, transparent 1.4px);
+		background-size: 20px 20px;
+	}
+
+	:global([data-theme="dark"]) .hero-bg {
+		--dot-color: rgba(244, 244, 244, 0.14);
+	}
+
+	.hero-title,
+	.hero-lede,
+	.hero-ctas,
+	.hero-levels {
+		position: relative;
+		z-index: 1;
+	}
+
+	.hero-title {
+		font-family: var(--font-family);
+		font-weight: 560;
+		font-variation-settings: "SOFT" 25, "WONK" 1;
+		font-size: clamp(1.8rem, 5vw, 3rem);
+		line-height: 1.2;
+		letter-spacing: -0.01em;
+		max-width: 26ch;
+		margin-bottom: var(--spacing-md);
+	}
+
+	.hero-title .accent-italic {
+		font-style: italic;
+		font-weight: 440;
+	}
+
+	.hero-lede {
+		font-family: var(--font-family);
+		max-width: 48ch;
+		color: var(--text-tertiary);
+		font-size: 1.02rem;
+		margin-bottom: var(--spacing-md);
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--spacing-sm);
+		margin-bottom: var(--spacing-sm);
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 0.95rem;
+		text-decoration: none;
+		padding: 12px 18px;
+		border: var(--border-width) solid var(--border-color);
+		box-shadow: 3px 3px 0 var(--shadow-color);
+		transition: all var(--transition);
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.btn-solid {
+		background: var(--accent);
+		color: var(--bg-secondary);
+	}
+
+	.btn-line {
+		background: transparent;
+		color: var(--text-primary);
+	}
+
+	.btn span {
+		display: inline-block;
+		transition: transform var(--transition);
+	}
+
+	.btn:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 5px 5px 0 var(--shadow-color);
+	}
+
+	.btn:hover span {
+		transform: translateX(3px);
+	}
+
+	.hero-levels :global(.levels) {
+		margin-top: var(--spacing-xs);
+	}
+
+	@media (min-width: 640px) {
+		.hero {
+			padding: 52px 46px 44px;
+		}
+	}
+
+	/* ===== SECTION HEADS ===== */
+	.section-head {
+		display: flex;
+		align-items: baseline;
+		gap: 14px;
+		margin: var(--spacing-xs) 0 var(--spacing-md);
+	}
+
+	.section-index {
+		font-family: var(--font-family);
+		font-style: italic;
+		font-weight: 420;
+		font-size: 1.5rem;
+		color: var(--text-muted);
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.section-head h2 {
+		border-left: none;
+		padding-left: 0;
+		margin: 0;
+		flex-shrink: 0;
+	}
+
+	.section-head::after {
+		content: "";
+		flex: 1;
+		height: 1px;
+		align-self: center;
+		background: var(--border-color);
+		opacity: 0.35;
+		margin-left: 6px;
+	}
+
+	/* ===== RESOURCE GRID ===== */
 	.resource-grid {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -147,6 +374,14 @@ import ContactItem from "../components/ContactItem.astro";
 		transform: translate(-2px, -2px);
 		border-color: var(--accent);
 		box-shadow: 4px 4px 0 var(--shadow-color);
+	}
+
+	.resource-card-index {
+		font-family: var(--font-family);
+		font-style: italic;
+		font-size: 0.82rem;
+		color: var(--text-muted);
+		margin-bottom: 6px;
 	}
 
 	.resource-card-level {
@@ -190,25 +425,59 @@ import ContactItem from "../components/ContactItem.astro";
 		padding-left: 4px;
 	}
 
-	.pros-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
+	/* ===== REASONS GRID ===== */
+	.reasons-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--spacing-sm);
 	}
-	.pros-list li {
-		position: relative;
-		padding-left: 30px;
+
+	@media (min-width: 600px) {
+		.reasons-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.reason-card {
+		display: flex;
+		flex-direction: column;
+		background: var(--bg-secondary);
+		border: var(--border-width) solid var(--border-color);
+		box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+		padding: 20px;
+		border-radius: var(--radius);
+		transition: all var(--transition);
+	}
+
+	.reason-card:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0
+			var(--shadow-color);
+	}
+
+	.reason-icon {
+		width: 30px;
+		height: 30px;
+		color: var(--accent);
 		margin-bottom: 12px;
+	}
+
+	.reason-card strong {
+		font-size: 1.02rem;
+		margin-bottom: 2px;
+	}
+
+	.reason-card span {
+		font-size: 0.9rem;
+		color: var(--text-muted);
 		line-height: 1.4;
 	}
-	.pros-list li::before {
-		content: "✓";
-		position: absolute;
-		left: 0;
+
+	/* ===== CONTACT ICONS ===== */
+	:global(.contact-item-head svg) {
+		width: 18px;
+		height: 18px;
 		color: var(--accent);
-		font-weight: bold;
-	}
-	.pros-list li:last-child {
-		margin-bottom: 0;
+		flex-shrink: 0;
 	}
 </style>

@@ -7,6 +7,7 @@ const { currentPage } = Astro.props;
 
 import { getCollection } from "astro:content";
 import { discoverExercises } from "../utils/discoverExercises";
+import { GROUP_ORDER } from "../data/topics";
 
 interface MenuItem {
     slug: string;
@@ -24,14 +25,6 @@ interface MenuSection {
     items?: MenuItem[];
     groups?: MenuGroup[];
 }
-
-const GROUP_ORDER = [
-    "Aritmética",
-    "Álgebra",
-    "Funciones y Límites",
-    "Potencias, raíces y logaritmos",
-    "Estadística y Probabilidad",
-];
 
 const topics = await getCollection("topics");
 const topicsByGroup = new Map<string, MenuItem[]>();
@@ -108,7 +101,7 @@ const isSectionActive = (section: MenuSection) => {
 ---
 
 <!-- Menu Overlay -->
-<div class="menu-overlay" id="menuOverlay">
+<div class="menu-overlay" id="menuOverlay" inert>
     <div class="menu-accordion-inner">
         <nav class="menu-nav">
             <!-- Main links -->

@@ -16,7 +16,10 @@
         const height =
             document.documentElement.scrollHeight -
             document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
+        // A page that doesn't scroll has height 0; without this the width would
+        // be set to "NaN%" (ignored) and the persisted bar would keep the
+        // previous page's fill.
+        const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
         progressBar.style.width = scrolled + "%";
     };
 

@@ -120,10 +120,14 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
 
         if (topicMap.size > 0) {
             const levelTitle = levelTitleOverrides[level] || formatDefaultTitle(level);
-            const topics: Topic[] = Array.from(topicMap.values()).map((t) => ({
-                title: t.title,
-                pdfs: t.pdfs.sort((a, b) => a.name.localeCompare(b.name, "es", { numeric: true })),
-            }));
+            // readdirSync order is filesystem-dependent (it differs between
+            // macOS and the Linux CI runner), so sort topics explicitly.
+            const topics: Topic[] = Array.from(topicMap.values())
+                .map((t) => ({
+                    title: t.title,
+                    pdfs: t.pdfs.sort((a, b) => a.name.localeCompare(b.name, "es", { numeric: true })),
+                }))
+                .sort((a, b) => a.title.localeCompare(b.title, "es", { numeric: true }));
 
             result[level] = {
                 title: levelTitle,

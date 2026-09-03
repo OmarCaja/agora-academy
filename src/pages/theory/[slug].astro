@@ -6,6 +6,8 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import PropertyBox from "../../components/PropertyBox.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import TopicPager from "../../components/TopicPager.astro";
+import SearchBox from "../../components/SearchBox.astro";
+import { GROUP_ORDER } from "../../data/topics";
 import { slugify } from "../../utils/slugify";
 
 export async function getStaticPaths() {
@@ -18,14 +20,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { title, description, sections, menuGroup } = entry.data;
-
-const GROUP_ORDER = [
-    "Aritmética",
-    "Álgebra",
-    "Funciones y Límites",
-    "Potencias, raíces y logaritmos",
-    "Estadística y Probabilidad",
-];
 
 const allTopics = await getCollection("topics");
 
@@ -109,7 +103,7 @@ const topicSchema = {
             items={[
                 { label: "Inicio", href: "/" },
                 { label: "Teoría" },
-                ...(menuGroup ? [{ label: menuGroup }] : []),
+                ...(menuGroup && menuGroup !== title ? [{ label: menuGroup }] : []),
                 { label: title },
             ]}
         />
@@ -117,61 +111,28 @@ const topicSchema = {
         <Header title={title.toUpperCase()} />
 
         <div class="topic-meta">
-            <span class="meta-pill">⏱️ ~{estimatedReadTime} min de lectura</span>
-            <span class="meta-pill">📑 {sections.length} {sections.length === 1 ? "sección" : "secciones"}</span>
+            <span class="meta-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15 14" /></svg>
+                ~{estimatedReadTime} min de lectura
+            </span>
+            <span class="meta-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="18" x2="14" y2="18" /></svg>
+                {sections.length} {sections.length === 1 ? "sección" : "secciones"}
+            </span>
             {totalFormulas > 0 && (
-                <span class="meta-pill">📐 {totalFormulas} {totalFormulas === 1 ? "fórmula" : "fórmulas"}</span>
+                <span class="meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13h3l3 8 4-17h6" /></svg>
+                    {totalFormulas} {totalFormulas === 1 ? "fórmula" : "fórmulas"}
+                </span>
             )}
         </div>
 
-        <div class="search-container">
-            <div class="search-input-wrapper">
-                <svg
-                    class="search-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input
-                    type="search"
-                    id="theorySearch"
-                    placeholder="Buscar en este tema..."
-                    aria-label="Buscar en este tema (pulsa / para enfocar)"
-                    autocomplete="off"
-                />
-                <kbd class="search-kbd" id="theorySearchKbd" aria-hidden="true">/</kbd>
-                <button
-                    type="button"
-                    id="clearTheorySearch"
-                    class="clear-btn"
-                    aria-label="Limpiar búsqueda"
-                    style="display: none;"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="clear-icon"
-                    >
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-            <p id="theorySearchCount" class="search-count" aria-live="polite"></p>
-        </div>
+        <SearchBox
+            placeholder="Buscar en este tema..."
+            label="Buscar en este tema (pulsa / para enfocar)"
+            countSingular="resultado encontrado"
+            countPlural="resultados encontrados"
+        />
 
         <div id="tocWrapper">
             <TableOfContents sections={sections} />
@@ -183,19 +144,23 @@ const topicSchema = {
                     <section
                         id={slugify(section.title)}
                         class="theory-section fade-in"
-                        data-theory-section
-                        data-section-title={section.title}
+                        data-search-section
+                        data-search-text={section.title}
                     >
                         <h2>{section.title}</h2>
                         <div class="properties-container">
                             {section.items.map((item) => (
                                 <div
                                     class="property-item"
-                                    data-theory-item
-                                    data-item-title={item.title}
-                                    data-item-description={item.description || ""}
-                                    data-item-example={item.example || ""}
-                                    data-item-formula={item.formula || ""}
+                                    data-search-item
+                                    data-search-text={[
+                                        item.title,
+                                        item.description,
+                                        item.example,
+                                        item.formula,
+                                    ]
+                                        .filter(Boolean)
+                                        .join(" ")}
                                 >
                                     <PropertyBox
                                         title={item.title}
@@ -211,133 +176,13 @@ const topicSchema = {
             }
         </div>
 
-        <div id="noTheoryResults" class="no-results" style="display: none;">
+        <div id="noResults" class="no-results" style="display: none;">
             <p>No se han encontrado contenidos que coincidan con la búsqueda.</p>
         </div>
 
         <TopicPager prev={prevTopic} next={nextTopic} />
     </div>
 </BaseLayout>
-
-<script>
-    import { normalizeText } from "../../utils/normalizeText";
-
-    function initTheoryFilter() {
-        const input = document.getElementById("theorySearch") as HTMLInputElement | null;
-        const clearBtn = document.getElementById("clearTheorySearch") as HTMLButtonElement | null;
-        const kbdBadge = document.getElementById("theorySearchKbd");
-        const sections = document.querySelectorAll<HTMLElement>("[data-theory-section]");
-        const tocWrapper = document.getElementById("tocWrapper");
-        const noResults = document.getElementById("noTheoryResults");
-        const searchCount = document.getElementById("theorySearchCount");
-
-        if (!input) return;
-
-        function updateKbdVisibility() {
-            if (!kbdBadge || !input) return;
-            const isFocused = document.activeElement === input;
-            const hasValue = input.value.trim().length > 0;
-            kbdBadge.style.display = isFocused || hasValue ? "none" : "inline-flex";
-        }
-
-        function updateSearch() {
-            if (!input) return;
-            const rawValue = input.value.trim();
-            const query = normalizeText(rawValue);
-            let totalMatches = 0;
-            let visibleSections = 0;
-
-            if (clearBtn) {
-                clearBtn.style.display = rawValue.length > 0 ? "flex" : "none";
-            }
-            updateKbdVisibility();
-
-            sections.forEach((section) => {
-                const sectionTitle = normalizeText(section.dataset.sectionTitle || "");
-                const items = section.querySelectorAll<HTMLElement>("[data-theory-item]");
-                let sectionMatches = 0;
-
-                items.forEach((item) => {
-                    const title = normalizeText(item.dataset.itemTitle || "");
-                    const desc = normalizeText(item.dataset.itemDescription || "");
-                    const ex = normalizeText(item.dataset.itemExample || "");
-                    const formula = normalizeText(item.dataset.itemFormula || "");
-                    const textContent = normalizeText(item.textContent || "");
-
-                    const matches =
-                        query === "" ||
-                        title.includes(query) ||
-                        desc.includes(query) ||
-                        ex.includes(query) ||
-                        formula.includes(query) ||
-                        textContent.includes(query) ||
-                        sectionTitle.includes(query);
-
-                    item.style.display = matches ? "" : "none";
-                    if (matches) {
-                        sectionMatches++;
-                        totalMatches++;
-                    }
-                });
-
-                if (sectionMatches > 0) {
-                    section.style.display = "";
-                    visibleSections++;
-                } else {
-                    section.style.display = "none";
-                }
-            });
-
-            if (tocWrapper) {
-                tocWrapper.style.display = query ? "none" : "";
-            }
-
-            if (noResults) {
-                noResults.style.display = visibleSections === 0 ? "block" : "none";
-            }
-
-            if (searchCount) {
-                if (query) {
-                    searchCount.textContent = `${totalMatches} ${totalMatches === 1 ? "resultado encontrado" : "resultados encontrados"}`;
-                } else {
-                    searchCount.textContent = "";
-                }
-            }
-        }
-
-        input.addEventListener("input", updateSearch);
-        input.addEventListener("focus", updateKbdVisibility);
-        input.addEventListener("blur", updateKbdVisibility);
-
-        if (clearBtn) {
-            clearBtn.addEventListener("click", () => {
-                input.value = "";
-                updateSearch();
-                input.focus();
-            });
-        }
-
-        // Global keyboard shortcut ('/' or Cmd/Ctrl + K to focus search)
-        function handleKeydown(e: KeyboardEvent) {
-            const target = e.target as HTMLElement | null;
-            const isTyping = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
-            
-            if (!isTyping && e.key === "/") {
-                e.preventDefault();
-                input?.focus();
-            } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-                e.preventDefault();
-                input?.focus();
-            } else if (e.key === "Escape" && document.activeElement === input) {
-                input?.blur();
-            }
-        }
-
-        document.addEventListener("keydown", handleKeydown);
-    }
-
-    document.addEventListener("astro:page-load", initTheoryFilter);
-</script>
 
 <style>
     .content-section {
@@ -356,7 +201,7 @@ const topicSchema = {
     .meta-pill {
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 5px;
         font-size: 0.8rem;
         color: var(--text-muted);
         background: var(--bg-secondary);
@@ -365,102 +210,10 @@ const topicSchema = {
         border-radius: var(--radius);
     }
 
-    .search-container {
-        margin-bottom: var(--spacing-md);
-    }
-
-    .search-input-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-    }
-
-    .search-icon {
-        position: absolute;
-        left: 14px;
-        width: 18px;
-        height: 18px;
-        color: var(--text-muted);
-        pointer-events: none;
-    }
-
-    #theorySearch {
-        width: 100%;
-        padding: 12px 68px 12px 42px;
-        font-family: var(--font-family);
-        font-size: 1rem;
-        color: var(--text-primary);
-        background: var(--bg-secondary);
-        border: var(--border-width) solid var(--border-color);
-        border-radius: var(--radius);
-        outline: none;
-        box-shadow: 2px 2px 0 var(--shadow-color);
-        transition: all var(--transition);
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
-    /* Disable native search cancel / clear buttons */
-    #theorySearch::-webkit-search-cancel-button,
-    #theorySearch::-webkit-search-decoration,
-    #theorySearch::-webkit-search-results-button,
-    #theorySearch::-webkit-search-results-decoration {
-        -webkit-appearance: none;
-        appearance: none;
-        display: none;
-    }
-
-    #theorySearch:focus {
-        border-color: var(--accent);
-        box-shadow: 4px 4px 0 var(--shadow-color);
-    }
-
-    .search-kbd {
-        position: absolute;
-        right: 14px;
-        font-family: var(--font-family);
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        background: var(--bg-primary);
-        border: 1px solid var(--border-color);
-        padding: 2px 6px;
-        border-radius: var(--radius);
-        pointer-events: none;
-        box-shadow: 1px 1px 0 var(--shadow-color);
-        align-items: center;
-        justify-content: center;
-    }
-
-    .clear-btn {
-        position: absolute;
-        right: 10px;
-        background: transparent;
-        border: none;
-        padding: 6px;
-        cursor: pointer;
-        color: var(--text-muted);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: var(--radius);
-        transition: color var(--transition), transform var(--transition);
-    }
-
-    .clear-btn:hover {
-        color: var(--text-primary);
-        transform: scale(1.1);
-    }
-
-    .clear-icon {
-        width: 16px;
-        height: 16px;
-    }
-
-    .search-count {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        margin-top: 6px;
-        min-height: 1.2em;
+    .meta-pill svg {
+        width: 13px;
+        height: 13px;
+        flex-shrink: 0;
     }
 
     .no-results {
@@ -480,14 +233,5 @@ const topicSchema = {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-md);
-    }
-
-    @media (max-width: 480px) {
-        .search-kbd {
-            display: none !important;
-        }
-        #theorySearch {
-            padding-right: 42px;
-        }
     }
 </style>

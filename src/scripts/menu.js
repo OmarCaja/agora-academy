@@ -12,7 +12,8 @@ const SELECTORS = {
     accordionTrigger: ".accordion-trigger",
     closeMenu: "[data-close-menu]",
     navHome: ".nav-home",
-    navContact: ".nav-contacto"
+    navContact: ".nav-contacto",
+    pageLinks: "a[href^='/theory/'], a[href^='/exercises/']"
 };
 
 const CLASSES = {
@@ -32,6 +33,7 @@ const toggleMenu = () => {
 
     const isActive = overlay.classList.toggle(CLASSES.active);
     toggleBtn.classList.toggle(CLASSES.active, isActive);
+    overlay.inert = !isActive;
 
     if (isActive) {
         // Lock body scroll
@@ -71,6 +73,28 @@ const updateActiveStateFromHash = () => {
         homeLink.classList.toggle(CLASSES.active, !isContactSection);
         contactLink.classList.toggle(CLASSES.active, isContactSection);
     }
+};
+
+/**
+ * Re-marks the current theory/exercise link as active.
+ * The menu is rendered with `transition:persist`, so the build-time `active`
+ * class survives view transitions and would otherwise point at the page the
+ * menu was first rendered on.
+ */
+const updateActiveLinkFromPath = () => {
+    const overlay = document.getElementById(SELECTORS.overlay);
+    if (!overlay) return;
+
+    const path = window.location.pathname.replace(/\/$/, "");
+    overlay.querySelectorAll(SELECTORS.pageLinks).forEach((link) => {
+        const isActive = new URL(link.href).pathname.replace(/\/$/, "") === path;
+        link.classList.toggle(CLASSES.active, isActive);
+        if (isActive) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
 };
 
 /**
@@ -163,6 +187,7 @@ const initMenu = () => {
 
     // Initial check
     updateActiveStateFromHash();
+    updateActiveLinkFromPath();
 };
 
 // Initialize on Astro page transitions
