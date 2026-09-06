@@ -21,14 +21,9 @@ const toggleTheme = () => {
     const isDark = document.documentElement.getAttribute(SELECTORS.dataTheme) === THEMES.dark;
     const newTheme = isDark ? THEMES.light : THEMES.dark;
 
-    // Use globally exposed setter from BaseLayout if available
-    if (window.setTheme) {
-        window.setTheme(newTheme);
-    } else {
-        // Fallback implementation
-        document.documentElement.setAttribute(SELECTORS.dataTheme, newTheme);
-        if (window.updateThemeUI) window.updateThemeUI(newTheme);
-    }
+    // setTheme/updateThemeUI are defined by the inline head script in
+    // BaseLayout, which is blocking and always runs before any module.
+    window.setTheme(newTheme);
 
     localStorage.setItem(STORAGE_KEY, newTheme);
 };
@@ -44,12 +39,10 @@ const initTheme = () => {
     btn.addEventListener("click", toggleTheme);
 
     // Sync button state with current theme
-    if (window.updateThemeUI) {
-        const currentTheme = document.documentElement.getAttribute(SELECTORS.dataTheme) === THEMES.dark
-            ? THEMES.dark
-            : THEMES.light;
-        window.updateThemeUI(currentTheme);
-    }
+    const currentTheme = document.documentElement.getAttribute(SELECTORS.dataTheme) === THEMES.dark
+        ? THEMES.dark
+        : THEMES.light;
+    window.updateThemeUI(currentTheme);
 };
 
 document.addEventListener("astro:page-load", initTheme);
@@ -59,6 +52,6 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e)
     // Only auto-switch if the user hasn't manually set a preference
     if (!localStorage.getItem(STORAGE_KEY)) {
         const newTheme = e.matches ? THEMES.dark : THEMES.light;
-        if (window.setTheme) window.setTheme(newTheme);
+        window.setTheme(newTheme);
     }
 });

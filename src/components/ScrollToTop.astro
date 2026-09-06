@@ -23,29 +23,29 @@
 </button>
 
 <script>
+    // Stable module-scope references: the button is `transition:persist`, so
+    // re-running init on every astro:page-load would otherwise stack handlers.
+    const checkScroll = () => {
+        const btn = document.getElementById("scrollToTopBtn");
+        if (!btn) return;
+        const scrolled = window.scrollY || document.documentElement.scrollTop;
+        btn.classList.toggle("visible", scrolled > 350);
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     function initScrollToTop() {
         const btn = document.getElementById("scrollToTopBtn");
         if (!btn) return;
 
-        function checkScroll() {
-            if (!btn) return;
-            const scrolled = window.scrollY || document.documentElement.scrollTop;
-            if (scrolled > 350) {
-                btn.classList.add("visible");
-            } else {
-                btn.classList.remove("visible");
-            }
-        }
-
+        window.removeEventListener("scroll", checkScroll);
         window.addEventListener("scroll", checkScroll, { passive: true });
         checkScroll();
 
-        btn.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
-        });
+        btn.removeEventListener("click", scrollToTop);
+        btn.addEventListener("click", scrollToTop);
     }
 
     document.addEventListener("astro:page-load", initScrollToTop);

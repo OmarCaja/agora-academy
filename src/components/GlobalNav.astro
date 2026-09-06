@@ -61,7 +61,6 @@
         height: 48px;
         z-index: 1001;
 
-        /* Light Theme (Default) */
         background-color: var(--nav-bg);
         border-bottom: 1px solid var(--nav-border);
 
@@ -69,12 +68,6 @@
         transition:
             background-color 0.3s ease,
             border-color 0.3s ease;
-    }
-
-    /* Dark Theme Override */
-    :global([data-theme="dark"]) .global-nav {
-        background-color: var(--nav-bg);
-        border-bottom: 1px solid var(--nav-border);
     }
 
     .nav-content {
@@ -102,13 +95,6 @@
         outline: none;
         opacity: 1;
 
-        /* Light Theme Text */
-        /* Light Theme Text */
-        color: var(--text-primary);
-    }
-
-    /* Dark Theme Text Overlay */
-    :global([data-theme="dark"]) .nav-btn {
         color: var(--text-primary);
     }
 
@@ -185,12 +171,6 @@
         -webkit-tap-highlight-color: transparent;
         outline: none;
         opacity: 1;
-        /* Light Theme Text (matches nav-btn) */
-        /* Light Theme Text (matches nav-btn) */
-        color: var(--text-primary);
-    }
-
-    :global([data-theme="dark"]) .nav-logo {
         color: var(--text-primary);
     }
 
