@@ -12,13 +12,13 @@
     --rule-color: rgba(31, 31, 31, 0.18);
     --shadow-color: rgba(31, 31, 31, 0.32);
 
-    /* Accent — vermilion. `--accent` is the graphic colour (fills, rules,
+    /* Accent — marine blue. `--accent` is the graphic colour (fills, rules,
        icons, large type). `--accent-strong` is the AA-safe variant for small
        text on page surfaces. `--on-accent` is text sitting on an accent fill. */
-    --accent: #c2431e;
-    --accent-strong: #9e3416;
-    --on-accent: #fdf6f3;
-    --accent-tint: rgba(194, 67, 30, 0.09);
+    --accent: #0d5c8c;
+    --accent-strong: #0a4a70;
+    --on-accent: #f5f9fb;
+    --accent-tint: rgba(13, 92, 140, 0.09);
 
     /* Navigation */
     --nav-bg: rgba(250, 250, 250, 0.82);
@@ -70,10 +70,10 @@
     --rule-color: rgba(242, 242, 242, 0.22);
     --shadow-color: rgba(242, 242, 242, 0.26);
 
-    --accent: #f2734b;
-    --accent-strong: #ff8f6b;
-    --on-accent: #1a1210;
-    --accent-tint: rgba(242, 115, 75, 0.12);
+    --accent: #5aa8d6;
+    --accent-strong: #7cc0e8;
+    --on-accent: #0e1a22;
+    --accent-tint: rgba(90, 168, 214, 0.12);
 
     --nav-bg: rgba(20, 20, 20, 0.82);
     --nav-border: rgba(242, 242, 242, 0.14);

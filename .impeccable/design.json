@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T00:00:00.000Z",
+  "title": "Design System: Ágora Academy",
+  "extensions": {
+    "colorMeta": {
+      "press-vermilion": {
+        "role": "primary",
+        "displayName": "Press Vermilion",
+        "canonical": "#c2431e",
+        "tonalRamp": ["#2b0f06", "#4d1a0b", "#6f2712", "#91341a", "#c2431e", "#d9724f", "#eda488", "#fbdccf"]
+      },
+      "press-vermilion-strong": {
+        "role": "primary",
+        "displayName": "Press Vermilion Strong",
+        "canonical": "#9e3416",
+        "tonalRamp": ["#230c05", "#3f1509", "#5b1f0d", "#7a2911", "#9e3416", "#c15a3a", "#dc9077", "#f4d2c5"]
+      },
+      "on-vermilion": {
+        "role": "neutral",
+        "displayName": "On Vermilion",
+        "canonical": "#fdf6f3",
+        "tonalRamp": ["#2a201c", "#463731", "#635048", "#836d63", "#a58d82", "#c6b0a6", "#e4d6ce", "#fdf6f3"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1f1f1f",
+        "tonalRamp": ["#0a0a0a", "#141414", "#1f1f1f", "#3a3a3a", "#5a5a5a", "#8a8a8a", "#c4c4c4", "#f4f4f4"]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "canonical": "#5a5a5a",
+        "tonalRamp": ["#171717", "#252525", "#343434", "#474747", "#5a5a5a", "#8b8b8b", "#bcbcbc", "#ededed"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#f4f4f4",
+        "tonalRamp": ["#242424", "#3d3d3d", "#575757", "#737373", "#909090", "#b0b0b0", "#d2d2d2", "#f4f4f4"]
+      },
+      "paper-shade": {
+        "role": "neutral",
+        "displayName": "Paper Shade",
+        "canonical": "#e8e8e8",
+        "tonalRamp": ["#212121", "#383838", "#515151", "#6c6c6c", "#888888", "#a7a7a7", "#c7c7c7", "#e8e8e8"]
+      },
+      "paper-raised": {
+        "role": "neutral",
+        "displayName": "Paper Raised",
+        "canonical": "#fdfdfd",
+        "tonalRamp": ["#252525", "#3f3f3f", "#5a5a5a", "#777777", "#959595", "#b5b5b5", "#d8d8d8", "#fdfdfd"]
+      },
+      "press-vermilion-dark": {
+        "role": "primary",
+        "displayName": "Press Vermilion (dark stock)",
+        "canonical": "#f2734b",
+        "tonalRamp": ["#38160a", "#5c2412", "#81331b", "#a74426", "#cd5636", "#f2734b", "#f7a184", "#fcd5c6"]
+      },
+      "press-vermilion-dark-strong": {
+        "role": "primary",
+        "displayName": "Press Vermilion Strong (dark stock)",
+        "canonical": "#ff8f6b",
+        "tonalRamp": ["#3d1a0e", "#642b18", "#8b3d23", "#b4512f", "#d9683f", "#ff8f6b", "#ffb69d", "#ffdfd3"]
+      },
+      "slate": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "#161616",
+        "tonalRamp": ["#080808", "#0f0f0f", "#161616", "#202020", "#262626", "#4a4a4a", "#8f8f8f", "#e0e0e0"]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "canonical": "#f2f2f2",
+        "tonalRamp": ["#232323", "#3b3b3b", "#555555", "#717171", "#8e8e8e", "#aeaeae", "#d0d0d0", "#f2f2f2"]
+      },
+      "chalk-muted": {
+        "role": "neutral",
+        "displayName": "Chalk Muted",
+        "canonical": "#a8a8a8",
+        "tonalRamp": ["#191919", "#2a2a2a", "#3d3d3d", "#525252", "#696969", "#828282", "#a8a8a8", "#dcdcdc"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Homepage hero headline only. Negative tracking keeps monospace from sprawling." },
+      "headline": { "displayName": "Headline", "purpose": "Page title on theory, exercise and 404 pages. Left-aligned over a 2px rule." },
+      "title": { "displayName": "Title", "purpose": "Section headings and card titles." },
+      "body": { "displayName": "Body", "purpose": "All running text. Reading column caps at 820px." },
+      "label": { "displayName": "Label", "purpose": "Counts, metadata, pager direction. Never a decorative eyebrow." }
+    },
+    "shadows": [
+      { "name": "offset-heavy", "value": "5px 5px 0 rgba(31,31,31,0.32)", "purpose": "Boxed content, table of contents, PDF cards, level chips at rest." },
+      { "name": "offset-standard", "value": "3px 3px 0 rgba(31,31,31,0.32)", "purpose": "Buttons and bento cells at rest." },
+      { "name": "offset-light", "value": "2px 2px 0 rgba(31,31,31,0.32)", "purpose": "Search input and inline controls." },
+      { "name": "offset-hover-card", "value": "6px 6px 0 rgba(31,31,31,0.32)", "purpose": "Card hover, paired with translate(-3px,-3px)." },
+      { "name": "offset-hover-button", "value": "5px 5px 0 rgba(31,31,31,0.32)", "purpose": "Button hover, paired with translate(-2px,-2px)." },
+      { "name": "offset-pressed", "value": "1px 1px 0 rgba(31,31,31,0.32)", "purpose": "Active state of any interactive element." },
+      { "name": "offset-heavy-dark", "value": "5px 5px 0 rgba(242,242,242,0.26)", "purpose": "Dark-stock counterpart. Blur is always 0; the tint follows the ink, never black." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The only easing curve in the system." },
+      { "name": "duration-standard", "value": "0.28s", "purpose": "Every state transition. Transform and box-shadow only." },
+      { "name": "reveal-stagger", "value": "70ms", "purpose": "Per-index delay on scroll reveals, driven by a --i custom property." },
+      { "name": "reveal-duration", "value": "0.55s", "purpose": "Opacity and 18px Y-translate on section reveal. Collapses to static under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "480px" },
+      { "name": "sm", "value": "600px" },
+      { "name": "grid-2col", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "900px" },
+      { "name": "grid-3col", "value": "960px" }
+    ],
+    "widths": [
+      { "name": "shell", "value": "1120px", "purpose": "Composition width. The nav aligns to this so controls sit flush with content." },
+      { "name": "measure", "value": "820px", "purpose": "Reading width for theory, exercise and 404 pages." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single strongest call to action on a page. Lifts toward the cursor on hover, presses into the page on click.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Pedir información<svg viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z\"></path></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 9px; font-family: 'Space Mono', ui-monospace, Menlo, monospace; font-weight: 700; font-size: 0.95rem; white-space: nowrap; text-decoration: none; padding: 13px 20px; border: 2px solid var(--accent, #c2431e); border-radius: 0; background: var(--accent, #c2431e); color: var(--on-accent, #fdf6f3); box-shadow: 3px 3px 0 var(--shadow-color, rgba(31,31,31,0.32)); transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary svg { width: 17px; height: 17px; transition: transform 0.28s cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--shadow-color, rgba(31,31,31,0.32)); } .ds-btn-primary:hover svg { transform: translateX(3px); } .ds-btn-primary:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--shadow-color, rgba(31,31,31,0.32)); } .ds-btn-primary:focus-visible { outline: 3px solid var(--accent, #c2431e); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The secondary action. Identical geometry to the primary, transparent fill and ink border.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Ver teoría<svg viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z\"></path></svg></a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 9px; font-family: 'Space Mono', ui-monospace, Menlo, monospace; font-weight: 700; font-size: 0.95rem; white-space: nowrap; text-decoration: none; padding: 13px 20px; border: 2px solid var(--border-color, #1f1f1f); border-radius: 0; background: transparent; color: var(--text-primary, #1f1f1f); box-shadow: 3px 3px 0 var(--shadow-color, rgba(31,31,31,0.32)); transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost svg { width: 17px; height: 17px; transition: transform 0.28s cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--shadow-color, rgba(31,31,31,0.32)); } .ds-btn-ghost:hover svg { transform: translateX(3px); } .ds-btn-ghost:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 var(--shadow-color, rgba(31,31,31,0.32)); } .ds-btn-ghost:focus-visible { outline: 3px solid var(--accent, #c2431e); outline-offset: 3px; }"
+    },
+    {
+      "name": "Bento Tile",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The homepage grid cell. Title, description, uppercase count, and a bottom-pinned action whose arrow slides on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-title\">1º E.S.O.</span><span class=\"ds-card-desc\">Enteros, fracciones, álgebra y porcentajes</span><span class=\"ds-card-meta\">10 PDFs</span><span class=\"ds-card-action\">Ver ejercicios<svg viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z\"></path></svg></span></a>",
+      "css": ".ds-card { position: relative; display: flex; flex-direction: column; gap: 5px; min-height: 168px; width: 290px; padding: 22px; font-family: 'Space Mono', ui-monospace, Menlo, monospace; text-decoration: none; background: var(--bg-secondary, #e8e8e8); color: var(--text-primary, #1f1f1f); border: 2px solid var(--border-color, #1f1f1f); border-radius: 0; box-shadow: 3px 3px 0 var(--shadow-color, rgba(31,31,31,0.32)); transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s cubic-bezier(0.16,1,0.3,1); } .ds-card:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 var(--shadow-color, rgba(31,31,31,0.32)); } .ds-card-title { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; } .ds-card-desc { font-size: 0.9rem; line-height: 1.45; color: var(--text-muted, #5a5a5a); } .ds-card-meta { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted, #5a5a5a); margin-top: 4px; } .ds-card-action { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 15px; font-size: 0.88rem; font-weight: 700; color: var(--accent-strong, #9e3416); } .ds-card-action svg { width: 15px; height: 15px; transition: transform 0.28s cubic-bezier(0.16,1,0.3,1); } .ds-card:hover .ds-card-action svg { transform: translateX(4px); } .ds-card:focus-visible { outline: 3px solid var(--accent, #c2431e); outline-offset: 3px; }"
+    },
+    {
+      "name": "Accent Tile",
+      "kind": "card",
+      "refersTo": "card-accent",
+      "description": "The one full-plate cell in a grid. Takes the vermilion fill; only On Vermilion text is permitted on it.",
+      "html": "<a class=\"ds-card-accent\" href=\"#\"><svg class=\"ds-card-accent-icon\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M168,40a48.05,48.05,0,0,0-48,48v24H88V88a24,24,0,0,1,24-24,8,8,0,0,0,0-16A40,40,0,0,0,72,88v24H48a8,8,0,0,0,0,16H72v80a8,8,0,0,0,16,0V128h32v80a8,8,0,0,0,16,0V88a32,32,0,0,1,32-32,8,8,0,0,0,0-16Z\"></path></svg><span class=\"ds-card-accent-title\">Teoría</span><span class=\"ds-card-accent-desc\">Apuntes y fórmulas de 18 temas, con ejemplos resueltos y gráficas.</span><span class=\"ds-card-accent-action\">Ver teoría</span></a>",
+      "css": ".ds-card-accent { display: flex; flex-direction: column; gap: 5px; justify-content: flex-end; min-height: 210px; width: 380px; padding: 22px; font-family: 'Space Mono', ui-monospace, Menlo, monospace; text-decoration: none; background: var(--accent, #c2431e); color: var(--on-accent, #fdf6f3); border: 2px solid var(--accent, #c2431e); border-radius: 0; box-shadow: 3px 3px 0 var(--shadow-color, rgba(31,31,31,0.32)); transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s cubic-bezier(0.16,1,0.3,1); } .ds-card-accent:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 var(--shadow-color, rgba(31,31,31,0.32)); } .ds-card-accent-icon { width: 30px; height: 30px; margin-bottom: auto; } .ds-card-accent-title { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; } .ds-card-accent-desc { font-size: 0.9rem; line-height: 1.45; opacity: 0.88; } .ds-card-accent-action { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 15px; font-size: 0.88rem; font-weight: 700; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "In-page filter on theory and exercise pages. Focus shifts the border to vermilion and grows the offset; never colour alone.",
+      "html": "<div class=\"ds-search\"><svg class=\"ds-search-icon\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z\"></path></svg><input class=\"ds-search-field\" type=\"search\" placeholder=\"Buscar en este tema...\" aria-label=\"Buscar\" /><kbd class=\"ds-search-kbd\">/</kbd></div>",
+      "css": ".ds-search { position: relative; display: flex; align-items: center; width: 420px; font-family: 'Space Mono', ui-monospace, Menlo, monospace; } .ds-search-icon { position: absolute; left: 14px; width: 18px; height: 18px; color: var(--text-muted, #5a5a5a); pointer-events: none; } .ds-search-field { width: 100%; padding: 12px 68px 12px 42px; font-family: inherit; font-size: 1rem; color: var(--text-primary, #1f1f1f); background: var(--bg-raised, #fdfdfd); border: 2px solid var(--border-color, #1f1f1f); border-radius: 0; outline: none; box-shadow: 2px 2px 0 var(--shadow-color, rgba(31,31,31,0.32)); transition: border-color 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s cubic-bezier(0.16,1,0.3,1); appearance: none; } .ds-search-field::placeholder { color: var(--text-muted, #5a5a5a); opacity: 1; } .ds-search-field:focus { border-color: var(--accent, #c2431e); box-shadow: 4px 4px 0 var(--shadow-color, rgba(31,31,31,0.32)); } .ds-search-kbd { position: absolute; right: 14px; font-family: inherit; font-size: 0.8rem; color: var(--text-muted, #5a5a5a); background: var(--bg-primary, #f4f4f4); border: 1px solid var(--border-color, #1f1f1f); border-radius: 0; padding: 2px 6px; box-shadow: 1px 1px 0 var(--shadow-color, rgba(31,31,31,0.32)); pointer-events: none; }"
+    },
+    {
+      "name": "Level Chip",
+      "kind": "chip",
+      "refersTo": "chip-level",
+      "description": "A static label, not a control. Carries the system's signature 4px vermilion left edge. No pointer cursor, no hover lift.",
+      "html": "<span class=\"ds-chip\">Bachillerato</span>",
+      "css": ".ds-chip { display: inline-block; font-family: 'Space Mono', ui-monospace, Menlo, monospace; font-size: 0.9rem; font-weight: 700; padding: 7px 15px; background: var(--bg-secondary, #e8e8e8); color: var(--text-primary, #1f1f1f); border: 2px solid var(--border-color, #1f1f1f); border-left: 4px solid var(--accent, #c2431e); border-radius: 0; box-shadow: 3px 3px 0 var(--shadow-color, rgba(31,31,31,0.32)); }"
+    },
+    {
+      "name": "Global Navigation",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Fixed 48px bar aligned to the shell. Carries the only backdrop blur in the system. Three controls, one line, every viewport.",
+      "html": "<header class=\"ds-nav\"><div class=\"ds-nav-inner\"><button class=\"ds-nav-btn\" aria-label=\"Cambiar tema\"><svg viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm8,24a64,64,0,1,0,64,64A64.07,64.07,0,0,0,128,64Zm-69.66,5.66a8,8,0,0,0,11.32-11.32l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z\"></path></svg></button><span class=\"ds-nav-logo\">Á</span><button class=\"ds-nav-btn\" aria-label=\"Abrir menú\"><span class=\"ds-nav-cross\"></span></button></div></header>",
+      "css": ".ds-nav { height: 48px; background: rgba(250,250,250,0.82); -webkit-backdrop-filter: saturate(170%) blur(18px); backdrop-filter: saturate(170%) blur(18px); border-bottom: 1px solid rgba(31,31,31,0.14); font-family: 'Space Mono', ui-monospace, Menlo, monospace; } .ds-nav-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; padding: 0 10px; } .ds-nav-btn { display: flex; align-items: center; justify-content: center; width: 40px; height: 100%; padding: 0; background: transparent; border: none; cursor: pointer; color: var(--text-primary, #1f1f1f); } .ds-nav-btn svg { width: 19px; height: 19px; } .ds-nav-logo { font-weight: 700; font-size: 1.25rem; color: var(--text-primary, #1f1f1f); } .ds-nav-cross { position: relative; width: 14px; height: 14px; opacity: 0.8; } .ds-nav-cross::before, .ds-nav-cross::after { content: ''; position: absolute; background: currentColor; } .ds-nav-cross::before { width: 14px; height: 2px; top: 6px; left: 0; } .ds-nav-cross::after { width: 2px; height: 14px; top: 0; left: 6px; } .ds-nav-btn:focus-visible { outline: 3px solid var(--accent, #c2431e); outline-offset: -3px; }"
+    },
+    {
+      "name": "Formula Card",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The atomic unit of theory content: title over a 2px rule, then a boxed KaTeX formula on the raised surface. Set to never break across printed pages.",
+      "html": "<div class=\"ds-formula-box\"><h3 class=\"ds-formula-title\">Producto de potencias</h3><div class=\"ds-formula\">a<sup>m</sup> · a<sup>n</sup> = a<sup>m+n</sup></div></div>",
+      "css": ".ds-formula-box { width: 420px; padding: 25px; font-family: 'Space Mono', ui-monospace, Menlo, monospace; background: var(--bg-secondary, #e8e8e8); border: 2px solid var(--border-color, #1f1f1f); border-radius: 0; box-shadow: 5px 5px 0 var(--shadow-color, rgba(31,31,31,0.32)); } .ds-formula-title { display: inline-block; margin: 0 0 15px; padding-bottom: 10px; font-size: 1.2rem; font-weight: 700; line-height: 1.3; color: var(--text-secondary, #3a3a3a); border-bottom: 2px solid var(--border-color, #1f1f1f); } .ds-formula { padding: 20px; font-size: 1rem; color: var(--text-primary, #1f1f1f); background: var(--bg-primary, #f4f4f4); border: 1px solid var(--border-color, #1f1f1f); border-radius: 0; overflow-x: auto; white-space: nowrap; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Riso Problem Set",
+    "overview": "The whole system behaves like a single-ink risograph print. One vermilion plate laid over paper stock, printed slightly out of register. That single idea explains every decision in this file: why nothing is rounded, why no shadow is ever blurred, why there is exactly one accent hue, and why colour is used as flat fill rather than as light. A risograph cannot render a gradient, a soft shadow, or a second accent without a second plate. Neither can this system.\n\nThe character is precise and unfussy, and serious but not cold. Nothing on the page is decorative. Every rule, border, offset and fill is doing a job: separating, marking, or indicating state. The restraint is not minimalism for its own sake but the honesty the product demands, because this academy has no photographs, no prices, no named staff and no testimonials to lean on. Credibility has to come from the accuracy and clarity of the material itself, so the system never performs warmth it cannot back up. It respects a fourteen-year-old revising at eleven at night without talking down to them.\n\nThe system is fully dual-mode. Light is ink on paper; dark is chalk on slate. These are the same plate printed on different stock, not two designs. Every token has a counterpart, and hierarchy, contrast and accent behaviour are identical in both.",
+    "keyCharacteristics": [
+      "One ink: a single vermilion accent across the entire site, no exceptions",
+      "Zero radius everywhere, on every element",
+      "Hard offset shadows with no blur, tinted to the ink, never black",
+      "Monospace throughout, in the only two weights the family actually ships",
+      "Flat fills only: no gradients, no glows, no translucency except the nav",
+      "Light and dark are equal citizens, both meeting WCAG AA",
+      "Print is a real output, not an afterthought"
+    ],
+    "rules": [
+      { "name": "The Single Plate Rule", "body": "One accent hue for the entire site. A teal badge, a green success state, or a blue link is a second plate, and a second plate means this is no longer the same print. If a new state needs distinguishing, use ink weight, border, or fill, not a new hue.", "section": "colors" },
+      { "name": "The Two Inks Rule", "body": "press-vermilion is the graphic colour: fills, rules, icons, and large type. press-vermilion-strong is the only accent permitted on text below 18px against a page surface. Never swap them. Using the graphic colour for small body text fails contrast; using the strong colour for a large fill dulls the plate.", "section": "colors" },
+      { "name": "The Ink Equals Border Rule", "body": "Border colour and primary text colour are the same token value in both themes. Borders in this system are drawn ink, not a lighter separator.", "section": "colors" },
+      { "name": "The Two Weights Rule", "body": "Space Mono ships 400 and 700, roman and italic, and nothing else. Any value between them is a browser-synthesised fake that renders differently on every engine. Weights such as 500, 560 or 600 are forbidden; so are variable-font axes, which this family does not have.", "section": "typography" },
+      { "name": "The No Em-Dash Rule", "body": "Zero em-dashes and zero en-dashes in any visible string: headings, body, buttons, labels, alt text, and meta tags included. Use a comma, a full stop, parentheses, or a plain hyphen. This is verified across all built pages, not a preference.", "section": "typography" },
+      { "name": "The Earned Eyebrow Rule", "body": "Small uppercase tracked labels are not section decoration. At most one per three sections, and never merely to announce a heading that already announces itself. Numbered section eyebrows are banned outright.", "section": "typography" },
+      { "name": "The Two Widths Rule", "body": "Compose at 1120, read at 820. A page is one or the other, never an arbitrary third width, and the nav always aligns to the shell.", "section": "layout" },
+      { "name": "The Collapse Rule", "body": "Every asymmetric layout declares its sub-768px fallback in the same component. Indents flatten to zero, splits become one column, and no page may scroll horizontally at 375px.", "section": "layout" },
+      { "name": "The Registration Rule", "body": "Shadow blur is always 0. A blurred, spread, or black shadow breaks the print metaphor instantly and is the single fastest way to make this system look like generic web UI.", "section": "elevation" },
+      { "name": "The Three Surface Rule", "body": "Ground, shade, raised. If a design needs a fourth elevation step, the layout is wrong, not the palette.", "section": "elevation" },
+      { "name": "The Zero Radius Rule", "body": "--radius is 0px and stays 0px. Do not introduce a rounded variant for a single component, and do not soften corners to make an element feel friendlier.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do keep every corner square. --radius is 0px system-wide.",
+      "Do keep shadow blur at exactly 0 and tint the offset to the ink colour, never black.",
+      "Do use one accent hue across the whole page, and pick between the two vermilion tokens by text size, per The Two Inks Rule.",
+      "Do carry hierarchy with size, case, tracking and colour, using only Space Mono 400 and 700.",
+      "Do make interactive elements lift toward the cursor on hover and press into the page on click, with transform and box-shadow only.",
+      "Do design both themes at once and verify WCAG AA in each before shipping.",
+      "Do gate every animation behind prefers-reduced-motion, and never let content visibility depend on an animation completing.",
+      "Do state a grid's mobile collapse in the same component that defines it.",
+      "Do treat print as a real output: keep the print stylesheet working and prevent formula cards from breaking across pages."
+    ],
+    "donts": [
+      "Don't drift toward childish school branding: no primary-colour palettes, no mascots, no cartoon pencils or notebooks, no comic typefaces, no exclamation marks. The audience includes sixteen-year-olds studying for Bachillerato.",
+      "Don't introduce a second accent hue for any reason, including success, warning, or category colour.",
+      "Don't use font weights between 400 and 700. They do not exist in this family.",
+      "Don't put an em-dash or en-dash in any visible string.",
+      "Don't add a rounded corner, a blurred shadow, a gradient, or a glow to any component.",
+      "Don't use backdrop blur anywhere except the fixed navigation bar.",
+      "Don't give a non-interactive element a pointer cursor or a hover lift.",
+      "Don't put a numbered or decorative eyebrow above a section heading.",
+      "Don't fabricate photography, prices, staff names, testimonials or outcome statistics. None exist; their absence is the honest state of the product."
+    ]
+  }
+}

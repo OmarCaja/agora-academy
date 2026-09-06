@@ -4,6 +4,7 @@ import { Icon } from "astro-icon/components";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LevelTags from "../components/LevelTags.astro";
 import ContactItem from "../components/ContactItem.astro";
+import HeroTangent from "../components/HeroTangent.astro";
 import { discoverExercises } from "../utils/discoverExercises";
 
 // Real counts, computed at build from the actual content. Nothing here is a
@@ -93,15 +94,8 @@ const reasons = [
 				</div>
 			</div>
 
-			<div class="hero-figure reveal" style="--i: 1">
-				<img
-					src="/ejemplos/hero/parabola-tangente.png"
-					alt="Gráfica de una parábola cortada por una recta en dos puntos."
-					width="809"
-					height="832"
-					fetchpriority="high"
-					decoding="async"
-				/>
+			<div class="hero-figure">
+				<HeroTangent />
 			</div>
 		</section>
 
@@ -280,12 +274,6 @@ const reasons = [
 		justify-self: center;
 		width: 100%;
 		max-width: 300px;
-	}
-
-	.hero-figure img {
-		display: block;
-		width: 100%;
-		height: auto;
 	}
 
 	@media (min-width: 900px) {
