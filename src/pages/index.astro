@@ -1,8 +1,64 @@
 ---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import InfoBox from "../components/InfoBox.astro";
 import LevelTags from "../components/LevelTags.astro";
 import ContactItem from "../components/ContactItem.astro";
+import { discoverExercises } from "../utils/discoverExercises";
+
+// Real counts, computed at build from the actual content. Nothing here is a
+// hand-written figure that can drift away from what the site ships.
+const topics = await getCollection("topics");
+const exercises = discoverExercises();
+
+const pdfCount = (level: string) =>
+    (exercises[level]?.topics ?? []).reduce((n, t) => n + t.pdfs.length, 0);
+
+const levels = [
+    {
+        slug: "1-eso",
+        label: "1º E.S.O.",
+        desc: "Enteros, fracciones, álgebra y porcentajes",
+    },
+    {
+        slug: "3-eso",
+        label: "3º E.S.O.",
+        desc: "Ecuaciones y problemas",
+    },
+    {
+        slug: "4-eso",
+        label: "4º E.S.O.",
+        desc: "Funciones, gráficas y propiedades",
+    },
+    {
+        slug: "1-bach",
+        label: "1º Bachillerato",
+        desc: "Límites, estadística, probabilidad y exámenes",
+    },
+].filter((l) => exercises[l.slug]);
+
+const reasons = [
+    {
+        icon: "ph:users-three",
+        title: "Grupos reducidos",
+        body: "para una atención personalizada",
+    },
+    {
+        icon: "ph:trend-up",
+        title: "Mejora del aprendizaje",
+        body: "con seguimiento del progreso de cada alumno",
+    },
+    {
+        icon: "ph:tree-structure",
+        title: "Razonamiento lógico",
+        body: "como base del aprendizaje",
+    },
+    {
+        icon: "ph:compass-tool",
+        title: "Pensamiento abstracto",
+        body: "aplicado a problemas reales",
+    },
+];
 ---
 
 <BaseLayout
@@ -11,156 +67,142 @@ import ContactItem from "../components/ContactItem.astro";
 	currentPage="index"
 >
 	<div class="content-section">
-		<section class="hero fade-in">
-			<div class="hero-bg" aria-hidden="true"></div>
+		{/* ── Hero: asymmetric split ───────────────────────────────── */}
+		<section class="hero">
+			<div class="hero-copy">
+				<h1 class="hero-title reveal" style="--i: 0">
+					Academia de matemáticas en Cuenca
+				</h1>
 
-			<h1 class="hero-title">
-				Ágora <span class="accent-italic">— Academia de matemáticas en Cuenca</span>
-			</h1>
+				<p class="hero-lede reveal" style="--i: 1">
+					Clases de refuerzo para <strong>Primaria</strong>, <strong
+						>E.S.O.</strong
+					> y <strong>Bachillerato</strong>, con grupos reducidos y
+					seguimiento cercano de cada alumno.
+				</p>
 
-			<p class="hero-lede">
-				Clases de refuerzo para <strong>Primaria</strong>, <strong>E.S.O.</strong>{" "}
-				y <strong>Bachillerato</strong> en Cuenca, con grupos reducidos y un
-				seguimiento cercano del progreso de cada alumno.
-			</p>
-
-			<div class="hero-ctas">
-				<a href="/theory/algebra" class="btn btn-solid">
-					Explorar teoría <span aria-hidden="true">→</span>
-				</a>
-				<a href="/exercises/1-eso" class="btn btn-line">
-					Ver ejercicios <span aria-hidden="true">→</span>
-				</a>
+				<div class="hero-ctas reveal" style="--i: 2">
+					<a href="/#contacto" class="btn btn-solid">
+						Pedir información
+						<Icon name="ph:arrow-right" aria-hidden="true" />
+					</a>
+					<a href="/theory/algebra" class="btn btn-line">
+						Ver teoría
+						<Icon name="ph:arrow-right" aria-hidden="true" />
+					</a>
+				</div>
 			</div>
 
-			<div class="hero-levels">
+			<div class="hero-figure reveal" style="--i: 1">
+				<img
+					src="/ejemplos/hero/parabola-tangente.png"
+					alt="Gráfica de una parábola cortada por una recta en dos puntos."
+					width="809"
+					height="832"
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</div>
+		</section>
+
+		{/* ── Statement: full-width, no card ───────────────────────── */}
+		<section class="statement">
+			<h2 class="reveal">Sobre nosotros</h2>
+			<p class="statement-lead reveal" style="--i: 1">
+				En <strong>Ágora</strong> nos especializamos en la enseñanza de
+				matemáticas para estudiantes de Primaria, E.S.O. y Bachillerato
+				en Cuenca. Con nuestros <strong>grupos reducidos</strong>, cada
+				alumno recibe una atención personalizada y un seguimiento
+				cercano de su progreso.
+			</p>
+			<div class="statement-levels reveal" style="--i: 2">
 				<LevelTags />
 			</div>
 		</section>
 
-		<section class="fade-in">
-			<div class="section-head">
-				<span class="section-index" aria-hidden="true">01</span>
-				<h2>Sobre nosotros</h2>
-			</div>
-
-			<p>
-				En <strong>Ágora</strong> nos especializamos en la enseñanza de matemáticas
-				para estudiantes de Primaria, E.S.O. y Bachillerato en Cuenca. Con
-				nuestros <strong>grupos reducidos</strong>, cada alumno recibe
-				una atención personalizada y un seguimiento cercano de su
-				progreso.
+		{/* ── Materials: bento, one cell per item ──────────────────── */}
+		<section class="materials">
+			<h2 class="reveal">Recursos y materiales</h2>
+			<p class="section-lead reveal" style="--i: 1">
+				Apuntes digitales, ejercicios resueltos y modelos de examen
+				clasificados por nivel.
 			</p>
-		</section>
 
-		<section class="fade-in">
-			<div class="section-head">
-				<span class="section-index" aria-hidden="true">02</span>
-				<h2>Recursos y Materiales</h2>
-			</div>
-			<InfoBox>
-				<p>
-					Ponemos a tu disposición <strong>apuntes digitales</strong>, <strong
-						>ejercicios resueltos</strong
-					> y <strong>modelos de examen</strong> clasificados por niveles para reforzar
-					lo aprendido en clase:
-				</p>
+			<div class="bento">
+				<a href="/theory/algebra" class="cell cell-wide cell-accent reveal" style="--i: 2">
+					<Icon name="ph:function" class="cell-icon" aria-hidden="true" />
+					<span class="cell-title">Teoría</span>
+					<span class="cell-desc">
+						Apuntes y fórmulas de {topics.length} temas, con ejemplos
+						resueltos y gráficas.
+					</span>
+					<span class="cell-action">
+						Ver teoría
+						<Icon name="ph:arrow-right" aria-hidden="true" />
+					</span>
+				</a>
 
-				<div class="resource-grid">
-					<a href="/exercises/1-eso" class="resource-card">
-						<span class="resource-card-index" aria-hidden="true">Nº 1</span>
-						<span class="resource-card-level">1º E.S.O.</span>
-						<span class="resource-card-desc">Enteros, fracciones, álgebra y porcentajes</span>
-						<span class="resource-card-arrow">Ver ejercicios →</span>
-					</a>
-					<a href="/exercises/3-eso" class="resource-card">
-						<span class="resource-card-index" aria-hidden="true">Nº 2</span>
-						<span class="resource-card-level">3º E.S.O.</span>
-						<span class="resource-card-desc">Ecuaciones y problemas</span>
-						<span class="resource-card-arrow">Ver ejercicios →</span>
-					</a>
-					<a href="/exercises/4-eso" class="resource-card">
-						<span class="resource-card-index" aria-hidden="true">Nº 3</span>
-						<span class="resource-card-level">4º E.S.O.</span>
-						<span class="resource-card-desc">Funciones, gráficas y propiedades</span>
-						<span class="resource-card-arrow">Ver ejercicios →</span>
-					</a>
-					<a href="/exercises/1-bach" class="resource-card">
-						<span class="resource-card-index" aria-hidden="true">Nº 4</span>
-						<span class="resource-card-level">1º Bachillerato</span>
-						<span class="resource-card-desc">Límites, estadística, probabilidad y exámenes</span>
-						<span class="resource-card-arrow">Ver ejercicios →</span>
-					</a>
-				</div>
-
-				<div class="theory-cta-wrapper">
-					<a href="/theory/algebra" class="theory-cta-link">
-						Explorar apuntes y fórmulas de Teoría →
-					</a>
-				</div>
-			</InfoBox>
-		</section>
-
-		<section class="fade-in">
-			<div class="section-head">
-				<span class="section-index" aria-hidden="true">03</span>
-				<h2>¿Por qué Ágora?</h2>
-			</div>
-
-			<div class="reasons-grid">
-				<div class="reason-card">
-					<svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<circle cx="7" cy="15" r="2.4" />
-						<circle cx="14" cy="9" r="2.4" />
-						<circle cx="18.5" cy="16" r="2.4" />
-					</svg>
-					<strong>Grupos reducidos</strong>
-					<span>para una atención personalizada</span>
-				</div>
-				<div class="reason-card">
-					<svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<rect x="4" y="14.5" width="3.2" height="6" />
-						<rect x="10.4" y="9.5" width="3.2" height="11" />
-						<rect x="16.8" y="4.5" width="3.2" height="16" />
-					</svg>
-					<strong>Mejora del proceso</strong>
-					<strong>de aprendizaje</strong>
-				</div>
-				<div class="reason-card">
-					<svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<line x1="6.4" y1="6.4" x2="17.6" y2="6.4" />
-						<line x1="6.4" y1="6.4" x2="11.4" y2="17.4" />
-						<line x1="17.6" y1="6.4" x2="12.6" y2="17.4" />
-						<circle cx="6.4" cy="6.4" r="2" fill="currentColor" stroke="none" />
-						<circle cx="17.6" cy="6.4" r="2" fill="currentColor" stroke="none" />
-						<circle cx="12" cy="18" r="2" fill="currentColor" stroke="none" />
-					</svg>
-					<strong>Razonamiento lógico</strong>
-					<span>como base del aprendizaje</span>
-				</div>
-				<div class="reason-card">
-					<svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<circle cx="9.5" cy="14" r="6" />
-						<path d="M16.5 4 L22 15.5 L11 15.5 Z" />
-					</svg>
-					<strong>Pensamiento abstracto</strong>
-					<span>aplicado a problemas reales</span>
-				</div>
+				{
+					levels.map((level, idx) => (
+						<a
+							href={`/exercises/${level.slug}`}
+							class:list={[
+								"cell",
+								"reveal",
+								{ "cell-tinted": idx === 3 },
+							]}
+							style={`--i: ${idx + 3}`}
+						>
+							<span class="cell-title">{level.label}</span>
+							<span class="cell-desc">{level.desc}</span>
+							<span class="cell-meta">
+								{pdfCount(level.slug)} {pdfCount(level.slug) === 1 ? "PDF" : "PDFs"}
+							</span>
+							<span class="cell-action">
+								Ver ejercicios
+								<Icon name="ph:arrow-right" aria-hidden="true" />
+							</span>
+						</a>
+					))
+				}
 			</div>
 		</section>
 
-		<section id="contacto" class="fade-in">
-			<div class="section-head">
-				<span class="section-index" aria-hidden="true">04</span>
+		{/* ── Reasons: offset editorial stack, no cards ────────────── */}
+		<section class="reasons">
+			<h2 class="reveal">¿Por qué Ágora?</h2>
+
+			<ol class="reason-stack">
+				{
+					reasons.map((reason, idx) => (
+						<li class="reason reveal" style={`--i: ${idx}`}>
+							<Icon
+								name={reason.icon}
+								class="reason-icon"
+								aria-hidden="true"
+							/>
+							<div class="reason-text">
+								<strong>{reason.title}</strong>
+								<span>{reason.body}</span>
+							</div>
+						</li>
+					))
+				}
+			</ol>
+		</section>
+
+		{/* ── Contact: two-column split ────────────────────────────── */}
+		<section id="contacto" class="contact">
+			<div class="contact-head reveal">
 				<h2>Contacto</h2>
+				<p>
+					Escríbenos o llámanos y te contamos cómo trabajamos.
+				</p>
 			</div>
 
-			<InfoBox>
+			<div class="contact-details reveal" style="--i: 1">
 				<ContactItem label="Dirección">
-					<svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" />
-						<circle cx="12" cy="9.5" r="2.4" />
-					</svg>
+					<Icon slot="icon" name="ph:map-pin" aria-hidden="true" />
 					<address>
 						<a
 							href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
@@ -176,20 +218,19 @@ import ContactItem from "../components/ContactItem.astro";
 				</ContactItem>
 
 				<ContactItem label="Teléfono">
-					<svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 5 5.1 1.5 1.5 0 0 1 6.5 3.5Z" />
-					</svg>
+					<Icon slot="icon" name="ph:phone" aria-hidden="true" />
 					<a href="tel:+34649021173">649 021 173</a>
 				</ContactItem>
 
 				<ContactItem label="Email">
-					<svg slot="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<rect x="3.5" y="5.5" width="17" height="13" rx="0" />
-						<path d="M4 6.5L12 13L20 6.5" />
-					</svg>
+					<Icon
+						slot="icon"
+						name="ph:envelope-simple"
+						aria-hidden="true"
+					/>
 					<a href="mailto:info@agoraacademy.es">info@agoraacademy.es</a>
 				</ContactItem>
-			</InfoBox>
+			</div>
 		</section>
 	</div>
 </BaseLayout>
@@ -197,86 +238,103 @@ import ContactItem from "../components/ContactItem.astro";
 <style>
 	/* ===== HERO ===== */
 	.hero {
-		position: relative;
-		isolation: isolate;
-		overflow: hidden;
-		background: var(--bg-secondary);
-		border: var(--border-width) solid var(--border-color);
-		box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
-		padding: 36px 22px 30px;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--spacing-lg);
+		align-items: center;
+		padding-top: var(--spacing-md);
+		padding-bottom: var(--spacing-xl);
 		margin-bottom: var(--spacing-lg);
-	}
-
-	.hero-bg {
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		--dot-color: rgba(42, 42, 42, 0.16);
-		background-image: radial-gradient(var(--dot-color) 1.4px, transparent 1.4px);
-		background-size: 20px 20px;
-	}
-
-	:global([data-theme="dark"]) .hero-bg {
-		--dot-color: rgba(244, 244, 244, 0.14);
-	}
-
-	.hero-title,
-	.hero-lede,
-	.hero-ctas,
-	.hero-levels {
-		position: relative;
-		z-index: 1;
+		border-bottom: 1px solid var(--rule-color);
 	}
 
 	.hero-title {
 		font-family: var(--font-family);
-		font-weight: 560;
-		font-variation-settings: "SOFT" 25, "WONK" 1;
-		font-size: clamp(1.8rem, 5vw, 3rem);
-		line-height: 1.2;
-		letter-spacing: -0.01em;
-		max-width: 26ch;
+		font-weight: 700;
+		font-size: var(--step-5);
+		line-height: 1.08;
+		letter-spacing: -0.035em;
+		max-width: 15ch;
 		margin-bottom: var(--spacing-md);
-	}
-
-	.hero-title .accent-italic {
-		font-style: italic;
-		font-weight: 440;
+		text-wrap: balance;
 	}
 
 	.hero-lede {
-		font-family: var(--font-family);
-		max-width: 48ch;
+		max-width: 46ch;
 		color: var(--text-tertiary);
-		font-size: 1.02rem;
-		margin-bottom: var(--spacing-md);
+		font-size: var(--step-1);
+		margin-bottom: var(--spacing-lg);
+	}
+
+	.hero-lede strong {
+		color: var(--text-primary);
 	}
 
 	.hero-ctas {
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--spacing-sm);
-		margin-bottom: var(--spacing-sm);
 	}
 
+	.hero-figure {
+		justify-self: center;
+		width: 100%;
+		max-width: 300px;
+	}
+
+	.hero-figure img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	@media (min-width: 900px) {
+		.hero {
+			/* Deliberately uneven: the message owns more of the page than the
+			   figure, and the figure sits off the vertical centre line. */
+			grid-template-columns: 1.25fr 0.75fr;
+			gap: var(--spacing-2xl);
+			padding-top: var(--spacing-lg);
+			padding-bottom: var(--spacing-2xl);
+		}
+
+		.hero-figure {
+			max-width: none;
+			transform: translateY(8px);
+		}
+	}
+
+	/* ===== BUTTONS ===== */
 	.btn {
 		display: inline-flex;
 		align-items: center;
-		gap: 8px;
+		gap: 9px;
 		font-family: var(--font-family);
 		font-weight: 700;
 		font-size: 0.95rem;
+		white-space: nowrap;
 		text-decoration: none;
-		padding: 12px 18px;
+		padding: 13px 20px;
 		border: var(--border-width) solid var(--border-color);
 		box-shadow: 3px 3px 0 var(--shadow-color);
-		transition: all var(--transition);
+		transition:
+			transform var(--transition),
+			box-shadow var(--transition),
+			background var(--transition),
+			color var(--transition);
 		-webkit-tap-highlight-color: transparent;
+	}
+
+	.btn :global(svg) {
+		width: 17px;
+		height: 17px;
+		transition: transform var(--transition);
 	}
 
 	.btn-solid {
 		background: var(--accent);
-		color: var(--bg-secondary);
+		border-color: var(--accent);
+		color: var(--on-accent);
 	}
 
 	.btn-line {
@@ -284,199 +342,284 @@ import ContactItem from "../components/ContactItem.astro";
 		color: var(--text-primary);
 	}
 
-	.btn span {
-		display: inline-block;
-		transition: transform var(--transition);
-	}
-
 	.btn:hover {
 		transform: translate(-2px, -2px);
 		box-shadow: 5px 5px 0 var(--shadow-color);
 	}
 
-	.btn:hover span {
+	.btn:hover :global(svg) {
 		transform: translateX(3px);
 	}
 
-	.hero-levels :global(.levels) {
-		margin-top: var(--spacing-xs);
+	.btn:active {
+		transform: translate(1px, 1px);
+		box-shadow: 1px 1px 0 var(--shadow-color);
+	}
+
+	/* ===== STATEMENT ===== */
+	.statement-lead {
+		font-size: var(--step-2);
+		line-height: 1.45;
+		max-width: 34ch;
+		color: var(--text-secondary);
+		letter-spacing: -0.015em;
+	}
+
+	.statement-lead strong {
+		color: var(--text-primary);
+	}
+
+	.statement-levels {
+		margin-top: var(--spacing-md);
+	}
+
+	@media (min-width: 900px) {
+		.statement-lead {
+			max-width: 30ch;
+			margin-left: auto;
+			margin-right: 0;
+			text-align: right;
+		}
+
+		.statement-levels {
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
+
+	/* ===== SECTION LEAD ===== */
+	.section-lead {
+		max-width: 52ch;
+		color: var(--text-muted);
+		margin-bottom: var(--spacing-lg);
+	}
+
+	/* ===== BENTO ===== */
+	.bento {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--spacing-sm);
 	}
 
 	@media (min-width: 640px) {
-		.hero {
-			padding: 52px 46px 44px;
-		}
-	}
-
-	/* ===== SECTION HEADS ===== */
-	.section-head {
-		display: flex;
-		align-items: baseline;
-		gap: 14px;
-		margin: var(--spacing-xs) 0 var(--spacing-md);
-	}
-
-	.section-index {
-		font-family: var(--font-family);
-		font-style: italic;
-		font-weight: 420;
-		font-size: 1.5rem;
-		color: var(--text-muted);
-		line-height: 1;
-		flex-shrink: 0;
-	}
-
-	.section-head h2 {
-		border-left: none;
-		padding-left: 0;
-		margin: 0;
-		flex-shrink: 0;
-	}
-
-	.section-head::after {
-		content: "";
-		flex: 1;
-		height: 1px;
-		align-self: center;
-		background: var(--border-color);
-		opacity: 0.35;
-		margin-left: 6px;
-	}
-
-	/* ===== RESOURCE GRID ===== */
-	.resource-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: var(--spacing-sm);
-		margin: var(--spacing-md) 0 var(--spacing-sm);
-	}
-
-	@media (min-width: 600px) {
-		.resource-grid {
+		.bento {
 			grid-template-columns: repeat(2, 1fr);
 		}
-	}
 
-	.resource-card {
-		display: flex;
-		flex-direction: column;
-		padding: 14px;
-		background: var(--bg-primary);
-		border: 1px solid var(--border-color);
-		border-radius: var(--radius);
-		text-decoration: none;
-		color: var(--text-primary);
-		box-shadow: 2px 2px 0 var(--shadow-color);
-		transition: all var(--transition);
-	}
-
-	.resource-card:hover {
-		transform: translate(-2px, -2px);
-		border-color: var(--accent);
-		box-shadow: 4px 4px 0 var(--shadow-color);
-	}
-
-	.resource-card-index {
-		font-family: var(--font-family);
-		font-style: italic;
-		font-size: 0.82rem;
-		color: var(--text-muted);
-		margin-bottom: 6px;
-	}
-
-	.resource-card-level {
-		font-weight: 700;
-		font-size: 1.05rem;
-		color: var(--text-primary);
-		margin-bottom: 4px;
-	}
-
-	.resource-card-desc {
-		font-size: 0.88rem;
-		color: var(--text-muted);
-		line-height: 1.4;
-		margin-bottom: 8px;
-		flex: 1;
-	}
-
-	.resource-card-arrow {
-		font-size: 0.88rem;
-		font-weight: 700;
-		color: var(--accent);
-	}
-
-	.theory-cta-wrapper {
-		margin-top: var(--spacing-sm);
-		padding-top: var(--spacing-xs);
-	}
-
-	.theory-cta-link {
-		display: inline-block;
-		color: var(--text-primary);
-		font-weight: 700;
-		text-decoration: none;
-		border-bottom: 2px solid var(--accent);
-		padding-bottom: 2px;
-		transition: all var(--transition);
-	}
-
-	.theory-cta-link:hover {
-		color: var(--accent);
-		padding-left: 4px;
-	}
-
-	/* ===== REASONS GRID ===== */
-	.reasons-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: var(--spacing-sm);
-	}
-
-	@media (min-width: 600px) {
-		.reasons-grid {
-			grid-template-columns: repeat(2, 1fr);
+		.cell-wide {
+			grid-column: span 2;
 		}
 	}
 
-	.reason-card {
+	@media (min-width: 960px) {
+		.bento {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.cell-wide {
+			grid-column: span 2;
+		}
+	}
+
+	.cell {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+		gap: 5px;
+		min-height: 168px;
+		padding: 22px;
 		background: var(--bg-secondary);
 		border: var(--border-width) solid var(--border-color);
-		box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
-		padding: 20px;
 		border-radius: var(--radius);
-		transition: all var(--transition);
+		text-decoration: none;
+		color: var(--text-primary);
+		box-shadow: 3px 3px 0 var(--shadow-color);
+		transition:
+			transform var(--transition),
+			box-shadow var(--transition),
+			background var(--transition);
 	}
 
-	.reason-card:hover {
-		transform: translate(-2px, -2px);
-		box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0
-			var(--shadow-color);
+	.cell:hover {
+		transform: translate(-3px, -3px);
+		box-shadow: 6px 6px 0 var(--shadow-color);
+	}
+
+	.cell-wide {
+		min-height: 210px;
+		justify-content: flex-end;
+	}
+
+	.cell-accent {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: var(--on-accent);
+	}
+
+	.cell-tinted {
+		background: var(--accent-tint);
+	}
+
+	.cell-icon {
+		width: 30px;
+		height: 30px;
+		margin-bottom: auto;
+	}
+
+	.cell-title {
+		font-size: var(--step-2);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+	}
+
+	.cell-desc {
+		font-size: 0.9rem;
+		line-height: 1.45;
+		color: var(--text-muted);
+	}
+
+	.cell-accent .cell-desc {
+		color: var(--on-accent);
+		opacity: 0.88;
+	}
+
+	.cell-meta {
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		margin-top: 4px;
+	}
+
+	.cell-action {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		margin-top: auto;
+		padding-top: var(--spacing-sm);
+		font-size: 0.88rem;
+		font-weight: 700;
+		color: var(--accent-strong);
+	}
+
+	.cell-accent .cell-action {
+		color: var(--on-accent);
+	}
+
+	.cell-action :global(svg) {
+		width: 15px;
+		height: 15px;
+		transition: transform var(--transition);
+	}
+
+	.cell:hover .cell-action :global(svg) {
+		transform: translateX(4px);
+	}
+
+	/* ===== REASONS ===== */
+	.reason-stack {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.reason {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--spacing-md);
+		padding: var(--spacing-md) 0;
+		border-top: 1px solid var(--rule-color);
+	}
+
+	.reason:last-child {
+		border-bottom: 1px solid var(--rule-color);
 	}
 
 	.reason-icon {
-		width: 30px;
-		height: 30px;
+		width: 26px;
+		height: 26px;
+		flex-shrink: 0;
 		color: var(--accent);
-		margin-bottom: 12px;
+		margin-top: 3px;
 	}
 
-	.reason-card strong {
-		font-size: 1.02rem;
-		margin-bottom: 2px;
+	.reason-text {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
 	}
 
-	.reason-card span {
-		font-size: 0.9rem;
+	.reason-text strong {
+		font-size: var(--step-1);
+		letter-spacing: -0.015em;
+	}
+
+	.reason-text span {
 		color: var(--text-muted);
-		line-height: 1.4;
+		font-size: 0.95rem;
 	}
 
-	/* ===== CONTACT ICONS ===== */
+	/* Progressive indent gives the stack a diagonal edge instead of a
+	   four-identical-rows rhythm. Collapses flat on mobile. */
+	@media (min-width: 900px) {
+		.reason {
+			padding: var(--spacing-lg) 0;
+			gap: var(--spacing-lg);
+		}
+
+		.reason:nth-child(2) {
+			padding-left: 8%;
+		}
+
+		.reason:nth-child(3) {
+			padding-left: 16%;
+		}
+
+		.reason:nth-child(4) {
+			padding-left: 24%;
+		}
+
+		.reason-text strong {
+			font-size: var(--step-2);
+		}
+	}
+
+	/* ===== CONTACT ===== */
+	.contact {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--spacing-lg);
+		padding-top: var(--spacing-lg);
+		border-top: var(--border-width) solid var(--border-color);
+	}
+
+	.contact-head p {
+		max-width: 30ch;
+		color: var(--text-muted);
+		margin-bottom: 0;
+	}
+
+	@media (min-width: 900px) {
+		.contact {
+			grid-template-columns: 0.8fr 1.2fr;
+			gap: var(--spacing-2xl);
+		}
+
+		.contact-head h2 {
+			position: sticky;
+			top: 84px;
+		}
+	}
+
 	:global(.contact-item-head svg) {
-		width: 18px;
-		height: 18px;
+		width: 19px;
+		height: 19px;
 		color: var(--accent);
 		flex-shrink: 0;
 	}

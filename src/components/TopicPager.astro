@@ -11,6 +11,8 @@ interface Props {
 }
 
 const { prev, next } = Astro.props;
+
+import { Icon } from "astro-icon/components";
 ---
 
 {
@@ -19,7 +21,7 @@ const { prev, next } = Astro.props;
             <div class="pager-col pager-prev">
                 {prev && (
                     <a href={`/${prev.slug}`} class="pager-card" rel="prev">
-                        <span class="pager-direction">← Tema anterior</span>
+                        <span class="pager-direction"><Icon name="ph:arrow-left" aria-hidden="true" />Tema anterior</span>
                         {prev.group && <span class="pager-group">{prev.group}</span>}
                         <span class="pager-title">{prev.title}</span>
                     </a>
@@ -29,7 +31,7 @@ const { prev, next } = Astro.props;
             <div class="pager-col pager-next">
                 {next && (
                     <a href={`/${next.slug}`} class="pager-card" rel="next">
-                        <span class="pager-direction">Tema siguiente →</span>
+                        <span class="pager-direction">Tema siguiente<Icon name="ph:arrow-right" aria-hidden="true" /></span>
                         {next.group && <span class="pager-group">{next.group}</span>}
                         <span class="pager-title">{next.title}</span>
                     </a>
@@ -65,6 +67,7 @@ const { prev, next } = Astro.props;
 
     .pager-next .pager-card {
         text-align: right;
+        align-items: flex-end;
     }
 
     .pager-card {
@@ -87,10 +90,18 @@ const { prev, next } = Astro.props;
         border-color: var(--accent);
     }
 
+    .pager-direction :global(svg) {
+        width: 13px;
+        height: 13px;
+    }
+
     .pager-direction {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         font-size: 0.8rem;
         font-weight: 700;
-        color: var(--accent);
+        color: var(--accent-strong);
         text-transform: uppercase;
         letter-spacing: 1px;
         margin-bottom: 4px;

@@ -1,5 +1,11 @@
 ---
+import { Icon } from "astro-icon/components";
 ---
+
+{/* Sentinel sits ~400px down the document. Once it leaves the viewport the
+    reader has scrolled far enough for the button to be useful. This replaces a
+    window "scroll" listener (Section 5.D hard ban). */}
+<span id="scrollSentinel" aria-hidden="true"></span>
 
 <button
     id="scrollToTopBtn"
@@ -7,58 +13,66 @@
     aria-label="Volver arriba"
     title="Volver arriba"
 >
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="scroll-icon"
-        aria-hidden="true"
-    >
-        <polyline points="18 15 12 9 6 15" />
-    </svg>
+    <Icon name="ph:arrow-up-bold" class="scroll-icon" aria-hidden="true" />
 </button>
 
 <script>
-    // Stable module-scope references: the button is `transition:persist`, so
-    // re-running init on every astro:page-load would otherwise stack handlers.
-    const checkScroll = () => {
-        const btn = document.getElementById("scrollToTopBtn");
-        if (!btn) return;
-        const scrolled = window.scrollY || document.documentElement.scrollTop;
-        btn.classList.toggle("visible", scrolled > 350);
-    };
+    // The button and sentinel are transition:persist, so the observer is kept
+    // at module scope and rebuilt only when the sentinel node is replaced.
+    let observer: IntersectionObserver | null = null;
+    let watched: Element | null = null;
 
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        const reduce = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        ).matches;
+        window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
     };
 
     function initScrollToTop() {
         const btn = document.getElementById("scrollToTopBtn");
-        if (!btn) return;
-
-        window.removeEventListener("scroll", checkScroll);
-        window.addEventListener("scroll", checkScroll, { passive: true });
-        checkScroll();
+        const sentinel = document.getElementById("scrollSentinel");
+        if (!btn || !sentinel) return;
 
         btn.removeEventListener("click", scrollToTop);
         btn.addEventListener("click", scrollToTop);
+
+        if (watched === sentinel && observer) return;
+
+        observer?.disconnect();
+        observer = new IntersectionObserver(
+            ([entry]) => {
+                btn.classList.toggle("visible", !entry.isIntersecting);
+            },
+            { threshold: 0 },
+        );
+        observer.observe(sentinel);
+        watched = sentinel;
     }
 
     document.addEventListener("astro:page-load", initScrollToTop);
 </script>
 
 <style>
+    /* Kept as a rendered (opacity 0) box rather than visibility:hidden, so it
+       is unambiguously an IntersectionObserver target across engines. */
+    #scrollSentinel {
+        position: absolute;
+        top: 400px;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
     .scroll-to-top {
         position: fixed;
         bottom: 24px;
         right: 24px;
-        width: 44px;
-        height: 44px;
-        background: var(--bg-primary);
+        width: 46px;
+        height: 46px;
+        background: var(--bg-raised);
         color: var(--text-primary);
         border: var(--border-width) solid var(--border-color);
         border-radius: var(--radius);
@@ -76,6 +90,7 @@
             visibility var(--transition),
             transform var(--transition),
             background var(--transition),
+            color var(--transition),
             box-shadow var(--transition);
         -webkit-tap-highlight-color: transparent;
     }
@@ -88,7 +103,8 @@
 
     .scroll-to-top:hover {
         background: var(--accent);
-        color: var(--bg-primary);
+        color: var(--on-accent);
+        border-color: var(--accent);
         transform: translateY(-2px);
         box-shadow: 5px 5px 0 var(--shadow-color);
     }
@@ -99,8 +115,8 @@
     }
 
     .scroll-icon {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
     }
 
     @media print {

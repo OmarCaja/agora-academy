@@ -6,6 +6,7 @@ import SearchBox from "../../components/SearchBox.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import { discoverExercises } from "../../utils/discoverExercises";
 import { slugify } from "../../utils/slugify";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
     const exercisesData = discoverExercises();
@@ -29,7 +30,7 @@ if (!data) {
     currentPage={`exercises/${level}`}
     showProgressBar={true}
 >
-    <div class="content-section">
+    <div class="content-section measure">
         <Breadcrumbs
             items={[
                 { label: "Inicio", href: "/" },
@@ -55,7 +56,7 @@ if (!data) {
                 data.topics.map((topic) => (
                     <section
                         id={slugify(topic.title)}
-                        class="topic-section fade-in"
+                        class="topic-section reveal"
                         data-search-section
                         data-search-text={topic.title}
                     >
@@ -75,22 +76,10 @@ if (!data) {
                                         class="pdf-link"
                                     >
                                         <div class="pdf-icon-wrapper">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="pdf-icon"
-                                            >
-                                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                                                <polyline points="14 2 14 8 20 8" />
-                                            </svg>
+                                            <Icon name="ph:file-pdf" class="pdf-icon" aria-hidden="true" />
                                         </div>
                                         <span class="pdf-text">{pdf.name}</span>
-                                        <span class="arrow">→</span>
+                                        <Icon name="ph:arrow-right" class="arrow" aria-hidden="true" />
                                     </a>
                                 </li>
                             ))}
@@ -107,11 +96,6 @@ if (!data) {
 </BaseLayout>
 
 <style>
-    .content-section {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
     .no-results {
         padding: var(--spacing-lg);
         text-align: center;
@@ -131,6 +115,9 @@ if (!data) {
         justify-content: space-between;
         gap: var(--spacing-sm);
         flex-wrap: wrap;
+        padding-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--accent);
     }
 
     .topic-heading h2 {
@@ -144,7 +131,6 @@ if (!data) {
         letter-spacing: 0.5px;
         color: var(--text-muted);
         white-space: nowrap;
-        margin-bottom: var(--spacing-md);
     }
 
     .pdf-list {
@@ -185,16 +171,16 @@ if (!data) {
         justify-content: center;
         width: 40px;
         height: 40px;
-        color: var(--accent);
+        color: var(--on-accent);
         transition: transform var(--transition);
-        background: var(--bg-primary);
+        background: var(--accent);
         border-radius: var(--radius);
-        border: 1px solid var(--border-color);
+        border: 1px solid var(--accent);
     }
 
-    .pdf-icon {
-        width: 20px;
-        height: 20px;
+    :global(.pdf-icon) {
+        width: 21px;
+        height: 21px;
     }
 
     .pdf-link:hover .pdf-icon-wrapper {
@@ -207,16 +193,16 @@ if (!data) {
         line-height: 1.35;
     }
 
-    .arrow {
+    :global(.arrow) {
         align-self: flex-end;
-        font-weight: bold;
-        opacity: 0.5;
-        transition: all var(--transition);
+        width: 18px;
+        height: 18px;
+        opacity: 0.55;
         color: var(--accent);
-        font-size: 1.2rem;
+        transition: opacity var(--transition), transform var(--transition);
     }
 
-    .pdf-link:hover .arrow {
+    .pdf-link:hover :global(.arrow) {
         opacity: 1;
         transform: translateX(5px);
     }

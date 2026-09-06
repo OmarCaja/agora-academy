@@ -49,9 +49,12 @@ const year = new Date().getFullYear();
 
     .footer-logo {
         font-weight: 700;
-        font-size: 1.25rem;
-        letter-spacing: 2px;
+        font-size: 1.3rem;
+        letter-spacing: 3px;
         color: var(--text-primary);
+        border-bottom: 3px solid var(--accent);
+        padding-bottom: 3px;
+        align-self: flex-start;
     }
 
     .footer-tagline {
@@ -70,19 +73,24 @@ const year = new Date().getFullYear();
         color: var(--text-secondary);
         text-decoration: none;
         font-size: 0.95rem;
-        font-weight: 500;
-        transition: color var(--transition);
+        font-weight: 700;
+        padding-bottom: 2px;
+        border-bottom: 2px solid transparent;
+        transition: color var(--transition), border-color var(--transition);
     }
 
     .footer-links a:hover {
-        color: var(--text-primary);
-        text-decoration: underline;
+        border-bottom-color: var(--accent);
+    }
+
+    .footer-links a:hover {
+        color: var(--accent-strong);
     }
 
     .footer-bottom {
         font-size: 0.85rem;
         color: var(--text-muted);
-        border-top: 1px dashed var(--border-color);
+        border-top: 1px solid var(--rule-color);
         padding-top: var(--spacing-sm);
         margin-top: var(--spacing-xs);
     }

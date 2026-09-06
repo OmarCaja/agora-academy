@@ -13,40 +13,40 @@ const { title, subtitle } = Astro.props;
 </header>
 <style>
     header {
-        text-align: center;
         padding-top: var(--spacing-xs);
         padding-bottom: var(--spacing-md);
-        padding-left: 0;
-        padding-right: 0;
         border-bottom: var(--border-width) solid var(--border-color);
         margin-bottom: var(--spacing-lg);
     }
 
     h1 {
         font-family: var(--font-family);
-        font-weight: 600;
-        font-variation-settings: "SOFT" 25, "WONK" 1;
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        letter-spacing: -0.01em;
+        font-weight: 700;
+        font-size: var(--step-4);
+        line-height: 1.08;
+        letter-spacing: -0.035em;
         margin-bottom: var(--spacing-xs);
+        text-wrap: balance;
         cursor: default;
         user-select: none;
         transition: transform var(--transition);
     }
 
     h1:active {
-        transform: scale(0.98);
+        transform: scale(0.99);
     }
 
     .subtitle {
-        font-size: 1.125rem;
+        font-size: var(--step-1);
         color: var(--text-muted);
         margin-top: var(--spacing-xs);
+        margin-bottom: 0;
     }
 
     @media (min-width: 768px) {
         header {
-            padding: var(--spacing-md) 0;
+            padding-top: var(--spacing-sm);
+            padding-bottom: var(--spacing-md);
         }
     }
 </style>

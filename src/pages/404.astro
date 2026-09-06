@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import InfoBox from "../components/InfoBox.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <BaseLayout
@@ -9,10 +10,10 @@ import InfoBox from "../components/InfoBox.astro";
     description="La página que buscas no existe o ha sido movida. Vuelve a la página principal de Academia Ágora."
     currentPage="404"
 >
-    <div class="content-section">
+    <div class="content-section measure">
         <Header title="404" subtitle="Página no encontrada" />
 
-        <section class="fade-in">
+        <section class="reveal">
             <InfoBox>
                 <div class="not-found-body">
                     <p class="error-msg">
@@ -22,7 +23,8 @@ import InfoBox from "../components/InfoBox.astro";
 
                     <div class="action-links">
                         <a href="/" class="action-btn primary-btn">
-                            ← Volver al inicio
+                            <Icon name="ph:arrow-left" aria-hidden="true" />
+                            Volver al inicio
                         </a>
                         <a href="/exercises/1-eso" class="action-btn secondary-btn">
                             Ver ejercicios
@@ -38,11 +40,6 @@ import InfoBox from "../components/InfoBox.astro";
 </BaseLayout>
 
 <style>
-    .content-section {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
     .not-found-body {
         display: flex;
         flex-direction: column;
@@ -50,7 +47,7 @@ import InfoBox from "../components/InfoBox.astro";
     }
 
     .error-msg {
-        font-size: 1.1rem;
+        font-size: var(--step-1);
         color: var(--text-primary);
         line-height: 1.5;
     }
@@ -66,6 +63,8 @@ import InfoBox from "../components/InfoBox.astro";
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 8px;
+        white-space: nowrap;
         padding: 12px 20px;
         font-family: var(--font-family);
         font-size: 0.95rem;
@@ -84,11 +83,17 @@ import InfoBox from "../components/InfoBox.astro";
 
     .primary-btn {
         background: var(--accent);
-        color: var(--bg-primary);
+        border-color: var(--accent);
+        color: var(--on-accent);
     }
 
     .secondary-btn {
-        background: var(--bg-primary);
+        background: var(--bg-raised);
         color: var(--text-primary);
+    }
+
+    .action-btn :global(svg) {
+        width: 16px;
+        height: 16px;
     }
 </style>

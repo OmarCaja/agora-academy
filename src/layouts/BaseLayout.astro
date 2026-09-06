@@ -9,6 +9,11 @@ interface Props {
 
 const { title, description, currentPage = "index", schema, showProgressBar = false } = Astro.props;
 
+// Single branded 1200x630 card, regenerated with scripts/generate-og-card.py.
+const ogImage = new URL("/og/agora-og.png", Astro.site);
+const ogImageAlt =
+  "Ágora, academia de matemáticas en Cuenca para Primaria, E.S.O. y Bachillerato.";
+
 import GlobalNav from "../components/GlobalNav.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
@@ -40,7 +45,7 @@ import "../styles/global.css";
     <!-- Theme color for Safari browser bars (dark theme) -->
     <meta
       name="theme-color"
-      content="#1a1a1a"
+      content="#161616"
       media="(prefers-color-scheme: dark)"
     />
 
@@ -72,12 +77,14 @@ import "../styles/global.css";
       content={title.includes("Ágora") ? title : `${title} | Ágora`}
     />
     <meta property="og:description" content={description} />
-    <meta
-      property="og:image"
-      content={new URL("/favicon/logo.png", Astro.site)}
-    />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Academia Ágora" />
 
     <!-- Twitter -->
@@ -87,10 +94,8 @@ import "../styles/global.css";
       content={title.includes("Ágora") ? title : `${title} | Ágora`}
     />
     <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:image"
-      content={new URL("/favicon/logo.png", Astro.site)}
-    />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- KaTeX CSS -->
     <!-- (Imported in frontmatter for bundling) -->
@@ -124,7 +129,7 @@ import "../styles/global.css";
           address: {
             "@type": "PostalAddress",
             streetAddress:
-              "Calle Fermín Caballero, 3, Planta 6, espacio Einstein",
+              "Calle Fermín Caballero, 3 (edificio Máster), Planta 6 [thegoodspace]",
             addressLocality: "Cuenca",
             postalCode: "16004",
             addressCountry: "ES",

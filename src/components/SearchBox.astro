@@ -7,24 +7,13 @@ interface Props {
 }
 
 const { placeholder, label, countSingular, countPlural } = Astro.props;
+
+import { Icon } from "astro-icon/components";
 ---
 
 <div class="search-container">
     <div class="search-input-wrapper">
-        <svg
-            class="search-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-        >
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
+        <Icon name="ph:magnifying-glass" class="search-icon" aria-hidden="true" />
         <input
             type="search"
             id="siteSearch"
@@ -40,19 +29,7 @@ const { placeholder, label, countSingular, countPlural } = Astro.props;
             aria-label="Limpiar búsqueda"
             style="display: none;"
         >
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="clear-icon"
-            >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
+            <Icon name="ph:x-bold" class="clear-icon" aria-hidden="true" />
         </button>
     </div>
     <p
@@ -80,7 +57,7 @@ const { placeholder, label, countSingular, countPlural } = Astro.props;
         align-items: center;
     }
 
-    .search-icon {
+    :global(.search-icon) {
         position: absolute;
         left: 14px;
         width: 18px;
@@ -95,7 +72,7 @@ const { placeholder, label, countSingular, countPlural } = Astro.props;
         font-family: var(--font-family);
         font-size: 1rem;
         color: var(--text-primary);
-        background: var(--bg-secondary);
+        background: var(--bg-raised);
         border: var(--border-width) solid var(--border-color);
         border-radius: var(--radius);
         outline: none;
@@ -113,6 +90,11 @@ const { placeholder, label, countSingular, countPlural } = Astro.props;
         -webkit-appearance: none;
         appearance: none;
         display: none;
+    }
+
+    #siteSearch::placeholder {
+        color: var(--text-muted);
+        opacity: 1;
     }
 
     #siteSearch:focus {
@@ -156,7 +138,7 @@ const { placeholder, label, countSingular, countPlural } = Astro.props;
         transform: scale(1.1);
     }
 
-    .clear-icon {
+    :global(.clear-icon) {
         width: 16px;
         height: 16px;
     }

@@ -1,56 +1,82 @@
 /* ===== CSS VARIABLES ===== */
 :root {
-    /* Light theme colors */
+    /* Light theme surfaces & ink */
     --bg-primary: #f4f4f4;
-    --bg-secondary: #e5e5e5;
-    --text-primary: #2a2a2a;
-    --text-secondary: #444;
-    --text-tertiary: #555;
-    --text-muted: #666;
-    --border-color: #2a2a2a;
-    --accent: #2a2a2a;
-    --shadow-color: rgba(42, 42, 42, 0.3);
+    --bg-secondary: #e8e8e8;
+    --bg-raised: #fdfdfd;
+    --text-primary: #1f1f1f;
+    --text-secondary: #3a3a3a;
+    --text-tertiary: #4a4a4a;
+    --text-muted: #5a5a5a;
+    --border-color: #1f1f1f;
+    --rule-color: rgba(31, 31, 31, 0.18);
+    --shadow-color: rgba(31, 31, 31, 0.32);
+
+    /* Accent — vermilion. `--accent` is the graphic colour (fills, rules,
+       icons, large type). `--accent-strong` is the AA-safe variant for small
+       text on page surfaces. `--on-accent` is text sitting on an accent fill. */
+    --accent: #c2431e;
+    --accent-strong: #9e3416;
+    --on-accent: #fdf6f3;
+    --accent-tint: rgba(194, 67, 30, 0.09);
 
     /* Navigation */
-    --nav-bg: rgba(255, 255, 255, 0.8);
-    --nav-border: rgba(0, 0, 0, 0.1);
+    --nav-bg: rgba(250, 250, 250, 0.82);
+    --nav-border: rgba(31, 31, 31, 0.14);
 
     /* Layout & Spacing */
-    --max-width: 800px;
+    --shell: 1120px;
+    --measure: 820px;
     --spacing-xs: 10px;
     --spacing-sm: 15px;
     --spacing-md: 20px;
     --spacing-lg: 40px;
     --spacing-xl: 60px;
+    --spacing-2xl: 88px;
 
     /* Visual effects */
     --radius: 0px;
-    --transition-speed: 0.4s;
-    --transition: var(--transition-speed) ease;
+    --transition-speed: 0.28s;
+    --transition: var(--transition-speed) var(--ease);
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
     --border-width: 2px;
     --shadow-offset: 5px;
 
-    /* Typography */
-    --font-family: "Space Mono", monospace;
+    /* Typography — Space Mono ships 400 and 700 only, in roman and italic.
+       Hierarchy is carried by size, case, tracking and colour, never by
+       intermediate weights the family does not have. */
+    --font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     --font-size-base: 16px;
     --font-size-md: 1rem;
-    --line-height: 1.6;
+    --step-0: 1rem;
+    --step-1: clamp(1.05rem, 0.99rem + 0.3vw, 1.2rem);
+    --step-2: clamp(1.25rem, 1.13rem + 0.6vw, 1.55rem);
+    --step-3: clamp(1.5rem, 1.28rem + 1.1vw, 2.1rem);
+    --step-4: clamp(1.95rem, 1.5rem + 2.2vw, 3.1rem);
+    --step-5: clamp(2.3rem, 1.6rem + 3.4vw, 4.1rem);
+    --line-height: 1.65;
 }
 
-/* Dark theme colors */
+/* Dark theme */
 [data-theme="dark"] {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2a2a2a;
-    --text-primary: #f4f4f4;
-    --text-secondary: #e5e5e5;
-    --text-tertiary: #d0d0d0;
-    --text-muted: #999;
-    --border-color: #f4f4f4;
-    --accent: #f4f4f4;
-    --shadow-color: rgba(244, 244, 244, 0.3);
+    --bg-primary: #161616;
+    --bg-secondary: #202020;
+    --bg-raised: #262626;
+    --text-primary: #f2f2f2;
+    --text-secondary: #dedede;
+    --text-tertiary: #cccccc;
+    --text-muted: #a8a8a8;
+    --border-color: #f2f2f2;
+    --rule-color: rgba(242, 242, 242, 0.22);
+    --shadow-color: rgba(242, 242, 242, 0.26);
 
-    --nav-bg: rgba(22, 22, 24, 0.8);
-    --nav-border: rgba(255, 255, 255, 0.1);
+    --accent: #f2734b;
+    --accent-strong: #ff8f6b;
+    --on-accent: #1a1210;
+    --accent-tint: rgba(242, 115, 75, 0.12);
+
+    --nav-bg: rgba(20, 20, 20, 0.82);
+    --nav-border: rgba(242, 242, 242, 0.14);
 }
 
 /* ===== GLOBAL RESET ===== */
@@ -63,12 +89,17 @@
 html {
     height: 100%;
     height: -webkit-fill-available;
-    /* Smooth scroll for anchor links */
-    scroll-behavior: smooth;
-    /* Height of .global-nav (48px) + some extra breathing room */
-    scroll-padding-top: 70px;
+    /* Height of .global-nav (48px) + breathing room */
+    scroll-padding-top: 74px;
     /* ponytail: overflow-x: hidden removed — breaks backdrop-filter in Chrome; body already has it */
     width: 100%;
+}
+
+/* Smooth anchor scrolling is motion; it must respect the OS setting. */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 /* Extended background to prevent transparent areas on Safari over-scroll */
@@ -91,7 +122,7 @@ body {
     color: var(--text-primary);
     line-height: var(--line-height);
     padding: var(--spacing-md);
-    /* Add safe area padding for notched devices */
+    /* Safe area padding for notched devices */
     padding-top: max(var(--spacing-md), env(safe-area-inset-top));
     padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
     padding-left: max(var(--spacing-md), env(safe-area-inset-left));
@@ -105,6 +136,7 @@ body {
     overflow-x: clip; /* 'hidden' breaks backdrop-filter by creating a stacking context; 'clip' clips without that side-effect */
     overflow-wrap: break-word;
     word-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Prevent scrolling when menu is open - Standard and Safari fix */
@@ -125,14 +157,14 @@ body.menu-open #main-content {
 
 /* Nav blur — must live here: LightningCSS strips backdrop-filter from scoped component styles */
 .global-nav {
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(170%) blur(18px);
+    backdrop-filter: saturate(170%) blur(18px);
 }
 
 /* Focus styles for accessibility */
 :focus-visible {
     outline: 3px solid var(--accent);
-    outline-offset: 4px;
+    outline-offset: 3px;
 }
 
 /* Skip link for keyboard users */
@@ -141,7 +173,8 @@ body.menu-open #main-content {
     top: -100px;
     left: 20px;
     background: var(--accent);
-    color: var(--bg-primary);
+    color: var(--on-accent);
+    font-weight: 700;
     padding: var(--spacing-sm);
     z-index: 2000;
     text-decoration: none;
@@ -154,21 +187,25 @@ body.menu-open #main-content {
 
 /* Main container */
 .container {
-    max-width: var(--max-width);
+    max-width: var(--shell);
     margin: 0 auto;
     padding: 0 var(--spacing-xs);
     padding-top: 48px;
     /* Height of GlobalNav */
 }
 
-
+/* Reading column for document-shaped pages (theory, exercises, 404) */
+.measure {
+    max-width: var(--measure);
+    margin: 0 auto;
+}
 
 /* ===== THEME TRANSITIONS ===== */
 body.theme-changing {
     transition: background-color var(--transition);
 }
 
-body.theme-changing :is(.info-box, .theme-toggle, .level-tag, .menu-overlay, .diagram-tree) {
+body.theme-changing :is(.info-box, .level-tag, .menu-overlay, .diagram-tree) {
     transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
@@ -186,8 +223,8 @@ body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle) {
 .diagram-tree {
     font-family: var(--font-family);
     padding: var(--spacing-md);
-    background: var(--bg-primary);
-    border: 1px solid var(--border-color);
+    background: var(--bg-raised);
+    border: 1px solid var(--rule-color);
     border-radius: var(--radius);
     font-size: 0.9rem;
     line-height: 1.5;
@@ -196,7 +233,7 @@ body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle) {
     max-width: 100%;
     color: var(--text-primary);
     margin: var(--spacing-sm) 0;
-    transition: all var(--transition);
+    transition: background var(--transition), border-color var(--transition);
 }
 
 /* ===== CONTENT ===== */
@@ -204,19 +241,19 @@ section {
     margin-bottom: var(--spacing-lg);
 }
 
-
-
 h2 {
     font-family: var(--font-family);
-    font-weight: 600;
-    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 700;
+    font-size: var(--step-3);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
     margin: var(--spacing-xs) 0 var(--spacing-md);
-    border-left: 4px solid var(--accent);
-    padding-left: var(--spacing-sm);
 }
 
 h3 {
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-size: var(--step-1);
+    font-weight: 700;
+    line-height: 1.3;
     margin-bottom: var(--spacing-sm);
     color: var(--text-secondary);
 }
@@ -238,7 +275,7 @@ address {
     padding: 25px;
     margin-bottom: var(--spacing-md);
     border-radius: var(--radius);
-    transition: all var(--transition);
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 /* ===== ACCESSIBILITY ===== */
@@ -254,26 +291,33 @@ address {
     border-width: 0;
 }
 
-/* ===== SCROLL ANIMATIONS ===== */
-.fade-in {
+/* ===== ENTRY / SCROLL REVEAL =====
+   Motivation: sequences a section's content in reading order so the eye lands
+   on the headline before the supporting detail. One transform + opacity only. */
+.reveal {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
     transition:
-        opacity 0.5s ease-out,
-        transform 0.5s ease-out;
+        opacity 0.55s var(--ease),
+        transform 0.55s var(--ease);
+    transition-delay: calc(var(--i, 0) * 70ms);
 }
 
-.scroll-hidden {
+.reveal.is-hidden {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
 }
 
 /* ===== MAP LINK ===== */
 .map-link {
     color: var(--text-primary);
     text-decoration: none;
-    border-bottom: 1px solid var(--border-color);
-    transition: opacity var(--transition);
+    border-bottom: 1px solid var(--accent);
+    transition: color var(--transition), border-color var(--transition);
+}
+
+.map-link:hover {
+    color: var(--accent-strong);
 }
 
 /* ===== EASTER EGG - FALLING PI DIGITS ===== */
@@ -308,11 +352,34 @@ address {
     }
 
     section {
-        margin-bottom: var(--spacing-xl);
+        margin-bottom: var(--spacing-2xl);
     }
 
     .info-box {
         padding: 35px;
+    }
+}
+
+/* ===== REDUCED MOTION =====
+   Mandatory at MOTION_INTENSITY 5. Everything that moves collapses to static:
+   reveals resolve instantly, hover lifts stop translating, the pi rain is
+   suppressed at the source in animations.js, and smooth scrolling is off
+   (it is only enabled under no-preference above). */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        transition-delay: 0ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal,
+    .reveal.is-hidden {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 
@@ -323,7 +390,8 @@ address {
     .search-container,
     .progress-container,
     .scroll-to-top,
-    .skip-link {
+    .skip-link,
+    .hero-figure {
         display: none !important;
     }
 
@@ -336,6 +404,12 @@ address {
     .container {
         max-width: 100%;
         padding-top: 0;
+    }
+
+    .reveal,
+    .reveal.is-hidden {
+        opacity: 1 !important;
+        transform: none !important;
     }
 
     /* Prevent cutting formulas or content cards in half across printed pages */

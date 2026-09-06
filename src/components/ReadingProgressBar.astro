@@ -2,46 +2,63 @@
 
 ---
 
-<div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
+<div class="progress-container" aria-hidden="true">
+    <div class="progress-bar"></div>
 </div>
 
-<script>
-    const updateProgressBar = () => {
-        const progressBar = document.getElementById("progressBar");
-        if (!progressBar) return;
-
-        const winScroll =
-            document.body.scrollTop || document.documentElement.scrollTop;
-        const height =
-            document.documentElement.scrollHeight -
-            document.documentElement.clientHeight;
-        // A page that doesn't scroll has height 0; without this the width would
-        // be set to "NaN%" (ignored) and the persisted bar would keep the
-        // previous page's fill.
-        const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-        progressBar.style.width = scrolled + "%";
-    };
-
-    window.addEventListener("scroll", updateProgressBar);
-    document.addEventListener("astro:page-load", updateProgressBar);
-</script>
-
 <style>
+    /* Reading progress is driven entirely by a CSS scroll-driven animation.
+       This replaces a window "scroll" listener (Section 5.D hard ban) and
+       removes all JavaScript from this component.
+
+       Motivation: on long theory pages the bar tells the reader how much of
+       the topic is left, which is real orientation, not decoration.
+
+       Browsers without `animation-timeline` get no bar at all rather than an
+       empty track, hence the @supports gate. */
     .progress-container {
-        position: fixed;
-        top: 48px; /* Height of GlobalNav */
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: transparent;
-        z-index: 1000;
+        display: none;
     }
 
-    .progress-bar {
-        height: 100%;
-        background: var(--accent);
-        width: 0%;
-        transition: width 0.1s ease;
+    @supports (animation-timeline: scroll(root block)) {
+        .progress-container {
+            display: block;
+            position: fixed;
+            top: 48px; /* Height of GlobalNav */
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+            animation: reading-progress linear;
+            animation-timeline: scroll(root block);
+        }
+    }
+
+    @keyframes reading-progress {
+        from {
+            transform: scaleX(0);
+        }
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    /* The bar tracks scroll position rather than playing on its own, so it is
+       orientation rather than motion. Under reduced motion the global rule
+       clamps animation-duration, which would pin it at scaleX(1); hide it
+       instead so it never reads as "fully read". */
+    @media (prefers-reduced-motion: reduce) {
+        .progress-container {
+            display: none;
+        }
     }
 </style>

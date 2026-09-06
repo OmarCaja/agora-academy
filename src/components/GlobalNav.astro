@@ -1,5 +1,5 @@
 ---
-
+import { Icon } from "astro-icon/components";
 ---
 
 <header class="global-nav">
@@ -10,13 +10,8 @@
             aria-label="Cambiar entre tema claro y oscuro"
         >
             <span id="themeIcon" class="theme-icon" aria-hidden="true">
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="4.5" />
-                    <path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8" />
-                </svg>
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" />
-                </svg>
+                <Icon name="ph:sun" class="icon-sun" />
+                <Icon name="ph:moon" class="icon-moon" />
             </span>
             <span class="sr-only" id="themeText">Cambiar a tema oscuro</span>
         </button>
@@ -71,13 +66,13 @@
     }
 
     .nav-content {
-        max-width: 1000px;
+        max-width: var(--shell);
         margin: 0 auto;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 20px;
+        padding: 0 var(--spacing-xs);
     }
 
     .nav-btn {
@@ -144,21 +139,21 @@
         height: 19px;
     }
 
-    .theme-icon .icon-sun,
-    .theme-icon .icon-moon {
+    .theme-icon :global(.icon-sun),
+    .theme-icon :global(.icon-moon) {
         width: 100%;
         height: 100%;
     }
 
-    .theme-icon .icon-sun {
+    .theme-icon :global(.icon-sun) {
         display: none;
     }
 
-    :global([data-theme="dark"]) .theme-icon .icon-sun {
+    :global([data-theme="dark"]) .theme-icon :global(.icon-sun) {
         display: block;
     }
 
-    :global([data-theme="dark"]) .theme-icon .icon-moon {
+    :global([data-theme="dark"]) .theme-icon :global(.icon-moon) {
         display: none;
     }
 
@@ -178,11 +173,5 @@
         height: 20px;
         width: auto;
         display: block;
-    }
-
-    @media (max-width: 768px) {
-        .nav-content {
-            padding: 0 16px;
-        }
     }
 </style>

@@ -9,6 +9,7 @@ import TopicPager from "../../components/TopicPager.astro";
 import SearchBox from "../../components/SearchBox.astro";
 import { GROUP_ORDER } from "../../data/topics";
 import { slugify } from "../../utils/slugify";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
     const topics = await getCollection("topics");
@@ -98,7 +99,7 @@ const topicSchema = {
     schema={topicSchema}
     showProgressBar={true}
 >
-    <div class="content-section">
+    <div class="content-section measure">
         <Breadcrumbs
             items={[
                 { label: "Inicio", href: "/" },
@@ -112,16 +113,16 @@ const topicSchema = {
 
         <div class="topic-meta">
             <span class="meta-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15 14" /></svg>
+                <Icon name="ph:clock" aria-hidden="true" />
                 ~{estimatedReadTime} min de lectura
             </span>
             <span class="meta-pill">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="18" x2="14" y2="18" /></svg>
+                <Icon name="ph:list" aria-hidden="true" />
                 {sections.length} {sections.length === 1 ? "sección" : "secciones"}
             </span>
             {totalFormulas > 0 && (
                 <span class="meta-pill">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13h3l3 8 4-17h6" /></svg>
+                    <Icon name="ph:function" aria-hidden="true" />
                     {totalFormulas} {totalFormulas === 1 ? "fórmula" : "fórmulas"}
                 </span>
             )}
@@ -143,7 +144,7 @@ const topicSchema = {
                 sections.map((section) => (
                     <section
                         id={slugify(section.title)}
-                        class="theory-section fade-in"
+                        class="theory-section reveal"
                         data-search-section
                         data-search-text={section.title}
                     >
@@ -185,11 +186,6 @@ const topicSchema = {
 </BaseLayout>
 
 <style>
-    .content-section {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
     .topic-meta {
         display: flex;
         flex-wrap: wrap;
@@ -201,19 +197,20 @@ const topicSchema = {
     .meta-pill {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        font-size: 0.8rem;
+        gap: 6px;
+        font-size: 0.82rem;
         color: var(--text-muted);
         background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        padding: 3px 8px;
+        border: 1px solid var(--rule-color);
+        padding: 4px 10px;
         border-radius: var(--radius);
     }
 
-    .meta-pill svg {
-        width: 13px;
-        height: 13px;
+    .meta-pill :global(svg) {
+        width: 14px;
+        height: 14px;
         flex-shrink: 0;
+        color: var(--accent);
     }
 
     .no-results {
