@@ -16,6 +16,11 @@ import { Icon } from "astro-icon/components";
     <Icon name="ph:arrow-up-bold" class="scroll-icon" aria-hidden="true" />
 </button>
 
+{/* Entrance mimics the print metaphor: the shadow starts out of register
+    and slams into its resting 3px offset, like a stamp landing, instead
+    of a generic fade/slide. global.css's reduced-motion override already
+    collapses this to the plain opacity/transform transition below. */}
+
 <script>
     // The button and sentinel are transition:persist, so the observer is kept
     // at module scope and rebuilt only when the sentinel node is replaced.
@@ -99,6 +104,25 @@ import { Icon } from "astro-icon/components";
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
+        animation: stamp-in 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes stamp-in {
+        0% {
+            opacity: 0;
+            transform: translateY(12px);
+            box-shadow: 8px 8px 0 var(--shadow-color);
+        }
+        55% {
+            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 0 var(--shadow-color);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: 3px 3px 0 var(--shadow-color);
+        }
     }
 
     .scroll-to-top:hover {
@@ -117,6 +141,15 @@ import { Icon } from "astro-icon/components";
     .scroll-icon {
         width: 18px;
         height: 18px;
+        transition: transform var(--transition);
+    }
+
+    .scroll-to-top:hover .scroll-icon {
+        transform: translateY(-2px);
+    }
+
+    .scroll-to-top:active .scroll-icon {
+        transform: translateY(1px);
     }
 
     @media print {

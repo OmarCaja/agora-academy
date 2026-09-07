@@ -190,7 +190,7 @@ const reasons = [
 				</p>
 			</div>
 
-			<div class="contact-details reveal" style="--i: 1">
+			<div class="contact-details">
 				<ContactItem label="Dirección">
 					<Icon slot="icon" name="ph:map-pin" aria-hidden="true" />
 					<address>
@@ -433,6 +433,38 @@ const reasons = [
 		box-shadow: 6px 6px 0 var(--shadow-color);
 	}
 
+	/* Entrance: each cell fades, untilts and snaps its shadow in together, in
+	   reading order, like the other .reveal components. Same per-cell delay
+	   on all three so the motion is visible instead of finishing while the
+	   cell is still at opacity 0. Hover/active zero the delay back out so
+	   interactive feedback stays instant regardless of a cell's index. */
+	.cell.reveal {
+		transition:
+			opacity 0.45s var(--ease) calc(var(--i, 0) * 70ms),
+			transform 0.4s var(--ease) calc(var(--i, 0) * 70ms),
+			box-shadow 0.4s var(--ease) calc(var(--i, 0) * 70ms),
+			background var(--transition);
+	}
+
+	.cell.reveal:hover,
+	.cell.reveal:active {
+		transition-delay: 0s;
+	}
+
+	.bento .cell:nth-child(odd) {
+		--tilt: -1.6deg;
+	}
+
+	.bento .cell:nth-child(even) {
+		--tilt: 1.3deg;
+	}
+
+	.cell.reveal.is-hidden {
+		opacity: 0;
+		transform: rotate(var(--tilt, -1.6deg)) translate(-6px, 16px);
+		box-shadow: 0 0 0 var(--shadow-color);
+	}
+
 	.cell-wide {
 		min-height: 210px;
 		justify-content: flex-end;
@@ -525,6 +557,10 @@ const reasons = [
 		flex-shrink: 0;
 		color: var(--accent);
 		margin-top: 3px;
+		transition:
+			opacity 0.35s var(--ease),
+			transform 0.35s var(--ease);
+		transition-delay: calc(var(--i, 0) * 90ms + 0.2s);
 	}
 
 	.reason-text {
@@ -541,6 +577,27 @@ const reasons = [
 	.reason-text span {
 		color: var(--text-muted);
 		font-size: 0.95rem;
+	}
+
+	/* Entrance: each row slides in along the same diagonal the desktop
+	   indent already draws, so the motion traces the stack's own edge
+	   instead of a generic straight-up fade. The icon lands a beat later,
+	   scaling down to rest like a stamp pressed into the page. */
+	.reason.reveal {
+		transition:
+			opacity 0.5s var(--ease),
+			transform 0.5s var(--ease);
+		transition-delay: calc(var(--i, 0) * 90ms);
+	}
+
+	.reason.reveal.is-hidden {
+		opacity: 0;
+		transform: translate(-24px, 14px);
+	}
+
+	.reason.reveal.is-hidden .reason-icon {
+		opacity: 0;
+		transform: scale(1.5);
 	}
 
 	/* Progressive indent gives the stack a diagonal edge instead of a
@@ -600,5 +657,17 @@ const reasons = [
 		height: 19px;
 		color: var(--accent);
 		flex-shrink: 0;
+	}
+
+	:global(.contact-details .contact-item.reveal:nth-child(1)) {
+		transition-delay: 0s;
+	}
+
+	:global(.contact-details .contact-item.reveal:nth-child(2)) {
+		transition-delay: 90ms;
+	}
+
+	:global(.contact-details .contact-item.reveal:nth-child(3)) {
+		transition-delay: 180ms;
 	}
 </style>

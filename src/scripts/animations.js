@@ -35,23 +35,31 @@ const initReveal = () => {
                 observer.unobserve(entry.target);
             });
         },
-        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+        { threshold: 0.08, rootMargin: "0px 0px -70px 0px" },
     );
 
     targets.forEach((el) => {
-        el.classList.add("is-hidden");
+        // Already on screen at init (above the fold): reveal instantly, never
+        // hide first — hiding already-painted content is what causes the
+        // visible -> hidden -> visible flash this guards against.
+        const rect = el.getBoundingClientRect();
+        const alreadyVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!alreadyVisible) el.classList.add("is-hidden");
         observer.observe(el);
     });
 
     // This script hides content that only the observer can bring back, so a
-    // throttled or non-firing observer would leave the page blank. Content
-    // visibility must never depend on an animation succeeding: if nothing has
-    // been revealed shortly after init, show everything and drop the effect.
+    // non-firing observer (unsupported/broken IntersectionObserver) would
+    // leave the page blank. Content visibility must never depend on an
+    // animation succeeding. Long window: this only needs to catch a genuinely
+    // broken observer, not a user who reads the hero for a few seconds before
+    // scrolling — a short timeout would reveal untouched sections early and
+    // defeat the scroll-triggered reveal entirely.
     clearTimeout(failsafeTimer);
     failsafeTimer = setTimeout(() => {
         observer.disconnect();
         revealAll();
-    }, 2000);
+    }, 10000);
 };
 
 // ===== EASTER EGG - FALLING PI DIGITS =====
