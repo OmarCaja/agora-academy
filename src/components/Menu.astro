@@ -242,13 +242,14 @@ const isSectionActive = (section: MenuSection) => {
         right: 0;
         background: var(--bg-primary);
         z-index: 1000;
-        display: grid;
-        grid-template-rows: 0fr;
         opacity: 0;
+        visibility: hidden;
         pointer-events: none;
+        transform: translateY(-8px);
         transition:
-            grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-            opacity 0.4s ease;
+            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.3s ease,
+            visibility 0s linear 0.35s;
         max-height: calc(100dvh - 48px);
         overflow-y: auto;
         overscroll-behavior: contain;
@@ -256,9 +257,13 @@ const isSectionActive = (section: MenuSection) => {
     }
 
     .menu-overlay.active {
-        grid-template-rows: 1fr;
         opacity: 1;
+        visibility: visible;
         pointer-events: all;
+        transform: translateY(0);
+        transition:
+            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.3s ease;
     }
 
     .menu-accordion-inner {

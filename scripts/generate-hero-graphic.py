@@ -13,11 +13,12 @@ DEPENDENCIES
 
 NOTES
 ------
-Follows the same conventions as generate-math-graphs.py (Agg backend, save to
-public/ejemplos/<folder>/), but uses the site's brand palette instead of the
-teaching palette, and renders on a transparent background so a single file
-reads correctly on both the light and dark themes. Colours are therefore
-picked to hold contrast against #f4f4f4 and #161616 alike.
+Follows the same single-ink convention as generate-math-graphs.py (Agg
+backend, save to public/ejemplos/<folder>/): DESIGN.md's Single Plate Rule
+bans any chromatic hue, so the curve is ink, not a brand color. Renders on a
+transparent background so one file reads correctly on both themes. INK sits
+between the light and dark theme's ink/chalk tokens so the one file works on
+both; NEUTRAL is a mid grey for the reference line and grid.
 """
 
 import os
@@ -29,9 +30,7 @@ import matplotlib.pyplot as plt
 OUT = "public/ejemplos/hero"
 os.makedirs(OUT, exist_ok=True)
 
-# Brand palette. VERMILION sits between the light and dark theme accents so the
-# one file works on both. NEUTRAL is a mid grey that stays legible either way.
-VERMILION = '#d9542a'
+INK = '#1f1f1f'
 NEUTRAL = '#8c8c8c'
 
 fig, ax = plt.subplots(figsize=(6.4, 5.2), dpi=200)
@@ -59,7 +58,7 @@ ax.annotate('', xy=(0, ylim[1]), xytext=(0, ylim[0]),
 
 # The parabola.
 x = np.linspace(-2.75, 2.75, 400)
-ax.plot(x, f(x), color=VERMILION, lw=3.4, solid_capstyle='round', zorder=3)
+ax.plot(x, f(x), color=INK, lw=3.4, solid_capstyle='round', zorder=3)
 
 # A straight line cutting the parabola: the intersection picture students
 # meet as a quadratic system. Two real solutions, both marked.
@@ -74,10 +73,10 @@ ax.plot(lx, g(lx), color=NEUTRAL, lw=1.8, dashes=(7, 5), zorder=2)
 roots = np.roots([0.62, -0.9, -1.85])
 for r in roots:
     ax.plot([r], [g(r)], marker='o', ms=10, mfc='none',
-            mec=VERMILION, mew=3.0, zorder=4)
+            mec=INK, mew=3.0, zorder=4)
 
 # Vertex.
-ax.plot([0], [f(0)], marker='o', ms=7, color=VERMILION, zorder=4)
+ax.plot([0], [f(0)], marker='o', ms=7, color=INK, zorder=4)
 
 ax.set_xlim(*xlim)
 ax.set_ylim(*ylim)
