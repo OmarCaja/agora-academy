@@ -80,13 +80,13 @@ import { Icon } from "astro-icon/components";
         border-radius: var(--radius);
         text-decoration: none;
         color: var(--text-primary);
-        box-shadow: 2px 2px 0 var(--shadow-color);
+        box-shadow: 3px 3px 0 var(--shadow-color);
         transition: all var(--transition);
     }
 
     .pager-card:hover {
-        transform: translate(-2px, -2px);
-        box-shadow: 4px 4px 0 var(--shadow-color);
+        transform: translate(-3px, -3px);
+        box-shadow: 6px 6px 0 var(--shadow-color);
         border-color: var(--accent);
     }
 
@@ -104,13 +104,13 @@ import { Icon } from "astro-icon/components";
     }
 
     .pager-group {
-        font-size: 0.75rem;
+        font-size: var(--font-size-xs);
         color: var(--text-muted);
         margin-bottom: 2px;
     }
 
     .pager-title {
-        font-size: 1.05rem;
+        font-size: var(--step-1);
         font-weight: 700;
         line-height: 1.3;
     }

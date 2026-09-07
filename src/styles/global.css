@@ -18,7 +18,6 @@
     --accent: var(--text-primary);
     --accent-strong: var(--text-primary);
     --on-accent: var(--bg-primary);
-    --accent-tint: rgba(31, 31, 31, 0.09);
 
     /* Navigation */
     --nav-bg: rgba(250, 250, 250, 0.82);
@@ -48,6 +47,8 @@
     --font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     --font-size-base: 16px;
     --font-size-md: 1rem;
+    --font-size-sm: 0.9rem;
+    --font-size-xs: 0.78rem;
     --step-0: 1rem;
     --step-1: clamp(1.05rem, 0.99rem + 0.3vw, 1.2rem);
     --step-2: clamp(1.25rem, 1.13rem + 0.6vw, 1.55rem);
@@ -73,7 +74,6 @@
     --accent: var(--text-primary);
     --accent-strong: var(--text-primary);
     --on-accent: var(--bg-primary);
-    --accent-tint: rgba(242, 242, 242, 0.12);
 
     --nav-bg: rgba(20, 20, 20, 0.82);
     --nav-border: rgba(242, 242, 242, 0.14);
@@ -226,7 +226,7 @@ body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle) {
     background: var(--bg-raised);
     border: 1px solid var(--rule-color);
     border-radius: var(--radius);
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     line-height: 1.5;
     white-space: pre;
     overflow-x: auto;
@@ -271,7 +271,7 @@ address {
 .meta-label {
     font-family: var(--font-family);
     font-weight: 700;
-    font-size: 0.78rem;
+    font-size: var(--font-size-xs);
     line-height: 1.4;
     letter-spacing: 0.08em;
     text-transform: uppercase;

@@ -237,7 +237,7 @@ The only translucency in the entire system is the fixed navigation bar, which us
 ### Cards / Containers
 
 - **Corner Style:** square (0px).
-- **Background:** shaded surface by default; the accent variant takes a full ink fill with paper/slate text; a tinted variant uses ink at 9% (light) or chalk at 12% (dark).
+- **Background:** shaded surface by default; the accent variant takes a full ink fill with paper/slate text. No tinted variant exists; every non-accent card sits on the same shaded surface.
 - **Shadow Strategy:** offset standard at rest, growing to `6px 6px 0` on hover with a `translate(-3px, -3px)` lift.
 - **Border:** 2px solid ink on every variant, including the accent variant.
 - **Internal Padding:** 22px for grid cells; 25px rising to 35px above 768px for boxed content.
@@ -258,7 +258,7 @@ The only translucency in the entire system is the fixed navigation bar, which us
 
 ### Signature Component: the bento tile
 
-The homepage grid is the clearest expression of the world. Five items produce exactly five cells, never a padded blank. One cell spans two columns and takes the full ink plate; one takes the 9% tint; the rest sit on the shaded surface. Each carries a title, a description, a small uppercase count, and a call-to-action pinned to the bottom whose arrow slides right on hover. The grid runs 1 column, then 2 at 640px, then 3 at 960px.
+The homepage grid is the clearest expression of the world. Five items produce exactly five cells, never a padded blank. One cell spans two columns and takes the full ink plate; the rest sit on the same shaded surface, uniform, with no tinted variant. Each carries a title, a description, a small uppercase count, and a call-to-action pinned to the bottom whose arrow slides right on hover. The grid runs 1 column, then 2 at 640px, then 3 at 960px.
 
 ## Do's and Don'ts
 

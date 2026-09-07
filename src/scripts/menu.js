@@ -42,6 +42,9 @@ const toggleMenu = () => {
         document.body.style.top = `-${scrollPosition}px`;
         document.body.classList.add(CLASSES.menuOpen);
         updateActiveStateFromHash();
+
+        // Move focus into the panel so keyboard users don't have to tab past it
+        overlay.querySelector(".menu-nav a, .menu-nav button")?.focus();
     } else {
         // Unlock body scroll
         document.body.classList.remove(CLASSES.menuOpen);
@@ -143,6 +146,8 @@ const handleKeyDown = (e) => {
         const overlay = document.getElementById(SELECTORS.overlay);
         if (overlay?.classList.contains(CLASSES.active)) {
             toggleMenu();
+            // Escape is keyboard-only, so it's safe to return focus to the trigger
+            document.getElementById(SELECTORS.toggle)?.focus();
         }
     }
 };

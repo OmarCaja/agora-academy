@@ -113,6 +113,14 @@ const processedTitle = renderMath(title);
         word-break: break-word;
     }
 
+    /* Inline formulas inside prose can render wider than the reading column; scroll rather than overflow it */
+    :global(.description .katex) {
+        display: inline-block;
+        max-width: 100%;
+        overflow-x: auto;
+        vertical-align: middle;
+    }
+
     :global(.description img), :global(.example-formula img) {
         max-width: 100% !important;
         height: auto !important;

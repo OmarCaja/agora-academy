@@ -136,6 +136,10 @@ const reasons = [
 					</span>
 				</a>
 
+				{/* One cell per published level, no cap. Grid was designed around
+				    4 level cells (5 total with Teoría); a 5th level publishing
+				    exercises pushes this past that and deserves a deliberate
+				    look, not a silent 6th tile. */}
 				{
 					levels.map((level, idx) => (
 						<a
@@ -300,7 +304,7 @@ const reasons = [
 		gap: 9px;
 		font-family: var(--font-family);
 		font-weight: 700;
-		font-size: 0.95rem;
+		font-size: var(--font-size-sm);
 		white-space: nowrap;
 		text-decoration: none;
 		padding: 13px 20px;
@@ -490,7 +494,7 @@ const reasons = [
 	}
 
 	.cell-desc {
-		font-size: 0.9rem;
+		font-size: var(--font-size-sm);
 		line-height: 1.45;
 		color: var(--text-muted);
 	}
@@ -511,7 +515,7 @@ const reasons = [
 		gap: 7px;
 		margin-top: auto;
 		padding-top: var(--spacing-sm);
-		font-size: 0.88rem;
+		font-size: var(--font-size-sm);
 		font-weight: 700;
 		color: var(--accent-strong);
 	}
@@ -576,7 +580,7 @@ const reasons = [
 
 	.reason-text span {
 		color: var(--text-muted);
-		font-size: 0.95rem;
+		font-size: var(--font-size-sm);
 	}
 
 	/* Entrance: each row slides in along the same diagonal the desktop
