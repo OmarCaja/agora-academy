@@ -33,6 +33,7 @@ const toggleMenu = () => {
 
     const isActive = overlay.classList.toggle(CLASSES.active);
     toggleBtn.classList.toggle(CLASSES.active, isActive);
+    toggleBtn.setAttribute("aria-expanded", String(isActive));
     overlay.inert = !isActive;
 
     if (isActive) {
@@ -131,8 +132,10 @@ const handleLinkClick = (e) => {
 };
 
 const handleAccordionToggle = (e) => {
-    const group = e.currentTarget.closest(SELECTORS.accordion);
-    group?.classList.toggle(CLASSES.active);
+    const trigger = e.currentTarget;
+    const group = trigger.closest(SELECTORS.accordion);
+    const isActive = group?.classList.toggle(CLASSES.active) ?? false;
+    trigger.setAttribute("aria-expanded", String(isActive));
 };
 
 const handleKeyDown = (e) => {

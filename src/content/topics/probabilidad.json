@@ -1,7 +1,7 @@
 {
     "title": "Probabilidad y combinatoria",
     "description": "Estudio de las diferentes formas de agrupar y ordenar elementos de un conjunto, junto con los fundamentos del cálculo de probabilidades.",
-    "menuGroup": "Estadística y Probabilidad",
+    "menuGroup": "Estadística y probabilidad",
     "menuOrder": 3,
     "sections": [
         {
@@ -218,7 +218,7 @@
                     "description": "Es el esquema visual para entender todos los pasos del ejemplo anterior:<br><br><div class='diagram-tree'><strong>INICIO</strong>\n├── <strong>Caja 1 (0.5)</strong> ─── 🔴 Roja (0.8)\n│                └── 🔵 Azul (0.2)\n└── <strong>Caja 2 (0.5)</strong> ─── 🔴 Roja (0.4)\n                 └── 🔵 Azul (0.6)</div><br><strong>Regla:</strong> Para hallar la probabilidad de un camino, multiplica sus ramas ($0.5 \\cdot 0.8$)."
                 },
                 {
-                    "title": "Teorema de la Probabilidad Total",
+                    "title": "Teorema de la probabilidad total",
                     "formula": "$P(B) = P(A_1) \\cdot P(B|A_1) + P(A_2) \\cdot P(B|A_2)$",
                     "description": "Sirve para calcular la probabilidad final de un suceso (ej. sacar Roja) sumando todos los caminos que llegan a él.",
                     "example": "<strong>¿Probabilidad de que la bola sea Roja?</strong><br>Camino 1: $0.5 \\cdot 0.8 = 0.4$<br>Camino 2: $0.5 \\cdot 0.4 = 0.2$<br><strong>Total: $0.4 + 0.2 = 0.6$ (60%)</strong>"

@@ -36,6 +36,7 @@ import { Icon } from "astro-icon/components";
             class="nav-btn menu-btn"
             id="menuToggle"
             aria-label="Abrir menú de navegación"
+            aria-expanded="false"
         >
             <span class="accordion-icon"></span>
         </button>
@@ -87,7 +88,6 @@ import { Icon } from "astro-icon/components";
         height: 100%;
         transition: color 0.3s ease;
         -webkit-tap-highlight-color: transparent;
-        outline: none;
         opacity: 1;
 
         color: var(--text-primary);
@@ -101,7 +101,7 @@ import { Icon } from "astro-icon/components";
         width: 14px;
         height: 14px;
         position: relative;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: transform 0.4s var(--ease);
         opacity: 0.8;
     }
 
@@ -110,7 +110,7 @@ import { Icon } from "astro-icon/components";
         content: "";
         position: absolute;
         background: currentColor;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: transform 0.4s var(--ease);
     }
 
     /* Horizontal line */
@@ -164,7 +164,6 @@ import { Icon } from "astro-icon/components";
         height: 100%;
         transition: color 0.3s ease;
         -webkit-tap-highlight-color: transparent;
-        outline: none;
         opacity: 1;
         color: var(--text-primary);
     }

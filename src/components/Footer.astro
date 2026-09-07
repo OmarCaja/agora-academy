@@ -11,8 +11,8 @@ const year = new Date().getFullYear();
 
         <nav class="footer-links" aria-label="Navegación pie de página">
             <a href="/">Inicio</a>
-            <a href="/theory/algebra">Teoría</a>
-            <a href="/exercises/1-eso">Ejercicios</a>
+            <a href="/theory/algebra/">Teoría</a>
+            <a href="/exercises/1-eso/">Ejercicios</a>
             <a href="/#contacto">Contacto</a>
         </nav>
     </div>
@@ -58,7 +58,7 @@ const year = new Date().getFullYear();
     }
 
     .footer-tagline {
-        font-size: 0.95rem;
+        font-size: var(--font-size-md);
         color: var(--text-muted);
         margin: 0;
     }
@@ -72,7 +72,7 @@ const year = new Date().getFullYear();
     .footer-links a {
         color: var(--text-secondary);
         text-decoration: none;
-        font-size: 0.95rem;
+        font-size: var(--font-size-md);
         font-weight: 700;
         padding-bottom: 2px;
         border-bottom: 2px solid transparent;
@@ -88,7 +88,7 @@ const year = new Date().getFullYear();
     }
 
     .footer-bottom {
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         color: var(--text-muted);
         border-top: 1px solid var(--rule-color);
         padding-top: var(--spacing-sm);

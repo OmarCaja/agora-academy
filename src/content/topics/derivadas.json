@@ -1,7 +1,7 @@
 {
     "title": "Derivadas",
     "description": "Concepto de derivada, reglas básicas de derivación y tabla de derivadas de las funciones más comunes.",
-    "menuGroup": "Funciones y Límites",
+    "menuGroup": "Funciones, límites y derivadas",
     "menuOrder": 4,
     "sections": [
         {

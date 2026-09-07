@@ -1,7 +1,7 @@
 {
     "title": "Estadística bidimensional",
     "description": "Estudio conjunto de dos variables para analizar la relación y dependencia entre ellas, incluyendo distribuciones, correlación y regresión lineal.",
-    "menuGroup": "Estadística y Probabilidad",
+    "menuGroup": "Estadística y probabilidad",
     "menuOrder": 2,
     "sections": [
         {

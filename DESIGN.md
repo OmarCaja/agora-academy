@@ -1,10 +1,7 @@
 ---
 name: Ágora Academy
-description: A single-ink risograph system for a maths academy in Cuenca. Flat colour, hard edges, zero blur.
+description: A monochrome risograph system for a maths academy in Cuenca. Flat colour, hard edges, zero blur.
 colors:
-  press-marine: "#0d5c8c"
-  press-marine-strong: "#0a4a70"
-  on-marine: "#f5f9fb"
   ink: "#1f1f1f"
   ink-soft: "#3a3a3a"
   ink-tertiary: "#4a4a4a"
@@ -12,9 +9,6 @@ colors:
   paper: "#f4f4f4"
   paper-shade: "#e8e8e8"
   paper-raised: "#fdfdfd"
-  press-marine-dark: "#5aa8d6"
-  press-marine-dark-strong: "#7cc0e8"
-  on-marine-dark: "#0e1a22"
   slate: "#161616"
   slate-shade: "#202020"
   slate-raised: "#262626"
@@ -64,14 +58,14 @@ spacing:
   2xl: "88px"
 components:
   button-primary:
-    backgroundColor: "{colors.press-marine}"
-    textColor: "{colors.on-marine}"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
     typography: "{typography.label}"
     rounded: "{rounded.none}"
     padding: "13px 20px"
   button-primary-hover:
-    backgroundColor: "{colors.press-marine}"
-    textColor: "{colors.on-marine}"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
@@ -83,8 +77,8 @@ components:
     rounded: "{rounded.none}"
     padding: "22px"
   card-accent:
-    backgroundColor: "{colors.press-marine}"
-    textColor: "{colors.on-marine}"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
     rounded: "{rounded.none}"
     padding: "22px"
   input-search:
@@ -110,14 +104,14 @@ components:
 
 **Creative North Star: "The Riso Problem Set"**
 
-The whole system behaves like a single-ink risograph print. One marine blue plate laid over paper stock, printed slightly out of register. That single idea explains every decision in this file: why nothing is rounded, why no shadow is ever blurred, why there is exactly one accent hue, and why colour is used as flat fill rather than as light. A risograph cannot render a gradient, a soft shadow, or a second accent without a second plate. Neither can this system.
+The whole system behaves like a single-ink risograph print, and the ink is black. One plate of ink laid over paper stock, printed slightly out of register. That single idea explains every decision in this file: why nothing is rounded, why no shadow is ever blurred, why there is no chromatic accent, and why colour is used as flat fill rather than as light. A risograph cannot render a gradient, a soft shadow, or a second colour without a second plate. Neither can this system, and this system chose not to load one.
 
 The character is **precise and unfussy**, and **serious but not cold**. Nothing on the page is decorative. Every rule, border, offset and fill is doing a job: separating, marking, or indicating state. The restraint is not minimalism for its own sake but the honesty the product demands, because this academy has no photographs, no prices, no named staff and no testimonials to lean on. Credibility has to come from the accuracy and clarity of the material itself, so the system never performs warmth it cannot back up. It respects a fourteen-year-old revising at eleven at night without talking down to them.
 
 The system is fully dual-mode. Light is ink on paper; dark is chalk on slate. These are the same plate printed on different stock, not two designs. Every token has a counterpart, and hierarchy, contrast and accent behaviour are identical in both.
 
 **Key Characteristics:**
-- One ink: a single marine blue accent across the entire site, no exceptions
+- One ink: black on paper, no chromatic accent anywhere on the site
 - Zero radius everywhere, on every element
 - Hard offset shadows with no blur, tinted to the ink, never black
 - Monospace throughout, in the only two weights the family actually ships
@@ -127,13 +121,11 @@ The system is fully dual-mode. Light is ink on paper; dark is chalk on slate. Th
 
 ## Colors
 
-A two-ink palette: one neutral stock and one marine blue plate, with a dark-mode counterpart for each.
+A one-ink palette: neutral stock, neutral ink, with a dark-mode counterpart for each. There is no second, chromatic plate — the accent that used to carry meaning (the primary button, the theory tile) is drawn in the same ink as the body text and borders, so it registers as tone and weight rather than as colour calling attention to itself.
 
-### Primary
+### Accent
 
-- **Press Marine Blue** (`#0d5c8c` light, `#5aa8d6` dark): the single ink plate. Used for fills that carry meaning (the primary button, the theory tile, the PDF icon block), for rules that mark a heading, for icons, and for the left edge of a level chip. It is the only chromatic colour in the system.
-- **Press Marine Blue Strong** (`#0a4a70` light, `#7cc0e8` dark): the same ink, adjusted purely so small text clears WCAG AA against page surfaces. Used for link text, card call-to-action labels, and pager direction labels.
-- **On Marine Blue** (`#f5f9fb` light, `#0e1a22` dark): the only colour permitted for text sitting on a marine blue fill.
+Fills, rules and icons that once took a chromatic hue now take **Ink** (`#1f1f1f` light, `#f2f2f2` dark) directly — the same value as body text and every border. Text sitting on that fill takes **Paper** (`#f4f4f4` light) or **Slate** (`#161616` dark), the page ground colour, giving maximum contrast without introducing a colour. Nothing distinguishes "accent" from "neutral" anymore, by design: hierarchy comes from fill versus outline, weight, and position, never from hue.
 
 ### Neutral
 
@@ -147,11 +139,9 @@ A two-ink palette: one neutral stock and one marine blue plate, with a dark-mode
 
 ### Named Rules
 
-**The Single Plate Rule.** One accent hue for the entire site. A teal badge, a green success state, or an orange link is a second plate, and a second plate means this is no longer the same print. If a new state needs distinguishing, use ink weight, border, or fill, not a new hue.
+**The Single Plate Rule.** No chromatic hue anywhere on the site. A teal badge, a green success state, a red accent, or an orange link is a second plate, and this print only has one. If a new state needs distinguishing, use ink weight, border, or fill, never a hue.
 
-**The Two Inks Rule.** `press-marine` is the graphic colour: fills, rules, icons, and large type. `press-marine-strong` is the only accent permitted on text below 18px against a page surface. Never swap them. Using the graphic colour for small body text fails contrast; using the strong colour for a large fill dulls the plate.
-
-**The Ink Equals Border Rule.** Border colour and primary text colour are the same token value in both themes. Borders in this system are drawn ink, not a lighter separator.
+**The Ink Equals Border Rule.** Border colour, primary text colour, and the accent fill are the same token value in both themes. Borders, emphasis and calls to action are all drawn ink, not a lighter or chromatic separator.
 
 ## Typography
 
@@ -168,6 +158,8 @@ A two-ink palette: one neutral stock and one marine blue plate, with a dark-mode
 - **Title** (700, `clamp(1.5rem, 1.28rem + 1.1vw, 2.1rem)`, line-height 1.2, tracking -0.015em): section headings and card titles.
 - **Body** (400, 1rem, line-height 1.65): all running text. Constrained to roughly 46-52ch in lead paragraphs; the reading column caps at 820px.
 - **Label** (700, 0.78rem, tracking 0.08em, uppercase): counts, metadata, pager direction. Used sparingly, and never as a decorative eyebrow above a section headline.
+
+**Documented exceptions:** the footer wordmark (`.footer-logo`, "ÁGORA") sits outside this ramp at `1.3rem` with 3px tracking and an accent underline — a small logotype treatment, not running text. The full-screen mobile menu's top-level items (`.menu-item`, `.menu-group-title`) run `1.125rem`, growing to `1.25rem` above 768px — sized for a touch-target list, not the reading column, so they sit a half-step above Body rather than on it. Nested (second-level) menu items step back down to Body's `1rem`.
 
 ### Named Rules
 
@@ -218,7 +210,7 @@ Depth is otherwise carried entirely by tonal layering: ground, shaded surface, r
 
 Every corner in the system is square. `--radius` is `0px` and applies to buttons, cards, inputs, chips, icon blocks, the nav and the scroll-to-top control alike. There are no exceptions, not even for circular avatars or pill badges, because neither exists here.
 
-Borders are the primary form-defining device: a 2px solid stroke in the ink colour on anything that is a discrete object, and a 1px `--rule-color` hairline (ink at 18% opacity, chalk at 22%) for dividers inside content. The level chip adds a 4px marine blue left edge, which is the system's one recurring silhouette detail and is echoed at card scale on the social card.
+Borders are the primary form-defining device: a uniform 2px solid stroke in the ink colour on every edge of a discrete object (chips included — no side is ever weighted differently from the others), and a 1px `--rule-color` hairline (ink at 18% opacity, chalk at 22%) for dividers inside content.
 
 The only translucency in the entire system is the fixed navigation bar, which uses a `saturate(170%) blur(18px)` backdrop filter over an 82% opaque ground. It is deliberately the sole exception.
 
@@ -231,7 +223,7 @@ The only translucency in the entire system is the fixed navigation bar, which us
 ### Buttons
 
 - **Shape:** square (0px radius), 2px solid border, `13px 20px` padding, label never wrapping to a second line at desktop.
-- **Primary:** marine blue fill with On Marine Blue text and a matching marine blue border, offset standard shadow (`3px 3px 0`).
+- **Primary:** ink fill with paper (light) / slate (dark) text and a matching ink border, offset standard shadow (`3px 3px 0`).
 - **Ghost:** transparent fill, ink text, ink border, same padding and shadow.
 - **Hover:** the button lifts *toward* the cursor, `translate(-2px, -2px)`, and its offset grows to `5px 5px 0`, as though the sheet has shifted further out of register. Any trailing arrow icon slides 3px right.
 - **Active:** the button presses into the page, `translate(1px, 1px)`, offset shrinks to `1px 1px 0`.
@@ -239,23 +231,23 @@ The only translucency in the entire system is the fixed navigation bar, which us
 
 ### Chips
 
-- **Style:** shaded surface, 2px ink border, plus a 4px Press Marine Blue left edge. `7px 15px` padding, 0.9rem at weight 700.
+- **Style:** shaded surface, uniform 2px ink border on all four sides. `7px 15px` padding, 0.9rem at weight 700.
 - **State:** static. The level chips are labels, not controls. They carry no pointer cursor and no hover lift, because they are not keyboard reachable and must not signal interactivity they do not offer.
 
 ### Cards / Containers
 
 - **Corner Style:** square (0px).
-- **Background:** shaded surface by default; the accent variant takes a full marine blue fill with On Marine Blue text; a tinted variant uses marine blue at 9% (light) or 12% (dark).
+- **Background:** shaded surface by default; the accent variant takes a full ink fill with paper/slate text; a tinted variant uses ink at 9% (light) or chalk at 12% (dark).
 - **Shadow Strategy:** offset standard at rest, growing to `6px 6px 0` on hover with a `translate(-3px, -3px)` lift.
-- **Border:** 2px solid ink, or 2px solid marine blue on the accent variant.
+- **Border:** 2px solid ink on every variant, including the accent variant.
 - **Internal Padding:** 22px for grid cells; 25px rising to 35px above 768px for boxed content.
 
 ### Inputs / Fields
 
 - **Style:** raised surface, 2px solid ink border, square corners, offset light shadow (`2px 2px 0`). Native search decorations are stripped.
-- **Focus:** the border switches to Press Marine Blue and the offset grows to `4px 4px 0`. Focus is never indicated by colour alone.
+- **Focus:** the border switches to ink-weight emphasis (unchanged colour) and the offset grows to `4px 4px 0`. Focus is never indicated by colour alone.
 - **Placeholder:** Ink Muted at full opacity, never a lighter grey, so it clears AA against the raised surface.
-- **Global focus ring:** 3px solid Press Marine Blue with a 3px offset on every `:focus-visible` element in the system.
+- **Global focus ring:** 3px solid ink with a 3px offset on every `:focus-visible` element in the system.
 
 ### Navigation
 
@@ -266,7 +258,7 @@ The only translucency in the entire system is the fixed navigation bar, which us
 
 ### Signature Component: the bento tile
 
-The homepage grid is the clearest expression of the world. Five items produce exactly five cells, never a padded blank. One cell spans two columns and takes the full marine blue plate; one takes the 9% tint; the rest sit on the shaded surface. Each carries a title, a description, a small uppercase count, and a call-to-action pinned to the bottom whose arrow slides right on hover. The grid runs 1 column, then 2 at 640px, then 3 at 960px.
+The homepage grid is the clearest expression of the world. Five items produce exactly five cells, never a padded blank. One cell spans two columns and takes the full ink plate; one takes the 9% tint; the rest sit on the shaded surface. Each carries a title, a description, a small uppercase count, and a call-to-action pinned to the bottom whose arrow slides right on hover. The grid runs 1 column, then 2 at 640px, then 3 at 960px.
 
 ## Do's and Don'ts
 
@@ -274,7 +266,7 @@ The homepage grid is the clearest expression of the world. Five items produce ex
 
 - **Do** keep every corner square. `--radius` is `0px` system-wide.
 - **Do** keep shadow blur at exactly `0` and tint the offset to the ink colour, never black.
-- **Do** use one accent hue across the whole page, and pick between the two marine blue tokens by text size, per The Two Inks Rule.
+- **Do** keep the accent monochrome: fills, rules and icons all draw from the same ink token as text and borders.
 - **Do** carry hierarchy with size, case, tracking and colour, using only Space Mono 400 and 700.
 - **Do** make interactive elements lift toward the cursor on hover and press into the page on click, with transform and box-shadow only.
 - **Do** design both themes at once and verify WCAG AA in each before shipping.
@@ -285,7 +277,7 @@ The homepage grid is the clearest expression of the world. Five items produce ex
 ### Don't:
 
 - **Don't** drift toward childish school branding: no primary-colour palettes, no mascots, no cartoon pencils or notebooks, no comic typefaces, no exclamation marks. The audience includes sixteen-year-olds studying for Bachillerato.
-- **Don't** introduce a second accent hue for any reason, including success, warning, or category colour.
+- **Don't** introduce any chromatic hue for any reason, including success, warning, category colour, or a brand accent.
 - **Don't** use font weights between 400 and 700. They do not exist in this family.
 - **Don't** put an em-dash or en-dash in any visible string.
 - **Don't** add a rounded corner, a blurred shadow, a gradient, or a glow to any component.

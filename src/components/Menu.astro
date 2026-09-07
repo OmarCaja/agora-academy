@@ -108,7 +108,6 @@ const isSectionActive = (section: MenuSection) => {
             <div class="menu-group">
                 <a
                     href="/"
-                    data-astro-prefetch="hover"
                     data-close-menu
                     class:list={[
                         "menu-group-title",
@@ -121,7 +120,6 @@ const isSectionActive = (section: MenuSection) => {
                 </a>
                 <a
                     href="/#contacto"
-                    data-astro-prefetch="hover"
                     data-close-menu
                     class:list={["menu-item", "menu-subitem", "nav-contacto"]}
                 >
@@ -139,7 +137,10 @@ const isSectionActive = (section: MenuSection) => {
                         ]}
                         data-accordion
                     >
-                        <button class="menu-group-title accordion-trigger">
+                        <button
+                            class="menu-group-title accordion-trigger"
+                            aria-expanded={isSectionActive(section) ? "true" : "false"}
+                        >
                             {section.title}
                             <span class="accordion-icon" />
                         </button>
@@ -149,8 +150,7 @@ const isSectionActive = (section: MenuSection) => {
                                     section.items.map((item) => (
                                         <div class="menu-group nested">
                                             <a
-                                                href={`/${item.slug}`}
-                                                data-astro-prefetch="hover"
+                                                href={`/${item.slug}/`}
                                                 data-close-menu
                                                 class:list={[
                                                     "menu-group-title",
@@ -184,7 +184,10 @@ const isSectionActive = (section: MenuSection) => {
                                             ]}
                                             data-accordion
                                         >
-                                            <button class="menu-group-title accordion-trigger">
+                                            <button
+                                                class="menu-group-title accordion-trigger"
+                                                aria-expanded={isGroupActive(group.items) ? "true" : "false"}
+                                            >
                                                 {group.title}
                                                 <span class="accordion-icon" />
                                             </button>
@@ -192,8 +195,7 @@ const isSectionActive = (section: MenuSection) => {
                                                 <div class="accordion-inner">
                                                     {group.items.map((item) => (
                                                         <a
-                                                            href={`/${item.slug}`}
-                                                            data-astro-prefetch="hover"
+                                                            href={`/${item.slug}/`}
                                                             data-close-menu
                                                             class:list={[
                                                                 "menu-item",
@@ -400,12 +402,9 @@ const isSectionActive = (section: MenuSection) => {
     }
 
     @media (min-width: 768px) {
-        .menu-item {
+        .menu-item,
+        .menu-group-title {
             font-size: 1.25rem;
-        }
-
-        .menu-subitem {
-            font-size: 1.125rem;
         }
     }
 
@@ -416,7 +415,7 @@ const isSectionActive = (section: MenuSection) => {
     .menu-group.nested .menu-group-title {
         font-size: 1rem;
         opacity: 0.9;
-        font-weight: 600;
+        font-weight: 700;
         padding: 6px 20px 6px 35px;
     }
 

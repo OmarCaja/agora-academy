@@ -161,6 +161,9 @@ import "../styles/global.css";
         if (text)
           text.textContent =
             theme === "dark" ? "Cambiar a tema claro" : "Cambiar a tema oscuro";
+
+        const btn = document.getElementById("themeToggle");
+        if (btn) btn.setAttribute("aria-pressed", String(theme === "dark"));
       };
 
       window.setTheme = (theme) => {

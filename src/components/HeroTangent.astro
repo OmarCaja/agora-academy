@@ -88,11 +88,11 @@ const axisX = px(0);
             y2={t0.y2}
         />
         <circle
-            class="tangent-handle"
-            id="tangentHandle"
+            class="tangent-hit"
+            id="tangentHit"
             cx={t0.cx}
             cy={t0.cy}
-            r="7"
+            r="25"
             tabindex="0"
             role="slider"
             aria-label="Punto de tangencia. Arrastra o usa las flechas izquierda y derecha."
@@ -101,8 +101,16 @@ const axisX = px(0);
             aria-valuenow={DEFAULT_X}
             aria-valuetext={`x = ${DEFAULT_X.toFixed(2)}, pendiente = ${(2 * DEFAULT_X).toFixed(2)}`}
         ></circle>
+        <circle
+            class="tangent-handle"
+            id="tangentHandle"
+            aria-hidden="true"
+            cx={t0.cx}
+            cy={t0.cy}
+            r="7"
+        ></circle>
     </svg>
-    <p class="tangent-caption">
+    <p class="tangent-caption meta-label">
         <span class="tangent-hint">Arrastra el punto</span>
         <span class="tangent-value" id="tangentValue">
             x = {DEFAULT_X.toFixed(2)}, pendiente = {(2 * DEFAULT_X).toFixed(2)}
@@ -142,7 +150,8 @@ const axisX = px(0);
         a: number,
         svg: SVGSVGElement,
         line: SVGLineElement,
-        handle: SVGCircleElement,
+        hit: SVGCircleElement,
+        dot: SVGCircleElement,
         valueLabel: HTMLElement,
     ) {
         const m = 2 * a;
@@ -158,10 +167,12 @@ const axisX = px(0);
         line.setAttribute("y1", String(cy - uy * TANGENT_HALF_LENGTH));
         line.setAttribute("x2", String(cx + ux * TANGENT_HALF_LENGTH));
         line.setAttribute("y2", String(cy + uy * TANGENT_HALF_LENGTH));
-        handle.setAttribute("cx", String(cx));
-        handle.setAttribute("cy", String(cy));
-        handle.setAttribute("aria-valuenow", a.toFixed(2));
-        handle.setAttribute(
+        hit.setAttribute("cx", String(cx));
+        hit.setAttribute("cy", String(cy));
+        dot.setAttribute("cx", String(cx));
+        dot.setAttribute("cy", String(cy));
+        hit.setAttribute("aria-valuenow", a.toFixed(2));
+        hit.setAttribute(
             "aria-valuetext",
             `x = ${a.toFixed(2)}, pendiente = ${m.toFixed(2)}`,
         );
@@ -185,11 +196,14 @@ const axisX = px(0);
         const line = document.getElementById(
             "tangentLine",
         ) as SVGLineElement | null;
-        const handle = document.getElementById(
+        const hit = document.getElementById(
+            "tangentHit",
+        ) as SVGCircleElement | null;
+        const dot = document.getElementById(
             "tangentHandle",
         ) as SVGCircleElement | null;
         const valueLabel = document.getElementById("tangentValue");
-        if (!root || !svg || !line || !handle || !valueLabel) return;
+        if (!root || !svg || !line || !hit || !dot || !valueLabel) return;
 
         cancelAnimationFrame(introFrame);
 
@@ -199,7 +213,7 @@ const axisX = px(0);
 
         const onMove = (e: PointerEvent) => {
             if (!dragging) return;
-            render(svgXToA(svg, e.clientX), svg, line, handle, valueLabel);
+            render(svgXToA(svg, e.clientX), svg, line, hit, dot, valueLabel);
         };
         const onUp = () => {
             dragging = false;
@@ -208,16 +222,16 @@ const axisX = px(0);
         };
         const onDown = (e: PointerEvent) => {
             dragging = true;
-            render(svgXToA(svg, e.clientX), svg, line, handle, valueLabel);
+            render(svgXToA(svg, e.clientX), svg, line, hit, dot, valueLabel);
             window.addEventListener("pointermove", onMove);
             window.addEventListener("pointerup", onUp);
         };
 
-        handle.removeEventListener("pointerdown", onDown as EventListener);
-        handle.addEventListener("pointerdown", onDown as EventListener);
+        hit.removeEventListener("pointerdown", onDown as EventListener);
+        hit.addEventListener("pointerdown", onDown as EventListener);
 
         const onKey = (e: KeyboardEvent) => {
-            const current = Number(handle.getAttribute("aria-valuenow"));
+            const current = Number(hit.getAttribute("aria-valuenow"));
             let next = current;
             if (e.key === "ArrowLeft") next = current - 0.1;
             else if (e.key === "ArrowRight") next = current + 0.1;
@@ -229,15 +243,16 @@ const axisX = px(0);
                 Math.min(A_MAX, Math.max(A_MIN, next)),
                 svg,
                 line,
-                handle,
+                hit,
+                dot,
                 valueLabel,
             );
         };
-        handle.removeEventListener("keydown", onKey as EventListener);
-        handle.addEventListener("keydown", onKey as EventListener);
+        hit.removeEventListener("keydown", onKey as EventListener);
+        hit.addEventListener("keydown", onKey as EventListener);
 
         if (reduce) {
-            render(A_DEFAULT, svg, line, handle, valueLabel);
+            render(A_DEFAULT, svg, line, hit, dot, valueLabel);
             return;
         }
 
@@ -254,7 +269,8 @@ const axisX = px(0);
                 A_START + (A_DEFAULT - A_START) * eased,
                 svg,
                 line,
-                handle,
+                hit,
+                dot,
                 valueLabel,
             );
             if (t < 1) introFrame = requestAnimationFrame(tick);
@@ -296,24 +312,33 @@ const axisX = px(0);
         stroke-dasharray: 6 6;
     }
 
+    /* Visible dot is purely decorative: pointer-events pass through to the
+       larger .tangent-hit circle underneath, which is what stays draggable
+       at a real touch-target size regardless of how small the ink dot
+       reads visually (WCAG 2.5.8 target size). */
     .tangent-handle {
         fill: var(--accent);
         stroke: var(--border-color);
         stroke-width: 2;
+        pointer-events: none;
+    }
+
+    .tangent-hit {
+        fill: transparent;
         cursor: grab;
     }
 
-    .tangent-handle:active {
+    .tangent-hit:active {
         cursor: grabbing;
     }
 
     /* Drag/click focus shouldn't ring (the pointer already shows where you
        are); only a real keyboard focus gets the system's global ring. */
-    .tangent-handle:focus {
+    .tangent-hit:focus {
         outline: none;
     }
 
-    .tangent-handle:focus-visible {
+    .tangent-hit:focus-visible {
         outline: 3px solid var(--accent);
         outline-offset: 3px;
     }
@@ -323,10 +348,6 @@ const axisX = px(0);
         flex-wrap: wrap;
         justify-content: space-between;
         gap: var(--spacing-xs);
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
         color: var(--text-muted);
     }
 
@@ -335,7 +356,7 @@ const axisX = px(0);
     }
 
     @media (prefers-reduced-motion: reduce) {
-        .tangent-handle {
+        .tangent-hit {
             cursor: pointer;
         }
     }

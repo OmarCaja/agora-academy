@@ -6,6 +6,12 @@ import icon from 'astro-icon';
 export default defineConfig({
     site: 'https://www.agoraacademy.es',
     integrations: [sitemap(), icon()],
+    // 'hover' (the default) never fires on touch, so mobile got zero prefetch
+    // lead time before every tap; 'viewport' starts fetching as soon as a
+    // link is visible, on every device.
+    prefetch: {
+        defaultStrategy: 'viewport',
+    },
     vite: {
         css: {
             lightningcss: {

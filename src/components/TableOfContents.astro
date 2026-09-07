@@ -11,23 +11,43 @@ const { sections } = Astro.props;
 
 {
     sections.length > 1 && (
-        <nav class="toc-container" aria-label="Índice de contenidos">
-            <div class="toc-header">Índice de contenidos</div>
-            <ul class="toc-list" id="tocList">
-                {sections.map((section) => (
-                    <li>
-                        <a href={`#${slugify(section.title)}`} data-toc-link={slugify(section.title)}>
-                            <Icon name="ph:arrow-right" class="toc-bullet" aria-hidden="true" />
-                            <span class="toc-label">{section.title}</span>
-                        </a>
-                    </li>
-                ))}
-            </ul>
+        <nav class="toc-nav" aria-label="Índice de contenidos">
+            <details class="toc-container" id="tocDetails">
+                <summary class="toc-header meta-label">
+                    Índice de contenidos
+                    <Icon name="ph:caret-down" class="toc-caret" aria-hidden="true" />
+                </summary>
+                <ul class="toc-list" id="tocList">
+                    {sections.map((section) => (
+                        <li>
+                            <a href={`#${slugify(section.title)}`} data-toc-link={slugify(section.title)}>
+                                <Icon name="ph:arrow-right" class="toc-bullet" aria-hidden="true" />
+                                <span class="toc-label">{section.title}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </details>
         </nav>
     )
 }
 
 <script>
+    // Collapsed by default on mobile so the TOC doesn't push a page's real
+    // content below the fold; expanded by default on desktop, where there's
+    // room for it. Re-evaluated on breakpoint crossing (e.g. tablet rotation).
+    function initTocCollapse() {
+        const details = document.getElementById("tocDetails") as HTMLDetailsElement | null;
+        if (!details) return;
+
+        const mq = window.matchMedia("(min-width: 768px)");
+        const applyState = () => {
+            details.open = mq.matches;
+        };
+        applyState();
+        mq.addEventListener("change", applyState);
+    }
+
     function initTocScrollspy() {
         const tocLinks = document.querySelectorAll<HTMLAnchorElement>("#tocList a[data-toc-link]");
         if (tocLinks.length === 0) return;
@@ -63,7 +83,10 @@ const { sections } = Astro.props;
         sections.forEach((sec) => observer.observe(sec));
     }
 
-    document.addEventListener("astro:page-load", initTocScrollspy);
+    document.addEventListener("astro:page-load", () => {
+        initTocCollapse();
+        initTocScrollspy();
+    });
 </script>
 
 <style>
@@ -77,14 +100,35 @@ const { sections } = Astro.props;
     }
 
     .toc-header {
-        font-family: var(--font-family);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: var(--spacing-sm);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-sm);
+        margin-bottom: 0;
         color: var(--text-primary);
         border-bottom: 2px solid var(--accent);
         padding-bottom: var(--spacing-xs);
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .toc-header::-webkit-details-marker {
+        display: none;
+    }
+
+    .toc-container[open] .toc-header {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    :global(.toc-caret) {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        transition: transform var(--transition);
+    }
+
+    .toc-container[open] :global(.toc-caret) {
+        transform: rotate(180deg);
     }
 
     .toc-list {
@@ -135,6 +179,12 @@ const { sections } = Astro.props;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: var(--spacing-sm);
+        }
+    }
+
+    @media print {
+        .toc-nav {
+            display: none !important;
         }
     }
 </style>

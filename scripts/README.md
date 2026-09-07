@@ -54,7 +54,7 @@ save(fig, 'my-graph.png')          # ← output filename
 |---------|-------------|
 | `draw_axes(ax, xlim, ylim)` | Cartesian axes with arrows and base style |
 | `save(fig, 'name.png')` | Saves to `OUT/` at 150 dpi and closes the figure |
-| `BLUE` `RED` `GREEN` `ORANGE` | Project color palette |
+| `BLUE` `RED` `GREEN` `ORANGE` | Single-ink names, all resolve to the same ink black (site DESIGN.md forbids any chromatic hue). Keep using the semantic name for the role, but tell roles apart within one figure via `ls` (linestyle), marker shape (`'o'` vs `'s'`), or `hatch`, never a literal hex color |
 | `np.linspace(a, b, n)` | Array of `n` evenly spaced points between `a` and `b` |
 | `plt.Circle((x,y), r, ...)` | Circle patch (useful for hollow points at discontinuities) |
 

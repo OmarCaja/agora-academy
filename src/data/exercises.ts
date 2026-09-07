@@ -28,6 +28,26 @@ export const topicTitleOverrides: Record<string, string> = {
     "estadistica": "Estadística",
 };
 
+// Curricular order for topics within a level, lowest first. A topic key
+// missing here falls back to alphabetical, so adding a new topic folder
+// never requires touching this map.
+export const topicOrder: Record<string, number> = {
+    // 1º ESO
+    "numeros-enteros": 1,
+    "fracciones": 2,
+    "proporcionalidad": 3,
+    "algebra": 4,
+
+    // 1º Bachillerato
+    "funciones": 1,
+    "limites": 2,
+    "estadistica": 3,
+    "estadistica/unidimensional": 4,
+    "estadistica/bidimensional": 5,
+    "probabilidad": 6,
+    "examenes": 7,
+};
+
 export const pdfNameOverrides: Record<string, string> = {
     // 1º ESO
     "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-1.pdf":

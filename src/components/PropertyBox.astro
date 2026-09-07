@@ -33,7 +33,7 @@ const processedTitle = renderMath(title);
     {
         processedExample && (
             <div class="example-container">
-                <p class="example-label">Ejemplo:</p>
+                <p class="example-label meta-label">Ejemplo:</p>
                 <div
                     class="formula example-formula"
                     set:html={processedExample}
@@ -102,10 +102,7 @@ const processedTitle = renderMath(title);
     }
 
     .example-label {
-        font-weight: 700;
-        font-size: var(--font-size-md);
         color: var(--text-muted);
-        letter-spacing: 1px;
     }
 
     .description {

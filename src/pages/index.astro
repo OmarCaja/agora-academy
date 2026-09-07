@@ -84,10 +84,10 @@ const reasons = [
 
 				<div class="hero-ctas reveal" style="--i: 2">
 					<a href="/#contacto" class="btn btn-solid">
-						Pedir información
+						Contacto
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
-					<a href="/theory/algebra" class="btn btn-line">
+					<a href="/theory/algebra/" class="btn btn-line">
 						Ver teoría
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
@@ -123,7 +123,7 @@ const reasons = [
 			</p>
 
 			<div class="bento">
-				<a href="/theory/algebra" class="cell cell-wide cell-accent reveal" style="--i: 2">
+				<a href="/theory/algebra/" class="cell cell-wide cell-accent reveal" style="--i: 2">
 					<Icon name="ph:function" class="cell-icon" aria-hidden="true" />
 					<span class="cell-title">Teoría</span>
 					<span class="cell-desc">
@@ -139,17 +139,13 @@ const reasons = [
 				{
 					levels.map((level, idx) => (
 						<a
-							href={`/exercises/${level.slug}`}
-							class:list={[
-								"cell",
-								"reveal",
-								{ "cell-tinted": idx === 3 },
-							]}
+							href={`/exercises/${level.slug}/`}
+							class="cell reveal"
 							style={`--i: ${idx + 3}`}
 						>
 							<span class="cell-title">{level.label}</span>
 							<span class="cell-desc">{level.desc}</span>
-							<span class="cell-meta">
+							<span class="cell-meta meta-label">
 								{pdfCount(level.slug)} {pdfCount(level.slug) === 1 ? "PDF" : "PDFs"}
 							</span>
 							<span class="cell-action">
@@ -234,11 +230,10 @@ const reasons = [
 	.hero {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: var(--spacing-lg);
+		gap: var(--spacing-md);
 		align-items: center;
 		padding-top: var(--spacing-md);
 		padding-bottom: var(--spacing-xl);
-		margin-bottom: var(--spacing-lg);
 		border-bottom: 1px solid var(--rule-color);
 	}
 
@@ -257,7 +252,7 @@ const reasons = [
 		max-width: 46ch;
 		color: var(--text-tertiary);
 		font-size: var(--step-1);
-		margin-bottom: var(--spacing-lg);
+		margin-bottom: var(--spacing-md);
 	}
 
 	.hero-lede strong {
@@ -273,7 +268,9 @@ const reasons = [
 	.hero-figure {
 		justify-self: center;
 		width: 100%;
-		max-width: 300px;
+		/* Kept small on mobile so its top edge peeks into the first
+		   viewport instead of sitting entirely below the fold. */
+		max-width: 260px;
 	}
 
 	@media (min-width: 900px) {
@@ -284,6 +281,10 @@ const reasons = [
 			gap: var(--spacing-2xl);
 			padding-top: var(--spacing-lg);
 			padding-bottom: var(--spacing-2xl);
+		}
+
+		.hero-lede {
+			margin-bottom: var(--spacing-lg);
 		}
 
 		.hero-figure {
@@ -410,9 +411,6 @@ const reasons = [
 	}
 
 	.cell {
-		position: relative;
-		isolation: isolate;
-		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
@@ -446,10 +444,6 @@ const reasons = [
 		color: var(--on-accent);
 	}
 
-	.cell-tinted {
-		background: var(--accent-tint);
-	}
-
 	.cell-icon {
 		width: 30px;
 		height: 30px;
@@ -475,10 +469,6 @@ const reasons = [
 	}
 
 	.cell-meta {
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
 		color: var(--text-muted);
 		margin-top: 4px;
 	}

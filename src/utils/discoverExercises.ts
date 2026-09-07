@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { pdfNameOverrides, topicTitleOverrides, levelTitleOverrides, levelOrder } from "../data/exercises";
+import { pdfNameOverrides, topicTitleOverrides, topicOrder, levelTitleOverrides, levelOrder } from "../data/exercises";
 
 export interface PdfLink {
     name: string;
@@ -99,9 +99,9 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
                     let topicTitle = topicTitleOverrides[topicKey];
                     if (!topicTitle) {
                         topicTitle = relativePath
-                            .map((p) => {
+                            .map((p, idx) => {
                                 const w = formatWord(p);
-                                return w.charAt(0).toUpperCase() + w.slice(1);
+                                return idx === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w.toLowerCase();
                             })
                             .join(" ");
                     }
@@ -121,13 +121,24 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
         if (topicMap.size > 0) {
             const levelTitle = levelTitleOverrides[level] || formatDefaultTitle(level);
             // readdirSync order is filesystem-dependent (it differs between
-            // macOS and the Linux CI runner), so sort topics explicitly.
-            const topics: Topic[] = Array.from(topicMap.values())
-                .map((t) => ({
+            // macOS and the Linux CI runner), so sort topics explicitly:
+            // curricular order first (topicOrder), alphabetical fallback for
+            // any topic without an explicit position.
+            const topics: Topic[] = Array.from(topicMap.entries())
+                .map(([key, t]) => ({
+                    key,
                     title: t.title,
                     pdfs: t.pdfs.sort((a, b) => a.name.localeCompare(b.name, "es", { numeric: true })),
                 }))
-                .sort((a, b) => a.title.localeCompare(b.title, "es", { numeric: true }));
+                .sort((a, b) => {
+                    const orderA = topicOrder[a.key];
+                    const orderB = topicOrder[b.key];
+                    if (orderA !== undefined && orderB !== undefined) return orderA - orderB;
+                    if (orderA !== undefined) return -1;
+                    if (orderB !== undefined) return 1;
+                    return a.title.localeCompare(b.title, "es", { numeric: true });
+                })
+                .map(({ title, pdfs }) => ({ title, pdfs }));
 
             result[level] = {
                 title: levelTitle,

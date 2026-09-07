@@ -22,12 +22,18 @@ HOW TO ADD A NEW GRAPH
 
 COLOR PALETTE & UTILITIES
 ---------------------------
-    BLUE   → main curves
-    RED    → tangent lines, special points, asymptotes, negative zones
-    GREEN  → positive zones, increasing intervals
-    ORANGE → maxima, highlighted points
-    GRAY   → annotation text
-    LGRAY  → secondary reference lines
+    Single-ink system, matching the site's DESIGN.md (no chromatic hue
+    anywhere). BLUE / RED / GREEN / ORANGE all resolve to the same ink
+    black and exist only so call sites keep their semantic names; distinct
+    roles within one figure are told apart by linestyle, marker shape, or
+    hatch pattern instead of color. Never reintroduce a literal hex hue in
+    a new graph block — add a linestyle/marker variant instead.
+    BLUE   → main curves (ink)
+    RED    → tangent lines, special points, asymptotes, negative zones (ink)
+    GREEN  → positive zones, increasing intervals (ink)
+    ORANGE → maxima, highlighted points (ink)
+    GRAY   → annotation text (neutral)
+    LGRAY  → secondary reference lines (neutral)
 
     draw_axes(ax, xlim, ylim)  → draws axes with arrows and base style
     save(fig, 'name.png')      → saves to OUT and closes the figure
@@ -59,13 +65,14 @@ plt.rcParams.update({
     'axes.titleweight': 'bold',
 })
 
-# ── Color palette ─────────────────────────────────────────────────────────────
-BLUE   = '#3a86ff'   # main curves
-RED    = '#e63946'   # tangents, special points, negative zones
-GREEN  = '#2dc653'   # positive zones, increasing intervals
-ORANGE = '#fb8500'   # maxima / minima
-GRAY   = '#444444'   # general text
-LGRAY  = '#888888'   # secondary lines
+# ── Color palette (single ink, per DESIGN.md) ───────────────────────────────
+INK    = '#1f1f1f'   # the one ink; every role below is this same value
+BLUE   = INK   # main curves
+RED    = INK   # tangents, special points, negative zones
+GREEN  = INK   # positive zones, increasing intervals
+ORANGE = INK   # maxima / minima
+GRAY   = '#444444'   # general text (neutral gray, not a hue)
+LGRAY  = '#888888'   # secondary lines (neutral gray, not a hue)
 
 # ── Utilities ─────────────────────────────────────────────────────────────────
 def draw_axes(ax, xlim=(-4, 4), ylim=(-4, 4)):
@@ -112,7 +119,7 @@ ax.text(1,    -0.4, '$x=1$',              ha='center', fontsize=10, color=RED)
 ax.text(-0.15, 2,   '$2$',                ha='right',  fontsize=10, color=RED)
 ax.text(3.5,   5.2, r'$f(x)=\frac{x^2-1}{x-1}$',     fontsize=12, color=BLUE)
 ax.text(1.3,   0.5, r'$\nexists\,f(1)$',              fontsize=11, color=RED)
-ax.set_title('Removable discontinuity at $x=1$')
+ax.set_title('Discontinuidad evitable en $x=1$')
 save(fig, 'discontinuidad-evitable.png')
 
 # ── Jump discontinuity (finite) ───────────────────────────────────────────────
@@ -132,10 +139,10 @@ ax.plot(0, 1, 'o', color=BLUE, ms=9, zorder=7)
 # jump arrow
 ax.annotate('', xy=(0.05, 1), xytext=(0.05, 0),
             arrowprops=dict(arrowstyle='<->', color=RED, lw=1.8))
-ax.text(0.25,  0.5, 'jump = 1', fontsize=9, color=RED)
+ax.text(0.25,  0.5, 'salto = 1', fontsize=9, color=RED)
 ax.text(-2.8, -2.3, r'$f(x)=x$',    fontsize=11, color=BLUE)
 ax.text( 1.5,  3.2, r'$f(x)=x+1$', fontsize=11, color=BLUE)
-ax.set_title('Finite jump discontinuity at $x=0$')
+ax.set_title('Discontinuidad de salto finito en $x=0$')
 save(fig, 'discontinuidad-salto.png')
 
 # ── Infinite jump discontinuity  f(x) = 1/x ──────────────────────────────────
@@ -145,11 +152,11 @@ xn = np.linspace(-4, -0.18, 400)
 xp = np.linspace( 0.18,  4, 400)
 ax.plot(xn, 1/xn, color=BLUE, lw=2.5, zorder=4)
 ax.plot(xp, 1/xp, color=BLUE, lw=2.5, zorder=4)
-ax.axvline(0, ls='--', color=RED, lw=1.5, zorder=3, label='vertical asymptote $x=0$')
+ax.axvline(0, ls='--', color=RED, lw=1.5, zorder=3, label='asíntota vertical $x=0$')
 ax.text( 1.2,  3.5, r'$f(x)=\frac{1}{x}$', fontsize=13, color=BLUE)
 ax.text( 0.15, 4.3, r'$+\infty$',           fontsize=11, color=RED)
 ax.text(-1.2, -4.3, r'$-\infty$',           fontsize=11, color=RED)
-ax.set_title('Infinite jump discontinuity at $x=0$')
+ax.set_title('Discontinuidad de salto infinito en $x=0$')
 ax.legend(fontsize=9, framealpha=0.8, loc='lower right')
 save(fig, 'discontinuidad-salto-infinito.png')
 
@@ -164,15 +171,15 @@ ax.plot(tx, 2*(tx+1) - 1, ls='--', color=RED, lw=1.8, zorder=3)
 # tangent at x=1: slope f'(1)=-2, through (1,-1)
 tx2 = np.linspace(-0.8, 2.8, 100)
 ax.plot(tx2, -2*(tx2-1) - 1, ls='--', color=RED, lw=1.8, zorder=3,
-        label='tangent lines')
+        label='rectas tangentes')
 # tangency points
 ax.plot(-1, -1, 'o', color=RED, ms=8, zorder=5)
 ax.plot( 1, -1, 'o', color=RED, ms=8, zorder=5)
 ax.text(1.5, 1.8, r"$f''(x)=-2<0$", fontsize=10, color=GRAY,
-        bbox=dict(boxstyle='round,pad=0.3', facecolor='#fff3f3',
-                  edgecolor=RED, alpha=0.8))
-ax.text(-2.8, -4.5, 'curve lies below\nthe tangent lines', fontsize=9, color=BLUE)
-ax.set_title('Concave function')
+        bbox=dict(boxstyle='round,pad=0.3', facecolor='#f2f2f2',
+                  edgecolor=RED, alpha=0.9))
+ax.text(-2.8, -4.5, 'la curva queda por debajo\nde las tangentes', fontsize=9, color=BLUE)
+ax.set_title('Función cóncava')
 ax.legend(fontsize=9, framealpha=0.8, loc='upper right')
 save(fig, 'funcion-concava.png')
 
@@ -187,16 +194,16 @@ ax.plot(tx, -2*(tx+1) + 1, ls='--', color=RED, lw=1.8, zorder=3)
 # tangent at x=1: slope f'(1)=2, through (1,1)
 tx2 = np.linspace(-1.8, 2.8, 100)
 ax.plot(tx2,  2*(tx2-1) + 1, ls='--', color=RED, lw=1.8, zorder=3,
-        label='tangent lines')
+        label='rectas tangentes')
 # tangency points
 ax.plot(-1, 1, 'o', color=RED, ms=8, zorder=5)
 ax.plot( 1, 1, 'o', color=RED, ms=8, zorder=5)
 ax.text(-2.8, 5.5, r"$f''(x)=2>0$", fontsize=10, color=GRAY,
-        bbox=dict(boxstyle='round,pad=0.3', facecolor='#f0fff4',
-                  edgecolor=GREEN, alpha=0.8))
-ax.text(0.2, 0.2, 'curve lies above\nthe tangent lines', fontsize=9,
+        bbox=dict(boxstyle='round,pad=0.3', facecolor='#f2f2f2',
+                  edgecolor=GREEN, alpha=0.9))
+ax.text(0.2, 0.2, 'la curva queda por encima\nde las tangentes', fontsize=9,
         color=BLUE, ha='center')
-ax.set_title('Convex function')
+ax.set_title('Función convexa')
 ax.legend(fontsize=9, framealpha=0.8, loc='upper center')
 save(fig, 'funcion-convexa.png')
 
@@ -205,18 +212,18 @@ fig, ax = plt.subplots(figsize=(5, 5))
 draw_axes(ax, (-3.5, 3.5), (-0.5, 7))
 x = np.linspace(-3, 3, 400)
 ax.plot(x, x**2, color=BLUE, lw=2.5, zorder=4)
-ax.axvline(0, color='#9b2226', lw=1.5, ls='--', zorder=3,
-           label='axis of symmetry (Y)')
+ax.axvline(0, color=RED, lw=1.5, ls='--', zorder=3,
+           label='eje de simetría (Y)')
 for px in [-2, 2]:
     ax.plot(px, px**2, 'o', color=BLUE, ms=8, zorder=5)
 ax.annotate('', xy=(2, 4), xytext=(-2, 4),
             arrowprops=dict(arrowstyle='<->', color=RED, lw=1.5))
-ax.text( 0,    4.35, 'symmetric', ha='center', fontsize=9, color=RED)
+ax.text( 0,    4.35, 'simétrico', ha='center', fontsize=9, color=RED)
 ax.text(-2.5,  4,    '(-2, 4)',   fontsize=9, color=GRAY, ha='right')
 ax.text( 2.1,  4,    '(2, 4)',    fontsize=9, color=GRAY, ha='left')
 ax.text( 2.2,  5.5,  r'$f(x)=x^2$',   fontsize=12, color=BLUE)
-ax.text( 0.15, 6.2,  r'$f(-x)=f(x)$', fontsize=10, color='#9b2226')
-ax.set_title('Even function: symmetric about the Y-axis')
+ax.text( 0.15, 6.2,  r'$f(-x)=f(x)$', fontsize=10, color=RED)
+ax.set_title('Función par: simétrica respecto al eje Y')
 ax.legend(fontsize=9, framealpha=0.8, loc='upper center')
 save(fig, 'funcion-par.png')
 
@@ -229,12 +236,12 @@ for px, py in [(1, 1), (-1, -1)]:
     ax.plot(px, py, 'o', color=BLUE, ms=8, zorder=5)
 ax.annotate('', xy=(1, 1), xytext=(-1, -1),
             arrowprops=dict(arrowstyle='<->', color=RED, lw=1.5))
-ax.plot(0, 0, 'o', color=ORANGE, ms=9, zorder=6, label='origin (0,0)')
+ax.plot(0, 0, 'o', color=ORANGE, ms=9, zorder=6, label='origen (0,0)')
 ax.text( 1.12,  1,   '(1, 1)',        fontsize=9, color=GRAY)
 ax.text(-1.9,  -1,   '(-1, -1)',      fontsize=9, color=GRAY)
 ax.text( 1.2,   4,   r'$f(x)=x^3$',   fontsize=12, color=BLUE)
-ax.text(-2.3,   5.5, r'$f(-x)=-f(x)$', fontsize=10, color='#9b2226')
-ax.set_title('Odd function: symmetric about the origin')
+ax.text(-2.3,   5.5, r'$f(-x)=-f(x)$', fontsize=10, color=RED)
+ax.set_title('Función impar: simétrica respecto al origen')
 ax.legend(fontsize=9, framealpha=0.8)
 save(fig, 'funcion-impar.png')
 
@@ -251,7 +258,7 @@ for xz in [-2, 2]:
 ax.text(2.5,  4,   r'$f(x)=x^2-4$', fontsize=12, color=BLUE, ha='right')
 ax.text(-3.5, 3.5, r'$f(-2)=0$',    fontsize=10, color=RED)
 ax.text(-3.5, 2.5, r'$f(2)=0$',     fontsize=10, color=RED)
-ax.set_title('Zeros of the function')
+ax.set_title('Ceros de la función')
 save(fig, 'zeros-funcion.png')
 
 # ── Sign of a function  f(x) = x²-4 ─────────────────────────────────────────
@@ -259,17 +266,20 @@ fig, ax = plt.subplots(figsize=(5, 5))
 draw_axes(ax, (-4, 4), (-5.5, 5))
 x = np.linspace(-3.5, 3.5, 400)
 y = x**2 - 4
-# positive zones (x < -2 and x > 2)
+# positive zones (x < -2 and x > 2) — light hatch, distinct from the negative
+# zone's denser hatch since color can no longer carry the difference
 xpos1 = np.linspace(-3.5, -2, 200)
 ax.fill_between(xpos1, 0, xpos1**2-4, where=xpos1**2-4 > 0,
-                alpha=0.25, color=GREEN, label='f(x) > 0')
+                facecolor='none', edgecolor=GREEN, hatch='///',
+                alpha=0.6, lw=0, label='f(x) > 0')
 xpos2 = np.linspace(2, 3.5, 200)
 ax.fill_between(xpos2, 0, xpos2**2-4, where=xpos2**2-4 > 0,
-                alpha=0.25, color=GREEN)
+                facecolor='none', edgecolor=GREEN, hatch='///',
+                alpha=0.6, lw=0)
 # negative zone (-2 < x < 2)
 xneg = np.linspace(-2, 2, 300)
 ax.fill_between(xneg, xneg**2-4, 0, where=xneg**2-4 < 0,
-                alpha=0.25, color=RED, label='f(x) < 0')
+                facecolor=RED, alpha=0.12, lw=0, label='f(x) < 0')
 ax.plot(x, y, color=BLUE, lw=2.5, zorder=4)
 for xz in [-2, 2]:
     ax.plot(xz, 0, 'o', color=RED, ms=9, zorder=6)
@@ -280,7 +290,7 @@ ax.text(-3.2,  2.5, 'f(x) > 0', ha='center', fontsize=10,
 ax.text( 3.2,  2.5, 'f(x) > 0', ha='center', fontsize=10,
          color=GREEN, fontweight='bold')
 ax.text( 2.5,  4,   r'$f(x)=x^2-4$', fontsize=12, color=BLUE, ha='right')
-ax.set_title('Sign of the function')
+ax.set_title('Signo de la función')
 ax.legend(fontsize=9, framealpha=0.8, loc='upper center')
 save(fig, 'signo-funcion.png')
 
@@ -289,24 +299,24 @@ fig, ax = plt.subplots(figsize=(5, 5))
 draw_axes(ax, (-3, 3), (-4, 4))
 x = np.linspace(-2.8, 2.8, 600)
 ax.plot(x, x**3 - 3*x, color=BLUE, lw=2.5, zorder=4)
-ax.plot(-1,  2, 'o', color=ORANGE, ms=10, zorder=6, label='local max (-1, 2)')
-ax.plot( 1, -2, 'o', color=GREEN,  ms=10, zorder=6, label='local min (1, -2)')
+ax.plot(-1,  2, 's', color=ORANGE, ms=9,  zorder=6, label='máximo local (-1, 2)')
+ax.plot( 1, -2, 'o', color=GREEN,  ms=10, zorder=6, label='mínimo local (1, -2)')
 ax.text(-1.15,  2.3, '(-1, 2)',  fontsize=9, color=ORANGE, ha='right')
 ax.text( 1.1,  -2.5, '(1, -2)', fontsize=9, color=GREEN)
 # increasing arrow (left)
 ax.annotate('', xy=(-2.5, (-2.5)**3-3*(-2.5)), xytext=(-2, (-2)**3-3*(-2)),
             arrowprops=dict(arrowstyle='->', color=GREEN, lw=2))
-ax.text(-2.8, -3.5, '↑ increasing', fontsize=9, color=GREEN)
+ax.text(-2.8, -3.5, '↑ creciente', fontsize=9, color=GREEN)
 # decreasing arrow (middle)
 ax.annotate('', xy=(0, 0), xytext=(-0.5, (-0.5)**3-3*(-0.5)),
             arrowprops=dict(arrowstyle='->', color=RED, lw=2))
-ax.text(-0.1,  1.4, '↓ decreasing', fontsize=9, color=RED, ha='center')
+ax.text(-0.1,  1.4, '↓ decreciente', fontsize=9, color=RED, ha='center')
 # increasing arrow (right)
 ax.annotate('', xy=(2.5, (2.5)**3-3*(2.5)), xytext=(2, (2)**3-3*(2)),
             arrowprops=dict(arrowstyle='->', color=GREEN, lw=2))
-ax.text( 2.4,  3.5, '↑ increasing', fontsize=9, color=GREEN, ha='right')
+ax.text( 2.4,  3.5, '↑ creciente', fontsize=9, color=GREEN, ha='right')
 ax.text( 2.2, -1,   r'$f(x)=x^3-3x$', fontsize=10, color=BLUE, ha='right')
-ax.set_title('Monotonicity: increasing and decreasing intervals')
+ax.set_title('Monotonía: intervalos de crecimiento y decrecimiento')
 ax.legend(fontsize=8, framealpha=0.8, loc='lower right')
 save(fig, 'monotonia-funcion.png')
 
@@ -318,8 +328,9 @@ x = np.linspace(-3.5, 2.5, 400)
 y = x**2 + x - 2
 ax.plot(x, y, color=BLUE, lw=2.5, zorder=4, label=r'$f(x)=x^2+x-2$')
 
-# Y-intercept: x=0 → f(0) = -2
-ax.plot(0, -2, 'o', color=GREEN, ms=12, zorder=6, label='Y-intercept $(0,\,-2)$')
+# Y-intercept: x=0 → f(0) = -2 (square marker, distinct from the round
+# X-intercept markers now that color can't carry the distinction)
+ax.plot(0, -2, 's', color=GREEN, ms=10, zorder=6, label='Corte con eje Y $(0,\,-2)$')
 ax.plot([0, 0], [-2, 0], ls='--', color=GREEN, lw=1.3, zorder=3)
 ax.plot([-0.15, 0.15], [-2, -2], ls='-', color=GREEN, lw=1.5, zorder=3)
 ax.text(0.25, -2, '$(0, -2)$', fontsize=9.5, color=GREEN, va='center')
@@ -332,13 +343,13 @@ for xi, label_offset in [(-2, (-0.2, 0.4)), (1, (0.15, 0.4))]:
             f'$({xi},\\ 0)$', fontsize=9.5, color=RED, ha='center')
 
 # legend patches for X-intercepts (added manually so label appears once)
-ax.plot([], [], 'o', color=RED, ms=8, label="X-intercepts $(-2,\\ 0)$ and $(1,\\ 0)$")
+ax.plot([], [], 'o', color=RED, ms=8, label="Cortes con eje X $(-2,\\ 0)$ y $(1,\\ 0)$")
 
 # how-to annotation box
 info = (
-    "How to find them:\n"
-    "• Y-intercept → set $x=0$: $f(0)=-2$\n"
-    "• X-intercepts → set $f(x)=0$:\n"
+    "Cómo encontrarlos:\n"
+    "• Corte con eje Y → hacer $x=0$: $f(0)=-2$\n"
+    "• Cortes con eje X → hacer $f(x)=0$:\n"
     "  $x^2+x-2=0 \\Rightarrow x=-2,\\ 1$"
 )
 ax.text(-3.8, 2.8, info, fontsize=8.2, color=GRAY, va='top',
@@ -346,7 +357,7 @@ ax.text(-3.8, 2.8, info, fontsize=8.2, color=GRAY, va='top',
                   edgecolor='#cccccc', alpha=0.95))
 
 ax.text(2.0, 4.2, r'$f(x)=x^2+x-2$', fontsize=11, color=BLUE, ha='right')
-ax.set_title('Intercepts with the axes')
+ax.set_title('Cortes con los ejes')
 ax.legend(fontsize=8.5, framealpha=0.9, loc='lower right')
 save(fig, 'cortes-ejes.png')
 
@@ -518,7 +529,8 @@ fig, ax = plt.subplots(figsize=(5, 5))
 draw_axes(ax, (-3, 3), (-1, 6))
 x_exp = np.linspace(-3, 3, 200)
 ax.plot(x_exp, 2**x_exp, color=BLUE, lw=2.5, zorder=4, label=r'$f(x)=2^x$ (creciente)')
-ax.plot(x_exp, 0.5**x_exp, color=GREEN, lw=2.5, zorder=4, label=r'$g(x)=(0.5)^x$ (decreciente)')
+ax.plot(x_exp, 0.5**x_exp, color=GREEN, lw=2.5, ls='-.', zorder=4,
+        label=r'$g(x)=(0.5)^x$ (decreciente)')
 ax.plot(0, 1, 'o', color=RED, ms=8, zorder=6)
 ax.text(0.3, 0.5, '$(0, 1)$', color=RED)
 ax.set_title('Funciones exponenciales')
