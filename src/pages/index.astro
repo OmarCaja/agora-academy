@@ -72,7 +72,8 @@ const reasons = [
 		<section class="hero">
 			<div class="hero-copy">
 				<h1 class="hero-title reveal" style="--i: 0">
-					Academia de matemáticas en Cuenca
+					<span class="hero-title-brand">Ágora</span>
+					<span class="hero-title-tagline">Academia de matemáticas en Cuenca</span>
 				</h1>
 
 				<p class="hero-lede reveal" style="--i: 1">
@@ -243,12 +244,25 @@ const reasons = [
 
 	.hero-title {
 		font-family: var(--font-family);
+		margin-bottom: var(--spacing-md);
+	}
+
+	.hero-title-brand {
+		display: block;
+		font-weight: 700;
+		font-size: 1.3rem;
+		letter-spacing: 3px;
+		color: var(--text-muted);
+		margin-bottom: var(--spacing-xs);
+	}
+
+	.hero-title-tagline {
+		display: block;
 		font-weight: 700;
 		font-size: var(--step-5);
 		line-height: 1.08;
 		letter-spacing: -0.035em;
 		max-width: 15ch;
-		margin-bottom: var(--spacing-md);
 		text-wrap: balance;
 	}
 
