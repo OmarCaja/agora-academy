@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const year = new Date().getFullYear();
 ---
 
@@ -14,6 +16,15 @@ const year = new Date().getFullYear();
             <a href="/theory/algebra/">Teoría</a>
             <a href="/exercises/1-eso/">Ejercicios</a>
             <a href="/#contacto">Contacto</a>
+            <a
+                href="https://www.instagram.com/academia.agora.cuenca/?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram de Ágora Academy"
+                class="footer-social"
+            >
+                <Icon name="ph:instagram-logo" aria-hidden="true" />
+            </a>
         </nav>
     </div>
 
@@ -83,6 +94,17 @@ const year = new Date().getFullYear();
 
     .footer-links a:hover {
         color: var(--accent-strong);
+    }
+
+    .footer-social {
+        display: inline-flex;
+        align-items: center;
+        border-bottom: none !important;
+    }
+
+    .footer-social svg {
+        width: 1.3rem;
+        height: 1.3rem;
     }
 
     .footer-bottom {
