@@ -46,7 +46,7 @@
     flex-direction:column;
   }
 
-  .band{ padding:8mm 16mm; }
+  .band{ padding:9mm 16mm; }
 
   /* ---------------- HERO ---------------- */
   .hero{
@@ -63,28 +63,28 @@
     width:auto;
     color:var(--dark-text);
   }
-  .eyebrow{
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:.2em;
-    margin:0 0 8mm;
-  }
   h1.wordmark{
     font-weight:700;
     font-style:italic;
-    font-size:85px;
+    font-size:100px;
     line-height:.9;
-    margin:0 0 6mm;
+    margin:0 0 4mm;
     letter-spacing:-.01em;
   }
+  .subtitle{
+    font-size:36px;
+    font-weight:700;
+    letter-spacing:.01em;
+    margin:0 0 6mm;
+  }
   .sub{
-    font-size:16px;
+    font-size:19px;
     line-height:1.7;
     color:#c9c9c9;
     margin:0 0 5mm;
   }
   .highlight{
-    font-size:16px;
+    font-size:19px;
     font-weight:700;
     color:var(--dark-text);
     margin:0;
@@ -95,22 +95,23 @@
     flex:1;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
+    padding-top:4mm;
     gap:8mm;
   }
 
   .levels{
     display:flex;
     justify-content:center;
-    flex-wrap:wrap;
-    gap:5mm;
+    flex-wrap:nowrap;
+    gap:3.5mm;
   }
   .level-tag{
     background:var(--bg-secondary);
     border:var(--border-width) solid var(--border-color);
     box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
-    padding:5mm 9mm;
-    font-size:22px;
+    padding:4mm 6mm;
+    font-size:17px;
     font-weight:700;
     white-space:nowrap;
   }
@@ -118,7 +119,7 @@
   .reasons-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:6mm 8mm;
+    gap:4mm 8mm;
   }
   .reason-card{
     display:flex;
@@ -126,7 +127,7 @@
     background:var(--bg-secondary);
     border:var(--border-width) solid var(--border-color);
     box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
-    padding:5mm;
+    padding:4mm;
   }
   .reason-icon{ width:30px; height:30px; color:var(--accent); margin-bottom:3mm; }
   .reason-card strong{ font-size:16px; font-weight:700; margin-bottom:1.5mm; }
@@ -143,7 +144,7 @@
     align-items:baseline;
     margin:0 0 5mm;
   }
-  .section-head h2{ margin:0; font-size:22px; font-weight:700; flex-shrink:0; }
+  .section-head h2{ margin:0; font-size:27px; font-weight:700; flex-shrink:0; }
   .section-head::after{
     content:"";
     flex:1;
@@ -162,18 +163,18 @@
   }
   address{
     font-style:normal;
-    font-size:15px;
+    font-size:18px;
     line-height:1.4;
   }
-  dl.meta{ margin:0 0 4mm; font-size:15px; line-height:1.6; }
+  dl.meta{ margin:0 0 5mm; font-size:18px; line-height:1.6; }
   dl.meta dt{ display:inline; color:var(--dark-muted); }
   dl.meta dd{ display:inline; margin:0 0 0 6px; }
   dl.meta div{ display:block; }
 
   .qr-block{ display:flex; align-items:center; gap:5mm; }
-  .qr-block svg{ width:23mm; height:23mm; flex:none; background:var(--dark-text); }
+  .qr-block svg{ width:26mm; height:26mm; flex:none; background:var(--dark-text); }
   .qr-block svg rect{ fill:var(--dark-bg); }
-  .qr-caption{ font-size:12px; color:var(--dark-muted); line-height:1.5; max-width:34mm; }
+  .qr-caption{ font-size:14px; color:var(--dark-muted); line-height:1.5; max-width:36mm; }
 </style>
 </head>
 <body>
@@ -184,9 +185,9 @@
         <path d="M5.64-14.22L7.47-14.22L7.51-14.18L7.55-14.22L9.38-14.22L14.95 0L0.16 0L5.64-14.22ZM7.52-10.30L4.74-2.64L10.36-2.64L7.52-10.30Z" fill="currentColor"></path>
       </g>
     </svg>
-    <p class="eyebrow">ACADEMIA DE MATEMÁTICAS · CUENCA</p>
     <h1 class="wordmark">Ágora</h1>
-    <p class="sub">Primaria · E.S.O. · Bachillerato<br>Grupos reducidos y atención personalizada.</p>
+    <p class="subtitle">Academia de matemáticas</p>
+    <p class="sub">Primaria · E.S.O. · Bachillerato · Universidad<br>Grupos reducidos y atención personalizada.</p>
     <p class="highlight">También disponemos de apuntes y ejercicios en la web.</p>
   </section>
 
@@ -195,6 +196,7 @@
       <span class="level-tag">Primaria</span>
       <span class="level-tag">E.S.O.</span>
       <span class="level-tag">Bachillerato</span>
+      <span class="level-tag">Universidad</span>
     </div>
 
     <div class="reasons-grid">
