@@ -192,7 +192,7 @@ import "../styles/global.css";
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido</a>
     <GlobalNav transition:persist />
-    {showProgressBar && <ReadingProgressBar transition:persist />}
+    <ReadingProgressBar visible={showProgressBar} transition:persist />
     <Menu currentPage={currentPage} transition:persist />
 
     <main id="main-content" class="container">

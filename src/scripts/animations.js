@@ -38,12 +38,20 @@ const initReveal = () => {
         { threshold: 0.08, rootMargin: "0px 0px -70px 0px" },
     );
 
+    // iOS Safari resizes window.innerHeight as its address/tab bars
+    // collapse, so reading it right after a page-load reports a viewport
+    // shorter than what's actually visible. visualViewport.height tracks the
+    // real visible area instead (same reason Menu.astro uses 100dvh), which
+    // stops bottom-of-viewport content from being wrongly hidden then
+    // immediately re-revealed.
+    const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+
     targets.forEach((el) => {
         // Already on screen at init (above the fold): reveal instantly, never
         // hide first — hiding already-painted content is what causes the
         // visible -> hidden -> visible flash this guards against.
         const rect = el.getBoundingClientRect();
-        const alreadyVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        const alreadyVisible = rect.top < viewportHeight && rect.bottom > 0;
         if (!alreadyVisible) el.classList.add("is-hidden");
         observer.observe(el);
     });

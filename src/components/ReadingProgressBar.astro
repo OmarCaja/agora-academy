@@ -1,8 +1,17 @@
 ---
+interface Props {
+  visible?: boolean;
+}
 
+// Always rendered (transition:persist requires the element to exist on
+// every page) and toggled with `hidden` instead of a conditional in
+// BaseLayout: a transition:persist element that only exists on some pages
+// aborts Astro's view transition on navigation between a page that has it
+// and one that doesn't.
+const { visible = false } = Astro.props;
 ---
 
-<div class="progress-container" aria-hidden="true">
+<div class="progress-container" aria-hidden="true" hidden={!visible}>
     <div class="progress-bar"></div>
 </div>
 
@@ -60,5 +69,11 @@
         .progress-container {
             display: none;
         }
+    }
+
+    /* Author-stylesheet display:block above would otherwise outrank the
+       UA stylesheet's [hidden] rule. */
+    .progress-container[hidden] {
+        display: none;
     }
 </style>
