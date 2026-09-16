@@ -9,6 +9,11 @@ interface Props {
 
 const { title, description, currentPage = "index", schema, showProgressBar = false } = Astro.props;
 
+// Astro parses <title> as raw text, so anything more complex than a bare
+// identifier inside it is silently dropped (every page shipped an empty title).
+// Build the string here, interpolate it there.
+const fullTitle = title.includes("Ágora") ? title : `${title} | Academia Ágora`;
+
 // Single branded 1200x630 card, regenerated with scripts/generate-og-card.py.
 const ogImage = new URL("/og/agora-og.png", Astro.site);
 const ogImageAlt =
@@ -49,13 +54,7 @@ import "../styles/global.css";
       media="(prefers-color-scheme: dark)"
     />
 
-    <title>
-      {
-        title.includes("Academia Ágora") || title.includes("Ágora")
-          ? title
-          : `${title} | Academia Ágora`
-      }
-    </title>
+    <title>{fullTitle}</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content={description} />
@@ -121,7 +120,7 @@ import "../styles/global.css";
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           name: "Academia Ágora",
-          image: `${Astro.site}/favicon/logo.png`,
+          image: new URL("/favicon/logo.png", Astro.site).href,
           "@id": Astro.site,
           url: Astro.site,
           telephone: "+34649021173",
