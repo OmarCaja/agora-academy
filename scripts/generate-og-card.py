@@ -5,7 +5,7 @@ Generates the Open Graph / Twitter social card (1200x630).
 
 USAGE
 ------
-    python3 scripts/generate-og-card.py
+    python3 scripts/generate-og-card.py [--dark]
 
 DEPENDENCIES
 -------------
@@ -22,10 +22,13 @@ shadows never black. There is no chromatic accent anywhere on the site, so
 none is introduced here either. The composition mirrors the homepage: a
 paper-raised card (the same surface as the table of contents) on the paper
 ground, wordmark and headline on the left, the brand parabola figure on the
-right.
+right. --dark swaps in the dark-theme tokens from global.css; the parabola
+figure PNG is ink-on-transparent for the light theme, so it's recolored to
+the dark theme's ink at paste time instead of shipping a second PNG.
 """
 
 import os
+import sys
 import tempfile
 from PIL import Image, ImageDraw, ImageFont
 from fontTools.ttLib import TTFont
@@ -38,13 +41,24 @@ OUT = os.path.join(OUT_DIR, "agora-og.png")
 
 W, H = 1200, 630
 
-# DESIGN.md light-theme tokens (see colors: in the frontmatter).
-INK = (31, 31, 31)         # ink / border / accent, all one token
-INK_MUTED = (90, 90, 90)   # ink-muted
-PAPER = (244, 244, 244)    # paper, the page ground
-PAPER_SHADE = (232, 232, 232)   # paper-shade, chips and cards
-PAPER_RAISED = (253, 253, 253)  # paper-raised, the freshest surface
-SHADOW_ALPHA = 0.32        # rgba(31,31,31,0.32), the registration shadow
+DARK = "--dark" in sys.argv[1:]
+
+if DARK:
+    # DESIGN.md dark-theme tokens ([data-theme="dark"] in global.css).
+    INK = (242, 242, 242)          # text-primary / border-color
+    INK_MUTED = (168, 168, 168)    # text-muted
+    PAPER = (22, 22, 22)           # bg-primary
+    PAPER_SHADE = (32, 32, 32)     # bg-secondary
+    PAPER_RAISED = (38, 38, 38)    # bg-raised
+    SHADOW_ALPHA = 0.26            # rgba(242,242,242,0.26)
+else:
+    # DESIGN.md light-theme tokens (see colors: in the frontmatter).
+    INK = (31, 31, 31)         # ink / border / accent, all one token
+    INK_MUTED = (90, 90, 90)   # ink-muted
+    PAPER = (244, 244, 244)    # paper, the page ground
+    PAPER_SHADE = (232, 232, 232)   # paper-shade, chips and cards
+    PAPER_RAISED = (253, 253, 253)  # paper-raised, the freshest surface
+    SHADOW_ALPHA = 0.32        # rgba(31,31,31,0.32), the registration shadow
 
 REQUIRED = set("ÁGORAcademiteásnCu PrimoBhlrES.")
 
@@ -104,6 +118,12 @@ def main():
 
     # ── Figure, right side ────────────────────────────────────────────────
     fig = Image.open(FIGURE).convert("RGBA")
+    if DARK:
+        # The source PNG is light-theme ink on transparent; recolor to the
+        # dark theme's ink, keeping the original alpha (anti-aliasing).
+        _, _, _, alpha = fig.split()
+        fig = Image.new("RGBA", fig.size, INK + (255,))
+        fig.putalpha(alpha)
     fig_h = 360
     fig_w = round(fig.width * fig_h / fig.height)
     fig = fig.resize((fig_w, fig_h), Image.LANCZOS)
@@ -129,7 +149,7 @@ def main():
     f_chip = bold(24)
     chip_border, chip_shadow = 3, 8
     cx, cy, ch = x, 442, 52
-    for label in ["Primaria", "E.S.O.", "Bachillerato"]:
+    for label in ["Primaria", "E.S.O.", "Bachillerato", "Universidad"]:
         tw = d.textlength(label, font=f_chip)
         cw = tw + 44
         d.rectangle([cx + chip_shadow, cy + chip_shadow, cx + cw + chip_shadow, cy + ch + chip_shadow],
