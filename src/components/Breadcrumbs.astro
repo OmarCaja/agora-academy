@@ -15,12 +15,16 @@ const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, "") : "https:/
 const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: item.label,
-        ...(item.href ? { item: `${siteUrl}${item.href}` } : {}),
-    })),
+    // Google requires "item" on every non-final ListItem: drop labels without a page, link the last to the current URL.
+    itemListElement: items
+        .map((item, idx) => ({ ...item, href: idx === items.length - 1 ? Astro.url.pathname : item.href }))
+        .filter((item) => item.href)
+        .map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: item.label,
+            item: `${siteUrl}${item.href}`,
+        })),
 };
 ---
 
