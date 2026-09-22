@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ágora - Cuenca · Instagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-primary:#f4f4f4;
+    --bg-secondary:#e8e8e8;
+    --text-primary:#1f1f1f;
+    --text-muted:#5a5a5a;
+    --border-color:#1f1f1f;
+    --accent:#1f1f1f;
+    --shadow-color:rgba(31,31,31,0.32);
+
+    --dark-bg:#161616;
+    --dark-text:#f2f2f2;
+    --dark-muted:#a8a8a8;
+    --dark-shadow:rgba(242,242,242,0.26);
+
+    --border-width:4px;
+    --shadow-offset:12px;
+    --font-family:"Space Mono", monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#888; }
+
+  .slide{
+    width:1080px;
+    height:1350px;
+    padding:96px 88px;
+    font-family:var(--font-family);
+    background:var(--bg-primary);
+    color:var(--text-primary);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    position:relative;
+  }
+  .slide.dark{ background:var(--dark-bg); color:var(--dark-text); }
+
+  /* one slide per screenshot via #s1..#s6; all visible when opened without a fragment */
+  .slide{ display:none; }
+  .slide:target{ display:flex; }
+  body:not(:has(.slide:target)) .slide{ display:flex; margin-bottom:24px; }
+
+  .kicker{
+    font-size:38px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin:0;
+  }
+  .dark .kicker{ color:var(--dark-muted); }
+
+  .big{
+    font-size:104px;
+    font-weight:700;
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin:0;
+  }
+  .big.sm{ font-size:76px; }
+
+  .lead{
+    font-size:44px;
+    line-height:1.5;
+    color:var(--text-muted);
+    margin:0;
+  }
+  .dark .lead{ color:var(--dark-muted); }
+
+  .spacer{ flex:1; }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    font-size:40px;
+    font-weight:700;
+  }
+  .brand svg{ height:58px; width:auto; color:currentColor; }
+
+  .rule{
+    height:var(--border-width);
+    background:currentColor;
+    opacity:.25;
+    margin:44px 0;
+  }
+
+  /* niveles */
+  .levels{ display:flex; flex-direction:column; gap:26px; }
+  .level-tag{
+    background:var(--bg-secondary);
+    border:var(--border-width) solid var(--border-color);
+    box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+    padding:26px 40px;
+    font-size:52px;
+    font-weight:700;
+  }
+
+  /* razones */
+  .reasons{ display:flex; flex-direction:column; gap:30px; }
+  .reason-card{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    background:var(--bg-secondary);
+    border:var(--border-width) solid var(--border-color);
+    box-shadow:var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+    padding:36px;
+  }
+  .reason-icon{ width:64px; height:64px; flex:none; color:var(--accent); }
+  .reason-card strong{ display:block; font-size:48px; line-height:1.1; margin-bottom:6px; }
+  .reason-card span{ font-size:36px; line-height:1.35; color:var(--text-muted); }
+
+  /* contacto */
+  .contact{ font-size:44px; line-height:1.7; font-style:normal; margin:0; }
+  .contact dt{ color:var(--dark-muted); display:inline; }
+  .contact dd{ display:inline; margin:0 0 0 14px; }
+  .contact div{ display:block; }
+</style>
+</head>
+<body>
+
+<!-- 1 · gancho -->
+<section class="slide dark" id="s1">
+  <div class="brand">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g transform="matrix(12.166336633663366,0,0,12.166336633663366,8.084616048088165,186.50202995621333)">
+        <path d="M5.64-14.22L7.47-14.22L7.51-14.18L7.55-14.22L9.38-14.22L14.95 0L0.16 0L5.64-14.22ZM7.52-10.30L4.74-2.64L10.36-2.64L7.52-10.30Z" fill="currentColor"></path>
+      </g>
+    </svg>
+    Ágora
+  </div>
+  <div class="spacer"></div>
+  <h1 class="big">Academia<br>de matemáticas<br>en Cuenca</h1>
+  <div class="spacer"></div>
+  <div class="rule"></div>
+  <address class="contact">
+    Calle Fermín Caballero, 3<br>
+    (edificio Máster), planta 6<br>
+    [thegoodspace]. Cuenca.
+  </address>
+  <dl class="contact" style="margin-top:28px">
+    <div><dt>Tel.</dt><dd>649 021 173</dd></div>
+    <div><dt>Email</dt><dd>info@agoraacademy.es</dd></div>
+    <div><dt>Web</dt><dd>www.agoraacademy.es</dd></div>
+  </dl>
+</section>
+
+<!-- 2 · niveles -->
+<section class="slide" id="s2">
+  <p class="kicker">Niveles</p>
+  <div class="rule"></div>
+  <h2 class="big sm">Desde primaria<br>hasta la<br>universidad</h2>
+  <div class="spacer"></div>
+  <div class="levels">
+    <span class="level-tag">Primaria</span>
+    <span class="level-tag">E.S.O.</span>
+    <span class="level-tag">Bachillerato</span>
+    <span class="level-tag">Universidad</span>
+  </div>
+  <div class="spacer"></div>
+</section>
+
+<!-- 3 · cómo trabajamos -->
+<section class="slide" id="s3">
+  <p class="kicker">Cómo trabajamos</p>
+  <div class="rule"></div>
+  <div class="spacer"></div>
+  <div class="reasons">
+    <div class="reason-card">
+      <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="15" r="2.4"/><circle cx="14" cy="9" r="2.4"/><circle cx="18.5" cy="16" r="2.4"/></svg>
+      <div>
+        <strong>Grupos reducidos</strong>
+        <span>para una atención personalizada</span>
+      </div>
+    </div>
+    <div class="reason-card">
+      <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="14.5" width="3.2" height="6"/><rect x="10.4" y="9.5" width="3.2" height="11"/><rect x="16.8" y="4.5" width="3.2" height="16"/></svg>
+      <div>
+        <strong>Mejora del proceso</strong>
+        <span>de aprendizaje</span>
+      </div>
+    </div>
+    <div class="reason-card">
+      <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6.4" y1="6.4" x2="17.6" y2="6.4"/><line x1="6.4" y1="6.4" x2="11.4" y2="17.4"/><line x1="17.6" y1="6.4" x2="12.6" y2="17.4"/><circle cx="6.4" cy="6.4" r="2" fill="currentColor" stroke="none"/><circle cx="17.6" cy="6.4" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="18" r="2" fill="currentColor" stroke="none"/></svg>
+      <div>
+        <strong>Razonamiento lógico</strong>
+        <span>como base del aprendizaje</span>
+      </div>
+    </div>
+    <div class="reason-card">
+      <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="14" r="6"/><path d="M16.5 4 L22 15.5 L11 15.5 Z"/></svg>
+      <div>
+        <strong>Pensamiento abstracto</strong>
+        <span>aplicado a problemas reales</span>
+      </div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+</section>
+
+<!-- 4 · recursos web -->
+<section class="slide dark" id="s4">
+  <p class="kicker">En la web</p>
+  <div class="rule"></div>
+  <h2 class="big sm">Apuntes<br>y ejercicios</h2>
+  <div class="spacer"></div>
+  <p class="lead">Teoría y ejercicios en PDF de<br>todos los niveles. Entra en:</p>
+  <p class="big sm" style="margin-top:28px">agoraacademy.es</p>
+</section>
+
+</body>
+</html>
