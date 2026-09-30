@@ -55,6 +55,9 @@ export const pdfNameOverrides: Record<string, string> = {
     "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-2.pdf":
         "Ejercicios de proporcionalidad y porcentajes 2",
 
+    // 2º ESO Exámenes
+    "/ejercicios/2-eso/examenes/enteros-1.pdf": "Números enteros 1",
+
     // 1º Bachillerato Exámenes
     "/ejercicios/1-bach/examenes/funciones-limites-derivadas-1.pdf":
         "Funciones, límites y derivadas 1",
