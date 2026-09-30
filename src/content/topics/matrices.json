@@ -1,0 +1,225 @@
+{
+    "title": "Matrices",
+    "description": "Qué es una matriz, tipos de matrices y operaciones: suma, producto por un escalar y producto de matrices. Cálculo del rango por el método de Gauss, matriz inversa (Gauss-Jordan y sistema de ecuaciones) y ecuaciones matriciales.",
+    "menuGroup": "Álgebra",
+    "menuOrder": 3,
+    "sections": [
+        {
+            "title": "¿Qué es una matriz?",
+            "items": [
+                {
+                    "title": "Definición",
+                    "description": "Una <strong>matriz</strong> es una tabla rectangular de números ordenados en <strong>filas</strong> (líneas horizontales) y <strong>columnas</strong> (líneas verticales), encerrados entre paréntesis. Las matrices se nombran con letras mayúsculas ($A$, $B$, $C$...) y sus elementos con la misma letra en minúscula.",
+                    "formula": "$$A = \\begin{pmatrix} a_{11} & a_{12} & \\cdots & a_{1n} \\\\ a_{21} & a_{22} & \\cdots & a_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_{m1} & a_{m2} & \\cdots & a_{mn} \\end{pmatrix}$$",
+                    "example": "$$A = \\begin{pmatrix}2 & -1 & 0 \\\\ 3 & 5 & 4\\end{pmatrix}$$ es una matriz con 2 filas y 3 columnas."
+                },
+                {
+                    "title": "Dimensión de una matriz",
+                    "description": "La <strong>dimensión</strong> (u orden) de una matriz indica cuántas filas y cuántas columnas tiene. Se escribe $m \\times n$ (se lee «$m$ por $n$»): <strong>primero siempre las filas</strong> y después las columnas.",
+                    "formula": "$$\\text{dimensión} = \\underbrace{m}_{\\text{filas}} \\times \\underbrace{n}_{\\text{columnas}}$$",
+                    "example": "$$\\begin{pmatrix}2 & -1 & 0 \\\\ 3 & 5 & 4\\end{pmatrix}$$ Tiene 2 filas y 3 columnas, luego su dimensión es $2 \\times 3$.<br>$$\\begin{pmatrix}1 \\\\ 7 \\\\ -2\\end{pmatrix}$$ Tiene 3 filas y 1 columna: dimensión $3 \\times 1$."
+                },
+                {
+                    "title": "Elementos de una matriz: $a_{ij}$",
+                    "description": "Cada número de la matriz se llama <strong>elemento</strong> y se nombra con dos subíndices: $a_{ij}$. El <strong>primer subíndice $i$ indica la fila</strong> y el <strong>segundo $j$ indica la columna</strong> en la que está. Para localizarlo: bajamos hasta la fila $i$ y avanzamos hasta la columna $j$.",
+                    "formula": "$$a_{ij} \\rightarrow \\text{fila } i, \\ \\text{columna } j$$",
+                    "example": "$$A = \\begin{pmatrix}2 & -1 & 0 \\\\ 3 & 5 & 4\\end{pmatrix}$$ • $a_{12}$: fila 1, columna 2 → $a_{12} = -1$<br>• $a_{21}$: fila 2, columna 1 → $a_{21} = 3$<br>• $a_{23}$: fila 2, columna 3 → $a_{23} = 4$"
+                },
+                {
+                    "title": "Tipos de matrices según su forma",
+                    "description": "<strong>Matriz fila</strong>: tiene una sola fila ($1 \\times n$).<br><strong>Matriz columna</strong>: tiene una sola columna ($m \\times 1$).<br><strong>Matriz cuadrada</strong>: tiene el mismo número de filas que de columnas ($n \\times n$); se dice que es de <strong>orden $n$</strong>.<br><strong>Matriz nula</strong>: todos sus elementos son 0; se representa por $O$.",
+                    "example": "Fila: $\\begin{pmatrix}3 & -1 & 2\\end{pmatrix}$ &nbsp; Columna: $\\begin{pmatrix}4 \\\\ 0\\end{pmatrix}$ &nbsp; Cuadrada de orden 2: $\\begin{pmatrix}1 & 5 \\\\ -2 & 3\\end{pmatrix}$ &nbsp; Nula: $\\begin{pmatrix}0 & 0 \\\\ 0 & 0\\end{pmatrix}$"
+                },
+                {
+                    "title": "Diagonal principal",
+                    "description": "En una matriz cuadrada, la <strong>diagonal principal</strong> está formada por los elementos cuya fila y columna coinciden: $a_{11}, a_{22}, a_{33}, \\dots$ Va desde la esquina superior izquierda hasta la inferior derecha.",
+                    "example": "$$\\begin{pmatrix}\\textcolor{#d46a6a}{4} & 1 & 0 \\\\ 2 & \\textcolor{#d46a6a}{-3} & 5 \\\\ 7 & 6 & \\textcolor{#d46a6a}{9}\\end{pmatrix}$$ La diagonal principal es $4, -3, 9$."
+                },
+                {
+                    "title": "Igualdad de matrices",
+                    "description": "Dos matrices son <strong>iguales</strong> si tienen la misma dimensión y los elementos que ocupan la misma posición son iguales. Esto permite plantear ecuaciones igualando elemento a elemento.",
+                    "example": "$$\\begin{pmatrix}x & 3 \\\\ -1 & y + 1\\end{pmatrix} = \\begin{pmatrix}5 & 3 \\\\ -1 & 4\\end{pmatrix}$$ Igualando posición a posición: $x = 5$ y $y + 1 = 4 \\Rightarrow y = 3$."
+                }
+            ]
+        },
+        {
+            "title": "Matriz traspuesta y matriz identidad",
+            "items": [
+                {
+                    "title": "Matriz traspuesta: $A^t$",
+                    "description": "La <strong>traspuesta</strong> de $A$, que se escribe $A^t$, es la matriz que se obtiene al <strong>cambiar filas por columnas</strong>: la fila 1 pasa a ser la columna 1, la fila 2 pasa a ser la columna 2, etc. Si $A$ es de dimensión $m \\times n$, su traspuesta es de dimensión $n \\times m$.",
+                    "formula": "$$(A^t)_{ij} = a_{ji}$$",
+                    "example": "$$A = \\begin{pmatrix}2 & -1 & 0 \\\\ 3 & 5 & 4\\end{pmatrix}$$ • La fila 1 $(2, -1, 0)$ se escribe como columna 1.<br>• La fila 2 $(3, 5, 4)$ se escribe como columna 2.<br>$$A^t = \\begin{pmatrix}2 & 3 \\\\ -1 & 5 \\\\ 0 & 4\\end{pmatrix}$$ $A$ es $2 \\times 3$ y $A^t$ es $3 \\times 2$."
+                },
+                {
+                    "title": "Propiedades de la traspuesta",
+                    "formula": "$$(A^t)^t = A \\qquad (A + B)^t = A^t + B^t \\qquad (k \\cdot A)^t = k \\cdot A^t \\qquad (A \\cdot B)^t = B^t \\cdot A^t$$",
+                    "description": "Fíjate en la última: al trasponer un producto, <strong>se invierte el orden</strong> de los factores."
+                },
+                {
+                    "title": "Matriz identidad: $I$",
+                    "description": "La <strong>matriz identidad</strong> $I_n$ es una matriz cuadrada de orden $n$ con <strong>unos en la diagonal principal</strong> y <strong>ceros en el resto</strong> de posiciones. Es el «1» de las matrices: al multiplicar cualquier matriz por la identidad (con dimensiones compatibles) la matriz no cambia (ver <em>Producto de matrices</em>).",
+                    "formula": "$$A \\cdot I = I \\cdot A = A$$",
+                    "example": "$$I_2 = \\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix} \\qquad I_3 = \\begin{pmatrix}1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1\\end{pmatrix}$$ $$\\begin{pmatrix}3 & 1 \\\\ 2 & 4\\end{pmatrix} \\cdot \\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix} = \\begin{pmatrix}3 \\cdot 1 + 1 \\cdot 0 & 3 \\cdot 0 + 1 \\cdot 1 \\\\ 2 \\cdot 1 + 4 \\cdot 0 & 2 \\cdot 0 + 4 \\cdot 1\\end{pmatrix} = \\begin{pmatrix}3 & 1 \\\\ 2 & 4\\end{pmatrix}$$"
+                }
+            ]
+        },
+        {
+            "title": "Suma y resta de matrices",
+            "items": [
+                {
+                    "title": "Condición: misma dimensión",
+                    "description": "Solo se pueden sumar o restar matrices que tengan <strong>la misma dimensión</strong> (mismo número de filas y mismo número de columnas).",
+                    "example": "$\\begin{pmatrix}1 & 2 \\\\ 3 & 4\\end{pmatrix} + \\begin{pmatrix}1 & 0 & 2 \\\\ 5 & 1 & 3\\end{pmatrix}$ → <strong>no se puede</strong> calcular: la primera es $2 \\times 2$ y la segunda $2 \\times 3$."
+                },
+                {
+                    "title": "Cómo se suman y se restan",
+                    "description": "Se suman (o restan) los elementos que ocupan <strong>la misma posición</strong>. El resultado tiene la misma dimensión que las matrices de partida.",
+                    "formula": "$$(A \\pm B)_{ij} = a_{ij} \\pm b_{ij}$$",
+                    "example": "$$A = \\begin{pmatrix}1 & -2 \\\\ 3 & 0\\end{pmatrix}, \\quad B = \\begin{pmatrix}4 & 1 \\\\ -1 & 5\\end{pmatrix}$$ <strong>Suma</strong>: $$A + B = \\begin{pmatrix}1 + 4 & -2 + 1 \\\\ 3 + (-1) & 0 + 5\\end{pmatrix} = \\begin{pmatrix}5 & -1 \\\\ 2 & 5\\end{pmatrix}$$ <strong>Resta</strong> (cuidado con los signos): $$A - B = \\begin{pmatrix}1 - 4 & -2 - 1 \\\\ 3 - (-1) & 0 - 5\\end{pmatrix} = \\begin{pmatrix}-3 & -3 \\\\ 4 & -5\\end{pmatrix}$$"
+                },
+                {
+                    "title": "Propiedades de la suma",
+                    "description": "<strong>Conmutativa</strong>: $A + B = B + A$<br><strong>Asociativa</strong>: $(A + B) + C = A + (B + C)$<br><strong>Elemento neutro</strong>: la matriz nula, $A + O = A$<br><strong>Elemento opuesto</strong>: $-A$ (se cambia el signo de todos los elementos), $A + (-A) = O$",
+                    "example": "$$A = \\begin{pmatrix}1 & -2 \\\\ 3 & 0\\end{pmatrix} \\Rightarrow -A = \\begin{pmatrix}-1 & 2 \\\\ -3 & 0\\end{pmatrix}$$"
+                }
+            ]
+        },
+        {
+            "title": "Producto de un escalar por una matriz",
+            "items": [
+                {
+                    "title": "Cómo se calcula",
+                    "description": "Para multiplicar un número $k$ (escalar) por una matriz, se multiplica <strong>cada elemento</strong> de la matriz por ese número. La dimensión no cambia.",
+                    "formula": "$$(k \\cdot A)_{ij} = k \\cdot a_{ij}$$",
+                    "example": "$$3 \\cdot \\begin{pmatrix}2 & -1 & 0 \\\\ 1 & 4 & -2\\end{pmatrix} = \\begin{pmatrix}3 \\cdot 2 & 3 \\cdot (-1) & 3 \\cdot 0 \\\\ 3 \\cdot 1 & 3 \\cdot 4 & 3 \\cdot (-2)\\end{pmatrix} = \\begin{pmatrix}6 & -3 & 0 \\\\ 3 & 12 & -6\\end{pmatrix}$$"
+                },
+                {
+                    "title": "Combinando operaciones",
+                    "description": "Primero se multiplican los escalares y después se suman o restan las matrices resultantes.",
+                    "example": "Con $A = \\begin{pmatrix}1 & -2 \\\\ 3 & 0\\end{pmatrix}$ y $B = \\begin{pmatrix}4 & 1 \\\\ -1 & 5\\end{pmatrix}$, calcula $2A - 3B$:<br><strong>Paso 1</strong>: $$2A = \\begin{pmatrix}2 & -4 \\\\ 6 & 0\\end{pmatrix} \\qquad 3B = \\begin{pmatrix}12 & 3 \\\\ -3 & 15\\end{pmatrix}$$ <strong>Paso 2</strong>: $$2A - 3B = \\begin{pmatrix}2 - 12 & -4 - 3 \\\\ 6 - (-3) & 0 - 15\\end{pmatrix} = \\begin{pmatrix}-10 & -7 \\\\ 9 & -15\\end{pmatrix}$$"
+                },
+                {
+                    "title": "Propiedades",
+                    "formula": "$$k \\cdot (A + B) = k \\cdot A + k \\cdot B \\qquad (k + h) \\cdot A = k \\cdot A + h \\cdot A \\qquad k \\cdot (h \\cdot A) = (k \\cdot h) \\cdot A \\qquad 1 \\cdot A = A$$"
+                }
+            ]
+        },
+        {
+            "title": "Producto de matrices",
+            "items": [
+                {
+                    "title": "Paso 1: comprobar que se pueden multiplicar",
+                    "description": "Dos matrices $A$ y $B$ se pueden multiplicar (en ese orden, $A \\cdot B$) solo si <strong>el número de columnas de $A$ es igual al número de filas de $B$</strong>. Truco: escribe las dimensiones una al lado de la otra; <strong style=\"color:#d46a6a\">las de dentro deben coincidir</strong> y <strong style=\"color:#4fa66e\">las de fuera dan la dimensión del resultado</strong>.",
+                    "formula": "$$\\underset{\\textcolor{#4fa66e}{m} \\times \\textcolor{#d46a6a}{n}}{A} \\cdot \\underset{\\textcolor{#d46a6a}{n} \\times \\textcolor{#4fa66e}{p}}{B} = \\underset{\\textcolor{#4fa66e}{m} \\times \\textcolor{#4fa66e}{p}}{C}$$",
+                    "example": "• $A$ es $\\textcolor{#4fa66e}{2} \\times \\textcolor{#d46a6a}{3}$ y $B$ es $\\textcolor{#d46a6a}{3} \\times \\textcolor{#4fa66e}{2}$ → $A \\cdot B$ <strong>sí</strong> se puede y el resultado es $\\textcolor{#4fa66e}{2} \\times \\textcolor{#4fa66e}{2}$.<br>• En el orden contrario, $B \\cdot A$: $\\textcolor{#4fa66e}{3} \\times \\textcolor{#d46a6a}{2}$ por $\\textcolor{#d46a6a}{2} \\times \\textcolor{#4fa66e}{3}$ → también se puede, pero el resultado es $\\textcolor{#4fa66e}{3} \\times \\textcolor{#4fa66e}{3}$.<br>• $A$ es $2 \\times \\textcolor{#d46a6a}{3}$ y $C$ es $\\textcolor{#d46a6a}{2} \\times 2$ → $A \\cdot C$ <strong>no</strong> se puede ($3 \\neq 2$), pero $C \\cdot A$ sí ($\\textcolor{#4fa66e}{2} \\times \\textcolor{#d46a6a}{2}$ por $\\textcolor{#d46a6a}{2} \\times \\textcolor{#4fa66e}{3}$ da $\\textcolor{#4fa66e}{2} \\times \\textcolor{#4fa66e}{3}$)."
+                },
+                {
+                    "title": "Paso 2: calcular cada elemento (fila por columna)",
+                    "description": "El elemento $c_{ij}$ del resultado (fila $i$, columna $j$) es el <strong>producto escalar de la fila $i$ de $A$ por la columna $j$ de $B$</strong>: se multiplica el primer elemento de la fila por el primero de la columna, el segundo por el segundo, etc., y se <strong>suman</strong> todos esos productos. Por eso las columnas de $A$ tienen que coincidir con las filas de $B$: si no, sobrarían o faltarían números al emparejarlos.",
+                    "formula": "$$c_{ij} = (\\text{fila } i \\text{ de } A) \\cdot (\\text{columna } j \\text{ de } B) = a_{i1} b_{1j} + a_{i2} b_{2j} + \\cdots + a_{in} b_{nj}$$"
+                },
+                {
+                    "title": "Ejemplo resuelto paso a paso",
+                    "example": "$$A = \\begin{pmatrix}1 & 2 & 0 \\\\ 3 & -1 & 4\\end{pmatrix}, \\quad B = \\begin{pmatrix}2 & 1 \\\\ 0 & 3 \\\\ -1 & 5\\end{pmatrix}$$ <strong>1. Dimensiones</strong>: $A$ es $\\textcolor{#4fa66e}{2} \\times \\textcolor{#d46a6a}{3}$ y $B$ es $\\textcolor{#d46a6a}{3} \\times \\textcolor{#4fa66e}{2}$ → se pueden multiplicar y $A \\cdot B$ será $\\textcolor{#4fa66e}{2} \\times \\textcolor{#4fa66e}{2}$.<br><strong>2. Elemento a elemento</strong>:<br>• $c_{11}$ = fila 1 · columna 1 = $(1, 2, 0) \\cdot (2, 0, -1) = 1 \\cdot 2 + 2 \\cdot 0 + 0 \\cdot (-1) = 2$<br>• $c_{12}$ = fila 1 · columna 2 = $(1, 2, 0) \\cdot (1, 3, 5) = 1 \\cdot 1 + 2 \\cdot 3 + 0 \\cdot 5 = 7$<br>• $c_{21}$ = fila 2 · columna 1 = $(3, -1, 4) \\cdot (2, 0, -1) = 3 \\cdot 2 + (-1) \\cdot 0 + 4 \\cdot (-1) = 2$<br>• $c_{22}$ = fila 2 · columna 2 = $(3, -1, 4) \\cdot (1, 3, 5) = 3 \\cdot 1 + (-1) \\cdot 3 + 4 \\cdot 5 = 20$<br><strong>3. Resultado</strong>: $$A \\cdot B = \\begin{pmatrix}2 & 7 \\\\ 2 & 20\\end{pmatrix}$$"
+                },
+                {
+                    "title": "El producto no es conmutativo",
+                    "description": "En general, $A \\cdot B \\neq B \\cdot A$. <strong>El orden importa</strong>: a veces uno de los dos productos ni siquiera se puede hacer, y aunque se puedan hacer los dos, el resultado suele ser distinto.",
+                    "example": "$$A = \\begin{pmatrix}1 & 2 \\\\ 0 & 1\\end{pmatrix}, \\quad B = \\begin{pmatrix}1 & 0 \\\\ 3 & 1\\end{pmatrix}$$ $$A \\cdot B = \\begin{pmatrix}1 \\cdot 1 + 2 \\cdot 3 & 1 \\cdot 0 + 2 \\cdot 1 \\\\ 0 \\cdot 1 + 1 \\cdot 3 & 0 \\cdot 0 + 1 \\cdot 1\\end{pmatrix} = \\begin{pmatrix}7 & 2 \\\\ 3 & 1\\end{pmatrix}$$ $$B \\cdot A = \\begin{pmatrix}1 \\cdot 1 + 0 \\cdot 0 & 1 \\cdot 2 + 0 \\cdot 1 \\\\ 3 \\cdot 1 + 1 \\cdot 0 & 3 \\cdot 2 + 1 \\cdot 1\\end{pmatrix} = \\begin{pmatrix}1 & 2 \\\\ 3 & 7\\end{pmatrix}$$ $A \\cdot B \\neq B \\cdot A$"
+                },
+                {
+                    "title": "Potencia de una matriz",
+                    "description": "Solo para matrices cuadradas: $A^2 = A \\cdot A$, $A^3 = A^2 \\cdot A$, etc. <strong>Ojo</strong>: $A^2$ no se obtiene elevando cada elemento al cuadrado.",
+                    "example": "$$A = \\begin{pmatrix}1 & 2 \\\\ 0 & 1\\end{pmatrix} \\Rightarrow A^2 = \\begin{pmatrix}1 & 2 \\\\ 0 & 1\\end{pmatrix} \\cdot \\begin{pmatrix}1 & 2 \\\\ 0 & 1\\end{pmatrix} = \\begin{pmatrix}1 + 0 & 2 + 2 \\\\ 0 + 0 & 0 + 1\\end{pmatrix} = \\begin{pmatrix}1 & 4 \\\\ 0 & 1\\end{pmatrix}$$"
+                },
+                {
+                    "title": "Propiedades del producto",
+                    "description": "<strong>Asociativa</strong>: $(A \\cdot B) \\cdot C = A \\cdot (B \\cdot C)$<br><strong>Distributiva</strong>: $A \\cdot (B + C) = A \\cdot B + A \\cdot C$<br><strong>Elemento neutro</strong>: $A \\cdot I = I \\cdot A = A$<br><strong>No conmutativa</strong>: en general $A \\cdot B \\neq B \\cdot A$"
+                }
+            ]
+        },
+        {
+            "title": "Rango de una matriz (método de Gauss)",
+            "items": [
+                {
+                    "title": "¿Qué es el rango?",
+                    "description": "Una fila es <strong>combinación lineal</strong> de otras si se puede obtener sumando múltiplos de ellas; en ese caso no aporta información nueva. Las filas que no son combinación lineal de las demás son <strong>linealmente independientes</strong>.<br><br>El <strong>rango</strong> de una matriz, $\\text{rg}(A)$, es el <strong>número de filas linealmente independientes</strong> (coincide con el número de columnas linealmente independientes). Por eso nunca puede superar el número de filas ni el de columnas.",
+                    "formula": "$$\\text{rg}(A) \\leq \\min(m, n)$$",
+                    "example": "$$\\begin{pmatrix}2 & 4 & 6 \\\\ 1 & 2 & 3\\end{pmatrix}$$ La fila 1 es el doble de la fila 2 ($F_1 = 2F_2$), así que solo hay una fila independiente: $\\text{rg} = 1$."
+                },
+                {
+                    "title": "Operaciones elementales por filas",
+                    "description": "El método de Gauss transforma la matriz usando estas operaciones, que <strong>no cambian el rango</strong>:<br>1. <strong>Intercambiar</strong> dos filas: $F_1 \\leftrightarrow F_2$<br>2. <strong>Multiplicar</strong> una fila por un número distinto de 0: $F_2 \\rightarrow 3F_2$<br>3. <strong>Sumar a una fila un múltiplo de otra</strong>: $F_2 \\rightarrow F_2 - 2F_1$"
+                },
+                {
+                    "title": "Método de Gauss: paso a paso",
+                    "description": "El objetivo es conseguir una <strong>matriz escalonada</strong>: cada fila empieza con más ceros que la anterior.<br><strong>1.</strong> Toma como pivote el primer elemento de la fila 1 (si es 0, intercambia filas).<br><strong>2.</strong> Haz ceros debajo de él con operaciones del tipo $F_i \\rightarrow F_i - k \\cdot F_1$.<br><strong>3.</strong> Repite con la fila 2 (haz ceros debajo del segundo elemento), luego con la fila 3, etc.<br><strong>4.</strong> El <strong>rango es el número de filas que no son todo ceros</strong>.",
+                    "formula": "$$\\begin{pmatrix} \\ast & \\ast & \\ast \\\\ \\ast & \\ast & \\ast \\\\ \\ast & \\ast & \\ast \\end{pmatrix} \\longrightarrow \\begin{pmatrix} \\ast & \\ast & \\ast \\\\ 0 & \\ast & \\ast \\\\ 0 & 0 & \\ast \\end{pmatrix}$$"
+                },
+                {
+                    "title": "Ejemplo 1: rango 2",
+                    "example": "$$A = \\begin{pmatrix}1 & 2 & -1 \\\\ 2 & 5 & 1 \\\\ 3 & 7 & 0\\end{pmatrix}$$ <strong>Paso 1</strong>: hacemos ceros en la primera columna, debajo del 1: $$ \\xrightarrow{F_2 - 2F_1,\\ F_3 - 3F_1} \\begin{pmatrix}1 & 2 & -1 \\\\ 0 & 1 & 3 \\\\ 0 & 1 & 3\\end{pmatrix}$$ Por ejemplo, $F_2 - 2F_1 = (2 - 2, \\ 5 - 4, \\ 1 + 2) = (0, 1, 3)$.<br><strong>Paso 2</strong>: hacemos ceros en la segunda columna, debajo del 1 de la fila 2: $$ \\xrightarrow{F_3 - F_2} \\begin{pmatrix}1 & 2 & -1 \\\\ 0 & 1 & 3 \\\\ 0 & 0 & 0\\end{pmatrix}$$ <strong>Paso 3</strong>: quedan 2 filas no nulas → $\\text{rg}(A) = 2$.<br>(La fila 3 original era combinación de las otras: $F_3 = F_1 + F_2$)."
+                },
+                {
+                    "title": "Ejemplo 2: rango 3",
+                    "example": "$$B = \\begin{pmatrix}1 & 1 & 2 \\\\ 2 & 1 & 3 \\\\ 1 & 0 & 4\\end{pmatrix}$$ <strong>Paso 1</strong>: $$ \\xrightarrow{F_2 - 2F_1,\\ F_3 - F_1} \\begin{pmatrix}1 & 1 & 2 \\\\ 0 & -1 & -1 \\\\ 0 & -1 & 2\\end{pmatrix}$$ <strong>Paso 2</strong>: $$ \\xrightarrow{F_3 - F_2} \\begin{pmatrix}1 & 1 & 2 \\\\ 0 & -1 & -1 \\\\ 0 & 0 & 3\\end{pmatrix}$$ <strong>Paso 3</strong>: las 3 filas son no nulas → $\\text{rg}(B) = 3$."
+                }
+            ]
+        },
+        {
+            "title": "Matriz inversa",
+            "items": [
+                {
+                    "title": "¿Qué es la matriz inversa?",
+                    "description": "La <strong>inversa</strong> de una matriz cuadrada $A$ es otra matriz, $A^{-1}$, que multiplicada por $A$ da la identidad. Hace el papel de «dividir» en las matrices, que no tienen división.<br><br><strong>No todas las matrices tienen inversa</strong>. Una matriz cuadrada de orden $n$ tiene inversa (es <strong>regular</strong> o invertible) solo si su rango es $n$. Si no tiene inversa se llama <strong>singular</strong>.",
+                    "formula": "$$A \\cdot A^{-1} = A^{-1} \\cdot A = I \\qquad A^{-1} \\text{ existe} \\iff \\text{rg}(A) = n$$"
+                },
+                {
+                    "title": "Método 1: resolviendo un sistema",
+                    "description": "Escribimos la inversa con incógnitas, $A^{-1} = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$, imponemos que $A \\cdot A^{-1} = I$ e igualamos elemento a elemento. Obtenemos dos sistemas de ecuaciones sencillos.",
+                    "example": "Calcula la inversa de $A = \\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix}$.<br><strong>Paso 1</strong>: planteamos $A \\cdot A^{-1} = I$: $$\\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix} \\cdot \\begin{pmatrix}a & b \\\\ c & d\\end{pmatrix} = \\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix}$$ <strong>Paso 2</strong>: multiplicamos (fila por columna): $$\\begin{pmatrix}2a + c & 2b + d \\\\ 5a + 3c & 5b + 3d\\end{pmatrix} = \\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix}$$ <strong>Paso 3</strong>: igualamos elemento a elemento. Salen dos sistemas: uno con $a, c$ (primera columna) y otro con $b, d$ (segunda columna): $$\\begin{cases} 2a + c = 1 \\\\ 5a + 3c = 0 \\end{cases} \\qquad \\begin{cases} 2b + d = 0 \\\\ 5b + 3d = 1 \\end{cases}$$ <strong>Paso 4</strong>: resolvemos.<br>• Primer sistema: de la 1.ª, $c = 1 - 2a$. Sustituyendo: $5a + 3(1 - 2a) = 0 \\Rightarrow -a + 3 = 0 \\Rightarrow a = 3$, y $c = 1 - 6 = -5$.<br>• Segundo sistema: de la 1.ª, $d = -2b$. Sustituyendo: $5b + 3(-2b) = 1 \\Rightarrow -b = 1 \\Rightarrow b = -1$, y $d = 2$.<br>$$A^{-1} = \\begin{pmatrix}3 & -1 \\\\ -5 & 2\\end{pmatrix}$$ <strong>Paso 5</strong>: comprobamos: $$\\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix} \\cdot \\begin{pmatrix}3 & -1 \\\\ -5 & 2\\end{pmatrix} = \\begin{pmatrix}6 - 5 & -2 + 2 \\\\ 15 - 15 & -5 + 6\\end{pmatrix} = \\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix}$$"
+                },
+                {
+                    "title": "Cuando no existe la inversa",
+                    "description": "Si alguno de los sistemas es <strong>incompatible</strong> (no tiene solución), la matriz no tiene inversa.",
+                    "example": "$A = \\begin{pmatrix}1 & 2 \\\\ 2 & 4\\end{pmatrix}$. Planteando $A \\cdot A^{-1} = I$, la primera columna da: $$\\begin{cases} a + 2c = 1 \\\\ 2a + 4c = 0 \\end{cases}$$ La 2.ª ecuación es el doble de $a + 2c$, así que diría $2 \\cdot 1 = 0$: imposible. $A$ no tiene inversa (de hecho $F_2 = 2F_1$, su rango es 1)."
+                },
+                {
+                    "title": "Método 2: Gauss-Jordan",
+                    "description": "<strong>1.</strong> Escribimos la matriz ampliada $(A \\mid I)$: la matriz $A$ a la izquierda y la identidad a la derecha.<br><strong>2.</strong> Con operaciones elementales por filas (aplicadas a <strong>toda la fila</strong>, ambos lados), hacemos ceros <strong>debajo</strong> de la diagonal (como en Gauss).<br><strong>3.</strong> Después hacemos ceros <strong>encima</strong> de la diagonal, empezando por la última columna.<br><strong>4.</strong> Dividimos cada fila por su elemento de la diagonal para que queden unos.<br><strong>5.</strong> Cuando a la izquierda queda $I$, a la derecha tenemos $A^{-1}$.<br>Si en algún momento aparece una fila de ceros en la parte izquierda, la matriz <strong>no tiene inversa</strong>.",
+                    "formula": "$$(A \\mid I) \\xrightarrow{\\text{operaciones por filas}} (I \\mid A^{-1})$$"
+                },
+                {
+                    "title": "Ejemplo Gauss-Jordan (2×2)",
+                    "example": "Misma matriz que antes, $A = \\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix}$.<br><strong>Paso 1</strong>: matriz ampliada: $$\\left(\\begin{array}{cc|cc}2 & 1 & 1 & 0 \\\\ 5 & 3 & 0 & 1\\end{array}\\right)$$ <strong>Paso 2</strong>: cero debajo de la diagonal: $$ \\xrightarrow{F_2 \\rightarrow 2F_2 - 5F_1} \\left(\\begin{array}{cc|cc}2 & 1 & 1 & 0 \\\\ 0 & 1 & -5 & 2\\end{array}\\right)$$ <strong>Paso 3</strong>: cero encima de la diagonal: $$ \\xrightarrow{F_1 \\rightarrow F_1 - F_2} \\left(\\begin{array}{cc|cc}2 & 0 & 6 & -2 \\\\ 0 & 1 & -5 & 2\\end{array}\\right)$$ <strong>Paso 4</strong>: unos en la diagonal: $$ \\xrightarrow{F_1 \\rightarrow F_1 / 2} \\left(\\begin{array}{cc|cc}1 & 0 & 3 & -1 \\\\ 0 & 1 & -5 & 2\\end{array}\\right)$$ <strong>Paso 5</strong>: $$A^{-1} = \\begin{pmatrix}3 & -1 \\\\ -5 & 2\\end{pmatrix}$$ El mismo resultado que con el sistema."
+                },
+                {
+                    "title": "Ejemplo Gauss-Jordan (3×3)",
+                    "example": "Calcula la inversa de $A = \\begin{pmatrix}1 & 1 & 0 \\\\ 1 & 2 & 1 \\\\ 0 & 1 & 2\\end{pmatrix}$.<br><strong>Paso 1</strong>: $$\\left(\\begin{array}{ccc|ccc}1 & 1 & 0 & 1 & 0 & 0 \\\\ 1 & 2 & 1 & 0 & 1 & 0 \\\\ 0 & 1 & 2 & 0 & 0 & 1\\end{array}\\right)$$ <strong>Paso 2</strong>: ceros debajo de la diagonal (primero la columna 1, luego la 2): $$ \\xrightarrow{F_2 \\rightarrow F_2 - F_1} \\left(\\begin{array}{ccc|ccc}1 & 1 & 0 & 1 & 0 & 0 \\\\ 0 & 1 & 1 & -1 & 1 & 0 \\\\ 0 & 1 & 2 & 0 & 0 & 1\\end{array}\\right) \\xrightarrow{F_3 \\rightarrow F_3 - F_2} \\left(\\begin{array}{ccc|ccc}1 & 1 & 0 & 1 & 0 & 0 \\\\ 0 & 1 & 1 & -1 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & -1 & 1\\end{array}\\right)$$ <strong>Paso 3</strong>: ceros encima de la diagonal (primero la columna 3, luego la 2): $$ \\xrightarrow{F_2 \\rightarrow F_2 - F_3} \\left(\\begin{array}{ccc|ccc}1 & 1 & 0 & 1 & 0 & 0 \\\\ 0 & 1 & 0 & -2 & 2 & -1 \\\\ 0 & 0 & 1 & 1 & -1 & 1\\end{array}\\right) \\xrightarrow{F_1 \\rightarrow F_1 - F_2} \\left(\\begin{array}{ccc|ccc}1 & 0 & 0 & 3 & -2 & 1 \\\\ 0 & 1 & 0 & -2 & 2 & -1 \\\\ 0 & 0 & 1 & 1 & -1 & 1\\end{array}\\right)$$ <strong>Paso 4</strong>: la diagonal ya tiene unos, no hay que dividir.<br><strong>Paso 5</strong>: $$A^{-1} = \\begin{pmatrix}3 & -2 & 1 \\\\ -2 & 2 & -1 \\\\ 1 & -1 & 1\\end{pmatrix}$$"
+                },
+                {
+                    "title": "Propiedades de la inversa",
+                    "formula": "$$(A^{-1})^{-1} = A \\qquad (A \\cdot B)^{-1} = B^{-1} \\cdot A^{-1} \\qquad (A^t)^{-1} = (A^{-1})^t$$",
+                    "description": "Igual que con la traspuesta, la inversa de un producto <strong>invierte el orden</strong> de los factores."
+                }
+            ]
+        },
+        {
+            "title": "Ecuaciones matriciales",
+            "items": [
+                {
+                    "title": "Cómo despejar la matriz incógnita $X$",
+                    "description": "Se despeja $X$ como en una ecuación normal, pero <strong>no se puede dividir entre matrices</strong>: en su lugar se <strong>multiplica por la inversa</strong>. Como el producto no es conmutativo, hay que multiplicar <strong>por el mismo lado</strong> en el que está la matriz que queremos quitar:<br>• Si $A$ está a la <strong>izquierda</strong> de $X$, multiplicamos por $A^{-1}$ por la izquierda.<br>• Si $A$ está a la <strong>derecha</strong> de $X$, multiplicamos por $A^{-1}$ por la derecha.",
+                    "formula": "$$A \\cdot X = B \\Rightarrow X = A^{-1} \\cdot B \\qquad X \\cdot A = B \\Rightarrow X = B \\cdot A^{-1}$$",
+                    "example": "Error típico: de $A \\cdot X = B$ escribir $X = B \\cdot A^{-1}$. ¡Está mal! $A^{-1}$ tiene que ir a la izquierda."
+                },
+                {
+                    "title": "Ejemplo resuelto paso a paso",
+                    "example": "Resuelve $A \\cdot X + B = C$, siendo $$A = \\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix}, \\quad B = \\begin{pmatrix}1 & 2 \\\\ -1 & 0\\end{pmatrix}, \\quad C = \\begin{pmatrix}5 & 3 \\\\ 10 & 2\\end{pmatrix}$$ <strong>Paso 1</strong>: despejamos el término con $X$ (pasamos $B$ restando): $$A \\cdot X = C - B$$ <strong>Paso 2</strong>: calculamos $C - B$: $$C - B = \\begin{pmatrix}5 - 1 & 3 - 2 \\\\ 10 - (-1) & 2 - 0\\end{pmatrix} = \\begin{pmatrix}4 & 1 \\\\ 11 & 2\\end{pmatrix}$$ <strong>Paso 3</strong>: $A$ está a la izquierda de $X$, así que multiplicamos por $A^{-1}$ por la izquierda en ambos lados: $$A^{-1} \\cdot A \\cdot X = A^{-1} \\cdot (C - B) \\Rightarrow I \\cdot X = A^{-1} \\cdot (C - B) \\Rightarrow X = A^{-1} \\cdot (C - B)$$ <strong>Paso 4</strong>: calculamos $A^{-1}$ (ya la obtuvimos en la sección anterior): $$A^{-1} = \\begin{pmatrix}3 & -1 \\\\ -5 & 2\\end{pmatrix}$$ <strong>Paso 5</strong>: multiplicamos: $$X = \\begin{pmatrix}3 & -1 \\\\ -5 & 2\\end{pmatrix} \\cdot \\begin{pmatrix}4 & 1 \\\\ 11 & 2\\end{pmatrix} = \\begin{pmatrix}12 - 11 & 3 - 2 \\\\ -20 + 22 & -5 + 4\\end{pmatrix} = \\begin{pmatrix}1 & 1 \\\\ 2 & -1\\end{pmatrix}$$ <strong>Paso 6</strong>: comprobamos que $A \\cdot X + B = C$: $$\\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix} \\cdot \\begin{pmatrix}1 & 1 \\\\ 2 & -1\\end{pmatrix} + \\begin{pmatrix}1 & 2 \\\\ -1 & 0\\end{pmatrix} = \\begin{pmatrix}4 & 1 \\\\ 11 & 2\\end{pmatrix} + \\begin{pmatrix}1 & 2 \\\\ -1 & 0\\end{pmatrix} = \\begin{pmatrix}5 & 3 \\\\ 10 & 2\\end{pmatrix}$$",
+                    "description": "Si la matriz $A$ no tuviera inversa, también se puede plantear $X = \\begin{pmatrix} x & y \\\\ z & t \\end{pmatrix}$, multiplicar e igualar elemento a elemento, como hicimos en el método del sistema para la inversa."
+                }
+            ]
+        }
+    ]
+}

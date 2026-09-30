@@ -53,6 +53,12 @@ To make a page filterable, render `<SearchBox />` and mark up the content with `
    - Set `menuGroup` (must match one of the `GROUP_ORDER` strings — see above — to sort correctly) and `menuOrder` directly in the JSON.
 2. The topic is auto-generated at `/theory/<slug>` and auto-registered in the menu and in theory prev/next pagination. No other file needs editing.
 
+KaTeX gotchas (`src/utils/math.ts` renders with `throwOnError: false`):
+- Each `$$…$$` / `$…$` must stay on one line — the regex doesn't cross newlines.
+- In JSON, LaTeX backslashes are doubled (`\\cdot`), so a matrix row break is `\\\\`.
+- Use `\\textcolor{#hex}{x}`, never `\\color{…}{x}` — `\color` is a switch that tints everything after it in the group. Pastel palette in use: red `#d46a6a`, green `#4fa66e`.
+- Broken formulas don't fail `pnpm build`; they render as red text. After building, `grep -c katex-error dist/theory/<slug>/index.html` must be 0.
+
 ## Adding exercise PDFs
 
 Drop the PDF into `public/ejercicios/<level>/<topic>/`; it's auto-discovered by `discoverExercises.ts` and rendered at `/exercises/<level>`. Only touch `src/data/exercises.ts` to override an auto-derived name/title.
