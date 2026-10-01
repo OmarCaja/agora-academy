@@ -21,7 +21,7 @@ export const levelTitleOverrides: Record<string, string> = {
 };
 
 export const topicTitleOverrides: Record<string, string> = {
-    "proporcionalidad": "Proporcionalidad y porcentajes",
+    "razones-y-proporcionalidad": "Proporcionalidad y porcentajes",
     "numeros-enteros": "Números enteros",
     "estadistica/unidimensional": "Estadística unidimensional",
     "estadistica/bidimensional": "Estadística bidimensional",
@@ -35,7 +35,7 @@ export const topicOrder: Record<string, number> = {
     // 1º ESO
     "numeros-enteros": 1,
     "fracciones": 2,
-    "proporcionalidad": 3,
+    "razones-y-proporcionalidad": 3,
     "algebra": 4,
 
     // 1º Bachillerato
@@ -50,13 +50,10 @@ export const topicOrder: Record<string, number> = {
 
 export const pdfNameOverrides: Record<string, string> = {
     // 1º ESO
-    "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-1.pdf":
+    "/ejercicios/1-eso/razones-y-proporcionalidad/razones-y-proporcionalidad-1.pdf":
         "Ejercicios de proporcionalidad y porcentajes 1",
-    "/ejercicios/1-eso/proporcionalidad/razones-y-proporcionalidad-2.pdf":
+    "/ejercicios/1-eso/razones-y-proporcionalidad/razones-y-proporcionalidad-2.pdf":
         "Ejercicios de proporcionalidad y porcentajes 2",
-
-    // 2º ESO Exámenes
-    "/ejercicios/2-eso/examenes/enteros-1.pdf": "Números enteros 1",
 
     // 1º Bachillerato Exámenes
     "/ejercicios/1-bach/examenes/funciones-limites-derivadas-1.pdf":
