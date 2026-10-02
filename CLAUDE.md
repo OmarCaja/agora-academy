@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static Astro 7 site (Spanish, `lang="es"`) for Ágora Academy, a math tutoring academy in Cuenca, Spain. Content is data-driven JSON; pages are generated at build time. Deploys to GitHub Pages on push to `main` via `.github/workflows/deploy.yml`. Live site: `https://www.agoraacademy.es` (from `public/CNAME`).
 
-**Language:** code, identifiers, file/folder names, comments, CLI messages and project docs (including `.claude/skills/*`) are in English. Student-facing content (topic JSON, exam Markdown, PDFs and `public/ejercicios/...` paths) stays in Spanish. Don't rename existing env vars (`GENERADOR_URL`/`GENERADOR_KEY` in `.env`).
+**Language:** code, identifiers, file/folder names, comments, CLI messages and project docs (including `.claude/skills/*`) are in English. Student-facing content (topic JSON, exam Markdown, PDFs and `public/ejercicios/...` paths) stays in Spanish.
 
 ## Commands
 
@@ -63,4 +63,4 @@ KaTeX gotchas (`src/utils/math.ts` renders with `throwOnError: false`):
 
 ## Adding exercise PDFs
 
-Drop the PDF into `public/ejercicios/<level>/<topic>/`; it's auto-discovered by `discoverExercises.ts` and rendered at `/exercises/<level>`. Only touch `src/data/exercises.ts` to override an auto-derived name/title.
+New exams/exercise sheets are written in Markdown and rendered locally to PDF by the `generate-exercises` skill (`.claude/skills/generate-exercises/scripts/render.mjs`: KaTeX + headless Chrome). Drop the PDF into `public/ejercicios/<level>/<topic>/`; it's auto-discovered by `discoverExercises.ts` and rendered at `/exercises/<level>`. Only touch `src/data/exercises.ts` to override an auto-derived name/title.
