@@ -17,44 +17,23 @@ export interface LevelData {
     topics: Topic[];
 }
 
+// Only words whose accent can't be derived from the slug; anything else is
+// only capitalised when first.
 const SPANISH_ACCENT_WORDS: Record<string, string> = {
-    numeros: "Números",
-    algebra: "Álgebra",
-    examenes: "Exámenes",
-    limites: "Límites",
-    estadistica: "Estadística",
-    fracciones: "Fracciones",
-    funciones: "Funciones",
-    ecuaciones: "Ecuaciones",
-    probabilidad: "Probabilidad",
-    proporcionalidad: "Proporcionalidad",
-    unidimensional: "Unidimensional",
-    bidimensional: "Bidimensional",
-    enteros: "enteros",
-    derivadas: "derivadas",
-    inecuaciones: "inecuaciones",
-    operaciones: "operaciones",
-    porcentajes: "porcentajes",
-    razones: "razones",
+    numeros: "números",
+    algebra: "álgebra",
+    examenes: "exámenes",
+    limites: "límites",
+    estadistica: "estadística",
 };
 
-function formatWord(word: string): string {
-    const lower = word.toLowerCase();
-    if (SPANISH_ACCENT_WORDS[lower]) {
-        return SPANISH_ACCENT_WORDS[lower];
-    }
-    return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
 export function formatDefaultTitle(slugOrFilename: string): string {
-    const clean = slugOrFilename.replace(/\.pdf$/i, "");
-    const parts = clean.split("-");
-    const formatted = parts.map((p, idx) => {
-        if (/^\d+$/.test(p)) return p;
-        const w = formatWord(p);
-        return idx === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w.toLowerCase();
-    });
-    return formatted.join(" ");
+    const words = slugOrFilename
+        .replace(/\.pdf$/i, "")
+        .split("-")
+        .map((p) => (SPANISH_ACCENT_WORDS[p.toLowerCase()] ?? p).toLowerCase());
+    words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+    return words.join(" ");
 }
 
 export function discoverExercises(baseDir: string = "public/ejercicios"): Record<string, LevelData> {
@@ -96,15 +75,7 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
                     const topicKey = relativePath.length > 0 ? relativePath.join("/") : "general";
                     const url = `/ejercicios/${level}/${relativePath.length > 0 ? relativePath.join("/") + "/" : ""}${entry.name}`;
                     
-                    let topicTitle = topicTitleOverrides[topicKey];
-                    if (!topicTitle) {
-                        topicTitle = relativePath
-                            .map((p, idx) => {
-                                const w = formatWord(p);
-                                return idx === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w.toLowerCase();
-                            })
-                            .join(" ");
-                    }
+                    const topicTitle = topicTitleOverrides[topicKey] || formatDefaultTitle(relativePath.join("-"));
 
                     if (!topicMap.has(topicKey)) {
                         topicMap.set(topicKey, { title: topicTitle, pdfs: [] });

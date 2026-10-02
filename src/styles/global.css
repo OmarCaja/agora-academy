@@ -200,26 +200,7 @@ body.menu-open #main-content {
     margin: 0 auto;
 }
 
-/* ===== THEME TRANSITIONS ===== */
-body.theme-changing {
-    transition: background-color var(--transition);
-}
-
-body.theme-changing :is(.info-box, .level-tag, .menu-overlay, .diagram-tree) {
-    transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
-}
-
-body.theme-changing :is(h1, h2, h3, p, span, a, .value, .label, .subtitle) {
-    transition: none;
-}
-
 /* ===== UTILITIES ===== */
-.overflow-x-auto {
-    overflow-x: auto;
-    max-width: 100%;
-    -webkit-overflow-scrolling: touch;
-}
-
 .diagram-tree {
     font-family: var(--font-family);
     padding: var(--spacing-md);

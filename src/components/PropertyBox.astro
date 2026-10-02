@@ -1,6 +1,4 @@
 ---
-import InfoBox from "./InfoBox.astro";
-
 interface Props {
     title: string;
     formula?: string;
@@ -18,7 +16,7 @@ const processedDescription = description ? renderMath(description) : undefined;
 const processedTitle = renderMath(title);
 ---
 
-<InfoBox class="property-box">
+<div class="info-box property-box">
     <h3 set:html={processedTitle} />
 
     {
@@ -47,7 +45,7 @@ const processedTitle = renderMath(title);
             <div class="description" set:html={processedDescription} />
         )
     }
-</InfoBox>
+</div>
 
 <style>
     .property-box h3 {

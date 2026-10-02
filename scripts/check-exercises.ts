@@ -7,6 +7,7 @@ import { pdfNameOverrides, topicTitleOverrides } from "../src/data/exercises.ts"
 assert.equal(formatDefaultTitle("algebra-1.pdf"), "Álgebra 1");
 assert.equal(formatDefaultTitle("numeros-enteros-2.pdf"), "Números enteros 2");
 assert.equal(formatDefaultTitle("razones-y-proporcionalidad-1.pdf"), "Razones y proporcionalidad 1");
+assert.equal(formatDefaultTitle("estadistica-unidimensional"), "Estadística unidimensional");
 
 // Every override key must point at real content, so a typo doesn't
 // silently fall back to the auto-derived title.

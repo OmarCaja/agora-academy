@@ -576,63 +576,6 @@ fig.savefig(path, dpi=150, bbox_inches='tight', facecolor='white')
 plt.close(fig)
 print(f"✅  {path}")
 
-# ── 12. Examen Funciones: Gráfica para estudio (x^3 - 4x) ───────────────────
-fig, ax = plt.subplots(figsize=(6, 5))
-draw_axes(ax, (-4, 4), (-6, 6))
-x_ex1 = np.linspace(-3, 3, 500)
-ax.plot(x_ex1, x_ex1**3 - 4*x_ex1, color=BLUE, lw=2.5, zorder=4)
-ax.set_title('Ejercicio de estudio de función')
-path = os.path.join("public/ejemplos/funciones", 'examen_funciones_ex2.png')
-fig.savefig(path, dpi=150, bbox_inches='tight', facecolor='white')
-plt.close(fig)
-print(f"✅  {path}")
-
-# ── 13. Examen Funciones: Solución cuadrática (x^2 - 6x + 5) ────────────────
-fig, ax = plt.subplots(figsize=(6, 5))
-draw_axes(ax, (-1, 7), (-5, 6))
-x_ex2 = np.linspace(-0.5, 6.5, 500)
-ax.plot(x_ex2, x_ex2**2 - 6*x_ex2 + 5, color=BLUE, lw=2.5, zorder=4)
-ax.plot(3, -4, 'o', color=ORANGE, ms=8, zorder=6)
-ax.text(3, -4.8, 'Vértice (3, -4)', color=ORANGE, ha='center')
-ax.plot(1, 0, 'o', color=RED, ms=8, zorder=6)
-ax.plot(5, 0, 'o', color=RED, ms=8, zorder=6)
-ax.plot(0, 5, 'o', color=GREEN, ms=8, zorder=6)
-ax.text(1.2, 0.4, '(1, 0)', color=RED)
-ax.text(5.2, 0.4, '(5, 0)', color=RED)
-ax.text(0.3, 5, '(0, 5)', color=GREEN)
-ax.set_title('Solución: Parábola $f(x) = x^2 - 6x + 5$')
-path = os.path.join("public/ejemplos/funciones", 'examen_funciones_ex3_sol.png')
-fig.savefig(path, dpi=150, bbox_inches='tight', facecolor='white')
-plt.close(fig)
-print(f"✅  {path}")
-
-# ── 14. Examen Límites: Gráfica con discontinuidades y límites ────────────────
-fig, ax = plt.subplots(figsize=(7, 5))
-draw_axes(ax, (-4, 5), (-4, 5))
-# Part 1: x < -1, f(x) = 1/(x+1) + 2
-x_l1 = np.linspace(-4, -1.05, 300)
-ax.plot(x_l1, 1/(x_l1+1) + 2, color=BLUE, lw=2.5, zorder=4)
-# Part 2: -1 < x < 2, f(x) = x
-x_l2 = np.linspace(-0.95, 1.95, 300)
-ax.plot(x_l2, x_l2, color=BLUE, lw=2.5, zorder=4)
-# Part 3: x > 2, f(x) = 4 - x
-x_l3 = np.linspace(2.05, 5, 300)
-ax.plot(x_l3, 4 - x_l3, color=BLUE, lw=2.5, zorder=4)
-
-ax.axvline(-1, ls='--', color=RED, lw=1.5, zorder=3)
-# clear dot
-c2 = plt.Circle((2, 2), 0.12, color=BLUE, fill=False, lw=2.5, zorder=6)
-ax.add_patch(c2)
-c3 = plt.Circle((2, 2), 0.12, color=BLUE, fill=False, lw=2.5, zorder=6)
-ax.add_patch(c3)
-# filled dot
-ax.plot(2, 3, 'o', color=BLUE, ms=8, zorder=6)
-ax.set_title('Ejercicio de cálculo visual de límites')
-path = os.path.join("public/ejemplos/limites", 'examen_limites_ex1.png')
-fig.savefig(path, dpi=150, bbox_inches='tight', facecolor='white')
-plt.close(fig)
-print(f"✅  {path}")
-
 # ── TRASLACIONES: Cuadrática ────────────────────────────────────────────────
 fig, ax = plt.subplots(figsize=(5, 5))
 draw_axes(ax, (-2, 6), (-1, 7))

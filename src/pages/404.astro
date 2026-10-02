@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
-import InfoBox from "../components/InfoBox.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -14,7 +13,7 @@ import { Icon } from "astro-icon/components";
         <Header title="404" subtitle="Página no encontrada" />
 
         <section class="reveal">
-            <InfoBox>
+            <div class="info-box">
                 <div class="not-found-body">
                     <p class="error-msg">
                         Parece que esta página no existe, ha cambiado de dirección o se ha movido.
@@ -34,7 +33,7 @@ import { Icon } from "astro-icon/components";
                         </a>
                     </div>
                 </div>
-            </InfoBox>
+            </div>
         </section>
     </div>
 </BaseLayout>

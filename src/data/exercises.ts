@@ -22,10 +22,6 @@ export const levelTitleOverrides: Record<string, string> = {
 
 export const topicTitleOverrides: Record<string, string> = {
     "razones-y-proporcionalidad": "Proporcionalidad y porcentajes",
-    "numeros-enteros": "Números enteros",
-    "estadistica/unidimensional": "Estadística unidimensional",
-    "estadistica/bidimensional": "Estadística bidimensional",
-    "estadistica": "Estadística",
 };
 
 // Curricular order for topics within a level, lowest first. A topic key

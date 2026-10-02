@@ -1,41 +1,16 @@
-
 import katex from 'katex';
+
+const render = (formula: string, displayMode: boolean) =>
+    katex.renderToString(formula, { displayMode, throwOnError: false });
 
 /**
  * Renders mathematical formulas in a string using KaTeX.
  * Supports $$...$$ for display mode and $...$ for inline mode.
+ * Display math is replaced first so its $$ delimiters aren't read as inline.
  */
 export function renderMath(content: string): string {
     if (!content) return "";
-
-    // Replace display math: $$...$$
-    let result = content.replace(/\$\$(.*?)\$\$/g, (_match, formula) => {
-        try {
-            return katex.renderToString(formula, {
-                displayMode: true,
-                throwOnError: false
-            });
-        } catch (e) {
-            console.error("KaTeX error:", e);
-            return formula;
-        }
-    });
-
-    // Replace inline math: $...$
-    // We strictly look for $ not followed by $ (to avoid double matching if $$ was missed)
-    // But since we already replaced $$, we can just look for $...$
-    // Note: formatting in JSON might be tricky with backslashes, but standard matching should work
-    result = result.replace(/\$(.*?)\$/g, (_match, formula) => {
-        try {
-            return katex.renderToString(formula, {
-                displayMode: false,
-                throwOnError: false
-            });
-        } catch (e) {
-            console.error("KaTeX error:", e);
-            return formula;
-        }
-    });
-
-    return result;
+    return content
+        .replace(/\$\$(.*?)\$\$/g, (_m, f) => render(f, true))
+        .replace(/\$(.*?)\$/g, (_m, f) => render(f, false));
 }

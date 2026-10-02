@@ -1,8 +1,6 @@
-export const slugify = (text: string) => {
-    return text
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+import { normalizeText } from "./normalizeText";
+
+export const slugify = (text: string) =>
+    normalizeText(text)
         .replace(/[^\w ]+/g, "")
         .replace(/ +/g, "-");
-};
