@@ -7,6 +7,7 @@ import ContactItem from "../components/ContactItem.astro";
 import HeroTangent from "../components/HeroTangent.astro";
 import { discoverExercises } from "../utils/discoverExercises";
 import fs from "node:fs";
+import { SITE_NAME, LEVELS, ADDRESS, PHONE, PHONE_DISPLAY, EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "../data/site";
 
 // Real counts, computed at build from the actual content. Nothing here is a
 // hand-written figure that can drift away from what the site ships.
@@ -61,8 +62,8 @@ const reasons = [
 ---
 
 <BaseLayout
-	title="Ágora - Academia de matemáticas en Cuenca"
-	description="Academia de matemáticas en Cuenca para Primaria, E.S.O., Bachillerato y Universidad. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3."
+	title={`${SITE_NAME} en ${ADDRESS.city}`}
+	description={`Academia de matemáticas en ${ADDRESS.city} para ${LEVELS}. Grupos reducidos, atención personalizada y seguimiento cercano. ${ADDRESS.street}.`}
 	currentPage="index"
 >
 	<div class="content-section">
@@ -210,21 +211,21 @@ const reasons = [
 					<Icon slot="icon" name="ph:map-pin" aria-hidden="true" />
 					<address>
 						<a
-							href="https://www.google.com/maps/search/?api=1&query=Calle+Fermín+Caballero+3+Cuenca"
+							href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${ADDRESS.street}, ${ADDRESS.city}`)}`}
 							target="_blank"
 							rel="noopener noreferrer"
 							class="map-link"
 						>
-							Calle Fermín Caballero, 3 (edificio Máster).<br />
-							Planta 6 [thegoodspace].<br />
-							Cuenca.
+							{ADDRESS.street}.<br />
+							{ADDRESS.floor}.<br />
+							{ADDRESS.city}.
 						</a>
 					</address>
 				</ContactItem>
 
 				<ContactItem label="Teléfono">
 					<Icon slot="icon" name="ph:phone" aria-hidden="true" />
-					<a href="tel:+34649021173">649 021 173</a>
+					<a href={`tel:${PHONE}`}>{PHONE_DISPLAY}</a>
 				</ContactItem>
 
 				<ContactItem label="Email">
@@ -233,17 +234,17 @@ const reasons = [
 						name="ph:envelope-simple"
 						aria-hidden="true"
 					/>
-					<a href="mailto:info@agoraacademy.es">info@agoraacademy.es</a>
+					<a href={`mailto:${EMAIL}`}>{EMAIL}</a>
 				</ContactItem>
 
 				<ContactItem label="Instagram">
 					<Icon slot="icon" name="ph:instagram-logo" aria-hidden="true" />
 					<a
-						href="https://www.instagram.com/academia.agora.cuenca/?hl=es"
+						href={INSTAGRAM_URL}
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						@academia.agora.cuenca
+						@{INSTAGRAM_HANDLE}
 					</a>
 				</ContactItem>
 			</div>

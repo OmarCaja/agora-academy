@@ -1,4 +1,6 @@
 ---
+import { SITE_URL } from "../data/site";
+
 interface BreadcrumbItem {
     label: string;
     href?: string;
@@ -9,8 +11,6 @@ interface Props {
 }
 
 const { items } = Astro.props;
-
-const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, "") : "https://agoraacademy.es";
 
 const schema = {
     "@context": "https://schema.org",
@@ -23,7 +23,7 @@ const schema = {
             "@type": "ListItem",
             position: index + 1,
             name: item.label,
-            item: `${siteUrl}${item.href}`,
+            item: `${SITE_URL}${item.href}`,
         })),
 };
 ---

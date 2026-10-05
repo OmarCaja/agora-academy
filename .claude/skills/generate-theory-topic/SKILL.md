@@ -75,10 +75,9 @@ Inside JSON strings use single quotes for the attributes. `alt` is required.
 
 ```bash
 pnpm build
-grep -c katex-error dist/theory/<slug>/index.html   # must print 0
 ```
 
-The build fails on schema errors (missing `title`, wrong types) but not on broken LaTeX, which is why the grep matters. If it isn't 0, `grep -o 'katex-error[^<]*<' dist/theory/<slug>/index.html` shows the bad formulas.
+The build fails on schema errors (missing `title`, wrong types) and on broken LaTeX, including undefined commands («Broken KaTeX formulas in: theory/<slug>/index.html»). To see which formulas, `grep -o 'katex-error[^>]*>[^<]*' dist/theory/<slug>/index.html` (the `title` holds KaTeX's message); in `pnpm dev` they show as red source text.
 
 Optionally look at the page with `pnpm dev` at `/theory/<slug>`, in light and dark theme.
 

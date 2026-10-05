@@ -10,11 +10,17 @@ Static Astro 7 site (Spanish, `lang="es"`) for Ágora Academy, a math tutoring a
 
 ```bash
 pnpm dev      # dev server at localhost:4321
-pnpm build    # production build to ./dist/
+pnpm build    # production build to ./dist/ (fails on any broken KaTeX formula)
 pnpm preview  # preview production build
+pnpm check    # scripts/check-exercises.ts (titles, ordering, override keys) + astro check (types)
+pnpm books    # rebuild every book PDF listed in scripts/books.json
 ```
 
-No lint or typecheck scripts exist. Run `pnpm build` to validate changes (it also regenerates `.astro/types.d.ts`). `pnpm check` runs a self-check on `discoverExercises.ts`'s title-formatting logic. Package manager is pnpm (see `pnpm-workspace.yaml`).
+Validate changes with `pnpm check && pnpm build`; CI runs exactly that before deploying. Package manager is pnpm (see `pnpm-workspace.yaml`). TypeScript stays on 6.x: `astro check` doesn't support TypeScript 7 yet.
+
+### Site facts
+
+The site name (`Ágora - Academia de matemáticas`), URL, levels, phone, email, Instagram and address live only in `src/data/site.ts`. Pages, SEO/JSON-LD, the web app manifest (`src/pages/favicon/site.webmanifest.ts`), `astro.config.mjs` and both PDF generators import them; never write them inline.
 
 ## Architecture
 
@@ -27,7 +33,7 @@ No lint or typecheck scripts exist. Run `pnpm build` to validate changes (it als
 
 `src/components/Menu.astro` builds the full nav tree at render time by calling `getCollection("topics")` and `discoverExercises()` directly — there is no static menu config file. Topics are grouped by `entry.data.menuGroup` and ordered by `entry.data.menuOrder` (set inside each topic's JSON).
 
-The canonical group display order lives in `src/data/topics.ts` (`GROUP_ORDER`) and is imported by both `src/components/Menu.astro` and `src/pages/theory/[slug].astro` (used there for prev/next topic pagination). Add a new `menuGroup` value there and both the nav and the pagination pick it up; groups missing from the array are appended last.
+The topic order lives in `src/data/topics.ts`: `GROUP_ORDER` (group display order) and `sortTopics()` (group, then `menuOrder`, then title), used by both `src/components/Menu.astro` and `src/pages/theory/[slug].astro` (prev/next pagination). Add a new `menuGroup` value to `GROUP_ORDER` and both pick it up; groups missing from the array are appended last. "Known order first, then the rest" sorting anywhere uses `byRank` from `src/utils/sort.ts`.
 
 ### Layout & theming
 
@@ -57,21 +63,23 @@ The `generate-theory-topic` skill (`.claude/skills/generate-theory-topic/SKILL.m
    - Set `menuGroup` (must match one of the `GROUP_ORDER` strings — see above — to sort correctly) and `menuOrder` directly in the JSON.
 2. The topic is auto-generated at `/theory/<slug>` and auto-registered in the menu and in theory prev/next pagination. No other file needs editing.
 
-KaTeX gotchas (`src/utils/math.ts` renders with `throwOnError: false`):
+KaTeX gotchas (`src/utils/math.ts` turns every failed formula, including undefined commands, into a `.katex-error` span):
 - Each `$$…$$` / `$…$` must stay on one line — the regex doesn't cross newlines.
 - In JSON, LaTeX backslashes are doubled (`\\cdot`), so a matrix row break is `\\\\`.
 - Use `\\textcolor{#hex}{x}`, never `\\color{…}{x}` — `\color` is a switch that tints everything after it in the group. Pastel palette in use: red `#d46a6a`, green `#4fa66e`.
-- Broken formulas don't fail `pnpm build`; they render as red text. After building, `grep -c katex-error dist/theory/<slug>/index.html` must be 0.
+- A broken formula fails `pnpm build` (`fail-on-katex-errors` in `astro.config.mjs`), naming the page; in `pnpm dev` it shows as red source text.
 
 ## Adding exercise PDFs
 
-New exams/exercise sheets are written in Markdown and rendered locally to PDF by the `generate-exercises` skill (`.claude/skills/generate-exercises/scripts/render.mjs`: KaTeX + headless Chrome). Drop the PDF into `public/ejercicios/<level>/<topic>/`; it's auto-discovered by `discoverExercises.ts` and rendered at `/exercises/<level>`. Only touch `src/data/exercises.ts` to override an auto-derived name/title.
+New exams/exercise sheets are written in Markdown and rendered locally to PDF by the `generate-exercises` skill (`.claude/skills/generate-exercises/scripts/render.mjs`: KaTeX + headless Chrome). The PDF goes to `public/ejercicios/<level>/<topic>/`, where `discoverExercises.ts` picks it up for `/exercises/<level>`; its Markdown is kept as `exercises-src/<level>/<topic>/<name>.md`. To change a sheet, edit that file and run `render.mjs --file exercises-src/...md`, which overwrites the PDF. PDFs made before October 2026 have no source. Only touch `src/data/exercises.ts` to override an auto-derived name/title.
 
 ## Adding a book PDF
 
 The `generate-book` skill (`.claude/skills/generate-book/SKILL.md`) covers topic selection, ordering, naming and checks. The mechanics:
 
-`scripts/build-book.mjs` turns theory topics into a book PDF (cover, TOC with page numbers, running header/footer) using the site's `renderMath`, Paged.js (from the CDN) and headless Chrome. Write it to `public/libros/<topic-slugs>.pdf` (no `libro-` prefix); `/books` (`src/pages/books.astro`, linked from the menu) lists that folder automatically. Set the display name in `pdfNameOverrides` (`src/data/exercises.ts`) when the auto-derived one is wrong.
+`scripts/build-book.mjs` turns theory topics into a book PDF (cover, TOC with page numbers, running header/footer) using the site's `renderMath`, Paged.js (the `pagedjs` dev dependency) and headless Chrome. Write it to `public/libros/<topic-slugs>.pdf` (no `libro-` prefix); `/books` (`src/pages/books.astro`, linked from the menu) lists that folder automatically. Each build is recorded in `scripts/books.json`, so after editing topics `pnpm books` rebuilds them all. Set the display name in `pdfNameOverrides` (`src/data/exercises.ts`) when the auto-derived one is wrong.
+
+Both PDF generators share `scripts/pdf.mjs` (Chrome lookup for macOS/Linux/Windows, HTML escaping); override the browser with `CHROME=/path/to/chrome`.
 
 ```bash
 node scripts/build-book.mjs --topics matrices,determinantes --title "Matrices y determinantes" --subtitle "2º Bachillerato" --out public/libros/matrices-determinantes.pdf

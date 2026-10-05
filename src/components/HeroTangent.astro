@@ -5,7 +5,7 @@
 // segment IS a quadratic Bézier arc when the endpoints share x(t) linear in
 // t), so no point-sampling or polyline is needed for a mathematically exact
 // curve. All the geometry below is duplicated (not shared) with the client
-// script in the <script> block: both sides are ~6 short formulas, and having
+// script block below: both sides are ~6 short formulas, and having
 // two tiny independent copies is simpler than wiring a data hand-off for
 // numbers that never change.
 
@@ -148,7 +148,6 @@ const axisX = px(0);
 
     function render(
         a: number,
-        svg: SVGSVGElement,
         line: SVGLineElement,
         hit: SVGCircleElement,
         dot: SVGCircleElement,
@@ -213,7 +212,7 @@ const axisX = px(0);
 
         const onMove = (e: PointerEvent) => {
             if (!dragging) return;
-            render(svgXToA(svg, e.clientX), svg, line, hit, dot, valueLabel);
+            render(svgXToA(svg, e.clientX), line, hit, dot, valueLabel);
         };
         const onUp = () => {
             dragging = false;
@@ -222,7 +221,7 @@ const axisX = px(0);
         };
         const onDown = (e: PointerEvent) => {
             dragging = true;
-            render(svgXToA(svg, e.clientX), svg, line, hit, dot, valueLabel);
+            render(svgXToA(svg, e.clientX), line, hit, dot, valueLabel);
             window.addEventListener("pointermove", onMove);
             window.addEventListener("pointerup", onUp);
         };
@@ -241,7 +240,6 @@ const axisX = px(0);
             e.preventDefault();
             render(
                 Math.min(A_MAX, Math.max(A_MIN, next)),
-                svg,
                 line,
                 hit,
                 dot,
@@ -252,7 +250,7 @@ const axisX = px(0);
         hit.addEventListener("keydown", onKey as EventListener);
 
         if (reduce) {
-            render(A_DEFAULT, svg, line, hit, dot, valueLabel);
+            render(A_DEFAULT, line, hit, dot, valueLabel);
             return;
         }
 
@@ -267,7 +265,6 @@ const axisX = px(0);
             const eased = easeOutBack(t);
             render(
                 A_START + (A_DEFAULT - A_START) * eased,
-                svg,
                 line,
                 hit,
                 dot,

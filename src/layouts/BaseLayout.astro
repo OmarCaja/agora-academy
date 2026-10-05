@@ -1,4 +1,6 @@
 ---
+import { SITE_NAME, SHORT_NAME, LEVELS, PHONE, EMAIL, ADDRESS } from "../data/site";
+
 interface Props {
   title: string;
   description: string;
@@ -12,13 +14,12 @@ const { title, description, currentPage = "index", schema, showProgressBar = fal
 // Astro parses <title> as raw text, so anything more complex than a bare
 // identifier inside it is silently dropped (every page shipped an empty title).
 // Build the string here, interpolate it there.
-const SITE_NAME = "Ágora - Academia de matemáticas";
 const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 
 // Single branded 1200x630 card, regenerated with scripts/generate-og-card.py.
 const ogImage = new URL("/og/agora-og.png", Astro.site);
 const ogImageAlt =
-  "Ágora, academia de matemáticas en Cuenca para Primaria, E.S.O. y Bachillerato.";
+  `${SHORT_NAME}, academia de matemáticas en ${ADDRESS.city} para ${LEVELS}.`;
 
 import GlobalNav from "../components/GlobalNav.astro";
 import Menu from "../components/Menu.astro";
@@ -124,14 +125,13 @@ import "../styles/global.css";
           image: new URL("/favicon/logo.png", Astro.site).href,
           "@id": Astro.site,
           url: Astro.site,
-          telephone: "+34649021173",
-          email: "info@agoraacademy.es",
+          telephone: PHONE,
+          email: EMAIL,
           address: {
             "@type": "PostalAddress",
-            streetAddress:
-              "Calle Fermín Caballero, 3 (edificio Máster), Planta 6 [thegoodspace]",
-            addressLocality: "Cuenca",
-            postalCode: "16004",
+            streetAddress: `${ADDRESS.street}, ${ADDRESS.floor}`,
+            addressLocality: ADDRESS.city,
+            postalCode: ADDRESS.postalCode,
             addressCountry: "ES",
           },
           geo: {
@@ -139,8 +139,7 @@ import "../styles/global.css";
             latitude: 40.071,
             longitude: -2.137,
           },
-            description:
-            "Academia especializada en matemáticas para Primaria, E.S.O. y Bachillerato en Cuenca. Grupos reducidos y atención personalizada.",
+          description: `Academia especializada en matemáticas para ${LEVELS} en ${ADDRESS.city}. Grupos reducidos y atención personalizada.`,
         },
         ...(schema ? [schema] : []),
       ])}

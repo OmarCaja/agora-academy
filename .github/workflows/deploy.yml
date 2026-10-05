@@ -24,6 +24,8 @@ jobs:
         uses: withastro/action@v5
         with:
           package-manager: pnpm
+          # check: exercise overrides + type check; build fails on broken KaTeX
+          build-cmd: pnpm check && pnpm build
 
   deploy:
     needs: build

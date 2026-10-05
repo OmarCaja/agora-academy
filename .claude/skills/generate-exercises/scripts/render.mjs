@@ -3,11 +3,14 @@
  * Renders an Ágora exam/exercise sheet from Markdown to PDF, locally.
  *
  *   node render.mjs --file exam.md --out public/ejercicios/2-bach/matrices [--base matrices] [--html]
+ *   node render.mjs --file exercises-src/2-bach/matrices/matrices-3.md      (re-render in place)
  *
  * Markdown -> HTML (formulas via KaTeX, already a site dependency) -> PDF via
- * headless Chrome. The PDF is named <base>-<next number> after the PDFs already
- * in --out. --html also keeps the intermediate HTML next to the PDF for debugging.
- * Override the browser with CHROME=/path/to/chrome.
+ * headless Chrome. A new sheet is named <base>-<next number> after the PDFs
+ * already in --out, and its Markdown is kept as exercises-src/<level>/<topic>/<name>.md
+ * so it can be edited and re-rendered later. Passing such a source file as --file
+ * overwrites its PDF instead. --html also keeps the intermediate HTML next to
+ * the PDF for debugging. Override the browser with CHROME=/path/to/chrome.
  */
 import fs from 'node:fs';
 import os from 'node:os';
@@ -15,14 +18,12 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import katex from 'katex';
+import { fail, escapeHtml, findChrome } from '../../../../scripts/pdf.mjs';
+import { SITE_NAME, SITE_URL, ADDRESS } from '../../../../src/data/site.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
-const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-
-function fail(msg) {
-  console.error('Error: ' + msg);
-  process.exit(1);
-}
+const PUBLIC_DIR = path.join(root, 'public/ejercicios');
+const SOURCE_DIR = path.join(root, 'exercises-src');
 
 function parseArgs(argv) {
   const args = {};
@@ -34,8 +35,6 @@ function parseArgs(argv) {
   }
   return args;
 }
-
-const escapeHtml = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 const failedEquations = [];
 function tex(src, displayMode) {
@@ -117,7 +116,7 @@ function page(title, body) {
   .tex-error { color: #c00; }
 </style></head>
 <body><table class="layout">
-<thead><tr><td><div class="header"><a href="https://www.agoraacademy.es/">Ágora - Academia de matemáticas - Cuenca</a><img src="${logo}" alt=""></div></td></tr></thead>
+<thead><tr><td><div class="header"><a href="${SITE_URL}/">${escapeHtml(SITE_NAME)} - ${ADDRESS.city}</a><img src="${logo}" alt=""></div></td></tr></thead>
 <tbody><tr><td>
 ${body}
 </td></tr></tbody></table></body></html>`;
@@ -135,18 +134,29 @@ function nextName(outDir, base) {
 }
 
 const args = parseArgs(process.argv.slice(2));
-if (!args.file || args.file === true || !args.out || args.out === true) {
-  console.log('Usage: render.mjs --file <md> --out <dir> [--base <name>] [--html]');
+if (!args.file || args.file === true) {
+  console.log('Usage: render.mjs --file <md> --out <dir> [--base <name>] [--html]\n       render.mjs --file exercises-src/<level>/<topic>/<name>.md [--html]');
   process.exit(args.help ? 0 : 1);
 }
-if (!fs.existsSync(args.file)) fail('File not found: ' + args.file);
-const markdown = fs.readFileSync(args.file, 'utf8');
+const source = path.resolve(args.file);
+if (!fs.existsSync(source)) fail('File not found: ' + args.file);
+const markdown = fs.readFileSync(source, 'utf8');
 if (!markdown.trim()) fail('The file is empty.');
-if (!fs.existsSync(CHROME)) fail('Chrome not found at ' + CHROME + '. Set CHROME=/path/to/chrome.');
+const CHROME = findChrome();
 
-const outDir = path.resolve(args.out);
+// A kept source re-renders its own PDF; anything else becomes the next numbered sheet.
+const rerender = source.startsWith(SOURCE_DIR + path.sep);
+let outDir, name;
+if (rerender) {
+  outDir = path.join(PUBLIC_DIR, path.relative(SOURCE_DIR, path.dirname(source)));
+  name = path.basename(source, '.md');
+} else {
+  if (!args.out || args.out === true) fail('--out is required for a new sheet.');
+  outDir = path.resolve(args.out);
+  if (!outDir.startsWith(PUBLIC_DIR + path.sep)) fail('--out must be inside public/ejercicios.');
+  name = nextName(outDir, typeof args.base === 'string' ? args.base : undefined);
+}
 fs.mkdirSync(outDir, { recursive: true });
-const name = nextName(outDir, typeof args.base === 'string' ? args.base : undefined);
 const pdfPath = path.join(outDir, name + '.pdf');
 
 const html = page(name, toHtml(markdown));
@@ -159,9 +169,16 @@ execFileSync(CHROME, [
 ], { stdio: 'pipe' });
 if (!fs.existsSync(pdfPath)) fail('Chrome did not produce the PDF.');
 
+const sourcePath = path.join(SOURCE_DIR, path.relative(PUBLIC_DIR, outDir), name + '.md');
+if (!rerender) {
+  fs.mkdirSync(path.dirname(sourcePath), { recursive: true });
+  fs.writeFileSync(sourcePath, markdown);
+}
+
 console.log(JSON.stringify({
   name,
   pdfPath: path.relative(process.cwd(), pdfPath),
+  sourcePath: path.relative(process.cwd(), sourcePath),
   htmlPath: args.html ? path.relative(process.cwd(), htmlPath) : undefined,
   failedEquations,
 }, null, 2));

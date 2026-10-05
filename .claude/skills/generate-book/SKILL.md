@@ -5,9 +5,9 @@ description: Generates an Ágora Academy theory book as a PDF (cover, table of c
 
 # Generate Ágora theory books
 
-Flow: pick topics from `src/content/topics/*.json` → `scripts/build-book.mjs` lays them out (site's `renderMath` for KaTeX, Paged.js from the CDN for pagination, headless Chrome for the PDF) → the PDF lands in `public/libros/` → `/books` lists it automatically.
+Flow: pick topics from `src/content/topics/*.json` → `scripts/build-book.mjs` lays them out (site's `renderMath` for KaTeX, Paged.js from `node_modules` for pagination, headless Chrome for the PDF) → the PDF lands in `public/libros/` → `/books` lists it automatically.
 
-Requirements: `pnpm install` done, Google Chrome installed (override with `CHROME=/path/to/chrome`) and network access (Paged.js loads from unpkg). The book only reuses existing theory; it never writes new content. If a topic the user asks for doesn't exist, say so and offer the `generate-theory-topic` skill first.
+Requirements: `pnpm install` done and Google Chrome or Chromium installed (found automatically; override with `CHROME=/path/to/chrome`). No network needed. The book only reuses existing theory; it never writes new content. If a topic the user asks for doesn't exist, say so and offer the `generate-theory-topic` skill first.
 
 Book text (title, subtitle) is Spanish (Spain); this skill and the code are English.
 
@@ -40,7 +40,9 @@ Chapters follow the `--topics` order. Unless the user orders them, use the site'
 node scripts/build-book.mjs --topics matrices,determinantes --title "Matrices y determinantes" --subtitle "2º Bachillerato" --out public/libros/matrices-determinantes.pdf
 ```
 
-It takes a few seconds. A `Warning: N formula(s) failed to render` means broken LaTeX in a topic: rerun with `--html` (keeps `<out>.html` next to the PDF), find `katex-error`, fix the topic JSON (see the KaTeX gotchas in `CLAUDE.md`), rebuild, and delete the `.html`.
+It takes a few seconds and records the book (topics, title, subtitle, out) in `scripts/books.json`, replacing any entry with the same `--out`. To regenerate existing books after topics change («regenera el libro de matrices», or every book), run `pnpm books`, which rebuilds everything in that list.
+
+A `Warning: N formula(s) failed to render` means broken LaTeX in a topic: rerun with `--html` (keeps `<out>.html` next to the PDF), find `katex-error`, fix the topic JSON (see the KaTeX gotchas in `CLAUDE.md`), rebuild, and delete the `.html`.
 
 ## 5. Check the PDF
 

@@ -1,0 +1,8 @@
+[
+  {
+    "topics": ["matrices", "determinantes"],
+    "title": "Matrices y determinantes",
+    "subtitle": "2º Bachillerato",
+    "out": "public/libros/matrices-determinantes.pdf"
+  }
+]

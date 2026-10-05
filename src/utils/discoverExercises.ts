@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { byRank } from "./sort";
 import { pdfNameOverrides, topicTitleOverrides, topicOrder, levelTitleOverrides, levelOrder } from "../data/exercises";
 
 export interface PdfLink {
@@ -48,15 +49,7 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
         .filter((d) => d.isDirectory() && !d.name.startsWith("."))
         .map((d) => d.name);
 
-    // Sort levels according to predefined levelOrder
-    levelDirs.sort((a, b) => {
-        const indexA = levelOrder.indexOf(a);
-        const indexB = levelOrder.indexOf(b);
-        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
-        if (indexA !== -1) return -1;
-        if (indexB !== -1) return 1;
-        return a.localeCompare(b);
-    });
+    levelDirs.sort(byRank((l) => levelOrder.indexOf(l), (a, b) => a.localeCompare(b)));
 
     for (const level of levelDirs) {
         const levelPath = path.join(fullBaseDir, level);
@@ -101,14 +94,10 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
                     title: t.title,
                     pdfs: t.pdfs.sort((a, b) => a.name.localeCompare(b.name, "es", { numeric: true })),
                 }))
-                .sort((a, b) => {
-                    const orderA = topicOrder[a.key];
-                    const orderB = topicOrder[b.key];
-                    if (orderA !== undefined && orderB !== undefined) return orderA - orderB;
-                    if (orderA !== undefined) return -1;
-                    if (orderB !== undefined) return 1;
-                    return a.title.localeCompare(b.title, "es", { numeric: true });
-                })
+                .sort(byRank(
+                    (t) => topicOrder[t.key],
+                    (a, b) => a.title.localeCompare(b.title, "es", { numeric: true }),
+                ))
                 .map(({ title, pdfs }) => ({ title, pdfs }));
 
             result[level] = {

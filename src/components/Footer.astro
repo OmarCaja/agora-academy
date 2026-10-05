@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { SITE_NAME, SHORT_NAME, ADDRESS, INSTAGRAM_URL } from "../data/site";
 
 const year = new Date().getFullYear();
 ---
@@ -7,8 +8,8 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
     <div class="footer-content reveal">
         <div class="footer-brand">
-            <span class="footer-logo">ÁGORA</span>
-            <p class="footer-tagline">Academia de matemáticas en Cuenca</p>
+            <span class="footer-logo">{SHORT_NAME.toUpperCase()}</span>
+            <p class="footer-tagline">Academia de matemáticas en {ADDRESS.city}</p>
         </div>
 
         <nav class="footer-links" aria-label="Navegación pie de página">
@@ -17,10 +18,10 @@ const year = new Date().getFullYear();
             <a href="/exercises/1-eso/">Ejercicios</a>
             <a href="/#contacto">Contacto</a>
             <a
-                href="https://www.instagram.com/academia.agora.cuenca/?hl=es"
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram de Ágora - Academia de matemáticas"
+                aria-label={`Instagram de ${SITE_NAME}`}
                 class="footer-social"
             >
                 <Icon name="ph:instagram-logo" aria-hidden="true" />
@@ -29,7 +30,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="footer-bottom reveal" style="--i: 1">
-        <p>© {year} Ágora - Academia de matemáticas. Todos los derechos reservados.</p>
+        <p>© {year} {SITE_NAME}. Todos los derechos reservados.</p>
     </div>
 </footer>
 

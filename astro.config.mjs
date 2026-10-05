@@ -1,7 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { SITE_URL } from './src/data/site.ts';
 
 // Old root-level topic URLs (/<slug>/) indexed by Google -> /theory/<slug>/
 const topicRedirects = Object.fromEntries(
@@ -11,11 +13,25 @@ const topicRedirects = Object.fromEntries(
         .map((slug) => [`/${slug}`, `/theory/${slug}/`]),
 );
 
+// KaTeX renders with throwOnError: false, so a broken formula would ship as red
+// text. Fail the build instead.
+const failOnKatexErrors = {
+    name: 'fail-on-katex-errors',
+    hooks: {
+        'astro:build:done': ({ dir }) => {
+            const root = fileURLToPath(dir);
+            const broken = readdirSync(root, { recursive: true })
+                .filter((f) => f.endsWith('.html') && readFileSync(`${root}/${f}`, 'utf8').includes('katex-error'));
+            if (broken.length) throw new Error(`Broken KaTeX formulas in: ${broken.join(', ')}`);
+        },
+    },
+};
+
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://www.agoraacademy.es',
+    site: SITE_URL,
     redirects: topicRedirects,
-    integrations: [sitemap(), icon()],
+    integrations: [sitemap(), icon(), failOnKatexErrors],
     // 'hover' (the default) never fires on touch, so mobile got zero prefetch
     // lead time before every tap; 'viewport' starts fetching as soon as a
     // link is visible, on every device.

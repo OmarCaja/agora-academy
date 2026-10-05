@@ -7,12 +7,11 @@ const { currentPage } = Astro.props;
 
 import { getCollection } from "astro:content";
 import { discoverExercises } from "../utils/discoverExercises";
-import { GROUP_ORDER } from "../data/topics";
+import { sortTopics } from "../data/topics";
 
 interface MenuItem {
     slug: string;
     label: string;
-    order: number;
 }
 
 interface MenuGroup {
@@ -26,52 +25,22 @@ interface MenuSection {
     groups?: MenuGroup[];
 }
 
-const topics = await getCollection("topics");
-const topicsByGroup = new Map<string, MenuItem[]>();
-
-for (const entry of topics) {
+// sortTopics already orders by group, so the Map keeps the groups in order.
+const theoryGroupMap = new Map<string, MenuItem[]>();
+for (const entry of sortTopics(await getCollection("topics"))) {
     const groupName = entry.data.menuGroup || "General";
-    if (!topicsByGroup.has(groupName)) {
-        topicsByGroup.set(groupName, []);
-    }
-    topicsByGroup.get(groupName)!.push({
+    if (!theoryGroupMap.has(groupName)) theoryGroupMap.set(groupName, []);
+    theoryGroupMap.get(groupName)!.push({
         slug: `theory/${entry.id}`,
         label: entry.data.title,
-        order: entry.data.menuOrder ?? 999,
     });
 }
+const theoryGroups: MenuGroup[] = [...theoryGroupMap].map(([title, items]) => ({ title, items }));
 
-for (const items of topicsByGroup.values()) {
-    items.sort((a, b) =>
-        a.order !== b.order
-            ? a.order - b.order
-            : a.label.localeCompare(b.label, "es"),
-    );
-}
-
-const theoryGroups: MenuGroup[] = [];
-for (const gName of GROUP_ORDER) {
-    if (topicsByGroup.has(gName)) {
-        theoryGroups.push({
-            title: gName,
-            items: topicsByGroup.get(gName)!,
-        });
-        topicsByGroup.delete(gName);
-    }
-}
-for (const [gName, items] of topicsByGroup.entries()) {
-    theoryGroups.push({
-        title: gName,
-        items,
-    });
-}
-
-const exercisesData = discoverExercises();
-const exerciseItems: MenuItem[] = Object.entries(exercisesData).map(
-    ([key, data], idx) => ({
+const exerciseItems: MenuItem[] = Object.entries(discoverExercises()).map(
+    ([key, data]) => ({
         slug: `exercises/${key}`,
         label: data.title,
-        order: idx,
     }),
 );
 

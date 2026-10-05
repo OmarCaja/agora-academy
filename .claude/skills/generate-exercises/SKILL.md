@@ -7,7 +7,7 @@ description: Generates Ágora Academy math exams and exercise sheets (ESO and Ba
 
 Full flow: write the content in Markdown with LaTeX formulas → `scripts/render.mjs` turns it into HTML in the academy template (header «Ágora - Academia de matemáticas - Cuenca» + logo, footer with the creation date `dd/mm/yyyy` and page number, A4, Arial 11pt), renders the formulas with KaTeX (the site's own dependency) and prints it to PDF with headless Google Chrome → the PDF lands in `public/ejercicios/…`.
 
-Everything is local: no network, no keys. Requirements: `pnpm install` done (for `katex`) and Google Chrome installed (override its path with `CHROME=/path/to/chrome`). The PDFs live only in the repo; nothing goes to Google Drive.
+Everything is local: no network, no keys. Requirements: `pnpm install` done (for `katex`) and Google Chrome or Chromium installed (found automatically on macOS, Linux and Windows; override with `CHROME=/path/to/chrome`). The PDFs and their Markdown sources live only in the repo; nothing goes to Google Drive.
 
 The material itself (titles, statements, solutions) is written in Spanish (Spain); only this skill and its code are in English.
 
@@ -87,9 +87,15 @@ node .claude/skills/generate-exercises/scripts/render.mjs \
   [--base matrices] [--html]
 ```
 
-It prints a JSON summary (`name`, `pdfPath`, `failedEquations`) and never overwrites: it always picks the next free number. `--html` keeps the intermediate HTML next to the PDF for debugging (delete it afterwards, it must not be published).
+It prints a JSON summary (`name`, `pdfPath`, `sourcePath`, `failedEquations`). A new sheet never overwrites: it always picks the next free number, and its Markdown is saved to `sourcePath` (`exercises-src/<level>/<topic>/<name>.md`). `--out` must be inside `public/ejercicios`. `--html` keeps the intermediate HTML next to the PDF for debugging (delete it afterwards, it must not be published).
 
-If `failedEquations` is not empty (exit code 2), those formulas show as red code in the PDF: fix the LaTeX, delete the PDF and render again.
+To fix or change an existing sheet, edit its file in `exercises-src/` and render it again with only `--file`; that overwrites its PDF:
+
+```bash
+node .claude/skills/generate-exercises/scripts/render.mjs --file exercises-src/2-bach/matrices/matrices-3.md
+```
+
+If `failedEquations` is not empty (exit code 2), those formulas show as red code in the PDF: fix the LaTeX in the `exercises-src/` file and re-render it as above.
 
 Then check the layout by turning every page into a PNG and looking at them (run it from the scratchpad, it writes `pg1.png`, `pg2.png`… in the current directory):
 
@@ -99,11 +105,12 @@ swift <repo>/.claude/skills/generate-exercises/scripts/preview.swift <pdf>
 
 ## 7. Report to the user
 
-Reply briefly with the PDF path and the decisions you made without asking (type, number of exercises, folder).
+Reply briefly with the PDF path, its source path and the decisions you made without asking (type, number of exercises, folder).
 
 Don't commit or push unless the user asks.
 
 ## Troubleshooting
 
 - `Cannot find package 'katex'`: run `pnpm install`.
-- `Chrome not found`: install Google Chrome or set `CHROME=/path/to/chrome`.
+- `Chrome not found`: install Google Chrome or Chromium, or set `CHROME=/path/to/chrome`.
+- An old sheet with no file in `exercises-src/` (made before sources were kept) can't be re-rendered: write it again as a new sheet.

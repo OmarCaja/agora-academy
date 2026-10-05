@@ -7,9 +7,10 @@ import PropertyBox from "../../components/PropertyBox.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import TopicPager from "../../components/TopicPager.astro";
 import SearchBox from "../../components/SearchBox.astro";
-import { GROUP_ORDER } from "../../data/topics";
+import { sortTopics } from "../../data/topics";
 import { slugify } from "../../utils/slugify";
 import { Icon } from "astro-icon/components";
+import { SITE_NAME } from "../../data/site";
 
 export async function getStaticPaths() {
     const topics = await getCollection("topics");
@@ -22,21 +23,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { title, description, sections, menuGroup } = entry.data;
 
-const allTopics = await getCollection("topics");
-
-allTopics.sort((a, b) => {
-    const groupIndexA = GROUP_ORDER.indexOf(a.data.menuGroup || "");
-    const groupIndexB = GROUP_ORDER.indexOf(b.data.menuGroup || "");
-    if (groupIndexA !== groupIndexB) {
-        if (groupIndexA === -1) return 1;
-        if (groupIndexB === -1) return -1;
-        return groupIndexA - groupIndexB;
-    }
-    const orderA = a.data.menuOrder ?? 999;
-    const orderB = b.data.menuOrder ?? 999;
-    if (orderA !== orderB) return orderA - orderB;
-    return a.data.title.localeCompare(b.data.title, "es");
-});
+const allTopics = sortTopics(await getCollection("topics"));
 
 const currentIndex = allTopics.findIndex((t) => t.id === entry.id);
 const prevEntry = currentIndex > 0 ? allTopics[currentIndex - 1] : undefined;
@@ -81,7 +68,7 @@ const topicSchema = {
     inLanguage: "es",
     author: {
         "@type": "Organization",
-        name: "Ágora - Academia de matemáticas",
+        name: SITE_NAME,
     },
     hasPart: sections.map((section) => ({
         "@type": "LearningResource",
@@ -94,7 +81,7 @@ const topicSchema = {
 <BaseLayout
     title={`${title}`}
     description={description ||
-        `Aprende sobre ${title} en Ágora - Academia de matemáticas.`}
+        `Aprende sobre ${title} en ${SITE_NAME}.`}
     currentPage={`theory/${entry.id}`}
     schema={topicSchema}
     showProgressBar={true}
