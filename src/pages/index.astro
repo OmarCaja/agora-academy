@@ -6,11 +6,14 @@ import LevelTags from "../components/LevelTags.astro";
 import ContactItem from "../components/ContactItem.astro";
 import HeroTangent from "../components/HeroTangent.astro";
 import { discoverExercises } from "../utils/discoverExercises";
+import fs from "node:fs";
 
 // Real counts, computed at build from the actual content. Nothing here is a
 // hand-written figure that can drift away from what the site ships.
 const topics = await getCollection("topics");
 const exercises = discoverExercises();
+
+const bookCount = fs.readdirSync("public/libros").filter((f) => f.toLowerCase().endsWith(".pdf")).length;
 
 const pdfCount = (level: string) =>
     (exercises[level]?.topics ?? []).reduce((n, t) => n + t.pdfs.length, 0);
@@ -20,11 +23,6 @@ const levels = [
         slug: "1-eso",
         label: "1º E.S.O.",
         desc: "Enteros, fracciones, álgebra y porcentajes",
-    },
-    {
-        slug: "3-eso",
-        label: "3º E.S.O.",
-        desc: "Ecuaciones y problemas",
     },
     {
         slug: "4-eso",
@@ -63,7 +61,7 @@ const reasons = [
 ---
 
 <BaseLayout
-	title="Academia Ágora - Academia de matemáticas en Cuenca"
+	title="Academia Ágora - Clases de matemáticas en Cuenca"
 	description="Academia de matemáticas en Cuenca para Primaria, E.S.O., Bachillerato y Universidad. Grupos reducidos, atención personalizada y seguimiento cercano. Calle Fermín Caballero, 3."
 	currentPage="index"
 >
@@ -72,8 +70,8 @@ const reasons = [
 		<section class="hero">
 			<div class="hero-copy">
 				<h1 class="hero-title reveal" style="--i: 0">
-					<span class="hero-title-brand">Ágora</span>
-					<span class="hero-title-tagline">Academia de matemáticas en Cuenca</span>
+					<span class="hero-title-brand">Academia Ágora</span>
+					<span class="hero-title-tagline">Clases de matemáticas en Cuenca</span>
 				</h1>
 
 				<p class="hero-lede reveal" style="--i: 1">
@@ -137,10 +135,10 @@ const reasons = [
 					</span>
 				</a>
 
-				{/* One cell per published level, no cap. Grid was designed around
-				    4 level cells (5 total with Teoría); a 5th level publishing
-				    exercises pushes this past that and deserves a deliberate
-				    look, not a silent 6th tile. */}
+				{/* One cell per listed level, no cap. Grid was designed around
+				    5 cells (Teoría, 3 levels, Libros PDF); adding a level pushes
+				    this past that and deserves a deliberate look, not a silent
+				    6th tile. */}
 				{
 					levels.map((level, idx) => (
 						<a
@@ -160,6 +158,18 @@ const reasons = [
 						</a>
 					))
 				}
+
+				<a href="/books/" class="cell reveal" style={`--i: ${levels.length + 3}`}>
+					<span class="cell-title">Libros PDF</span>
+					<span class="cell-desc">La teoría reunida en libros para descargar e imprimir.</span>
+					<span class="cell-meta meta-label">
+						{bookCount} {bookCount === 1 ? "libro" : "libros"}
+					</span>
+					<span class="cell-action">
+						Ver libros
+						<Icon name="ph:arrow-right" aria-hidden="true" />
+					</span>
+				</a>
 			</div>
 		</section>
 

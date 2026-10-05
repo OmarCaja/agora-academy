@@ -12,7 +12,7 @@ const { title, description, currentPage = "index", schema, showProgressBar = fal
 // Astro parses <title> as raw text, so anything more complex than a bare
 // identifier inside it is silently dropped (every page shipped an empty title).
 // Build the string here, interpolate it there.
-const fullTitle = title.includes("Ágora") ? title : `${title} | Academia Ágora`;
+const fullTitle = title.includes("Ágora") ? title : `${title} - Academia Ágora`;
 
 // Single branded 1200x630 card, regenerated with scripts/generate-og-card.py.
 const ogImage = new URL("/og/agora-og.png", Astro.site);
@@ -73,7 +73,7 @@ import "../styles/global.css";
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content={title.includes("Ágora") ? title : `${title} | Ágora`}
+      content={title.includes("Ágora") ? title : `${title} - Academia Ágora`}
     />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
@@ -90,7 +90,7 @@ import "../styles/global.css";
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content={title.includes("Ágora") ? title : `${title} | Ágora`}
+      content={title.includes("Ágora") ? title : `${title} - Academia Ágora`}
     />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />

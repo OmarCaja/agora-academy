@@ -45,6 +45,9 @@ export const topicOrder: Record<string, number> = {
 };
 
 export const pdfNameOverrides: Record<string, string> = {
+    // Libros (/books)
+    "/libros/matrices-determinantes.pdf": "Matrices y determinantes",
+
     // 1º ESO
     "/ejercicios/1-eso/razones-y-proporcionalidad/razones-y-proporcionalidad-1.pdf":
         "Ejercicios de proporcionalidad y porcentajes 1",

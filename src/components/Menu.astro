@@ -225,6 +225,17 @@ const isSectionActive = (section: MenuSection) => {
                     </div>
                 ))
             }
+
+            <div class="menu-group">
+                <a
+                    href="/books/"
+                    data-close-menu
+                    class:list={["menu-group-title", "menu-link", { active: currentPage === "books" }]}
+                    aria-current={currentPage === "books" ? "page" : undefined}
+                >
+                    Libros PDF
+                </a>
+            </div>
         </nav>
     </div>
 </div>

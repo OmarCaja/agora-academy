@@ -66,3 +66,13 @@ KaTeX gotchas (`src/utils/math.ts` renders with `throwOnError: false`):
 ## Adding exercise PDFs
 
 New exams/exercise sheets are written in Markdown and rendered locally to PDF by the `generate-exercises` skill (`.claude/skills/generate-exercises/scripts/render.mjs`: KaTeX + headless Chrome). Drop the PDF into `public/ejercicios/<level>/<topic>/`; it's auto-discovered by `discoverExercises.ts` and rendered at `/exercises/<level>`. Only touch `src/data/exercises.ts` to override an auto-derived name/title.
+
+## Adding a book PDF
+
+The `generate-book` skill (`.claude/skills/generate-book/SKILL.md`) covers topic selection, ordering, naming and checks. The mechanics:
+
+`scripts/build-book.mjs` turns theory topics into a book PDF (cover, TOC with page numbers, running header/footer) using the site's `renderMath`, Paged.js (from the CDN) and headless Chrome. Write it to `public/libros/<topic-slugs>.pdf` (no `libro-` prefix); `/books` (`src/pages/books.astro`, linked from the menu) lists that folder automatically. Set the display name in `pdfNameOverrides` (`src/data/exercises.ts`) when the auto-derived one is wrong.
+
+```bash
+node scripts/build-book.mjs --topics matrices,determinantes --title "Matrices y determinantes" --subtitle "2º Bachillerato" --out public/libros/matrices-determinantes.pdf
+```
