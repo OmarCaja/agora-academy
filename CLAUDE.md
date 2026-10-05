@@ -51,6 +51,8 @@ To make a page filterable, render `<SearchBox />` and mark up the content with `
 
 ## Adding a theory topic
 
+The `generate-theory-topic` skill (`.claude/skills/generate-theory-topic/SKILL.md`) covers content conventions, graphs and validation. The mechanics:
+
 1. Create `src/content/topics/<slug>.json` (schema in `src/content.config.ts`, all content in Spanish).
    - Set `menuGroup` (must match one of the `GROUP_ORDER` strings — see above — to sort correctly) and `menuOrder` directly in the JSON.
 2. The topic is auto-generated at `/theory/<slug>` and auto-registered in the menu and in theory prev/next pagination. No other file needs editing.

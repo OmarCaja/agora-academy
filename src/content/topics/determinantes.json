@@ -1,0 +1,171 @@
+{
+    "title": "Determinantes",
+    "description": "Qué es el determinante de una matriz cuadrada y cómo se calcula: orden 2, orden 3 (regla de Sarrus) y cualquier orden por adjuntos. Propiedades de los determinantes, rango de una matriz por menores y matriz inversa mediante la matriz adjunta.",
+    "menuGroup": "Álgebra",
+    "menuOrder": 4,
+    "sections": [
+        {
+            "title": "¿Qué es un determinante?",
+            "items": [
+                {
+                    "title": "Definición",
+                    "description": "El <strong>determinante</strong> de una matriz cuadrada $A$ es un <strong>número</strong> que se calcula a partir de sus elementos. Se escribe $\\lvert A \\rvert$ o $\\det(A)$, y se representa con los elementos de la matriz entre <strong>barras verticales</strong> en lugar de paréntesis.<br><br><strong>Solo las matrices cuadradas</strong> tienen determinante. Su utilidad principal: nos dice de un vistazo si una matriz tiene inversa y nos permite calcular el rango.",
+                    "formula": "$$A = \\begin{pmatrix} a_{11} & a_{12} \\\\ a_{21} & a_{22} \\end{pmatrix} \\Rightarrow \\lvert A \\rvert = \\begin{vmatrix} a_{11} & a_{12} \\\\ a_{21} & a_{22} \\end{vmatrix} \\in \\mathbb{R}$$",
+                    "example": "Error típico: confundir la matriz con su determinante. $\\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix}$ es una tabla de números; $\\begin{vmatrix}2 & 1 \\\\ 5 & 3\\end{vmatrix} = 1$ es un solo número."
+                },
+                {
+                    "title": "Para qué sirve: matriz regular y singular",
+                    "description": "Una matriz cuadrada de orden $n$ es <strong>regular</strong> (tiene inversa) si su determinante es distinto de 0, y <strong>singular</strong> (no tiene inversa) si su determinante es 0.",
+                    "formula": "$$\\lvert A \\rvert \\neq 0 \\iff A^{-1} \\text{ existe} \\iff \\text{rg}(A) = n$$",
+                    "example": "• $\\begin{vmatrix}2 & 1 \\\\ 5 & 3\\end{vmatrix} = 6 - 5 = 1 \\neq 0$ → tiene inversa.<br>• $\\begin{vmatrix}1 & 2 \\\\ 2 & 4\\end{vmatrix} = 4 - 4 = 0$ → no tiene inversa (su rango es 1)."
+                }
+            ]
+        },
+        {
+            "title": "Determinantes de orden 2 y 3",
+            "items": [
+                {
+                    "title": "Orden 2",
+                    "description": "Producto de la <strong style=\"color:#4fa66e\">diagonal principal</strong> menos producto de la <strong style=\"color:#d46a6a\">diagonal secundaria</strong>.",
+                    "formula": "$$\\begin{vmatrix} a_{11} & a_{12} \\\\ a_{21} & a_{22} \\end{vmatrix} = \\textcolor{#4fa66e}{a_{11} \\cdot a_{22}} - \\textcolor{#d46a6a}{a_{12} \\cdot a_{21}}$$",
+                    "example": "$$\\begin{vmatrix}3 & -2 \\\\ 4 & 5\\end{vmatrix} = 3 \\cdot 5 - (-2) \\cdot 4 = 15 + 8 = 23$$ Cuidado con los signos: se resta el producto $(-2) \\cdot 4 = -8$, así que queda $+8$."
+                },
+                {
+                    "title": "Orden 3: regla de Sarrus",
+                    "description": "Se suman los productos de la <strong style=\"color:#4fa66e\">diagonal principal y sus dos «paralelas»</strong> (triángulos con un lado paralelo a la diagonal principal) y se restan los de la <strong style=\"color:#d46a6a\">diagonal secundaria y sus dos «paralelas»</strong>.<br>Truco: copia las dos primeras columnas a la derecha de la matriz; así las seis diagonales quedan enteras y se leen de un tirón.",
+                    "formula": "$$\\begin{vmatrix} a_{11} & a_{12} & a_{13} \\\\ a_{21} & a_{22} & a_{23} \\\\ a_{31} & a_{32} & a_{33} \\end{vmatrix} = \\textcolor{#4fa66e}{a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}} - \\textcolor{#d46a6a}{(a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32} + a_{12}a_{21}a_{33})}$$",
+                    "example": "$$\\lvert A \\rvert = \\begin{vmatrix}1 & 2 & -1 \\\\ 3 & 0 & 2 \\\\ -2 & 1 & 4\\end{vmatrix}$$ <strong>Términos positivos</strong>: $1 \\cdot 0 \\cdot 4 + 2 \\cdot 2 \\cdot (-2) + (-1) \\cdot 3 \\cdot 1 = 0 - 8 - 3 = -11$<br><strong>Términos negativos</strong>: $(-1) \\cdot 0 \\cdot (-2) + 1 \\cdot 2 \\cdot 1 + 2 \\cdot 3 \\cdot 4 = 0 + 2 + 24 = 26$<br>$$\\lvert A \\rvert = -11 - 26 = -37$$"
+                }
+            ]
+        },
+        {
+            "title": "Determinantes de cualquier orden",
+            "items": [
+                {
+                    "title": "Menor complementario: $\\alpha_{ij}$",
+                    "description": "El <strong>menor complementario</strong> del elemento $a_{ij}$ es el determinante que queda al <strong>tachar la fila $i$ y la columna $j$</strong> de la matriz. Si la matriz es de orden $n$, el menor es un determinante de orden $n - 1$.",
+                    "formula": "$$\\alpha_{ij} = \\text{determinante tras eliminar la fila } i \\text{ y la columna } j$$",
+                    "example": "$$A = \\begin{pmatrix}1 & \\textcolor{#d46a6a}{2} & -1 \\\\ 3 & 0 & 2 \\\\ -2 & 1 & 4\\end{pmatrix}$$ Menor de $a_{12} = 2$: tachamos la fila 1 y la columna 2: $$\\alpha_{12} = \\begin{vmatrix}3 & 2 \\\\ -2 & 4\\end{vmatrix} = 12 + 4 = 16$$"
+                },
+                {
+                    "title": "Adjunto: $A_{ij}$",
+                    "description": "El <strong>adjunto</strong> de $a_{ij}$ es su menor complementario con un <strong>signo</strong> que depende de la posición: $+$ si $i + j$ es par y $-$ si $i + j$ es impar. Los signos se alternan como en un tablero de ajedrez, empezando por $+$ arriba a la izquierda.",
+                    "formula": "$$A_{ij} = (-1)^{i+j} \\cdot \\alpha_{ij} \\qquad \\begin{pmatrix} + & - & + \\\\ - & + & - \\\\ + & - & + \\end{pmatrix}$$",
+                    "example": "Con la matriz $A$ anterior:<br>• $A_{12} = (-1)^{1+2} \\cdot 16 = -16$<br>• $A_{23}$: tachamos fila 2 y columna 3, $\\alpha_{23} = \\begin{vmatrix}1 & 2 \\\\ -2 & 1\\end{vmatrix} = 1 + 4 = 5$, y como $2 + 3 = 5$ es impar, $A_{23} = -5$.<br>• $A_{21}$: $\\alpha_{21} = \\begin{vmatrix}2 & -1 \\\\ 1 & 4\\end{vmatrix} = 8 + 1 = 9$, luego $A_{21} = -9$."
+                },
+                {
+                    "title": "Desarrollo por una fila o columna (Laplace)",
+                    "description": "El determinante es igual a la <strong>suma de los productos de los elementos de una fila (o columna) por sus adjuntos</strong>. Da igual qué fila o columna elijas: el resultado es el mismo. Por eso conviene elegir la que tenga <strong>más ceros</strong>, porque esos términos no hay que calcularlos.",
+                    "formula": "$$\\lvert A \\rvert = a_{i1} A_{i1} + a_{i2} A_{i2} + \\cdots + a_{in} A_{in} \\quad \\text{(por la fila } i\\text{)}$$",
+                    "example": "Desarrollamos $\\lvert A \\rvert = \\begin{vmatrix}1 & 2 & -1 \\\\ 3 & 0 & 2 \\\\ -2 & 1 & 4\\end{vmatrix}$ por la fila 2, que tiene un 0: $$\\lvert A \\rvert = 3 \\cdot A_{21} + 0 \\cdot A_{22} + 2 \\cdot A_{23} = 3 \\cdot (-9) + 0 + 2 \\cdot (-5) = -27 - 10 = -37$$ El mismo resultado que con Sarrus."
+                },
+                {
+                    "title": "Ejemplo: orden 4 con una columna casi nula",
+                    "example": "$$\\lvert B \\rvert = \\begin{vmatrix}2 & 1 & 0 & 3 \\\\ 1 & 0 & 0 & 2 \\\\ 0 & 3 & \\textcolor{#d46a6a}{1} & -1 \\\\ 4 & 2 & 0 & 1\\end{vmatrix}$$ La columna 3 solo tiene un elemento distinto de 0, $b_{33} = 1$. Desarrollando por esa columna solo queda un término (signo $+$, porque $3 + 3$ es par): $$\\lvert B \\rvert = 1 \\cdot (-1)^{3+3} \\begin{vmatrix}2 & 1 & 3 \\\\ 1 & 0 & 2 \\\\ 4 & 2 & 1\\end{vmatrix}$$ Por Sarrus: $(0 + 8 + 6) - (0 + 8 + 1) = 14 - 9 = 5$, luego $\\lvert B \\rvert = 5$."
+                },
+                {
+                    "title": "Hacer ceros antes de desarrollar",
+                    "description": "Si ninguna fila o columna tiene ceros, los fabricamos: <strong>sumar a una fila un múltiplo de otra no cambia el determinante</strong> (ver <em>Propiedades</em>). Elegimos un elemento que valga 1 como pivote, hacemos ceros en su columna y desarrollamos por ella.",
+                    "example": "$$\\lvert C \\rvert = \\begin{vmatrix}1 & 2 & 0 & 1 \\\\ 2 & 5 & 1 & 3 \\\\ -1 & 0 & 3 & 1 \\\\ 3 & 4 & 1 & 2\\end{vmatrix}$$ <strong>Paso 1</strong>: ceros en la columna 1 usando el 1 de la fila 1: $$\\xrightarrow{F_2 - 2F_1,\\ F_3 + F_1,\\ F_4 - 3F_1} \\begin{vmatrix}1 & 2 & 0 & 1 \\\\ 0 & 1 & 1 & 1 \\\\ 0 & 2 & 3 & 2 \\\\ 0 & -2 & 1 & -1\\end{vmatrix}$$ <strong>Paso 2</strong>: desarrollamos por la columna 1: $$\\lvert C \\rvert = 1 \\cdot \\begin{vmatrix}1 & 1 & 1 \\\\ 2 & 3 & 2 \\\\ -2 & 1 & -1\\end{vmatrix}$$ <strong>Paso 3</strong>: Sarrus: $(-3 - 4 + 2) - (-6 + 2 - 2) = -5 + 6 = 1$, luego $\\lvert C \\rvert = 1$."
+                }
+            ]
+        },
+        {
+            "title": "Propiedades de los determinantes",
+            "items": [
+                {
+                    "title": "1. Filas iguales, proporcionales o combinación lineal",
+                    "description": "Si dos filas (o dos columnas) son <strong>iguales</strong> o <strong>proporcionales</strong>, o una es <strong>combinación lineal</strong> de otras, el determinante vale <strong>0</strong>.",
+                    "example": "• $\\begin{vmatrix}1 & 2 & 3 \\\\ 0 & 4 & 5 \\\\ 1 & 2 & 3\\end{vmatrix} = 0$ porque $F_1 = F_3$.<br>• $\\begin{vmatrix}2 & -6 \\\\ 1 & -3\\end{vmatrix} = 0$ porque $F_1 = 2F_2$."
+                },
+                {
+                    "title": "2. Sumar a una fila otra multiplicada por un número",
+                    "description": "Si a una fila (o columna) se le suma otra multiplicada por un número, <strong>el determinante no cambia</strong>. Así se pueden <strong>hacer ceros</strong> sin modificar su valor.",
+                    "formula": "$$F_i \\rightarrow F_i + k \\cdot F_j \\Rightarrow \\text{el determinante no varía}$$",
+                    "example": "$$\\begin{vmatrix}2 & -5 & 6 \\\\ 3 & 6 & 8 \\\\ 0 & 1 & -2\\end{vmatrix} \\xrightarrow{F_2 \\rightarrow F_2 - \\frac{3}{2}F_1} \\begin{vmatrix}2 & -5 & 6 \\\\ 0 & \\frac{27}{2} & -1 \\\\ 0 & 1 & -2\\end{vmatrix}$$ Ambos valen $-52$. Por ejemplo, $F_2 - \\frac{3}{2}F_1 = \\left(3 - 3, \\ 6 + \\frac{15}{2}, \\ 8 - 9\\right) = \\left(0, \\frac{27}{2}, -1\\right)$."
+                },
+                {
+                    "title": "3. Multiplicar una fila por un número",
+                    "description": "Si se multiplica <strong>una fila</strong> (o una columna) por un número $k$, el determinante resultante es el determinante original <strong>multiplicado por $k$</strong>.",
+                    "example": "$$\\begin{vmatrix}2 & 1 \\\\ 4 & 3\\end{vmatrix} = 6 - 4 = 2 \\qquad \\begin{vmatrix}\\textcolor{#d46a6a}{3 \\cdot 2} & \\textcolor{#d46a6a}{3 \\cdot 1} \\\\ 4 & 3\\end{vmatrix} = \\begin{vmatrix}6 & 3 \\\\ 4 & 3\\end{vmatrix} = 18 - 12 = 6 = 3 \\cdot 2$$"
+                },
+                {
+                    "title": "4. Determinante de $k \\cdot A$",
+                    "description": "Si se multiplica <strong>toda la matriz</strong> por $k$, se están multiplicando <strong>todas sus filas</strong> por $k$. Por la propiedad anterior, cada fila aporta un factor $k$, así que si la matriz es de orden $n$ el determinante resultante es $k^n$ por el determinante original.",
+                    "formula": "$$\\lvert k \\cdot A \\rvert = k^n \\cdot \\lvert A \\rvert$$",
+                    "example": "$$A = \\begin{pmatrix}2 & 1 \\\\ 4 & 3\\end{pmatrix}, \\ \\lvert A \\rvert = 2 \\qquad \\lvert 3A \\rvert = \\begin{vmatrix}6 & 3 \\\\ 12 & 9\\end{vmatrix} = 54 - 36 = 18 = 3^2 \\cdot 2$$ Error típico: escribir $\\lvert 3A \\rvert = 3 \\cdot 2 = 6$."
+                },
+                {
+                    "title": "5. Determinante de un producto",
+                    "description": "Si $A$ y $B$ son matrices cuadradas del mismo orden, el determinante del producto es el producto de los determinantes.",
+                    "formula": "$$\\lvert A \\cdot B \\rvert = \\lvert A \\rvert \\cdot \\lvert B \\rvert$$",
+                    "example": "Si $\\lvert A \\rvert = 2$ y $\\lvert B \\rvert = -3$: $\\lvert A \\cdot B \\rvert = 2 \\cdot (-3) = -6$."
+                },
+                {
+                    "title": "6. Determinante de la inversa",
+                    "description": "Se deduce de la propiedad anterior: como $A \\cdot A^{-1} = I$ y $\\lvert I \\rvert = 1$, se tiene $\\lvert A \\rvert \\cdot \\lvert A^{-1} \\rvert = 1$.",
+                    "formula": "$$\\lvert A^{-1} \\rvert = \\frac{1}{\\lvert A \\rvert}$$",
+                    "example": "Si $\\lvert A \\rvert = 2$, entonces $\\lvert A^{-1} \\rvert = \\frac{1}{2}$."
+                },
+                {
+                    "title": "7. Determinante de la traspuesta",
+                    "description": "Una matriz y su traspuesta tienen el mismo determinante, así que <strong>da igual pensar en filas o en columnas</strong>: todas las propiedades valen para ambas.",
+                    "formula": "$$\\lvert A^t \\rvert = \\lvert A \\rvert$$"
+                },
+                {
+                    "title": "8. Intercambiar dos filas o columnas",
+                    "description": "Si se intercambian dos filas (o dos columnas), el determinante <strong>cambia de signo</strong>.",
+                    "example": "$$\\begin{vmatrix}4 & -2 \\\\ 8 & 1\\end{vmatrix} = -\\begin{vmatrix}8 & 1 \\\\ 4 & -2\\end{vmatrix}$$ Comprobación: $4 + 16 = 20$ y $-(-16 - 4) = 20$."
+                }
+            ]
+        },
+        {
+            "title": "Rango de una matriz por determinantes",
+            "items": [
+                {
+                    "title": "Menor de orden $k$",
+                    "description": "Un <strong>menor de orden $k$</strong> de una matriz (cuadrada o no) es el determinante de la submatriz que se forma al elegir $k$ filas y $k$ columnas cualesquiera.",
+                    "example": "$$A = \\begin{pmatrix}1 & 2 & -1 & 3 \\\\ 2 & 1 & 0 & 1 \\\\ 3 & 3 & -1 & 4\\end{pmatrix}$$ Con las filas 1 y 2 y las columnas 1 y 2 sale el menor de orden 2: $$\\begin{vmatrix}1 & 2 \\\\ 2 & 1\\end{vmatrix} = 1 - 4 = -3$$"
+                },
+                {
+                    "title": "Rango por menores",
+                    "description": "El <strong>rango</strong> de una matriz es el <strong>orden del mayor menor distinto de 0</strong> que se puede encontrar en ella.",
+                    "formula": "$$\\text{rg}(A) = k \\iff \\text{hay un menor de orden } k \\text{ no nulo y todos los de orden } k + 1 \\text{ son nulos}$$"
+                },
+                {
+                    "title": "Método: orlar menores",
+                    "description": "Para no calcular todos los menores posibles:<br><strong>1.</strong> Si la matriz no es nula, $\\text{rg} \\geq 1$.<br><strong>2.</strong> Busca un menor de orden 2 distinto de 0 → $\\text{rg} \\geq 2$.<br><strong>3.</strong> <strong>Orla</strong> ese menor: añádele una fila y una columna más de todas las formas posibles. Si alguno de esos menores de orden 3 es distinto de 0 → $\\text{rg} \\geq 3$, y se repite el proceso.<br><strong>4.</strong> Si todos los menores orlados son 0, el rango es el orden del último menor no nulo.",
+                    "example": "Con la matriz $A$ anterior ($3 \\times 4$, así que $\\text{rg}(A) \\leq 3$):<br><strong>Paso 1</strong>: $\\begin{vmatrix}1 & 2 \\\\ 2 & 1\\end{vmatrix} = -3 \\neq 0$ → $\\text{rg}(A) \\geq 2$.<br><strong>Paso 2</strong>: orlamos con la fila 3 y cada una de las columnas que quedan: $$\\text{col. 3: } \\begin{vmatrix}1 & 2 & -1 \\\\ 2 & 1 & 0 \\\\ 3 & 3 & -1\\end{vmatrix} = 0 \\qquad \\text{col. 4: } \\begin{vmatrix}1 & 2 & 3 \\\\ 2 & 1 & 1 \\\\ 3 & 3 & 4\\end{vmatrix} = 0$$ <strong>Paso 3</strong>: todos los orlados son 0 → $\\text{rg}(A) = 2$.<br>(Tenía sentido: $F_3 = F_1 + F_2$)."
+                },
+                {
+                    "title": "Rango según un parámetro",
+                    "description": "Si la matriz es cuadrada y depende de un parámetro, se calcula su determinante, se iguala a 0 y se estudian por separado los valores que lo anulan.",
+                    "example": "Estudia el rango de $A = \\begin{pmatrix}1 & 1 & 1 \\\\ 1 & a & 1 \\\\ 1 & 1 & a\\end{pmatrix}$.<br><strong>Paso 1</strong>: por Sarrus: $$\\lvert A \\rvert = (a^2 + 1 + 1) - (a + 1 + a) = a^2 - 2a + 1 = (a - 1)^2$$ <strong>Paso 2</strong>: $\\lvert A \\rvert = 0 \\iff a = 1$.<br><strong>Paso 3</strong>:<br>• Si $a \\neq 1$: $\\lvert A \\rvert \\neq 0$ → $\\text{rg}(A) = 3$.<br>• Si $a = 1$: las tres filas son $(1, 1, 1)$, todos los menores de orden 2 son 0 → $\\text{rg}(A) = 1$."
+                }
+            ]
+        },
+        {
+            "title": "Matriz inversa por determinantes",
+            "items": [
+                {
+                    "title": "Matriz adjunta: $\\text{Adj}(A)$",
+                    "description": "La <strong>matriz adjunta</strong> de $A$ se obtiene <strong>sustituyendo cada elemento por su adjunto</strong> $A_{ij}$ (menor complementario con su signo).",
+                    "formula": "$$\\text{Adj}(A) = \\begin{pmatrix} A_{11} & A_{12} & A_{13} \\\\ A_{21} & A_{22} & A_{23} \\\\ A_{31} & A_{32} & A_{33} \\end{pmatrix}$$"
+                },
+                {
+                    "title": "Fórmula de la inversa",
+                    "description": "Si $\\lvert A \\rvert \\neq 0$, la inversa es la <strong>traspuesta de la adjunta dividida entre el determinante</strong>. Si $\\lvert A \\rvert = 0$, la matriz no tiene inversa: conviene calcular el determinante <strong>lo primero</strong>.<br>Da igual trasponer antes o después: $(\\text{Adj}(A))^t = \\text{Adj}(A^t)$.",
+                    "formula": "$$A^{-1} = \\frac{1}{\\lvert A \\rvert} \\cdot (\\text{Adj}(A))^t$$"
+                },
+                {
+                    "title": "Ejemplo de orden 2",
+                    "example": "$A = \\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix}$.<br><strong>Paso 1</strong>: $\\lvert A \\rvert = 6 - 5 = 1 \\neq 0$ → tiene inversa.<br><strong>Paso 2</strong>: adjuntos: $A_{11} = 3$, $A_{12} = -5$, $A_{21} = -1$, $A_{22} = 2$ $$\\text{Adj}(A) = \\begin{pmatrix}3 & -5 \\\\ -1 & 2\\end{pmatrix} \\Rightarrow (\\text{Adj}(A))^t = \\begin{pmatrix}3 & -1 \\\\ -5 & 2\\end{pmatrix}$$ <strong>Paso 3</strong>: $$A^{-1} = \\frac{1}{1} \\begin{pmatrix}3 & -1 \\\\ -5 & 2\\end{pmatrix} = \\begin{pmatrix}3 & -1 \\\\ -5 & 2\\end{pmatrix}$$ Truco para orden 2: se <strong>intercambian</strong> los elementos de la diagonal principal, se <strong>cambia el signo</strong> de los otros dos y se divide entre $\\lvert A \\rvert$."
+                },
+                {
+                    "title": "Ejemplo de orden 3",
+                    "example": "Calcula la inversa de $A = \\begin{pmatrix}1 & 0 & 2 \\\\ 2 & 1 & 0 \\\\ 1 & 3 & 1\\end{pmatrix}$.<br><strong>Paso 1</strong>: determinante por Sarrus: $(1 + 0 + 12) - (2 + 0 + 0) = 11 \\neq 0$ → tiene inversa.<br><strong>Paso 2</strong>: los nueve adjuntos:<br>• $A_{11} = +\\begin{vmatrix}1 & 0 \\\\ 3 & 1\\end{vmatrix} = 1$, $\\ A_{12} = -\\begin{vmatrix}2 & 0 \\\\ 1 & 1\\end{vmatrix} = -2$, $\\ A_{13} = +\\begin{vmatrix}2 & 1 \\\\ 1 & 3\\end{vmatrix} = 5$<br>• $A_{21} = -\\begin{vmatrix}0 & 2 \\\\ 3 & 1\\end{vmatrix} = 6$, $\\ A_{22} = +\\begin{vmatrix}1 & 2 \\\\ 1 & 1\\end{vmatrix} = -1$, $\\ A_{23} = -\\begin{vmatrix}1 & 0 \\\\ 1 & 3\\end{vmatrix} = -3$<br>• $A_{31} = +\\begin{vmatrix}0 & 2 \\\\ 1 & 0\\end{vmatrix} = -2$, $\\ A_{32} = -\\begin{vmatrix}1 & 2 \\\\ 2 & 0\\end{vmatrix} = 4$, $\\ A_{33} = +\\begin{vmatrix}1 & 0 \\\\ 2 & 1\\end{vmatrix} = 1$<br><strong>Paso 3</strong>: adjunta y su traspuesta: $$\\text{Adj}(A) = \\begin{pmatrix}1 & -2 & 5 \\\\ 6 & -1 & -3 \\\\ -2 & 4 & 1\\end{pmatrix} \\Rightarrow (\\text{Adj}(A))^t = \\begin{pmatrix}1 & 6 & -2 \\\\ -2 & -1 & 4 \\\\ 5 & -3 & 1\\end{pmatrix}$$ <strong>Paso 4</strong>: dividimos entre $\\lvert A \\rvert = 11$: $$A^{-1} = \\frac{1}{11} \\begin{pmatrix}1 & 6 & -2 \\\\ -2 & -1 & 4 \\\\ 5 & -3 & 1\\end{pmatrix}$$ <strong>Paso 5</strong>: comprobación: $A \\cdot (\\text{Adj}(A))^t = \\begin{pmatrix}11 & 0 & 0 \\\\ 0 & 11 & 0 \\\\ 0 & 0 & 11\\end{pmatrix} = 11 \\cdot I$"
+                }
+            ]
+        }
+    ]
+}
