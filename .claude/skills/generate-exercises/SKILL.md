@@ -5,7 +5,7 @@ description: Generates Ágora Academy math exams and exercise sheets (ESO and Ba
 
 # Generate Ágora exams and exercises
 
-Full flow: write the content in Markdown with LaTeX formulas → `scripts/render.mjs` turns it into HTML in the academy template (header «Academia Ágora - Cuenca» + logo, A4, Arial 11pt), renders the formulas with KaTeX (the site's own dependency) and prints it to PDF with headless Google Chrome → the PDF lands in `public/ejercicios/…`.
+Full flow: write the content in Markdown with LaTeX formulas → `scripts/render.mjs` turns it into HTML in the academy template (header «Academia Ágora - Cuenca» + logo, footer with the creation date `dd/mm/yyyy` and page number, A4, Arial 11pt), renders the formulas with KaTeX (the site's own dependency) and prints it to PDF with headless Google Chrome → the PDF lands in `public/ejercicios/…`.
 
 Everything is local: no network, no keys. Requirements: `pnpm install` done (for `katex`) and Google Chrome installed (override its path with `CHROME=/path/to/chrome`). The PDFs live only in the repo; nothing goes to Google Drive.
 

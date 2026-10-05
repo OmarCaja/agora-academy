@@ -84,8 +84,10 @@ function toHtml(md) {
 
 // Recreates the Google Docs "Plantilla": A4, Arial 11pt, header with the
 // academy link on the left and the logo on the right, repeated on every page
-// (a <thead> repeats on each printed page in Chrome).
+// (a <thead> repeats on each printed page in Chrome). Footer: creation date
+// (dd/mm/yyyy) on the left, page number on the right.
 function page(title, body) {
+  const date = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
   const katexCss = pathToFileURL(path.join(root, 'node_modules/katex/dist/katex.min.css')).href;
   const logo = pathToFileURL(path.join(root, 'public/favicon/logo.png')).href;
   return `<!doctype html>
@@ -93,6 +95,7 @@ function page(title, body) {
 <link rel="stylesheet" href="${katexCss}">
 <style>
   @page { size: A4; margin: 15mm 25.4mm 18mm;
+    @bottom-left { content: "${date}"; font: 10pt Arial, Helvetica, sans-serif; }
     @bottom-right { content: counter(page); font: 10pt Arial, Helvetica, sans-serif; } }
   body { margin: 0; font: 11pt/1.15 Arial, Helvetica, sans-serif; color: #000; }
   table.layout { width: 100%; border-collapse: collapse; }
