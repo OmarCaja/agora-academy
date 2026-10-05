@@ -81,7 +81,7 @@ const topicSchema = {
     inLanguage: "es",
     author: {
         "@type": "Organization",
-        name: "Academia Ágora",
+        name: "Ágora - Academia de matemáticas",
     },
     hasPart: sections.map((section) => ({
         "@type": "LearningResource",
@@ -92,9 +92,9 @@ const topicSchema = {
 ---
 
 <BaseLayout
-    title={`${title} - Academia Ágora`}
+    title={`${title}`}
     description={description ||
-        `Aprende sobre ${title} en Academia Ágora de Matemáticas.`}
+        `Aprende sobre ${title} en Ágora - Academia de matemáticas.`}
     currentPage={`theory/${entry.id}`}
     schema={topicSchema}
     showProgressBar={true}

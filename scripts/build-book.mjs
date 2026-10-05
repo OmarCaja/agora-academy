@@ -76,7 +76,7 @@ const html = `<!doctype html>
 <link rel="stylesheet" href="/node_modules/@fontsource/space-mono/700.css">
 <style>
   @page { size: A4; margin: 22mm 20mm 20mm;
-    @top-left { content: "Academia Ágora"; font: 700 8pt "Space Mono", monospace; border-bottom: 1px solid #1f1f1f; }
+    @top-left { content: "Ágora - Academia de matemáticas"; font: 700 8pt "Space Mono", monospace; border-bottom: 1px solid #1f1f1f; }
     @top-right { content: string(chapter); font: 8pt "Space Mono", monospace; border-bottom: 1px solid #1f1f1f; }
     @bottom-left { content: "www.agoraacademy.es"; font: 8pt "Space Mono", monospace; color: #666; }
     @bottom-right { content: counter(page); font: 700 9pt "Space Mono", monospace; } }
@@ -129,7 +129,7 @@ const html = `<!doctype html>
   document.fonts.ready.then(() => PagedPolyfill.preview()).finally(() => fetch('/done')));</script>
 </head><body>
 <section class="cover">
-  <div class="brand"><img src="/public/favicon/logo.png" alt="">Academia Ágora</div>
+  <div class="brand"><img src="/public/favicon/logo.png" alt="">Ágora - Academia de matemáticas</div>
   <div class="rule"></div>
   <h1>${esc(args.title)}</h1>
   ${args.subtitle ? `<p class="subtitle">${esc(args.subtitle)}</p>` : ''}

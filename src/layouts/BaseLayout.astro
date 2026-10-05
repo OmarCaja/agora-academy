@@ -12,7 +12,8 @@ const { title, description, currentPage = "index", schema, showProgressBar = fal
 // Astro parses <title> as raw text, so anything more complex than a bare
 // identifier inside it is silently dropped (every page shipped an empty title).
 // Build the string here, interpolate it there.
-const fullTitle = title.includes("Ágora") ? title : `${title} - Academia Ágora`;
+const SITE_NAME = "Ágora - Academia de matemáticas";
+const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 
 // Single branded 1200x630 card, regenerated with scripts/generate-og-card.py.
 const ogImage = new URL("/og/agora-og.png", Astro.site);
@@ -58,7 +59,7 @@ import "../styles/global.css";
 
     <!-- SEO Meta Tags -->
     <meta name="description" content={description} />
-    <meta name="application-name" content="Academia Ágora" />
+    <meta name="application-name" content={SITE_NAME} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
     <!-- Favicon & Manifest -->
@@ -73,7 +74,7 @@ import "../styles/global.css";
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content={title.includes("Ágora") ? title : `${title} - Academia Ágora`}
+      content={fullTitle}
     />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
@@ -84,13 +85,13 @@ import "../styles/global.css";
     <meta property="og:url" content={Astro.url} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="Academia Ágora" />
+    <meta property="og:site_name" content={SITE_NAME} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content={title.includes("Ágora") ? title : `${title} - Academia Ágora`}
+      content={fullTitle}
     />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
@@ -105,8 +106,8 @@ import "../styles/global.css";
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "Academia Ágora",
-        "alternateName": ["Ágora", "Academia Agora", "Agora"],
+        "name": SITE_NAME,
+        "alternateName": ["Ágora", "Academia Ágora", "Agora"],
         "url": Astro.site,
       })}
     />
@@ -119,7 +120,7 @@ import "../styles/global.css";
         {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          name: "Academia Ágora",
+          name: SITE_NAME,
           image: new URL("/favicon/logo.png", Astro.site).href,
           "@id": Astro.site,
           url: Astro.site,

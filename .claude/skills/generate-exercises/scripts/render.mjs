@@ -117,7 +117,7 @@ function page(title, body) {
   .tex-error { color: #c00; }
 </style></head>
 <body><table class="layout">
-<thead><tr><td><div class="header"><a href="https://www.agoraacademy.es/">Academia Ágora - Cuenca</a><img src="${logo}" alt=""></div></td></tr></thead>
+<thead><tr><td><div class="header"><a href="https://www.agoraacademy.es/">Ágora - Academia de matemáticas - Cuenca</a><img src="${logo}" alt=""></div></td></tr></thead>
 <tbody><tr><td>
 ${body}
 </td></tr></tbody></table></body></html>`;
