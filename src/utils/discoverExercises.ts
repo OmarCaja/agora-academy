@@ -6,6 +6,7 @@ import { pdfNameOverrides, topicTitleOverrides, topicOrder, levelTitleOverrides,
 export interface PdfLink {
     name: string;
     url: string;
+    detail?: string;
 }
 
 export interface Topic {

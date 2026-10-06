@@ -8,6 +8,7 @@ import TableOfContents from "../../components/TableOfContents.astro";
 import TopicPager from "../../components/TopicPager.astro";
 import SearchBox from "../../components/SearchBox.astro";
 import { sortTopics } from "../../data/topics";
+import { BOOKS } from "../../data/books";
 import { slugify } from "../../utils/slugify";
 import { Icon } from "astro-icon/components";
 import { SITE_NAME } from "../../data/site";
@@ -54,6 +55,8 @@ for (const sec of sections) {
         }
     }
 }
+
+const book = BOOKS.find((b) => b.topics.includes(entry.id));
 
 const estimatedReadTime = Math.max(1, Math.ceil(totalWords / 150));
 
@@ -112,6 +115,12 @@ const topicSchema = {
                     <Icon name="ph:function" aria-hidden="true" />
                     {totalFormulas} {totalFormulas === 1 ? "fórmula" : "fórmulas"}
                 </span>
+            )}
+            {book && (
+                <a class="meta-pill pdf-pill" href={book.url} target="_blank" rel="noopener noreferrer">
+                    <Icon name="ph:file-pdf" aria-hidden="true" />
+                    Descargar en PDF
+                </a>
             )}
         </div>
 
@@ -198,6 +207,17 @@ const topicSchema = {
         height: 14px;
         flex-shrink: 0;
         color: var(--accent);
+    }
+
+    .pdf-pill {
+        color: var(--text-primary);
+        font-weight: 700;
+        text-decoration: none;
+        border-color: var(--border-color);
+    }
+
+    .pdf-pill:hover {
+        border-color: var(--accent);
     }
 
     .no-results {

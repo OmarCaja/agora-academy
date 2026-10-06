@@ -28,7 +28,7 @@ const PAGEDJS = '/node_modules/pagedjs/dist/paged.polyfill.js';
 const CHROME = findChrome();
 // Topic HTML references images site-relative (/ejemplos/...); the server below serves the
 // project root, so point them at /public/.
-const content = s => renderMath(s).replace(/src="\//g, 'src="/public/');
+const content = s => renderMath(s).replace(/src=(["'])\//g, 'src=$1/public/');
 
 const { values: args } = parseArgs({ options: {
   topics: { type: 'string' }, title: { type: 'string' }, subtitle: { type: 'string' },

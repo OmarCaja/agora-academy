@@ -56,15 +56,9 @@ for i in (0, 1, d.page_count // 2): d[i].get_pixmap(dpi=60).save(f'<scratchpad>/
 
 Check: the title fits the cover without awkward breaks, every chapter and section is in the index with a page number, and the header shows the right chapter name.
 
-## 6. Name it on the website
+## 6. Check it on the website
 
-`/books` derives the display name from the file name (`matrices-determinantes` → «Matrices determinantes»). When that's wrong (missing «y», accents), add the real title to `pdfNameOverrides` in `src/data/exercises.ts` under the `// Libros (/books)` block:
-
-```ts
-"/libros/matrices-determinantes.pdf": "Matrices y determinantes",
-```
-
-Then `pnpm build` and confirm the book appears in `dist/books/index.html`.
+`/books` reads `scripts/books.json`: each book shows under its `--title`, with its chapters, in the site's topic order. Each theory page links to the book that contains it («Descargar en PDF»). Nothing to edit: run `pnpm build` and confirm the book appears in `dist/books/index.html`.
 
 ## 7. Report
 

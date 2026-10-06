@@ -1,8 +1,77 @@
 [
   {
-    "topics": ["matrices", "determinantes"],
+    "topics": [
+      "matrices",
+      "determinantes"
+    ],
     "title": "Matrices y determinantes",
     "subtitle": "2º Bachillerato",
     "out": "public/libros/matrices-determinantes.pdf"
+  },
+  {
+    "topics": [
+      "potencias",
+      "raices",
+      "logaritmos"
+    ],
+    "title": "Potencias, raíces y logaritmos",
+    "out": "public/libros/potencias-raices-logaritmos.pdf"
+  },
+  {
+    "topics": [
+      "jerarquia",
+      "propiedades-operaciones"
+    ],
+    "title": "Aritmética",
+    "out": "public/libros/aritmetica.pdf"
+  },
+  {
+    "topics": [
+      "algebra",
+      "identidades-notables"
+    ],
+    "title": "Introducción al álgebra",
+    "out": "public/libros/introduccion-algebra.pdf"
+  },
+  {
+    "topics": [
+      "estadistica-unidimensional",
+      "estadistica-bidimensional",
+      "probabilidad",
+      "distribuciones-probabilidad"
+    ],
+    "title": "Estadística y probabilidad",
+    "out": "public/libros/estadistica-probabilidad.pdf"
+  },
+  {
+    "topics": [
+      "funciones",
+      "funciones-elementales",
+      "limites",
+      "derivadas"
+    ],
+    "title": "Funciones, límites y derivadas",
+    "out": "public/libros/funciones-limites-derivadas.pdf"
+  },
+  {
+    "topics": [
+      "divisibilidad"
+    ],
+    "title": "Factorización de números",
+    "out": "public/libros/divisibilidad.pdf"
+  },
+  {
+    "topics": [
+      "fracciones"
+    ],
+    "title": "Operaciones con fracciones",
+    "out": "public/libros/fracciones.pdf"
+  },
+  {
+    "topics": [
+      "proporcionalidad-porcentajes"
+    ],
+    "title": "Razones, proporcionalidad y porcentajes",
+    "out": "public/libros/proporcionalidad-porcentajes.pdf"
   }
 ]
