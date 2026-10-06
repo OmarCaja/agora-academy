@@ -686,6 +686,70 @@ plt.close(fig)
 print(f"✅  {path}")
 
 # ════════════════════════════════════════════════════════════════════════════
+#  TRIGONOMETRÍA
+# ════════════════════════════════════════════════════════════════════════════
+OUT = "public/ejemplos/trigonometria"
+os.makedirs(OUT, exist_ok=True)
+
+def bare(ax):
+    """Geometry figure: equal scale, no axes or grid."""
+    ax.set_aspect('equal')
+    ax.axis('off')
+
+# ── Triángulo rectángulo: catetos, hipotenusa y ángulo α ───────────────────
+fig, ax = plt.subplots(figsize=(5, 3.6))
+bare(ax)
+A, B, C = (0, 0), (4, 0), (4, 3)
+ax.add_patch(patches.Polygon([A, B, C], closed=True, fill=False, ec=INK, lw=2.5))
+ax.add_patch(patches.Rectangle((3.7, 0), 0.3, 0.3, fill=False, ec=INK, lw=1.2))
+ax.add_patch(patches.Arc(A, 1.6, 1.6, theta1=0, theta2=np.degrees(np.arctan2(3, 4)), color=INK, lw=1.5))
+ax.text(0.95, 0.28, r'$\alpha$', fontsize=15, color=INK)
+ax.text(2, -0.35, 'cateto contiguo ($b$)', ha='center', va='top', fontsize=11, color=GRAY)
+ax.text(4.15, 1.5, 'cateto\nopuesto ($a$)', ha='left', va='center', fontsize=11, color=GRAY)
+ax.text(1.75, 1.75, 'hipotenusa ($c$)', ha='center', va='bottom', rotation=np.degrees(np.arctan2(3, 4)), fontsize=11, color=GRAY)
+ax.set_xlim(-0.5, 6.2); ax.set_ylim(-0.9, 3.4)
+save(fig, 'triangulo-rectangulo.png')
+
+# ── Circunferencia goniométrica: seno y coseno como proyecciones ───────────
+fig, ax = plt.subplots(figsize=(5, 5))
+draw_axes(ax, (-1.35, 1.35), (-1.35, 1.35))
+ax.set_aspect('equal')
+ax.set_ylabel('y', fontsize=12, color=GRAY, labelpad=2, rotation=0)
+ax.yaxis.set_label_coords(-0.05, 1.02)
+t = np.linspace(0, 2*np.pi, 400)
+ax.plot(np.cos(t), np.sin(t), color=BLUE, lw=2.5, zorder=4)
+a = np.radians(130)
+P = (np.cos(a), np.sin(a))
+ax.plot([0, P[0]], [0, P[1]], color=INK, lw=2, zorder=5)
+ax.plot([P[0], P[0]], [0, P[1]], color=INK, lw=2, ls='--', zorder=5)
+ax.plot([0, P[0]], [P[1], P[1]], color=LGRAY, lw=1.2, ls=':', zorder=5)
+ax.plot(*P, 'o', color=INK, ms=7, zorder=6)
+ax.add_patch(patches.Arc((0, 0), 0.5, 0.5, theta1=0, theta2=130, color=INK, lw=1.5, zorder=5))
+ax.text(0.12, 0.28, r'$\alpha$', fontsize=14, color=INK)
+ax.text(P[0] - 0.1, P[1] + 0.1, r'$P(\cos\alpha,\ \sin\alpha)$', ha='center', fontsize=11, color=INK)
+ax.text(P[0] - 0.05, P[1] / 2, r'$\sin\alpha$', ha='right', va='center', fontsize=11, color=INK)
+ax.text(P[0] / 2, -0.13, r'$\cos\alpha$', ha='center', va='top', fontsize=11, color=INK)
+ax.text(-0.3, 0.42, '1', fontsize=11, color=GRAY)
+for x, y, s_ in [(1.15, 1.15, 'I'), (-1.15, 1.15, 'II'), (-1.15, -1.2, 'III'), (1.15, -1.2, 'IV')]:
+    ax.text(x, y, s_, fontsize=12, color=LGRAY, ha='center', fontweight='bold')
+ax.set_title('Circunferencia goniométrica (radio 1)')
+save(fig, 'circunferencia-goniometrica.png')
+
+# ── Triángulo cualquiera: lados a, b, c opuestos a A, B, C ─────────────────
+fig, ax = plt.subplots(figsize=(5, 3.6))
+bare(ax)
+A, B, C = np.array([0, 0]), np.array([5, 0]), np.array([1.6, 2.8])
+ax.add_patch(patches.Polygon([A, B, C], closed=True, fill=False, ec=INK, lw=2.5))
+for P_, name, off in [(A, 'A', (-0.25, -0.25)), (B, 'B', (0.1, -0.25)), (C, 'C', (-0.05, 0.15))]:
+    ax.text(P_[0] + off[0], P_[1] + off[1], name, fontsize=14, fontweight='bold', color=INK)
+mid = lambda P_, Q: (P_ + Q) / 2
+ax.text(*(mid(B, C) + (0.15, 0.1)), '$a$', fontsize=14, color=INK)
+ax.text(*(mid(A, C) + (-0.35, 0.05)), '$b$', fontsize=14, color=INK)
+ax.text(*(mid(A, B) + (0, -0.4)), '$c$', fontsize=14, color=INK, ha='center')
+ax.set_xlim(-0.6, 5.6); ax.set_ylim(-0.7, 3.2)
+save(fig, 'triangulo-general.png')
+
+# ════════════════════════════════════════════════════════════════════════════
 #  ↑ ADD YOUR NEW GRAPHS HERE, following the same pattern
 # ════════════════════════════════════════════════════════════════════════════
 

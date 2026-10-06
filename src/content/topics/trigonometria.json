@@ -1,0 +1,201 @@
+{
+    "title": "Trigonometría",
+    "description": "Grados y radianes, razones trigonométricas (seno, coseno, tangente y sus inversas), identidad fundamental, razones de 30°, 45° y 60°, circunferencia goniométrica, fórmulas del ángulo suma, resta, doble y mitad, teoremas del seno y del coseno y ecuaciones trigonométricas.",
+    "menuGroup": "Trigonometría",
+    "menuOrder": 1,
+    "sections": [
+        {
+            "title": "Medida de ángulos: grados y radianes",
+            "items": [
+                {
+                    "title": "Grado sexagesimal",
+                    "description": "Si dividimos una circunferencia completa en 360 partes iguales, cada una es un <strong>grado</strong> ($1^\\circ$). Cada grado se divide en 60 <strong>minutos</strong> ($1^\\circ = 60'$) y cada minuto en 60 <strong>segundos</strong> ($1' = 60''$). Por eso se llama sistema <strong>sexagesimal</strong>: va de 60 en 60, como las horas del reloj.",
+                    "formula": "$$\\text{vuelta completa} = 360^\\circ \\qquad 1^\\circ = 60' \\qquad 1' = 60''$$",
+                    "example": "• Un ángulo recto mide $90^\\circ$ y un ángulo llano $180^\\circ$.<br>• $35^\\circ\\,20'\\,15''$ se lee «35 grados, 20 minutos y 15 segundos».<br>• $0{,}5^\\circ = 0{,}5 \\cdot 60' = 30'$"
+                },
+                {
+                    "title": "Radián",
+                    "description": "Un <strong>radián</strong> es el ángulo cuyo arco mide exactamente lo mismo que el <strong>radio</strong> de la circunferencia. Como la longitud de la circunferencia es $2\\pi r$, en una vuelta completa caben $2\\pi$ radianes. Es la unidad del Sistema Internacional y la que se usa en Bachillerato con funciones, límites y derivadas. Cuando un ángulo aparece sin unidad (por ejemplo $\\frac{\\pi}{3}$), se entiende que está en radianes.",
+                    "formula": "$$\\text{vuelta completa} = 2\\pi \\text{ rad} \\qquad \\text{ángulo (rad)} = \\dfrac{\\text{longitud del arco}}{\\text{radio}}$$",
+                    "example": "En una circunferencia de radio 3 cm, un arco de 6 cm abarca un ángulo de $\\dfrac{6}{3} = 2$ rad."
+                },
+                {
+                    "title": "Conversión entre grados y radianes",
+                    "description": "La equivalencia clave es <strong>media vuelta</strong>: $180^\\circ = \\pi$ rad. A partir de ella se pasa de una unidad a otra con una regla de tres. Un radián son unos $57^\\circ$: no confundas $\\pi$ rad ($180^\\circ$) con 1 rad.",
+                    "formula": "$$180^\\circ = \\pi \\text{ rad} \\quad\\Rightarrow\\quad \\text{rad} = \\text{grados} \\cdot \\dfrac{\\pi}{180} \\qquad \\text{grados} = \\text{rad} \\cdot \\dfrac{180}{\\pi}$$",
+                    "example": "• $60^\\circ = 60 \\cdot \\dfrac{\\pi}{180} = \\dfrac{\\pi}{3}$ rad<br>• $\\dfrac{3\\pi}{4}$ rad $= \\dfrac{3\\pi}{4} \\cdot \\dfrac{180}{\\pi} = 135^\\circ$<br>• $1$ rad $= \\dfrac{180}{\\pi} \\approx 57{,}30^\\circ \\approx 57^\\circ\\,17'\\,45''$"
+                },
+                {
+                    "title": "Ángulos más usados",
+                    "description": "Conviene saberse de memoria estas equivalencias, porque aparecen constantemente.",
+                    "formula": "$$\\begin{array}{c|c|c|c|c|c|c|c} \\text{Grados} & 30^\\circ & 45^\\circ & 60^\\circ & 90^\\circ & 180^\\circ & 270^\\circ & 360^\\circ \\\\ \\hline \\text{Radianes} & \\frac{\\pi}{6} & \\frac{\\pi}{4} & \\frac{\\pi}{3} & \\frac{\\pi}{2} & \\pi & \\frac{3\\pi}{2} & 2\\pi \\end{array}$$",
+                    "example": "$120^\\circ = 2 \\cdot 60^\\circ$, así que $120^\\circ = 2 \\cdot \\dfrac{\\pi}{3} = \\dfrac{2\\pi}{3}$ rad."
+                }
+            ]
+        },
+        {
+            "title": "Razones trigonométricas",
+            "items": [
+                {
+                    "title": "Seno, coseno y tangente",
+                    "description": "En un <strong>triángulo rectángulo</strong>, para un ángulo agudo $\\alpha$ se definen tres cocientes entre sus lados. Solo dependen del ángulo, no del tamaño del triángulo: dos triángulos rectángulos con el mismo ángulo $\\alpha$ son semejantes y sus lados son proporcionales.<br><strong>Seno</strong>: cateto opuesto entre hipotenusa.<br><strong>Coseno</strong>: cateto contiguo entre hipotenusa.<br><strong>Tangente</strong>: cateto opuesto entre cateto contiguo.<br>Como los catetos son menores que la hipotenusa, el seno y el coseno de un ángulo agudo están siempre entre 0 y 1.",
+                    "formula": "<img src='/ejemplos/trigonometria/triangulo-rectangulo.png' alt='Triángulo rectángulo con el ángulo alfa, sus catetos opuesto y contiguo y la hipotenusa' width='611' height='403' loading='lazy' decoding='async' style='max-width:320px; height:auto;'>$$\\sin\\alpha = \\dfrac{a}{c} \\qquad \\cos\\alpha = \\dfrac{b}{c} \\qquad \\operatorname{tg}\\alpha = \\dfrac{a}{b}$$",
+                    "example": "Triángulo rectángulo de catetos $a = 3$ (opuesto a $\\alpha$) y $b = 4$, e hipotenusa $c = \\sqrt{3^2 + 4^2} = 5$:<br>$$\\sin\\alpha = \\dfrac{3}{5} = 0{,}6 \\qquad \\cos\\alpha = \\dfrac{4}{5} = 0{,}8 \\qquad \\operatorname{tg}\\alpha = \\dfrac{3}{4} = 0{,}75$$"
+                },
+                {
+                    "title": "Cosecante, secante y cotangente",
+                    "description": "Son las <strong>inversas</strong> (en el sentido de $\\frac{1}{x}$) del seno, del coseno y de la tangente. Ojo al emparejarlas: la <strong>cosecante</strong> es la inversa del <strong>seno</strong> y la <strong>secante</strong> la del <strong>coseno</strong> (cada una lleva el «co» que no tiene la otra). Tampoco las confundas con las funciones arco ($\\arcsin$, $\\arccos$...), que sirven para calcular el ángulo.",
+                    "formula": "$$\\operatorname{cosec}\\alpha = \\dfrac{1}{\\sin\\alpha} \\qquad \\sec\\alpha = \\dfrac{1}{\\cos\\alpha} \\qquad \\operatorname{cotg}\\alpha = \\dfrac{1}{\\operatorname{tg}\\alpha}$$",
+                    "example": "Con el triángulo anterior ($\\sin\\alpha = \\frac{3}{5}$, $\\cos\\alpha = \\frac{4}{5}$, $\\operatorname{tg}\\alpha = \\frac{3}{4}$):<br>$$\\operatorname{cosec}\\alpha = \\dfrac{5}{3} \\qquad \\sec\\alpha = \\dfrac{5}{4} \\qquad \\operatorname{cotg}\\alpha = \\dfrac{4}{3}$$"
+                }
+            ]
+        },
+        {
+            "title": "Relaciones entre las razones",
+            "items": [
+                {
+                    "title": "Identidad fundamental: $\\sin^2\\alpha + \\cos^2\\alpha = 1$",
+                    "description": "Es la relación más importante de la trigonometría y sale directamente del <strong>teorema de Pitágoras</strong>. En el triángulo rectángulo se cumple $a^2 + b^2 = c^2$. Si dividimos los dos miembros entre $c^2$, aparecen el seno y el coseno:<br>$$\\dfrac{a^2}{c^2} + \\dfrac{b^2}{c^2} = \\dfrac{c^2}{c^2} \\;\\Rightarrow\\; \\left(\\dfrac{a}{c}\\right)^2 + \\left(\\dfrac{b}{c}\\right)^2 = 1 \\;\\Rightarrow\\; \\sin^2\\alpha + \\cos^2\\alpha = 1$$Recuerda que $\\sin^2\\alpha$ significa $(\\sin\\alpha)^2$.",
+                    "formula": "$$\\sin^2\\alpha + \\cos^2\\alpha = 1$$",
+                    "example": "Con $\\sin\\alpha = \\frac{3}{5}$ y $\\cos\\alpha = \\frac{4}{5}$: $\\left(\\dfrac{3}{5}\\right)^2 + \\left(\\dfrac{4}{5}\\right)^2 = \\dfrac{9}{25} + \\dfrac{16}{25} = \\dfrac{25}{25} = 1$"
+                },
+                {
+                    "title": "Tangente como cociente",
+                    "description": "Si dividimos el seno entre el coseno, la hipotenusa se simplifica y queda la tangente: $\\dfrac{a/c}{b/c} = \\dfrac{a}{b}$.",
+                    "formula": "$$\\operatorname{tg}\\alpha = \\dfrac{\\sin\\alpha}{\\cos\\alpha}$$",
+                    "example": "$\\sin\\alpha = 0{,}6$ y $\\cos\\alpha = 0{,}8$ $\\Rightarrow$ $\\operatorname{tg}\\alpha = \\dfrac{0{,}6}{0{,}8} = 0{,}75$"
+                },
+                {
+                    "title": "$1 + \\operatorname{tg}^2\\alpha = \\sec^2\\alpha$ y $1 + \\operatorname{cotg}^2\\alpha = \\operatorname{cosec}^2\\alpha$",
+                    "description": "Se obtienen dividiendo la identidad fundamental entre $\\cos^2\\alpha$ (la primera) o entre $\\sin^2\\alpha$ (la segunda):<br>$$\\dfrac{\\sin^2\\alpha}{\\cos^2\\alpha} + \\dfrac{\\cos^2\\alpha}{\\cos^2\\alpha} = \\dfrac{1}{\\cos^2\\alpha} \\;\\Rightarrow\\; \\operatorname{tg}^2\\alpha + 1 = \\sec^2\\alpha$$Son muy útiles cuando el dato que tenemos es la tangente.",
+                    "formula": "$$1 + \\operatorname{tg}^2\\alpha = \\dfrac{1}{\\cos^2\\alpha} \\qquad 1 + \\operatorname{cotg}^2\\alpha = \\dfrac{1}{\\sin^2\\alpha}$$",
+                    "example": "$\\operatorname{tg}\\alpha = \\frac{3}{4}$: $\\;1 + \\dfrac{9}{16} = \\dfrac{25}{16} = \\sec^2\\alpha \\Rightarrow \\sec\\alpha = \\dfrac{5}{4} \\Rightarrow \\cos\\alpha = \\dfrac{4}{5}$ ✓"
+                },
+                {
+                    "title": "Calcular todas las razones a partir de una",
+                    "description": "Conociendo una sola razón y el cuadrante del ángulo, se calculan todas las demás con estas relaciones:<br>1. Usa la identidad fundamental (o $1 + \\operatorname{tg}^2\\alpha = \\sec^2\\alpha$ si te dan la tangente).<br>2. Al hacer la raíz cuadrada, elige el <strong>signo</strong> según el cuadrante (ver la circunferencia goniométrica).<br>3. Calcula la tangente como $\\frac{\\sin\\alpha}{\\cos\\alpha}$ y las inversas.",
+                    "example": "• $\\cos\\alpha = \\frac{1}{3}$, $\\alpha$ en el primer cuadrante:<br>$$\\sin\\alpha = \\sqrt{1 - \\dfrac{1}{9}} = \\sqrt{\\dfrac{8}{9}} = \\dfrac{2\\sqrt{2}}{3} \\qquad \\operatorname{tg}\\alpha = \\dfrac{2\\sqrt{2}/3}{1/3} = 2\\sqrt{2}$$• $\\operatorname{tg}\\alpha = 2$, $\\alpha$ en el primer cuadrante:<br>$$1 + 4 = \\dfrac{1}{\\cos^2\\alpha} \\Rightarrow \\cos\\alpha = \\dfrac{1}{\\sqrt{5}} = \\dfrac{\\sqrt{5}}{5} \\qquad \\sin\\alpha = \\operatorname{tg}\\alpha \\cdot \\cos\\alpha = \\dfrac{2\\sqrt{5}}{5}$$"
+                }
+            ]
+        },
+        {
+            "title": "Razones de 30°, 45° y 60°",
+            "items": [
+                {
+                    "title": "Ángulo de 45°",
+                    "description": "Partimos de un <strong>cuadrado de lado 1</strong> y trazamos su diagonal. Obtenemos un triángulo rectángulo isósceles: los dos catetos miden 1, los dos ángulos agudos $45^\\circ$ y la hipotenusa, por Pitágoras, $\\sqrt{1^2 + 1^2} = \\sqrt{2}$.",
+                    "formula": "$$\\sin 45^\\circ = \\cos 45^\\circ = \\dfrac{1}{\\sqrt{2}} = \\dfrac{\\sqrt{2}}{2} \\qquad \\operatorname{tg} 45^\\circ = \\dfrac{1}{1} = 1$$",
+                    "example": "Como los dos catetos son iguales, el seno y el coseno de $45^\\circ$ coinciden y la tangente vale 1."
+                },
+                {
+                    "title": "Ángulos de 30° y 60°",
+                    "description": "Partimos de un <strong>triángulo equilátero de lado 2</strong> (sus ángulos miden $60^\\circ$) y trazamos una altura. Queda un triángulo rectángulo con hipotenusa 2, un cateto de 1 (la mitad de la base) y ángulos de $30^\\circ$ y $60^\\circ$. La altura, por Pitágoras, mide $\\sqrt{2^2 - 1^2} = \\sqrt{3}$. El cateto de 1 es el opuesto al ángulo de $30^\\circ$ y el de $\\sqrt{3}$ el opuesto al de $60^\\circ$.",
+                    "formula": "$$\\sin 30^\\circ = \\dfrac{1}{2} \\quad \\cos 30^\\circ = \\dfrac{\\sqrt{3}}{2} \\quad \\operatorname{tg} 30^\\circ = \\dfrac{1}{\\sqrt{3}} = \\dfrac{\\sqrt{3}}{3}$$$$\\sin 60^\\circ = \\dfrac{\\sqrt{3}}{2} \\quad \\cos 60^\\circ = \\dfrac{1}{2} \\quad \\operatorname{tg} 60^\\circ = \\sqrt{3}$$",
+                    "example": "$30^\\circ$ y $60^\\circ$ son <strong>complementarios</strong> (suman $90^\\circ$): el seno de uno es el coseno del otro. En general, $\\sin(90^\\circ - \\alpha) = \\cos\\alpha$."
+                },
+                {
+                    "title": "Tabla de razones de los ángulos notables",
+                    "description": "Truco para recordar el seno: en orden, $\\dfrac{\\sqrt{0}}{2}, \\dfrac{\\sqrt{1}}{2}, \\dfrac{\\sqrt{2}}{2}, \\dfrac{\\sqrt{3}}{2}, \\dfrac{\\sqrt{4}}{2}$. El coseno es la misma fila al revés, y la tangente se obtiene dividiendo seno entre coseno. La tangente de $90^\\circ$ no existe porque $\\cos 90^\\circ = 0$.",
+                    "formula": "$$\\begin{array}{c|c|c|c|c|c} \\alpha & 0^\\circ & 30^\\circ & 45^\\circ & 60^\\circ & 90^\\circ \\\\ \\hline \\sin\\alpha & 0 & \\frac{1}{2} & \\frac{\\sqrt{2}}{2} & \\frac{\\sqrt{3}}{2} & 1 \\\\ \\cos\\alpha & 1 & \\frac{\\sqrt{3}}{2} & \\frac{\\sqrt{2}}{2} & \\frac{1}{2} & 0 \\\\ \\operatorname{tg}\\alpha & 0 & \\frac{\\sqrt{3}}{3} & 1 & \\sqrt{3} & \\nexists \\end{array}$$",
+                    "example": "Un árbol proyecta una sombra de 10 m cuando los rayos del sol forman $30^\\circ$ con el suelo. Su altura $h$ es el cateto opuesto y la sombra el contiguo:<br>$$\\operatorname{tg} 30^\\circ = \\dfrac{h}{10} \\Rightarrow h = 10 \\cdot \\dfrac{\\sqrt{3}}{3} \\approx 5{,}77 \\text{ m}$$"
+                }
+            ]
+        },
+        {
+            "title": "La circunferencia goniométrica",
+            "items": [
+                {
+                    "title": "Definición",
+                    "description": "Es una circunferencia de <strong>centro el origen y radio 1</strong>. Los ángulos se miden desde el semieje $X$ positivo: en <strong>sentido antihorario son positivos</strong> y en sentido horario, negativos.<br>Si el lado del ángulo $\\alpha$ corta a la circunferencia en el punto $P(x, y)$, se forma un triángulo rectángulo de hipotenusa 1. Por tanto $\\sin\\alpha = \\frac{y}{1} = y$ y $\\cos\\alpha = \\frac{x}{1} = x$: <strong>el coseno es la proyección sobre el eje $X$ y el seno la proyección sobre el eje $Y$</strong>. Esto permite definir las razones de cualquier ángulo, no solo de los agudos, y con signo.",
+                    "formula": "<img src='/ejemplos/trigonometria/circunferencia-goniometrica.png' alt='Circunferencia goniométrica de radio 1 con un ángulo alfa en el segundo cuadrante: el seno es la proyección vertical y el coseno la horizontal' width='677' height='707' loading='lazy' decoding='async' style='max-width:340px; height:auto;'>$$P = (\\cos\\alpha,\\ \\sin\\alpha) \\qquad \\operatorname{tg}\\alpha = \\dfrac{y}{x} = \\dfrac{\\sin\\alpha}{\\cos\\alpha}$$",
+                    "example": "Como $P$ está sobre una circunferencia de radio 1, sus coordenadas están entre $-1$ y $1$:<br>$$-1 \\le \\sin\\alpha \\le 1 \\qquad -1 \\le \\cos\\alpha \\le 1$$En cambio, la tangente puede tomar cualquier valor real."
+                },
+                {
+                    "title": "Ángulos de 0°, 90°, 180° y 270°",
+                    "description": "Sus puntos en la circunferencia están sobre los ejes, así que sus razones se leen directamente de las coordenadas.",
+                    "formula": "$$\\begin{array}{c|c|c|c|c} \\alpha & 0^\\circ & 90^\\circ & 180^\\circ & 270^\\circ \\\\ \\hline P & (1, 0) & (0, 1) & (-1, 0) & (0, -1) \\\\ \\sin\\alpha & 0 & 1 & 0 & -1 \\\\ \\cos\\alpha & 1 & 0 & -1 & 0 \\\\ \\operatorname{tg}\\alpha & 0 & \\nexists & 0 & \\nexists \\end{array}$$",
+                    "example": "$\\cos 180^\\circ = -1$ porque el punto $(-1, 0)$ tiene abscisa $-1$."
+                },
+                {
+                    "title": "Signo de las razones en cada cuadrante",
+                    "description": "El signo depende del cuadrante en el que cae el ángulo: el seno es positivo arriba ($y > 0$), el coseno a la derecha ($x > 0$) y la tangente cuando ambos tienen el mismo signo.",
+                    "formula": "$$\\begin{array}{c|c|c|c|c} & \\text{I } (0^\\circ\\text{–}90^\\circ) & \\text{II } (90^\\circ\\text{–}180^\\circ) & \\text{III } (180^\\circ\\text{–}270^\\circ) & \\text{IV } (270^\\circ\\text{–}360^\\circ) \\\\ \\hline \\sin & + & + & - & - \\\\ \\cos & + & - & - & + \\\\ \\operatorname{tg} & + & - & + & - \\end{array}$$",
+                    "example": "$200^\\circ$ está en el tercer cuadrante: $\\sin 200^\\circ < 0$, $\\cos 200^\\circ < 0$ y $\\operatorname{tg} 200^\\circ > 0$."
+                }
+            ]
+        },
+        {
+            "title": "Ángulo suma, resta, doble y mitad",
+            "items": [
+                {
+                    "title": "Seno y coseno de la suma y la resta",
+                    "description": "Permiten calcular razones de ángulos que no son notables, escribiéndolos como suma o resta de ángulos conocidos. <strong>Error típico</strong>: $\\sin(\\alpha + \\beta) \\neq \\sin\\alpha + \\sin\\beta$. Por ejemplo, $\\sin(30^\\circ + 60^\\circ) = \\sin 90^\\circ = 1$, pero $\\sin 30^\\circ + \\sin 60^\\circ \\approx 1{,}37$. Fíjate también en que en el coseno el signo central es el <strong>contrario</strong> al del ángulo.",
+                    "formula": "$$\\sin(\\alpha \\pm \\beta) = \\sin\\alpha\\cos\\beta \\pm \\cos\\alpha\\sin\\beta$$$$\\cos(\\alpha \\pm \\beta) = \\cos\\alpha\\cos\\beta \\mp \\sin\\alpha\\sin\\beta$$",
+                    "example": "$$\\sin 75^\\circ = \\sin(45^\\circ + 30^\\circ) = \\dfrac{\\sqrt{2}}{2} \\cdot \\dfrac{\\sqrt{3}}{2} + \\dfrac{\\sqrt{2}}{2} \\cdot \\dfrac{1}{2} = \\dfrac{\\sqrt{6} + \\sqrt{2}}{4} \\approx 0{,}966$$$$\\cos 15^\\circ = \\cos(45^\\circ - 30^\\circ) = \\dfrac{\\sqrt{2}}{2} \\cdot \\dfrac{\\sqrt{3}}{2} \\textcolor{#d46a6a}{+} \\dfrac{\\sqrt{2}}{2} \\cdot \\dfrac{1}{2} = \\dfrac{\\sqrt{6} + \\sqrt{2}}{4}$$"
+                },
+                {
+                    "title": "Tangente de la suma y la resta",
+                    "formula": "$$\\operatorname{tg}(\\alpha \\pm \\beta) = \\dfrac{\\operatorname{tg}\\alpha \\pm \\operatorname{tg}\\beta}{1 \\mp \\operatorname{tg}\\alpha \\operatorname{tg}\\beta}$$",
+                    "description": "Se obtiene dividiendo el seno de la suma entre el coseno de la suma. De nuevo, el signo del denominador es el contrario.",
+                    "example": "$$\\operatorname{tg} 75^\\circ = \\dfrac{1 + \\frac{\\sqrt{3}}{3}}{1 - \\frac{\\sqrt{3}}{3}} = \\dfrac{3 + \\sqrt{3}}{3 - \\sqrt{3}} = \\dfrac{(3 + \\sqrt{3})^2}{9 - 3} = \\dfrac{12 + 6\\sqrt{3}}{6} = 2 + \\sqrt{3}$$(se ha racionalizado multiplicando por el conjugado $3 + \\sqrt{3}$)."
+                },
+                {
+                    "title": "Ángulo doble",
+                    "description": "Son las fórmulas de la suma con $\\beta = \\alpha$. Por ejemplo, $\\sin(\\alpha + \\alpha) = \\sin\\alpha\\cos\\alpha + \\cos\\alpha\\sin\\alpha = 2\\sin\\alpha\\cos\\alpha$. El coseno del ángulo doble también se puede escribir como $1 - 2\\sin^2\\alpha$ o $2\\cos^2\\alpha - 1$, usando la identidad fundamental.",
+                    "formula": "$$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha \\qquad \\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha \\qquad \\operatorname{tg} 2\\alpha = \\dfrac{2\\operatorname{tg}\\alpha}{1 - \\operatorname{tg}^2\\alpha}$$",
+                    "example": "$\\sin\\alpha = \\frac{3}{5}$, $\\alpha$ en el primer cuadrante, así que $\\cos\\alpha = \\frac{4}{5}$ y $\\operatorname{tg}\\alpha = \\frac{3}{4}$:<br>$$\\sin 2\\alpha = 2 \\cdot \\dfrac{3}{5} \\cdot \\dfrac{4}{5} = \\dfrac{24}{25} \\qquad \\cos 2\\alpha = \\dfrac{16}{25} - \\dfrac{9}{25} = \\dfrac{7}{25} \\qquad \\operatorname{tg} 2\\alpha = \\dfrac{2 \\cdot \\frac{3}{4}}{1 - \\frac{9}{16}} = \\dfrac{24}{7}$$"
+                },
+                {
+                    "title": "Ángulo mitad",
+                    "description": "Se deducen de $\\cos\\alpha = 1 - 2\\sin^2\\frac{\\alpha}{2}$ y $\\cos\\alpha = 2\\cos^2\\frac{\\alpha}{2} - 1$, despejando. El <strong>signo</strong> de la raíz no lo da la fórmula: depende del cuadrante en el que esté $\\frac{\\alpha}{2}$.",
+                    "formula": "$$\\sin\\dfrac{\\alpha}{2} = \\pm\\sqrt{\\dfrac{1 - \\cos\\alpha}{2}} \\qquad \\cos\\dfrac{\\alpha}{2} = \\pm\\sqrt{\\dfrac{1 + \\cos\\alpha}{2}} \\qquad \\operatorname{tg}\\dfrac{\\alpha}{2} = \\pm\\sqrt{\\dfrac{1 - \\cos\\alpha}{1 + \\cos\\alpha}}$$",
+                    "example": "$15^\\circ$ es la mitad de $30^\\circ$ y está en el primer cuadrante (signo $+$):<br>$$\\sin 15^\\circ = \\sqrt{\\dfrac{1 - \\frac{\\sqrt{3}}{2}}{2}} = \\sqrt{\\dfrac{2 - \\sqrt{3}}{4}} = \\dfrac{\\sqrt{2 - \\sqrt{3}}}{2} \\approx 0{,}259$$"
+                }
+            ]
+        },
+        {
+            "title": "Teoremas del seno y del coseno",
+            "items": [
+                {
+                    "title": "Notación en un triángulo cualquiera",
+                    "description": "Para triángulos que <strong>no son rectángulos</strong> se usan estos dos teoremas. Los vértices (y sus ángulos) se nombran con mayúsculas $A$, $B$, $C$, y cada lado con la minúscula del vértice <strong>opuesto</strong>: el lado $a$ está enfrente del ángulo $A$. Recuerda que los tres ángulos suman $180^\\circ$.",
+                    "formula": "<img src='/ejemplos/trigonometria/triangulo-general.png' alt='Triángulo cualquiera con vértices A, B y C y lados a, b y c opuestos a cada vértice' width='611' height='395' loading='lazy' decoding='async' style='max-width:320px; height:auto;'>$$A + B + C = 180^\\circ$$",
+                    "example": "<strong>Resolver un triángulo</strong> es calcular sus tres lados y sus tres ángulos a partir de tres datos (al menos uno de ellos, un lado)."
+                },
+                {
+                    "title": "Teorema del seno",
+                    "description": "En cualquier triángulo, los lados son <strong>proporcionales a los senos de los ángulos opuestos</strong>. Se usa cuando conocemos <strong>dos ángulos y un lado</strong>, o <strong>dos lados y el ángulo opuesto a uno de ellos</strong>.<br>Cuidado en este último caso: si al despejar obtienes $\\sin B$, hay dos ángulos posibles, $B$ y $180^\\circ - B$. Comprueba si los dos dan un triángulo válido (los ángulos deben sumar menos de $180^\\circ$).",
+                    "formula": "$$\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C}$$",
+                    "example": "$A = 45^\\circ$, $B = 60^\\circ$ y $a = 10$:<br>• $C = 180^\\circ - 45^\\circ - 60^\\circ = 75^\\circ$<br>• $b = \\dfrac{a \\sin B}{\\sin A} = \\dfrac{10 \\cdot \\frac{\\sqrt{3}}{2}}{\\frac{\\sqrt{2}}{2}} = 5\\sqrt{6} \\approx 12{,}25$<br>• $c = \\dfrac{a \\sin C}{\\sin A} = \\dfrac{10 \\cdot \\sin 75^\\circ}{\\sin 45^\\circ} \\approx 13{,}66$"
+                },
+                {
+                    "title": "Teorema del coseno",
+                    "description": "Es una <strong>generalización del teorema de Pitágoras</strong>: si $A = 90^\\circ$, entonces $\\cos A = 0$ y queda $a^2 = b^2 + c^2$. Se usa cuando conocemos <strong>dos lados y el ángulo que forman</strong>, o <strong>los tres lados</strong> (para hallar los ángulos despejando el coseno).",
+                    "formula": "$$a^2 = b^2 + c^2 - 2bc\\cos A$$$$b^2 = a^2 + c^2 - 2ac\\cos B \\qquad c^2 = a^2 + b^2 - 2ab\\cos C$$",
+                    "example": "• Dos lados y el ángulo que forman: $b = 5$, $c = 8$, $A = 60^\\circ$:<br>$$a^2 = 25 + 64 - 2 \\cdot 5 \\cdot 8 \\cdot \\dfrac{1}{2} = 89 - 40 = 49 \\Rightarrow a = 7$$• Los tres lados: $a = 7$, $b = 5$, $c = 8$:<br>$$\\cos B = \\dfrac{a^2 + c^2 - b^2}{2ac} = \\dfrac{49 + 64 - 25}{112} = \\dfrac{11}{14} \\Rightarrow B \\approx 38^\\circ\\,12'\\,48''$$"
+                }
+            ]
+        },
+        {
+            "title": "Ecuaciones trigonométricas",
+            "items": [
+                {
+                    "title": "¿Qué es una ecuación trigonométrica?",
+                    "description": "Es una ecuación en la que la incógnita aparece dentro de una razón trigonométrica. Como las razones se repiten cada vuelta, si hay solución hay <strong>infinitas</strong>: se dan las soluciones de una vuelta, $[0^\\circ, 360^\\circ)$, y se les suma $360^\\circ k$ (o $2k\\pi$ en radianes), con $k \\in \\mathbb{Z}$.<br>Como el seno y el coseno están entre $-1$ y $1$, ecuaciones como $\\sin x = 2$ <strong>no tienen solución</strong>.",
+                    "formula": "$$\\sin x = \\sin\\alpha \\Rightarrow \\begin{cases} x = \\alpha + 360^\\circ k \\\\ x = 180^\\circ - \\alpha + 360^\\circ k \\end{cases}$$$$\\cos x = \\cos\\alpha \\Rightarrow x = \\pm\\alpha + 360^\\circ k$$$$\\operatorname{tg} x = \\operatorname{tg}\\alpha \\Rightarrow x = \\alpha + 180^\\circ k$$",
+                    "example": "• $\\sin x = \\dfrac{1}{2}$: $\\;x = 30^\\circ + 360^\\circ k$ y $x = 150^\\circ + 360^\\circ k$<br>• $\\cos x = -\\dfrac{\\sqrt{2}}{2}$: $\\;x = 135^\\circ + 360^\\circ k$ y $x = 225^\\circ + 360^\\circ k$<br>• $\\operatorname{tg} x = \\sqrt{3}$: $\\;x = 60^\\circ + 180^\\circ k$ (la tangente se repite cada $180^\\circ$)<br>• En radianes, $\\sin x = \\dfrac{1}{2}$ da $x = \\dfrac{\\pi}{6} + 2k\\pi$ y $x = \\dfrac{5\\pi}{6} + 2k\\pi$"
+                },
+                {
+                    "title": "Resolver sacando factor común",
+                    "description": "Si todos los términos comparten una razón, sácala como factor común e iguala cada factor a cero. <strong>Error típico</strong>: dividir entre $\\sin x$ o $\\cos x$. Al hacerlo se pierden las soluciones en las que ese factor vale 0.",
+                    "example": "$\\sin 2x = \\cos x$. Con el ángulo doble:<br>$$2\\sin x\\cos x - \\cos x = 0 \\Rightarrow \\cos x\\,(2\\sin x - 1) = 0$$• $\\cos x = 0 \\Rightarrow x = 90^\\circ,\\ 270^\\circ$<br>• $\\sin x = \\frac{1}{2} \\Rightarrow x = 30^\\circ,\\ 150^\\circ$<br>Soluciones: $x = 30^\\circ, 90^\\circ, 150^\\circ, 270^\\circ$ (más $360^\\circ k$)."
+                },
+                {
+                    "title": "Resolver con una sola razón",
+                    "description": "Si aparecen seno y coseno mezclados, usa la identidad fundamental para dejarlo todo en función de una sola razón. Suele quedar una <strong>ecuación de segundo grado</strong>: haz un cambio de variable ($t = \\sin x$), resuélvela y descarta las soluciones con $\\lvert t \\rvert > 1$.",
+                    "example": "$2\\cos^2 x + \\sin x = 1$. Sustituyendo $\\cos^2 x = 1 - \\sin^2 x$:<br>$$2(1 - \\sin^2 x) + \\sin x = 1 \\Rightarrow 2\\sin^2 x - \\sin x - 1 = 0$$Con $t = \\sin x$: $\\;t = \\dfrac{1 \\pm \\sqrt{1 + 8}}{4} = \\dfrac{1 \\pm 3}{4} \\Rightarrow t = 1$ o $t = -\\dfrac{1}{2}$<br>• $\\sin x = 1 \\Rightarrow x = 90^\\circ$<br>• $\\sin x = -\\frac{1}{2} \\Rightarrow x = 210^\\circ,\\ 330^\\circ$<br>Comprobación con $x = 210^\\circ$: $2 \\cdot \\dfrac{3}{4} - \\dfrac{1}{2} = 1$ ✓"
+                }
+            ]
+        }
+    ]
+}

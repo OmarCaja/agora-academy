@@ -73,5 +73,12 @@
     ],
     "title": "Razones, proporcionalidad y porcentajes",
     "out": "public/libros/proporcionalidad-porcentajes.pdf"
+  },
+  {
+    "topics": [
+      "trigonometria"
+    ],
+    "title": "Trigonometría",
+    "out": "public/libros/trigonometria.pdf"
   }
 ]
