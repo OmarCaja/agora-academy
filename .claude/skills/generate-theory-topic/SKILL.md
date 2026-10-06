@@ -51,7 +51,7 @@ Use `src/content/topics/matrices.json` as the reference for tone and depth. Read
 - Highlight with `\\textcolor{#d46a6a}{…}` (red) or `\\textcolor{#4fa66e}{…}` (green), never `\\color`.
 - Absolute values with `\\lvert … \\rvert`, not bare `|…|`.
 
-**Level**: match depth and notation to the course per the Spanish curriculum. Write in Spain Spanish.
+**Level**: match depth and notation to the course per the Spanish curriculum, but never mention the course or level in the topic text. Write in Spain Spanish.
 
 ## 4. Check the maths
 

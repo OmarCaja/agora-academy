@@ -15,7 +15,7 @@
                 },
                 {
                     "title": "Radián",
-                    "description": "Un <strong>radián</strong> es el ángulo cuyo arco mide exactamente lo mismo que el <strong>radio</strong> de la circunferencia. Como la longitud de la circunferencia es $2\\pi r$, en una vuelta completa caben $2\\pi$ radianes. Es la unidad del Sistema Internacional y la que se usa en Bachillerato con funciones, límites y derivadas. Cuando un ángulo aparece sin unidad (por ejemplo $\\frac{\\pi}{3}$), se entiende que está en radianes.",
+                    "description": "Un <strong>radián</strong> es el ángulo cuyo arco mide exactamente lo mismo que el <strong>radio</strong> de la circunferencia. Como la longitud de la circunferencia es $2\\pi r$, en una vuelta completa caben $2\\pi$ radianes. Es la unidad del Sistema Internacional y la que se usa con funciones, límites y derivadas. Cuando un ángulo aparece sin unidad (por ejemplo $\\frac{\\pi}{3}$), se entiende que está en radianes.",
                     "formula": "$$\\text{vuelta completa} = 2\\pi \\text{ rad} \\qquad \\text{ángulo (rad)} = \\dfrac{\\text{longitud del arco}}{\\text{radio}}$$",
                     "example": "En una circunferencia de radio 3 cm, un arco de 6 cm abarca un ángulo de $\\dfrac{6}{3} = 2$ rad."
                 },

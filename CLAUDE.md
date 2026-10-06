@@ -77,10 +77,10 @@ New exams/exercise sheets are written in Markdown and rendered locally to PDF by
 
 The `generate-book` skill (`.claude/skills/generate-book/SKILL.md`) covers topic selection, ordering, naming and checks. The mechanics:
 
-`scripts/build-book.mjs` turns theory topics into a book PDF (cover, TOC with page numbers, running header/footer) using the site's `renderMath`, Paged.js (the `pagedjs` dev dependency) and headless Chrome. Write it to `public/libros/<topic-slugs>.pdf` (no `libro-` prefix). Each build is recorded in `scripts/books.json` (topics, title, subtitle, out), so after editing topics `pnpm books` rebuilds them all. The site reads that file through `src/data/books.ts`: `/books` (`src/pages/books.astro`, linked from the menu) lists each book by title with its chapters, in topic order, and each theory page links to the book containing it.
+`scripts/build-book.mjs` turns theory topics into a book PDF (cover, TOC with page numbers, running header/footer) using the site's `renderMath`, Paged.js (the `pagedjs` dev dependency) and headless Chrome. Write it to `public/libros/<topic-slugs>.pdf` (no `libro-` prefix). Each build is recorded in `scripts/books.json` (topics, title, out), so after editing topics `pnpm books` rebuilds them all. The site reads that file through `src/data/books.ts`: `/books` (`src/pages/books.astro`, linked from the menu) lists each book by title with its chapters, in topic order, and each theory page links to the book containing it.
 
 Both PDF generators share `scripts/pdf.mjs` (Chrome lookup for macOS/Linux/Windows, HTML escaping); override the browser with `CHROME=/path/to/chrome`.
 
 ```bash
-node scripts/build-book.mjs --topics matrices,determinantes --title "Matrices y determinantes" --subtitle "2º Bachillerato" --out public/libros/matrices-determinantes.pdf
+node scripts/build-book.mjs --topics matrices,determinantes --title "Matrices y determinantes" --out public/libros/matrices-determinantes.pdf
 ```

@@ -2,8 +2,8 @@
 /**
  * Builds a PDF book from theory topics (src/content/topics/*.json).
  *
- *   node scripts/build-book.mjs --topics matrices,determinantes --title "Matrices y determinantes" \
- *     [--subtitle "2º Bachillerato"] --out public/libros/matrices-determinantes.pdf [--html]
+ *   node scripts/build-book.mjs --topics matrices,determinantes --title "Matrices y determinantes"
+ *     --out public/libros/matrices-determinantes.pdf [--html]
  *   node scripts/build-book.mjs --all        (pnpm books: rebuild every book in scripts/books.json)
  *
  * Topics -> one HTML (formulas via the site's renderMath) -> Paged.js lays out
@@ -31,7 +31,7 @@ const CHROME = findChrome();
 const content = s => renderMath(s).replace(/src=(["'])\//g, 'src=$1/public/');
 
 const { values: args } = parseArgs({ options: {
-  topics: { type: 'string' }, title: { type: 'string' }, subtitle: { type: 'string' },
+  topics: { type: 'string' }, title: { type: 'string' },
   out: { type: 'string' }, html: { type: 'boolean' }, all: { type: 'boolean' } } });
 const books = JSON.parse(fs.readFileSync(BOOKS, 'utf8'));
 
@@ -39,11 +39,11 @@ if (args.all) {
   for (const book of books) await buildBook(book, args.html);
 } else {
   if (!args.topics || !args.title || !args.out) {
-    console.log('Usage: build-book.mjs --topics a,b --title "..." [--subtitle "..."] --out file.pdf [--html] | --all');
+    console.log('Usage: build-book.mjs --topics a,b --title "..." --out file.pdf [--html] | --all');
     process.exit(1);
   }
   const book = { topics: args.topics.split(',').map(s => s.trim()), title: args.title,
-    ...(args.subtitle && { subtitle: args.subtitle }), out: path.relative(root, path.resolve(args.out)) };
+    out: path.relative(root, path.resolve(args.out)) };
   await buildBook(book, args.html);
   const i = books.findIndex(b => b.out === book.out);
   if (i === -1) books.push(book); else books[i] = book;
@@ -107,7 +107,6 @@ async function buildBook(book, keepHtml) {
     .cover .brand img { width: 14mm; margin: 0; }
     .cover .rule { height: 3mm; background: #1f1f1f; width: 40mm; margin-top: auto; }
     .cover h1 { font-size: 34pt; line-height: 1.1; margin: 8mm 0 6mm; text-transform: uppercase; }
-    .cover .subtitle { font-size: 14pt; margin: 0; }
     .cover footer { margin-top: 30mm; padding-top: 4mm; border-top: 1px solid #1f1f1f; text-align: right; font-size: 10pt; }
 
     .toc { page: toc; break-after: page; }
@@ -145,7 +144,6 @@ async function buildBook(book, keepHtml) {
     <div class="brand"><img src="/public/favicon/logo.png" alt="">${esc(SITE_NAME)}</div>
     <div class="rule"></div>
     <h1>${esc(book.title)}</h1>
-    ${book.subtitle ? `<p class="subtitle">${esc(book.subtitle)}</p>` : ''}
     <footer>${ADDRESS.city} · ${year}</footer>
   </section>
   <nav class="toc"><h1>Índice</h1><ol>${toc}</ol></nav>
