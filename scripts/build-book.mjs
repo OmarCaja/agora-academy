@@ -28,7 +28,9 @@ const PAGEDJS = '/node_modules/pagedjs/dist/paged.polyfill.js';
 const CHROME = findChrome();
 // Topic HTML references images site-relative (/ejemplos/...); the server below serves the
 // project root, so point them at /public/.
-const content = s => renderMath(s).replace(/src=(["'])\//g, 'src=$1/public/');
+// Paged.js drops whitespace-only text nodes, so a plain space between a tag and a
+// formula (`</strong> $x$`) vanishes; a non-breaking space survives.
+const content = s => renderMath(s.replace(/(<\/\w+>) (?=\$)|(\$) (?=<\w)/g, '$1$2 ')).replace(/src=(["'])\//g, 'src=$1/public/');
 
 const { values: args } = parseArgs({ options: {
   topics: { type: 'string' }, title: { type: 'string' },

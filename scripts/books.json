@@ -79,5 +79,12 @@
     ],
     "title": "Trigonometría",
     "out": "public/libros/trigonometria.pdf"
+  },
+  {
+    "topics": [
+      "unidades-notacion-cientifica"
+    ],
+    "title": "Unidades y notación científica",
+    "out": "public/libros/unidades-notacion-cientifica.pdf"
   }
 ]

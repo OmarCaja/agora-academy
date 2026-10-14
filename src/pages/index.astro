@@ -87,7 +87,7 @@ const reasons = [
 						Contacto
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
-					<a href="/theory/algebra/" class="btn btn-line">
+					<a href="/books/" class="btn btn-line">
 						Ver teoría
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
@@ -123,21 +123,21 @@ const reasons = [
 			</p>
 
 			<div class="bento">
-				<a href="/theory/algebra/" class="cell cell-wide cell-accent reveal" style="--i: 2">
-					<Icon name="ph:function" class="cell-icon" aria-hidden="true" />
-					<span class="cell-title">Teoría</span>
+				<a href="/books/" class="cell cell-wide cell-accent reveal" style="--i: 2">
+					<Icon name="ph:books" class="cell-icon" aria-hidden="true" />
+					<span class="cell-title">Libros PDF</span>
 					<span class="cell-desc">
-						Apuntes y fórmulas de {topics.length} temas, con ejemplos
-						resueltos y gráficas.
+						La teoría reunida en {bookCount} {bookCount === 1 ? "libro" : "libros"}{" "}
+						para descargar e imprimir.
 					</span>
 					<span class="cell-action">
-						Ver teoría
+						Ver libros
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</span>
 				</a>
 
 				{/* One cell per listed level, no cap. Grid was designed around
-				    5 cells (Teoría, 3 levels, Libros PDF); adding a level pushes
+				    5 cells (Libros PDF, 3 levels, Teoría); adding a level pushes
 				    this past that and deserves a deliberate look, not a silent
 				    6th tile. */}
 				{
@@ -160,14 +160,14 @@ const reasons = [
 					))
 				}
 
-				<a href="/books/" class="cell reveal" style={`--i: ${levels.length + 3}`}>
-					<span class="cell-title">Libros PDF</span>
-					<span class="cell-desc">La teoría reunida en libros para descargar e imprimir.</span>
+				<a href="/theory/algebra/" class="cell reveal" style={`--i: ${levels.length + 3}`}>
+					<span class="cell-title">Teoría</span>
+					<span class="cell-desc">Apuntes y fórmulas con ejemplos resueltos y gráficas.</span>
 					<span class="cell-meta meta-label">
-						{bookCount} {bookCount === 1 ? "libro" : "libros"}
+						{topics.length} {topics.length === 1 ? "tema" : "temas"}
 					</span>
 					<span class="cell-action">
-						Ver libros
+						Ver teoría
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</span>
 				</a>

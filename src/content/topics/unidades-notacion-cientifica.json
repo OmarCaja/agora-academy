@@ -1,0 +1,163 @@
+{
+    "title": "Unidades y notación científica",
+    "description": "Magnitudes y unidades del Sistema Internacional, múltiplos y submúltiplos de longitud, masa, capacidad, superficie, volumen y tiempo, cambio de unidades con factores de conversión y notación científica.",
+    "menuGroup": "Física y química",
+    "menuOrder": 1,
+    "sections": [
+        {
+            "title": "Magnitudes y unidades",
+            "items": [
+                {
+                    "title": "¿Qué es una magnitud?",
+                    "description": "Una <strong>magnitud</strong> es cualquier propiedad que se puede <strong>medir</strong> y expresar con un número: la longitud, la masa, el tiempo, la temperatura... Para medirla la comparamos con una cantidad de referencia llamada <strong>unidad</strong>.<br>Una medida siempre tiene <strong>número y unidad</strong>: decir «la mesa mide 2» no significa nada; ¿2 metros, 2 palmos?",
+                    "formula": "$$\\text{medida} = \\text{número} + \\text{unidad}$$",
+                    "example": "• $3{,}5\\text{ m}$: la magnitud es la longitud, el número $3{,}5$ y la unidad el metro.<br>• $20\\text{ s}$: la magnitud es el tiempo y la unidad el segundo.<br>• La belleza o la simpatía <strong>no</strong> son magnitudes: no se pueden medir con un número."
+                },
+                {
+                    "title": "Sistema Internacional (SI)",
+                    "description": "Para que todos midamos igual, se usa el <strong>Sistema Internacional de Unidades</strong>, que fija una unidad para cada <strong>magnitud fundamental</strong>. Fíjate en que la unidad de masa es el <strong>kilogramo</strong>, no el gramo, y la de temperatura el <strong>kelvin</strong>.",
+                    "formula": "$$\\begin{array}{lll} \\textbf{Magnitud} & \\textbf{Unidad} & \\textbf{Símbolo} \\\\ \\hline \\text{Longitud} & \\text{metro} & \\text{m} \\\\ \\text{Masa} & \\text{kilogramo} & \\text{kg} \\\\ \\text{Tiempo} & \\text{segundo} & \\text{s} \\\\ \\text{Temperatura} & \\text{kelvin} & \\text{K} \\\\ \\text{Cantidad de sustancia} & \\text{mol} & \\text{mol} \\\\ \\text{Intensidad de corriente} & \\text{amperio} & \\text{A} \\\\ \\text{Intensidad luminosa} & \\text{candela} & \\text{cd} \\end{array}$$",
+                    "example": "Los símbolos se escriben en minúscula (salvo los que vienen de un nombre propio, como $\\text{K}$ de Kelvin o $\\text{A}$ de Ampère), sin punto y sin plural: $5\\text{ kg}$, nunca $5\\text{ Kg.}$ ni $5\\text{ kgs}$."
+                },
+                {
+                    "title": "Magnitudes derivadas",
+                    "description": "Las <strong>magnitudes derivadas</strong> se obtienen combinando las fundamentales mediante una fórmula, y su unidad sale de esa misma fórmula.",
+                    "formula": "$$\\begin{array}{lll} \\textbf{Magnitud} & \\textbf{Fórmula} & \\textbf{Unidad SI} \\\\ \\hline \\text{Superficie} & \\text{largo} \\cdot \\text{ancho} & \\text{m}^2 \\\\ \\text{Volumen} & \\text{largo} \\cdot \\text{ancho} \\cdot \\text{alto} & \\text{m}^3 \\\\ \\text{Velocidad} & v = \\dfrac{\\text{espacio}}{\\text{tiempo}} & \\text{m/s} \\\\ \\text{Densidad} & d = \\dfrac{\\text{masa}}{\\text{volumen}} & \\text{kg/m}^3 \\end{array}$$",
+                    "example": "Un coche recorre $100\\text{ m}$ en $5\\text{ s}$:<br>$$v = \\dfrac{100\\text{ m}}{5\\text{ s}} = 20\\text{ m/s}$$ La unidad $\\text{m/s}$ aparece al dividir metros entre segundos."
+                }
+            ]
+        },
+        {
+            "title": "Múltiplos y submúltiplos",
+            "items": [
+                {
+                    "title": "Prefijos del SI",
+                    "description": "Para no escribir números enormes o diminutos, a la unidad se le añade un <strong>prefijo</strong> que la multiplica por una potencia de $10$. Los prefijos sirven para cualquier unidad: kilómetro, kilogramo, kilolitro...",
+                    "formula": "$$\\begin{array}{lll} \\textbf{Prefijo} & \\textbf{Símbolo} & \\textbf{Equivale a} \\\\ \\hline \\text{giga} & \\text{G} & 10^9 = 1\\,000\\,000\\,000 \\\\ \\text{mega} & \\text{M} & 10^6 = 1\\,000\\,000 \\\\ \\text{kilo} & \\text{k} & 10^3 = 1000 \\\\ \\text{hecto} & \\text{h} & 10^2 = 100 \\\\ \\text{deca} & \\text{da} & 10^1 = 10 \\\\ \\hline \\text{deci} & \\text{d} & 10^{-1} = 0{,}1 \\\\ \\text{centi} & \\text{c} & 10^{-2} = 0{,}01 \\\\ \\text{mili} & \\text{m} & 10^{-3} = 0{,}001 \\\\ \\text{micro} & \\mu & 10^{-6} = 0{,}000\\,001 \\\\ \\text{nano} & \\text{n} & 10^{-9} = 0{,}000\\,000\\,001 \\end{array}$$",
+                    "example": "• $1\\text{ km} = 1000\\text{ m}$<br>• $1\\text{ mg} = 0{,}001\\text{ g}$<br>• $1\\text{ GB} = 10^9\\text{ bytes}$<br>• $1\\,\\mu\\text{s} = 10^{-6}\\text{ s}$ (una millonésima de segundo)"
+                },
+                {
+                    "title": "Longitud, masa y capacidad: la escalera",
+                    "description": "Para metros, gramos y litros, cada escalón vale <strong>10 veces</strong> más que el de abajo. Para <strong>bajar</strong> (a una unidad más pequeña) <strong>multiplicamos</strong> por $10$ en cada escalón; para <strong>subir</strong> (a una unidad más grande) <strong>dividimos</strong> por $10$ en cada escalón.<br>Truco: al pasar a una unidad más pequeña el número debe salir <strong>más grande</strong>, y al revés.",
+                    "formula": "$$\\text{km} \\xrightarrow{\\times 10} \\text{hm} \\xrightarrow{\\times 10} \\text{dam} \\xrightarrow{\\times 10} \\text{m} \\xrightarrow{\\times 10} \\text{dm} \\xrightarrow{\\times 10} \\text{cm} \\xrightarrow{\\times 10} \\text{mm}$$",
+                    "example": "• $2{,}5\\text{ km} \\to \\text{m}$: bajamos 3 escalones, $2{,}5 \\cdot 1000 = 2500\\text{ m}$<br>• $450\\text{ g} \\to \\text{kg}$: subimos 3 escalones, $450 : 1000 = 0{,}45\\text{ kg}$<br>• $350\\text{ mL} \\to \\text{L}$: subimos 3 escalones, $350 : 1000 = 0{,}35\\text{ L}$<br>• $0{,}75\\text{ L} \\to \\text{cL}$: bajamos 2 escalones, $0{,}75 \\cdot 100 = 75\\text{ cL}$<br>• Además, para masas grandes se usa la <strong>tonelada</strong>: $1\\text{ t} = 1000\\text{ kg}$"
+                },
+                {
+                    "title": "Superficie y volumen",
+                    "description": "Cuidado: aquí los escalones <strong>no</strong> valen $10$. Como $\\text{m}^2$ es «metro por metro», cada escalón de superficie vale $10^2 = \\textbf{100}$; y como $\\text{m}^3$ es «metro por metro por metro», cada escalón de volumen vale $10^3 = \\textbf{1000}$. Es el error más frecuente en los cambios de unidades.",
+                    "formula": "$$1\\text{ m} = 100\\text{ cm} \\Rightarrow 1\\text{ m}^2 = 100^2\\text{ cm}^2 = 10\\,000\\text{ cm}^2 \\qquad 1\\text{ m}^3 = 100^3\\text{ cm}^3 = 1\\,000\\,000\\text{ cm}^3$$",
+                    "example": "• $3\\text{ m}^2 \\to \\text{cm}^2$: bajamos 2 escalones de 100, $3 \\cdot 10\\,000 = 30\\,000\\text{ cm}^2$<br>• $5\\text{ dm}^3 \\to \\text{cm}^3$: bajamos 1 escalón de 1000, $5 \\cdot 1000 = 5000\\text{ cm}^3$<br>• $\\textcolor{#d46a6a}{\\text{Error típico}}$: $3\\text{ m}^2 = 300\\text{ cm}^2$ ✗ (eso sería con escalones de 10)"
+                },
+                {
+                    "title": "Relación entre volumen y capacidad",
+                    "description": "El volumen se mide en $\\text{m}^3$ y la capacidad en litros, pero son la misma magnitud. La equivalencia clave: <strong>un litro es un decímetro cúbico</strong>, y por tanto un mililitro es un centímetro cúbico.",
+                    "formula": "$$1\\text{ L} = 1\\text{ dm}^3 \\qquad 1\\text{ mL} = 1\\text{ cm}^3 \\qquad 1\\text{ m}^3 = 1000\\text{ L}$$",
+                    "example": "• $500\\text{ cm}^3 = 500\\text{ mL} = 0{,}5\\text{ L}$<br>• Un depósito de $2\\text{ m}^3$ cabe $2 \\cdot 1000 = 2000\\text{ L}$"
+                },
+                {
+                    "title": "Tiempo: no es decimal",
+                    "description": "El tiempo va de <strong>60 en 60</strong>: $1\\text{ h} = 60\\text{ min}$ y $1\\text{ min} = 60\\text{ s}$, así que $1\\text{ h} = 3600\\text{ s}$. Por eso no sirve mover la coma.<br>$\\textcolor{#d46a6a}{\\text{Error típico}}$: $1{,}5\\text{ h}$ <strong>no</strong> es $1\\text{ h}\\ 50\\text{ min}$, sino $1\\text{ h}\\ 30\\text{ min}$ (media hora).",
+                    "formula": "$$1\\text{ h} = 60\\text{ min} = 3600\\text{ s} \\qquad 1\\text{ día} = 24\\text{ h}$$",
+                    "example": "• $2{,}5\\text{ h} = 2{,}5 \\cdot 60 = 150\\text{ min}$<br>• $3\\text{ h} = 3 \\cdot 3600 = 10\\,800\\text{ s}$<br>• $1{,}5\\text{ h} = 1\\text{ h} + 0{,}5 \\cdot 60\\text{ min} = 1\\text{ h}\\ 30\\text{ min}$"
+                },
+                {
+                    "title": "Temperatura: grados Celsius y kelvin",
+                    "description": "La temperatura no se convierte multiplicando, sino <strong>sumando</strong>: un grado Celsius y un kelvin tienen el mismo tamaño, solo cambia dónde está el cero. En los problemas se suele redondear a $273$.",
+                    "formula": "$$T\\,(\\text{K}) = T\\,(^\\circ\\text{C}) + 273$$",
+                    "example": "• $25\\,^\\circ\\text{C} = 25 + 273 = 298\\text{ K}$<br>• $373\\text{ K} = 373 - 273 = 100\\,^\\circ\\text{C}$ (el agua hierve)<br>• $0\\text{ K} = -273\\,^\\circ\\text{C}$ (el cero absoluto)"
+                }
+            ]
+        },
+        {
+            "title": "Factores de conversión",
+            "items": [
+                {
+                    "title": "¿Qué es un factor de conversión?",
+                    "description": "Un <strong>factor de conversión</strong> es una fracción con la <strong>misma cantidad</strong> escrita en dos unidades distintas, una arriba y otra abajo. Como numerador y denominador valen lo mismo, la fracción <strong>vale 1</strong>, y multiplicar por $1$ no cambia la medida: solo cambia la unidad.<br>Cada equivalencia da dos factores; se usa el que deja la unidad que queremos eliminar en el lado contrario para que se <strong>simplifique</strong>.",
+                    "formula": "$$1\\text{ km} = 1000\\text{ m} \\;\\Rightarrow\\; \\dfrac{1000\\text{ m}}{1\\text{ km}} = 1 \\quad \\text{o} \\quad \\dfrac{1\\text{ km}}{1000\\text{ m}} = 1$$",
+                    "example": "Para pasar de $\\text{km}$ a $\\text{m}$, los $\\text{km}$ deben quedar abajo:<br>$$2{,}5\\,\\cancel{\\text{km}} \\cdot \\dfrac{1000\\text{ m}}{1\\,\\cancel{\\text{km}}} = 2500\\text{ m}$$"
+                },
+                {
+                    "title": "Método paso a paso",
+                    "description": "<ol><li>Escribe la cantidad con su unidad.</li><li>Multiplica por una fracción: pon <strong>abajo la unidad que quieres quitar</strong> y <strong>arriba la unidad nueva</strong>.</li><li>Rellena los números con la equivalencia entre ambas (al lado del prefijo grande va el $1$).</li><li><strong>Tacha</strong> las unidades que aparecen arriba y abajo y opera los números.</li></ol>",
+                    "example": "$450\\text{ g} \\to \\text{kg}$<br><strong>1.</strong> $450\\text{ g}$<br><strong>2.</strong> Quitamos $\\text{g}$ (abajo) y ponemos $\\text{kg}$ (arriba): $450\\text{ g} \\cdot \\dfrac{\\phantom{0}\\text{kg}}{\\phantom{0}\\text{g}}$<br><strong>3.</strong> $1\\text{ kg} = 1000\\text{ g}$: $$450\\,\\cancel{\\text{g}} \\cdot \\dfrac{1\\text{ kg}}{1000\\,\\cancel{\\text{g}}} = \\dfrac{450}{1000}\\text{ kg} = 0{,}45\\text{ kg}$$"
+                },
+                {
+                    "title": "Varios factores encadenados",
+                    "description": "Si no conoces la equivalencia directa, encadena varios factores, uno detrás de otro. Cada factor elimina una unidad y deja la siguiente, hasta llegar a la que buscas.",
+                    "example": "$3\\text{ h} \\to \\text{s}$, pasando por minutos:<br>$$3\\,\\cancel{\\text{h}} \\cdot \\dfrac{60\\,\\cancel{\\text{min}}}{1\\,\\cancel{\\text{h}}} \\cdot \\dfrac{60\\text{ s}}{1\\,\\cancel{\\text{min}}} = 3 \\cdot 60 \\cdot 60\\text{ s} = 10\\,800\\text{ s}$$"
+                },
+                {
+                    "title": "Unidades compuestas: velocidad",
+                    "description": "Cuando la unidad es un cociente, como $\\text{km/h}$, se cambia <strong>cada unidad por separado</strong>: un factor para el numerador y otro para el denominador. Fíjate en que la hora está abajo, así que en su factor la hora debe ir <strong>arriba</strong> para simplificarse.",
+                    "formula": "$$\\text{km/h} \\xrightarrow{\\;: 3{,}6\\;} \\text{m/s} \\qquad \\text{m/s} \\xrightarrow{\\;\\times 3{,}6\\;} \\text{km/h}$$",
+                    "example": "$72\\text{ km/h} \\to \\text{m/s}$:<br>$$72\\,\\dfrac{\\cancel{\\text{km}}}{\\cancel{\\text{h}}} \\cdot \\dfrac{1000\\text{ m}}{1\\,\\cancel{\\text{km}}} \\cdot \\dfrac{1\\,\\cancel{\\text{h}}}{3600\\text{ s}} = \\dfrac{72 \\cdot 1000}{3600}\\,\\dfrac{\\text{m}}{\\text{s}} = 20\\text{ m/s}$$ Comprobación con el atajo: $72 : 3{,}6 = 20$ ✓"
+                },
+                {
+                    "title": "Unidades compuestas: densidad",
+                    "description": "Igual que con la velocidad: un factor para la masa y otro para el volumen. Recuerda que $1\\text{ m}^3 = 1\\,000\\,000\\text{ cm}^3$, porque el escalón de volumen vale $1000$.",
+                    "example": "$1{,}2\\text{ g/cm}^3 \\to \\text{kg/m}^3$:<br>$$1{,}2\\,\\dfrac{\\cancel{\\text{g}}}{\\cancel{\\text{cm}^3}} \\cdot \\dfrac{1\\text{ kg}}{1000\\,\\cancel{\\text{g}}} \\cdot \\dfrac{1\\,000\\,000\\,\\cancel{\\text{cm}^3}}{1\\text{ m}^3} = \\dfrac{1{,}2 \\cdot 1\\,000\\,000}{1000}\\,\\dfrac{\\text{kg}}{\\text{m}^3} = 1200\\text{ kg/m}^3$$"
+                },
+                {
+                    "title": "Unidades al cuadrado y al cubo",
+                    "description": "Con factores de conversión no hace falta recordar si el escalón vale $100$ o $1000$: basta con <strong>elevar el factor</strong> al cuadrado o al cubo, igual que la unidad.",
+                    "formula": "$$\\left(\\dfrac{100\\text{ cm}}{1\\text{ m}}\\right)^2 = \\dfrac{10\\,000\\text{ cm}^2}{1\\text{ m}^2}$$",
+                    "example": "$3\\text{ m}^2 \\to \\text{cm}^2$:<br>$$3\\,\\cancel{\\text{m}^2} \\cdot \\left(\\dfrac{100\\text{ cm}}{1\\,\\cancel{\\text{m}}}\\right)^2 = 3 \\cdot 10\\,000\\text{ cm}^2 = 30\\,000\\text{ cm}^2$$"
+                }
+            ]
+        },
+        {
+            "title": "Notación científica",
+            "items": [
+                {
+                    "title": "¿Qué es la notación científica?",
+                    "description": "En ciencia aparecen números enormes (distancias entre estrellas) o diminutos (el tamaño de un átomo). La <strong>notación científica</strong> los escribe como un número $a$ con <strong>una sola cifra entera distinta de cero</strong>, multiplicado por una potencia de $10$. El exponente $n$ indica el <strong>orden de magnitud</strong>.",
+                    "formula": "$$a \\cdot 10^{n} \\qquad 1 \\le \\lvert a \\rvert < 10, \\quad n \\in \\mathbb{Z}$$",
+                    "example": "• Velocidad de la luz: $300\\,000\\,000\\text{ m/s} = 3 \\cdot 10^{8}\\text{ m/s}$<br>• Masa del electrón: $9{,}11 \\cdot 10^{-31}\\text{ kg}$<br>• $\\textcolor{#d46a6a}{\\text{Mal escrito}}$: $34 \\cdot 10^{4}$ (dos cifras enteras) o $0{,}5 \\cdot 10^{3}$ (cifra entera $0$)"
+                },
+                {
+                    "title": "Números grandes: exponente positivo",
+                    "description": "Mueve la coma hacia la <strong>izquierda</strong> hasta que quede una sola cifra entera. El número de lugares que has movido la coma es el exponente, <strong>positivo</strong>.",
+                    "example": "• $340\\,000 = 3{,}4 \\cdot 10^{5}$ (la coma se mueve 5 lugares)<br>• $6\\,020\\,000 = 6{,}02 \\cdot 10^{6}$<br>• $150\\,000\\,000\\text{ km} = 1{,}5 \\cdot 10^{8}\\text{ km}$ (distancia Tierra-Sol)"
+                },
+                {
+                    "title": "Números pequeños: exponente negativo",
+                    "description": "Mueve la coma hacia la <strong>derecha</strong> hasta pasar la primera cifra distinta de cero. El número de lugares es el exponente, <strong>negativo</strong>.",
+                    "example": "• $0{,}00072 = 7{,}2 \\cdot 10^{-4}$ (la coma se mueve 4 lugares)<br>• $0{,}05 = 5 \\cdot 10^{-2}$<br>• $0{,}000\\,000\\,1\\text{ m} = 1 \\cdot 10^{-7}\\text{ m}$"
+                },
+                {
+                    "title": "De notación científica a número decimal",
+                    "description": "Se hace al revés: si el exponente es <strong>positivo</strong>, la coma se mueve a la <strong>derecha</strong> (el número crece); si es <strong>negativo</strong>, a la <strong>izquierda</strong> (el número se hace pequeño). Los huecos se rellenan con ceros.",
+                    "example": "• $2{,}5 \\cdot 10^{4} = 25\\,000$<br>• $8{,}3 \\cdot 10^{-3} = 0{,}0083$"
+                },
+                {
+                    "title": "Multiplicación y división",
+                    "description": "Se operan por separado los números y las potencias de $10$ (sumando o restando exponentes, como en cualquier potencia de la misma base). Si el número resultante no está entre $1$ y $10$, se ajusta al final.",
+                    "formula": "$$(a \\cdot 10^{m})(b \\cdot 10^{n}) = (a \\cdot b) \\cdot 10^{m+n} \\qquad \\dfrac{a \\cdot 10^{m}}{b \\cdot 10^{n}} = \\dfrac{a}{b} \\cdot 10^{m-n}$$",
+                    "example": "• $(3 \\cdot 10^{5}) \\cdot (4 \\cdot 10^{-2}) = 12 \\cdot 10^{3} = \\textcolor{#4fa66e}{1{,}2 \\cdot 10^{4}}$ (como $12 = 1{,}2 \\cdot 10$, el exponente sube uno)<br>• $\\dfrac{8 \\cdot 10^{6}}{2 \\cdot 10^{-3}} = 4 \\cdot 10^{6-(-3)} = \\textcolor{#4fa66e}{4 \\cdot 10^{9}}$"
+                },
+                {
+                    "title": "Suma y resta",
+                    "description": "Solo se pueden sumar directamente si tienen el <strong>mismo exponente</strong>. Si no, primero se reescribe uno de ellos para igualar exponentes (normalmente al mayor), luego se suman los números y se mantiene la potencia.",
+                    "formula": "$$a \\cdot 10^{n} + b \\cdot 10^{n} = (a + b) \\cdot 10^{n}$$",
+                    "example": "$3{,}2 \\cdot 10^{5} + 4 \\cdot 10^{4}$<br>Igualamos a $10^{5}$: $4 \\cdot 10^{4} = 0{,}4 \\cdot 10^{5}$<br>$3{,}2 \\cdot 10^{5} + 0{,}4 \\cdot 10^{5} = (3{,}2 + 0{,}4) \\cdot 10^{5} = \\textcolor{#4fa66e}{3{,}6 \\cdot 10^{5}}$"
+                }
+            ]
+        },
+        {
+            "title": "Conversiones con notación científica",
+            "items": [
+                {
+                    "title": "Prefijos como potencias de 10",
+                    "description": "Con prefijos muy grandes o muy pequeños es más cómodo escribir el factor de conversión con potencias de $10$ y operar con las reglas de la notación científica.",
+                    "example": "• $5\\text{ nm} \\to \\text{m}$: $5\\,\\cancel{\\text{nm}} \\cdot \\dfrac{10^{-9}\\text{ m}}{1\\,\\cancel{\\text{nm}}} = 5 \\cdot 10^{-9}\\text{ m}$<br>• $0{,}5\\text{ mg} \\to \\text{kg}$: $0{,}5\\,\\cancel{\\text{mg}} \\cdot \\dfrac{10^{-3}\\,\\cancel{\\text{g}}}{1\\,\\cancel{\\text{mg}}} \\cdot \\dfrac{1\\text{ kg}}{10^{3}\\,\\cancel{\\text{g}}} = 0{,}5 \\cdot 10^{-6}\\text{ kg} = 5 \\cdot 10^{-7}\\text{ kg}$"
+                },
+                {
+                    "title": "Ejemplos completos",
+                    "description": "El procedimiento es el mismo de siempre: factores de conversión para cambiar la unidad y, al final, el resultado en notación científica correcta.",
+                    "example": "• Distancia Tierra-Sol en metros:<br>$1{,}5 \\cdot 10^{8}\\,\\cancel{\\text{km}} \\cdot \\dfrac{10^{3}\\text{ m}}{1\\,\\cancel{\\text{km}}} = 1{,}5 \\cdot 10^{11}\\text{ m}$<br>• Velocidad de la luz en km/h:<br>$$3 \\cdot 10^{8}\\,\\dfrac{\\cancel{\\text{m}}}{\\cancel{\\text{s}}} \\cdot \\dfrac{1\\text{ km}}{10^{3}\\,\\cancel{\\text{m}}} \\cdot \\dfrac{3600\\,\\cancel{\\text{s}}}{1\\text{ h}} = \\dfrac{3 \\cdot 3{,}6 \\cdot 10^{3} \\cdot 10^{8}}{10^{3}}\\,\\dfrac{\\text{km}}{\\text{h}} = 10{,}8 \\cdot 10^{8} = 1{,}08 \\cdot 10^{9}\\text{ km/h}$$ • $2\\text{ mm}^3 \\to \\text{m}^3$:<br>$2\\,\\cancel{\\text{mm}^3} \\cdot \\left(\\dfrac{10^{-3}\\text{ m}}{1\\,\\cancel{\\text{mm}}}\\right)^3 = 2 \\cdot 10^{-9}\\text{ m}^3$"
+                }
+            ]
+        }
+    ]
+}

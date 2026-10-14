@@ -9,6 +9,7 @@ export const GROUP_ORDER: string[] = [
     "Potencias, raíces y logaritmos",
     "Trigonometría",
     "Estadística y probabilidad",
+    "Física y química",
 ];
 
 interface TopicLike {

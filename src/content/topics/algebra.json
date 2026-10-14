@@ -1,6 +1,6 @@
 {
     "title": "Álgebra",
-    "description": "Introducción al lenguaje algebraico, manejo de monomios y polinomios, y resolución de ecuaciones de primer grado.",
+    "description": "Lenguaje algebraico, monomios y polinomios: operaciones, división de polinomios, regla de Ruffini, teorema del resto y factorización. Resolución de ecuaciones de primer grado.",
     "menuGroup": "Álgebra",
     "menuOrder": 2,
     "sections": [
@@ -41,6 +41,16 @@
                     "title": "Término independiente",
                     "description": "Es el término del polinomio que no tiene parte literal (el grado del monomio es cero).",
                     "example": "En el polinomio $P(x) = 3x^2 - 5x + 8$, el término independiente es 8."
+                },
+                {
+                    "title": "Polinomio ordenado y completo",
+                    "description": "Un polinomio está <strong>ordenado</strong> cuando sus términos se escriben de mayor a menor grado, y está <strong>completo</strong> cuando aparecen todos los grados, desde el mayor hasta el término independiente. Si falta algún grado, lo escribimos con coeficiente $0$.<br>Antes de dividir (por el método largo o por Ruffini) <strong>siempre</strong> hay que ordenar y completar el dividendo: olvidar un hueco es el error más común.",
+                    "example": "$P(x) = 5 - 3x^3 + x^4$<br>• Ordenado: $x^4 - 3x^3 + 5$<br>• Ordenado y completo: $x^4 - 3x^3 + \\textcolor{#d46a6a}{0}x^2 + \\textcolor{#d46a6a}{0}x + 5$"
+                },
+                {
+                    "title": "Valor numérico: $P(a)$",
+                    "description": "El <strong>valor numérico</strong> de un polinomio $P(x)$ para $x = a$ es el número que se obtiene al sustituir la $x$ por $a$ y hacer las operaciones. Se escribe $P(a)$. Pon el número entre paréntesis cuando sea negativo para no equivocarte con los signos.",
+                    "example": "$P(x) = 2x^3 - 3x + 5$<br>• $P(2) = 2 \\cdot 2^3 - 3 \\cdot 2 + 5 = 16 - 6 + 5 = 15$<br>• $P(-1) = 2 \\cdot (-1)^3 - 3 \\cdot (-1) + 5 = -2 + 3 + 5 = 6$"
                 }
             ]
         },
@@ -56,7 +66,7 @@
                 {
                     "title": "Multiplicación",
                     "description": "Para multiplicar monomios, se multiplican los coeficientes entre sí y las partes literales entre sí (sumando los exponentes de las letras iguales). Para multiplicar un polinomio, se aplica la propiedad distributiva multiplicando cada término.",
-                    "example": "Monomios: $(2x^2) \\cdot (3x^3) = 6x^5$. <br> Polinomios: $2 \\cdot (x + 3) = 2x + 6$.",
+                    "example": "Monomios: $(2x^2) \\cdot (3x^3) = 6x^5$. <br> Número por polinomio: $2 \\cdot (x + 3) = 2x + 6$. <br> Polinomio por polinomio: cada término del primero multiplica a cada término del segundo y después se agrupan los semejantes:<br>$(x + 2)(x^2 - 3x + 1) = x^3 - 3x^2 + x + 2x^2 - 6x + 2 = x^3 - x^2 - 5x + 2$",
                     "formula": "$(a \\cdot x^n) \\cdot (b \\cdot x^m) = (a \\cdot b)x^{n+m}$"
                 },
                 {
@@ -64,6 +74,104 @@
                     "description": "Se dividen los coeficientes y se restan los exponentes de las letras comunes en la parte literal.",
                     "example": "$\\frac{10x^5}{2x^2} = 5x^{5-2} = 5x^3$",
                     "formula": "$\\frac{a \\cdot x^n}{b \\cdot x^m} = (a/b)x^{n-m}$"
+                }
+            ]
+        },
+        {
+            "title": "División de polinomios",
+            "items": [
+                {
+                    "title": "Elementos de la división",
+                    "description": "Al dividir un polinomio <strong>dividendo</strong> $D(x)$ entre otro <strong>divisor</strong> $d(x)$ obtenemos un <strong>cociente</strong> $C(x)$ y un <strong>resto</strong> $R(x)$. Igual que con números, se cumple la <strong>prueba de la división</strong>, y el resto siempre tiene <strong>menor grado que el divisor</strong> (por eso sabemos cuándo parar).",
+                    "formula": "$$D(x) = d(x) \\cdot C(x) + R(x) \\qquad \\text{grado } R(x) < \\text{grado } d(x)$$",
+                    "example": "Con números: $17 = 5 \\cdot 3 + 2$ (dividendo $17$, divisor $5$, cociente $3$, resto $2 < 5$).<br>Con polinomios: si el divisor tiene grado $2$, el resto tendrá grado $1$ o $0$."
+                },
+                {
+                    "title": "División paso a paso",
+                    "description": "<ol><li><strong>Ordena y completa</strong> el dividendo (huecos con $0$) y ordena el divisor.</li><li>Divide el <strong>primer término del dividendo</strong> entre el <strong>primer término del divisor</strong>: es el primer término del cociente.</li><li>Multiplica ese término por <strong>todo</strong> el divisor y <strong>réstalo</strong> del dividendo (cambia todos los signos y suma).</li><li>Con lo que queda, repite los pasos 2 y 3 hasta que su grado sea menor que el del divisor: eso es el resto.</li></ol>",
+                    "example": "$(x^4 - 3x^2 + 2x - 5) : (x^2 + x - 1)$<br><strong>1.</strong> Completamos: $x^4 + 0x^3 - 3x^2 + 2x - 5$<br><strong>2.</strong> $\\dfrac{x^4}{x^2} = \\textcolor{#4fa66e}{x^2}$ → $x^2(x^2 + x - 1) = x^4 + x^3 - x^2$<br>Restamos: $(x^4 + 0x^3 - 3x^2 + 2x - 5) - (x^4 + x^3 - x^2) = -x^3 - 2x^2 + 2x - 5$<br><strong>3.</strong> $\\dfrac{-x^3}{x^2} = \\textcolor{#4fa66e}{-x}$ → $-x(x^2 + x - 1) = -x^3 - x^2 + x$<br>Restamos: $(-x^3 - 2x^2 + 2x - 5) - (-x^3 - x^2 + x) = -x^2 + x - 5$<br><strong>4.</strong> $\\dfrac{-x^2}{x^2} = \\textcolor{#4fa66e}{-1}$ → $-1(x^2 + x - 1) = -x^2 - x + 1$<br>Restamos: $(-x^2 + x - 5) - (-x^2 - x + 1) = \\textcolor{#d46a6a}{2x - 6}$<br>Grado $1 < 2$: paramos.<br>$C(x) = \\textcolor{#4fa66e}{x^2 - x - 1}$, $\\quad R(x) = \\textcolor{#d46a6a}{2x - 6}$<br>Comprobación: $(x^2 + x - 1)(x^2 - x - 1) + 2x - 6 = x^4 - 3x^2 + 2x - 5$ ✓"
+                },
+                {
+                    "title": "División exacta",
+                    "description": "Si el resto es $R(x) = 0$, la división es <strong>exacta</strong>: el dividendo es igual al divisor por el cociente. Decimos que $D(x)$ es <strong>divisible</strong> entre $d(x)$, o que $d(x)$ es un <strong>factor</strong> de $D(x)$. Esta idea es la base de la factorización.",
+                    "formula": "$$R(x) = 0 \\iff D(x) = d(x) \\cdot C(x)$$",
+                    "example": "$(x^2 - 5x + 6) : (x - 2) = x - 3$ con resto $0$, luego $x^2 - 5x + 6 = (x - 2)(x - 3)$."
+                }
+            ]
+        },
+        {
+            "title": "Regla de Ruffini",
+            "items": [
+                {
+                    "title": "¿Cuándo se usa?",
+                    "description": "La <strong>regla de Ruffini</strong> es un método rápido para dividir un polinomio entre un binomio de la forma $(x - a)$. Solo trabaja con los <strong>coeficientes</strong>, así que el dividendo debe estar <strong>ordenado y completo</strong>.<br>Cuidado con el signo de $a$: en $(x + 2) = (x - (-2))$ el número que se usa es $a = -2$.",
+                    "formula": "$$P(x) : (x - a)$$",
+                    "example": "• $(x - 3)$ → $a = 3$<br>• $(x + 2)$ → $a = -2$<br>• $(x^2 + 1)$ → no se puede usar Ruffini (el divisor no es de la forma $x - a$)."
+                },
+                {
+                    "title": "Ruffini paso a paso",
+                    "description": "<ol><li>Escribe los coeficientes del dividendo (con los $0$ de los huecos) en la fila de arriba y $a$ a la izquierda.</li><li><strong>Baja</strong> el primer coeficiente tal cual.</li><li><strong>Multiplica</strong> ese número por $a$ y escribe el resultado debajo del siguiente coeficiente.</li><li><strong>Suma</strong> la columna y repite: multiplica por $a$, coloca, suma… hasta el final.</li><li>El <strong>último número es el resto</strong>; los demás son los coeficientes del cociente, que tiene <strong>un grado menos</strong> que el dividendo.</li></ol>",
+                    "example": "$(x^3 - 4x^2 + 5) : (x - 3)$. Completamos: $x^3 - 4x^2 + 0x + 5$, y $a = 3$.<br>$$\\begin{array}{c|rrrr} & 1 & -4 & 0 & 5 \\\\ 3 & & 3 & -3 & -9 \\\\ \\hline & \\textcolor{#4fa66e}{1} & \\textcolor{#4fa66e}{-1} & \\textcolor{#4fa66e}{-3} & \\textcolor{#d46a6a}{-4} \\end{array}$$ • Bajamos el $1$. $\\;1 \\cdot 3 = 3$; $\\;-4 + 3 = -1$<br>• $-1 \\cdot 3 = -3$; $\\;0 + (-3) = -3$<br>• $-3 \\cdot 3 = -9$; $\\;5 + (-9) = -4$<br>$C(x) = \\textcolor{#4fa66e}{x^2 - x - 3}$, $\\quad R = \\textcolor{#d46a6a}{-4}$"
+                },
+                {
+                    "title": "Ejemplo con $(x + a)$",
+                    "description": "Cuando el divisor es una suma, el número de la izquierda es <strong>negativo</strong>. El resto de pasos es idéntico.",
+                    "example": "$(2x^3 + 3x^2 - 5x + 6) : (x + 2)$, con $a = -2$:<br>$$\\begin{array}{c|rrrr} & 2 & 3 & -5 & 6 \\\\ -2 & & -4 & 2 & 6 \\\\ \\hline & \\textcolor{#4fa66e}{2} & \\textcolor{#4fa66e}{-1} & \\textcolor{#4fa66e}{-3} & \\textcolor{#d46a6a}{12} \\end{array}$$ $C(x) = \\textcolor{#4fa66e}{2x^2 - x - 3}$, $\\quad R = \\textcolor{#d46a6a}{12}$"
+                }
+            ]
+        },
+        {
+            "title": "Teorema del resto",
+            "items": [
+                {
+                    "title": "Enunciado",
+                    "description": "El <strong>resto</strong> de dividir $P(x)$ entre $(x - a)$ es igual al <strong>valor numérico</strong> $P(a)$. Así podemos saber el resto <strong>sin hacer la división</strong>.<br><strong>¿Por qué?</strong> Por la prueba de la división, $P(x) = (x - a) \\cdot C(x) + R$. Si sustituimos $x = a$, el primer sumando se anula: $P(a) = 0 \\cdot C(a) + R = R$.",
+                    "formula": "$$\\text{Resto de } P(x) : (x - a) = P(a)$$",
+                    "example": "Resto de $(x^3 - 4x^2 + 5) : (x - 3)$:<br>$P(3) = 3^3 - 4 \\cdot 3^2 + 5 = 27 - 36 + 5 = -4$, el mismo resto que obtuvimos con Ruffini.<br>Resto de $(x^{100} - 1) : (x + 1)$: $P(-1) = (-1)^{100} - 1 = 1 - 1 = 0$. ¡Con Ruffini serían 101 coeficientes!"
+                },
+                {
+                    "title": "Teorema del factor",
+                    "description": "Es una consecuencia directa: $(x - a)$ es un <strong>factor</strong> de $P(x)$ (la división es exacta) si y solo si $P(a) = 0$. En ese caso decimos que $a$ es una <strong>raíz</strong> del polinomio.",
+                    "formula": "$$P(a) = 0 \\iff P(x) = (x - a) \\cdot C(x)$$",
+                    "example": "$P(x) = x^3 - 2x^2 - 5x + 6$<br>$P(1) = 1 - 2 - 5 + 6 = 0$ → $(x - 1)$ es factor de $P(x)$ y $x = 1$ es raíz.<br>$P(2) = 8 - 8 - 10 + 6 = -4 \\neq 0$ → $(x - 2)$ no es factor."
+                },
+                {
+                    "title": "Calcular un parámetro",
+                    "description": "Si nos dicen que una división es exacta (o que tiene cierto resto), imponemos $P(a) = $ resto y resolvemos la ecuación que aparece.",
+                    "example": "Halla $k$ para que $P(x) = x^3 + kx^2 - 4$ sea divisible entre $(x - 2)$.<br>Divisible significa resto $0$: $P(2) = 0$<br>$2^3 + k \\cdot 2^2 - 4 = 0 \\Rightarrow 8 + 4k - 4 = 0 \\Rightarrow 4k = -4 \\Rightarrow \\textcolor{#4fa66e}{k = -1}$"
+                }
+            ]
+        },
+        {
+            "title": "Factorización de polinomios",
+            "items": [
+                {
+                    "title": "¿Qué es factorizar?",
+                    "description": "<strong>Factorizar</strong> un polinomio es escribirlo como <strong>producto</strong> de polinomios del menor grado posible, igual que $12 = 2^2 \\cdot 3$. Cada raíz $a$ aporta un factor $(x - a)$. Un polinomio de grado $n$ tiene <strong>como máximo $n$ raíces</strong>.<br>Un polinomio que no se puede descomponer más se llama <strong>irreducible</strong> (por ejemplo $x^2 + 1$, que no tiene raíces reales).",
+                    "formula": "$$P(x) = a_n (x - x_1)(x - x_2) \\cdots (x - x_n)$$",
+                    "example": "$x^2 - 5x + 6 = (x - 2)(x - 3)$: las raíces son $2$ y $3$."
+                },
+                {
+                    "title": "Sacar factor común e identidades notables",
+                    "description": "Antes de usar Ruffini, mira si puedes simplificar:<br>• <strong>Factor común</strong>: si todos los términos comparten un número o una potencia de $x$, sácalo. Si no hay término independiente, $x$ siempre es factor común (y $x = 0$ es raíz).<br>• <strong>Identidades notables</strong>: reconoce $a^2 - b^2$, $a^2 + 2ab + b^2$ o $a^2 - 2ab + b^2$.",
+                    "example": "• $2x^3 - 6x^2 = 2x^2(x - 3)$<br>• $x^2 - 9 = (x + 3)(x - 3)$<br>• $x^2 + 6x + 9 = (x + 3)^2$"
+                },
+                {
+                    "title": "Raíces enteras con Ruffini",
+                    "description": "Si el polinomio tiene coeficientes enteros, sus <strong>raíces enteras</strong> son <strong>divisores del término independiente</strong>. Probamos esos divisores con Ruffini (o calculando $P(a)$): cuando el resto da $0$, tenemos un factor $(x - a)$ y seguimos factorizando el cociente.",
+                    "formula": "$$a \\text{ raíz entera} \\Rightarrow a \\text{ divide al término independiente}$$",
+                    "example": "$P(x) = x^3 - 2x^2 - 5x + 6$. Divisores de $6$: $\\pm 1, \\pm 2, \\pm 3, \\pm 6$.<br>Probamos $a = 1$ y después $a = 3$ sobre el cociente:<br>$$\\begin{array}{c|rrrr} & 1 & -2 & -5 & 6 \\\\ 1 & & 1 & -1 & -6 \\\\ \\hline & 1 & -1 & -6 & \\textcolor{#4fa66e}{0} \\\\ 3 & & 3 & 6 & \\\\ \\hline & 1 & 2 & \\textcolor{#4fa66e}{0} & \\end{array}$$ Restos $0$ → $(x - 1)$ y $(x - 3)$ son factores y el último cociente es $x + 2$.<br>$P(x) = (x - 1)(x - 3)(x + 2)$"
+                },
+                {
+                    "title": "Cuando queda grado 2",
+                    "description": "Si después de Ruffini queda un polinomio de grado $2$, es más rápido resolver la <strong>ecuación de segundo grado</strong> $ax^2 + bx + c = 0$. Si sus soluciones son $x_1$ y $x_2$, el polinomio se factoriza así (no olvides el coeficiente $a$ delante). Si la ecuación no tiene solución real, el polinomio es irreducible.",
+                    "formula": "$$ax^2 + bx + c = a(x - x_1)(x - x_2)$$",
+                    "example": "$2x^2 - 2x - 12 = 0 \\Rightarrow x = \\dfrac{2 \\pm \\sqrt{4 + 96}}{4} = \\dfrac{2 \\pm 10}{4} \\Rightarrow x_1 = 3, \\; x_2 = -2$<br>$2x^2 - 2x - 12 = 2(x - 3)(x + 2)$"
+                },
+                {
+                    "title": "Método completo paso a paso",
+                    "description": "<ol><li>Saca <strong>factor común</strong> (números y potencias de $x$).</li><li>Comprueba si es una <strong>identidad notable</strong>.</li><li>Busca raíces entre los <strong>divisores del término independiente</strong> y divide con <strong>Ruffini</strong>; repite con cada cociente.</li><li>Cuando quede grado $2$, usa la <strong>ecuación de segundo grado</strong>.</li><li>Escribe el resultado como producto de todos los factores.</li></ol>",
+                    "example": "$P(x) = 2x^4 - 2x^3 - 14x^2 + 2x + 12$<br><strong>1.</strong> Factor común: $P(x) = 2(x^4 - x^3 - 7x^2 + x + 6)$<br><strong>2.</strong> Divisores de $6$: $\\pm 1, \\pm 2, \\pm 3, \\pm 6$. Probamos $1$ y $-1$:<br>$$\\begin{array}{c|rrrrr} & 1 & -1 & -7 & 1 & 6 \\\\ 1 & & 1 & 0 & -7 & -6 \\\\ \\hline & 1 & 0 & -7 & -6 & \\textcolor{#4fa66e}{0} \\\\ -1 & & -1 & 1 & 6 & \\\\ \\hline & 1 & -1 & -6 & \\textcolor{#4fa66e}{0} & \\end{array}$$ <strong>3.</strong> Queda $x^2 - x - 6 = 0 \\Rightarrow x = \\dfrac{1 \\pm 5}{2} \\Rightarrow x = 3, \\; x = -2$<br><strong>4.</strong> $P(x) = 2(x - 1)(x + 1)(x - 3)(x + 2)$"
                 }
             ]
         },
