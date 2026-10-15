@@ -1,0 +1,146 @@
+{
+    "title": "Sistemas de ecuaciones",
+    "description": "Sistemas de ecuaciones lineales: resolución por el método de Gauss, expresión matricial $AX = B$, clasificación de los sistemas, discusión con el teorema de Rouché-Frobenius y regla de Cramer.",
+    "menuGroup": "Álgebra",
+    "menuOrder": 5,
+    "sections": [
+        {
+            "title": "¿Qué es un sistema de ecuaciones lineales?",
+            "items": [
+                {
+                    "title": "Definición",
+                    "description": "Un <strong>sistema de ecuaciones lineales</strong> es un conjunto de ecuaciones de primer grado (las incógnitas aparecen solo elevadas a 1, sin multiplicarse entre sí) que deben cumplirse <strong>a la vez</strong>. Los números que multiplican a las incógnitas son los <strong>coeficientes</strong> y los del segundo miembro, los <strong>términos independientes</strong>.",
+                    "formula": "$$\\begin{cases} a_{11}x_1 + a_{12}x_2 + \\cdots + a_{1n}x_n = b_1 \\\\ a_{21}x_1 + a_{22}x_2 + \\cdots + a_{2n}x_n = b_2 \\\\ \\quad \\vdots \\\\ a_{m1}x_1 + a_{m2}x_2 + \\cdots + a_{mn}x_n = b_m \\end{cases}$$",
+                    "example": "$$\\begin{cases} x + y + z = 6 \\\\ 2x - y + z = 3 \\\\ x + 2y - z = 2 \\end{cases}$$ Es un sistema de 3 ecuaciones con 3 incógnitas. El coeficiente de $y$ en la segunda ecuación es $-1$ y el término independiente de la tercera es $2$."
+                },
+                {
+                    "title": "Solución de un sistema",
+                    "description": "Una <strong>solución</strong> es un conjunto de valores de las incógnitas que cumple <strong>todas</strong> las ecuaciones a la vez. Para comprobar una solución, se sustituye en cada ecuación: si falla en una sola, no es solución.",
+                    "example": "¿Es $(x, y, z) = (1, 2, 3)$ solución del sistema anterior?<br>• $1 + 2 + 3 = 6$ ✓<br>• $2 \\cdot 1 - 2 + 3 = 3$ ✓<br>• $1 + 2 \\cdot 2 - 3 = 2$ ✓<br>Cumple las tres, luego sí es solución."
+                },
+                {
+                    "title": "Sistemas equivalentes",
+                    "description": "Dos sistemas son <strong>equivalentes</strong> si tienen las mismas soluciones. Un sistema se transforma en otro equivalente si:<br>• Se <strong>intercambian</strong> dos ecuaciones.<br>• Se <strong>multiplica</strong> una ecuación por un número distinto de 0.<br>• Se <strong>suma</strong> a una ecuación otra multiplicada por un número.<br>En estas transformaciones se basa el método de Gauss.",
+                    "example": "$$\\begin{cases} x + y = 5 \\\\ x - y = 1 \\end{cases} \\xrightarrow{E_2 - E_1} \\begin{cases} x + y = 5 \\\\ -2y = -4 \\end{cases}$$ Ambos sistemas tienen la misma solución: $y = 2$, $x = 3$."
+                }
+            ]
+        },
+        {
+            "title": "Expresión matricial",
+            "items": [
+                {
+                    "title": "Matrices asociadas a un sistema",
+                    "description": "Todo sistema lineal se puede escribir con matrices:<br>• $A$, <strong>matriz de coeficientes</strong>: cada fila es una ecuación y cada columna, una incógnita.<br>• $X$, <strong>matriz de incógnitas</strong> (columna).<br>• $B$, <strong>matriz de términos independientes</strong> (columna).<br>• $A^*$ (o $(A \\mid B)$), <strong>matriz ampliada</strong>: la matriz $A$ con la columna $B$ añadida a la derecha.",
+                    "formula": "$$\\underbrace{\\begin{pmatrix} a_{11} & \\cdots & a_{1n} \\\\ \\vdots & \\ddots & \\vdots \\\\ a_{m1} & \\cdots & a_{mn} \\end{pmatrix}}_{A} \\underbrace{\\begin{pmatrix} x_1 \\\\ \\vdots \\\\ x_n \\end{pmatrix}}_{X} = \\underbrace{\\begin{pmatrix} b_1 \\\\ \\vdots \\\\ b_m \\end{pmatrix}}_{B}$$",
+                    "example": "$$\\begin{cases} x + y + z = 6 \\\\ 2x - y + z = 3 \\\\ x + 2y - z = 2 \\end{cases} \\Longleftrightarrow \\begin{pmatrix} 1 & 1 & 1 \\\\ 2 & -1 & 1 \\\\ 1 & 2 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\\\ z \\end{pmatrix} = \\begin{pmatrix} 6 \\\\ 3 \\\\ 2 \\end{pmatrix}$$ $$A^* = \\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 2 & -1 & 1 & 3 \\\\ 1 & 2 & -1 & 2 \\end{array}\\right)$$"
+                },
+                {
+                    "title": "¿Por qué funciona?",
+                    "description": "Al multiplicar $A$ por $X$ (fila por columna), cada fila de $A$ por la columna $X$ reproduce el primer miembro de una ecuación. Igualar el resultado a $B$ es igualar cada ecuación a su término independiente. <strong>Cuidado</strong>: si falta una incógnita en una ecuación, su coeficiente es $0$ y hay que escribirlo en $A$.",
+                    "example": "$$\\begin{cases} 3x - 2y = 4 \\\\ x + y = 3 \\end{cases} \\Longleftrightarrow \\begin{pmatrix} 3 & -2 \\\\ 1 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 3x - 2y \\\\ x + y \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ 3 \\end{pmatrix}$$ Con una incógnita que falta: $\\begin{cases} x + z = 2 \\\\ y - z = 1 \\end{cases} \\Rightarrow A = \\begin{pmatrix} 1 & \\textcolor{#d46a6a}{0} & 1 \\\\ \\textcolor{#d46a6a}{0} & 1 & -1 \\end{pmatrix}$"
+                },
+                {
+                    "title": "Resolución con la matriz inversa",
+                    "description": "Si $A$ es cuadrada y $\\lvert A \\rvert \\neq 0$, existe $A^{-1}$ y se despeja $X$ multiplicando por $A^{-1}$ <strong>por la izquierda</strong> en los dos miembros (el producto de matrices no es conmutativo, así que el orden importa).",
+                    "formula": "$$AX = B \\;\\Rightarrow\\; A^{-1}AX = A^{-1}B \\;\\Rightarrow\\; X = A^{-1}B$$",
+                    "example": "$$\\begin{pmatrix} 3 & -2 \\\\ 1 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ 3 \\end{pmatrix}$$ • $\\lvert A \\rvert = 3 \\cdot 1 - (-2) \\cdot 1 = 5 \\neq 0$<br>• $A^{-1} = \\dfrac{1}{5}\\begin{pmatrix} 1 & 2 \\\\ -1 & 3 \\end{pmatrix}$<br>$$X = A^{-1}B = \\dfrac{1}{5}\\begin{pmatrix} 1 \\cdot 4 + 2 \\cdot 3 \\\\ -1 \\cdot 4 + 3 \\cdot 3 \\end{pmatrix} = \\dfrac{1}{5}\\begin{pmatrix} 10 \\\\ 5 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ 1 \\end{pmatrix}$$ Solución: $x = 2$, $y = 1$."
+                }
+            ]
+        },
+        {
+            "title": "Clasificación de los sistemas",
+            "items": [
+                {
+                    "title": "Según el número de soluciones",
+                    "description": "<strong>Sistema compatible determinado (SCD)</strong>: tiene una única solución.<br><strong>Sistema compatible indeterminado (SCI)</strong>: tiene infinitas soluciones, que dependen de uno o más parámetros.<br><strong>Sistema incompatible (SI)</strong>: no tiene solución.<br>No hay más casos: un sistema lineal nunca tiene exactamente 2 o 3 soluciones.",
+                    "formula": "$$\\text{Sistema} \\begin{cases} \\text{Compatible} \\begin{cases} \\text{Determinado (SCD): solución única} \\\\ \\text{Indeterminado (SCI): infinitas soluciones} \\end{cases} \\\\ \\text{Incompatible (SI): sin solución} \\end{cases}$$",
+                    "example": "• SCD: $\\begin{cases} x + y = 5 \\\\ x - y = 1 \\end{cases}$ → solo $(3, 2)$.<br>• SCI: $\\begin{cases} x + y = 5 \\\\ 2x + 2y = 10 \\end{cases}$ → la segunda es el doble de la primera; vale cualquier $(5 - \\lambda, \\lambda)$.<br>• SI: $\\begin{cases} x + y = 5 \\\\ x + y = 7 \\end{cases}$ → $x + y$ no puede valer 5 y 7 a la vez."
+                },
+                {
+                    "title": "Interpretación geométrica (2 incógnitas)",
+                    "description": "Cada ecuación con dos incógnitas es una <strong>recta</strong> del plano y las soluciones son los puntos comunes:<br>• SCD: las rectas se <strong>cortan</strong> en un punto.<br>• SCI: las rectas son <strong>coincidentes</strong>.<br>• SI: las rectas son <strong>paralelas</strong>.<br>Con tres incógnitas ocurre lo mismo con <strong>planos</strong> del espacio.",
+                    "example": "• $x + y = 5$ y $x - y = 1$: pendientes distintas, se cortan en $(3, 2)$.<br>• $x + y = 5$ y $2x + 2y = 10$: la misma recta.<br>• $x + y = 5$ y $x + y = 7$: misma pendiente, distinta ordenada: paralelas."
+                },
+                {
+                    "title": "Sistemas homogéneos",
+                    "description": "Un sistema es <strong>homogéneo</strong> si todos sus términos independientes son 0. Siempre es <strong>compatible</strong>, porque $x = y = z = 0$ (la <strong>solución trivial</strong>) lo cumple. Solo puede ser SCD (únicamente la trivial) o SCI (infinitas soluciones, además de la trivial).",
+                    "formula": "$$AX = O \\;\\Rightarrow\\; X = O \\text{ siempre es solución}$$",
+                    "example": "$$\\begin{cases} x + y = 0 \\\\ 2x + 2y = 0 \\end{cases}$$ Además de $(0, 0)$, vale cualquier $(\\lambda, -\\lambda)$: es SCI."
+                }
+            ]
+        },
+        {
+            "title": "Método de Gauss",
+            "items": [
+                {
+                    "title": "Método de Gauss: paso a paso",
+                    "description": "Consiste en transformar el sistema en otro equivalente <strong>escalonado</strong> (cada ecuación tiene al menos una incógnita menos que la anterior) y resolverlo de abajo arriba.<br><strong>1.</strong> Escribe la matriz ampliada $A^*$.<br><strong>2.</strong> Con la primera fila, haz ceros debajo del primer elemento.<br><strong>3.</strong> Con la segunda fila, haz ceros debajo del segundo elemento, y así sucesivamente.<br><strong>4.</strong> Clasifica según la última fila y resuelve <strong>de abajo arriba</strong> (sustitución regresiva).<br><strong>Consejo</strong>: si el primer elemento es 1, las cuentas son más sencillas; intercambia filas si hace falta.",
+                    "formula": "$$\\left(\\begin{array}{ccc|c} a & b & c & d \\\\ e & f & g & h \\\\ i & j & k & l \\end{array}\\right) \\longrightarrow \\left(\\begin{array}{ccc|c} \\ast & \\ast & \\ast & \\ast \\\\ 0 & \\ast & \\ast & \\ast \\\\ 0 & 0 & \\ast & \\ast \\end{array}\\right)$$"
+                },
+                {
+                    "title": "Ejemplo 1: sistema compatible determinado",
+                    "example": "$$\\begin{cases} x + y + z = 6 \\\\ 2x - y + z = 3 \\\\ x + 2y - z = 2 \\end{cases}$$ $$\\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 2 & -1 & 1 & 3 \\\\ 1 & 2 & -1 & 2 \\end{array}\\right) \\xrightarrow[F_3 - F_1]{F_2 - 2F_1} \\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -3 & -1 & -9 \\\\ 0 & 1 & -2 & -4 \\end{array}\\right) \\xrightarrow{3F_3 + F_2} \\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\\\ 0 & -3 & -1 & -9 \\\\ 0 & 0 & -7 & -21 \\end{array}\\right)$$ Resolvemos de abajo arriba:<br>• $-7z = -21 \\Rightarrow z = 3$<br>• $-3y - 3 = -9 \\Rightarrow -3y = -6 \\Rightarrow y = 2$<br>• $x + 2 + 3 = 6 \\Rightarrow x = 1$<br>Solución única: $\\textcolor{#4fa66e}{(x, y, z) = (1, 2, 3)}$ → SCD."
+                },
+                {
+                    "title": "Ejemplo 2: sistema compatible indeterminado",
+                    "description": "Si al escalonar aparece una fila entera de ceros ($0 = 0$), esa ecuación sobraba. Quedan menos ecuaciones que incógnitas: una incógnita pasa a ser un <strong>parámetro</strong> ($\\lambda$) y las demás se expresan en función de ella.",
+                    "example": "$$\\begin{cases} x + y + z = 3 \\\\ 2x - y + z = 2 \\\\ 3x + 2z = 5 \\end{cases}$$ $$\\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 2 & -1 & 1 & 2 \\\\ 3 & 0 & 2 & 5 \\end{array}\\right) \\xrightarrow[F_3 - 3F_1]{F_2 - 2F_1} \\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & -3 & -1 & -4 \\\\ 0 & -3 & -1 & -4 \\end{array}\\right) \\xrightarrow{F_3 - F_2} \\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & -3 & -1 & -4 \\\\ \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{0} \\end{array}\\right)$$ La última fila es $0 = 0$: quedan 2 ecuaciones y 3 incógnitas → SCI.<br>• Hacemos $z = \\lambda$.<br>• $-3y - \\lambda = -4 \\Rightarrow y = \\dfrac{4 - \\lambda}{3}$<br>• $x = 3 - y - z = 3 - \\dfrac{4 - \\lambda}{3} - \\lambda = \\dfrac{5 - 2\\lambda}{3}$<br>Solución: $\\textcolor{#4fa66e}{\\left(\\dfrac{5 - 2\\lambda}{3}, \\dfrac{4 - \\lambda}{3}, \\lambda\\right)}$, $\\lambda \\in \\mathbb{R}$. Por ejemplo, con $\\lambda = 1$ se obtiene $(1, 1, 1)$."
+                },
+                {
+                    "title": "Ejemplo 3: sistema incompatible",
+                    "description": "Si al escalonar aparece una fila del tipo $0 \\; 0 \\; 0 \\mid k$ con $k \\neq 0$, el sistema dice $0 = k$, que es imposible: no hay solución.",
+                    "example": "$$\\begin{cases} x + y + z = 3 \\\\ 2x - y + z = 2 \\\\ 3x + 2z = 6 \\end{cases}$$ $$\\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 2 & -1 & 1 & 2 \\\\ 3 & 0 & 2 & 6 \\end{array}\\right) \\xrightarrow[F_3 - 3F_1]{F_2 - 2F_1} \\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & -3 & -1 & -4 \\\\ 0 & -3 & -1 & -3 \\end{array}\\right) \\xrightarrow{F_3 - F_2} \\left(\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & -3 & -1 & -4 \\\\ \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{1} \\end{array}\\right)$$ La última fila dice $0 = 1$: imposible → <strong>SI</strong>, no tiene solución."
+                },
+                {
+                    "title": "Clasificación al terminar Gauss",
+                    "description": "Mirando el sistema ya escalonado (sin filas $0 = 0$):",
+                    "formula": "$$\\begin{cases} \\text{Aparece } 0 = k,\\ k \\neq 0 & \\Rightarrow \\text{SI} \\\\ \\text{número de ecuaciones} = \\text{número de incógnitas} & \\Rightarrow \\text{SCD} \\\\ \\text{número de ecuaciones} < \\text{número de incógnitas} & \\Rightarrow \\text{SCI} \\end{cases}$$"
+                }
+            ]
+        },
+        {
+            "title": "Teorema de Rouché-Frobenius",
+            "items": [
+                {
+                    "title": "Enunciado",
+                    "description": "Permite <strong>clasificar</strong> (discutir) un sistema sin resolverlo, comparando el rango de la matriz de coeficientes $A$, el de la ampliada $A^*$ y el número de incógnitas $n$.<br>Un sistema es <strong>compatible</strong> si y solo si $\\operatorname{rg}(A) = \\operatorname{rg}(A^*)$.<br>Como $A^*$ solo tiene una columna más que $A$, su rango es igual o una unidad mayor.",
+                    "formula": "$$\\begin{cases} \\operatorname{rg}(A) = \\operatorname{rg}(A^*) = n & \\Rightarrow \\text{SCD} \\\\ \\operatorname{rg}(A) = \\operatorname{rg}(A^*) < n & \\Rightarrow \\text{SCI con } n - \\operatorname{rg}(A) \\text{ parámetros} \\\\ \\operatorname{rg}(A) \\neq \\operatorname{rg}(A^*) & \\Rightarrow \\text{SI} \\end{cases}$$",
+                    "example": "Con 3 incógnitas:<br>• $\\operatorname{rg}(A) = 3 = \\operatorname{rg}(A^*)$ → SCD.<br>• $\\operatorname{rg}(A) = 2 = \\operatorname{rg}(A^*)$ → SCI con $3 - 2 = 1$ parámetro.<br>• $\\operatorname{rg}(A) = 2$, $\\operatorname{rg}(A^*) = 3$ → SI."
+                },
+                {
+                    "title": "Aplicación con determinantes",
+                    "description": "Si el sistema tiene tantas ecuaciones como incógnitas, se empieza por $\\lvert A \\rvert$:<br>• Si $\\lvert A \\rvert \\neq 0$: $\\operatorname{rg}(A) = \\operatorname{rg}(A^*) = n$ → SCD.<br>• Si $\\lvert A \\rvert = 0$: se calcula el rango de $A$ con un menor más pequeño y se <strong>orla</strong> ese menor con la columna de términos independientes para hallar el rango de $A^*$.",
+                    "example": "$$\\begin{cases} x + y + z = 3 \\\\ 2x - y + z = 2 \\\\ 3x + 2z = 6 \\end{cases}$$ • $\\lvert A \\rvert = \\begin{vmatrix} 1 & 1 & 1 \\\\ 2 & -1 & 1 \\\\ 3 & 0 & 2 \\end{vmatrix} = -2 + 3 + 0 + 3 - 0 - 4 = 0$ → $\\operatorname{rg}(A) < 3$.<br>• $\\begin{vmatrix} 1 & 1 \\\\ 2 & -1 \\end{vmatrix} = -3 \\neq 0$ → $\\operatorname{rg}(A) = 2$.<br>• Orlamos con la columna $B$: $\\begin{vmatrix} 1 & 1 & 3 \\\\ 2 & -1 & 2 \\\\ 3 & 0 & 6 \\end{vmatrix} = -6 + 6 + 0 + 9 - 0 - 12 = -3 \\neq 0$ → $\\operatorname{rg}(A^*) = 3$.<br>$\\operatorname{rg}(A) = 2 \\neq 3 = \\operatorname{rg}(A^*)$ → <strong>SI</strong> (coincide con lo obtenido por Gauss)."
+                },
+                {
+                    "title": "Discusión de un sistema con un parámetro",
+                    "description": "Cuando un coeficiente depende de un parámetro $a$, se discute el sistema para cada valor:<br><strong>1.</strong> Calcula $\\lvert A \\rvert$ en función de $a$ e iguala a 0.<br><strong>2.</strong> Para los valores que <strong>no</strong> anulan $\\lvert A \\rvert$: SCD.<br><strong>3.</strong> Sustituye cada valor que lo anula en el sistema y estudia $\\operatorname{rg}(A)$ y $\\operatorname{rg}(A^*)$ por separado.",
+                    "example": "$$\\begin{cases} ax + y + z = 1 \\\\ x + ay + z = 1 \\\\ x + y + az = 1 \\end{cases}$$ • $\\lvert A \\rvert = \\begin{vmatrix} a & 1 & 1 \\\\ 1 & a & 1 \\\\ 1 & 1 & a \\end{vmatrix} = a^3 - 3a + 2 = (a - 1)^2(a + 2)$, que se anula en $a = 1$ y $a = -2$.<br>• $\\textcolor{#4fa66e}{a \\neq 1 \\text{ y } a \\neq -2}$: $\\operatorname{rg}(A) = \\operatorname{rg}(A^*) = 3$ → <strong>SCD</strong>.<br>• $\\textcolor{#4fa66e}{a = 1}$: las tres ecuaciones son $x + y + z = 1$, así que $\\operatorname{rg}(A) = \\operatorname{rg}(A^*) = 1 < 3$ → <strong>SCI</strong> con 2 parámetros.<br>• $\\textcolor{#4fa66e}{a = -2}$: $\\begin{vmatrix} -2 & 1 \\\\ 1 & -2 \\end{vmatrix} = 3 \\neq 0$ → $\\operatorname{rg}(A) = 2$. Orlando con $B$: $\\begin{vmatrix} -2 & 1 & 1 \\\\ 1 & -2 & 1 \\\\ 1 & 1 & 1 \\end{vmatrix} = 9 \\neq 0$ → $\\operatorname{rg}(A^*) = 3$ → <strong>SI</strong>."
+                }
+            ]
+        },
+        {
+            "title": "Regla de Cramer",
+            "items": [
+                {
+                    "title": "Enunciado",
+                    "description": "Un sistema es <strong>de Cramer</strong> si tiene el mismo número de ecuaciones que de incógnitas y $\\lvert A \\rvert \\neq 0$ (es decir, es SCD). Entonces cada incógnita es un cociente de determinantes: en el numerador, $\\lvert A \\rvert$ con la <strong>columna de esa incógnita sustituida por la columna $B$</strong>; en el denominador, siempre $\\lvert A \\rvert$.",
+                    "formula": "$$x = \\dfrac{\\begin{vmatrix} \\textcolor{#d46a6a}{b_1} & a_{12} & a_{13} \\\\ \\textcolor{#d46a6a}{b_2} & a_{22} & a_{23} \\\\ \\textcolor{#d46a6a}{b_3} & a_{32} & a_{33} \\end{vmatrix}}{\\lvert A \\rvert} \\qquad y = \\dfrac{\\begin{vmatrix} a_{11} & \\textcolor{#d46a6a}{b_1} & a_{13} \\\\ a_{21} & \\textcolor{#d46a6a}{b_2} & a_{23} \\\\ a_{31} & \\textcolor{#d46a6a}{b_3} & a_{33} \\end{vmatrix}}{\\lvert A \\rvert} \\qquad z = \\dfrac{\\begin{vmatrix} a_{11} & a_{12} & \\textcolor{#d46a6a}{b_1} \\\\ a_{21} & a_{22} & \\textcolor{#d46a6a}{b_2} \\\\ a_{31} & a_{32} & \\textcolor{#d46a6a}{b_3} \\end{vmatrix}}{\\lvert A \\rvert}$$"
+                },
+                {
+                    "title": "Ejemplo con 2 incógnitas",
+                    "example": "$$\\begin{cases} 3x - 2y = 4 \\\\ x + y = 3 \\end{cases}$$ • $\\lvert A \\rvert = \\begin{vmatrix} 3 & -2 \\\\ 1 & 1 \\end{vmatrix} = 3 + 2 = 5 \\neq 0$ → es de Cramer.<br>$$x = \\dfrac{\\begin{vmatrix} \\textcolor{#d46a6a}{4} & -2 \\\\ \\textcolor{#d46a6a}{3} & 1 \\end{vmatrix}}{5} = \\dfrac{4 + 6}{5} = 2 \\qquad y = \\dfrac{\\begin{vmatrix} 3 & \\textcolor{#d46a6a}{4} \\\\ 1 & \\textcolor{#d46a6a}{3} \\end{vmatrix}}{5} = \\dfrac{9 - 4}{5} = 1$$ Solución: $\\textcolor{#4fa66e}{x = 2,\\ y = 1}$."
+                },
+                {
+                    "title": "Ejemplo con 3 incógnitas",
+                    "example": "$$\\begin{cases} x + y + z = 6 \\\\ 2x - y + z = 3 \\\\ x + 2y - z = 2 \\end{cases}$$ • $\\lvert A \\rvert = \\begin{vmatrix} 1 & 1 & 1 \\\\ 2 & -1 & 1 \\\\ 1 & 2 & -1 \\end{vmatrix} = 1 + 1 + 4 + 1 - 2 + 2 = 7 \\neq 0$<br>$$x = \\dfrac{\\begin{vmatrix} \\textcolor{#d46a6a}{6} & 1 & 1 \\\\ \\textcolor{#d46a6a}{3} & -1 & 1 \\\\ \\textcolor{#d46a6a}{2} & 2 & -1 \\end{vmatrix}}{7} = \\dfrac{7}{7} = 1 \\qquad y = \\dfrac{\\begin{vmatrix} 1 & \\textcolor{#d46a6a}{6} & 1 \\\\ 2 & \\textcolor{#d46a6a}{3} & 1 \\\\ 1 & \\textcolor{#d46a6a}{2} & -1 \\end{vmatrix}}{7} = \\dfrac{14}{7} = 2 \\qquad z = \\dfrac{\\begin{vmatrix} 1 & 1 & \\textcolor{#d46a6a}{6} \\\\ 2 & -1 & \\textcolor{#d46a6a}{3} \\\\ 1 & 2 & \\textcolor{#d46a6a}{2} \\end{vmatrix}}{7} = \\dfrac{21}{7} = 3$$ Solución: $\\textcolor{#4fa66e}{(x, y, z) = (1, 2, 3)}$, la misma que por Gauss."
+                },
+                {
+                    "title": "Cramer en un sistema compatible indeterminado",
+                    "description": "Si $\\operatorname{rg}(A) = \\operatorname{rg}(A^*) = r < n$, también se puede usar Cramer:<br><strong>1.</strong> Elige un menor de orden $r$ no nulo; quédate con las $r$ ecuaciones de sus filas (las demás sobran).<br><strong>2.</strong> Las incógnitas que no están en sus columnas pasan al segundo miembro como parámetros.<br><strong>3.</strong> Aplica Cramer al sistema $r \\times r$ resultante.",
+                    "example": "$$\\begin{cases} x + y + z = 3 \\\\ 2x - y + z = 2 \\\\ 3x + 2z = 5 \\end{cases}$$ $\\operatorname{rg}(A) = \\operatorname{rg}(A^*) = 2$ con el menor $\\begin{vmatrix} 1 & 1 \\\\ 2 & -1 \\end{vmatrix} = -3 \\neq 0$. Quitamos la 3.ª ecuación y hacemos $z = \\lambda$:<br>$$\\begin{cases} x + y = 3 - \\lambda \\\\ 2x - y = 2 - \\lambda \\end{cases}$$ $$x = \\dfrac{\\begin{vmatrix} 3 - \\lambda & 1 \\\\ 2 - \\lambda & -1 \\end{vmatrix}}{-3} = \\dfrac{-5 + 2\\lambda}{-3} = \\dfrac{5 - 2\\lambda}{3} \\qquad y = \\dfrac{\\begin{vmatrix} 1 & 3 - \\lambda \\\\ 2 & 2 - \\lambda \\end{vmatrix}}{-3} = \\dfrac{\\lambda - 4}{-3} = \\dfrac{4 - \\lambda}{3}$$ Solución: $\\textcolor{#4fa66e}{\\left(\\dfrac{5 - 2\\lambda}{3}, \\dfrac{4 - \\lambda}{3}, \\lambda\\right)}$, igual que por Gauss."
+                }
+            ]
+        }
+    ]
+}

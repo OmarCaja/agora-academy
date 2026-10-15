@@ -1,14 +1,6 @@
 [
   {
     "topics": [
-      "matrices",
-      "determinantes"
-    ],
-    "title": "Matrices y determinantes",
-    "out": "public/libros/matrices-determinantes.pdf"
-  },
-  {
-    "topics": [
       "potencias",
       "raices",
       "logaritmos"
@@ -86,5 +78,14 @@
     ],
     "title": "Unidades y notación científica",
     "out": "public/libros/unidades-notacion-cientifica.pdf"
+  },
+  {
+    "topics": [
+      "matrices",
+      "determinantes",
+      "sistemas-de-ecuaciones"
+    ],
+    "title": "Matrices, determinantes y sistemas de ecuaciones",
+    "out": "public/libros/matrices-determinantes-sistemas-de-ecuaciones.pdf"
   }
 ]
