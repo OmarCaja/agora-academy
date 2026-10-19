@@ -4,20 +4,18 @@ import Header from "../../components/Header.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import SearchBox from "../../components/SearchBox.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
-import { discoverExercises } from "../../utils/discoverExercises";
+import { discoverAllExercises } from "../../utils/discoverExercises";
 import { slugify } from "../../utils/slugify";
 import PdfList from "../../components/PdfList.astro";
 
 export async function getStaticPaths() {
-    const exercisesData = discoverExercises();
-    return Object.keys(exercisesData).map((level) => ({
+    return Object.keys(discoverAllExercises()).map((level) => ({
         params: { level },
     }));
 }
 
 const { level } = Astro.params;
-const exercisesData = discoverExercises();
-const data = level ? exercisesData[level] : null;
+const data = level ? discoverAllExercises()[level] : null;
 
 if (!data) {
     throw new Error(`Data not found for level: ${level}`);
@@ -25,8 +23,8 @@ if (!data) {
 ---
 
 <BaseLayout
-    title={`Ejercicios ${data.title}`}
-    description={`Ejercicios de matemáticas para ${data.title}`}
+    title={`Ejercicios de ${data.subject.toLowerCase()} ${data.title}`}
+    description={`Ejercicios de ${data.subject.toLowerCase()} para ${data.title}`}
     currentPage={`exercises/${level}`}
     showProgressBar={true}
 >
@@ -35,10 +33,11 @@ if (!data) {
             items={[
                 { label: "Inicio", href: "/" },
                 { label: "Ejercicios" },
+                { label: data.subject },
                 { label: data.title },
             ]}
         />
-        <Header title={`EJERCICIOS ${data.title.toUpperCase()}`} />
+        <Header title={`EJERCICIOS DE ${data.subject.toUpperCase()} ${data.title.toUpperCase()}`} />
 
         <SearchBox
             placeholder="Buscar ejercicios..."

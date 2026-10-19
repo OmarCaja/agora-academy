@@ -27,7 +27,7 @@ The site name (`Ágora - Academia de matemáticas`), URL, levels, phone, email, 
 ### Two content pipelines, both auto-discovered at build
 
 1. **Theory topics** (`/theory/<slug>`) — driven by `src/content/topics/*.json`, validated by the Zod schema in `src/content.config.ts`. Each JSON file becomes a topic via `getStaticPaths()` in `src/pages/theory/[slug].astro`. Adding a file is enough to register a new page; no manual routing needed.
-2. **Exercise PDFs** (`/exercises/<level>`) — driven by the filesystem. `src/utils/discoverExercises.ts` walks `public/ejercicios/<level>/<topic>/*.pdf` at build time and builds the page data consumed by `src/pages/exercises/[level].astro`. Level order, title casing, and per-PDF/topic name overrides live in `src/data/exercises.ts` (`levelOrder`, `levelTitleOverrides`, `topicTitleOverrides`, `pdfNameOverrides`) — only needed when the auto-derived Spanish title (via `SPANISH_ACCENT_WORDS` accent-restoration map) is wrong.
+2. **Exercise PDFs** (`/exercises/<level>`) — driven by the filesystem. `src/utils/discoverExercises.ts` walks `public/ejercicios/<level>/<topic>/*.pdf` (maths) and `public/ejercicios/<subject>/<level>/<topic>/*.pdf` (other subjects, listed in `subjects` in `src/data/exercises.ts`, e.g. `fisica-y-quimica`) at build time and builds the page data consumed by `src/pages/exercises/[...level].astro` (`/exercises/2-eso`, `/exercises/fisica-y-quimica/2-eso`). The menu groups exercise levels by subject. Level order, title casing, and per-PDF/topic name overrides live in `src/data/exercises.ts` (`levelOrder`, `levelTitleOverrides`, `topicTitleOverrides`, `pdfNameOverrides`) — only needed when the auto-derived Spanish title (via `SPANISH_ACCENT_WORDS` accent-restoration map) is wrong.
 
 ### Navigation is derived, not hand-maintained
 
@@ -62,6 +62,7 @@ The `generate-theory-topic` skill (`.claude/skills/generate-theory-topic/SKILL.m
 1. Create `src/content/topics/<slug>.json` (schema in `src/content.config.ts`, all content in Spanish).
    - Set `menuGroup` (must match one of the `GROUP_ORDER` strings — see above — to sort correctly) and `menuOrder` directly in the JSON.
 2. The topic is auto-generated at `/theory/<slug>` and auto-registered in the menu and in theory prev/next pagination. No other file needs editing.
+3. Whenever a topic is created or changed, run `pnpm books` so every book PDF that includes it (`scripts/books.json`) stays in sync with the site.
 
 KaTeX gotchas (`src/utils/math.ts` turns every failed formula, including undefined commands, into a `.katex-error` span):
 - Each `$$…$$` / `$…$` must stay on one line — the regex doesn't cross newlines.

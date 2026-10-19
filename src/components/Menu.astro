@@ -7,6 +7,7 @@ const { currentPage } = Astro.props;
 
 import { getCollection } from "astro:content";
 import { discoverExercises } from "../utils/discoverExercises";
+import { subjects } from "../data/exercises";
 import { sortTopics } from "../data/topics";
 
 interface MenuItem {
@@ -37,12 +38,15 @@ for (const entry of sortTopics(await getCollection("topics"))) {
 }
 const theoryGroups: MenuGroup[] = [...theoryGroupMap].map(([title, items]) => ({ title, items }));
 
-const exerciseItems: MenuItem[] = Object.entries(discoverExercises()).map(
-    ([key, data]) => ({
-        slug: `exercises/${key}`,
-        label: data.title,
-    }),
-);
+const exerciseGroups: MenuGroup[] = subjects
+    .map((subject) => ({
+        title: subject.title,
+        items: Object.entries(discoverExercises(subject)).map(([key, data]) => ({
+            slug: `exercises/${key}`,
+            label: data.title,
+        })),
+    }))
+    .filter((group) => group.items.length > 0);
 
 const menuSections: MenuSection[] = [
     {
@@ -51,7 +55,7 @@ const menuSections: MenuSection[] = [
     },
     {
         title: "Ejercicios",
-        items: exerciseItems,
+        groups: exerciseGroups,
     },
 ];
 

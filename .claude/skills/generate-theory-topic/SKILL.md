@@ -81,6 +81,12 @@ The build fails on schema errors (missing `title`, wrong types) and on broken La
 
 Optionally look at the page with `pnpm dev` at `/theory/<slug>`, in light and dark theme.
 
+Once the build passes, always regenerate the book PDFs so any book containing the topic (`scripts/books.json`) matches the site:
+
+```bash
+pnpm books
+```
+
 ## 7. Report to the user
 
 Reply briefly with the file path, the URL (`/theory/<slug>`), the sections created and the decisions made without asking (level, group, order, graphs).

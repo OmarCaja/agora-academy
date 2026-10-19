@@ -2,6 +2,13 @@
 // Dropping a PDF into public/ejercicios/<level>/<topic>/ auto-discovers it.
 // Entries here are only needed if you want custom formatting different from auto-derived titles.
 
+// Subjects in menu order. Maths lives at the root of public/ejercicios, any
+// other subject in its own folder: public/ejercicios/<dir>/<level>/<topic>/.
+export const subjects = [
+    { dir: "", title: "Matemáticas" },
+    { dir: "fisica-y-quimica", title: "Física y química" },
+];
+
 export const levelOrder: string[] = [
     "1-eso",
     "2-eso",

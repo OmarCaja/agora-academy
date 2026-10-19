@@ -5,7 +5,7 @@ import fs from "node:fs";
 import { formatDefaultTitle } from "../src/utils/discoverExercises.ts";
 import { byRank } from "../src/utils/sort.ts";
 import { BOOKS } from "../src/data/books.ts";
-import { levelOrder, pdfNameOverrides, topicOrder, topicTitleOverrides } from "../src/data/exercises.ts";
+import { levelOrder, pdfNameOverrides, subjects, topicOrder, topicTitleOverrides } from "../src/data/exercises.ts";
 
 assert.equal(formatDefaultTitle("algebra-1.pdf"), "Álgebra 1");
 assert.equal(formatDefaultTitle("numeros-enteros-2.pdf"), "Números enteros 2");
@@ -27,7 +27,8 @@ for (const url of Object.keys(pdfNameOverrides)) {
 for (const { url } of BOOKS) {
     assert.ok(fs.existsSync(`public${url}`), `scripts/books.json: no such PDF ${url}`);
 }
-const topicExists = (key: string) => levelOrder.some((level) => fs.existsSync(`public/ejercicios/${level}/${key}`));
+const topicExists = (key: string) =>
+    subjects.some(({ dir }) => levelOrder.some((level) => fs.existsSync(`public/ejercicios/${dir}/${level}/${key}`)));
 for (const key of [...Object.keys(topicTitleOverrides), ...Object.keys(topicOrder)]) {
     assert.ok(topicExists(key), `no topic folder public/ejercicios/<level>/${key}`);
 }

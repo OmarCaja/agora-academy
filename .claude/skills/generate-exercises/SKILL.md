@@ -25,6 +25,8 @@ If the course or topic is missing, ask. Decide the rest with judgement and menti
 
 General rule: `public/ejercicios/<course>/<topic>/`, with the topic lowercase, without accents and hyphenated.
 
+Maths goes at the root as above. Other subjects go in their subject folder (`subjects` in `src/data/exercises.ts`): física y química → `public/ejercicios/fisica-y-quimica/<course>/<topic>/`.
+
 | Course | Folder in public |
 |---|---|
 | 1 ESO / 2 ESO / 3 ESO / 4 ESO | `1-eso` / `2-eso` / `3-eso` / `4-eso` |

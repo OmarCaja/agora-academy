@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { byRank } from "./sort";
-import { pdfNameOverrides, topicTitleOverrides, topicOrder, levelTitleOverrides, levelOrder } from "../data/exercises";
+import { pdfNameOverrides, topicTitleOverrides, topicOrder, levelTitleOverrides, levelOrder, subjects } from "../data/exercises";
 
 export interface PdfLink {
     name: string;
@@ -16,6 +16,7 @@ export interface Topic {
 
 export interface LevelData {
     title: string;
+    subject: string;
     topics: Topic[];
 }
 
@@ -38,8 +39,11 @@ export function formatDefaultTitle(slugOrFilename: string): string {
     return words.join(" ");
 }
 
-export function discoverExercises(baseDir: string = "public/ejercicios"): Record<string, LevelData> {
-    const fullBaseDir = path.resolve(process.cwd(), baseDir);
+// Levels of one subject, keyed by their path under public/ejercicios
+// ("2-eso", "fisica-y-quimica/2-eso"), which is also their /exercises/ slug.
+export function discoverExercises(subject = subjects[0]): Record<string, LevelData> {
+    const prefix = subject.dir ? `${subject.dir}/` : "";
+    const fullBaseDir = path.resolve(process.cwd(), "public/ejercicios", subject.dir);
     if (!fs.existsSync(fullBaseDir)) {
         return {};
     }
@@ -47,7 +51,7 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
     const result: Record<string, LevelData> = {};
 
     const levelDirs = fs.readdirSync(fullBaseDir, { withFileTypes: true })
-        .filter((d) => d.isDirectory() && !d.name.startsWith("."))
+        .filter((d) => d.isDirectory() && !d.name.startsWith(".") && !subjects.some((s) => s.dir === d.name))
         .map((d) => d.name);
 
     levelDirs.sort(byRank((l) => levelOrder.indexOf(l), (a, b) => a.localeCompare(b)));
@@ -67,7 +71,7 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
                     scanDir(entryPath, [...relativePath, entry.name]);
                 } else if (entry.isFile() && entry.name.toLowerCase().endsWith(".pdf")) {
                     const topicKey = relativePath.length > 0 ? relativePath.join("/") : "general";
-                    const url = `/ejercicios/${level}/${relativePath.length > 0 ? relativePath.join("/") + "/" : ""}${entry.name}`;
+                    const url = `/ejercicios/${prefix}${level}/${relativePath.length > 0 ? relativePath.join("/") + "/" : ""}${entry.name}`;
                     
                     const topicTitle = topicTitleOverrides[topicKey] || formatDefaultTitle(relativePath.join("-"));
 
@@ -101,12 +105,17 @@ export function discoverExercises(baseDir: string = "public/ejercicios"): Record
                 ))
                 .map(({ title, pdfs }) => ({ title, pdfs }));
 
-            result[level] = {
+            result[prefix + level] = {
                 title: levelTitle,
+                subject: subject.title,
                 topics,
             };
         }
     }
 
     return result;
+}
+
+export function discoverAllExercises(): Record<string, LevelData> {
+    return Object.assign({}, ...subjects.map((subject) => discoverExercises(subject)));
 }

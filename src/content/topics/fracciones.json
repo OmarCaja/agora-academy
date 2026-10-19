@@ -1,9 +1,48 @@
 {
     "title": "Operaciones con fracciones",
-    "description": "Guía completa para dominar las fracciones: desde operaciones básicas hasta potencias e inversas.",
+    "description": "Guía completa para dominar las fracciones: fracciones equivalentes, amplificación y simplificación, operaciones básicas, potencias, inversas y fracción generatriz de un decimal.",
     "menuGroup": "Aritmética",
     "menuOrder": 4,
     "sections": [
+        {
+            "title": "Fracciones equivalentes",
+            "items": [
+                {
+                    "title": "¿Qué son las fracciones equivalentes?",
+                    "description": "Dos fracciones son <strong>equivalentes</strong> si representan la misma cantidad aunque tengan números distintos. Comer $\\frac{1}{2}$ de una pizza es lo mismo que comer $\\frac{2}{4}$ o $\\frac{4}{8}$.",
+                    "example": "$\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8} = 0{,}5$"
+                },
+                {
+                    "title": "Amplificar una fracción",
+                    "formula": "$$\\frac{a}{b} = \\frac{a \\cdot k}{b \\cdot k} \\quad (k \\neq 0)$$",
+                    "description": "<strong>Amplificar</strong> es multiplicar numerador y denominador por el <strong>mismo</strong> número. Se obtiene una fracción equivalente con términos más grandes. Ojo: si solo multiplicas uno de los dos términos, la fracción cambia de valor.",
+                    "example": "Fracciones equivalentes a $\\frac{3}{5}$:<br>• $\\frac{3 \\cdot 2}{5 \\cdot 2} = \\frac{6}{10}$<br>• $\\frac{3 \\cdot 3}{5 \\cdot 3} = \\frac{9}{15}$<br>• $\\frac{3 \\cdot 4}{5 \\cdot 4} = \\frac{12}{20}$"
+                },
+                {
+                    "title": "Simplificar una fracción",
+                    "formula": "$$\\frac{a}{b} = \\frac{a : k}{b : k} \\quad (k \\neq 0)$$",
+                    "example": "$\\frac{12}{18}$: $\\text{mcd}(12, 18) = 6$, así que $\\frac{12}{18} = \\frac{12 : 6}{18 : 6} = \\frac{2}{3}$<br>• También por pasos: $\\frac{12}{18} = \\frac{6}{9} = \\frac{2}{3}$ (dividiendo entre 2 y luego entre 3)",
+                    "description": "<strong>Simplificar</strong> es dividir numerador y denominador por el mismo número. Si dividimos por su <strong>máximo común divisor</strong>, llegamos directamente a la <strong>fracción irreducible</strong>, la que ya no se puede simplificar más."
+                },
+                {
+                    "title": "Comprobar si dos fracciones son equivalentes",
+                    "formula": "$\\frac{a}{b} = \\frac{c}{d} \\iff a \\cdot d = b \\cdot c$",
+                    "example": "• $\\frac{2}{5}$ y $\\frac{6}{15}$: $2 \\cdot 15 = 30$ y $5 \\cdot 6 = 30$ → <strong>sí</strong> son equivalentes<br>• $\\frac{3}{4}$ y $\\frac{5}{8}$: $3 \\cdot 8 = 24$ y $4 \\cdot 5 = 20$ → <strong>no</strong> son equivalentes",
+                    "description": "Multiplicamos <strong>en cruz</strong>: si los dos productos coinciden, las fracciones son equivalentes. Si no, no lo son."
+                },
+                {
+                    "title": "Calcular el término que falta",
+                    "formula": "$$\\frac{a}{b} = \\frac{x}{d} \\implies x = \\frac{a \\cdot d}{b}$$",
+                    "description": "Si sabemos que dos fracciones son equivalentes y falta un término, igualamos los productos cruzados y despejamos $x$.",
+                    "example": "• $\\frac{3}{4} = \\frac{x}{20} \\implies 4 \\cdot x = 3 \\cdot 20 \\implies x = \\frac{60}{4} = 15$<br>• $\\frac{6}{x} = \\frac{9}{12} \\implies 9 \\cdot x = 6 \\cdot 12 \\implies x = \\frac{72}{9} = 8$"
+                },
+                {
+                    "title": "Reducir a común denominador",
+                    "description": "Para comparar, sumar o restar fracciones con distinto denominador, las cambiamos por fracciones equivalentes con el <strong>mismo denominador</strong>: el $\\text{mcm}$ de los denominadores.",
+                    "example": "$\\frac{2}{3}$ y $\\frac{3}{4}$: $\\text{mcm}(3, 4) = 12$<br>• $\\frac{2}{3} = \\frac{2 \\cdot 4}{3 \\cdot 4} = \\frac{8}{12}$<br>• $\\frac{3}{4} = \\frac{3 \\cdot 3}{4 \\cdot 3} = \\frac{9}{12}$<br>Como $8 < 9$, $\\frac{2}{3} < \\frac{3}{4}$"
+                }
+            ]
+        },
         {
             "title": "Suma y resta",
             "items": [
@@ -75,18 +114,39 @@
                     "formula": "$\\frac{a}{b} \\text{ de } C = \\frac{a \\cdot C}{b}$",
                     "example": "$\\frac{2}{3} \\text{ de } 15 = 2 \\cdot (15 : 3) = 10$",
                     "description": "Se multiplica la cantidad por el numerador y se divide por el denominador (o viceversa)."
+                }
+            ]
+        },
+        {
+            "title": "Fracción generatriz",
+            "items": [
+                {
+                    "title": "¿Qué es la fracción generatriz?",
+                    "description": "Es la fracción irreducible que, al dividir numerador entre denominador, da un número decimal. Solo la tienen los decimales <strong>exactos</strong> y los <strong>periódicos</strong>. El <strong>periodo</strong> es la cifra o grupo de cifras que se repite, y se marca con una barra encima.<br>• <strong>Exacto</strong>: tiene un número finito de decimales.<br>• <strong>Periódico puro</strong>: el periodo empieza justo después de la coma.<br>• <strong>Periódico mixto</strong>: hay cifras entre la coma y el periodo (el <strong>anteperiodo</strong>).",
+                    "example": "• Exacto: $0{,}75$<br>• Periódico puro: $1{,}\\overline{27} = 1{,}272727\\ldots$<br>• Periódico mixto: $0{,}1\\overline{6} = 0{,}16666\\ldots$"
                 },
                 {
-                    "title": "Simplificación",
-                    "formula": "$\\frac{a \\cdot k}{b \\cdot k} = \\frac{a}{b}$",
-                    "example": "$\\frac{12}{18} = \\frac{6 \\cdot 2}{6 \\cdot 3} = \\frac{2}{3}$",
-                    "description": "Dividimos numerador y denominador por su <strong>máximo común divisor</strong> para obtener la fracción irreducible."
+                    "title": "Decimal exacto",
+                    "formula": "$$\\text{Fracción} = \\frac{\\text{número sin coma}}{1 \\text{ seguido de tantos ceros como decimales}}$$",
+                    "description": "Escribimos el número sin la coma en el numerador y, en el denominador, un 1 seguido de tantos ceros como cifras decimales. Después simplificamos.",
+                    "example": "• $0{,}75 = \\frac{75}{100} = \\frac{3}{4}$<br>• $2{,}35 = \\frac{235}{100} = \\frac{47}{20}$"
                 },
                 {
-                    "title": "Fracciones equivalentes",
-                    "formula": "$\\frac{a}{b} = \\frac{c}{d} \\iff a \\cdot d = b \\cdot c$",
-                    "example": "$\\frac{2}{5} = \\frac{6}{15} \\iff 2 \\cdot 15 = 30 = 5 \\cdot 6$",
-                    "description": "Dos fracciones son equivalentes si el producto cruzado de sus términos es igual ($a \\cdot d = b \\cdot c$)."
+                    "title": "Decimal periódico puro",
+                    "formula": "$$\\text{Fracción} = \\frac{\\text{número sin coma} - \\text{parte entera}}{\\text{tantos 9 como cifras tiene el periodo}}$$",
+                    "description": "En el numerador restamos al número completo (sin coma, con el periodo una sola vez) su parte entera. En el denominador ponemos un 9 por cada cifra del periodo.",
+                    "example": "• $0{,}\\overline{3} = \\frac{3 - 0}{9} = \\frac{3}{9} = \\frac{1}{3}$<br>• $1{,}\\overline{27} = \\frac{127 - 1}{99} = \\frac{126}{99} = \\frac{14}{11}$"
+                },
+                {
+                    "title": "Decimal periódico mixto",
+                    "formula": "$$\\text{Fracción} = \\frac{\\text{número sin coma} - \\text{parte no periódica}}{\\text{tantos 9 como cifras del periodo y tantos 0 como del anteperiodo}}$$",
+                    "description": "En el numerador restamos al número completo la parte que <strong>no</strong> se repite (parte entera y anteperiodo). En el denominador ponemos primero un 9 por cada cifra del periodo y después un 0 por cada cifra del anteperiodo.<br>Error típico: poner los ceros delante de los nueves ($\\textcolor{#d46a6a}{09}$ en vez de $\\textcolor{#4fa66e}{90}$).",
+                    "example": "• $0{,}1\\overline{6} = \\frac{16 - 1}{90} = \\frac{15}{90} = \\frac{1}{6}$<br>• $2{,}3\\overline{45} = \\frac{2345 - 23}{990} = \\frac{2322}{990} = \\frac{129}{55}$"
+                },
+                {
+                    "title": "¿Por qué funciona la regla?",
+                    "description": "Llamamos $x$ al decimal y lo multiplicamos por potencias de 10 hasta tener dos números con <strong>la misma parte decimal</strong>. Al restarlos, los decimales infinitos desaparecen y queda una ecuación sencilla.",
+                    "example": "$x = 0{,}1\\overline{6}$<br>• $100x = 16{,}666\\ldots$<br>• $10x = 1{,}666\\ldots$<br>Restando: $100x - 10x = 16 - 1 \\implies 90x = 15 \\implies x = \\frac{15}{90} = \\frac{1}{6}$<br>Comprobación: $1 : 6 = 0{,}1666\\ldots$ ✓"
                 }
             ]
         }
