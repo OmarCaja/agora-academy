@@ -750,6 +750,30 @@ ax.set_xlim(-0.6, 5.6); ax.set_ylim(-0.7, 3.2)
 save(fig, 'triangulo-general.png')
 
 # ════════════════════════════════════════════════════════════════════════════
+#  GRAFOS
+# ════════════════════════════════════════════════════════════════════════════
+OUT = "public/ejemplos/grafos"
+os.makedirs(OUT, exist_ok=True)
+
+POS = {'A': (0, 1.6), 'B': (2.4, 1.6), 'C': (1.2, 0), 'D': (3.6, 0)}
+
+def draw_graph(edges, directed, name):
+    fig, ax = plt.subplots(figsize=(4.6, 2.8))
+    bare(ax)
+    for u, v in edges:
+        ax.annotate('', xy=POS[v], xytext=POS[u], arrowprops=dict(
+            arrowstyle='-|>' if directed else '-', color=INK, lw=2,
+            mutation_scale=20, shrinkA=17, shrinkB=17))
+    for k, (x, y) in POS.items():
+        ax.add_patch(patches.Circle((x, y), 0.28, fc='white', ec=INK, lw=2, zorder=5))
+        ax.text(x, y, k, ha='center', va='center', fontsize=14, fontweight='bold', color=INK, zorder=6)
+    ax.set_xlim(-0.5, 4.1); ax.set_ylim(-0.5, 2.1)
+    save(fig, name)
+
+draw_graph([('A', 'B'), ('A', 'C'), ('B', 'C'), ('C', 'D')], False, 'grafo-no-dirigido.png')
+draw_graph([('A', 'B'), ('B', 'C'), ('C', 'A'), ('C', 'D')], True, 'grafo-dirigido.png')
+
+# ════════════════════════════════════════════════════════════════════════════
 #  ↑ ADD YOUR NEW GRAPHS HERE, following the same pattern
 # ════════════════════════════════════════════════════════════════════════════
 

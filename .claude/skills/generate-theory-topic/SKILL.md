@@ -81,7 +81,13 @@ The build fails on schema errors (missing `title`, wrong types) and on broken La
 
 Optionally look at the page with `pnpm dev` at `/theory/<slug>`, in light and dark theme.
 
-Once the build passes, always regenerate the book PDFs so any book containing the topic (`scripts/books.json`) matches the site:
+Once the build passes, every topic must have a book PDF. If no book in `scripts/books.json` lists the topic, create one for it alone (the build records it in `books.json`):
+
+```bash
+node scripts/build-book.mjs --topics <slug> --title "<Título>" --out public/libros/<slug>.pdf
+```
+
+Then regenerate all book PDFs so every book containing the topic matches the site:
 
 ```bash
 pnpm books

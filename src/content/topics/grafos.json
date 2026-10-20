@@ -1,0 +1,115 @@
+{
+    "title": "Grafos",
+    "description": "Qué es un grafo, vértices y aristas, grafos dirigidos y no dirigidos. Matriz de adyacencia, conexiones con transbordos o pasos intermedios mediante las potencias A², A³… y matriz de accesibilidad.",
+    "menuGroup": "Álgebra",
+    "menuOrder": 6,
+    "sections": [
+        {
+            "title": "¿Qué es un grafo?",
+            "items": [
+                {
+                    "title": "Definición",
+                    "description": "Un <strong>grafo</strong> es un dibujo formado por un conjunto de <strong>puntos</strong> (vértices) y un conjunto de <strong>líneas</strong> (aristas) que unen algunos de esos puntos entre sí. Sirve para representar <strong>relaciones o conexiones</strong> entre elementos: ciudades unidas por carreteras, personas que se siguen en una red social, ordenadores conectados en una red...<br>Lo importante de un grafo no es la forma ni la posición del dibujo, sino <strong>qué vértices están conectados con cuáles</strong>.",
+                    "formula": "$$G = (V, E) \\qquad V = \\text{vértices}, \\quad E = \\text{aristas}$$",
+                    "example": "Cuatro pueblos $A$, $B$, $C$ y $D$ unidos por carreteras: $A$–$B$, $A$–$C$, $B$–$C$ y $C$–$D$.<br><img src='/ejemplos/grafos/grafo-no-dirigido.png' alt='Grafo con vértices A, B, C y D y aristas AB, AC, BC y CD' width='564' height='332' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><br>$V = \\{A, B, C, D\\}$, $\\;E = \\{AB,\\ AC,\\ BC,\\ CD\\}$"
+                }
+            ]
+        },
+        {
+            "title": "Vértices y aristas de un grafo",
+            "items": [
+                {
+                    "title": "Vértices",
+                    "description": "Los <strong>vértices</strong> (o nodos) son los puntos del grafo. Representan los elementos que queremos relacionar y se nombran con letras mayúsculas o números. El número de vértices se llama <strong>orden</strong> del grafo.",
+                    "example": "En el grafo de los pueblos los vértices son $A$, $B$, $C$ y $D$: es un grafo de orden $4$."
+                },
+                {
+                    "title": "Aristas",
+                    "description": "Las <strong>aristas</strong> son las líneas que unen dos vértices. Indican que entre esos dos elementos hay una relación. Una arista se nombra con sus dos extremos: la arista que une $A$ y $B$ es $AB$.<br>Dos vértices unidos por una arista se llaman <strong>adyacentes</strong>. Una arista que une un vértice consigo mismo se llama <strong>lazo</strong>.",
+                    "example": "En el grafo de los pueblos hay 4 aristas: $AB$, $AC$, $BC$ y $CD$.<br>• $A$ y $B$ son adyacentes (hay carretera directa).<br>• $A$ y $D$ <strong>no</strong> son adyacentes: para ir de $A$ a $D$ hay que pasar por $C$."
+                }
+            ]
+        },
+        {
+            "title": "Grafos dirigidos y no dirigidos",
+            "items": [
+                {
+                    "title": "Grafo no dirigido",
+                    "description": "En un grafo <strong>no dirigido</strong> las aristas no tienen sentido: si $A$ está conectado con $B$, también $B$ está conectado con $A$. Las aristas se dibujan como líneas sin flecha.<br>Ejemplos: carreteras de doble sentido, amistades en una red social (si tú eres amigo de alguien, esa persona también es amiga tuya).",
+                    "example": "<img src='/ejemplos/grafos/grafo-no-dirigido.png' alt='Grafo no dirigido con vértices A, B, C y D y aristas AB, AC, BC y CD' width='564' height='332' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><br>La arista $AB$ permite ir de $A$ a $B$ y de $B$ a $A$."
+                },
+                {
+                    "title": "Grafo dirigido",
+                    "description": "En un grafo <strong>dirigido</strong> (o digrafo) cada arista tiene un <strong>sentido</strong>, indicado con una flecha. Estas aristas también se llaman <strong>arcos</strong>. Que haya un arco de $A$ a $B$ ($A \\to B$) <strong>no</strong> significa que haya uno de $B$ a $A$.<br>Ejemplos: calles de sentido único, vuelos entre ciudades, seguidores en una red social (tú puedes seguir a alguien que no te sigue).",
+                    "example": "Vuelos directos entre cuatro ciudades: $A \\to B$, $B \\to C$, $C \\to A$ y $C \\to D$.<br><img src='/ejemplos/grafos/grafo-dirigido.png' alt='Grafo dirigido con vértices A, B, C y D y arcos de A a B, de B a C, de C a A y de C a D' width='564' height='332' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><br>Se puede volar de $C$ a $D$, pero <strong>no</strong> de $D$ a $C$."
+                }
+            ]
+        },
+        {
+            "title": "Matriz de adyacencia",
+            "items": [
+                {
+                    "title": "Definición",
+                    "description": "La <strong>matriz de adyacencia</strong> de un grafo con $n$ vértices es una matriz cuadrada $n \\times n$ en la que cada fila y cada columna corresponden a un vértice (en el mismo orden). El elemento $a_{ij}$ indica cuántas aristas van <strong>del vértice $i$ al vértice $j$</strong>; si solo hay una o ninguna, vale $1$ o $0$.<br>Así el grafo queda guardado en una matriz y podemos usar todas las operaciones con matrices para estudiarlo.",
+                    "formula": "$$a_{ij} = \\begin{cases} 1 & \\text{si hay arista de } i \\text{ a } j \\\\ 0 & \\text{si no la hay} \\end{cases}$$",
+                    "example": "Si en un grafo de vértices $A, B, C$ hay arista de $A$ a $C$, el elemento fila $A$, columna $C$ vale $1$: $a_{13} = 1$."
+                },
+                {
+                    "title": "Matriz de un grafo no dirigido: $A^t = A$",
+                    "description": "En un grafo no dirigido, si hay arista de $i$ a $j$ también la hay de $j$ a $i$, así que $a_{ij} = a_{ji}$. Por eso su matriz de adyacencia es <strong>simétrica</strong>: <strong>su traspuesta es ella misma</strong>.<br>Si no hay lazos, la diagonal principal es toda de ceros.",
+                    "formula": "$$\\text{Grafo no dirigido} \\iff A^t = A$$",
+                    "example": "Grafo de los pueblos (filas y columnas en el orden $A, B, C, D$):<br>$$A = \\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 1 & 0 & 1 & 0 \\\\ 1 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 0 \\end{pmatrix} \\qquad A^t = \\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 1 & 0 & 1 & 0 \\\\ 1 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 0 \\end{pmatrix} = A$$"
+                },
+                {
+                    "title": "Matriz de un grafo dirigido",
+                    "description": "En un grafo dirigido, $a_{ij} = 1$ si hay un arco que <strong>sale de $i$ y llega a $j$</strong>. La fila indica el origen y la columna el destino. En general la matriz <strong>no es simétrica</strong> ($A^t \\neq A$), porque un arco $i \\to j$ no implica que exista $j \\to i$.<br>• La suma de la <strong>fila</strong> $i$ es el número de arcos que <strong>salen</strong> de $i$.<br>• La suma de la <strong>columna</strong> $j$ es el número de arcos que <strong>llegan</strong> a $j$.",
+                    "formula": "$$a_{ij} = 1 \\iff i \\to j \\qquad (\\text{fila} = \\text{origen},\\ \\text{columna} = \\text{destino})$$",
+                    "example": "Vuelos $A \\to B$, $B \\to C$, $C \\to A$, $C \\to D$ (orden $A, B, C, D$):<br>$$M = \\begin{pmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix}$$• $m_{34} = 1$: hay vuelo de $C$ a $D$; $\\;m_{43} = 0$: no hay vuelo de $D$ a $C$. Por tanto $M^t \\neq M$.<br>• Fila $D$ toda de ceros: de $D$ no sale ningún vuelo.<br>• Columna $A$: $0 + 0 + 1 + 0 = 1$ vuelo llega a $A$."
+                },
+                {
+                    "title": "Del grafo a la matriz y de la matriz al grafo",
+                    "description": "Para pasar de la matriz al grafo, se dibujan los vértices y, por cada $1$ en la posición $(i, j)$, una arista (o flecha) de $i$ a $j$. Primero se comprueba si la matriz es simétrica: si lo es, el grafo puede dibujarse <strong>no dirigido</strong>.",
+                    "example": "$$\\begin{pmatrix} 0 & 1 & 1 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \\end{pmatrix}$$ No es simétrica → grafo dirigido con vértices $1, 2, 3$.<br>• Fila 1: unos en las columnas 2 y 3 → arcos $1 \\to 2$ y $1 \\to 3$.<br>• Fila 2: uno en la columna 3 → arco $2 \\to 3$.<br>• Fila 3: todo ceros → del vértice 3 no sale nada."
+                }
+            ]
+        },
+        {
+            "title": "Transbordos o pasos intermedios",
+            "items": [
+                {
+                    "title": "Caminos de longitud 2: la matriz $A^2$",
+                    "description": "Un <strong>camino</strong> es una sucesión de aristas que se recorren una detrás de otra; su <strong>longitud</strong> es el número de aristas. Ir de $i$ a $j$ en <strong>dos pasos</strong> significa hacer <strong>un transbordo</strong> (una parada intermedia) en algún vértice $k$: $i \\to k \\to j$.<br>Al multiplicar $A \\cdot A$, el elemento $(i, j)$ es $a_{i1}a_{1j} + a_{i2}a_{2j} + \\cdots$, y cada sumando vale $1$ solo si existen $i \\to k$ y $k \\to j$. Por eso <strong>cada elemento de $A^2$ cuenta los caminos de longitud 2</strong> entre esos vértices.",
+                    "formula": "$$(A^2)_{ij} = \\text{número de caminos de } i \\text{ a } j \\text{ con } \\textcolor{#d46a6a}{1 \\text{ transbordo}}$$",
+                    "example": "Con la matriz $M$ de los vuelos:<br>$$M^2 = \\begin{pmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix}$$• $(M^2)_{13} = 1$: de $A$ a $C$ con un transbordo: $A \\to B \\to C$.<br>• $(M^2)_{24} = 1$: de $B$ a $D$ con un transbordo: $B \\to C \\to D$.<br>• $(M^2)_{14} = 0$: no se puede ir de $A$ a $D$ con exactamente un transbordo."
+                },
+                {
+                    "title": "Caminos de longitud $k$: la matriz $A^k$",
+                    "description": "La idea se generaliza: <strong>cada elemento de $A^k$ es el número de caminos de longitud $k$</strong> entre dos vértices, es decir, con $k - 1$ transbordos.<br>¡Cuidado con el error típico! $A^2$ es <strong>un</strong> transbordo, $A^3$ son <strong>dos</strong> transbordos: el exponente es el número de trayectos, no de paradas.",
+                    "formula": "$$(A^k)_{ij} = \\text{número de caminos de } i \\text{ a } j \\text{ de longitud } k \\;\\;(k - 1 \\text{ transbordos})$$",
+                    "example": "$$M^3 = M^2 \\cdot M = \\begin{pmatrix} 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix} \\cdot \\begin{pmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix} = \\begin{pmatrix} 1 & 0 & 0 & 1 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix}$$• $(M^3)_{14} = 1$: de $A$ a $D$ con dos transbordos: $A \\to B \\to C \\to D$.<br>• $(M^3)_{11} = 1$: se puede salir de $A$ y volver a $A$ en tres vuelos: $A \\to B \\to C \\to A$."
+                },
+                {
+                    "title": "$A^2$ en un grafo no dirigido",
+                    "description": "En un grafo no dirigido, los elementos de $A^2$ también cuentan caminos de longitud 2, y pueden ser mayores que $1$ si hay varias rutas distintas. En la <strong>diagonal</strong> aparecen los caminos de <strong>ida y vuelta</strong>: salir de un vértice por una arista y regresar por la misma.",
+                    "example": "Grafo de los pueblos:<br>$$A^2 = \\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 1 & 0 & 1 & 0 \\\\ 1 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 0 \\end{pmatrix}^2 = \\begin{pmatrix} \\textcolor{#d46a6a}{2} & 1 & 1 & 1 \\\\ 1 & \\textcolor{#d46a6a}{2} & 1 & 1 \\\\ 1 & 1 & \\textcolor{#d46a6a}{3} & 0 \\\\ 1 & 1 & 0 & \\textcolor{#d46a6a}{1} \\end{pmatrix}$$• $(A^2)_{14} = 1$: de $A$ a $D$ pasando por un pueblo: $A - C - D$.<br>• $(A^2)_{33} = 3$: tres caminos de ida y vuelta desde $C$: $C - A - C$, $\\;C - B - C$, $\\;C - D - C$.<br>• $A^2$ también es simétrica, como $A$."
+                }
+            ]
+        },
+        {
+            "title": "Matriz de accesibilidad",
+            "items": [
+                {
+                    "title": "Definición",
+                    "description": "Un vértice $j$ es <strong>accesible</strong> desde $i$ si se puede llegar de $i$ a $j$ por algún camino, con los transbordos que hagan falta. En un grafo de $n$ vértices basta con mirar caminos de longitud $1$ hasta $n - 1$ (un camino más largo repetiría vértices).<br>La <strong>matriz de accesibilidad</strong> es la suma de las potencias de la matriz de adyacencia hasta $A^{n-1}$. Cada elemento cuenta <strong>todos</strong> los caminos de longitud $1$ a $n - 1$ de $i$ a $j$: si es <strong>distinto de cero</strong>, $j$ es accesible desde $i$; si es <strong>cero</strong>, no se puede llegar.",
+                    "formula": "$$\\text{Acc} = A + A^2 + A^3 + \\cdots + A^{n-1}$$",
+                    "example": "Con 4 vértices: $\\text{Acc} = A + A^2 + A^3$.<br>Con 5 vértices: $\\text{Acc} = A + A^2 + A^3 + A^4$."
+                },
+                {
+                    "title": "Ejemplo completo",
+                    "description": "Se calculan las potencias, se suman y se interpreta el resultado por filas (desde dónde se sale) y por columnas (adónde se llega). A veces se escribe la matriz de accesibilidad solo con unos y ceros, sustituyendo cada elemento distinto de cero por un $1$.",
+                    "example": "Vuelos $A \\to B$, $B \\to C$, $C \\to A$, $C \\to D$ ($n = 4$):<br>$$\\text{Acc} = M + M^2 + M^3 = \\begin{pmatrix} 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix} + \\begin{pmatrix} 0 & 0 & 1 & 0 \\\\ 1 & 0 & 0 & 1 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix} + \\begin{pmatrix} 1 & 0 & 0 & 1 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix} = \\begin{pmatrix} 1 & 1 & 1 & 1 \\\\ 1 & 1 & 1 & 1 \\\\ 1 & 1 & 1 & 1 \\\\ \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{0} & \\textcolor{#d46a6a}{0} \\end{pmatrix}$$• Filas $A$, $B$ y $C$ sin ceros: desde estas ciudades se puede llegar a cualquier otra.<br>• Fila $D$ toda de ceros: desde $D$ no se puede llegar a ninguna ciudad.<br>• Columna $D$ con todo unos salvo en $D$: a $D$ se llega desde cualquier otra ciudad."
+                }
+            ]
+        }
+    ]
+}

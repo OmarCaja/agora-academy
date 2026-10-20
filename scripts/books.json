@@ -87,5 +87,12 @@
     ],
     "title": "Matrices, determinantes y sistemas de ecuaciones",
     "out": "public/libros/matrices-determinantes-sistemas-de-ecuaciones.pdf"
+  },
+  {
+    "topics": [
+      "grafos"
+    ],
+    "title": "Grafos",
+    "out": "public/libros/grafos.pdf"
   }
 ]
