@@ -8,6 +8,7 @@ export const GROUP_ORDER: string[] = [
     "Funciones, límites y derivadas",
     "Potencias, raíces y logaritmos",
     "Trigonometría",
+    "Geometría",
     "Estadística y probabilidad",
     "Física y química",
 ];

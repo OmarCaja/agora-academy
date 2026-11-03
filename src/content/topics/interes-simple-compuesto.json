@@ -1,0 +1,115 @@
+{
+    "title": "Interés simple y compuesto",
+    "description": "Conceptos de capital, interés, rédito y tiempo. Interés simple e interés compuesto: fórmulas, cálculo del capital inicial, del rédito y del tiempo, capitalización fraccionada (mensual, trimestral) y retención fiscal.",
+    "menuGroup": "Aritmética",
+    "menuOrder": 6,
+    "sections": [
+        {
+            "title": "Conceptos básicos",
+            "items": [
+                {
+                    "title": "Capital, interés, rédito y tiempo",
+                    "description": "Cuando depositamos dinero en un banco (o lo pedimos prestado), se manejan siempre las mismas magnitudes:<br>• <strong>Capital inicial</strong> $C$: el dinero que se deposita o se presta.<br>• <strong>Rédito</strong> o <strong>tipo de interés</strong> $r$: el porcentaje que se paga por cada unidad de tiempo (normalmente anual).<br>• <strong>Tiempo</strong> $t$: cuánto dura la operación, en las mismas unidades que el rédito.<br>• <strong>Interés</strong> $I$: el beneficio (o el coste) que genera el capital.<br>• <strong>Capital final</strong> $C_f$: lo que se tiene al terminar.",
+                    "formula": "$$C_f = C + I$$",
+                    "example": "Depositamos $2000$ € y al cabo de un año recibimos $2060$ €. El interés ha sido $I = 2060 - 2000 = 60$ €, y el rédito $\\dfrac{60}{2000} = 0{,}03$, es decir, un $3\\,\\%$ anual."
+                },
+                {
+                    "title": "El rédito siempre en tanto por uno",
+                    "description": "En todas las fórmulas el rédito se escribe en <strong>tanto por uno</strong>: se divide el porcentaje entre $100$. Es el error más frecuente: sustituir $r = 4$ en lugar de $r = 0{,}04$ da un resultado cien veces mayor.",
+                    "formula": "$$r = \\dfrac{\\text{porcentaje}}{100}$$",
+                    "example": "• $4\\,\\% \\rightarrow r = 0{,}04$<br>• $2{,}5\\,\\% \\rightarrow r = 0{,}025$<br>• $0{,}75\\,\\% \\rightarrow r = 0{,}0075$"
+                }
+            ]
+        },
+        {
+            "title": "Interés simple",
+            "items": [
+                {
+                    "title": "Fórmula del interés simple",
+                    "description": "En el <strong>interés simple</strong> los intereses se calculan siempre sobre el <strong>capital inicial</strong>: cada año se cobra la misma cantidad y los intereses no se suman al capital para generar más intereses. Por eso el capital crece de forma <strong>lineal</strong>.",
+                    "formula": "$$I = C \\cdot r \\cdot t \\qquad C_f = C\\,(1 + r \\cdot t)$$",
+                    "example": "Depositamos $5000$ € al $4\\,\\%$ de interés simple anual durante $3$ años.<br>$$I = 5000 \\cdot 0{,}04 \\cdot 3 = 600 \\text{ euros}$$ $$C_f = 5000 + 600 = 5600 \\text{ euros}$$ Cada año se cobran los mismos $5000 \\cdot 0{,}04 = 200$ €."
+                },
+                {
+                    "title": "Tiempo en meses o en días",
+                    "description": "El rédito suele ser <strong>anual</strong>, así que el tiempo se expresa en <strong>años</strong>. Si viene en meses se divide entre $12$; si viene en días, entre $360$ (<strong>año comercial</strong>, el que usan los bancos salvo que se diga lo contrario).",
+                    "formula": "$$t = \\dfrac{\\text{meses}}{12} \\qquad t = \\dfrac{\\text{días}}{360}$$",
+                    "example": "• $8000$ € al $3\\,\\%$ durante $9$ meses: $$I = 8000 \\cdot 0{,}03 \\cdot \\dfrac{9}{12} = 180 \\text{ euros}$$ • $12\\,000$ € al $5\\,\\%$ durante $90$ días: $$I = 12\\,000 \\cdot 0{,}05 \\cdot \\dfrac{90}{360} = 150 \\text{ euros}$$"
+                },
+                {
+                    "title": "Despejar capital, rédito o tiempo",
+                    "description": "De $I = C \\cdot r \\cdot t$ se despeja cualquiera de las otras magnitudes dividiendo el interés entre el producto de las otras dos. Al despejar $r$ se obtiene en tanto por uno: multiplica por $100$ para dar el porcentaje.",
+                    "formula": "$$C = \\dfrac{I}{r \\cdot t} \\qquad r = \\dfrac{I}{C \\cdot t} \\qquad t = \\dfrac{I}{C \\cdot r}$$",
+                    "example": "• ¿Qué capital produce $900$ € en $5$ años al $6\\,\\%$? $$C = \\dfrac{900}{0{,}06 \\cdot 5} = 3000 \\text{ euros}$$ • $2000$ € producen $240$ € en $2$ años: $$r = \\dfrac{240}{2000 \\cdot 2} = 0{,}06 \\rightarrow 6\\,\\%$$ • ¿Cuánto tarda $4000$ € al $2{,}5\\,\\%$ en producir $300$ €? $$t = \\dfrac{300}{4000 \\cdot 0{,}025} = 3 \\text{ años}$$"
+                }
+            ]
+        },
+        {
+            "title": "Interés compuesto",
+            "items": [
+                {
+                    "title": "¿Qué cambia respecto al simple?",
+                    "description": "En el <strong>interés compuesto</strong>, al final de cada periodo los intereses se <strong>suman al capital</strong> (se <strong>capitalizan</strong>) y el periodo siguiente generan intereses también. Cada año el capital se multiplica por $(1 + r)$, igual que en un aumento porcentual repetido.",
+                    "example": "$1000$ € al $10\\,\\%$ compuesto:<br>• Año 1: $1000 \\cdot 1{,}1 = 1100$ €<br>• Año 2: $1100 \\cdot 1{,}1 = 1210$ €<br>• Año 3: $1210 \\cdot 1{,}1 = 1331$ €<br>Con interés simple serían $1100$, $1200$ y $1300$ €: la diferencia son los intereses de los intereses."
+                },
+                {
+                    "title": "Fórmula del interés compuesto",
+                    "description": "Multiplicar $t$ veces por $(1 + r)$ es elevar a $t$. El interés se obtiene después restando: $I = C_f - C$. No existe una fórmula «$I = \\dots$» directa como en el simple.",
+                    "formula": "$$C_f = C\\,(1 + r)^t$$",
+                    "example": "$5000$ € al $4\\,\\%$ de interés compuesto anual durante $3$ años:<br>$$C_f = 5000 \\cdot 1{,}04^3 = 5624{,}32 \\text{ euros}$$ $$I = 5624{,}32 - 5000 = 624{,}32 \\text{ euros}$$ Con interés simple eran $600$ €: el compuesto da $24{,}32$ € más."
+                },
+                {
+                    "title": "Simple frente a compuesto",
+                    "description": "El simple crece en <strong>línea recta</strong> (progresión aritmética) y el compuesto de forma <strong>exponencial</strong> (progresión geométrica). Para el mismo rédito:<br>• Si $t < 1$ año, el simple da algo más.<br>• Si $t = 1$, dan lo mismo.<br>• Si $t > 1$, el compuesto da más, y la diferencia se dispara con los años.",
+                    "formula": "<img src='/ejemplos/interes-simple-compuesto/simple-vs-compuesto.png' alt='Capital de 1000 euros al 10 por ciento durante 20 años: recta del interés simple frente a curva exponencial del interés compuesto' width='751' height='579' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "example": "$1000$ € al $10\\,\\%$ durante $20$ años:<br>• Simple: $1000\\,(1 + 0{,}1 \\cdot 20) = 3000$ €<br>• Compuesto: $1000 \\cdot 1{,}1^{20} \\approx 6727{,}50$ €"
+                }
+            ]
+        },
+        {
+            "title": "Despejes en el interés compuesto",
+            "items": [
+                {
+                    "title": "Capital inicial (actualizar un capital)",
+                    "description": "Para saber cuánto hay que depositar hoy para tener $C_f$ dentro de $t$ años, se divide entre $(1 + r)^t$. A esto se le llama <strong>actualizar</strong> el capital.",
+                    "formula": "$$C = \\dfrac{C_f}{(1 + r)^t}$$",
+                    "example": "¿Cuánto hay que depositar al $3\\,\\%$ compuesto para tener $10\\,000$ € dentro de $5$ años? $$C = \\dfrac{10\\,000}{1{,}03^5} \\approx 8626{,}09 \\text{ euros}$$"
+                },
+                {
+                    "title": "Rédito: raíz $t$-ésima",
+                    "description": "Se despeja $(1 + r)^t$ y se hace la raíz de índice $t$ en ambos miembros.",
+                    "formula": "$$r = \\sqrt[t]{\\dfrac{C_f}{C}} - 1$$",
+                    "example": "$2000$ € se convierten en $2420$ € en $2$ años. $$1{,}21 = (1 + r)^2 \\Rightarrow 1 + r = \\sqrt{1{,}21} = 1{,}1 \\Rightarrow r = 0{,}1$$ El rédito es del $10\\,\\%$ anual."
+                },
+                {
+                    "title": "Tiempo: con logaritmos",
+                    "description": "El tiempo está en el <strong>exponente</strong>, así que se toman logaritmos en ambos miembros y se usa $\\log a^t = t \\log a$. Si el resultado no es entero y los intereses solo se abonan al final de cada año, se redondea <strong>hacia arriba</strong>.",
+                    "formula": "$$t = \\dfrac{\\log \\left( \\dfrac{C_f}{C} \\right)}{\\log (1 + r)}$$",
+                    "example": "• ¿Cuánto tardan $3000$ € al $5\\,\\%$ en llegar a $4000$ €? $$1{,}05^t = \\dfrac{4000}{3000} \\Rightarrow t = \\dfrac{\\log (4/3)}{\\log 1{,}05} \\approx 5{,}9 \\rightarrow 6 \\text{ años}$$ • ¿Cuánto tarda un capital en duplicarse al $4\\,\\%$? $$1{,}04^t = 2 \\Rightarrow t = \\dfrac{\\log 2}{\\log 1{,}04} \\approx 17{,}7 \\rightarrow 18 \\text{ años}$$ No depende del capital: se duplica igual $100$ € que $100\\,000$ €."
+                }
+            ]
+        },
+        {
+            "title": "Capitalización fraccionada",
+            "items": [
+                {
+                    "title": "Periodos de capitalización menores que un año",
+                    "description": "Muchas veces el banco da un rédito <strong>anual</strong> $r$ (llamado <strong>nominal</strong>) pero abona los intereses $n$ veces al año: mensualmente ($n = 12$), trimestralmente ($n = 4$), semestralmente ($n = 2$)... Entonces en cada periodo se aplica $\\dfrac{r}{n}$ y hay $n \\cdot t$ periodos.",
+                    "formula": "$$C_f = C \\left(1 + \\dfrac{r}{n}\\right)^{n \\cdot t}$$",
+                    "example": "• $10\\,000$ € al $6\\,\\%$ anual con capitalización mensual durante $2$ años: $$C_f = 10\\,000 \\left(1 + \\dfrac{0{,}06}{12}\\right)^{24} = 10\\,000 \\cdot 1{,}005^{24} \\approx 11\\,271{,}60 \\text{ euros}$$ • $10\\,000$ € al $4\\,\\%$ anual con capitalización trimestral durante $3$ años: $$C_f = 10\\,000 \\cdot 1{,}01^{12} \\approx 11\\,268{,}25 \\text{ euros}$$"
+                }
+            ]
+        },
+        {
+            "title": "Retención fiscal",
+            "items": [
+                {
+                    "title": "Intereses netos",
+                    "description": "Los intereses que da un depósito tributan: el banco <strong>retiene</strong> un porcentaje de los intereses (no del capital) y lo ingresa en Hacienda. Lo que de verdad cobra el ahorrador son los <strong>intereses netos</strong>. Si la retención es del $p\\,\\%$, se cobra el $(100 - p)\\,\\%$ de los intereses.",
+                    "formula": "$$I_{\\text{neto}} = I \\cdot \\left(1 - \\dfrac{p}{100}\\right)$$",
+                    "example": "$5000$ € al $4\\,\\%$ compuesto durante $3$ años generan $I = 624{,}32$ €. Con una retención del $19\\,\\%$: $$\\text{retención} = 624{,}32 \\cdot 0{,}19 \\approx 118{,}62 \\text{ euros}$$ $$I_{\\text{neto}} = 624{,}32 \\cdot 0{,}81 \\approx 505{,}70 \\text{ euros}$$ El capital final que se cobra es $5000 + 505{,}70 = 5505{,}70$ €."
+                }
+            ]
+        }
+    ]
+}

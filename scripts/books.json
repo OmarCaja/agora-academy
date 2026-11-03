@@ -94,5 +94,19 @@
     ],
     "title": "Grafos",
     "out": "public/libros/grafos.pdf"
+  },
+  {
+    "topics": [
+      "interes-simple-compuesto"
+    ],
+    "title": "Interés simple y compuesto",
+    "out": "public/libros/interes-simple-compuesto.pdf"
+  },
+  {
+    "topics": [
+      "vectores"
+    ],
+    "title": "Vectores",
+    "out": "public/libros/vectores.pdf"
   }
 ]

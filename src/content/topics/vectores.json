@@ -1,0 +1,210 @@
+{
+    "title": "Vectores",
+    "description": "Vectores en el espacio: módulo, dirección, sentido y vector unitario. Suma, resta y producto por un escalar, dependencia lineal, bases, coordenadas y sistemas de referencia. Producto escalar (ángulo, proyección y perpendicularidad), producto vectorial y producto mixto con sus aplicaciones a áreas y volúmenes.",
+    "menuGroup": "Geometría",
+    "menuOrder": 1,
+    "sections": [
+        {
+            "title": "¿Qué es un vector?",
+            "items": [
+                {
+                    "title": "Vector fijo $\\overrightarrow{AB}$",
+                    "description": "Un <strong>vector fijo</strong> es un segmento orientado: tiene un <strong>origen</strong> $A$ y un <strong>extremo</strong> $B$, y se dibuja como una flecha de $A$ a $B$. Sus <strong>coordenadas</strong> se obtienen restando <strong>extremo menos origen</strong> (nunca al revés: $\\overrightarrow{BA}$ es el vector opuesto).",
+                    "formula": "$$A(a_1, a_2, a_3),\\ B(b_1, b_2, b_3) \\Rightarrow \\overrightarrow{AB} = (b_1 - a_1,\\ b_2 - a_2,\\ b_3 - a_3)$$",
+                    "example": "$A(1, 2, -1)$ y $B(3, -1, 5)$:<br>$$\\overrightarrow{AB} = (3 - 1,\\ -1 - 2,\\ 5 - (-1)) = (2, -3, 6)$$ $$\\overrightarrow{BA} = (-2, 3, -6)$$"
+                },
+                {
+                    "title": "Módulo, dirección y sentido",
+                    "description": "Todo vector queda determinado por tres características:<br>• <strong>Módulo</strong>: su longitud, la distancia entre origen y extremo. Se escribe $\\lvert \\vec{u} \\rvert$ y siempre es $\\geq 0$.<br>• <strong>Dirección</strong>: la de la recta que lo contiene. Dos vectores paralelos tienen la misma dirección.<br>• <strong>Sentido</strong>: hacia dónde apunta la flecha dentro de esa dirección (de los dos posibles).",
+                    "formula": "$$\\vec{u} = (u_1, u_2, u_3) \\Rightarrow \\lvert \\vec{u} \\rvert = \\sqrt{u_1^2 + u_2^2 + u_3^2}$$",
+                    "example": "$$\\lvert \\overrightarrow{AB} \\rvert = \\lvert (2, -3, 6) \\rvert = \\sqrt{2^2 + (-3)^2 + 6^2} = \\sqrt{4 + 9 + 36} = \\sqrt{49} = 7$$ $\\overrightarrow{AB}$ y $\\overrightarrow{BA}$ tienen el mismo módulo y la misma dirección, pero <strong>sentido contrario</strong>."
+                },
+                {
+                    "title": "Vectores equipolentes y vector libre",
+                    "description": "Dos vectores fijos son <strong>equipolentes</strong> si tienen el mismo módulo, dirección y sentido, aunque estén en sitios distintos; entonces tienen las mismas coordenadas. Todos los vectores equipolentes a uno dado forman un <strong>vector libre</strong> $\\vec{u}$: es el que usamos al operar, porque solo importan sus coordenadas, no dónde esté dibujado.",
+                    "example": "$A(0, 0, 0)$, $B(1, 2, 3)$, $C(4, 1, 0)$, $D(5, 3, 3)$:<br>$\\overrightarrow{AB} = (1, 2, 3)$ y $\\overrightarrow{CD} = (5 - 4,\\ 3 - 1,\\ 3 - 0) = (1, 2, 3)$.<br>Son equipolentes: representan el mismo vector libre $\\vec{u} = (1, 2, 3)$."
+                },
+                {
+                    "title": "Vector unitario",
+                    "description": "Un vector es <strong>unitario</strong> si su módulo es 1. Para obtener el vector unitario en la misma dirección y sentido que $\\vec{u}$ (<strong>normalizar</strong>), se divide cada coordenada entre el módulo. Si se quiere el de sentido contrario, se cambia el signo.",
+                    "formula": "$$\\vec{e} = \\dfrac{\\vec{u}}{\\lvert \\vec{u} \\rvert} \\qquad \\lvert \\vec{e} \\rvert = 1$$",
+                    "example": "$\\vec{u} = (2, -3, 6)$, $\\lvert \\vec{u} \\rvert = 7$:<br>$$\\vec{e} = \\left(\\dfrac{2}{7}, -\\dfrac{3}{7}, \\dfrac{6}{7}\\right)$$ Comprobación: $\\dfrac{4}{49} + \\dfrac{9}{49} + \\dfrac{36}{49} = \\dfrac{49}{49} = 1$ ✓<br>Unitarios en su dirección hay dos: $\\vec{e}$ y $-\\vec{e}$."
+                }
+            ]
+        },
+        {
+            "title": "Operaciones con vectores",
+            "items": [
+                {
+                    "title": "Suma de vectores",
+                    "description": "Se suman <strong>coordenada a coordenada</strong>. Gráficamente se usa la <strong>regla del paralelogramo</strong>: con los dos vectores en el mismo origen, la suma es la diagonal del paralelogramo que forman. Equivale a colocar el origen de $\\vec{v}$ en el extremo de $\\vec{u}$.",
+                    "formula": "$$\\vec{u} + \\vec{v} = (u_1 + v_1,\\ u_2 + v_2,\\ u_3 + v_3)$$ <img src='/ejemplos/vectores/suma-paralelogramo.png' alt='Regla del paralelogramo: la suma de u y v es la diagonal del paralelogramo que forman' width='588' height='420' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "example": "$\\vec{u} = (2, -1, 3)$, $\\vec{v} = (1, 4, -2)$:<br>$$\\vec{u} + \\vec{v} = (2 + 1,\\ -1 + 4,\\ 3 + (-2)) = (3, 3, 1)$$"
+                },
+                {
+                    "title": "Resta de vectores",
+                    "description": "Restar es sumar el <strong>opuesto</strong>: $\\vec{u} - \\vec{v} = \\vec{u} + (-\\vec{v})$, donde $-\\vec{v}$ tiene el mismo módulo y dirección que $\\vec{v}$ pero sentido contrario. En el paralelogramo, $\\vec{u} - \\vec{v}$ es la otra diagonal (va del extremo de $\\vec{v}$ al de $\\vec{u}$).",
+                    "formula": "$$\\vec{u} - \\vec{v} = (u_1 - v_1,\\ u_2 - v_2,\\ u_3 - v_3)$$",
+                    "example": "$\\vec{u} = (2, -1, 3)$, $\\vec{v} = (1, 4, -2)$:<br>$$\\vec{u} - \\vec{v} = (2 - 1,\\ -1 - 4,\\ 3 - (-2)) = (1, -5, 5)$$ Cuidado con los signos al restar un número negativo."
+                },
+                {
+                    "title": "Producto de un escalar por un vector",
+                    "description": "Multiplicar un vector por un número real $k$ (un <strong>escalar</strong>) multiplica cada coordenada por $k$. El resultado tiene la <strong>misma dirección</strong> que $\\vec{u}$, su módulo se multiplica por $\\lvert k \\rvert$ y:<br>• si $k > 0$, conserva el sentido;<br>• si $k < 0$, invierte el sentido;<br>• si $k = 0$, da el vector nulo $\\vec{0}$.",
+                    "formula": "$$k \\cdot \\vec{u} = (k u_1,\\ k u_2,\\ k u_3) \\qquad \\lvert k \\vec{u} \\rvert = \\lvert k \\rvert \\cdot \\lvert \\vec{u} \\rvert$$",
+                    "example": "$\\vec{u} = (2, -1, 3)$:<br>• $3\\vec{u} = (6, -3, 9)$: el triple de largo, mismo sentido.<br>• $-\\dfrac{1}{2}\\vec{u} = \\left(-1, \\dfrac{1}{2}, -\\dfrac{3}{2}\\right)$: la mitad de largo, sentido contrario."
+                },
+                {
+                    "title": "Combinación lineal",
+                    "description": "Una <strong>combinación lineal</strong> de varios vectores es cualquier suma de esos vectores multiplicados por números. Se calcula haciendo primero los productos por escalares y después las sumas, como en la jerarquía de operaciones.",
+                    "formula": "$$\\vec{w} = a\\vec{u} + b\\vec{v} + c\\vec{t}, \\qquad a, b, c \\in \\mathbb{R}$$",
+                    "example": "$\\vec{u} = (2, -1, 3)$, $\\vec{v} = (1, 4, -2)$:<br>$$2\\vec{u} - 3\\vec{v} = (4, -2, 6) - (3, 12, -6) = (1, -14, 12)$$"
+                },
+                {
+                    "title": "Vectores paralelos (proporcionales)",
+                    "description": "Dos vectores no nulos son <strong>paralelos</strong> (tienen la misma dirección) si uno es un múltiplo del otro, es decir, si sus coordenadas son <strong>proporcionales</strong>. Si alguna coordenada es 0, la del otro vector también tiene que serlo.",
+                    "formula": "$$\\vec{u} \\parallel \\vec{v} \\iff \\vec{v} = k\\vec{u} \\iff \\dfrac{v_1}{u_1} = \\dfrac{v_2}{u_2} = \\dfrac{v_3}{u_3}$$",
+                    "example": "• $(2, -1, 3)$ y $(-4, 2, -6)$: $\\dfrac{-4}{2} = \\dfrac{2}{-1} = \\dfrac{-6}{3} = -2$ → paralelos, sentido contrario.<br>• $(1, 2, 3)$ y $(2, 4, 5)$: $\\dfrac{2}{1} = \\dfrac{4}{2} \\neq \\dfrac{5}{3}$ → no son paralelos."
+                }
+            ]
+        },
+        {
+            "title": "Dependencia lineal, bases y coordenadas",
+            "items": [
+                {
+                    "title": "Vectores linealmente dependientes e independientes",
+                    "description": "Un conjunto de vectores es <strong>linealmente dependiente</strong> si alguno de ellos se puede escribir como combinación lineal de los demás. Si ninguno se puede, son <strong>linealmente independientes</strong>.<br>Interpretación geométrica:<br>• Dos vectores son dependientes si son <strong>paralelos</strong>.<br>• Tres vectores son dependientes si son <strong>coplanarios</strong> (están en un mismo plano).<br>• En el espacio, <strong>cuatro o más vectores siempre son dependientes</strong>.",
+                    "formula": "$$\\text{Independientes} \\iff a\\vec{u} + b\\vec{v} + c\\vec{w} = \\vec{0} \\text{ solo para } a = b = c = 0$$",
+                    "example": "$\\vec{u} = (1, 2, 3)$, $\\vec{v} = (2, 1, 0)$, $\\vec{w} = (4, 5, 6)$:<br>$$2\\vec{u} + \\vec{v} = (2, 4, 6) + (2, 1, 0) = (4, 5, 6) = \\vec{w}$$ $\\vec{w}$ es combinación lineal de $\\vec{u}$ y $\\vec{v}$ → son <strong>linealmente dependientes</strong> (coplanarios)."
+                },
+                {
+                    "title": "Estudio con el rango o el determinante",
+                    "description": "Para saber si unos vectores son independientes, se colocan como filas de una matriz y se calcula su <strong>rango</strong>: el rango es el número máximo de vectores independientes. Con tres vectores del espacio basta el <strong>determinante</strong>:<br>• $\\det \\neq 0$ → linealmente independientes.<br>• $\\det = 0$ → linealmente dependientes.",
+                    "formula": "$$\\vec{u}, \\vec{v}, \\vec{w} \\text{ independientes} \\iff \\begin{vmatrix} u_1 & u_2 & u_3 \\\\ v_1 & v_2 & v_3 \\\\ w_1 & w_2 & w_3 \\end{vmatrix} \\neq 0$$",
+                    "example": "$$\\begin{vmatrix} 1 & 2 & 3 \\\\ 2 & 1 & 0 \\\\ 4 & 5 & 6 \\end{vmatrix} = 6 + 0 + 30 - 12 - 0 - 24 = 0$$ → dependientes (lo que ya vimos).<br>$$\\begin{vmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 1 \\\\ 1 & 1 & 0 \\end{vmatrix} = 0 + 0 + 0 - 1 - 1 - 0 = -2 \\neq 0$$ → independientes."
+                },
+                {
+                    "title": "Base del espacio",
+                    "description": "Una <strong>base</strong> de los vectores del espacio es un conjunto de <strong>tres vectores linealmente independientes</strong> (no coplanarios). Cualquier otro vector se puede escribir, <strong>de forma única</strong>, como combinación lineal de ellos.<br>Una base es <strong>ortogonal</strong> si sus vectores son perpendiculares dos a dos, y <strong>ortonormal</strong> si además son unitarios.",
+                    "formula": "$$B = \\{\\vec{u}_1, \\vec{u}_2, \\vec{u}_3\\} \\text{ base} \\iff \\det(\\vec{u}_1, \\vec{u}_2, \\vec{u}_3) \\neq 0$$",
+                    "example": "$\\{(1, 0, 1),\\ (0, 1, 1),\\ (1, 1, 0)\\}$ es una base, porque su determinante vale $-2 \\neq 0$.<br>$\\{(1, 2, 3),\\ (2, 1, 0),\\ (4, 5, 6)\\}$ no es base: su determinante es 0."
+                },
+                {
+                    "title": "Base canónica",
+                    "description": "La <strong>base canónica</strong> está formada por tres vectores unitarios y perpendiculares entre sí, uno en la dirección de cada eje: $\\vec{i}$ (eje $X$), $\\vec{j}$ (eje $Y$) y $\\vec{k}$ (eje $Z$). Es ortonormal. Cuando damos un vector como $(u_1, u_2, u_3)$ sin indicar base, nos referimos a esta.",
+                    "formula": "$$\\vec{i} = (1, 0, 0), \\quad \\vec{j} = (0, 1, 0), \\quad \\vec{k} = (0, 0, 1)$$ $$\\vec{u} = (u_1, u_2, u_3) = u_1\\vec{i} + u_2\\vec{j} + u_3\\vec{k}$$",
+                    "example": "$$\\vec{u} = (2, -1, 3) = 2\\vec{i} - \\vec{j} + 3\\vec{k}$$"
+                },
+                {
+                    "title": "Coordenadas de un vector en una base",
+                    "description": "Si $B = \\{\\vec{u}_1, \\vec{u}_2, \\vec{u}_3\\}$ es una base, las <strong>coordenadas</strong> de $\\vec{w}$ en $B$ son los únicos números $(a, b, c)$ tales que $\\vec{w} = a\\vec{u}_1 + b\\vec{u}_2 + c\\vec{u}_3$. Para hallarlas se iguala coordenada a coordenada y se resuelve el <strong>sistema</strong>.",
+                    "formula": "$$\\vec{w} = a\\vec{u}_1 + b\\vec{u}_2 + c\\vec{u}_3 \\Rightarrow \\vec{w} = (a, b, c)_B$$",
+                    "example": "Coordenadas de $\\vec{w} = (3, 4, 5)$ en $B = \\{(1, 0, 1), (0, 1, 1), (1, 1, 0)\\}$:<br>$$(3, 4, 5) = a(1, 0, 1) + b(0, 1, 1) + c(1, 1, 0) \\Rightarrow \\begin{cases} a + c = 3 \\\\ b + c = 4 \\\\ a + b = 5 \\end{cases}$$ Sumando las tres: $2(a + b + c) = 12 \\Rightarrow a + b + c = 6$.<br>Entonces $b = 6 - 3 = 3$, $a = 6 - 4 = 2$, $c = 6 - 5 = 1$.<br>$$\\vec{w} = (2, 3, 1)_B$$"
+                },
+                {
+                    "title": "Sistema de referencia y coordenadas de un punto",
+                    "description": "Un vector libre no está en ningún sitio concreto, pero un <strong>punto</strong> sí. Para dar la posición de un punto con números necesitamos dos cosas:<br>• Un punto fijo de partida, el <strong>origen</strong> $O$, donde se cortan los ejes $X$, $Y$, $Z$.<br>• Una base, normalmente $\\{\\vec{i}, \\vec{j}, \\vec{k}\\}$, que marca la dirección de los ejes y la unidad de medida.<br>Juntos forman el <strong>sistema de referencia</strong> $R = \\{O;\\ \\vec{i}, \\vec{j}, \\vec{k}\\}$.<br>Para llegar desde $O$ hasta un punto $P$ hay un único vector, $\\overrightarrow{OP}$, llamado <strong>vector de posición</strong> de $P$. Las coordenadas del punto son, por definición, las coordenadas de ese vector: $P(x, y, z)$ significa «desde $O$, avanza $x$ en el eje $X$, $y$ en el eje $Y$ y $z$ en el eje $Z$».<br>Esto es lo que justifica la regla <strong>extremo menos origen</strong>: para ir de $A$ a $B$ se puede volver a $O$ y salir hacia $B$.",
+                    "formula": "$$P(x, y, z) \\iff \\overrightarrow{OP} = x\\vec{i} + y\\vec{j} + z\\vec{k} = (x, y, z)$$ $$\\overrightarrow{AB} = \\overrightarrow{AO} + \\overrightarrow{OB} = \\overrightarrow{OB} - \\overrightarrow{OA}$$",
+                    "example": "• El punto $P(2, -1, 4)$ se alcanza desde $O$ con el vector $\\overrightarrow{OP} = 2\\vec{i} - \\vec{j} + 4\\vec{k} = (2, -1, 4)$: los mismos números, uno es un punto y el otro una flecha.<br>• Con $A(1, 2, -1)$ y $B(3, -1, 5)$:<br>$$\\overrightarrow{AB} = \\overrightarrow{OB} - \\overrightarrow{OA} = (3, -1, 5) - (1, 2, -1) = (2, -3, 6)$$ que coincide con «extremo menos origen» del principio del tema."
+                }
+            ]
+        },
+        {
+            "title": "Producto escalar",
+            "items": [
+                {
+                    "title": "Definición: $\\vec{u} \\cdot \\vec{v}$",
+                    "description": "El <strong>producto escalar</strong> de dos vectores es un <strong>número</strong> (no un vector): el producto de sus módulos por el coseno del ángulo $\\alpha$ que forman. Su signo indica cómo es el ángulo:<br>• $\\vec{u} \\cdot \\vec{v} > 0$ → ángulo agudo.<br>• $\\vec{u} \\cdot \\vec{v} = 0$ → ángulo recto.<br>• $\\vec{u} \\cdot \\vec{v} < 0$ → ángulo obtuso.",
+                    "formula": "$$\\vec{u} \\cdot \\vec{v} = \\lvert \\vec{u} \\rvert \\cdot \\lvert \\vec{v} \\rvert \\cdot \\cos \\alpha$$",
+                    "example": "$\\lvert \\vec{u} \\rvert = 3$, $\\lvert \\vec{v} \\rvert = 4$, ángulo de $60^\\circ$:<br>$$\\vec{u} \\cdot \\vec{v} = 3 \\cdot 4 \\cdot \\cos 60^\\circ = 12 \\cdot \\dfrac{1}{2} = 6$$"
+                },
+                {
+                    "title": "Expresión analítica",
+                    "description": "En una base ortonormal (como la canónica), el producto escalar se calcula multiplicando <strong>coordenada a coordenada</strong> y sumando. Es la forma de calcularlo cuando conocemos las coordenadas.",
+                    "formula": "$$\\vec{u} \\cdot \\vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3$$",
+                    "example": "$\\vec{u} = (2, -1, 3)$, $\\vec{v} = (1, 4, -2)$:<br>$$\\vec{u} \\cdot \\vec{v} = 2 \\cdot 1 + (-1) \\cdot 4 + 3 \\cdot (-2) = 2 - 4 - 6 = -8$$ Es negativo: forman un ángulo obtuso."
+                },
+                {
+                    "title": "Propiedades",
+                    "description": "• <strong>Conmutativa</strong>: $\\vec{u} \\cdot \\vec{v} = \\vec{v} \\cdot \\vec{u}$.<br>• <strong>Distributiva</strong>: $\\vec{u} \\cdot (\\vec{v} + \\vec{w}) = \\vec{u} \\cdot \\vec{v} + \\vec{u} \\cdot \\vec{w}$.<br>• <strong>Con escalares</strong>: $(k\\vec{u}) \\cdot \\vec{v} = k(\\vec{u} \\cdot \\vec{v})$.<br>• <strong>Un vector por sí mismo</strong> da su módulo al cuadrado, así que el módulo se puede calcular con el producto escalar.",
+                    "formula": "$$\\vec{u} \\cdot \\vec{u} = \\lvert \\vec{u} \\rvert^2 \\Rightarrow \\lvert \\vec{u} \\rvert = \\sqrt{\\vec{u} \\cdot \\vec{u}}$$",
+                    "example": "Si $\\lvert \\vec{u} \\rvert = 3$, $\\lvert \\vec{v} \\rvert = 4$ y $\\vec{u} \\cdot \\vec{v} = 6$:<br>$$\\lvert \\vec{u} + \\vec{v} \\rvert^2 = (\\vec{u} + \\vec{v}) \\cdot (\\vec{u} + \\vec{v}) = \\lvert \\vec{u} \\rvert^2 + 2\\,\\vec{u} \\cdot \\vec{v} + \\lvert \\vec{v} \\rvert^2 = 9 + 12 + 16 = 37$$ $$\\lvert \\vec{u} + \\vec{v} \\rvert = \\sqrt{37}$$"
+                },
+                {
+                    "title": "Ángulo entre dos vectores",
+                    "description": "Despejando el coseno de la definición se obtiene el <strong>ángulo</strong> que forman dos vectores. El ángulo entre vectores está entre $0^\\circ$ y $180^\\circ$, y el signo del coseno dice si es agudo u obtuso.",
+                    "formula": "$$\\cos \\alpha = \\dfrac{\\vec{u} \\cdot \\vec{v}}{\\lvert \\vec{u} \\rvert \\cdot \\lvert \\vec{v} \\rvert}$$",
+                    "example": "$\\vec{u} = (1, 1, 0)$, $\\vec{v} = (1, 0, 1)$:<br>$\\vec{u} \\cdot \\vec{v} = 1 + 0 + 0 = 1$, $\\lvert \\vec{u} \\rvert = \\sqrt{2}$, $\\lvert \\vec{v} \\rvert = \\sqrt{2}$<br>$$\\cos \\alpha = \\dfrac{1}{\\sqrt{2} \\cdot \\sqrt{2}} = \\dfrac{1}{2} \\Rightarrow \\alpha = 60^\\circ$$"
+                },
+                {
+                    "title": "Vectores perpendiculares (ortogonales)",
+                    "description": "Dos vectores son <strong>perpendiculares</strong> u <strong>ortogonales</strong> (las dos palabras significan lo mismo) si forman un ángulo de $90^\\circ$. Como $\\cos 90^\\circ = 0$, la condición es que su producto escalar sea <strong>cero</strong>. Es la forma más rápida de comprobar perpendicularidad o de hallar un parámetro que la haga cumplir.",
+                    "formula": "$$\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0$$",
+                    "example": "• $(1, 2, 2) \\cdot (2, -2, 1) = 2 - 4 + 2 = 0$ → perpendiculares.<br>• Valor de $k$ para que $\\vec{u} = (2, k, 1)$ y $\\vec{v} = (3, -1, 4)$ sean ortogonales:<br>$$\\vec{u} \\cdot \\vec{v} = 6 - k + 4 = 0 \\Rightarrow k = 10$$"
+                },
+                {
+                    "title": "Proyección de un vector sobre otro",
+                    "description": "<strong>Interpretación geométrica</strong>: el producto escalar es el módulo de $\\vec{v}$ multiplicado por la <strong>proyección</strong> de $\\vec{u}$ sobre $\\vec{v}$, es decir, la «sombra» que deja $\\vec{u}$ sobre la recta de $\\vec{v}$.<br>• La <strong>proyección escalar</strong> es un número (la longitud con signo de esa sombra).<br>• El <strong>vector proyección</strong> es esa sombra como vector, en la dirección de $\\vec{v}$.",
+                    "formula": "$$\\mathrm{proy}_{\\vec{v}}\\,\\vec{u} = \\dfrac{\\vec{u} \\cdot \\vec{v}}{\\lvert \\vec{v} \\rvert} \\qquad \\overrightarrow{\\mathrm{proy}_{\\vec{v}}\\,\\vec{u}} = \\dfrac{\\vec{u} \\cdot \\vec{v}}{\\lvert \\vec{v} \\rvert^2}\\,\\vec{v}$$ <img src='/ejemplos/vectores/proyeccion.png' alt='Proyección del vector u sobre el vector v: la sombra de u sobre la recta de v' width='562' height='399' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "example": "Proyección de $\\vec{u} = (2, 1, 3)$ sobre $\\vec{v} = (1, 2, 2)$:<br>$\\vec{u} \\cdot \\vec{v} = 2 + 2 + 6 = 10$, $\\lvert \\vec{v} \\rvert = \\sqrt{1 + 4 + 4} = 3$<br>$$\\mathrm{proy}_{\\vec{v}}\\,\\vec{u} = \\dfrac{10}{3} \\qquad \\overrightarrow{\\mathrm{proy}_{\\vec{v}}\\,\\vec{u}} = \\dfrac{10}{9}(1, 2, 2) = \\left(\\dfrac{10}{9}, \\dfrac{20}{9}, \\dfrac{20}{9}\\right)$$"
+                }
+            ]
+        },
+        {
+            "title": "Producto vectorial",
+            "items": [
+                {
+                    "title": "Definición: $\\vec{u} \\times \\vec{v}$",
+                    "description": "El <strong>producto vectorial</strong> de dos vectores es otro <strong>vector</strong> (a diferencia del escalar) definido por:<br>• <strong>Módulo</strong>: $\\lvert \\vec{u} \\rvert \\cdot \\lvert \\vec{v} \\rvert \\cdot \\sin \\alpha$.<br>• <strong>Dirección</strong>: perpendicular a $\\vec{u}$ y a $\\vec{v}$ a la vez.<br>• <strong>Sentido</strong>: el de avance de un sacacorchos que gira de $\\vec{u}$ a $\\vec{v}$ (<strong>regla de la mano derecha</strong>).<br>También se escribe $\\vec{u} \\wedge \\vec{v}$.",
+                    "formula": "$$\\lvert \\vec{u} \\times \\vec{v} \\rvert = \\lvert \\vec{u} \\rvert \\cdot \\lvert \\vec{v} \\rvert \\cdot \\sin \\alpha$$",
+                    "example": "Con la base canónica: $\\vec{i} \\times \\vec{j} = \\vec{k}$, $\\vec{j} \\times \\vec{k} = \\vec{i}$, $\\vec{k} \\times \\vec{i} = \\vec{j}$.<br>Si se cambia el orden, cambia el signo: $\\vec{j} \\times \\vec{i} = -\\vec{k}$."
+                },
+                {
+                    "title": "Cálculo con un determinante",
+                    "description": "Se calcula desarrollando por la primera fila un determinante con $\\vec{i}, \\vec{j}, \\vec{k}$ en la primera fila y las coordenadas de los vectores en las otras dos. Ojo con el <strong>signo menos</strong> del término de $\\vec{j}$, el error más frecuente.",
+                    "formula": "$$\\vec{u} \\times \\vec{v} = \\begin{vmatrix} \\vec{i} & \\vec{j} & \\vec{k} \\\\ u_1 & u_2 & u_3 \\\\ v_1 & v_2 & v_3 \\end{vmatrix} = \\begin{vmatrix} u_2 & u_3 \\\\ v_2 & v_3 \\end{vmatrix}\\vec{i} \\textcolor{#d46a6a}{-} \\begin{vmatrix} u_1 & u_3 \\\\ v_1 & v_3 \\end{vmatrix}\\vec{j} + \\begin{vmatrix} u_1 & u_2 \\\\ v_1 & v_2 \\end{vmatrix}\\vec{k}$$",
+                    "example": "$\\vec{u} = (1, 2, -1)$, $\\vec{v} = (2, 0, 3)$:<br>$$\\vec{u} \\times \\vec{v} = \\begin{vmatrix} \\vec{i} & \\vec{j} & \\vec{k} \\\\ 1 & 2 & -1 \\\\ 2 & 0 & 3 \\end{vmatrix} = (6 - 0)\\vec{i} - (3 + 2)\\vec{j} + (0 - 4)\\vec{k} = (6, -5, -4)$$ Comprobación (debe ser perpendicular a ambos):<br>$(6, -5, -4) \\cdot (1, 2, -1) = 6 - 10 + 4 = 0$ ✓<br>$(6, -5, -4) \\cdot (2, 0, 3) = 12 + 0 - 12 = 0$ ✓"
+                },
+                {
+                    "title": "Propiedades",
+                    "description": "• <strong>Anticonmutativa</strong>: $\\vec{v} \\times \\vec{u} = -(\\vec{u} \\times \\vec{v})$. El orden importa.<br>• <strong>Distributiva</strong>: $\\vec{u} \\times (\\vec{v} + \\vec{w}) = \\vec{u} \\times \\vec{v} + \\vec{u} \\times \\vec{w}$.<br>• <strong>Con escalares</strong>: $(k\\vec{u}) \\times \\vec{v} = k(\\vec{u} \\times \\vec{v})$.<br>• <strong>No es asociativa</strong>: en general $(\\vec{u} \\times \\vec{v}) \\times \\vec{w} \\neq \\vec{u} \\times (\\vec{v} \\times \\vec{w})$.<br>• Da el <strong>vector nulo</strong> si y solo si los vectores son paralelos ($\\sin 0^\\circ = \\sin 180^\\circ = 0$).",
+                    "formula": "$$\\vec{u} \\times \\vec{v} = \\vec{0} \\iff \\vec{u} \\parallel \\vec{v}$$",
+                    "example": "$(1, 2, 3) \\times (2, 4, 6) = (12 - 12,\\ -(6 - 6),\\ 4 - 4) = (0, 0, 0)$, porque $(2, 4, 6) = 2(1, 2, 3)$ son paralelos."
+                },
+                {
+                    "title": "Vector perpendicular a otros dos",
+                    "description": "Como $\\vec{u} \\times \\vec{v}$ es perpendicular a $\\vec{u}$ y a $\\vec{v}$, es la herramienta directa para obtener un <strong>vector perpendicular a dos vectores dados</strong> (por ejemplo, el vector normal de un plano). Si se pide unitario, se divide entre su módulo.",
+                    "example": "Vector unitario perpendicular a $\\vec{u} = (1, 2, -1)$ y $\\vec{v} = (2, 0, 3)$:<br>$\\vec{u} \\times \\vec{v} = (6, -5, -4)$, $\\lvert \\vec{u} \\times \\vec{v} \\rvert = \\sqrt{36 + 25 + 16} = \\sqrt{77}$<br>$$\\vec{e} = \\pm\\dfrac{1}{\\sqrt{77}}(6, -5, -4)$$"
+                },
+                {
+                    "title": "Interpretación geométrica: área del paralelogramo y del triángulo",
+                    "description": "El <strong>módulo</strong> del producto vectorial es el <strong>área del paralelogramo</strong> que tiene a $\\vec{u}$ y $\\vec{v}$ como lados (base $\\lvert \\vec{u} \\rvert$ por altura $\\lvert \\vec{v} \\rvert \\sin \\alpha$). El triángulo es la mitad del paralelogramo.",
+                    "formula": "$$S_{\\text{paralelogramo}} = \\lvert \\vec{u} \\times \\vec{v} \\rvert \\qquad S_{\\text{triángulo } ABC} = \\dfrac{1}{2}\\lvert \\overrightarrow{AB} \\times \\overrightarrow{AC} \\rvert$$",
+                    "example": "• Paralelogramo de lados $\\vec{u} = (1, 2, -1)$ y $\\vec{v} = (2, 0, 3)$: $S = \\sqrt{77} \\approx 8{,}77\\ \\text{u}^2$.<br>• Triángulo $A(1, 0, 0)$, $B(0, 1, 0)$, $C(0, 0, 1)$:<br>$\\overrightarrow{AB} = (-1, 1, 0)$, $\\overrightarrow{AC} = (-1, 0, 1)$<br>$$\\overrightarrow{AB} \\times \\overrightarrow{AC} = \\begin{vmatrix} \\vec{i} & \\vec{j} & \\vec{k} \\\\ -1 & 1 & 0 \\\\ -1 & 0 & 1 \\end{vmatrix} = (1 - 0,\\ -(-1 - 0),\\ 0 + 1) = (1, 1, 1)$$ $$S = \\dfrac{1}{2}\\sqrt{1 + 1 + 1} = \\dfrac{\\sqrt{3}}{2}\\ \\text{u}^2$$"
+                }
+            ]
+        },
+        {
+            "title": "Producto mixto",
+            "items": [
+                {
+                    "title": "Definición: $[\\vec{u}, \\vec{v}, \\vec{w}]$",
+                    "description": "El <strong>producto mixto</strong> de tres vectores es el <strong>número</strong> que resulta de multiplicar escalarmente el primero por el producto vectorial de los otros dos. En la práctica se calcula con el <strong>determinante</strong> de sus coordenadas.",
+                    "formula": "$$[\\vec{u}, \\vec{v}, \\vec{w}] = \\vec{u} \\cdot (\\vec{v} \\times \\vec{w}) = \\begin{vmatrix} u_1 & u_2 & u_3 \\\\ v_1 & v_2 & v_3 \\\\ w_1 & w_2 & w_3 \\end{vmatrix}$$",
+                    "example": "$\\vec{u} = (1, 2, 0)$, $\\vec{v} = (0, 1, 3)$, $\\vec{w} = (2, 0, 1)$:<br>$$[\\vec{u}, \\vec{v}, \\vec{w}] = \\begin{vmatrix} 1 & 2 & 0 \\\\ 0 & 1 & 3 \\\\ 2 & 0 & 1 \\end{vmatrix} = 1 + 12 + 0 - 0 - 0 - 0 = 13$$"
+                },
+                {
+                    "title": "Propiedades",
+                    "description": "Salen de las propiedades de los determinantes:<br>• Si se <strong>permutan dos vectores</strong>, cambia el signo: $[\\vec{v}, \\vec{u}, \\vec{w}] = -[\\vec{u}, \\vec{v}, \\vec{w}]$.<br>• Una <strong>permutación cíclica</strong> no lo cambia: $[\\vec{u}, \\vec{v}, \\vec{w}] = [\\vec{v}, \\vec{w}, \\vec{u}] = [\\vec{w}, \\vec{u}, \\vec{v}]$.<br>• Es <strong>cero</strong> si y solo si los tres vectores son linealmente dependientes, es decir, <strong>coplanarios</strong>.",
+                    "formula": "$$[\\vec{u}, \\vec{v}, \\vec{w}] = 0 \\iff \\vec{u}, \\vec{v}, \\vec{w} \\text{ coplanarios}$$",
+                    "example": "Valor de $k$ para que $(1, 1, k)$, $(2, 0, 1)$ y $(0, 1, 3)$ sean coplanarios:<br>$$\\begin{vmatrix} 1 & 1 & k \\\\ 2 & 0 & 1 \\\\ 0 & 1 & 3 \\end{vmatrix} = 0 + 0 + 2k - 0 - 1 - 6 = 2k - 7 = 0 \\Rightarrow k = \\dfrac{7}{2}$$"
+                },
+                {
+                    "title": "Interpretación geométrica: volumen del paralelepípedo y del tetraedro",
+                    "description": "El <strong>valor absoluto</strong> del producto mixto es el <strong>volumen del paralelepípedo</strong> cuyas aristas son $\\vec{u}$, $\\vec{v}$ y $\\vec{w}$ (área de la base $\\lvert \\vec{v} \\times \\vec{w} \\rvert$ por la altura). El <strong>tetraedro</strong> con esas aristas tiene la sexta parte de ese volumen. No olvides el valor absoluto: un volumen nunca es negativo.",
+                    "formula": "$$V_{\\text{paralelepípedo}} = \\lvert [\\vec{u}, \\vec{v}, \\vec{w}] \\rvert \\qquad V_{\\text{tetraedro } ABCD} = \\dfrac{1}{6}\\lvert [\\overrightarrow{AB}, \\overrightarrow{AC}, \\overrightarrow{AD}] \\rvert$$",
+                    "example": "• Paralelepípedo de aristas $(1, 2, 0)$, $(0, 1, 3)$, $(2, 0, 1)$: $V = \\lvert 13 \\rvert = 13\\ \\text{u}^3$.<br>• Tetraedro $A(0, 0, 0)$, $B(1, 2, 0)$, $C(0, 1, 3)$, $D(2, 0, 1)$: sus aristas desde $A$ son esos mismos vectores, luego $$V = \\dfrac{13}{6}\\ \\text{u}^3$$"
+                }
+            ]
+        }
+    ]
+}

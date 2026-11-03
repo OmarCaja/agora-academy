@@ -774,6 +774,63 @@ draw_graph([('A', 'B'), ('A', 'C'), ('B', 'C'), ('C', 'D')], False, 'grafo-no-di
 draw_graph([('A', 'B'), ('B', 'C'), ('C', 'A'), ('C', 'D')], True, 'grafo-dirigido.png')
 
 # ════════════════════════════════════════════════════════════════════════════
+#  INTERÉS SIMPLE Y COMPUESTO
+# ════════════════════════════════════════════════════════════════════════════
+OUT = "public/ejemplos/interes-simple-compuesto"
+os.makedirs(OUT, exist_ok=True)
+
+# ── 1000 € at 10 %: simple (line) vs compound (exponential) ─────────────────
+fig, ax = plt.subplots(figsize=(5.5, 4))
+draw_axes(ax, (0, 20.5), (0, 7000))
+t = np.linspace(0, 20, 300)
+ax.plot(t, 1000 * (1 + 0.1 * t), ls='--', color=BLUE, lw=2.2, zorder=4, label='simple: $1000(1+0{,}1t)$')
+ax.plot(t, 1000 * 1.1**t, color=BLUE, lw=2.5, zorder=4, label='compuesto: $1000\\cdot 1{,}1^t$')
+ax.set_xlabel('años', fontsize=12, color=GRAY, labelpad=2)
+ax.set_ylabel('€', fontsize=12, color=GRAY, labelpad=2, rotation=0)
+ax.yaxis.set_label_coords(-0.02, 1.02)
+ax.legend(fontsize=9, framealpha=0.8, loc='upper left')
+save(fig, 'simple-vs-compuesto.png')
+
+# ════════════════════════════════════════════════════════════════════════════
+#  VECTORES
+# ════════════════════════════════════════════════════════════════════════════
+OUT = "public/ejemplos/vectores"
+os.makedirs(OUT, exist_ok=True)
+
+def arrow(ax, P_, Q, ls='-', lw=2.5):
+    ax.annotate('', xy=Q, xytext=P_, arrowprops=dict(
+        arrowstyle='-|>', color=INK, lw=lw, ls=ls, mutation_scale=18, shrinkA=0, shrinkB=0))
+
+# ── Sum: parallelogram rule ─────────────────────────────────────────────────
+fig, ax = plt.subplots(figsize=(4.8, 3.4))
+bare(ax)
+O, u, v = np.array([0, 0]), np.array([3.2, 0.6]), np.array([1.0, 2.0])
+arrow(ax, O, u); arrow(ax, O, v)
+arrow(ax, u, u + v, ls='--', lw=1.5); arrow(ax, v, u + v, ls='--', lw=1.5)
+arrow(ax, O, u + v, lw=3)
+ax.text(*(u / 2 + (0, -0.35)), r'$\vec{u}$', fontsize=15, color=INK, ha='center')
+ax.text(*(v / 2 + (-0.35, 0)), r'$\vec{v}$', fontsize=15, color=INK)
+ax.text(*((u + v) / 2 + (-0.55, 0.15)), r'$\vec{u}+\vec{v}$', fontsize=15, color=INK, ha='center')
+ax.set_xlim(-0.4, 4.6); ax.set_ylim(-0.6, 2.9)
+save(fig, 'suma-paralelogramo.png')
+
+# ── Projection of u onto v ──────────────────────────────────────────────────
+fig, ax = plt.subplots(figsize=(4.8, 3.2))
+bare(ax)
+u, v = np.array([1.6, 2.2]), np.array([4.2, 0.0])
+p = u @ v / (v @ v) * v
+arrow(ax, O, v, lw=2); arrow(ax, O, u); arrow(ax, O, p, lw=3.5)
+ax.plot([u[0], p[0]], [u[1], p[1]], ls=':', color=INK, lw=1.5)
+ax.add_patch(patches.Rectangle((p[0] - 0.18, 0), 0.18, 0.18, fill=False, ec=INK, lw=1))
+ax.add_patch(patches.Arc(O, 1.1, 1.1, theta1=0, theta2=np.degrees(np.arctan2(u[1], u[0])), color=INK, lw=1.2))
+ax.text(0.62, 0.25, r'$\alpha$', fontsize=13, color=INK)
+ax.text(*(u / 2 + (-0.45, 0.05)), r'$\vec{u}$', fontsize=15, color=INK)
+ax.text(3.6, -0.4, r'$\vec{v}$', fontsize=15, color=INK)
+ax.text(p[0] / 2, -0.45, r'$\mathrm{proy}_{\vec{v}}\,\vec{u}$', fontsize=13, color=INK, ha='center')
+ax.set_xlim(-0.3, 4.6); ax.set_ylim(-0.8, 2.6)
+save(fig, 'proyeccion.png')
+
+# ════════════════════════════════════════════════════════════════════════════
 #  ↑ ADD YOUR NEW GRAPHS HERE, following the same pattern
 # ════════════════════════════════════════════════════════════════════════════
 
