@@ -31,6 +31,15 @@ const year = new Date().getFullYear();
 
     <div class="footer-bottom reveal" style="--i: 1">
         <p>© {year} {SITE_NAME}. Todos los derechos reservados.</p>
+        <p class="footer-credit">
+            Desarrollado con
+            <Icon name="ph:heart-fill" aria-label="amor" class="footer-heart" />
+            por
+            <a href="https://kaizencode.es" target="_blank" rel="noopener noreferrer">
+                Kaizencode
+                <Icon name="ph:arrow-square-out" aria-hidden="true" />
+            </a>
+        </p>
     </div>
 </footer>
 
@@ -114,10 +123,43 @@ const year = new Date().getFullYear();
         border-top: 1px solid var(--rule-color);
         padding-top: var(--spacing-sm);
         margin-top: var(--spacing-xs);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--spacing-xs);
     }
 
     .footer-bottom p {
         margin: 0;
+    }
+
+    .footer-credit {
+        display: inline-flex;
+        align-items: center;
+        gap: 1ch;
+    }
+
+    .footer-credit svg {
+        width: 1em;
+        height: 1em;
+    }
+
+    .footer-heart {
+        color: #d46a6a;
+    }
+
+    .footer-credit a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.15em;
+        color: var(--text-primary);
+        font-weight: 700;
+        text-decoration: none;
+        transition: color var(--transition);
+    }
+
+    .footer-credit a:hover {
+        color: var(--accent-strong);
     }
 
     @media (min-width: 768px) {
