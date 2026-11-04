@@ -108,5 +108,12 @@
     ],
     "title": "Vectores",
     "out": "public/libros/vectores.pdf"
+  },
+  {
+    "topics": [
+      "operaciones-decimales"
+    ],
+    "title": "Operaciones con números decimales",
+    "out": "public/libros/operaciones-decimales.pdf"
   }
 ]

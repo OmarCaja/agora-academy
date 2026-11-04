@@ -1,0 +1,123 @@
+{
+    "title": "Operaciones con números decimales",
+    "description": "Partes de un número decimal y cómo compararlos. Suma, resta, multiplicación y división de decimales, multiplicar y dividir por 10, 100 y 1000, división con decimales en el divisor y redondeo del resultado.",
+    "menuGroup": "Aritmética",
+    "menuOrder": 5,
+    "sections": [
+        {
+            "title": "¿Qué es un número decimal?",
+            "items": [
+                {
+                    "title": "Partes de un número decimal",
+                    "description": "Un número decimal tiene <strong>parte entera</strong> (a la izquierda de la coma) y <strong>parte decimal</strong> (a la derecha). Las cifras decimales reciben el nombre de <strong>décimas</strong>, <strong>centésimas</strong>, <strong>milésimas</strong>... según su posición. Cada posición vale <strong>10 veces menos</strong> que la de su izquierda.",
+                    "formula": "$$\\underbrace{12}_{\\text{parte entera}}\\ ,\\ \\underbrace{345}_{\\text{parte decimal}} \\quad \\text{décimas: } 3,\\ \\text{centésimas: } 4,\\ \\text{milésimas: } 5$$",
+                    "example": "En $7{,}208$: la parte entera es $7$; hay $2$ décimas, $0$ centésimas y $8$ milésimas, es decir, $7{,}208 = 7 + \\dfrac{2}{10} + \\dfrac{8}{1000}$."
+                },
+                {
+                    "title": "Ceros a la derecha",
+                    "description": "Añadir o quitar <strong>ceros a la derecha de la última cifra decimal</strong> no cambia el valor del número. Lo usaremos para igualar el número de decimales antes de sumar, restar o comparar. <strong>Ojo:</strong> los ceros de en medio ($3{,}05$) o a la izquierda de los decimales ($0{,}5$) sí importan.",
+                    "example": "• $2{,}5 = 2{,}50 = 2{,}500$<br>• $4{,}30 = 4{,}3$<br>• Pero $3{,}05 \\neq 3{,}5$"
+                },
+                {
+                    "title": "Comparar números decimales",
+                    "description": "Primero se comparan las <strong>partes enteras</strong>; si coinciden, se comparan las cifras decimales una a una de izquierda a derecha. Para no equivocarse, se igualan los decimales añadiendo ceros. Un error muy común es pensar que $0{,}45 > 0{,}5$ «porque 45 es mayor que 5».",
+                    "example": "• $0{,}5$ y $0{,}45$: igualamos $0{,}50$ y $0{,}45$. Como $50 > 45$, $0{,}5 > 0{,}45$.<br>• $3{,}07$ y $3{,}7$: igualamos $3{,}07$ y $3{,}70$. Entonces $3{,}07 < 3{,}7$."
+                }
+            ]
+        },
+        {
+            "title": "Suma y resta",
+            "items": [
+                {
+                    "title": "Suma de decimales",
+                    "description": "Se colocan los números <strong>uno debajo de otro con las comas alineadas</strong> (unidades con unidades, décimas con décimas...). Se rellenan con ceros los huecos si hace falta y se suma como si no hubiera coma. La coma del resultado queda <strong>en la misma columna</strong>.",
+                    "example": "$3{,}45 + 12{,}7 + 0{,}086$: igualamos decimales y alineamos las comas.<br>$$\\begin{array}{r} 3{,}450 \\\\ 12{,}700 \\\\ +\\ \\ 0{,}086 \\\\ \\hline 16{,}236 \\end{array}$$ Resultado: $16{,}236$."
+                },
+                {
+                    "title": "Resta de decimales",
+                    "description": "Igual que la suma: comas alineadas y ceros hasta igualar el número de decimales. El minuendo (el número de arriba) es el mayor. Si es un número entero, le añadimos la coma y los ceros necesarios.",
+                    "example": "• $15{,}2 - 7{,}846$: igualamos $15{,}200 - 7{,}846 = 7{,}354$.<br>• $8 - 3{,}57$: escribimos $8{,}00 - 3{,}57 = 4{,}43$."
+                },
+                {
+                    "title": "Comprobar el resultado",
+                    "description": "La resta se comprueba con la suma: <strong>diferencia + sustraendo = minuendo</strong>. Además, conviene estimar antes redondeando a enteros para detectar errores de coma.",
+                    "example": "$15{,}2 - 7{,}846 = 7{,}354$. Comprobamos: $7{,}354 + 7{,}846 = 15{,}200$ ✓. Estimación: $15 - 8 = 7$ ✓."
+                }
+            ]
+        },
+        {
+            "title": "Multiplicación",
+            "items": [
+                {
+                    "title": "Multiplicar dos decimales",
+                    "description": "<strong>1.</strong> Se multiplican los números <strong>sin tener en cuenta las comas</strong>, como si fueran enteros.<br><strong>2.</strong> En el resultado se colocan <strong>tantas cifras decimales como la suma de las cifras decimales de los dos factores</strong>.<br>No hace falta alinear las comas.",
+                    "formula": "$$\\text{decimales del producto} = \\text{decimales del primer factor} + \\text{decimales del segundo factor}$$",
+                    "example": "$2{,}35 \\times 1{,}4$<br>• Sin comas: $235 \\times 14 = 3290$.<br>• Decimales: $2 + 1 = 3$.<br>• Colocamos la coma: $3{,}290 = 3{,}29$.<br><br>$0{,}06 \\times 0{,}5$<br>• $6 \\times 5 = 30$; decimales: $2 + 1 = 3$ → $0{,}030 = 0{,}03$ (si faltan cifras, se añaden ceros por la izquierda)."
+                },
+                {
+                    "title": "Multiplicar por 10, 100, 1000...",
+                    "description": "Al multiplicar por $10$, $100$, $1000$... la <strong>coma se desplaza hacia la derecha</strong> tantos lugares como ceros tiene la potencia de 10. Si no quedan cifras, se añaden ceros.",
+                    "formula": "$$a \\times 10^n \\;\\Rightarrow\\; \\text{coma } n \\text{ lugares a la derecha}$$",
+                    "example": "• $3{,}274 \\times 100 = 327{,}4$<br>• $4{,}7 \\times 100 = 470$<br>• $0{,}05 \\times 1000 = 50$"
+                },
+                {
+                    "title": "Multiplicar por un número menor que 1",
+                    "description": "Multiplicar por un decimal menor que 1 <strong>hace más pequeño</strong> el número. Es un buen modo de comprobar el resultado.",
+                    "example": "$12{,}5 \\times 0{,}04$: $125 \\times 4 = 500$ y hay $1 + 2 = 3$ decimales → $0{,}500 = 0{,}5$. Es menor que $12{,}5$ ✓."
+                }
+            ]
+        },
+        {
+            "title": "División",
+            "items": [
+                {
+                    "title": "División de un decimal entre un entero",
+                    "description": "Se divide como si fuera un número entero, pero <strong>al bajar la primera cifra decimal se pone la coma en el cociente</strong>.",
+                    "example": "$7{,}56 \\div 3$<br>• $7 \\div 3 = 2$, resto $1$. <br>• Ponemos la coma al bajar el $5$: $15 \\div 3 = 5$, resto $0$.<br>• Bajamos el $6$: $6 \\div 3 = 2$.<br>Cociente: $2{,}52$. Comprobamos: $2{,}52 \\times 3 = 7{,}56$ ✓."
+                },
+                {
+                    "title": "División de enteros con cociente decimal",
+                    "description": "Si al dividir dos enteros queda resto, se pone <strong>coma en el cociente</strong>, se añade un $0$ al resto y se sigue dividiendo hasta que el resto sea $0$ (o hasta las cifras que se pidan).",
+                    "example": "$7 \\div 4$<br>• $7 \\div 4 = 1$, resto $3$. Ponemos coma en el cociente y bajamos un $0$: $30 \\div 4 = 7$, resto $2$.<br>• Bajamos otro $0$: $20 \\div 4 = 5$, resto $0$.<br>Cociente: $1{,}75$."
+                },
+                {
+                    "title": "División con decimales en el divisor",
+                    "description": "El divisor <strong>no puede tener coma</strong>. Para quitarla se multiplican <strong>dividendo y divisor por la misma potencia de 10</strong> (la que haga entero al divisor); el cociente no cambia. Después se divide como en los casos anteriores.",
+                    "formula": "$$\\frac{a}{b} = \\frac{a \\times 10^n}{b \\times 10^n}$$",
+                    "example": "• $4{,}86 \\div 0{,}6$: multiplicamos por $10$ → $48{,}6 \\div 6 = 8{,}1$.<br>• $0{,}75 \\div 0{,}025$: multiplicamos por $1000$ → $750 \\div 25 = 30$.<br>• $9 \\div 0{,}12$: multiplicamos por $100$ → $900 \\div 12 = 75$."
+                },
+                {
+                    "title": "Dividir entre 10, 100, 1000...",
+                    "description": "Al dividir entre $10$, $100$, $1000$... la <strong>coma se desplaza hacia la izquierda</strong> tantos lugares como ceros tiene la potencia de 10, añadiendo ceros por la izquierda si hace falta.",
+                    "formula": "$$a \\div 10^n \\;\\Rightarrow\\; \\text{coma } n \\text{ lugares a la izquierda}$$",
+                    "example": "• $56{,}3 \\div 100 = 0{,}563$<br>• $7 \\div 1000 = 0{,}007$"
+                },
+                {
+                    "title": "Cuando la división no termina",
+                    "description": "Hay divisiones cuyo resto nunca llega a $0$: el cociente tiene <strong>infinitas cifras que se repiten</strong> (decimal periódico). En ese caso se da un resultado <strong>redondeado</strong> o se expresa como fracción (ver la fracción generatriz en el tema de fracciones).",
+                    "example": "$10 \\div 3 = 3{,}333\\ldots = 3{,}\\overset{\\frown}{3}$ y $\\;5 \\div 6 = 0{,}8333\\ldots$ En la práctica: $10 \\div 3 \\approx 3{,}33$."
+                }
+            ]
+        },
+        {
+            "title": "Redondeo y problemas",
+            "items": [
+                {
+                    "title": "Redondear un decimal",
+                    "description": "Para redondear a un orden (décimas, centésimas...) miramos la <strong>cifra siguiente</strong>: si es <strong>5 o más</strong>, se sube una unidad la última cifra que dejamos; si es <strong>menos de 5</strong>, se deja igual. El resto de cifras se eliminan.",
+                    "example": "• $3{,}14159$ a las centésimas: siguiente cifra $1$ → $3{,}14$.<br>• $2{,}3578$ a las milésimas: siguiente cifra $8$ → $2{,}358$.<br>• $7{,}995$ a las centésimas: siguiente cifra $5$ → $8{,}00$."
+                },
+                {
+                    "title": "Orden de las operaciones",
+                    "description": "Con decimales se aplica la misma jerarquía que con enteros: paréntesis, multiplicaciones y divisiones, y por último sumas y restas. Consulta el tema de jerarquía de las operaciones.",
+                    "example": "$2{,}5 + 1{,}2 \\times 3 = 2{,}5 + 3{,}6 = 6{,}1$ &nbsp; (y no $3{,}7 \\times 3 = 11{,}1$)."
+                },
+                {
+                    "title": "Problemas con decimales",
+                    "description": "En los problemas de dinero, medidas o precios se usan decimales a diario. Identifica la operación: <strong>total = precio unidad × cantidad</strong>; <strong>precio unidad = total ÷ cantidad</strong>. Al terminar, comprueba que el resultado tiene sentido (por ejemplo, el dinero se da con dos decimales).",
+                    "example": "• 3,5 m de tela a 4,2 €/m cuestan $3{,}5 \\times 4{,}2 = 14{,}70$ €.<br>• 5 kg de manzanas cuestan 8,35 €: el kilo sale a $8{,}35 \\div 5 = 1{,}67$ €."
+                }
+            ]
+        }
+    ]
+}

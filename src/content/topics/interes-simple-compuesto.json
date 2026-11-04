@@ -2,7 +2,7 @@
     "title": "Interés simple y compuesto",
     "description": "Conceptos de capital, interés, rédito y tiempo. Interés simple e interés compuesto: fórmulas, cálculo del capital inicial, del rédito y del tiempo, capitalización fraccionada (mensual, trimestral) y retención fiscal.",
     "menuGroup": "Aritmética",
-    "menuOrder": 6,
+    "menuOrder": 7,
     "sections": [
         {
             "title": "Conceptos básicos",

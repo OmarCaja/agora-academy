@@ -4,16 +4,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import PdfList from "../components/PdfList.astro";
+import SearchBox from "../components/SearchBox.astro";
 import { BOOKS } from "../data/books";
 import { sortTopics } from "../data/topics";
 
-// Books follow the site's topic order (by their first chapter) and list their chapters
-// (skipped for single-chapter books, where it would just repeat the title).
+// Books follow the site's topic order (by their first chapter), are grouped by that chapter's
+// menuGroup (its domain) and list their chapters (skipped for single-chapter books).
 const topics = sortTopics(await getCollection("topics"));
 const rank = (slug: string) => topics.findIndex((t) => t.id === slug);
 const books = [...BOOKS]
     .sort((a, b) => rank(a.topics[0]) - rank(b.topics[0]))
     .map((b) => ({
+        group: topics[rank(b.topics[0])]?.data.menuGroup ?? "Otros",
         url: b.url,
         name: b.title,
         detail:
@@ -21,6 +23,14 @@ const books = [...BOOKS]
                 ? b.topics.map((slug) => topics[rank(slug)]?.data.title ?? slug).join(" · ")
                 : undefined,
     }));
+
+// Sorted by topic order, so groups come out in GROUP_ORDER by first appearance.
+const groups: { title: string; books: typeof books }[] = [];
+for (const b of books) {
+    const g = groups.find((x) => x.title === b.group);
+    if (g) g.books.push(b);
+    else groups.push({ title: b.group, books: [b] });
+}
 ---
 
 <BaseLayout
@@ -32,7 +42,23 @@ const books = [...BOOKS]
         <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Libros PDF" }]} />
         <Header title="LIBROS PDF" />
         <p class="intro">La teoría de la web reunida en libros para descargar e imprimir.</p>
-        <PdfList pdfs={books} />
+        <SearchBox
+            placeholder="Buscar libros..."
+            label="Buscar libros (pulsa / para enfocar)"
+            countSingular="libro encontrado"
+            countPlural="libros encontrados"
+        />
+        {
+            groups.map((g) => (
+                <section class="group" data-search-section data-search-text={g.title}>
+                    <h2>{g.title}</h2>
+                    <PdfList pdfs={g.books} />
+                </section>
+            ))
+        }
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>No se han encontrado libros que coincidan con la búsqueda.</p>
+        </div>
     </div>
 </BaseLayout>
 
@@ -40,5 +66,23 @@ const books = [...BOOKS]
     .intro {
         color: var(--text-muted);
         margin-bottom: var(--spacing-md);
+    }
+
+    .group {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .group h2 {
+        padding-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--accent);
+    }
+
+    .no-results {
+        padding: var(--spacing-lg);
+        text-align: center;
+        background: var(--bg-secondary);
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
     }
 </style>
