@@ -115,5 +115,12 @@
     ],
     "title": "Operaciones con números decimales",
     "out": "public/libros/operaciones-decimales.pdf"
+  },
+  {
+    "topics": [
+      "programacion-lineal"
+    ],
+    "title": "Programación lineal",
+    "out": "public/libros/programacion-lineal.pdf"
   }
 ]

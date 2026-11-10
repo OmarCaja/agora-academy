@@ -1,0 +1,133 @@
+{
+    "title": "Programación lineal",
+    "description": "Inecuaciones lineales con dos incógnitas y su representación como semiplanos, sistemas de inecuaciones y región factible, y programación lineal: planteamiento de problemas, método analítico (vértices) y método gráfico (rectas paralelas a la función objetivo), con casos especiales y soluciones enteras.",
+    "menuGroup": "Álgebra",
+    "menuOrder": 6,
+    "sections": [
+        {
+            "title": "Inecuaciones lineales con dos incógnitas",
+            "items": [
+                {
+                    "title": "¿Qué es una inecuación lineal con dos incógnitas?",
+                    "description": "Es una desigualdad en la que aparecen $x$ e $y$ con exponente 1. Una <strong>solución</strong> es cualquier par $(x, y)$ que la cumple. Hay infinitas soluciones y, en el plano, llenan un <strong>semiplano</strong>: una de las dos mitades en que una recta divide el plano.",
+                    "formula": "$$ax + by \\le c \\qquad ax + by \\ge c \\qquad ax + by < c \\qquad ax + by > c$$",
+                    "example": "Sea $2x + y \\le 4$.<br>• $(0, 0)$ es solución: $2 \\cdot 0 + 0 = 0 \\le 4$ ✓<br>• $(3, 1)$ no lo es: $2 \\cdot 3 + 1 = 7 > 4$ ✗"
+                },
+                {
+                    "title": "Cómo representar una inecuación",
+                    "description": "<strong>1.</strong> Dibuja la <strong>recta frontera</strong>, cambiando el signo de la desigualdad por $=$ (basta con dos puntos, por ejemplo los cortes con los ejes).<br><strong>2.</strong> Trázala <strong>continua</strong> si la desigualdad es $\\le$ o $\\ge$ (los puntos de la recta son solución) y <strong>discontinua</strong> si es $<$ o $>$ (no lo son).<br><strong>3.</strong> Elige un <strong>punto de prueba</strong> que no esté en la recta (el $(0,0)$ si no pasa por él) y sustitúyelo: si cumple la desigualdad, la solución es el semiplano que lo contiene; si no, el otro.<br><strong>4.</strong> Sombrea el semiplano solución.",
+                    "example": "Representar $2x + y \\le 4$:<br>• Recta $2x + y = 4$: cortes $(2, 0)$ y $(0, 4)$.<br>• Trazo continuo, porque es $\\le$.<br>• Prueba $(0, 0)$: $0 \\le 4$ es cierto → semiplano que contiene al origen (en la figura, la zona rayada).<br><img src='/ejemplos/programacion-lineal/semiplano.png' alt='Semiplano 2x + y ≤ 4' width='620' height='567' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>"
+                },
+                {
+                    "title": "Desigualdades estrictas",
+                    "description": "Con $<$ o $>$ la recta frontera <strong>no pertenece</strong> a la solución, así que se dibuja <strong>discontinua</strong>. El resto del método es idéntico.",
+                    "example": "Representar $x - y > 1$:<br>• Recta $x - y = 1$: puntos $(1, 0)$ y $(0, -1)$, trazo discontinuo.<br>• Prueba $(0, 0)$: $0 > 1$ es falso → la solución es el semiplano que <strong>no</strong> contiene al origen, el que queda por debajo de la recta.<br>• Comprobación: $(3, 0)$ está por debajo y $3 - 0 = 3 > 1$ ✓"
+                },
+                {
+                    "title": "Rectas verticales, horizontales y que pasan por el origen",
+                    "description": "• $x \\ge a$ es el semiplano a la derecha de la recta vertical $x = a$; $x \\le a$, a la izquierda.<br>• $y \\ge b$ es el semiplano por encima de la recta horizontal $y = b$; $y \\le b$, por debajo.<br>• Si la recta frontera <strong>pasa por el origen</strong>, el $(0,0)$ no sirve como punto de prueba: usa otro, por ejemplo $(1, 0)$ o $(0, 1)$.",
+                    "example": "• $x \\ge 2$: derecha de $x = 2$, recta incluida.<br>• $y < 3$: debajo de $y = 3$, recta no incluida.<br>• $x \\ge 0$ e $y \\ge 0$ juntas: el primer cuadrante.<br>• $y \\ge 2x$: la recta pasa por $(0,0)$ y $(1,2)$. Prueba $(1, 0)$: $0 \\ge 2$ es falso → solución: el semiplano de arriba, que no contiene a $(1, 0)$."
+                }
+            ]
+        },
+        {
+            "title": "Sistemas de inecuaciones lineales",
+            "items": [
+                {
+                    "title": "¿Qué es un sistema de inecuaciones?",
+                    "description": "Es un conjunto de varias inecuaciones con las mismas incógnitas. Su <strong>solución</strong> son los pares $(x, y)$ que cumplen <strong>todas a la vez</strong>; gráficamente, es la <strong>intersección</strong> de los semiplanos de cada inecuación.",
+                    "example": "$$\\begin{cases} x \\ge 0 \\\\ y \\ge 0 \\\\ x + y \\le 4 \\\\ x \\le 3 \\end{cases}$$ • $(1, 1)$ es solución: cumple las cuatro ($1 \\ge 0$, $1 \\ge 0$, $2 \\le 4$, $1 \\le 3$).<br>• $(3, 2)$ no lo es: $3 + 2 = 5 > 4$."
+                },
+                {
+                    "title": "Resolución gráfica",
+                    "description": "Representa cada inecuación con el método anterior sobre los mismos ejes. La solución del sistema es la <strong>zona donde coinciden todos los semiplanos</strong>. Truco: en vez de sombrear lo que vale, tacha lo que <strong>no</strong> vale en cada inecuación; lo que quede sin tachar es la solución.",
+                    "example": "Para el sistema anterior:<br>• $x \\ge 0$: a la derecha del eje $y$.<br>• $y \\ge 0$: por encima del eje $x$.<br>• $x + y \\le 4$: bajo la recta $x + y = 4$ (prueba $(0,0)$: $0 \\le 4$ ✓).<br>• $x \\le 3$: a la izquierda de la recta $x = 3$.<br>La región es un cuadrilátero:<br><img src='/ejemplos/programacion-lineal/sistema-inecuaciones.png' alt='Región del sistema x ≥ 0, y ≥ 0, x + y ≤ 4, x ≤ 3' width='606' height='567' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>"
+                },
+                {
+                    "title": "Vértices de la región",
+                    "description": "Los <strong>vértices</strong> son los puntos donde se cortan las rectas frontera. Para hallarlos, resuelve el sistema formado por cada pareja de rectas y <strong>quédate solo con los puntos que cumplen todas las demás inecuaciones</strong>: un punto de corte que se sale de la región no es vértice.",
+                    "example": "Rectas: $x = 0$, $y = 0$, $x + y = 4$, $x = 3$.<br>• $x = 0$ e $y = 0$: $(0, 0)$ ✓<br>• $x = 0$ y $x + y = 4$: $(0, 4)$ ✓<br>• $y = 0$ y $x + y = 4$: $(4, 0)$ ✗, no cumple $x \\le 3$<br>• $y = 0$ y $x = 3$: $(3, 0)$ ✓<br>• $x + y = 4$ y $x = 3$: $(3, 1)$ ✓<br>• $x = 0$ y $x = 3$: son paralelas, no se cortan.<br>Vértices: $(0,0)$, $(3,0)$, $(3,1)$, $(0,4)$."
+                },
+                {
+                    "title": "Región acotada, no acotada o vacía",
+                    "description": "La región de soluciones puede ser un <strong>polígono</strong> (región <strong>acotada</strong>), una zona que se extiende sin límite (<strong>no acotada</strong>) o no existir (<strong>vacía</strong>: el sistema no tiene solución).",
+                    "example": "• Acotada: el cuadrilátero de arriba.<br>• No acotada: $x \\ge 0$, $y \\ge 0$, $x + y \\ge 4$ se extiende hacia arriba y a la derecha sin fin.<br>• Vacía: $x + y \\le 2$ y $x + y \\ge 5$ exigirían $5 \\le x + y \\le 2$, imposible."
+                }
+            ]
+        },
+        {
+            "title": "¿Qué es la programación lineal?",
+            "items": [
+                {
+                    "title": "Elementos de un problema",
+                    "description": "La <strong>programación lineal</strong> busca el <strong>máximo</strong> o el <strong>mínimo</strong> de una función lineal cuando las incógnitas deben cumplir un sistema de inecuaciones. Sus elementos son:<br>• <strong>Función objetivo</strong> $f(x, y) = ax + by$: lo que queremos maximizar (beneficio) o minimizar (coste).<br>• <strong>Restricciones</strong>: las inecuaciones que limitan las variables (recursos, capacidades...). Casi siempre incluyen $x \\ge 0$, $y \\ge 0$.<br>• <strong>Región factible</strong>: los puntos que cumplen todas las restricciones.<br>• <strong>Solución óptima</strong>: el punto de la región factible donde $f$ alcanza su máximo o mínimo.",
+                    "formula": "$$\\text{Optimizar } f(x, y) = ax + by \\quad \\text{sujeto a} \\quad \\begin{cases} a_1 x + b_1 y \\le c_1 \\\\ a_2 x + b_2 y \\le c_2 \\\\ x \\ge 0, \\ y \\ge 0 \\end{cases}$$"
+                },
+                {
+                    "title": "¿Dónde está el óptimo?",
+                    "description": "Si la región factible es <strong>acotada</strong>, $f$ alcanza su máximo y su mínimo, y lo hace en <strong>vértices</strong> de la región. Si dos vértices consecutivos dan el mismo valor óptimo, también lo dan <strong>todos los puntos del lado</strong> que los une (infinitas soluciones). Si la región es <strong>no acotada</strong>, puede que no exista el máximo o el mínimo.<br>¿Por qué? Como $f$ es lineal, al ir moviéndonos por la región el valor de $f$ crece o decrece siempre en una misma dirección, y el último punto en esa dirección es una esquina."
+                },
+                {
+                    "title": "Cómo plantear un problema",
+                    "description": "<strong>1.</strong> Define las variables $x$ e $y$ (qué cuentan y en qué unidades).<br><strong>2.</strong> Ordena los datos, por ejemplo en una tabla.<br><strong>3.</strong> Escribe una inecuación por cada limitación y añade $x \\ge 0$, $y \\ge 0$.<br><strong>4.</strong> Escribe la función objetivo e indica si hay que maximizarla o minimizarla.",
+                    "example": "Una pastelería hace tartas ($x$) y bizcochos ($y$). Cada tarta lleva 2 kg de harina y 1 kg de azúcar; cada bizcocho, 1 kg de harina y 2 kg de azúcar. Dispone de 10 kg de harina y 8 kg de azúcar. Gana 3 € por tarta y 2 € por bizcocho. ¿Cuántas de cada debe hacer para ganar lo máximo?<br>• Harina: $2x + y \\le 10$<br>• Azúcar: $x + 2y \\le 8$<br>• $x \\ge 0$, $y \\ge 0$<br>• Maximizar $f(x, y) = 3x + 2y$"
+                }
+            ]
+        },
+        {
+            "title": "Método analítico (vértices)",
+            "items": [
+                {
+                    "title": "Pasos",
+                    "description": "<strong>1.</strong> Plantea el problema y representa la región factible.<br><strong>2.</strong> Calcula sus <strong>vértices</strong> resolviendo los sistemas de las rectas frontera y descartando los que incumplen alguna restricción.<br><strong>3.</strong> <strong>Evalúa $f$</strong> en cada vértice.<br><strong>4.</strong> Elige el mayor valor (máximo) o el menor (mínimo).<br><strong>5.</strong> Interpreta el resultado en el contexto del problema.",
+                    "example": "Pastelería ($2x + y \\le 10$, $x + 2y \\le 8$, $x, y \\ge 0$; $f = 3x + 2y$):<br>• Ejes: $(0, 0)$ ✓<br>• $y = 0$ y $2x + y = 10$: $(5, 0)$ ✓ ($5 + 0 \\le 8$)<br>• $y = 0$ y $x + 2y = 8$: $(8, 0)$ ✗ ($2 \\cdot 8 = 16 > 10$)<br>• $x = 0$ y $x + 2y = 8$: $(0, 4)$ ✓ ($0 + 4 \\le 10$)<br>• $x = 0$ y $2x + y = 10$: $(0, 10)$ ✗ ($0 + 20 > 8$)<br>• Las dos rectas: de $y = 10 - 2x$ sale $x + 20 - 4x = 8$, luego $x = 4$, $y = 2$: $(4, 2)$ ✓<br>$$\\begin{array}{c|c} \\text{vértice} & f = 3x + 2y \\\\ \\hline (0,0) & 0 \\\\ (5,0) & 15 \\\\ (0,4) & 8 \\\\ (4,2) & \\textcolor{#4fa66e}{16} \\end{array}$$ <strong>Máximo:</strong> 16 € en $(4, 2)$, es decir, 4 tartas y 2 bizcochos. <strong>Mínimo:</strong> 0 en $(0, 0)$ (no hacer nada)."
+                }
+            ]
+        },
+        {
+            "title": "Método gráfico",
+            "items": [
+                {
+                    "title": "De la función objetivo a la recta a dibujar",
+                    "description": "Para ver cómo se comporta $f$ sobre el plano, <strong>igualamos la función objetivo a un valor</strong> y <strong>despejamos $y$</strong>. Obtenemos una recta $y = mx + n$ que dibujamos sobre los ejes. Cada valor distinto da una recta <strong>paralela</strong> (misma pendiente $m = -a/b$), y todos los puntos de una de ellas dan el mismo valor de $f$. Empezamos por $f = 0$ (pasa por el origen) y la <strong>desplazamos paralelamente</strong> por la región: el primer y el último punto que toca son el mínimo y el máximo.",
+                    "formula": "$$ax + by = 0 \\ \\Rightarrow \\ y = -\\dfrac{a}{b}\\,x$$",
+                    "example": "Con $f(x, y) = 3x + 2y$:<br>• Igualamos a 0: $3x + 2y = 0$, y despejando, $y = -\\tfrac{3}{2}x$. Es la recta que dibujamos (pasa por $(0,0)$ y por $(2,-3)$).<br>• Si la igualamos a otro valor, p. ej. $3x + 2y = 15$, queda $y = \\tfrac{15 - 3x}{2}$: misma pendiente $-\\tfrac{3}{2}$, y pasa por $(5, 0)$.<br>Todas son paralelas; las que están más arriba y a la derecha dan valores mayores de $f$."
+                },
+                {
+                    "title": "Pasos (maximizar)",
+                    "description": "<strong>1.</strong> Representa la región factible.<br><strong>2.</strong> Iguala $f$ a 0, despeja $y$ y dibuja esa recta.<br><strong>3.</strong> Desplázala paralelamente en el sentido en que $f$ crece (compruébalo evaluando $f$ en dos puntos).<br><strong>4.</strong> El <strong>último</strong> vértice (o lado) que toca antes de salir de la región es el <strong>máximo</strong>; el <strong>primero</strong>, el <strong>mínimo</strong>.<br><strong>5.</strong> Halla las coordenadas de ese vértice resolviendo el sistema de sus dos rectas y calcula $f$ en él.",
+                    "example": "Pastelería: región de vértices $(0,0)$, $(5,0)$, $(4,2)$, $(0,4)$.<br>• La recta $y = -\\tfrac{3}{2}x$, de $3x + 2y = 0$ (punteada), toca la región por primera vez en $(0,0)$: <strong>mínimo</strong> $f = 0$.<br>• Al desplazarla pasa por $(0,4)$ ($f = 8$), por $(5,0)$ ($f = 15$, punteada) y la última recta que corta la región es la que pasa por $(4, 2)$ (discontinua): <strong>máximo</strong> $f = 3 \\cdot 4 + 2 \\cdot 2 = 16$.<br><img src='/ejemplos/programacion-lineal/maximo.png' alt='Región factible y rectas paralelas de f = 3x + 2y' width='679' height='604' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>"
+                },
+                {
+                    "title": "Región no acotada: minimizar",
+                    "description": "En una región no acotada, mira hacia dónde crece $f$. Si la recta paralela puede avanzar sin fin dentro de la región en el sentido que mejora $f$, <strong>ese óptimo no existe</strong>; el otro suele alcanzarse en un vértice.",
+                    "example": "Minimizar $f = 2x + 3y$ con $x + y \\ge 4$, $x + 3y \\ge 6$, $x \\ge 0$, $y \\ge 0$.<br>• Vértices: $(0, 4)$, $(6, 0)$ y el corte de $x + y = 4$ con $x + 3y = 6$: restando, $2y = 2$, $y = 1$, $x = 3$ → $(3, 1)$.<br>• $f(0,4) = 12$, $f(3,1) = 9$, $f(6,0) = 12$.<br><strong>Mínimo:</strong> 9 en $(3, 1)$ (la recta discontinua $2x + 3y = 9$ es la primera en tocar la región).<br><strong>No hay máximo:</strong> $f(0, 100) = 300$, $f(0, 1000) = 3000$... crece sin límite.<br><img src='/ejemplos/programacion-lineal/minimo.png' alt='Región no acotada y recta paralela de f = 2x + 3y' width='679' height='613' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>"
+                }
+            ]
+        },
+        {
+            "title": "Casos especiales",
+            "items": [
+                {
+                    "title": "Infinitas soluciones",
+                    "description": "Si la recta de $f$ es <strong>paralela a un lado</strong> de la región, todos los puntos de ese lado son óptimos.",
+                    "example": "Maximizar $f = x + 2y$ en la región de la pastelería. $f(0,0) = 0$, $f(5,0) = 5$, $f(0,4) = 8$, $f(4,2) = 8$.<br>Hay dos vértices con el máximo 8: el lado que los une está sobre la recta $x + 2y = 8$ (la misma dirección que $f$), así que <strong>todos los puntos de ese segmento</strong> son óptimos."
+                },
+                {
+                    "title": "Sin solución",
+                    "description": "No hay solución cuando la región factible es <strong>vacía</strong> o cuando es <strong>no acotada</strong> y $f$ mejora indefinidamente.",
+                    "example": "Maximizar $f = x + y$ con $x \\ge 0$, $y \\ge 0$, $x + y \\ge 4$: la región es no acotada y $f(100, 0) = 100$, $f(1000, 0) = 1000$... no hay máximo."
+                },
+                {
+                    "title": "Soluciones enteras",
+                    "description": "Si $x$ e $y$ cuentan objetos (tartas, personas...) deben ser <strong>enteros</strong>. Si el vértice óptimo ya es entero, es la solución. Si no, hay que buscar entre los <strong>puntos enteros de la región</strong> cercanos al vértice. Redondear sin comprobar puede salirse de la región.",
+                    "example": "Maximizar $f = x + y$ con $2x + y \\le 7$, $x + 2y \\le 7$, $x, y \\ge 0$ (enteros).<br>• El vértice óptimo es $\\left(\\tfrac{7}{3}, \\tfrac{7}{3}\\right)$ (resolviendo $2x + y = 7$ con $x + 2y = 7$), con $f = \\tfrac{14}{3} \\approx 4{,}67$, no entero.<br>• Redondear a $(3, 3)$ no vale: $2 \\cdot 3 + 3 = 9 > 7$.<br>• Entre los puntos enteros de la región, el mayor valor posible es $f = 4$, que se alcanza en $(1, 3)$, $(2, 2)$ y $(3, 1)$."
+                },
+                {
+                    "title": "Errores frecuentes",
+                    "description": "• Olvidar las restricciones $x \\ge 0$, $y \\ge 0$.<br>• Dar por vértice un punto de corte que incumple alguna restricción.<br>• Usar el origen como punto de prueba cuando la recta pasa por él.<br>• Quedarse con el vértice que da el valor máximo cuando el problema pide <strong>minimizar</strong> (o al revés).<br>• No interpretar el resultado: la respuesta debe decir cuántas unidades de cada cosa y cuál es el valor de $f$."
+                }
+            ]
+        }
+    ]
+}

@@ -831,6 +831,82 @@ ax.set_xlim(-0.3, 4.6); ax.set_ylim(-0.8, 2.6)
 save(fig, 'proyeccion.png')
 
 # ════════════════════════════════════════════════════════════════════════════
+#  PROGRAMACIÓN LINEAL
+# ════════════════════════════════════════════════════════════════════════════
+OUT = "public/ejemplos/programacion-lineal"
+os.makedirs(OUT, exist_ok=True)
+
+def plane(ax, xlim, ylim):
+    """Axes labelled x / y for the plane (no f(x) label)."""
+    draw_axes(ax, xlim, ylim)
+    ax.set_ylabel('y', fontsize=12, color=GRAY, labelpad=2, rotation=0)
+
+def region(ax, pts, hatch='///'):
+    ax.add_patch(patches.Polygon(pts, closed=True, facecolor='none', edgecolor=INK,
+                                 hatch=hatch, lw=2.2, zorder=4))
+
+# ── Half-plane 2x + y <= 4 ──────────────────────────────────────────────────
+fig, ax = plt.subplots(figsize=(4.6, 4))
+plane(ax, (-1, 4), (-1, 6))
+x = np.linspace(-1, 4, 2)
+ax.fill_between(x, -1, 4 - 2 * x, facecolor='none', edgecolor=INK, hatch='///', lw=0, zorder=2)
+ax.plot(x, 4 - 2 * x, color=INK, lw=2.5, zorder=4)
+ax.plot(0, 0, 'o', color=INK, zorder=5)
+ax.text(0.1, -0.5, '$(0,0)$', fontsize=11, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(1.5, 2.6, '$2x+y=4$', fontsize=11, color=INK, rotation=-50, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+save(fig, 'semiplano.png')
+
+# ── System: x>=0, y>=0, x+y<=4, x<=3 ────────────────────────────────────────
+fig, ax = plt.subplots(figsize=(4.6, 4))
+plane(ax, (-0.5, 5), (-0.5, 5))
+x = np.linspace(-0.5, 5, 2)
+ax.plot(x, 4 - x, color=INK, lw=1.8, zorder=3)
+ax.plot([3, 3], [-0.5, 5], color=INK, lw=1.8, zorder=3)
+region(ax, [(0, 0), (3, 0), (3, 1), (0, 4)])
+for q in [(0, 0), (3, 0), (3, 1), (0, 4)]:
+    ax.plot(*q, 'o', color=INK, zorder=6)
+ax.text(3.15, 1.3, '$x=3$', fontsize=11, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(3.45, 0.75, '$x+y=4$', fontsize=11, color=INK, rotation=-40, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+save(fig, 'sistema-inecuaciones.png')
+
+# ── Max 3x+2y: 2x+y<=10, x+2y<=8, x,y>=0 ────────────────────────────────────
+fig, ax = plt.subplots(figsize=(5.2, 4.4))
+plane(ax, (-0.8, 7), (-0.8, 9))
+V = [(0, 0), (5, 0), (4, 2), (0, 4)]
+region(ax, V)
+x = np.linspace(-0.8, 7, 2)
+ax.plot(x, 10 - 2 * x, color=INK, lw=1.4, zorder=3)
+ax.plot(x, (8 - x) / 2, color=INK, lw=1.4, zorder=3)
+for k, ls in [(0, ':'), (8, ':'), (15, ':'), (16, '--')]:
+    ax.plot(x, (k - 3 * x) / 2, ls=ls, color=INK, lw=2, zorder=5)
+for q in V:
+    ax.plot(*q, 'o', color=INK, zorder=6)
+ax.text(4.15, 2.2, '$(4,2)$', fontsize=11, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(5.1, 0.2, '$(5,0)$', fontsize=11, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(0.15, 4.2, '$(0,4)$', fontsize=11, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(1.0, -0.6, '$f=0$', fontsize=10, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(5.35, 0.9, '$f=15$', fontsize=10, color=INK, rotation=-33, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(2.8, 5.0, '$f=16$', fontsize=10, color=INK, rotation=-33, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+save(fig, 'maximo.png')
+
+# ── Min 2x+3y: x+y>=4, x+3y>=6, x,y>=0 (unbounded region) ───────────────────
+fig, ax = plt.subplots(figsize=(5.2, 4.4))
+plane(ax, (-0.8, 8), (-0.8, 6))
+V = [(0, 6), (0, 4), (3, 1), (6, 0), (8, 0), (8, 6)]
+region(ax, V)
+x = np.linspace(-0.8, 8, 2)
+ax.plot(x, 4 - x, color=INK, lw=1.4, zorder=3)
+ax.plot(x, (6 - x) / 3, color=INK, lw=1.4, zorder=3)
+ax.plot(x, (9 - 2 * x) / 3, ls='--', color=INK, lw=2, zorder=5)
+for q in [(0, 4), (3, 1), (6, 0)]:
+    ax.plot(*q, 'o', color=INK, zorder=6)
+ax.text(0.15, 3.5, '$(0,4)$', fontsize=11, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(3.1, 1.25, '$(3,1)$', fontsize=11, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(5.9, 0.3, '$(6,0)$', fontsize=11, color=INK, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+ax.text(0.15, 2.45, '$f=9$', fontsize=10, color=INK, rotation=-33, bbox=dict(fc='white', ec='none', pad=1.5), zorder=7)
+save(fig, 'minimo.png')
+
+# ════════════════════════════════════════════════════════════════════════════
 #  ↑ ADD YOUR NEW GRAPHS HERE, following the same pattern
 # ════════════════════════════════════════════════════════════════════════════
 
