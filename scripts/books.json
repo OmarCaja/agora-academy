@@ -122,5 +122,12 @@
     ],
     "title": "Programación lineal",
     "out": "public/libros/programacion-lineal.pdf"
+  },
+  {
+    "topics": [
+      "ecuaciones-exponenciales-logaritmicas"
+    ],
+    "title": "Ecuaciones exponenciales y logarítmicas",
+    "out": "public/libros/ecuaciones-exponenciales-logaritmicas.pdf"
   }
 ]

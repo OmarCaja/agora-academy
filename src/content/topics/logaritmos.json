@@ -1,6 +1,6 @@
 {
     "title": "Propiedades de los logaritmos",
-    "description": "Aprende la definición de logaritmo y sus propiedades fundamentales: logaritmo de un producto, cociente, potencia y cambio de base.",
+    "description": "Aprende la definición de logaritmo, los logaritmos decimal y neperiano y sus propiedades fundamentales: logaritmo de un producto, cociente, potencia y cambio de base.",
     "menuGroup": "Potencias, raíces y logaritmos",
     "menuOrder": 3,
     "sections": [
@@ -22,6 +22,12 @@
                     "title": "Logaritmo de uno",
                     "formula": "$\\log_a 1 = 0$",
                     "example": "$\\log_7 1 = 0$"
+                },
+                {
+                    "title": "Logaritmo decimal y neperiano",
+                    "formula": "$$\\log x = \\log_{10} x \\qquad \\ln x = \\log_e x$$",
+                    "description": "Cuando no se escribe la base, el logaritmo es <strong>decimal</strong> (base 10). El logaritmo <strong>neperiano</strong> $\\ln$ tiene base $e \\approx 2{,}718$. Son los dos que trae la calculadora, por eso se usan para resolver ecuaciones.",
+                    "example": "• $\\log 1000 = 3$ porque $10^3 = 1000$<br>• $\\ln e^2 = 2$<br>• $\\log_3 7 = \\dfrac{\\ln 7}{\\ln 3} \\approx 1{,}771$ (cambio de base para usar la calculadora)"
                 }
             ]
         },

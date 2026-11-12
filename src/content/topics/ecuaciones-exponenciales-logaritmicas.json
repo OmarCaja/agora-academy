@@ -1,0 +1,71 @@
+{
+    "title": "Ecuaciones exponenciales y logarítmicas",
+    "description": "Aprende a resolver ecuaciones exponenciales (igualando bases, tomando logaritmos, sacando factor común o con cambio de variable) y ecuaciones logarítmicas, comprobando siempre las soluciones.",
+    "menuGroup": "Potencias, raíces y logaritmos",
+    "menuOrder": 4,
+    "sections": [
+        {
+            "title": "Ecuaciones exponenciales",
+            "items": [
+                {
+                    "title": "¿Qué es una ecuación exponencial?",
+                    "description": "Es una ecuación en la que la incógnita está en el <strong>exponente</strong>, como $2^{x+1}=32$. La idea siempre es la misma: dejar la ecuación en una forma en la que se pueda «bajar» el exponente, igualando bases o tomando logaritmos.<br>Recuerda que $a^x > 0$ para cualquier $x$: una potencia de base positiva nunca vale $0$ ni un número negativo.",
+                    "example": "• $3^x = -9$ no tiene solución, porque $3^x$ siempre es positivo."
+                },
+                {
+                    "title": "Igualar las bases",
+                    "formula": "$$a^{f(x)} = a^{g(x)} \\iff f(x) = g(x)$$",
+                    "description": "Si los dos miembros se pueden escribir como potencias de la <strong>misma base</strong>, los exponentes tienen que ser iguales. Descompón los números en factores primos para encontrar esa base común.",
+                    "example": "• $2^{x+1} = 32 \\Rightarrow 2^{x+1} = 2^{5} \\Rightarrow x + 1 = 5 \\Rightarrow \\textcolor{#4fa66e}{x = 4}$<br>• $9^{x} = 27^{x-1} \\Rightarrow (3^2)^{x} = (3^3)^{x-1} \\Rightarrow 3^{2x} = 3^{3x-3}$<br>$\\quad 2x = 3x - 3 \\Rightarrow \\textcolor{#4fa66e}{x = 3}$ &nbsp; (comprobación: $9^3 = 729 = 27^2$)"
+                },
+                {
+                    "title": "Tomar logaritmos",
+                    "formula": "$$a^{x} = b \\iff x = \\log_a b = \\dfrac{\\ln b}{\\ln a}$$",
+                    "description": "Cuando las bases <strong>no se pueden igualar</strong>, se toman logaritmos en los dos miembros y la propiedad de la potencia baja el exponente: $\\ln a^{x} = x \\ln a$. Antes, aísla la potencia en un miembro.",
+                    "example": "• $3^{x} = 7 \\Rightarrow x \\ln 3 = \\ln 7 \\Rightarrow x = \\dfrac{\\ln 7}{\\ln 3} \\approx \\textcolor{#4fa66e}{1{,}771}$<br>• $5^{x-2} = 12 \\Rightarrow (x-2)\\ln 5 = \\ln 12 \\Rightarrow x = 2 + \\dfrac{\\ln 12}{\\ln 5} \\approx \\textcolor{#4fa66e}{3{,}544}$<br>• $e^{2x} = 5 \\Rightarrow 2x = \\ln 5 \\Rightarrow x = \\dfrac{\\ln 5}{2} \\approx \\textcolor{#4fa66e}{0{,}805}$"
+                },
+                {
+                    "title": "Sacar factor común",
+                    "formula": "$$a^{x+n} = a^{n} \\cdot a^{x}$$",
+                    "description": "Si aparecen <strong>sumas</strong> de potencias de la misma base con exponentes distintos, no se pueden tomar logaritmos directamente ($\\log(A+B) \\neq \\log A + \\log B$). Separa cada potencia y saca $a^x$ factor común.",
+                    "example": "$2^{x+1} + 2^{x} + 2^{x-1} = 28$<br>$2 \\cdot 2^{x} + 2^{x} + \\dfrac{2^{x}}{2} = 28 \\Rightarrow 2^{x}\\left(2 + 1 + \\dfrac{1}{2}\\right) = 28$<br>$2^{x} \\cdot \\dfrac{7}{2} = 28 \\Rightarrow 2^{x} = 8 = 2^{3} \\Rightarrow \\textcolor{#4fa66e}{x = 3}$"
+                },
+                {
+                    "title": "Cambio de variable",
+                    "formula": "$$t = a^{x} \\quad (t > 0)$$",
+                    "description": "Si aparecen $a^{2x}$ y $a^{x}$, llama $t = a^{x}$; entonces $a^{2x} = (a^{x})^2 = t^2$ y queda una ecuación de segundo grado. Al deshacer el cambio, <strong>descarta los valores de $t$ negativos o nulos</strong>, porque $a^x$ siempre es positivo.",
+                    "example": "• $4^{x} - 6 \\cdot 2^{x} + 8 = 0 \\Rightarrow t^2 - 6t + 8 = 0 \\Rightarrow t = 2,\\ t = 4$<br>$\\quad 2^{x} = 2 \\Rightarrow \\textcolor{#4fa66e}{x = 1}; \\quad 2^{x} = 4 \\Rightarrow \\textcolor{#4fa66e}{x = 2}$<br>• $9^{x} - 2 \\cdot 3^{x} - 3 = 0 \\Rightarrow t^2 - 2t - 3 = 0 \\Rightarrow t = 3,\\ \\textcolor{#d46a6a}{t = -1}$<br>$\\quad 3^{x} = 3 \\Rightarrow \\textcolor{#4fa66e}{x = 1}$; &nbsp; $3^{x} = -1$ no tiene solución"
+                }
+            ]
+        },
+        {
+            "title": "Ecuaciones logarítmicas",
+            "items": [
+                {
+                    "title": "Condición de existencia",
+                    "formula": "$$\\log_a M \\text{ existe} \\iff M > 0$$",
+                    "description": "Solo existen logaritmos de números <strong>positivos</strong>. Por eso, al terminar una ecuación logarítmica hay que <strong>comprobar</strong> cada solución en la ecuación original: si algún argumento queda negativo o cero, esa solución se descarta. Es el error más habitual.",
+                    "example": "• $\\log(x - 5)$ solo tiene sentido si $x > 5$<br>• $\\log(-3)$ y $\\log 0$ no existen"
+                },
+                {
+                    "title": "Aplicar la definición",
+                    "formula": "$$\\log_a f(x) = c \\iff f(x) = a^{c}$$",
+                    "description": "Si hay un <strong>único logaritmo igualado a un número</strong>, se pasa a forma exponencial con la definición.",
+                    "example": "• $\\log_2 (x - 1) = 3 \\Rightarrow x - 1 = 2^{3} = 8 \\Rightarrow \\textcolor{#4fa66e}{x = 9}$<br>• $\\ln(2x) = 0 \\Rightarrow 2x = e^{0} = 1 \\Rightarrow \\textcolor{#4fa66e}{x = \\tfrac{1}{2}}$"
+                },
+                {
+                    "title": "Agrupar e igualar argumentos",
+                    "formula": "$$\\log_a f(x) = \\log_a g(x) \\iff f(x) = g(x)$$",
+                    "description": "Usa las propiedades del producto, cociente y potencia para dejar <strong>un solo logaritmo en cada miembro</strong> (escribe también los números como logaritmos: $1 = \\log 10$). Después iguala los argumentos y comprueba las soluciones.",
+                    "example": "• $\\log x + \\log(x+3) = 1 \\Rightarrow \\log[x(x+3)] = \\log 10$<br>$\\quad x^2 + 3x - 10 = 0 \\Rightarrow \\textcolor{#4fa66e}{x = 2},\\ \\textcolor{#d46a6a}{x = -5}$<br>$\\quad x = -5$ se descarta porque $\\log(-5)$ no existe. Solución: $\\textcolor{#4fa66e}{x = 2}$<br>• $2\\log x - \\log(x-2) = \\log 9 \\Rightarrow \\log\\dfrac{x^2}{x-2} = \\log 9$<br>$\\quad x^2 = 9x - 18 \\Rightarrow x^2 - 9x + 18 = 0 \\Rightarrow \\textcolor{#4fa66e}{x = 3},\\ \\textcolor{#4fa66e}{x = 6}$ (las dos cumplen $x > 2$)"
+                },
+                {
+                    "title": "Cambio de variable",
+                    "formula": "$$t = \\log_a x$$",
+                    "description": "Si el logaritmo aparece <strong>al cuadrado</strong>, llama $t = \\log_a x$, resuelve la ecuación de segundo grado y deshaz el cambio con la definición. Aquí $t$ sí puede ser negativo. Ojo: $(\\log x)^2$ no es lo mismo que $\\log x^2 = 2\\log x$.",
+                    "example": "$(\\log x)^2 - 3\\log x + 2 = 0 \\Rightarrow t^2 - 3t + 2 = 0 \\Rightarrow t = 1,\\ t = 2$<br>$\\log x = 1 \\Rightarrow \\textcolor{#4fa66e}{x = 10}; \\quad \\log x = 2 \\Rightarrow \\textcolor{#4fa66e}{x = 100}$"
+                }
+            ]
+        }
+    ]
+}
