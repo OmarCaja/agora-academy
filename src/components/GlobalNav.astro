@@ -46,8 +46,6 @@ import { SITE_NAME } from "../data/site";
             aria-label="Menú de navegación"
             aria-expanded="false"
         >
-            <span class="menu-label menu-label-open" aria-hidden="true">Menú</span>
-            <span class="menu-label menu-label-close" aria-hidden="true">Cerrar</span>
             <span class="accordion-icon"></span>
         </button>
     </div>
@@ -177,24 +175,6 @@ import { SITE_NAME } from "../data/site";
         opacity: 1;
 
         color: var(--text-primary);
-    }
-
-    .menu-btn {
-        padding: 0 4px;
-    }
-
-    .menu-label {
-        font-weight: 700;
-        font-size: var(--font-size-sm);
-    }
-
-    .menu-label-close,
-    .menu-btn.active .menu-label-open {
-        display: none;
-    }
-
-    .menu-btn.active .menu-label-close {
-        display: inline;
     }
 
     .accordion-icon {
