@@ -18,6 +18,10 @@ pnpm books    # rebuild every book PDF listed in scripts/books.json
 
 Validate changes with `pnpm check && pnpm build`; CI runs exactly that before deploying. Package manager is pnpm (see `pnpm-workspace.yaml`). TypeScript stays on 6.x: `astro check` doesn't support TypeScript 7 yet.
 
+### Pull requests
+
+Whenever you create a pull request, run the `review-pr` skill (`.claude/skills/review-pr/SKILL.md`) on it right away, without waiting to be asked. It reviews the PR with a subagent and squash-merges it into `main` if the review is clean, which deploys the site.
+
 ### Site facts
 
 The site name (`Ágora - Academia de matemáticas`), URL, levels, phone, email, Instagram and address live only in `src/data/site.ts`. Pages, SEO/JSON-LD, the web app manifest (`src/pages/favicon/site.webmanifest.ts`), `astro.config.mjs` and both PDF generators import them; never write them inline.

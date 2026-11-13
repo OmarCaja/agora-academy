@@ -9,7 +9,8 @@ interface Props {
 const { pdfs } = Astro.props;
 
 // Outside the items on purpose: the search also matches on an item's textContent.
-const hintId = `pdf-hint-${crypto.randomUUID().slice(0, 8)}`;
+// Derived from the first PDF's URL: unique per list on a page and identical on every build.
+const hintId = `pdf-hint${(pdfs[0]?.url ?? "").replace(/\.pdf$/i, "").replace(/[^a-z0-9]+/gi, "-")}`;
 ---
 
 <p id={hintId} hidden>PDF, se abre en una pestaña nueva</p>
