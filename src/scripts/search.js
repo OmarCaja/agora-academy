@@ -34,6 +34,16 @@ const handleKeydown = (e) => {
     }
 };
 
+/**
+ * Easter egg: a few exact queries (spaces ignored) add a quip after the match
+ * count. `shake` also rattles the search box, for the impossible ones.
+ */
+const SECRET_QUERIES = new Map([
+    ["42", { quip: "La respuesta a la vida, el universo y todo lo demás." }],
+    ["1/0", { quip: "¡Dividir entre cero está prohibido!", shake: true }],
+    ["0/0", { quip: "Indeterminación: prueba con L'Hôpital." }],
+]);
+
 const initSearchFilter = () => {
     const input = document.getElementById("siteSearch");
     if (!input) return;
@@ -96,7 +106,15 @@ const initSearchFilter = () => {
             const noun = totalMatches === 1
                 ? searchCount.dataset.countSingular
                 : searchCount.dataset.countPlural;
-            searchCount.textContent = query ? `${totalMatches} ${noun}` : "";
+            const secret = SECRET_QUERIES.get(query.replace(/\s+/g, ""));
+            const count = query ? `${totalMatches} ${noun}` : "";
+            searchCount.textContent = secret ? `${count} · ${secret.quip}` : count;
+
+            if (secret?.shake) {
+                const box = input.parentElement;
+                box.classList.add("is-shaking");
+                box.addEventListener("animationend", () => box.classList.remove("is-shaking"), { once: true });
+            }
         }
     };
 

@@ -61,6 +61,8 @@ Topic JSON files (`src/content/topics/*.json`) follow: `title`, `description`, o
 
 To make a page filterable, render `<SearchBox />` and mark up the content with `data-search-section` / `data-search-item` plus a `data-search-text` attribute holding the text to match (an item also matches on its rendered `textContent`). Optional `#tocWrapper` is hidden while filtering; render `<NoResults message="..." />` (`src/components/NoResults.astro`) for the empty state, which is shown when nothing matches and has a button that clears the query.
 
+Easter eggs: clicking a level tag rains pi digits (`src/scripts/animations.js`), and a few exact search queries (`SECRET_QUERIES` in `search.js`: `42`, `1/0`, `0/0`) add a quip after the match count.
+
 ## Adding a theory topic
 
 The `generate-theory-topic` skill (`.claude/skills/generate-theory-topic/SKILL.md`) covers content conventions, graphs and validation. The mechanics:

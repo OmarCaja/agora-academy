@@ -57,6 +57,28 @@ import { Icon } from "astro-icon/components";
         align-items: center;
     }
 
+    /* Easter egg (search.js): the box rattles on an impossible query. */
+    .search-input-wrapper.is-shaking {
+        animation: searchShake 0.4s ease-in-out;
+    }
+
+    @keyframes searchShake {
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        20%,
+        60% {
+            transform: translateX(-6px);
+        }
+
+        40%,
+        80% {
+            transform: translateX(6px);
+        }
+    }
+
     :global(.search-icon) {
         position: absolute;
         left: 14px;
