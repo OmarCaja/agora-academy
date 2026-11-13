@@ -35,6 +35,9 @@ const toggleMenu = () => {
     toggleBtn.classList.toggle(CLASSES.active, isActive);
     toggleBtn.setAttribute("aria-expanded", String(isActive));
     overlay.inert = !isActive;
+    // Keep keyboard and screen-reader focus inside the open panel.
+    const main = document.getElementById("main-content");
+    if (main) main.inert = isActive;
 
     if (isActive) {
         // Lock body scroll

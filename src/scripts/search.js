@@ -7,6 +7,7 @@
  *   [data-search-item][data-search-text]                    — a filterable row
  *   #tocWrapper (optional)                                  — hidden while filtering
  *   #noResults (optional)                                   — shown when nothing matches
+ *   [data-search-reset] (optional)                          — button that clears the query
  */
 import { normalizeText } from "../utils/normalizeText";
 
@@ -103,13 +104,14 @@ const initSearchFilter = () => {
     input.addEventListener("focus", updateKbdVisibility);
     input.addEventListener("blur", updateKbdVisibility);
 
-    if (clearBtn) {
-        clearBtn.addEventListener("click", () => {
-            input.value = "";
-            updateSearch();
-            input.focus();
-        });
-    }
+    const clearSearch = () => {
+        input.value = "";
+        updateSearch();
+        input.focus();
+    };
+
+    clearBtn?.addEventListener("click", clearSearch);
+    document.querySelector("[data-search-reset]")?.addEventListener("click", clearSearch);
 
     document.removeEventListener("keydown", handleKeydown);
     document.addEventListener("keydown", handleKeydown);

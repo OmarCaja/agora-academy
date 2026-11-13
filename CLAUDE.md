@@ -29,6 +29,8 @@ The site name (`Ágora - Academia de matemáticas`), URL, levels, phone, email, 
 1. **Theory topics** (`/theory/<slug>`) — driven by `src/content/topics/*.json`, validated by the Zod schema in `src/content.config.ts`. Each JSON file becomes a topic via `getStaticPaths()` in `src/pages/theory/[slug].astro`. Adding a file is enough to register a new page; no manual routing needed.
 2. **Exercise PDFs** (`/exercises/<level>`) — driven by the filesystem. `src/utils/discoverExercises.ts` walks `public/ejercicios/<level>/<topic>/*.pdf` (maths) and `public/ejercicios/<subject>/<level>/<topic>/*.pdf` (other subjects, listed in `subjects` in `src/data/exercises.ts`, e.g. `fisica-y-quimica`) at build time and builds the page data consumed by `src/pages/exercises/[...level].astro` (`/exercises/2-eso`, `/exercises/fisica-y-quimica/2-eso`). The menu groups exercise levels by subject. Level order, title casing, and per-PDF/topic name overrides live in `src/data/exercises.ts` (`levelOrder`, `levelTitleOverrides`, `topicTitleOverrides`, `pdfNameOverrides`) — only needed when the auto-derived Spanish title (via `SPANISH_ACCENT_WORDS` accent-restoration map) is wrong.
 
+Both pipelines have an index page that lists everything they generate: `/theory` (`src/pages/theory/index.astro`, topics by `menuGroup`) and `/exercises` (`src/pages/exercises/index.astro`, levels by subject). Generic "Teoría"/"Ejercicios" links (breadcrumbs, footer, home, 404, menu) point there, never at one specific topic or level. They render internal links with `src/components/LinkCards.astro`; `PdfList.astro` is the counterpart for PDFs, which open in a new tab.
+
 ### Navigation is derived, not hand-maintained
 
 `src/components/Menu.astro` builds the full nav tree at render time by calling `getCollection("topics")` and `discoverExercises()` directly — there is no static menu config file. Topics are grouped by `entry.data.menuGroup` and ordered by `entry.data.menuOrder` (set inside each topic's JSON).
@@ -53,7 +55,7 @@ Topic JSON files (`src/content/topics/*.json`) follow: `title`, `description`, o
 
 `theory/[slug].astro` and `exercises/[level].astro` share one in-page, no-dependency filter: `src/components/SearchBox.astro` (markup + styles, count wording via props) and `src/scripts/search.js` (logic, using `src/utils/normalizeText.ts` for accent/case-insensitive matching), driven by `astro:page-load` (fires on both full loads and view transitions) rather than `DOMContentLoaded`.
 
-To make a page filterable, render `<SearchBox />` and mark up the content with `data-search-section` / `data-search-item` plus a `data-search-text` attribute holding the text to match (an item also matches on its rendered `textContent`). Optional `#tocWrapper` is hidden while filtering and `#noResults` is shown when nothing matches.
+To make a page filterable, render `<SearchBox />` and mark up the content with `data-search-section` / `data-search-item` plus a `data-search-text` attribute holding the text to match (an item also matches on its rendered `textContent`). Optional `#tocWrapper` is hidden while filtering; render `<NoResults message="..." />` (`src/components/NoResults.astro`) for the empty state, which is shown when nothing matches and has a button that clears the query.
 
 ## Adding a theory topic
 
