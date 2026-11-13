@@ -20,7 +20,7 @@ Validate changes with `pnpm check && pnpm build`; CI runs exactly that before de
 
 ### Pull requests
 
-Whenever you create a pull request, run the `review-pr` skill (`.claude/skills/review-pr/SKILL.md`) on it right away, without waiting to be asked. It reviews the PR with a subagent and squash-merges it into `main` if the review is clean, which deploys the site.
+Whenever the user requests a change to the repo, finish by creating a pull request for it, without waiting to be asked. Then run the `review-pr` skill (`.claude/skills/review-pr/SKILL.md`) on it right away. It reviews the PR with a subagent and squash-merges it into `main` if the review is clean, which deploys the site.
 
 ### Site facts
 
