@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import { SITE_URL } from "../data/site";
 
 interface BreadcrumbItem {
@@ -11,6 +12,9 @@ interface Props {
 }
 
 const { items } = Astro.props;
+
+// Phones show only this one: the nearest ancestor that is a page.
+const parentIndex = items.slice(0, -1).findLastIndex((item) => item.href);
 
 const schema = {
     "@context": "https://schema.org",
@@ -34,9 +38,12 @@ const schema = {
             items.map((item, idx) => {
                 const isLast = idx === items.length - 1;
                 return (
-                    <li class="breadcrumb-item">
+                    <li class:list={["breadcrumb-item", { "is-parent": idx === parentIndex }]}>
                         {item.href && !isLast ? (
                             <a href={item.href} class="breadcrumb-link">
+                                {idx === parentIndex && (
+                                    <Icon name="ph:arrow-left" class="breadcrumb-back" aria-hidden="true" />
+                                )}
                                 {item.label}
                             </a>
                         ) : (
@@ -56,8 +63,7 @@ const schema = {
 
 <style>
     .breadcrumbs-container {
-        margin-bottom: var(--spacing-sm);
-        padding: 4px 0;
+        margin-bottom: 0;
     }
 
     .breadcrumbs-list {
@@ -78,9 +84,37 @@ const schema = {
     }
 
     .breadcrumb-link {
+        /* 44px touch target without adding visual weight. */
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 44px;
         color: var(--text-muted);
         text-decoration: none;
         transition: color var(--transition);
+    }
+
+    .breadcrumb-link :global(.breadcrumb-back) {
+        display: none;
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Phones: the full trail wraps to three lines above the title. One link
+       back to the parent page does the same job in one. */
+    @media (max-width: 599px) {
+        .breadcrumb-item:not(.is-parent),
+        .breadcrumb-separator {
+            display: none;
+        }
+
+        .breadcrumb-link {
+            font-weight: 700;
+        }
+
+        .breadcrumb-link :global(.breadcrumb-back) {
+            display: block;
+        }
     }
 
     .breadcrumb-link:hover {

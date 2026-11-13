@@ -114,7 +114,7 @@ The system is fully dual-mode. Light is ink on paper; dark is chalk on slate. Th
 - One ink: black on paper, no chromatic accent anywhere on the site
 - Zero radius everywhere, on every element
 - Hard offset shadows with no blur, tinted to the ink, never black
-- Monospace throughout, in the only two weights the family actually ships
+- Monospace for headings, labels and controls; its proportional sibling for prose; weights 400 and 700 only
 - Flat fills only: no gradients, no glows, no translucency except the nav
 - Light and dark are equal citizens, both meeting WCAG AA
 - Print is a real output, not an afterthought
@@ -146,10 +146,10 @@ Fills, rules and icons that once took a chromatic hue now take **Ink** (`#1f1f1f
 ## Typography
 
 **Display Font:** Space Mono (with `ui-monospace, SFMono-Regular, Menlo, monospace`)
-**Body Font:** Space Mono, the same family
+**Body Font:** Space Grotesk (with `ui-sans-serif, system-ui, sans-serif`), Space Mono's proportional sibling, for running text only: paragraphs, theory explanations, worked examples and the secondary line of cards and rows (`--font-body`)
 **Label/Mono Font:** Space Mono, the same family
 
-**Character:** One monospace family does everything. Space Mono's slab-ish terminals and wide, even rhythm suit a subject made of symbols, and the fixed advance width makes formulas, level names and counts line up without effort. Using one family for display and body is a deliberate constraint, not an omission: the system has no second voice to fall back on, so hierarchy has to be earned by size, case, tracking and colour.
+**Character:** Space Mono carries every heading, label, button, count and navigation item; Space Grotesk carries prose, because a fixed advance gives about 26 characters per line in a formula card on a phone. The two share letterforms, so the page still reads as one voice. For everything that is not prose, one monospace family does everything. Space Mono's slab-ish terminals and wide, even rhythm suit a subject made of symbols, and the fixed advance width makes formulas, level names and counts line up without effort. Using one family for display and body is a deliberate constraint, not an omission: the system has no second voice to fall back on, so hierarchy has to be earned by size, case, tracking and colour.
 
 ### Hierarchy
 

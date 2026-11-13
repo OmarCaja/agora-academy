@@ -95,13 +95,6 @@ const isSectionActive = (section: MenuSection) => {
                 >
                     Inicio
                 </a>
-                <a
-                    href="/#contacto"
-                    data-close-menu
-                    class:list={["menu-item", "menu-subitem", "nav-contacto"]}
-                >
-                    Contacto
-                </a>
             </div>
 
             <!-- Dynamic Category Accordions -->
@@ -223,6 +216,16 @@ const isSectionActive = (section: MenuSection) => {
                     aria-current={currentPage === "books" ? "page" : undefined}
                 >
                     Libros PDF
+                </a>
+            </div>
+
+            <div class="menu-group">
+                <a
+                    href="/#contacto"
+                    data-close-menu
+                    class:list={["menu-group-title", "menu-link", "nav-contacto"]}
+                >
+                    Contacto
                 </a>
             </div>
         </nav>
@@ -422,11 +425,12 @@ const isSectionActive = (section: MenuSection) => {
         opacity: 0.9;
         font-weight: 700;
         padding: 6px 20px 6px 35px;
+        min-height: 44px;
     }
 
     .menu-group.nested .menu-item {
         font-size: 1rem;
-        padding: 8px 15px;
+        padding: 11px 15px;
     }
 
     .menu-group.nested .menu-subitem {

@@ -45,6 +45,10 @@
        Hierarchy is carried by size, case, tracking and colour, never by
        intermediate weights the family does not have. */
     --font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    /* Running text only. Space Grotesk is Space Mono's proportional sibling:
+       same letterforms, readable measure in paragraphs. Headings, labels,
+       buttons and navigation stay on --font-family. */
+    --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
     --font-size-base: 16px;
     --font-size-md: 1rem;
     --font-size-sm: 0.9rem;
@@ -248,8 +252,24 @@ h3 {
 }
 
 p {
+    font-family: var(--font-body);
     margin-bottom: var(--spacing-sm);
     color: var(--text-tertiary);
+}
+
+/* Prose that is not a <p>: theory explanations, worked examples and the
+   secondary text of cards and list rows. */
+.description,
+.example-formula,
+.link-row-detail,
+.pdf-detail,
+.cell-desc {
+    font-family: var(--font-body);
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--on-accent);
 }
 
 address {
@@ -257,7 +277,8 @@ address {
 }
 
 /* Label role (DESIGN.md): counts, metadata, pager direction, section eyebrows. */
-.meta-label {
+.meta-label,
+p.meta-label {
     font-family: var(--font-family);
     font-weight: 700;
     font-size: var(--font-size-xs);
