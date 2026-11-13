@@ -1,0 +1,50 @@
+---
+// Empty state for the in-page search (see src/scripts/search.js).
+interface Props {
+    message: string;
+}
+
+const { message } = Astro.props;
+---
+
+<div id="noResults" class="no-results" style="display: none;">
+    <p>{message}</p>
+    <button type="button" class="no-results-reset" data-search-reset>Borrar búsqueda</button>
+</div>
+
+<style>
+    .no-results {
+        padding: var(--spacing-lg);
+        text-align: center;
+        background: var(--bg-secondary);
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+        margin-top: var(--spacing-lg);
+    }
+
+    .no-results-reset {
+        margin-top: var(--spacing-xs);
+        padding: 10px 18px;
+        font-size: var(--font-size-sm);
+        font-weight: 700;
+        color: var(--on-accent);
+        background: var(--accent);
+        border: var(--border-width) solid var(--accent);
+        border-radius: var(--radius);
+        box-shadow: 3px 3px 0 var(--shadow-color);
+        cursor: pointer;
+        transition:
+            transform var(--transition),
+            box-shadow var(--transition);
+    }
+
+    .no-results-reset:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--shadow-color);
+    }
+
+    .no-results-reset:active {
+        transform: translate(1px, 1px);
+        box-shadow: 1px 1px 0 var(--shadow-color);
+    }
+</style>

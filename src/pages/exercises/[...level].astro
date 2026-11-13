@@ -7,6 +7,7 @@ import TableOfContents from "../../components/TableOfContents.astro";
 import { discoverAllExercises } from "../../utils/discoverExercises";
 import { slugify } from "../../utils/slugify";
 import PdfList from "../../components/PdfList.astro";
+import NoResults from "../../components/NoResults.astro";
 
 export async function getStaticPaths() {
     return Object.keys(discoverAllExercises()).map((level) => ({
@@ -32,7 +33,7 @@ if (!data) {
         <Breadcrumbs
             items={[
                 { label: "Inicio", href: "/" },
-                { label: "Ejercicios" },
+                { label: "Ejercicios", href: "/exercises/" },
                 { label: data.subject },
                 { label: data.title },
             ]}
@@ -71,22 +72,11 @@ if (!data) {
             }
         </div>
 
-        <div id="noResults" class="no-results" style="display: none;">
-            <p>No se han encontrado ejercicios que coincidan con la búsqueda.</p>
-        </div>
+        <NoResults message="No se han encontrado ejercicios que coincidan con la búsqueda." />
     </div>
 </BaseLayout>
 
 <style>
-    .no-results {
-        padding: var(--spacing-lg);
-        text-align: center;
-        background: var(--bg-secondary);
-        border: var(--border-width) solid var(--border-color);
-        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
-        margin-top: var(--spacing-lg);
-    }
-
     .topic-section {
         margin-bottom: var(--spacing-xl);
     }

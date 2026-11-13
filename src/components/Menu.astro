@@ -22,6 +22,7 @@ interface MenuGroup {
 
 interface MenuSection {
     title: string;
+    index: MenuItem;
     items?: MenuItem[];
     groups?: MenuGroup[];
 }
@@ -51,10 +52,12 @@ const exerciseGroups: MenuGroup[] = subjects
 const menuSections: MenuSection[] = [
     {
         title: "Teoría",
+        index: { slug: "theory", label: "Todos los temas" },
         groups: theoryGroups,
     },
     {
         title: "Ejercicios",
+        index: { slug: "exercises", label: "Todos los cursos" },
         groups: exerciseGroups,
     },
 ];
@@ -63,6 +66,7 @@ const isGroupActive = (items: { slug: string }[]) =>
     items.some((item) => item.slug === currentPage);
 
 const isSectionActive = (section: MenuSection) => {
+    if (section.index.slug === currentPage) return true;
     if (section.groups && section.groups.length > 0) {
         return section.groups.some((group) => isGroupActive(group.items));
     }
@@ -119,6 +123,18 @@ const isSectionActive = (section: MenuSection) => {
                         </button>
                         <div class="accordion-content">
                             <div class="accordion-inner">
+                                <a
+                                    href={`/${section.index.slug}/`}
+                                    data-close-menu
+                                    class:list={[
+                                        "menu-item",
+                                        "menu-subitem",
+                                        { active: currentPage === section.index.slug },
+                                    ]}
+                                    aria-current={currentPage === section.index.slug ? "page" : undefined}
+                                >
+                                    {section.index.label}
+                                </a>
                                 {section.items &&
                                     section.items.map((item) => (
                                         <div class="menu-group nested">
@@ -301,6 +317,7 @@ const isSectionActive = (section: MenuSection) => {
         width: 100%;
         text-align: left;
         background: none;
+        font-family: inherit;
         border: none;
         border-left: 3px solid transparent;
         cursor: pointer;

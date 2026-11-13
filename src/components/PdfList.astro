@@ -7,12 +7,16 @@ interface Props {
 }
 
 const { pdfs } = Astro.props;
+
+// Outside the items on purpose: the search also matches on an item's textContent.
+const hintId = `pdf-hint-${crypto.randomUUID().slice(0, 8)}`;
 ---
 
+<p id={hintId} hidden>PDF, se abre en una pestaña nueva</p>
 <ul class="pdf-list">
     {pdfs.map((pdf) => (
         <li data-search-item data-search-text={pdf.name}>
-            <a href={pdf.url} target="_blank" rel="noopener noreferrer" class="pdf-link">
+            <a href={pdf.url} target="_blank" rel="noopener noreferrer" class="pdf-link" aria-describedby={hintId}>
                 <div class="pdf-icon-wrapper">
                     <Icon name="ph:file-pdf" class="pdf-icon" aria-hidden="true" />
                 </div>
@@ -104,5 +108,47 @@ const { pdfs } = Astro.props;
     .pdf-link:hover :global(.arrow) {
         opacity: 1;
         transform: translateX(5px);
+    }
+
+    /* One column on phones: a row per PDF keeps a long list scannable. */
+    @media (max-width: 519px) {
+        .pdf-list {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xs);
+        }
+
+        .pdf-link {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            column-gap: var(--spacing-sm);
+            row-gap: 2px;
+            padding: 12px var(--spacing-sm);
+            box-shadow: 3px 3px 0 var(--shadow-color);
+        }
+
+        .pdf-icon-wrapper {
+            grid-row: 1 / span 2;
+            align-self: start;
+        }
+
+        .pdf-text {
+            grid-column: 2;
+        }
+
+        .pdf-text:nth-last-child(2) {
+            grid-row: 1 / span 2;
+        }
+
+        .pdf-detail {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .pdf-link :global(.arrow) {
+            grid-column: 3;
+            grid-row: 1 / span 2;
+            align-self: center;
+        }
     }
 </style>

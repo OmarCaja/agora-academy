@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SearchBox from "../../components/SearchBox.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+import LinkCards from "../../components/LinkCards.astro";
+import NoResults from "../../components/NoResults.astro";
+import { sortTopics } from "../../data/topics";
+import { renderMath } from "../../utils/math";
+import { slugify } from "../../utils/slugify";
+
+// sortTopics already orders by group, so groups come out in GROUP_ORDER.
+const groups: { title: string; items: { title: string; href: string; detail: string; meta: string }[] }[] = [];
+for (const entry of sortTopics(await getCollection("topics"))) {
+    const title = entry.data.menuGroup || "General";
+    let group = groups.find((g) => g.title === title);
+    if (!group) groups.push((group = { title, items: [] }));
+    const count = entry.data.sections.length;
+    group.items.push({
+        title: entry.data.title,
+        href: `/theory/${entry.id}/`,
+        detail: renderMath(entry.data.description),
+        meta: `${count} ${count === 1 ? "sección" : "secciones"}`,
+    });
+}
+---
+
+<BaseLayout
+    title="Teoría de matemáticas"
+    description="Apuntes de matemáticas por temas para E.S.O. y Bachillerato: fórmulas, ejemplos resueltos y gráficas."
+    currentPage="theory"
+>
+    <div class="content-section measure">
+        <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Teoría" }]} />
+        <Header title="TEORÍA" />
+        <p class="intro">Apuntes por temas, con fórmulas, ejemplos resueltos y gráficas.</p>
+        <SearchBox
+            placeholder="Buscar temas..."
+            label="Buscar temas (pulsa / para enfocar)"
+            countSingular="tema encontrado"
+            countPlural="temas encontrados"
+        />
+
+        <div id="tocWrapper">
+            <TableOfContents sections={groups} />
+        </div>
+
+        {
+            groups.map((group) => (
+                <section id={slugify(group.title)} class="group" data-search-section data-search-text={group.title}>
+                    <h2>{group.title}</h2>
+                    <LinkCards items={group.items} />
+                </section>
+            ))
+        }
+
+        <NoResults message="No se han encontrado temas que coincidan con la búsqueda." />
+    </div>
+</BaseLayout>
+
+<style>
+    .intro {
+        color: var(--text-muted);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .group {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .group h2 {
+        padding-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--accent);
+    }
+</style>

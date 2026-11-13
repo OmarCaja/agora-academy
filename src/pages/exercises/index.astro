@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SearchBox from "../../components/SearchBox.astro";
+import LinkCards from "../../components/LinkCards.astro";
+import NoResults from "../../components/NoResults.astro";
+import { discoverExercises } from "../../utils/discoverExercises";
+import { subjects } from "../../data/exercises";
+
+const groups = subjects
+    .map((subject) => ({
+        title: subject.title,
+        items: Object.entries(discoverExercises(subject)).map(([key, level]) => {
+            const count = level.topics.reduce((n, topic) => n + topic.pdfs.length, 0);
+            return {
+                title: level.title,
+                href: `/exercises/${key}/`,
+                detail: level.topics.map((topic) => topic.title).join(" · "),
+                meta: `${count} ${count === 1 ? "PDF" : "PDFs"}`,
+            };
+        }),
+    }))
+    .filter((group) => group.items.length > 0);
+---
+
+<BaseLayout
+    title="Ejercicios y exámenes"
+    description="Ejercicios y modelos de examen en PDF, clasificados por asignatura y curso, para E.S.O. y Bachillerato."
+    currentPage="exercises"
+>
+    <div class="content-section measure">
+        <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Ejercicios" }]} />
+        <Header title="EJERCICIOS" />
+        <p class="intro">Hojas de ejercicios y modelos de examen en PDF, por asignatura y curso.</p>
+        <SearchBox
+            placeholder="Buscar cursos o temas..."
+            label="Buscar cursos o temas (pulsa / para enfocar)"
+            countSingular="curso encontrado"
+            countPlural="cursos encontrados"
+        />
+
+        {
+            groups.map((group) => (
+                <section class="group" data-search-section data-search-text={group.title}>
+                    <h2>{group.title}</h2>
+                    <LinkCards items={group.items} />
+                </section>
+            ))
+        }
+
+        <NoResults message="No se han encontrado cursos que coincidan con la búsqueda." />
+    </div>
+</BaseLayout>
+
+<style>
+    .intro {
+        color: var(--text-muted);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .group {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .group h2 {
+        padding-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--accent);
+    }
+</style>

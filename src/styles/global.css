@@ -115,6 +115,14 @@ html::before {
     transition: background var(--transition);
 }
 
+/* Form controls don't inherit the page font by default. */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
 /* ===== BASE STYLES ===== */
 body {
     font-family: var(--font-family);

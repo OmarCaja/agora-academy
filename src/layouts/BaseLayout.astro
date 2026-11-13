@@ -167,6 +167,12 @@ import "../styles/global.css";
 
       window.setTheme = (theme) => {
         document.documentElement.setAttribute("data-theme", theme);
+        // The browser bar follows the chosen theme, not just the OS setting.
+        document
+          .querySelectorAll('meta[name="theme-color"]')
+          .forEach((meta) =>
+            meta.setAttribute("content", theme === "dark" ? "#161616" : "#f4f4f4"),
+          );
         updateUI(theme);
       };
 

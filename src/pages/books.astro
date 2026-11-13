@@ -5,6 +5,7 @@ import Header from "../components/Header.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import PdfList from "../components/PdfList.astro";
 import SearchBox from "../components/SearchBox.astro";
+import NoResults from "../components/NoResults.astro";
 import { BOOKS } from "../data/books";
 import { sortTopics } from "../data/topics";
 
@@ -56,9 +57,7 @@ for (const b of books) {
                 </section>
             ))
         }
-        <div id="noResults" class="no-results" style="display: none;">
-            <p>No se han encontrado libros que coincidan con la búsqueda.</p>
-        </div>
+        <NoResults message="No se han encontrado libros que coincidan con la búsqueda." />
     </div>
 </BaseLayout>
 
@@ -76,13 +75,5 @@ for (const b of books) {
         padding-bottom: var(--spacing-xs);
         margin-bottom: var(--spacing-md);
         border-bottom: 2px solid var(--accent);
-    }
-
-    .no-results {
-        padding: var(--spacing-lg);
-        text-align: center;
-        background: var(--bg-secondary);
-        border: var(--border-width) solid var(--border-color);
-        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
     }
 </style>

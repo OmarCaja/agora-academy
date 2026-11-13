@@ -87,7 +87,7 @@ const reasons = [
 						Contacto
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
-					<a href="/books/" class="btn btn-line">
+					<a href="/theory/" class="btn btn-line">
 						Ver teoría
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
@@ -160,7 +160,7 @@ const reasons = [
 					))
 				}
 
-				<a href="/theory/algebra/" class="cell reveal" style={`--i: ${levels.length + 3}`}>
+				<a href="/theory/" class="cell reveal" style={`--i: ${levels.length + 3}`}>
 					<span class="cell-title">Teoría</span>
 					<span class="cell-desc">Apuntes y fórmulas con ejemplos resueltos y gráficas.</span>
 					<span class="cell-meta meta-label">
@@ -172,6 +172,11 @@ const reasons = [
 					</span>
 				</a>
 			</div>
+
+			<a href="/exercises/" class="all-link reveal">
+				Ver todos los cursos y asignaturas
+				<Icon name="ph:arrow-right" aria-hidden="true" />
+			</a>
 		</section>
 
 		{/* ── Reasons: offset editorial stack, no cards ────────────── */}
@@ -402,17 +407,24 @@ const reasons = [
 		margin-top: var(--spacing-md);
 	}
 
+	/* Heading left, copy right. The copy stays left-aligned: a ragged-left
+	   paragraph makes every line start at a different place. */
 	@media (min-width: 900px) {
-		.statement-lead {
-			max-width: 30ch;
-			margin-left: auto;
-			margin-right: 0;
-			text-align: right;
+		.statement {
+			display: grid;
+			grid-template-columns: 0.8fr 1.2fr;
+			column-gap: var(--spacing-2xl);
+			align-items: start;
 		}
 
+		.statement-lead,
 		.statement-levels {
-			display: flex;
-			justify-content: flex-end;
+			grid-column: 2;
+		}
+
+		.statement-lead {
+			max-width: 36ch;
+			margin-bottom: 0;
 		}
 	}
 
@@ -567,6 +579,29 @@ const reasons = [
 	}
 
 	.cell:hover .cell-action :global(svg) {
+		transform: translateX(4px);
+	}
+
+	.all-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		margin-top: var(--spacing-md);
+		padding: 6px 0;
+		font-size: var(--font-size-sm);
+		font-weight: 700;
+		color: var(--text-primary);
+		text-decoration: none;
+		border-bottom: 2px solid var(--accent);
+	}
+
+	.all-link :global(svg) {
+		width: 15px;
+		height: 15px;
+		transition: transform var(--transition);
+	}
+
+	.all-link:hover :global(svg) {
 		transform: translateX(4px);
 	}
 
