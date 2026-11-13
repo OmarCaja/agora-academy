@@ -36,7 +36,7 @@ typography:
     lineHeight: 1.2
     letterSpacing: "-0.015em"
   body:
-    fontFamily: "Space Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontFamily: "Space Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.65
@@ -114,7 +114,7 @@ The system is fully dual-mode. Light is ink on paper; dark is chalk on slate. Th
 - One ink: black on paper, no chromatic accent anywhere on the site
 - Zero radius everywhere, on every element
 - Hard offset shadows with no blur, tinted to the ink, never black
-- Monospace throughout, in the only two weights the family actually ships
+- Monospace for headings, labels and controls; its proportional sibling for prose; weights 400 and 700 only
 - Flat fills only: no gradients, no glows, no translucency except the nav
 - Light and dark are equal citizens, both meeting WCAG AA
 - Print is a real output, not an afterthought
@@ -146,10 +146,10 @@ Fills, rules and icons that once took a chromatic hue now take **Ink** (`#1f1f1f
 ## Typography
 
 **Display Font:** Space Mono (with `ui-monospace, SFMono-Regular, Menlo, monospace`)
-**Body Font:** Space Mono, the same family
+**Body Font:** Space Grotesk (with `ui-sans-serif, system-ui, sans-serif`), Space Mono's proportional sibling, for running text only: paragraphs, theory explanations, worked examples and the secondary line of cards and rows (`--font-body`)
 **Label/Mono Font:** Space Mono, the same family
 
-**Character:** One monospace family does everything. Space Mono's slab-ish terminals and wide, even rhythm suit a subject made of symbols, and the fixed advance width makes formulas, level names and counts line up without effort. Using one family for display and body is a deliberate constraint, not an omission: the system has no second voice to fall back on, so hierarchy has to be earned by size, case, tracking and colour.
+**Character:** Space Mono carries every heading, label, button, count and navigation item; Space Grotesk carries prose, because a fixed advance gives about 26 characters per line in a formula card on a phone. The two share letterforms, so the page still reads as one voice. For everything that is not prose, one monospace family does everything. Space Mono's slab-ish terminals and wide, even rhythm suit a subject made of symbols, and the fixed advance width makes formulas, level names and counts line up without effort. Using one family for display, labels and controls is a deliberate constraint, not an omission: the system has no second voice to fall back on there, so hierarchy has to be earned by size, case, tracking and colour. The only second voice is the proportional body face, and it never carries a heading.
 
 ### Hierarchy
 
@@ -163,7 +163,7 @@ Fills, rules and icons that once took a chromatic hue now take **Ink** (`#1f1f1f
 
 ### Named Rules
 
-**The Two Weights Rule.** Space Mono ships 400 and 700, roman and italic, and nothing else. Any value between them is a browser-synthesised fake that renders differently on every engine. Weights such as 500, 560 or 600 are forbidden; so are variable-font axes, which this family does not have.
+**The Two Weights Rule.** Space Mono and Space Grotesk are loaded in 400 and 700 only (Space Mono also in italic), and nothing else. Any value between them is a browser-synthesised fake that renders differently on every engine. Weights such as 500, 560 or 600 are forbidden; so are variable-font axes, which this family does not have.
 
 **The No Em-Dash Rule.** Zero em-dashes (`—`) and zero en-dashes (`–`) in any visible string: headings, body, buttons, labels, alt text, and meta tags included. Use a comma, a full stop, parentheses, or a plain hyphen. This is verified across all built pages, not a preference.
 
@@ -267,7 +267,7 @@ The homepage grid is the clearest expression of the world. Five items produce ex
 - **Do** keep every corner square. `--radius` is `0px` system-wide.
 - **Do** keep shadow blur at exactly `0` and tint the offset to the ink colour, never black.
 - **Do** keep the accent monochrome: fills, rules and icons all draw from the same ink token as text and borders.
-- **Do** carry hierarchy with size, case, tracking and colour, using only Space Mono 400 and 700.
+- **Do** carry hierarchy with size, case, tracking and colour, using only weights 400 and 700.
 - **Do** make interactive elements lift toward the cursor on hover and press into the page on click, with transform and box-shadow only.
 - **Do** design both themes at once and verify WCAG AA in each before shipping.
 - **Do** gate every animation behind `prefers-reduced-motion`, and never let content visibility depend on an animation completing.

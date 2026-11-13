@@ -6,36 +6,28 @@ import LevelTags from "../components/LevelTags.astro";
 import ContactItem from "../components/ContactItem.astro";
 import HeroTangent from "../components/HeroTangent.astro";
 import { discoverExercises } from "../utils/discoverExercises";
+import { subjects } from "../data/exercises";
 import fs from "node:fs";
 import { SITE_NAME, LEVELS, ADDRESS, PHONE, PHONE_DISPLAY, EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "../data/site";
 
 // Real counts, computed at build from the actual content. Nothing here is a
 // hand-written figure that can drift away from what the site ships.
 const topics = await getCollection("topics");
-const exercises = discoverExercises();
-
 const bookCount = fs.readdirSync("public/libros").filter((f) => f.toLowerCase().endsWith(".pdf")).length;
 
-const pdfCount = (level: string) =>
-    (exercises[level]?.topics ?? []).reduce((n, t) => n + t.pdfs.length, 0);
-
-const levels = [
-    {
-        slug: "1-eso",
-        label: "1º E.S.O.",
-        desc: "Enteros, fracciones, álgebra y porcentajes",
-    },
-    {
-        slug: "4-eso",
-        label: "4º E.S.O.",
-        desc: "Funciones, gráficas y propiedades",
-    },
-    {
-        slug: "1-bach",
-        label: "1º Bachillerato",
-        desc: "Límites, estadística, probabilidad y exámenes",
-    },
-].filter((l) => exercises[l.slug]);
+// Every published course, in menu order. Derived from the PDF tree, so a new
+// level shows up here without touching this page.
+const levelLinks = subjects.flatMap((subject) =>
+    Object.entries(discoverExercises(subject)).map(([key, level]) => {
+        const count = level.topics.reduce((n, topic) => n + topic.pdfs.length, 0);
+        return {
+            href: `/exercises/${key}/`,
+            title: level.title,
+            subject: subject.title,
+            meta: `${count} ${count === 1 ? "PDF" : "PDFs"}`,
+        };
+    }),
+);
 
 const reasons = [
     {
@@ -76,13 +68,16 @@ const reasons = [
 				</h1>
 
 				<p class="hero-lede reveal" style="--i: 1">
-					Clases de refuerzo para <strong>Primaria</strong>, <strong
-						>E.S.O.</strong
-					>, <strong>Bachillerato</strong> y <strong>Universidad</strong>,
-					con grupos reducidos y seguimiento cercano de cada alumno.
+					Clases de refuerzo en <strong>{ADDRESS.city}</strong>, con{" "}
+					<strong>grupos reducidos</strong>, atención personalizada y
+					seguimiento cercano del progreso de cada alumno.
 				</p>
 
-				<div class="hero-ctas reveal" style="--i: 2">
+				<div class="hero-levels reveal" style="--i: 2">
+					<LevelTags />
+				</div>
+
+				<div class="hero-ctas reveal" style="--i: 3">
 					<a href="/#contacto" class="btn btn-solid">
 						Contacto
 						<Icon name="ph:arrow-right" aria-hidden="true" />
@@ -91,26 +86,16 @@ const reasons = [
 						Ver teoría
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
+					<a href={`tel:${PHONE}`} class="hero-phone">
+						<Icon name="ph:phone" aria-hidden="true" />
+						<span class="sr-only">Llamar al</span>
+						{PHONE_DISPLAY}
+					</a>
 				</div>
 			</div>
 
 			<div class="hero-figure">
 				<HeroTangent />
-			</div>
-		</section>
-
-		{/* ── Statement: full-width, no card ───────────────────────── */}
-		<section class="statement">
-			<h2 class="reveal">Sobre nosotros</h2>
-			<p class="statement-lead reveal" style="--i: 1">
-				En <strong>Ágora</strong> nos especializamos en la enseñanza de
-				matemáticas para estudiantes de Primaria, E.S.O., Bachillerato
-				y Universidad en Cuenca. Con nuestros <strong>grupos reducidos</strong>, cada
-				alumno recibe una atención personalizada y un seguimiento
-				cercano de su progreso.
-			</p>
-			<div class="statement-levels reveal" style="--i: 2">
-				<LevelTags />
 			</div>
 		</section>
 
@@ -123,44 +108,8 @@ const reasons = [
 			</p>
 
 			<div class="bento">
-				<a href="/books/" class="cell cell-wide cell-accent reveal" style="--i: 2">
-					<Icon name="ph:books" class="cell-icon" aria-hidden="true" />
-					<span class="cell-title">Libros PDF</span>
-					<span class="cell-desc">
-						La teoría reunida en {bookCount} {bookCount === 1 ? "libro" : "libros"}{" "}
-						para descargar e imprimir.
-					</span>
-					<span class="cell-action">
-						Ver libros
-						<Icon name="ph:arrow-right" aria-hidden="true" />
-					</span>
-				</a>
-
-				{/* One cell per listed level, no cap. Grid was designed around
-				    5 cells (Libros PDF, 3 levels, Teoría); adding a level pushes
-				    this past that and deserves a deliberate look, not a silent
-				    6th tile. */}
-				{
-					levels.map((level, idx) => (
-						<a
-							href={`/exercises/${level.slug}/`}
-							class="cell reveal"
-							style={`--i: ${idx + 3}`}
-						>
-							<span class="cell-title">{level.label}</span>
-							<span class="cell-desc">{level.desc}</span>
-							<span class="cell-meta meta-label">
-								{pdfCount(level.slug)} {pdfCount(level.slug) === 1 ? "PDF" : "PDFs"}
-							</span>
-							<span class="cell-action">
-								Ver ejercicios
-								<Icon name="ph:arrow-right" aria-hidden="true" />
-							</span>
-						</a>
-					))
-				}
-
-				<a href="/theory/" class="cell reveal" style={`--i: ${levels.length + 3}`}>
+				<a href="/theory/" class="cell cell-wide cell-accent reveal" style="--i: 2">
+					<Icon name="ph:function" class="cell-icon" aria-hidden="true" />
 					<span class="cell-title">Teoría</span>
 					<span class="cell-desc">Apuntes y fórmulas con ejemplos resueltos y gráficas.</span>
 					<span class="cell-meta meta-label">
@@ -171,12 +120,46 @@ const reasons = [
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</span>
 				</a>
+
+				<a href="/books/" class="cell reveal" style="--i: 3">
+					<Icon name="ph:books" class="cell-icon" aria-hidden="true" />
+					<span class="cell-title">Libros PDF</span>
+					<span class="cell-desc">La teoría reunida en libros para descargar e imprimir.</span>
+					<span class="cell-meta meta-label">
+						{bookCount} {bookCount === 1 ? "libro" : "libros"}
+					</span>
+					<span class="cell-action">
+						Ver libros
+						<Icon name="ph:arrow-right" aria-hidden="true" />
+					</span>
+				</a>
 			</div>
 
-			<a href="/exercises/" class="all-link reveal">
-				Ver todos los cursos y asignaturas
-				<Icon name="ph:arrow-right" aria-hidden="true" />
-			</a>
+			{/* Exercises: one link per published course, straight to its page. */}
+			<div class="courses reveal">
+				<div class="courses-head">
+					<h3>Ejercicios por curso</h3>
+					<a href="/exercises/" class="all-link">
+						Ver todos
+						<Icon name="ph:arrow-right" aria-hidden="true" />
+					</a>
+				</div>
+				<ul class="course-list">
+					{
+						levelLinks.map((level) => (
+							<li>
+								<a href={level.href} class="course">
+									<span class="course-title">{level.title}</span>
+									<span class="course-meta meta-label">
+										{level.subject} · {level.meta}
+									</span>
+									<Icon name="ph:arrow-right" class="course-arrow" aria-hidden="true" />
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
 		</section>
 
 		{/* ── Reasons: offset editorial stack, no cards ────────────── */}
@@ -304,10 +287,40 @@ const reasons = [
 		color: var(--text-primary);
 	}
 
+	.hero-levels {
+		margin-bottom: var(--spacing-md);
+	}
+
+	.hero-levels :global(.levels) {
+		margin-top: 0;
+	}
+
 	.hero-ctas {
 		display: flex;
 		flex-wrap: wrap;
+		align-items: center;
 		gap: var(--spacing-sm);
+	}
+
+	/* The number itself, next to the buttons: a parent can call without
+	   scrolling to the contact section. */
+	.hero-phone {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 44px;
+		padding: 0 4px;
+		font-weight: 700;
+		color: var(--text-primary);
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 6px;
+		white-space: nowrap;
+	}
+
+	.hero-phone :global(svg) {
+		width: 18px;
+		height: 18px;
 	}
 
 	.hero-figure {
@@ -328,7 +341,7 @@ const reasons = [
 			padding-bottom: var(--spacing-2xl);
 		}
 
-		.hero-lede {
+		.hero-levels {
 			margin-bottom: var(--spacing-lg);
 		}
 
@@ -390,44 +403,6 @@ const reasons = [
 		box-shadow: 1px 1px 0 var(--shadow-color);
 	}
 
-	/* ===== STATEMENT ===== */
-	.statement-lead {
-		font-size: var(--step-2);
-		line-height: 1.45;
-		max-width: 34ch;
-		color: var(--text-secondary);
-		letter-spacing: -0.015em;
-	}
-
-	.statement-lead strong {
-		color: var(--text-primary);
-	}
-
-	.statement-levels {
-		margin-top: var(--spacing-md);
-	}
-
-	/* Heading left, copy right. The copy stays left-aligned: a ragged-left
-	   paragraph makes every line start at a different place. */
-	@media (min-width: 900px) {
-		.statement {
-			display: grid;
-			grid-template-columns: 0.8fr 1.2fr;
-			column-gap: var(--spacing-2xl);
-			align-items: start;
-		}
-
-		.statement-lead,
-		.statement-levels {
-			grid-column: 2;
-		}
-
-		.statement-lead {
-			max-width: 36ch;
-			margin-bottom: 0;
-		}
-	}
-
 	/* ===== SECTION LEAD ===== */
 	.section-lead {
 		max-width: 52ch;
@@ -440,16 +415,6 @@ const reasons = [
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: var(--spacing-sm);
-	}
-
-	@media (min-width: 640px) {
-		.bento {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		.cell-wide {
-			grid-column: span 2;
-		}
 	}
 
 	@media (min-width: 960px) {
@@ -519,7 +484,6 @@ const reasons = [
 
 	.cell-wide {
 		min-height: 210px;
-		justify-content: flex-end;
 	}
 
 	.cell-accent {
@@ -557,6 +521,11 @@ const reasons = [
 		margin-top: 4px;
 	}
 
+	.cell-accent .cell-meta {
+		color: var(--on-accent);
+		opacity: 0.88;
+	}
+
 	.cell-action {
 		display: inline-flex;
 		align-items: center;
@@ -582,12 +551,108 @@ const reasons = [
 		transform: translateX(4px);
 	}
 
+	/* ===== COURSES ===== */
+	.courses {
+		margin-top: var(--spacing-lg);
+	}
+
+	.courses-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: var(--spacing-xs) var(--spacing-md);
+		padding-bottom: var(--spacing-xs);
+		margin-bottom: var(--spacing-sm);
+		border-bottom: var(--border-width) solid var(--border-color);
+	}
+
+	.courses-head h3 {
+		margin: 0;
+		font-size: var(--step-2);
+		color: var(--text-primary);
+	}
+
+	.course-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--spacing-xs);
+	}
+
+	@media (min-width: 640px) {
+		.course-list {
+			grid-template-columns: repeat(2, 1fr);
+			gap: var(--spacing-sm);
+		}
+	}
+
+	@media (min-width: 960px) {
+		.course-list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.course {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		column-gap: var(--spacing-sm);
+		row-gap: 2px;
+		min-height: 64px;
+		padding: 12px var(--spacing-sm);
+		background: var(--bg-secondary);
+		border: var(--border-width) solid var(--border-color);
+		box-shadow: 3px 3px 0 var(--shadow-color);
+		color: var(--text-primary);
+		text-decoration: none;
+		transition:
+			transform var(--transition),
+			box-shadow var(--transition),
+			background var(--transition);
+	}
+
+	.course:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 5px 5px 0 var(--shadow-color);
+	}
+
+	.course:active {
+		transform: translate(1px, 1px);
+		box-shadow: 1px 1px 0 var(--shadow-color);
+	}
+
+	.course-title {
+		grid-column: 1;
+		font-size: var(--step-1);
+		font-weight: 700;
+		line-height: 1.3;
+	}
+
+	.course-meta {
+		grid-column: 1;
+		color: var(--text-muted);
+	}
+
+	.course :global(.course-arrow) {
+		grid-column: 2;
+		grid-row: 1 / span 2;
+		width: 18px;
+		height: 18px;
+		transition: transform var(--transition);
+	}
+
+	.course:hover :global(.course-arrow) {
+		transform: translateX(4px);
+	}
+
 	.all-link {
 		display: inline-flex;
 		align-items: center;
 		gap: 7px;
-		margin-top: var(--spacing-md);
-		padding: 6px 0;
+		min-height: 44px;
 		font-size: var(--font-size-sm);
 		font-weight: 700;
 		color: var(--text-primary);

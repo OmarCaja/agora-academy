@@ -51,8 +51,13 @@ const { label } = Astro.props;
 
     .value :global(a) {
         color: var(--text-primary);
-        text-decoration: none;
-        border-bottom: 2px solid var(--accent);
+        /* Underline, not a border: the inline padding below grows the touch
+           target to 44px, and a border would sit at the padding edge. */
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 5px;
+        padding-block: 10px;
         transition: color var(--transition), border-color var(--transition);
     }
 

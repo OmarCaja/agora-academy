@@ -1,105 +1,114 @@
 ---
 import { Icon } from "astro-icon/components";
 
-// Grid of internal navigation cards (theory and exercise indexes). PdfList is
+// List of internal navigation rows (theory and exercise indexes). PdfList is
 // the counterpart for PDF downloads, which open in a new tab.
 interface Props {
     items: { title: string; href: string; detail?: string; meta?: string }[];
+    // Phones hide the detail line to keep long lists short; set this when the
+    // detail is what tells the rows apart (e.g. the topics of a course).
+    detailOnMobile?: boolean;
 }
 
-const { items } = Astro.props;
+const { items, detailOnMobile = false } = Astro.props;
 ---
 
-<ul class="link-cards">
+<ul class:list={["link-rows", { "detail-on-mobile": detailOnMobile }]}>
     {items.map((item) => (
         <li data-search-item data-search-text={item.title}>
-            <a href={item.href} class="link-card">
-                <span class="link-card-title">{item.title}</span>
-                {item.detail && <span class="link-card-detail" set:html={item.detail} />}
-                <span class="link-card-foot">
-                    {item.meta && <span class="meta-label">{item.meta}</span>}
-                    <Icon name="ph:arrow-right" class="link-card-arrow" aria-hidden="true" />
-                </span>
+            <a href={item.href} class="link-row">
+                <span class="link-row-title">{item.title}</span>
+                {item.meta && <span class="link-row-meta meta-label">{item.meta}</span>}
+                {item.detail && <span class="link-row-detail" set:html={item.detail} />}
+                <Icon name="ph:arrow-right" class="link-row-arrow" aria-hidden="true" />
             </a>
         </li>
     ))}
 </ul>
 
 <style>
-    .link-cards {
+    /* One bordered sheet with ruled rows, instead of a grid of equal cards:
+       a long list stays scannable and no description has to be cut short. */
+    .link-rows {
         list-style: none;
         padding: 0;
         margin: 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: var(--spacing-sm);
-    }
-
-    .link-card {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xs);
-        height: 100%;
-        padding: var(--spacing-md);
-        text-decoration: none;
-        color: var(--text-primary);
         background: var(--bg-secondary);
         border: var(--border-width) solid var(--border-color);
         border-radius: var(--radius);
-        box-shadow: 3px 3px 0 var(--shadow-color);
-        transition:
-            transform var(--transition),
-            box-shadow var(--transition),
-            background var(--transition);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+        transition: background var(--transition);
     }
 
-    .link-card:hover {
-        transform: translate(-3px, -3px);
-        box-shadow: 6px 6px 0 var(--shadow-color);
+    /* Rule below, not above: the search hides rows with display:none, and a
+       hidden first row must not leave a stray rule at the top of the sheet. */
+    .link-rows li:not(:last-child) {
+        border-bottom: 1px solid var(--rule-color);
     }
 
-    .link-card:active {
-        transform: translate(1px, 1px);
-        box-shadow: 1px 1px 0 var(--shadow-color);
+    .link-row {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        column-gap: var(--spacing-sm);
+        row-gap: 2px;
+        min-height: 56px;
+        padding: 12px var(--spacing-sm);
+        text-decoration: none;
+        color: var(--text-primary);
+        transition: background var(--transition);
     }
 
-    .link-card-title {
+    .link-row:hover {
+        background: var(--bg-raised);
+    }
+
+    .link-row-title {
+        grid-column: 1;
         font-size: var(--step-1);
         font-weight: 700;
         line-height: 1.3;
     }
 
-    .link-card-detail {
-        font-size: var(--font-size-sm);
-        line-height: 1.5;
+    .link-row-meta {
+        grid-column: 2;
         color: var(--text-muted);
-        /* Keep cards scannable: the full description is on the page itself. */
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
-        line-clamp: 4;
-        overflow: hidden;
+        white-space: nowrap;
     }
 
-    .link-card-foot {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--spacing-xs);
-        margin-top: auto;
-        padding-top: var(--spacing-xs);
-        color: var(--text-muted);
-    }
-
-    .link-card-foot :global(.link-card-arrow) {
+    .link-row :global(.link-row-arrow) {
+        grid-column: 3;
+        grid-row: 1;
         width: 18px;
         height: 18px;
-        margin-left: auto;
         color: var(--accent);
         transition: transform var(--transition);
     }
 
-    .link-card:hover :global(.link-card-arrow) {
-        transform: translateX(5px);
+    .link-row:hover :global(.link-row-arrow) {
+        transform: translateX(4px);
+    }
+
+    .link-row-detail {
+        display: none;
+        grid-column: 1 / -1;
+        font-size: var(--font-size-sm);
+        line-height: 1.5;
+        color: var(--text-muted);
+        max-width: 68ch;
+    }
+
+    .detail-on-mobile .link-row-detail {
+        display: block;
+    }
+
+    @media (min-width: 600px) {
+        .link-row {
+            padding: var(--spacing-sm) var(--spacing-md);
+        }
+
+        .link-row-detail {
+            display: block;
+        }
     }
 </style>

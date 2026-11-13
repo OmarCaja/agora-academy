@@ -86,7 +86,7 @@ const year = new Date().getFullYear();
     .footer-links {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--spacing-md);
+        gap: 0 var(--spacing-md);
     }
 
     .footer-links a {
@@ -94,23 +94,24 @@ const year = new Date().getFullYear();
         text-decoration: none;
         font-size: var(--font-size-md);
         font-weight: 700;
-        padding-bottom: 2px;
-        border-bottom: 2px solid transparent;
-        transition: color var(--transition), border-color var(--transition);
-    }
-
-    .footer-links a:hover {
-        border-bottom-color: var(--accent);
+        /* 44px touch target; the hover rule sits on the text, not the box. */
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        text-underline-offset: 6px;
+        text-decoration-thickness: 2px;
+        transition: color var(--transition);
     }
 
     .footer-links a:hover {
         color: var(--accent-strong);
+        text-decoration: underline;
     }
 
     .footer-social {
         display: inline-flex;
-        align-items: center;
-        border-bottom: none !important;
+        justify-content: center;
+        min-width: 44px;
     }
 
     .footer-social svg {
@@ -145,13 +146,10 @@ const year = new Date().getFullYear();
         height: 1em;
     }
 
-    .footer-heart {
-        color: #d46a6a;
-    }
-
     .footer-credit a {
         display: inline-flex;
         align-items: center;
+        min-height: 44px;
         gap: 0.15em;
         color: var(--text-primary);
         font-weight: 700;

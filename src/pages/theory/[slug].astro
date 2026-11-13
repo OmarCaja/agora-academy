@@ -103,22 +103,12 @@ const topicSchema = {
         <Header title={title.toUpperCase()} />
 
         <div class="topic-meta">
-            <span class="meta-pill">
-                <Icon name="ph:clock" aria-hidden="true" />
-                ~{estimatedReadTime} min de lectura
-            </span>
-            <span class="meta-pill">
-                <Icon name="ph:list" aria-hidden="true" />
-                {sections.length} {sections.length === 1 ? "sección" : "secciones"}
-            </span>
-            {totalFormulas > 0 && (
-                <span class="meta-pill">
-                    <Icon name="ph:function" aria-hidden="true" />
-                    {totalFormulas} {totalFormulas === 1 ? "fórmula" : "fórmulas"}
-                </span>
-            )}
+            <p class="topic-stats">
+                ~{estimatedReadTime} min de lectura · {sections.length} {sections.length === 1 ? "sección" : "secciones"}
+                {totalFormulas > 0 && ` · ${totalFormulas} ${totalFormulas === 1 ? "fórmula" : "fórmulas"}`}
+            </p>
             {book && (
-                <a class="meta-pill pdf-pill" href={book.url} target="_blank" rel="noopener noreferrer">
+                <a class="pdf-button" href={book.url} target="_blank" rel="noopener noreferrer">
                     <Icon name="ph:file-pdf" aria-hidden="true" />
                     Descargar en PDF
                 </a>
@@ -184,39 +174,52 @@ const topicSchema = {
     .topic-meta {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin-top: -10px;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-xs) var(--spacing-md);
+        margin-top: -20px;
         margin-bottom: var(--spacing-md);
     }
 
-    .meta-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
+    /* Facts about the page, not controls: plain text, no box. */
+    .topic-stats {
+        margin: 0;
         font-size: var(--font-size-sm);
         color: var(--text-muted);
-        background: var(--bg-secondary);
-        border: 1px solid var(--rule-color);
-        padding: 4px 10px;
-        border-radius: var(--radius);
     }
 
-    .meta-pill :global(svg) {
-        width: 14px;
-        height: 14px;
-        flex-shrink: 0;
-        color: var(--accent);
-    }
-
-    .pdf-pill {
-        color: var(--text-primary);
+    .pdf-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 0 var(--spacing-sm);
+        font-size: var(--font-size-sm);
         font-weight: 700;
+        color: var(--text-primary);
         text-decoration: none;
-        border-color: var(--border-color);
+        white-space: nowrap;
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: 3px 3px 0 var(--shadow-color);
+        transition:
+            transform var(--transition),
+            box-shadow var(--transition);
     }
 
-    .pdf-pill:hover {
-        border-color: var(--accent);
+    .pdf-button :global(svg) {
+        width: 17px;
+        height: 17px;
+        flex-shrink: 0;
+    }
+
+    .pdf-button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--shadow-color);
+    }
+
+    .pdf-button:active {
+        transform: translate(1px, 1px);
+        box-shadow: 1px 1px 0 var(--shadow-color);
     }
 
     .theory-section {

@@ -44,7 +44,7 @@ const groups = subjects
             groups.map((group) => (
                 <section class="group" data-search-section data-search-text={group.title}>
                     <h2>{group.title}</h2>
-                    <LinkCards items={group.items} />
+                    <LinkCards items={group.items} detailOnMobile />
                 </section>
             ))
         }

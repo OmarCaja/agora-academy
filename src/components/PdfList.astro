@@ -30,126 +30,105 @@ const hintId = `pdf-hint${(pdfs[0]?.url ?? "").replace(/\.pdf$/i, "").replace(/[
 </ul>
 
 <style>
+    /* A row per PDF at every width: icon, name, optional detail, arrow. Two
+       columns once there is room, so a topic with seven sheets stays compact. */
     .pdf-list {
         list-style: none;
         padding: 0;
         margin: 0;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: var(--spacing-sm);
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
+    }
+
+    @media (min-width: 640px) {
+        .pdf-list {
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+        }
     }
 
     .pdf-link {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-sm);
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        column-gap: var(--spacing-sm);
+        row-gap: 2px;
         height: 100%;
+        min-height: 64px;
+        padding: 12px var(--spacing-sm);
         text-decoration: none;
         color: var(--text-primary);
         font-weight: 700;
-        transition: all var(--transition);
-        padding: var(--spacing-md);
         border: var(--border-width) solid var(--border-color);
         border-radius: var(--radius);
         background: var(--bg-secondary);
-        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+        box-shadow: 3px 3px 0 var(--shadow-color);
+        transition:
+            transform var(--transition),
+            box-shadow var(--transition),
+            background var(--transition);
     }
 
     .pdf-link:hover {
-        background: var(--bg-primary);
-        border-color: var(--accent);
-        transform: translate(-3px, -3px);
-        box-shadow: 6px 6px 0 var(--shadow-color);
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--shadow-color);
+    }
+
+    .pdf-link:active {
+        transform: translate(1px, 1px);
+        box-shadow: 1px 1px 0 var(--shadow-color);
     }
 
     .pdf-icon-wrapper {
+        grid-row: 1 / span 2;
+        align-self: start;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         color: var(--on-accent);
-        transition: transform var(--transition);
         background: var(--accent);
         border-radius: var(--radius);
-        border: 1px solid var(--accent);
     }
 
     :global(.pdf-icon) {
-        width: 21px;
-        height: 21px;
-    }
-
-    .pdf-link:hover .pdf-icon-wrapper {
-        transform: scale(1.08);
+        width: 20px;
+        height: 20px;
     }
 
     .pdf-text {
-        flex: 1;
-        font-size: var(--step-1);
+        grid-column: 2;
+        font-size: var(--step-0);
         line-height: 1.35;
     }
 
+    /* No detail line: the name is centred against the icon. */
+    .pdf-text:nth-last-child(2) {
+        grid-row: 1 / span 2;
+    }
+
     .pdf-detail {
+        grid-column: 2;
+        grid-row: 2;
         font-size: var(--font-size-sm);
         font-weight: 400;
         line-height: 1.5;
         color: var(--text-muted);
     }
 
-    :global(.arrow) {
-        align-self: flex-end;
+    .pdf-link :global(.arrow) {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        align-self: center;
         width: 18px;
         height: 18px;
-        opacity: 0.55;
         color: var(--accent);
-        transition: opacity var(--transition), transform var(--transition);
+        transition: transform var(--transition);
     }
 
     .pdf-link:hover :global(.arrow) {
-        opacity: 1;
-        transform: translateX(5px);
-    }
-
-    /* One column on phones: a row per PDF keeps a long list scannable. */
-    @media (max-width: 519px) {
-        .pdf-list {
-            grid-template-columns: 1fr;
-            gap: var(--spacing-xs);
-        }
-
-        .pdf-link {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            column-gap: var(--spacing-sm);
-            row-gap: 2px;
-            padding: 12px var(--spacing-sm);
-            box-shadow: 3px 3px 0 var(--shadow-color);
-        }
-
-        .pdf-icon-wrapper {
-            grid-row: 1 / span 2;
-            align-self: start;
-        }
-
-        .pdf-text {
-            grid-column: 2;
-        }
-
-        .pdf-text:nth-last-child(2) {
-            grid-row: 1 / span 2;
-        }
-
-        .pdf-detail {
-            grid-column: 2;
-            grid-row: 2;
-        }
-
-        .pdf-link :global(.arrow) {
-            grid-column: 3;
-            grid-row: 1 / span 2;
-            align-self: center;
-        }
+        transform: translateX(4px);
     }
 </style>
