@@ -86,11 +86,6 @@ const reasons = [
 						Ver teoría
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
-					<a href={`tel:${PHONE}`} class="hero-phone">
-						<Icon name="ph:phone" aria-hidden="true" />
-						<span class="sr-only">Llamar al</span>
-						{PHONE_DISPLAY}
-					</a>
 				</div>
 			</div>
 
@@ -300,27 +295,6 @@ const reasons = [
 		flex-wrap: wrap;
 		align-items: center;
 		gap: var(--spacing-sm);
-	}
-
-	/* The number itself, next to the buttons: a parent can call without
-	   scrolling to the contact section. */
-	.hero-phone {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		min-height: 44px;
-		padding: 0 4px;
-		font-weight: 700;
-		color: var(--text-primary);
-		text-decoration: underline;
-		text-decoration-thickness: 2px;
-		text-underline-offset: 6px;
-		white-space: nowrap;
-	}
-
-	.hero-phone :global(svg) {
-		width: 18px;
-		height: 18px;
 	}
 
 	.hero-figure {

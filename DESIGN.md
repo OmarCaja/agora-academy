@@ -163,7 +163,7 @@ Fills, rules and icons that once took a chromatic hue now take **Ink** (`#1f1f1f
 
 ### Named Rules
 
-**The Two Weights Rule.** Space Mono and Space Grotesk are loaded in 400 and 700 only (Space Mono also in italic), and nothing else. Any value between them is a browser-synthesised fake that renders differently on every engine. Weights such as 500, 560 or 600 are forbidden; so are variable-font axes, which this family does not have.
+**The Two Weights Rule.** Space Mono and Space Grotesk are loaded in 400 and 700 only (Space Mono also in italic), and nothing else. Any value between them is a browser-synthesised fake that renders differently on every engine. Weights such as 500, 560 or 600 are forbidden; so are variable-font axes, which neither family has.
 
 **The No Em-Dash Rule.** Zero em-dashes (`—`) and zero en-dashes (`–`) in any visible string: headings, body, buttons, labels, alt text, and meta tags included. Use a comma, a full stop, parentheses, or a plain hyphen. This is verified across all built pages, not a preference.
 

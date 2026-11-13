@@ -96,7 +96,14 @@ const processedTitle = renderMath(title);
     /* Example formula container should allow wrapping as it often contains descriptive text */
     .example-formula {
         white-space: normal;
-        line-height: 1.6;
+        line-height: 1.7;
+    }
+
+    /* When an example wraps, each chunk of maths is an inline-block whose box is
+       shorter than its fractions, so a denominator can land on the next line's
+       numerator. A little vertical margin on each chunk keeps the lines apart. */
+    :global(.example-formula .katex-base) {
+        margin-block: 0.25em;
     }
 
     .example-label {
