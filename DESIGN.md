@@ -36,7 +36,7 @@ typography:
     lineHeight: 1.2
     letterSpacing: "-0.015em"
   body:
-    fontFamily: "Space Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontFamily: "Space Grotesk, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.65
@@ -163,7 +163,7 @@ Fills, rules and icons that once took a chromatic hue now take **Ink** (`#1f1f1f
 
 ### Named Rules
 
-**The Two Weights Rule.** Space Mono ships 400 and 700, roman and italic, and nothing else. Any value between them is a browser-synthesised fake that renders differently on every engine. Weights such as 500, 560 or 600 are forbidden; so are variable-font axes, which this family does not have.
+**The Two Weights Rule.** Space Mono and Space Grotesk are loaded in 400 and 700 only (Space Mono also in italic), and nothing else. Any value between them is a browser-synthesised fake that renders differently on every engine. Weights such as 500, 560 or 600 are forbidden; so are variable-font axes, which this family does not have.
 
 **The No Em-Dash Rule.** Zero em-dashes (`—`) and zero en-dashes (`–`) in any visible string: headings, body, buttons, labels, alt text, and meta tags included. Use a comma, a full stop, parentheses, or a plain hyphen. This is verified across all built pages, not a preference.
 
@@ -267,7 +267,7 @@ The homepage grid is the clearest expression of the world. Five items produce ex
 - **Do** keep every corner square. `--radius` is `0px` system-wide.
 - **Do** keep shadow blur at exactly `0` and tint the offset to the ink colour, never black.
 - **Do** keep the accent monochrome: fills, rules and icons all draw from the same ink token as text and borders.
-- **Do** carry hierarchy with size, case, tracking and colour, using only Space Mono 400 and 700.
+- **Do** carry hierarchy with size, case, tracking and colour, using only weights 400 and 700.
 - **Do** make interactive elements lift toward the cursor on hover and press into the page on click, with transform and box-shadow only.
 - **Do** design both themes at once and verify WCAG AA in each before shipping.
 - **Do** gate every animation behind `prefers-reduced-motion`, and never let content visibility depend on an animation completing.
