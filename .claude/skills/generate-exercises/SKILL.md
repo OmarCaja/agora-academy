@@ -74,6 +74,10 @@ Write the document to a temporary file (in the scratchpad if there is one) follo
 - One idea per line. No double blank lines, no code blocks, no images, no emojis.
 - For numbered steps start the line with `1. `, `2. `.
 
+**Statements**
+- Never put formulas or hints about the method in a statement (no «usa la fórmula …», no `$S = \dfrac{abc}{4R}$`): the student must choose the formula. Statements only give data (values, angles, units) and ask for results. Formulas belong in the solutions only.
+- Prefer contextualised problems (surveying, navigation, crafts…) over bare «calcula x» when the user asks for problems.
+
 **Level**: match difficulty and notation to the course per the Spanish curriculum. Write in Spain Spanish.
 
 ## 5. Check the calculations
