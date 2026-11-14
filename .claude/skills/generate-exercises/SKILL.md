@@ -71,7 +71,8 @@ Write the document to a temporary file (in the scratchpad if there is one) follo
 - Don't write `$` outside formulas (use `\$` if needed).
 
 **Format**
-- One idea per line. No double blank lines, no code blocks, no images, no emojis.
+- One idea per line. No double blank lines, no code blocks, no emojis.
+- Images only when the exercise needs one (a graph to read, a figure): `![alt](name.png)` alone on its line, path relative to the Markdown file. Keep the PNG next to the source in `exercises-src/<level>/<topic>/` (a new sheet copies it there) and draw it with matplotlib in the site's palette (see `scripts/generate-math-graphs.py`).
 - For numbered steps start the line with `1. `, `2. `.
 
 **Statements**

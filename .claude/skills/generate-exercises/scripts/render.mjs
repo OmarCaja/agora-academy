@@ -56,8 +56,10 @@ function inline(text) {
 }
 
 // Only the subset of Markdown the skill allows: #/##/### headings, "- " and
-// "1. " lists, $$...$$ display lines, "---" page breaks and paragraphs.
-function toHtml(md) {
+// "1. " lists, $$...$$ display lines, ![alt](file) images on their own line
+// (resolved against the Markdown file's folder), "---" page breaks and paragraphs.
+const images = [];
+function toHtml(md, baseDir) {
   const out = [];
   let list = null;
   const closeList = () => { if (list) { out.push(`</${list}>`); list = null; } };
@@ -66,6 +68,14 @@ function toHtml(md) {
     let m;
     if (!line) { closeList(); continue; }
     if (line === '---') { closeList(); out.push('<div class="page-break"></div>'); continue; }
+    if ((m = line.match(/^!\[(.*)\]\((.+)\)$/))) {
+      closeList();
+      const file = path.resolve(baseDir, m[2]);
+      if (!fs.existsSync(file)) fail('Image not found: ' + m[2]);
+      images.push({ rel: m[2], file });
+      out.push(`<div class="figure"><img src="${pathToFileURL(file).href}" alt="${escapeHtml(m[1])}"></div>`);
+      continue;
+    }
     if ((m = line.match(/^\$\$(.+)\$\$$/))) { closeList(); out.push(`<div class="display">${tex(m[1], true)}</div>`); continue; }
     if ((m = line.match(/^(#{1,3}) (.*)$/))) { closeList(); out.push(`<h${m[1].length}>${inline(m[2])}</h${m[1].length}>`); continue; }
     const item = line.match(/^- (.*)$/) ? ['ul', line.slice(2)] : (m = line.match(/^\d+\. (.*)$/)) ? ['ol', m[1]] : null;
@@ -110,6 +120,8 @@ function page(title, body) {
   ul { list-style: none; padding-left: 10pt; }
   li { margin-bottom: 4pt; }
   .display { margin: 6pt 0; break-inside: avoid; }
+  .figure { margin: 6pt 0; text-align: center; break-inside: avoid; }
+  .figure img { max-width: 100%; max-height: 90mm; }
   p:has(+ .display) { break-after: avoid; }
   .katex { font-size: 1.05em; }
   .page-break { break-after: page; }
@@ -159,7 +171,7 @@ if (rerender) {
 fs.mkdirSync(outDir, { recursive: true });
 const pdfPath = path.join(outDir, name + '.pdf');
 
-const html = page(name, toHtml(markdown));
+const html = page(name, toHtml(markdown, path.dirname(source)));
 const htmlPath = args.html ? path.join(outDir, name + '.html') : path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'agora-')), name + '.html');
 fs.writeFileSync(htmlPath, html);
 
@@ -173,6 +185,12 @@ const sourcePath = path.join(SOURCE_DIR, path.relative(PUBLIC_DIR, outDir), name
 if (!rerender) {
   fs.mkdirSync(path.dirname(sourcePath), { recursive: true });
   fs.writeFileSync(sourcePath, markdown);
+  // Keep the images next to the kept source so re-renders still find them.
+  for (const img of images) {
+    const dest = path.resolve(path.dirname(sourcePath), img.rel);
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    if (dest !== img.file) fs.copyFileSync(img.file, dest);
+  }
 }
 
 console.log(JSON.stringify({
