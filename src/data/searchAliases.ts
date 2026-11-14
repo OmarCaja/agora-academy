@@ -1,10 +1,11 @@
 // Words that mean the same thing for the site search. Lowercase, no accents, no dots
-// ("m.c.d." is searched as "mcd"). Any member of a group finds the others.
+// ("m.c.d." is searched as "mcd"). Any member of a group finds the others, so only list
+// words that really mean the same thing: a loose synonym brings unrelated topics into the results.
 export const ALIASES: string[][] = [
     ["mcd", "maximo comun divisor"],
     ["mcm", "minimo comun multiplo"],
     ["rouche", "rouche frobenius"],
-    ["tg", "tan", "tangente"],
+    ["tg", "tangente"],
     ["cotg", "cotangente"],
     ["cosec", "cosecante"],
     ["sen", "seno"],
@@ -12,8 +13,6 @@ export const ALIASES: string[][] = [
     ["log", "logaritmo", "logaritmos"],
     ["ln", "neperiano", "logaritmo neperiano"],
     ["pl", "programacion lineal"],
-    ["inecuacion", "desigualdad"],
-    ["valor absoluto", "modulo"],
     ["desviacion tipica", "desviacion estandar"],
     ["esperanza", "esperanza matematica", "media de una variable aleatoria"],
     ["media", "promedio", "media aritmetica"],
@@ -26,13 +25,10 @@ export const ALIASES: string[][] = [
     ["bayes", "teorema de bayes"],
     ["yates", "correccion de continuidad"],
     ["campana de gauss", "distribucion normal"],
-    ["vertice", "vertices"],
     ["traspuesta", "transpuesta"],
     ["permutacion", "permutaciones"],
-    ["raiz", "radical", "radicales"],
     ["racionalizar", "racionalizacion"],
     ["fraccion generatriz", "decimal periodico"],
-    ["regla de tres", "proporcionalidad"],
     ["interes compuesto", "capitalizacion"],
     ["producto escalar", "producto punto"],
     ["producto vectorial", "producto cruz"],
