@@ -94,7 +94,7 @@ async function buildBook(book, keepHtml) {
   const plain = t => t.replace(/\$[^$]*\$/g, ' ').replace(/<[^>]+>/g, ' ').replace(/[^\p{L}\p{N} ]+/gu, ' ').replace(/\s+/g, ' ').trim();
   const concepts = chapters.flatMap(ch => ch.sections.flatMap((sec, j) => sec.items.flatMap((it, k) =>
     it.kind === 'definicion' || it.kind === 'teorema'
-      ? [{ id: id(ch, j, k), title: it.title, kind: it.kind, key: plain(it.title) }] : [])));
+      ? [{ id: id(ch, j, k), title: it.title, kind: it.kind, key: plain(it.title).replace(/^qu[eé] es (el |la |los |las |un |una )?/i, '') }] : [])));
   const letterOf = c => { const l = c.key.charAt(0).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase(); return /[A-Z]/.test(l) ? l : '#'; };
   const byLetter = new Map();
   for (const c of concepts.sort((a, b) => (a.key || '~').localeCompare(b.key || '~', 'es')))
@@ -102,7 +102,7 @@ async function buildBook(book, keepHtml) {
   const conceptIndex = concepts.length ? `
   <nav class="concept-index"><h1>Índice de conceptos</h1>
     ${[...byLetter].map(([letter, list]) => `<h2 class="letter">${letter}</h2><ol>${list.map(c =>
-      `<li><a href="#${c.id}"><span>${content(c.title)} <em>${KIND_LABELS[c.kind]}</em></span></a></li>`).join('')}</ol>`).join('')}
+      `<li><a href="#${c.id}"><span><span class="t">${content(c.title)}</span><em>${KIND_LABELS[c.kind]}</em></span></a></li>`).join('')}</ol>`).join('')}
   </nav>` : '';
 
   const year = new Date().getFullYear();
@@ -144,8 +144,9 @@ async function buildBook(book, keepHtml) {
     .concept-index .letter { font-size: 12pt; margin: 5mm 0 1.5mm; padding: 0 0 .5mm; border-bottom: 2px solid #1f1f1f; break-after: avoid; }
     .concept-index ol { list-style: none; padding: 0; margin: 0; font-size: 9pt; }
     .concept-index a { display: flex; align-items: baseline; }
-    .concept-index a span { flex: 1; display: flex; gap: 2mm; }
-    .concept-index a span::after { content: ""; flex: 1; border-bottom: 1px dotted #1f1f1f; margin: 0 1mm; order: 2; }
+    .concept-index a > span { flex: 1; display: flex; gap: 2mm; align-items: baseline; }
+    .concept-index .t { display: block; }
+    .concept-index a > span::after { content: ""; flex: 1; border-bottom: 1px dotted #1f1f1f; margin: 0 1mm; order: 2; }
     .concept-index em { font-style: normal; font-size: 7pt; color: #666; text-transform: uppercase; order: 1; white-space: nowrap; }
     .concept-index a::after { content: target-counter(attr(href), page); }
     .toc a { display: flex; align-items: baseline; }
