@@ -3,14 +3,22 @@ import { Icon } from "astro-icon/components";
 
 // One row per book PDF: name, size, what it covers (chapters with their sections) and
 // the concepts the search can find. PdfList is the plain counterpart for exercise sheets.
+export interface BookHit {
+    t: string; // "Chapter › Section › Concept"
+    k: string; // kind of card (definicion, teorema…), empty for a section
+    l: string; // its label (Definición, Teorema…), "Sección" for a section
+    p?: number; // page in the PDF
+    u: string; // PDF url
+}
+
 export interface BookRow {
     url: string;
     name: string;
     description: string;
     pages?: number;
-    chapters: { title: string; sections: string[] }[];
-    // Every section and concept title of the book, as "Chapter › Section › Concept".
-    hits: string[];
+    chapters: { title: string; sections: { title: string; page?: number }[] }[];
+    // Every section and concept of the book: what the search can find and link to.
+    hits: BookHit[];
 }
 
 interface Props {
@@ -30,8 +38,12 @@ const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : 
             const sectionCount = book.chapters.reduce((n, ch) => n + ch.sections.length, 0);
             return (
                 <li
+                    class="book"
                     data-search-item
-                    data-search-text={[book.name, book.description, ...book.hits].join(" ")}
+                    data-search-title={book.name}
+                    data-search-headings={book.chapters.flatMap((c) => [c.title, ...c.sections.map((s) => s.title)]).join(" ")}
+                    data-search-text={[book.name, book.description, ...book.hits.map((h) => `${h.l} ${h.t}`)].join(" ")}
+                    data-kinds={[...new Set(book.hits.map((h) => h.k).filter(Boolean))].join(" ")}
                     data-hits={JSON.stringify(book.hits)}
                 >
                     <a href={book.url} target="_blank" rel="noopener noreferrer" class="book-link" aria-describedby={hintId}>
@@ -44,17 +56,32 @@ const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : 
                             {book.pages ? ` · ${count(book.pages, "página", "páginas")}` : ""}
                         </span>
                         <Icon name="ph:arrow-right" class="book-arrow" aria-hidden="true" />
+                    </a>
+                    <div class="book-body">
                         <p class="book-desc">{book.description}</p>
                         <ul class="book-chapters">
                             {book.chapters.map((ch) => (
                                 <li>
                                     <strong>{ch.title}</strong>
-                                    <span>{ch.sections.join(" · ")}</span>
+                                    <span>
+                                        {ch.sections.map((sec, i) => (
+                                            <>
+                                                {i > 0 && " · "}
+                                                {sec.page ? (
+                                                    <a href={`${book.url}#page=${sec.page}`} target="_blank" rel="noopener noreferrer">
+                                                        {sec.title}
+                                                    </a>
+                                                ) : (
+                                                    sec.title
+                                                )}
+                                            </>
+                                        ))}
+                                    </span>
                                 </li>
                             ))}
                         </ul>
                         <p class="search-hits" data-search-hits hidden></p>
-                    </a>
+                    </div>
                 </li>
             );
         })
@@ -71,33 +98,33 @@ const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : 
         gap: var(--spacing-md);
     }
 
+    .book {
+        border: var(--border-width) solid var(--border-color);
+        border-radius: var(--radius);
+        background: var(--bg-secondary);
+        box-shadow: 3px 3px 0 var(--shadow-color);
+    }
+
     .book-link {
         display: grid;
         grid-template-columns: auto 1fr auto;
         align-items: center;
         column-gap: var(--spacing-sm);
-        row-gap: var(--spacing-xs);
+        row-gap: 2px;
         padding: var(--spacing-sm);
         text-decoration: none;
         color: var(--text-primary);
-        border: var(--border-width) solid var(--border-color);
-        border-radius: var(--radius);
-        background: var(--bg-secondary);
-        box-shadow: 3px 3px 0 var(--shadow-color);
-        transition:
-            transform var(--transition),
-            box-shadow var(--transition),
-            background var(--transition);
+        transition: background var(--transition);
     }
 
     .book-link:hover {
-        transform: translate(-2px, -2px);
-        box-shadow: 5px 5px 0 var(--shadow-color);
+        background: var(--bg-primary);
     }
 
-    .book-link:active {
-        transform: translate(1px, 1px);
-        box-shadow: 1px 1px 0 var(--shadow-color);
+    .book-body {
+        display: grid;
+        gap: var(--spacing-xs);
+        padding: 0 var(--spacing-sm) var(--spacing-sm);
     }
 
     .book-icon {
@@ -143,8 +170,21 @@ const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : 
     .book-desc,
     .book-chapters,
     .search-hits {
-        grid-column: 1 / -1;
         margin: 0;
+    }
+
+    .book-chapters a,
+    .search-hits :global(a) {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+    }
+
+    .book-chapters a:hover,
+    .search-hits :global(a:hover) {
+        text-decoration-thickness: 2px;
+        color: var(--text-primary);
     }
 
     .book-desc {

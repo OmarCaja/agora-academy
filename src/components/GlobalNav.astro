@@ -25,6 +25,7 @@ import { SITE_NAME } from "../data/site";
             <a href="/theory/" data-nav-section="/theory">Teoría</a>
             <a href="/exercises/" data-nav-section="/exercises">Ejercicios</a>
             <a href="/books/" data-nav-section="/books">Libros PDF</a>
+            <a href="/buscar/" data-nav-section="/buscar">Buscar</a>
             <a href="/#contacto">Contacto</a>
         </nav>
 
@@ -65,6 +66,15 @@ import { SITE_NAME } from "../data/site";
         });
     };
     document.addEventListener("astro:page-load", markCurrentSection);
+
+    // Cmd/Ctrl+K opens the site-wide search from any page without a search box of its own
+    // (the pages that have one focus it instead: see scripts/search.js).
+    document.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k" && !document.getElementById("siteSearch")) {
+            e.preventDefault();
+            window.location.assign("/buscar/");
+        }
+    });
 </script>
 
 <style>

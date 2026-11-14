@@ -221,6 +221,17 @@ const isSectionActive = (section: MenuSection) => {
 
             <div class="menu-group">
                 <a
+                    href="/buscar/"
+                    data-close-menu
+                    class:list={["menu-group-title", "menu-link", { active: currentPage === "buscar" }]}
+                    aria-current={currentPage === "buscar" ? "page" : undefined}
+                >
+                    Buscar
+                </a>
+            </div>
+
+            <div class="menu-group">
+                <a
                     href="/#contacto"
                     data-close-menu
                     class:list={["menu-group-title", "menu-link", "nav-contacto"]}

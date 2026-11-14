@@ -11,6 +11,7 @@ import NoResults from "../../components/NoResults.astro";
 import { sortTopics } from "../../data/topics";
 import { BOOKS } from "../../data/books";
 import { slugify } from "../../utils/slugify";
+import { KIND_LABELS } from "../../data/itemKinds";
 import { Icon } from "astro-icon/components";
 import { SITE_NAME } from "../../data/site";
 
@@ -120,6 +121,7 @@ const topicSchema = {
             label="Buscar en este tema (pulsa / para enfocar)"
             countSingular="resultado encontrado"
             countPlural="resultados encontrados"
+            kinds
         />
 
         <div id="tocWrapper">
@@ -137,11 +139,14 @@ const topicSchema = {
                     >
                         <h2>{section.title}</h2>
                         <div class="properties-container">
-                            {section.items.map((item) => (
+                            {section.items.map((item, i) => (
                                 <div
                                     class="property-item"
+                                    id={`${slugify(section.title)}-${i + 1}`}
                                     data-search-item
+                                    data-kinds={item.kind}
                                     data-search-text={[
+                                        KIND_LABELS[item.kind],
                                         item.title,
                                         item.description,
                                         item.example,
