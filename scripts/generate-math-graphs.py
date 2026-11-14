@@ -992,7 +992,7 @@ ax.plot([c, c], [0, L], ls='--', color=LGRAY, lw=1.2); ax.plot([0, c], [L, L], l
 ax.plot(c, L, 'o', mfc='white', mec=INK, ms=8, zorder=6)
 ax.set_xticks([c - dl, c, c + dl]); ax.set_xticklabels(['$c-\\delta$', '$c$', '$c+\\delta$'])
 ax.set_yticks([L - eps, L, L + eps]); ax.set_yticklabels(['$L-\\varepsilon$', '$L$', '$L+\\varepsilon$'])
-ax.set_title('Si $x$ está en la banda vertical, $f(x)$ está en la horizontal')
+ax.set_title(r'Banda $\delta$ en $x$ y banda $\varepsilon$ en $f(x)$', loc='right', pad=12)
 save(fig, 'epsilon-delta.png')
 
 # ── Correlation types ────────────────────────────────────────────────────────

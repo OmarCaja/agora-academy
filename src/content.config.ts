@@ -15,8 +15,8 @@ const topics = defineCollection({
             title: z.string(),
             items: z.array(z.object({
                 title: z.string(),
-                // What the card is: shown as a label above the title.
-                kind: z.enum(KINDS).optional(),
+                // What the card is (required): shown as a label above the title.
+                kind: z.enum(KINDS),
                 formula: z.string().optional(),
                 example: z.string().optional(),
                 description: z.string().optional()
