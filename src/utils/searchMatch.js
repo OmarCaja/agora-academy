@@ -4,8 +4,8 @@
  * A query is a list of terms that must ALL be found (AND), in any order, ignoring case,
  * accents and dots ("m.c.d." = "mcd"). Each term can be satisfied by:
  *   - the word itself, or its singular ("determinantes" finds "determinante"),
- *   - a synonym from src/data/searchAliases.ts (a multi-word alias is read as one term),
- *   - a close misspelling of a word in the text (one wrong letter, from 5 letters, same first letter).
+ *   - a synonym from src/data/searchAliases.ts (a multi-word alias is read as one term).
+ * There is no typo tolerance: a misspelled word finds nothing rather than something unrelated.
  * A term must match at the START of a word of the text ("ecuacion" does not find "inecuaciones"),
  * and is accepted as a prefix ("inecuacion" finds "inecuaciones").
  */
@@ -50,45 +50,8 @@ export const parseQuery = (query) => {
 /** Is `alt` found at the start of a word of the prepared text? Up to 3 letters it must be the whole word. */
 const atWordStart = (text, alt) => (alt.length <= 3 ? ` ${text} `.includes(` ${alt} `) : ` ${text}`.includes(` ${alt}`));
 
-/** True if the words differ by at most `max` single-letter edits. */
-const withinDistance = (a, b, max) => {
-    if (Math.abs(a.length - b.length) > max) return false;
-    let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
-    for (let i = 1; i <= a.length; i++) {
-        const cur = [i];
-        let best = i;
-        for (let j = 1; j <= b.length; j++) {
-            cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
-            if (cur[j] < best) best = cur[j];
-        }
-        if (best > max) return false;
-        prev = cur;
-    }
-    return prev[b.length] <= max;
-};
-
-const wordsCache = new Map();
-const wordsOf = (text) => {
-    let words = wordsCache.get(text);
-    if (!words) {
-        words = [...new Set(text.split(" ").filter((w) => w.length >= 4))];
-        if (wordsCache.size > 2000) wordsCache.clear();
-        wordsCache.set(text, words);
-    }
-    return words;
-};
-
-/** Does a prepared text satisfy every term? Exact first; misspellings only if that fails. */
-export const matches = (terms, text) => {
-    const missing = terms.filter((alts) => !alts.some((alt) => atWordStart(text, alt)));
-    if (missing.length === 0) return true;
-    return missing.every((alts) =>
-        alts.some((alt) => {
-            if (alt.length < 5 || alt.includes(" ")) return false;
-            return wordsOf(text).some((w) => w[0] === alt[0] && withinDistance(w, alt, 1));
-        }),
-    );
-};
+/** Does a prepared text satisfy every term? Exact matches only: no typo tolerance. */
+export const matches = (terms, text) => terms.every((alts) => alts.some((alt) => atWordStart(text, alt)));
 
 /** Rough relevance: title matches count most, then headings, then the rest of the text. */
 export const score = (terms, { title = "", headings = "", text = "" }) =>
