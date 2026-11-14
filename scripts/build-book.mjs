@@ -141,7 +141,7 @@ async function buildBook(book, keepHtml) {
     .toc-chapter ol { font-weight: 400; font-size: 9.5pt; margin: 2mm 0 0 6mm; }
     .concept-index { page: index; break-before: page; }
     .concept-index h1 { font-size: 22pt; text-transform: uppercase; margin: 0 0 8mm; string-set: chapter "Índice de conceptos"; }
-    .concept-index .letter { font-size: 12pt; margin: 5mm 0 1.5mm; padding: 0 0 .5mm; border-bottom: 2px solid #1f1f1f; break-after: avoid; }
+    .concept-index .letter { font-size: 12pt; margin: 5mm 0 1.5mm; padding: .5mm 0 .5mm 4mm; border-bottom: 2px solid #1f1f1f; break-after: avoid; }
     .concept-index ol { list-style: none; padding: 0; margin: 0; font-size: 9pt; }
     .concept-index a { display: flex; align-items: baseline; }
     .concept-index a > span { flex: 1; display: flex; gap: 2mm; align-items: baseline; }

@@ -94,6 +94,41 @@ const reasons = [
 			</div>
 		</section>
 
+		{/* ── Site-wide search: the same engine as /buscar ──────────── */}
+		<section class="finder reveal" aria-labelledby="finder-title">
+			<h2 id="finder-title">Busca cualquier concepto</h2>
+			<p class="section-lead">
+				Definiciones, teoremas y procedimientos de todos los temas, con
+				enlace a la web y a la página del libro PDF.
+			</p>
+			<form action="/buscar/" method="get" role="search" class="finder-form">
+				<label class="sr-only" for="finder-input">Buscar en toda la web</label>
+				<div class="finder-field">
+					<Icon name="ph:magnifying-glass" class="finder-icon" aria-hidden="true" />
+					<input
+						type="search"
+						id="finder-input"
+						name="q"
+						placeholder="p. ej. regla de Sarrus, mcd, inecuaciones…"
+						autocomplete="off"
+						required
+					/>
+				</div>
+				<button type="submit" class="btn btn-solid">
+					Buscar
+					<Icon name="ph:arrow-right" aria-hidden="true" />
+				</button>
+			</form>
+			<p class="finder-examples">
+				<span class="meta-label">Prueba con</span>
+				{
+					["regla de Sarrus", "mcd", "inecuaciones", "Bayes", "derivada"].map((term) => (
+						<a href={`/buscar/?q=${encodeURIComponent(term)}`}>{term}</a>
+					))
+				}
+			</p>
+		</section>
+
 		{/* ── Materials: bento, one cell per item ──────────────────── */}
 		<section class="materials">
 			<h2 class="reveal">Recursos y materiales</h2>
@@ -378,6 +413,81 @@ const reasons = [
 	}
 
 	/* ===== SECTION LEAD ===== */
+	/* ── Site-wide search ── */
+	.finder {
+		margin-top: var(--spacing-2xl);
+	}
+	.finder .section-lead {
+		margin-bottom: var(--spacing-md);
+	}
+	.finder-form {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--spacing-sm);
+		max-width: 720px;
+	}
+	.finder-field {
+		position: relative;
+		flex: 1 1 280px;
+		display: flex;
+		align-items: center;
+	}
+	.finder-field :global(.finder-icon) {
+		position: absolute;
+		left: 14px;
+		width: 18px;
+		height: 18px;
+		color: var(--text-muted);
+		pointer-events: none;
+	}
+	.finder-field input {
+		width: 100%;
+		padding: 13px 14px 13px 42px;
+		font-family: var(--font-family);
+		font-size: 1rem;
+		color: var(--text-primary);
+		background: var(--bg-raised);
+		border: var(--border-width) solid var(--border-color);
+		border-radius: var(--radius);
+		box-shadow: 3px 3px 0 var(--shadow-color);
+		outline: none;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+	.finder-field input::placeholder {
+		color: var(--text-muted);
+		opacity: 1;
+	}
+	.finder-field input:focus {
+		box-shadow: 5px 5px 0 var(--shadow-color);
+	}
+	.finder-field input::-webkit-search-cancel-button {
+		-webkit-appearance: none;
+		display: none;
+	}
+	.finder-form .btn {
+		cursor: pointer;
+	}
+	.finder-examples {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 14px;
+		margin-top: var(--spacing-sm);
+		font-size: var(--font-size-sm);
+	}
+	.finder-examples .meta-label {
+		color: var(--text-muted);
+	}
+	.finder-examples a {
+		color: var(--text-primary);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.finder-examples a:hover {
+		text-decoration-thickness: 2px;
+	}
+
 	.section-lead {
 		max-width: 52ch;
 		color: var(--text-muted);
