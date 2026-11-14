@@ -1,6 +1,6 @@
 {
     "title": "Funciones",
-    "description": "Introducción al concepto de función, dominio, recorrido, continuidad, tipos de discontinuidad, monotonía, curvatura, máximos y mínimos, puntos de corte, signo de la función, y simetría par o impar.",
+    "description": "Introducción al concepto de función: dominio, recorrido, monotonía, curvatura, máximos y mínimos, puntos de corte, signo, simetría, periodicidad, composición y función inversa.",
     "menuGroup": "Funciones, límites y derivadas",
     "menuOrder": 1,
     "sections": [
@@ -25,31 +25,6 @@
             ]
         },
         {
-            "title": "Continuidad y discontinuidad",
-            "items": [
-                {
-                    "title": "Función continua",
-                    "description": "Una función es <strong>continua en un punto</strong> $x = a$ si se cumplen tres condiciones simultáneamente: <br>① $f(a)$ está definida.<br>② Existe $\\lim_{x \\to a} f(x)$.<br>③ $\\lim_{x \\to a} f(x) = f(a)$.<br><br>Una función es continua si lo es en todos los puntos de su dominio.",
-                    "example": "La función $f(x) = x^2$ es continua en todo $\\mathbb{R}$. Los polinomios, las funciones trigonométricas y la exponencial son siempre continuas en su dominio."
-                },
-                {
-                    "title": "Discontinuidad evitable",
-                    "description": "Se produce cuando existe el límite en el punto pero <strong>la función no está definida</strong> allí (o toma un valor distinto al límite). Se llama evitable porque se puede redefinir la función en ese punto para hacerla continua.",
-                    "example": "La función $f(x) = \\dfrac{x^2 - 1}{x - 1}$ es discontinua en $x = 1$, pero $\\lim_{x \\to 1} f(x) = 2$. Redefiniendo $f(1) = 2$ la función se vuelve continua. Observa el círculo hueco en $x=1$: indica que ese punto no está definido. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-evitable.png' alt='Gráfica de discontinuidad evitable: línea recta con un hueco en x=1' width='680' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad evitable en $x=1$</figcaption></figure>"
-                },
-                {
-                    "title": "Discontinuidad de salto finito",
-                    "description": "Los límites laterales <strong>existen ambos</strong> y son <strong>finitos</strong>, pero son diferentes entre sí. El <em>salto</em> es la diferencia entre el límite por la derecha y por la izquierda: $\\lim_{x \\to a^+} f(x) - \\lim_{x \\to a^-} f(x)$.",
-                    "example": "La función $f(x) = \\begin{cases} x & \\text{si } x < 0 \\\\ x + 1 & \\text{si } x \\geq 0 \\end{cases}$ tiene una discontinuidad de salto finito en $x = 0$. El salto vale $1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-salto.png' alt='Gráfica de discontinuidad de salto: dos ramas con un salto de 1 en x=0' width='661' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad de salto finito en $x=0$</figcaption></figure>"
-                },
-                {
-                    "title": "Discontinuidad de salto infinito",
-                    "description": "Alguno de los límites laterales (por la izquierda o por la derecha) es <strong>infinito</strong>. La función presenta una <em>asíntota vertical</em> en el punto de discontinuidad.",
-                    "example": "La función $f(x) = \\dfrac{1}{x}$ tiene una discontinuidad de salto infinito en $x = 0$, ya que $\\lim_{x \\to 0^+} f(x) = +\\infty$ y $\\lim_{x \\to 0^-} f(x) = -\\infty$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-salto-infinito.png' alt='Gráfica de f(x)=1/x con asíntota vertical en x=0 ilustrando discontinuidad de salto infinito' width='673' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad de salto infinito de $f(x)=\\frac{1}{x}$ en $x=0$</figcaption></figure>"
-                }
-            ]
-        },
-        {
             "title": "Monotonía y curvatura",
             "items": [
                 {
@@ -59,17 +34,17 @@
                 },
                 {
                     "title": "Función cóncava",
-                    "description": "Una función es <strong>cóncava</strong> (cóncava hacia abajo) en un intervalo si su gráfica se encuentra <em>por debajo</em> de cualquier recta secante entre dos puntos del intervalo. Equivalentemente, su segunda derivada es negativa: $f''(x) < 0$.",
+                    "description": "Una función es <strong>cóncava</strong> $(\\cap)$ en un intervalo si, al unir dos puntos cualesquiera de su gráfica con un segmento (recta secante), la gráfica queda <em>por encima</em> del segmento. Tiene forma de montaña. Equivalentemente, su segunda derivada es negativa: $f''(x) < 0$.",
                     "example": "La función $f(x) = -x^2$ es cóncava en todo $\\mathbb{R}$, ya que $f''(x) = -2 < 0$. Las líneas tangentes quedan por encima de la curva. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/funcion-concava.png' alt='Parábola invertida con rectas tangentes por encima, ilustrando función cóncava' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>$f(x)=-x^2$ es cóncava: la curva queda bajo sus tangentes</figcaption></figure>"
                 },
                 {
                     "title": "Función convexa",
-                    "description": "Una función es <strong>convexa</strong> (cóncava hacia arriba) en un intervalo si su gráfica se encuentra <em>por encima</em> de cualquier recta secante entre dos puntos del intervalo. Equivalentemente, su segunda derivada es positiva: $f''(x) > 0$.",
+                    "description": "Una función es <strong>convexa</strong> $(\\cup)$ en un intervalo si, al unir dos puntos cualesquiera de su gráfica con un segmento (recta secante), la gráfica queda <em>por debajo</em> del segmento. Tiene forma de valle, como la parábola $y = x^2$. Equivalentemente, su segunda derivada es positiva: $f''(x) > 0$.",
                     "example": "La función $f(x) = x^2$ es convexa en todo $\\mathbb{R}$, ya que $f''(x) = 2 > 0$. Las líneas tangentes quedan por debajo de la curva. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/funcion-convexa.png' alt='Parábola con rectas tangentes por debajo, ilustrando función convexa' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>$f(x)=x^2$ es convexa: la curva queda sobre sus tangentes</figcaption></figure>"
                 },
                 {
                     "title": "Punto de inflexión",
-                    "description": "Un <strong>punto de inflexión</strong> es un punto donde la función cambia de cóncava a convexa (o viceversa). En él la segunda derivada se anula: $f''(x) = 0$, aunque esto es condición necesaria pero no suficiente.",
+                    "description": "Un <strong>punto de inflexión</strong> es un punto donde la función cambia de cóncava a convexa (o viceversa). En él la segunda derivada se anula, $f''(x) = 0$, pero esto no basta: además $f''$ tiene que cambiar de signo. Por ejemplo, $f(x) = x^4$ cumple $f''(0) = 0$ y no tiene punto de inflexión en $x = 0$.",
                     "example": "La función $f(x) = x^3$ tiene un punto de inflexión en $x = 0$, ya que $f''(x) = 6x = 0$ en $x=0$ y la curvatura cambia de cóncava (para $x<0$) a convexa (para $x>0$)."
                 }
             ]

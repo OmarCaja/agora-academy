@@ -1,23 +1,63 @@
 {
-    "title": "Factorización de números",
-    "description": "Descomposición factorial de números y cálculo de divisores comunes y múltiplos comunes.",
+    "title": "Divisibilidad: m.c.d. y m.c.m.",
+    "description": "Múltiplos y divisores, criterios de divisibilidad, números primos, descomposición en factores primos y cálculo del máximo común divisor y del mínimo común múltiplo, con problemas resueltos.",
     "menuGroup": "Aritmética",
     "menuOrder": 3,
     "sections": [
         {
-            "title": "Descomposición factorial",
+            "title": "Múltiplos y divisores",
             "items": [
                 {
-                    "title": "Número primo",
-                    "formula": "$p \\in \\{2, 3, 5, 7, 11, \\dots\\}$",
-                    "example": "$13$ es primo, $14$ no lo es ($2 \\cdot 7$)",
-                    "description": "Un número es primo si solo tiene dos divisores: el 1 y él mismo."
+                    "title": "Múltiplo de un número",
+                    "formula": "$b \\text{ es múltiplo de } a \\iff b = a \\cdot k, \\text{ con } k \\text{ natural}$",
+                    "example": "Los múltiplos de $4$ son $4, 8, 12, 16, 20, \\dots$",
+                    "description": "Se obtienen multiplicando el número por $1, 2, 3, \\dots$ Todo número tiene <strong>infinitos</strong> múltiplos."
                 },
                 {
-                    "title": "Factores primos",
-                    "formula": "$n = p_1^{a} \\cdot p_2^{b} \\cdot p_3^{c} \\dots$",
-                    "example": "$60 = 2^2 \\cdot 3 \\cdot 5$",
-                    "description": "Cualquier número compuesto se puede expresar como un producto único de números primos elevados a ciertas potencias."
+                    "title": "Divisor de un número",
+                    "formula": "$a \\text{ es divisor de } b \\iff b : a \\text{ es una división exacta}$",
+                    "example": "Los divisores de $12$ son $1, 2, 3, 4, 6$ y $12$",
+                    "description": "Un número tiene una cantidad <strong>finita</strong> de divisores. El $1$ y el propio número siempre son divisores. Si $a$ es divisor de $b$, entonces $b$ es múltiplo de $a$: $3$ es divisor de $12$ y $12$ es múltiplo de $3$."
+                }
+            ]
+        },
+        {
+            "title": "Criterios de divisibilidad",
+            "items": [
+                {
+                    "title": "Divisible entre 2, 5 y 10",
+                    "formula": "$2: \\text{ acaba en } 0, 2, 4, 6, 8 \\qquad 5: \\text{ acaba en } 0 \\text{ o } 5 \\qquad 10: \\text{ acaba en } 0$",
+                    "example": "$348$ es divisible entre $2$; $735$ es divisible entre $5$; $920$ es divisible entre $2$, $5$ y $10$",
+                    "description": "Basta con mirar la <strong>última cifra</strong>."
+                },
+                {
+                    "title": "Divisible entre 3 y 9",
+                    "formula": "$\\text{La suma de sus cifras es múltiplo de } 3 \\text{ (o de } 9\\text{)}$",
+                    "example": "$4152$: $4 + 1 + 5 + 2 = 12$, que es múltiplo de $3$ pero no de $9$. Por tanto, $4152$ es divisible entre $3$ pero no entre $9$.",
+                    "description": "Se suman todas las cifras y se comprueba el resultado."
+                },
+                {
+                    "title": "Divisible entre 11",
+                    "formula": "$\\text{(suma de cifras en posición impar)} - \\text{(suma de cifras en posición par)} = 0 \\text{ o múltiplo de } 11$",
+                    "example": "$9372$: $(9 + 7) - (3 + 2) = 16 - 5 = 11$, así que $9372$ es divisible entre $11$",
+                    "description": "Se cuentan las posiciones de izquierda a derecha."
+                }
+            ]
+        },
+        {
+            "title": "Números primos y factorización",
+            "items": [
+                {
+                    "title": "Número primo y número compuesto",
+                    "formula": "$\\text{Primos: } 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, \\dots$",
+                    "example": "$13$ es primo (solo se divide entre $1$ y $13$). $14$ es compuesto: $14 = 2 \\cdot 7$",
+                    "description": "Un número es <strong>primo</strong> si solo tiene dos divisores: el $1$ y él mismo. Si tiene más divisores, es <strong>compuesto</strong>. El $1$ no es ni primo ni compuesto."
+                },
+                {
+                    "title": "Descomposición en factores primos",
+                    "formula": "$n = p_1^{a} \\cdot p_2^{b} \\cdot p_3^{c} \\cdots$",
+                    "example": "$180 : 2 = 90$<br>$90 : 2 = 45$<br>$45 : 3 = 15$<br>$15 : 3 = 5$<br>$5 : 5 = 1$<br>$180 = 2^2 \\cdot 3^2 \\cdot 5$",
+                    "description": "Se divide el número entre el menor primo posible ($2$, luego $3$, luego $5$...) usando los criterios de divisibilidad, y se repite con cada cociente hasta llegar a $1$. Todo número compuesto tiene una única descomposición."
                 }
             ]
         },
@@ -25,10 +65,16 @@
             "title": "Máximo común divisor (m.c.d.)",
             "items": [
                 {
-                    "title": "Regla del m.c.d.",
-                    "formula": "$\\text{Factores comunes al menor exponente}$",
-                    "example": "$\\text{m.c.d.}(12, 18) = \\text{m.c.d.}(2^2 \\cdot 3, 2 \\cdot 3^2) = 2 \\cdot 3 = 6$",
-                    "description": "El mayor número que divide exactamente a dos o más números a la vez."
+                    "title": "Definición",
+                    "formula": "$\\text{m.c.d.}(a, b) = \\text{el mayor de los divisores comunes}$",
+                    "example": "Divisores de $12$: $1, 2, 3, 4, 6, 12$<br>Divisores de $18$: $1, 2, 3, 6, 9, 18$<br>$\\text{m.c.d.}(12, 18) = 6$",
+                    "description": "Es el mayor número que divide a la vez a todos los números dados."
+                },
+                {
+                    "title": "Cálculo con factores primos",
+                    "formula": "$\\text{Factores comunes elevados al menor exponente}$",
+                    "example": "$12 = 2^2 \\cdot 3$ y $18 = 2 \\cdot 3^2$<br>$\\text{m.c.d.}(12, 18) = 2 \\cdot 3 = 6$",
+                    "description": "Se descomponen los números y se toman solo los primos que aparecen en <strong>todas</strong> las descomposiciones, cada uno con su <strong>menor</strong> exponente."
                 }
             ]
         },
@@ -36,21 +82,44 @@
             "title": "Mínimo común múltiplo (m.c.m.)",
             "items": [
                 {
-                    "title": "Regla del m.c.m.",
-                    "formula": "$\\text{Comunes y no comunes al mayor exponente}$",
-                    "example": "$\\text{m.c.m.}(12, 18) = \\text{m.c.m.}(2^2 \\cdot 3, 2 \\cdot 3^2) = 2^2 \\cdot 3^2 = 36$",
-                    "description": "El número más pequeño que es múltiplo de todos los números del grupo."
+                    "title": "Definición",
+                    "formula": "$\\text{m.c.m.}(a, b) = \\text{el menor de los múltiplos comunes (distinto de 0)}$",
+                    "example": "Múltiplos de $12$: $12, 24, 36, 48, \\dots$<br>Múltiplos de $18$: $18, 36, 54, \\dots$<br>$\\text{m.c.m.}(12, 18) = 36$",
+                    "description": "Es el menor número que es múltiplo a la vez de todos los números dados."
+                },
+                {
+                    "title": "Cálculo con factores primos",
+                    "formula": "$\\text{Factores comunes y no comunes elevados al mayor exponente}$",
+                    "example": "$12 = 2^2 \\cdot 3$ y $18 = 2 \\cdot 3^2$<br>$\\text{m.c.m.}(12, 18) = 2^2 \\cdot 3^2 = 36$",
+                    "description": "Se toman <strong>todos</strong> los primos que aparecen en alguna descomposición, cada uno con su <strong>mayor</strong> exponente."
+                },
+                {
+                    "title": "Relación entre m.c.d. y m.c.m.",
+                    "formula": "$a \\cdot b = \\text{m.c.d.}(a, b) \\cdot \\text{m.c.m.}(a, b)$",
+                    "example": "$12 \\cdot 18 = 216$ y $6 \\cdot 36 = 216$",
+                    "description": "Para <strong>dos</strong> números, el producto de los números es igual al producto de su m.c.d. y su m.c.m. Sirve para comprobar los cálculos."
                 }
             ]
         },
         {
-            "title": "Propiedad importante",
+            "title": "Problemas de m.c.d. y m.c.m.",
             "items": [
                 {
-                    "title": "Relación entre m.c.d. y m.c.m.",
-                    "formula": "$a \\cdot b = \\text{m.c.d.}(a,b) \\cdot \\text{m.c.m.}(a,b)$",
-                    "example": "$12 \\cdot 18 = 6 \\cdot 36 = 216$",
-                    "description": "Para dos números cualesquiera, el producto de los números es igual al producto de su m.c.d. y su m.c.m."
+                    "title": "¿Cuándo uso cada uno?",
+                    "formula": "$\\text{repartir en partes iguales lo más grandes posible} \\rightarrow \\text{m.c.d.} \\qquad \\text{volver a coincidir} \\rightarrow \\text{m.c.m.}$",
+                    "description": "El <strong>m.c.d.</strong> aparece al <strong>dividir</strong> o repartir: trozos, cajas o grupos iguales y del mayor tamaño posible. El <strong>m.c.m.</strong> aparece cuando algo se <strong>repite</strong> y buscamos cuándo vuelve a coincidir: horarios, luces, vueltas."
+                },
+                {
+                    "title": "Problema de m.c.d.",
+                    "formula": "$\\text{m.c.d.}(120, 84) = 2^2 \\cdot 3 = 12$",
+                    "example": "Un carpintero quiere cortar dos listones de $120$ cm y $84$ cm en trozos iguales, lo más largos posible y sin que sobre madera.<br>$120 = 2^3 \\cdot 3 \\cdot 5$ y $84 = 2^2 \\cdot 3 \\cdot 7$<br>Cada trozo mide $12$ cm y salen $120 : 12 + 84 : 12 = 10 + 7 = 17$ trozos.",
+                    "description": "El tamaño del trozo tiene que dividir exactamente a las dos longitudes, y queremos el mayor posible."
+                },
+                {
+                    "title": "Problema de m.c.m.",
+                    "formula": "$\\text{m.c.m.}(12, 18) = 2^2 \\cdot 3^2 = 36$",
+                    "example": "Dos autobuses salen juntos a las 8:00 h. Uno sale cada $12$ minutos y el otro cada $18$ minutos.<br>Vuelven a coincidir a los $36$ minutos, es decir, a las 8:36 h.",
+                    "description": "El momento en que coinciden tiene que ser múltiplo de los dos tiempos, y buscamos el primero."
                 }
             ]
         }

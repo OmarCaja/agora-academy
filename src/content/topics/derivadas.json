@@ -1,6 +1,6 @@
 {
     "title": "Derivadas",
-    "description": "Concepto de derivada, reglas básicas de derivación y tabla de derivadas de las funciones más comunes.",
+    "description": "Concepto de derivada, reglas de derivación, tabla de derivadas y aplicaciones: recta tangente, monotonía, extremos relativos, curvatura, puntos de inflexión y problemas de optimización.",
     "menuGroup": "Funciones, límites y derivadas",
     "menuOrder": 4,
     "sections": [
@@ -57,6 +57,73 @@
                     "title": "Derivadas de funciones elementales",
                     "description": "Tabla con las derivadas más habituales, expresadas para una función compuesta $u=u(x)$ (aplicando la regla de la cadena).",
                     "example": "<table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 10px'>Función</th><th style='border:1px solid var(--border-color);padding:6px 10px'>Derivada</th></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$k$ (constante)</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$0$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$x$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$1$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$u^n$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$n \\cdot u^{n-1} \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\sqrt{u}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{2\\sqrt{u}}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{1}{u}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$-\\dfrac{u'}{u^2}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$e^u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$e^u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$a^u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$a^u \\cdot \\ln a \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\ln u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{u}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\log_a u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{u \\cdot \\ln a}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\sin u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\cos u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\cos u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$-\\sin u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\tan u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$(1 + \\tan^2 u) \\cdot u'$</td></tr></table>"
+                }
+            ]
+        },
+        {
+            "title": "Recta tangente",
+            "items": [
+                {
+                    "title": "Ecuación de la recta tangente",
+                    "formula": "$y - f(a) = f'(a)\\,(x - a)$",
+                    "example": "Tangente a $f(x) = x^2 - 3x$ en $x = 1$:<br>$f(1) = -2$, $f'(x) = 2x - 3$, $f'(1) = -1$<br>$y - (-2) = -1 \\cdot (x - 1) \\implies y = -x - 1$",
+                    "description": "La recta tangente pasa por el punto $(a, f(a))$ y su pendiente es $f'(a)$. Se necesitan dos datos: el punto (sustituyendo en $f$) y la pendiente (sustituyendo en $f'$)."
+                }
+            ]
+        },
+        {
+            "title": "Monotonía y extremos relativos",
+            "items": [
+                {
+                    "title": "Crecimiento y decrecimiento",
+                    "formula": "$f'(x) > 0 \\implies f \\text{ creciente} \\qquad f'(x) < 0 \\implies f \\text{ decreciente}$",
+                    "example": "$f(x) = x^3 - 3x$: $f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)$<br>• En $(-\\infty, -1)$: $f'(-2) = 9 > 0$, creciente.<br>• En $(-1, 1)$: $f'(0) = -3 < 0$, decreciente.<br>• En $(1, +\\infty)$: $f'(2) = 9 > 0$, creciente.",
+                    "description": "Pasos: 1) calcular $f'(x)$; 2) resolver $f'(x) = 0$ y buscar los puntos donde $f'$ no existe; 3) con esos puntos y los que no están en el dominio, dividir la recta en intervalos; 4) estudiar el signo de $f'$ en cada intervalo probando un valor."
+                },
+                {
+                    "title": "Máximos y mínimos relativos",
+                    "formula": "$f'(a) = 0 \\text{ y } f' \\text{ pasa de } + \\text{ a } - \\implies \\text{máximo} \\qquad f' \\text{ pasa de } - \\text{ a } + \\implies \\text{mínimo}$",
+                    "example": "En $f(x) = x^3 - 3x$:<br>• Máximo relativo en $x = -1$: $f(-1) = 2$, punto $(-1, 2)$.<br>• Mínimo relativo en $x = 1$: $f(1) = -2$, punto $(1, -2)$.",
+                    "description": "Los extremos relativos están donde la función cambia de crecer a decrecer, o al revés. No basta con $f'(a) = 0$: en $f(x) = x^3$, $f'(0) = 0$ pero la función crece a los dos lados y no hay extremo."
+                },
+                {
+                    "title": "Criterio de la segunda derivada",
+                    "formula": "$f'(a) = 0 \\text{ y } f''(a) < 0 \\implies \\text{máximo} \\qquad f'(a) = 0 \\text{ y } f''(a) > 0 \\implies \\text{mínimo}$",
+                    "example": "$f(x) = x^3 - 3x$, $f''(x) = 6x$:<br>$f''(-1) = -6 < 0 \\implies$ máximo en $x = -1$<br>$f''(1) = 6 > 0 \\implies$ mínimo en $x = 1$",
+                    "description": "Es una forma rápida de clasificar los puntos con $f'(a) = 0$. Si $f''(a) = 0$, el criterio no decide y hay que estudiar el signo de $f'$."
+                }
+            ]
+        },
+        {
+            "title": "Curvatura y puntos de inflexión",
+            "items": [
+                {
+                    "title": "Concavidad y convexidad",
+                    "formula": "$f''(x) > 0 \\implies f \\text{ convexa } (\\cup) \\qquad f''(x) < 0 \\implies f \\text{ cóncava } (\\cap)$",
+                    "example": "$f(x) = x^3 - 3x$, $f''(x) = 6x$:<br>• En $(-\\infty, 0)$: $f'' < 0$, cóncava $(\\cap)$.<br>• En $(0, +\\infty)$: $f'' > 0$, convexa $(\\cup)$.",
+                    "description": "Se estudia el signo de $f''$ igual que se estudia el de $f'$ para la monotonía. Algunos libros llaman a $\\cup$ «cóncava hacia arriba»; aquí seguimos el criterio de la mayoría de libros de texto españoles."
+                },
+                {
+                    "title": "Puntos de inflexión",
+                    "formula": "$f''(a) = 0 \\text{ y } f'' \\text{ cambia de signo en } a$",
+                    "example": "En $f(x) = x^3 - 3x$, $f''$ cambia de signo en $x = 0$: punto de inflexión en $(0, f(0)) = (0, 0)$.",
+                    "description": "Son los puntos donde la función cambia de curvatura."
+                }
+            ]
+        },
+        {
+            "title": "Optimización",
+            "items": [
+                {
+                    "title": "Cómo resolver un problema de optimización",
+                    "formula": "$\\text{función a optimizar} \\rightarrow \\text{una sola variable} \\rightarrow f'(x) = 0 \\rightarrow \\text{comprobar máximo o mínimo}$",
+                    "description": "1) Identifica qué hay que hacer máximo o mínimo y escribe su fórmula. 2) Si tiene dos variables, usa el dato del enunciado (la <strong>ligadura</strong>) para dejar una sola. 3) Deriva e iguala a cero. 4) Comprueba con $f''$ o con el signo de $f'$ si es máximo o mínimo. 5) Responde a la pregunta con todas las medidas que se piden y sus unidades."
+                },
+                {
+                    "title": "Ejemplo: rectángulo de área máxima",
+                    "formula": "$A(x) = x(20 - x) = 20x - x^2$",
+                    "example": "Con $40$ m de cuerda se quiere rodear un rectángulo de área máxima.<br>Lados $x$ e $y$: $2x + 2y = 40 \\implies y = 20 - x$<br>$A'(x) = 20 - 2x = 0 \\implies x = 10$<br>$A''(x) = -2 < 0 \\implies$ máximo<br>El rectángulo es un cuadrado de $10$ m de lado, con área $100\\ \\text{m}^2$.",
+                    "description": "El perímetro es la ligadura que permite expresar $y$ en función de $x$."
                 }
             ]
         }

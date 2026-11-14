@@ -1,6 +1,6 @@
 {
     "title": "Propiedades de las raíces",
-    "description": "Aprende las propiedades de las raíces: raíz de un producto, cociente, potencia, raíz de una raíz y racionalización. Material educativo de Ágora - Academia de matemáticas.",
+    "description": "Propiedades de las raíces con ejemplos: raíz de un producto, de un cociente, de una potencia y de una raíz, extracción e introducción de factores, suma de radicales y racionalización.",
     "menuGroup": "Potencias, raíces y logaritmos",
     "menuOrder": 2,
     "sections": [
@@ -10,7 +10,8 @@
                 {
                     "title": "Definición de raíz",
                     "formula": "$\\sqrt[n]{a} = b \\iff b^n = a$",
-                    "example": "$\\sqrt{25} = 5 \\iff 5^2 = 25$"
+                    "example": "$\\sqrt{25} = 5 \\iff 5^2 = 25 \\qquad \\sqrt[3]{-8} = -2 \\iff (-2)^3 = -8$",
+                    "description": "$n$ es el <strong>índice</strong> y $a$ el <strong>radicando</strong>. Cuando el índice es $2$ no se escribe. Si el índice es par, el radicando no puede ser negativo: $\\sqrt{-4}$ no existe en los números reales. Si es impar, sí: $\\sqrt[3]{-8} = -2$."
                 }
             ]
         },
@@ -20,22 +21,61 @@
                 {
                     "title": "Raíz de un producto",
                     "formula": "$\\sqrt[n]{a \\cdot b} = \\sqrt[n]{a} \\cdot \\sqrt[n]{b}$",
-                    "example": "$\\sqrt{4 \\cdot 9} = \\sqrt{4} \\cdot \\sqrt{9} = 2 \\cdot 3 = 6$"
+                    "example": "$\\sqrt{4 \\cdot 9} = \\sqrt{4} \\cdot \\sqrt{9} = 2 \\cdot 3 = 6$",
+                    "description": "La raíz de un producto es el producto de las raíces. Con índice par, $a$ y $b$ deben ser positivos o cero."
                 },
                 {
                     "title": "Raíz de un cociente",
                     "formula": "$\\sqrt[n]{\\frac{a}{b}} = \\frac{\\sqrt[n]{a}}{\\sqrt[n]{b}}$",
-                    "example": "$\\sqrt{\\frac{100}{4}} = \\frac{\\sqrt{100}}{\\sqrt{4}} = \\frac{10}{2} = 5$"
+                    "example": "$\\sqrt{\\frac{100}{4}} = \\frac{\\sqrt{100}}{\\sqrt{4}} = \\frac{10}{2} = 5$",
+                    "description": "La raíz de un cociente es el cociente de las raíces ($b \\neq 0$)."
                 },
                 {
                     "title": "Raíz de una potencia",
                     "formula": "$\\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$",
-                    "example": "$\\sqrt{4^3} = (\\sqrt{4})^3 = 2^3 = 8$"
+                    "example": "$\\sqrt{4^3} = (\\sqrt{4})^3 = 2^3 = 8$",
+                    "description": "Da igual hacer primero la potencia y luego la raíz, o al revés. Elegir el orden adecuado simplifica las cuentas."
                 },
                 {
                     "title": "Raíz de una raíz",
                     "formula": "$\\sqrt[m]{\\sqrt[n]{a}} = \\sqrt[m \\cdot n]{a}$",
-                    "example": "$\\sqrt[3]{\\sqrt{64}} = \\sqrt[3 \\cdot 2]{64} = \\sqrt[6]{64} = 2$"
+                    "example": "$\\sqrt[3]{\\sqrt{64}} = \\sqrt[3 \\cdot 2]{64} = \\sqrt[6]{64} = 2$",
+                    "description": "Una raíz dentro de otra se convierte en una sola raíz cuyo índice es el <strong>producto</strong> de los índices."
+                },
+                {
+                    "title": "Raíz de una suma",
+                    "formula": "$\\sqrt{a + b} \\neq \\sqrt{a} + \\sqrt{b}$",
+                    "example": "$\\sqrt{9 + 16} = \\sqrt{25} = 5 \\qquad \\sqrt{9} + \\sqrt{16} = 3 + 4 = 7$",
+                    "description": "Error muy frecuente: la raíz se reparte en productos y cocientes, pero <strong>no</strong> en sumas ni restas."
+                }
+            ]
+        },
+        {
+            "title": "Operaciones con radicales",
+            "items": [
+                {
+                    "title": "Extraer factores de una raíz",
+                    "formula": "$\\sqrt[n]{a^n \\cdot b} = a\\sqrt[n]{b}$",
+                    "example": "$\\sqrt{72} = \\sqrt{2^3 \\cdot 3^2} = \\sqrt{2^2 \\cdot 2 \\cdot 3^2} = 2 \\cdot 3\\sqrt{2} = 6\\sqrt{2}$",
+                    "description": "Se descompone el radicando en factores primos. Cada grupo de $n$ factores iguales sale fuera de la raíz como un solo factor; lo que no completa un grupo se queda dentro."
+                },
+                {
+                    "title": "Introducir factores en una raíz",
+                    "formula": "$a\\sqrt[n]{b} = \\sqrt[n]{a^n \\cdot b}$",
+                    "example": "$3\\sqrt{2} = \\sqrt{3^2 \\cdot 2} = \\sqrt{18}$",
+                    "description": "Es la operación contraria: el factor de fuera entra elevado al índice de la raíz."
+                },
+                {
+                    "title": "Suma y resta de radicales",
+                    "formula": "$a\\sqrt[n]{c} + b\\sqrt[n]{c} = (a + b)\\sqrt[n]{c}$",
+                    "example": "$\\sqrt{50} + \\sqrt{18} - \\sqrt{8} = 5\\sqrt{2} + 3\\sqrt{2} - 2\\sqrt{2} = 6\\sqrt{2}$",
+                    "description": "Solo se pueden sumar radicales <strong>semejantes</strong>: mismo índice y mismo radicando. Antes de sumar conviene extraer factores para que aparezcan radicales semejantes."
+                },
+                {
+                    "title": "Producto de radicales de distinto índice",
+                    "formula": "$\\sqrt[n]{a} \\cdot \\sqrt[m]{b} = \\sqrt[\\text{m.c.m.}(n, m)]{\\cdots}$",
+                    "example": "$\\sqrt{2} \\cdot \\sqrt[3]{2} = \\sqrt[6]{2^3} \\cdot \\sqrt[6]{2^2} = \\sqrt[6]{2^5}$",
+                    "description": "Se reducen a <strong>índice común</strong> (el m.c.m. de los índices) y después se multiplican los radicandos. También se puede pasar a exponentes fraccionarios: $2^{\\frac{1}{2}} \\cdot 2^{\\frac{1}{3}} = 2^{\\frac{5}{6}}$."
                 }
             ]
         },

@@ -2,7 +2,7 @@
     "title": "Álgebra",
     "description": "Lenguaje algebraico, monomios y polinomios: operaciones, división de polinomios, regla de Ruffini, teorema del resto y factorización. Resolución de ecuaciones de primer grado.",
     "menuGroup": "Álgebra",
-    "menuOrder": 2,
+    "menuOrder": 1,
     "sections": [
         {
             "title": "Fundamentos del álgebra",
