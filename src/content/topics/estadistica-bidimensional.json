@@ -8,12 +8,17 @@
             "title": "Conceptos básicos",
             "items": [
                 {
-                    "title": "¿Qué es la estadística bidimensional?",
-                    "description": "Rama de la estadística que se ocupa del estudio simultáneo de dos caracteres ($X, Y$) en los individuos de una población. Permite analizar si existe relación entre ambas variables."
+                    "title": "Variable estadística bidimensional",
+                    "description": "Una <strong>variable estadística bidimensional</strong> $(X, Y)$ estudia a la vez dos caracteres de cada individuo de una población, para analizar si existe relación entre ellos. Los datos son pares $(x_i, y_j)$. Si hay pocos datos se dan como lista de pares; si hay muchos, en una <strong>tabla de doble entrada</strong> con las frecuencias conjuntas. Gráficamente se representan en una <strong>nube de puntos</strong> (diagrama de dispersión).",
+                    "kind": "definicion",
+                    "example": "De cada alumno se anota $X$ = horas de estudio al día y $Y$ = nota del examen: el alumno que estudia $2$ h y saca un $6$ aporta el par $(2, 6)$."
                 },
                 {
                     "title": "Frecuencia conjunta ($f_{ij}$)",
-                    "description": "Es el número de individuos que presentan simultáneamente el valor $x_i$ de la primera variable y el valor $y_j$ de la segunda. La suma de todas las frecuencias conjuntas es el total de la población $N$."
+                    "description": "La <strong>frecuencia conjunta</strong> $f_{ij}$ es el número de individuos que presentan a la vez el valor $x_i$ de $X$ y el valor $y_j$ de $Y$. La suma de todas las frecuencias conjuntas es el total de la población, $N$.",
+                    "kind": "definicion",
+                    "formula": "$\\sum_{i}\\sum_{j} f_{ij} = N$",
+                    "example": "Tabla de doble entrada (se usará en los apartados siguientes):$$\\begin{array}{c|cc|c} X \\backslash Y & 1 & 2 & f_{i\\cdot} \\\\ \\hline 1 & 4 & 1 & 5 \\\\ 2 & 3 & 3 & 6 \\\\ 3 & 1 & 8 & 9 \\\\ \\hline f_{\\cdot j} & 8 & 12 & 20 \\end{array}$$$f_{32} = 8$: hay $8$ individuos con $X = 3$ e $Y = 2$. La suma de todas las frecuencias conjuntas es $4+1+3+3+1+8 = 20 = N$."
                 }
             ]
         },
@@ -22,11 +27,15 @@
             "items": [
                 {
                     "title": "Distribuciones marginales",
-                    "description": "Analiza el comportamiento de una sola variable ignorando la otra. Se obtienen sumando las frecuencias conjuntas por filas ($X$) o por columnas ($Y$).<br><ul><li><strong>Marginal de $X$:</strong> Distribución unidimensional de la variable $X$.</li><li><strong>Marginal de $Y$:</strong> Distribución unidimensional de la variable $Y$.</li></ul>"
+                    "description": "La <strong>distribución marginal</strong> de una variable es la distribución unidimensional de esa variable ignorando la otra. Se obtiene sumando las frecuencias conjuntas por filas (marginal de $X$, $f_{i\\cdot}$) o por columnas (marginal de $Y$, $f_{\\cdot j}$). Con ellas se calculan $\\bar{x}$, $\\sigma_x$, $\\bar{y}$ y $\\sigma_y$ como en estadística unidimensional.",
+                    "kind": "definicion",
+                    "example": "En la tabla anterior: marginal de $X$: $f_{1\\cdot} = 4+1 = 5$, $f_{2\\cdot} = 6$, $f_{3\\cdot} = 9$. Marginal de $Y$: $f_{\\cdot 1} = 4+3+1 = 8$ y $f_{\\cdot 2} = 12$.<br>$\\bar{x} = \\frac{1 \\cdot 5 + 2 \\cdot 6 + 3 \\cdot 9}{20} = 2{,}2$ y $\\bar{y} = \\frac{1 \\cdot 8 + 2 \\cdot 12}{20} = 1{,}6$."
                 },
                 {
                     "title": "Distribuciones condicionadas",
-                    "description": "Es la distribución de una variable (por ejemplo $Y$) considerando solo los individuos que toman un valor concreto en la otra variable (por ejemplo $X = x_i$). Se estudia una fila o columna específica de la tabla de doble entrada."
+                    "description": "La <strong>distribución condicionada</strong> de $Y$ a $X = x_i$ es la distribución de $Y$ considerando solo los individuos con $X = x_i$ (una fila de la tabla); análogamente se define la de $X$ a $Y = y_j$ (una columna). Sus frecuencias suman $f_{i\\cdot}$ (o $f_{\\cdot j}$).",
+                    "kind": "definicion",
+                    "example": "Distribución de $Y$ condicionada a $X = 3$ (tercera fila): $y = 1$ con $f = 1$ e $y = 2$ con $f = 8$, en total $9$ individuos. Su media es $\\frac{1 \\cdot 1 + 2 \\cdot 8}{9} = \\frac{17}{9} \\approx 1{,}89$."
                 }
             ]
         },
@@ -35,8 +44,10 @@
             "items": [
                 {
                     "title": "Covarianza ($\\sigma_{xy}$)",
-                    "formula": "$$\\sigma_{xy} = \\frac{\\sum f_{ij} x_i y_j}{N} - \\bar{x}\\bar{y}$$",
-                    "description": "Es la media del producto de las desviaciones de cada variable respecto a su media. Indica si hay relación lineal y su sentido.<br><ul><li>$\\sigma_{xy} > 0$: Correlación positiva (directa).</li><li>$\\sigma_{xy} < 0$: Correlación negativa (inversa).</li><li>$\\sigma_{xy} = 0$: No hay correlación lineal.</li></ul>"
+                    "formula": "$\\sigma_{xy} = \\dfrac{\\sum f_{ij}\\,(x_i - \\bar{x})(y_j - \\bar{y})}{N} = \\dfrac{\\sum f_{ij}\\,x_i y_j}{N} - \\bar{x}\\bar{y}$",
+                    "description": "La <strong>covarianza</strong> es la media del producto de las desviaciones de cada variable respecto de su media. Indica si hay relación lineal y su sentido:<ul><li>$\\sigma_{xy} > 0$: correlación positiva (directa).</li><li>$\\sigma_{xy} < 0$: correlación negativa (inversa).</li><li>$\\sigma_{xy} = 0$: no hay correlación lineal.</li></ul>Su valor depende de las unidades de $X$ e $Y$, por eso no mide la intensidad (para eso está $r$).",
+                    "kind": "definicion",
+                    "example": "Con la tabla anterior: $\\sum f_{ij} x_i y_j = 4\\cdot1\\cdot1 + 1\\cdot1\\cdot2 + 3\\cdot2\\cdot1 + 3\\cdot2\\cdot2 + 1\\cdot3\\cdot1 + 8\\cdot3\\cdot2 = 75$.<br>$\\sigma_{xy} = \\dfrac{75}{20} - 2{,}2 \\cdot 1{,}6 = 3{,}75 - 3{,}52 = 0{,}23 > 0$: correlación directa."
                 }
             ]
         },
@@ -45,12 +56,16 @@
             "items": [
                 {
                     "title": "Tipos de correlación",
-                    "description": "La correlación indica la relación o dependencia entre las variables. Puede clasificarse de varias formas:<br><ul><li><strong>Funcional:</strong> Existe una relación exacta, $y = f(x)$.</li><li><strong>Aleatoria:</strong> Existe relación estadística pero no exacta.</li><li><strong>Nula:</strong> No hay relación entre las variables.</li><li><strong>Directa (Positiva):</strong> Al aumentar una variable, aumenta la otra.</li><li><strong>Inversa (Negativa):</strong> Al aumentar una variable, la otra disminuye.</li><li><strong>Fuerte:</strong> La dependencia es alta (los puntos están muy cerca de la recta de regresión).</li><li><strong>Débil:</strong> La dependencia es baja (la nube de puntos es muy dispersa).</li></ul>"
+                    "description": "La correlación indica la relación o dependencia entre las variables. Puede clasificarse de varias formas:<br><ul><li><strong>Funcional:</strong> Existe una relación exacta, $y = f(x)$.</li><li><strong>Aleatoria:</strong> Existe relación estadística pero no exacta.</li><li><strong>Nula:</strong> No hay relación entre las variables.</li><li><strong>Directa (Positiva):</strong> Al aumentar una variable, aumenta la otra.</li><li><strong>Inversa (Negativa):</strong> Al aumentar una variable, la otra disminuye.</li><li><strong>Fuerte:</strong> La dependencia es alta (los puntos están muy cerca de la recta de regresión).</li><li><strong>Débil:</strong> La dependencia es baja (la nube de puntos es muy dispersa).</li></ul>",
+                    "kind": "definicion",
+                    "example": "<br><img src='/ejemplos/estadistica-bidimensional/correlacion.png' alt='Tres nubes de puntos: correlación directa y fuerte, inversa y moderada, y nula' width='1177' height='492' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>"
                 },
                 {
                     "title": "Coeficiente de correlación lineal ($r$)",
                     "formula": "$$r = \\frac{\\sigma_{xy}}{\\sigma_x \\cdot \\sigma_y}$$",
-                    "description": "Mide el grado de asociación lineal y el sentido de la correlación. Es adimensional y varía entre $-1$ y $1$.<br><ul><li>$r > 0$: Correlación directa.</li><li>$r < 0$: Correlación inversa.</li><li>$\\lvert r \\rvert \\approx 1$: Correlación fuerte (puntos alineados).</li><li>$r \\approx 0$: Correlación débil (nube de puntos redonda).</li></ul>"
+                    "description": "El <strong>coeficiente de correlación lineal</strong> $r$ mide el grado de asociación lineal y el sentido de la correlación. Es adimensional y siempre cumple $-1 \\leq r \\leq 1$.<ul><li>$r > 0$: correlación directa. $r < 0$: inversa.</li><li>$\\lvert r \\rvert$ cercano a $1$: correlación fuerte (puntos casi alineados). $\\lvert r \\rvert = 1$: dependencia funcional lineal.</li><li>$r$ cercano a $0$: correlación débil o nula (nube redonda).</li></ul>",
+                    "kind": "definicion",
+                    "example": "Con la tabla anterior: $\\sigma_x = \\sqrt{\\frac{110}{20} - 2{,}2^2} = \\sqrt{0{,}66} \\approx 0{,}81$ y $\\sigma_y = \\sqrt{\\frac{56}{20} - 1{,}6^2} = \\sqrt{0{,}24} \\approx 0{,}49$.<br>$r = \\dfrac{0{,}23}{0{,}81 \\cdot 0{,}49} \\approx 0{,}58$: correlación directa y moderada."
                 }
             ]
         },
@@ -59,17 +74,21 @@
             "items": [
                 {
                     "title": "Rectas de regresión",
-                    "description": "Son las rectas que mejor se ajustan a la nube de puntos mediante el método de mínimos cuadrados. Permiten hacer estimaciones."
+                    "description": "Las <strong>rectas de regresión</strong> son las rectas que mejor se ajustan a la nube de puntos según el método de mínimos cuadrados (minimizan la suma de los cuadrados de las distancias). Hay dos, la de $Y$ sobre $X$ y la de $X$ sobre $Y$; ambas pasan por el <strong>centro de gravedad</strong> $(\\bar{x}, \\bar{y})$ y permiten hacer estimaciones.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Recta de regresión de Y sobre X",
                     "formula": "$$y - \\bar{y} = \\frac{\\sigma_{xy}}{\\sigma_x^2} (x - \\bar{x})$$",
-                    "description": "Minimiza las distancias verticales. Se utiliza para estimar el valor de $Y$ suponiendo conocido un valor de $X$. El término $\\frac{\\sigma_{xy}}{\\sigma_x^2}$ es la pendiente de la recta."
+                    "description": "Minimiza las distancias <strong>verticales</strong>. Se utiliza para estimar $Y$ conocido un valor de $X$. El cociente $\\frac{\\sigma_{xy}}{\\sigma_x^2}$ es la pendiente de la recta.",
+                    "kind": "propiedad",
+                    "example": "Con la tabla anterior: pendiente $\\frac{0{,}23}{0{,}66} \\approx 0{,}35$, luego $y - 1{,}6 = 0{,}35(x - 2{,}2)$, es decir, $y \\approx 0{,}35x + 0{,}83$. Para $x = 2$: $y \\approx 1{,}53$."
                 },
                 {
                     "title": "Recta de regresión de X sobre Y",
                     "formula": "$$x - \\bar{x} = \\frac{\\sigma_{xy}}{\\sigma_y^2} (y - \\bar{y})$$",
-                    "description": "Minimiza las distancias horizontales. Se utiliza para estimar el valor de $X$ suponiendo conocido un valor de $Y$. No es la misma recta que la anterior (salvo dependencia funcional)."
+                    "description": "Minimiza las distancias <strong>horizontales</strong>. Se utiliza para estimar $X$ conocido un valor de $Y$. No es la misma recta que la anterior, salvo que la dependencia sea funcional ($r = \\pm 1$): <strong>no se debe despejar</strong> una de la otra.",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -80,18 +99,21 @@
                     "title": "Datos y parámetros",
                     "formula": "$$\\begin{array}{c|ccccc} x_i & 2 & 3 & 4 & 5 & 6 \\\\ \\hline y_i & 4 & 5 & 7 & 8 & 11 \\end{array}$$",
                     "example": "$\\sum x_i = 20$, $\\sum y_i = 35$, $\\sum x_i^2 = 90$, $\\sum y_i^2 = 275$, $\\sum x_i y_i = 157$, $N = 5$<br>$\\bar{x} = 4$, $\\bar{y} = 7$<br>$\\sigma_x^2 = \\dfrac{90}{5} - 16 = 2$, $\\sigma_y^2 = \\dfrac{275}{5} - 49 = 6$<br>$\\sigma_{xy} = \\dfrac{157}{5} - 4 \\cdot 7 = 3{,}4$",
-                    "description": "Gasto en publicidad $x$ y ventas $y$ de una empresa (en miles de euros) durante cinco meses. Primero se calculan las sumas, después las medias, las varianzas y la covarianza."
+                    "description": "Gasto en publicidad $x$ y ventas $y$ de una empresa (en miles de euros) durante cinco meses. Primero se calculan las sumas, después las medias, las varianzas y la covarianza.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Correlación",
                     "formula": "$$r = \\frac{3{,}4}{\\sqrt{2} \\cdot \\sqrt{6}} \\approx 0{,}98$$",
-                    "description": "$r$ es positivo y muy próximo a $1$: la correlación es directa y muy fuerte. Cuanto más se invierte en publicidad, más se vende."
+                    "description": "$r$ es positivo y muy próximo a $1$: la correlación es directa y muy fuerte. Cuanto más se invierte en publicidad, más se vende.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Recta de regresión y estimación",
                     "formula": "$$y - 7 = \\frac{3{,}4}{2}(x - 4) \\implies y = 1{,}7x + 0{,}2$$",
                     "example": "Para un gasto de $x = 5{,}5$: $y = 1{,}7 \\cdot 5{,}5 + 0{,}2 = 9{,}55$ miles de euros",
-                    "description": "La estimación es fiable porque $r$ está muy cerca de $1$ y $x = 5{,}5$ está dentro del rango de los datos. Si el valor de $x$ queda lejos de los datos observados, la estimación es menos fiable."
+                    "description": "La estimación es fiable porque $r$ está muy cerca de $1$ y $x = 5{,}5$ está dentro del rango de los datos. Si el valor de $x$ queda lejos de los datos observados, la estimación es menos fiable.",
+                    "kind": "procedimiento"
                 }
             ]
         }

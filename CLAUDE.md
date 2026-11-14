@@ -49,7 +49,9 @@ The topic order lives in `src/data/topics.ts`: `GROUP_ORDER` (group display orde
 
 ### Math content JSON shape
 
-Topic JSON files (`src/content/topics/*.json`) follow: `title`, `description`, optional `menuGroup`/`menuOrder`, and `sections[]`, each with `title` and `items[]` (`title`, optional `formula`, `example`, `description`). `formula`/`example` render through **KaTeX** and support raw `<img>` tags for embedded graphs. `PropertyBox.astro` is the shared card component rendering each item. See `scripts/README.md` for the KaTeX/image conventions in more detail.
+Topic JSON files (`src/content/topics/*.json`) follow: `title`, `description`, optional `menuGroup`/`menuOrder`, and `sections[]`, each with `title` and `items[]` (`title`, `kind`, optional `description`, `formula`, `example`).
+
+Rigour rules, enforced by `pnpm check`: every item declares its `kind` (`definicion`, `teorema`, `propiedad`, `procedimiento`, `observacion`, `ejemplo`; labels in `src/data/itemKinds.ts`), shown as a badge above the title (definitions and theorems also get a heavy left rule). A card renders `description` (the statement) → `formula` → `example`, so a card always states before it exemplifies, and only `kind: "ejemplo"` cards (worked examples that apply the cards above) may have no statement. Within a section, a concept is defined (`definicion`) before any card that uses it. `formula`/`example` render through **KaTeX** and support raw `<img>` tags for embedded graphs. `PropertyBox.astro` is the shared card component rendering each item. See `scripts/README.md` for the KaTeX/image conventions in more detail.
 
 ### Math graph images
 

@@ -5,25 +5,40 @@
     "menuOrder": 2,
     "sections": [
         {
+            "title": "Identidades y productos notables",
+            "items": [
+                {
+                    "title": "Identidad",
+                    "kind": "definicion",
+                    "description": "Una <strong>identidad</strong> es una igualdad entre expresiones algebraicas que se cumple para <strong>todos</strong> los valores de las letras. Se distingue de una <strong>ecuación</strong>, que solo se cumple para algunos valores. Las <strong>identidades notables</strong> son identidades que aparecen continuamente al operar con polinomios y conviene saber de memoria, tanto de izquierda a derecha (<strong>desarrollar</strong>) como de derecha a izquierda (<strong>factorizar</strong>). En ellas $a$ y $b$ pueden ser números, letras o expresiones cualesquiera.",
+                    "formula": "$(a+b)^2 = a^2 + 2ab + b^2 \\quad \\text{se cumple para todo } a, b$",
+                    "example": "$(x+1)^2 = x^2 + 2x + 1$ es una identidad: con $x = 3$ da $16 = 16$, con $x = -5$ da $16 = 16$…<br>$x^2 + 2x + 1 = 0$ es una ecuación: solo se cumple para $x = -1$."
+                }
+            ]
+        },
+        {
             "title": "Binomios al cuadrado",
             "items": [
                 {
                     "title": "Cuadrado de una suma",
                     "formula": "$(a + b)^2 = a^2 + 2ab + b^2$",
-                    "example": "$(x + 3)^2 = x^2 + 2 \\cdot x \\cdot 3 + 3^2 = x^2 + 6x + 9$",
-                    "description": "El cuadrado del primer término, más el doble producto del primero por el segundo, más el cuadrado del segundo."
+                    "example": "$(x + 3)^2 = x^2 + 2 \\cdot x \\cdot 3 + 3^2 = x^2 + 6x + 9$<br><img src='/ejemplos/identidades-notables/cuadrado-suma.png' alt='Cuadrado de lado a más b dividido en un cuadrado a², dos rectángulos ab y un cuadrado b²' width='564' height='594' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "description": "El cuadrado de una suma es el cuadrado del primer término, más el doble producto del primero por el segundo, más el cuadrado del segundo. <em>Demostración:</em> $(a+b)^2 = (a+b)(a+b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Cuadrado de una diferencia",
                     "formula": "$(a - b)^2 = a^2 - 2ab + b^2$",
                     "example": "$(2x - 5)^2 = (2x)^2 - 2 \\cdot 2x \\cdot 5 + 5^2 = 4x^2 - 20x + 25$",
-                    "description": "El cuadrado del primer término, menos el doble producto del primero por el segundo, más el cuadrado del segundo."
+                    "description": "El cuadrado de una diferencia es el cuadrado del primer término, menos el doble producto del primero por el segundo, más el cuadrado del segundo. <em>Demostración:</em> $(a-b)^2 = (a-b)(a-b) = a^2 - ab - ba + b^2 = a^2 - 2ab + b^2$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Error frecuente",
                     "formula": "$(a + b)^2 \\neq a^2 + b^2$",
                     "example": "$(3 + 4)^2 = 49 \\qquad 3^2 + 4^2 = 25$",
-                    "description": "Al elevar al cuadrado una suma <strong>no basta</strong> con elevar cada término: falta el doble producto $2ab$."
+                    "description": "Al elevar al cuadrado una suma <strong>no basta</strong> con elevar cada término: falta el doble producto $2ab$.",
+                    "kind": "observacion"
                 }
             ]
         },
@@ -34,7 +49,8 @@
                     "title": "Suma por diferencia",
                     "formula": "$(a + b)(a - b) = a^2 - b^2$",
                     "example": "$(x + 4)(x - 4) = x^2 - 16$",
-                    "description": "El producto de una suma por su diferencia es igual a la diferencia de los cuadrados de ambos términos. Los dobles productos se anulan: $(a + b)(a - b) = a^2 - ab + ab - b^2$."
+                    "description": "El producto de una suma por su diferencia es igual a la diferencia de los cuadrados de ambos términos. Los dobles productos se anulan: $(a + b)(a - b) = a^2 - ab + ab - b^2$.",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -45,13 +61,15 @@
                     "title": "Cubo de una suma",
                     "formula": "$(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$",
                     "example": "$(x + 2)^3 = x^3 + 3 \\cdot x^2 \\cdot 2 + 3 \\cdot x \\cdot 2^2 + 2^3 = x^3 + 6x^2 + 12x + 8$",
-                    "description": "Se obtiene multiplicando $(a + b)^2$ por $(a + b)$."
+                    "description": "Se obtiene multiplicando $(a + b)^2$ por $(a + b)$: $(a^2 + 2ab + b^2)(a+b) = a^3 + 3a^2b + 3ab^2 + b^3$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Cubo de una diferencia",
                     "formula": "$(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$",
                     "example": "$(x - 1)^3 = x^3 - 3x^2 + 3x - 1$",
-                    "description": "Los signos se van alternando: $+, -, +, -$."
+                    "description": "Los signos se van alternando: $+, -, +, -$.",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -61,20 +79,23 @@
                 {
                     "title": "Diferencia de cuadrados",
                     "formula": "$a^2 - b^2 = (a + b)(a - b)$",
-                    "example": "$x^2 - 49 = (x + 7)(x - 7) \\qquad 4x^2 - 9 = (2x + 3)(2x - 3)$",
-                    "description": "Si una expresión es la resta de dos cuadrados, se factoriza como suma por diferencia."
+                    "example": "$x^2 - 49 = (x + 7)(x - 7) \\qquad 4x^2 - 9 = (2x + 3)(2x - 3)$<br><img src='/ejemplos/identidades-notables/diferencia-cuadrados.png' alt='El cuadrado de lado a al que se quita un cuadrado b² tiene la misma área que un rectángulo de lados a+b y a-b' width='979' height='453' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "description": "Es la identidad de la suma por diferencia leída al revés: si una expresión es la resta de dos cuadrados, se factoriza como suma por diferencia. La <strong>suma</strong> de cuadrados $a^2 + b^2$ no se puede factorizar en los reales.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Trinomio cuadrado perfecto",
                     "formula": "$a^2 \\pm 2ab + b^2 = (a \\pm b)^2$",
                     "example": "$x^2 + 10x + 25 = (x + 5)^2$, porque $2 \\cdot x \\cdot 5 = 10x$<br>$9x^2 - 12x + 4 = (3x - 2)^2$, porque $2 \\cdot 3x \\cdot 2 = 12x$",
-                    "description": "Si dos términos son cuadrados ($a^2$ y $b^2$) y el tercero es su doble producto, la expresión es el cuadrado de un binomio. Hay que comprobar siempre el doble producto."
+                    "description": "Si dos términos son cuadrados ($a^2$ y $b^2$) y el tercero es su doble producto, la expresión es el cuadrado de un binomio. Hay que comprobar siempre el doble producto.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Simplificar fracciones algebraicas",
                     "formula": "$\\dfrac{a^2 - b^2}{a + b} = \\dfrac{(a + b)(a - b)}{a + b} = a - b$",
                     "example": "$\\dfrac{x^2 - 9}{x^2 + 6x + 9} = \\dfrac{(x + 3)(x - 3)}{(x + 3)^2} = \\dfrac{x - 3}{x + 3}$",
-                    "description": "Factorizando el numerador y el denominador con las identidades notables aparecen factores comunes que se pueden simplificar."
+                    "description": "Una fracción algebraica es un cociente de polinomios. Factorizando el numerador y el denominador con las identidades notables aparecen factores comunes que se pueden simplificar (siempre que valgan distinto de $0$).",
+                    "kind": "procedimiento"
                 }
             ]
         }

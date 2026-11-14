@@ -8,22 +8,18 @@
             "title": "Potencias básicas",
             "items": [
                 {
-                    "title": "¿Qué es una potencia?",
+                    "title": "Potencia de exponente natural",
                     "formula": "$a^n = \\underbrace{a \\cdot a \\cdots a}_{n \\text{ veces}}$",
                     "example": "$2^5 = 2 \\cdot 2 \\cdot 2 \\cdot 2 \\cdot 2 = 32$",
-                    "description": "La <strong>base</strong> $a$ es el número que se multiplica y el <strong>exponente</strong> $n$ indica cuántas veces se multiplica. No es lo mismo que multiplicar la base por el exponente: $2^5 = 32$, no $10$."
-                },
-                {
-                    "title": "Potencia de exponente cero",
-                    "formula": "$a^0 = 1 \\quad (a \\neq 0)$",
-                    "example": "$6^0 = 1$",
-                    "description": "Cualquier número distinto de cero elevado a $0$ vale $1$. Se deduce de la división: $\\dfrac{a^3}{a^3} = a^{3-3} = a^0$, y un número dividido entre sí mismo es $1$."
+                    "description": "La <strong>potencia</strong> $a^n$, con $a$ un número cualquiera (la <strong>base</strong>) y $n$ un número natural distinto de $0$ (el <strong>exponente</strong>), es el producto de $n$ factores iguales a $a$. No es lo mismo que multiplicar la base por el exponente: $2^5 = 32$, no $10$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Potencia de exponente uno",
                     "formula": "$a^1 = a$",
                     "example": "$6^1 = 6$",
-                    "description": "Un número elevado a $1$ es el propio número."
+                    "description": "Un producto de un solo factor es ese mismo factor, por lo que una potencia de exponente $1$ es la propia base.",
+                    "kind": "definicion"
                 }
             ]
         },
@@ -34,19 +30,22 @@
                     "title": "Exponente par",
                     "formula": "$(-a)^n = a^n \\quad (n \\text{ par})$",
                     "example": "$2^6 = 64$<br>$(-2)^6 = 64$",
-                    "description": "Las potencias de <strong>exponente par</strong> son siempre <strong>positivas</strong>."
+                    "description": "Si el exponente es <strong>par</strong>, los factores negativos se agrupan por parejas y cada pareja da un producto positivo: la potencia es siempre <strong>positiva</strong>.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Exponente impar",
                     "formula": "$(-a)^n = -a^n \\quad (n \\text{ impar})$",
                     "example": "$2^3 = 8$<br>$(-2)^3 = -8$",
-                    "description": "Las potencias de <strong>exponente impar</strong> tienen el <strong>mismo signo</strong> que la <strong>base</strong>."
+                    "description": "Si el exponente es <strong>impar</strong>, queda un factor negativo sin pareja: la potencia tiene el <strong>mismo signo</strong> que la <strong>base</strong>.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Cuidado con el paréntesis",
                     "formula": "$(-a)^n \\neq -a^n$",
                     "example": "$(-2)^4 = 16 \\qquad -2^4 = -16$",
-                    "description": "Sin paréntesis, el exponente solo afecta al número, no al signo: $-2^4 = -(2 \\cdot 2 \\cdot 2 \\cdot 2) = -16$."
+                    "description": "Sin paréntesis, el exponente solo afecta al número, no al signo: $-2^4 = -(2 \\cdot 2 \\cdot 2 \\cdot 2) = -16$.",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -56,38 +55,44 @@
                 {
                     "title": "Multiplicación con la misma base",
                     "formula": "$a^m \\cdot a^n = a^{m+n}$",
-                    "example": "$7^5 \\cdot 7^2 = 7^{5+2} = 7^7$",
-                    "description": "Con la <strong>misma base</strong>, al multiplicar se mantiene la base y se <strong>suman</strong> los exponentes."
+                    "example": "$7^5 \\cdot 7^2 = 7^{5+2} = 7^7$<br>Comprobación: $2^3 \\cdot 2^2 = 8 \\cdot 4 = 32 = 2^5$",
+                    "description": "Con la <strong>misma base</strong>, al multiplicar se mantiene la base y se <strong>suman</strong> los exponentes. Se justifica contando factores: $a^m$ tiene $m$ factores, $a^n$ tiene $n$, y el producto tiene $m + n$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "División con la misma base",
                     "formula": "$a^m : a^n = a^{m-n}$",
-                    "example": "$7^5 : 7^2 = 7^{5-2} = 7^3$",
-                    "description": "Con la <strong>misma base</strong>, al dividir se mantiene la base y se <strong>restan</strong> los exponentes."
+                    "example": "$7^5 : 7^2 = 7^{5-2} = 7^3$<br>Comprobación: $2^5 : 2^2 = 32 : 4 = 8 = 2^3$",
+                    "description": "Con la <strong>misma base</strong> (distinta de $0$), al dividir se mantiene la base y se <strong>restan</strong> los exponentes. Se justifica simplificando factores: de $a^m$ se cancelan los $n$ factores de $a^n$ y quedan $m - n$ (si $m > n$).",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Potencia de una potencia",
                     "formula": "$(a^m)^n = a^{m \\cdot n}$",
                     "example": "$(7^5)^3 = 7^{5 \\times 3} = 7^{15}$",
-                    "description": "Se mantiene la base y se <strong>multiplican</strong> los exponentes."
+                    "description": "Se mantiene la base y se <strong>multiplican</strong> los exponentes: $(a^m)^n$ son $n$ grupos de $m$ factores, es decir, $m \\cdot n$ factores.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Multiplicación con el mismo exponente",
                     "formula": "$a^n \\cdot b^n = (a \\cdot b)^n$",
                     "example": "$2^3 \\cdot 4^3 = (2 \\cdot 4)^3 = 8^3$",
-                    "description": "Con el <strong>mismo exponente</strong>, se multiplican las bases y se mantiene el exponente."
+                    "description": "Con el <strong>mismo exponente</strong>, se multiplican las bases y se mantiene el exponente (por las propiedades conmutativa y asociativa del producto).",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "División con el mismo exponente",
                     "formula": "$a^n : b^n = (a : b)^n$",
                     "example": "$6^3 : 3^3 = (6 : 3)^3 = 2^3$",
-                    "description": "Con el <strong>mismo exponente</strong>, se dividen las bases y se mantiene el exponente."
+                    "description": "Con el <strong>mismo exponente</strong>, se dividen las bases y se mantiene el exponente.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Potencia de una suma",
                     "formula": "$(a + b)^n \\neq a^n + b^n$",
                     "example": "$(2 + 3)^2 = 5^2 = 25 \\qquad 2^2 + 3^2 = 4 + 9 = 13$",
-                    "description": "Error muy frecuente: las potencias se pueden repartir en productos y cocientes, pero <strong>no</strong> en sumas ni restas. Para desarrollar $(a + b)^2$ se usan las identidades notables."
+                    "description": "Error muy frecuente: las potencias se pueden repartir en productos y cocientes, pero <strong>no</strong> en sumas ni restas. Para desarrollar $(a + b)^2$ se usan las identidades notables.",
+                    "kind": "observacion"
                 }
             ]
         },
@@ -95,22 +100,32 @@
             "title": "Exponentes especiales",
             "items": [
                 {
+                    "title": "Potencia de exponente cero",
+                    "formula": "$a^0 = 1 \\quad (a \\neq 0)$",
+                    "example": "$6^0 = 1 \\qquad (-3)^0 = 1 \\qquad \\left(\\dfrac{2}{5}\\right)^0 = 1$",
+                    "description": "Se <strong>define</strong> $a^0 = 1$ para $a \\neq 0$, de modo que siga cumpliéndose la regla de la división de potencias de la misma base: $\\dfrac{a^3}{a^3} = a^{3-3} = a^0$ y un número (distinto de $0$) dividido entre sí mismo es $1$. La expresión $0^0$ no se define.",
+                    "kind": "definicion"
+                },
+                {
                     "title": "Exponente entero negativo",
                     "formula": "$a^{-n} = \\dfrac{1}{a^n} \\quad (a \\neq 0)$",
                     "example": "$2^{-3} = \\dfrac{1}{2^3} = \\dfrac{1}{8} \\qquad \\left(\\dfrac{2}{3}\\right)^{-2} = \\left(\\dfrac{3}{2}\\right)^2 = \\dfrac{9}{4}$",
-                    "description": "Un exponente negativo <strong>no</strong> hace negativo el resultado: indica que hay que darle la vuelta a la base (tomar su inverso) y cambiar el signo del exponente."
+                    "description": "Para $a \\neq 0$ se <strong>define</strong> $a^{-n}$ como el inverso de $a^n$, de modo que se mantenga la regla de la división: $a^{0-n} = \\dfrac{a^0}{a^n} = \\dfrac{1}{a^n}$. Un exponente negativo <strong>no</strong> hace negativo el resultado: indica que hay que tomar el inverso de la base.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Exponente racional",
                     "formula": "$a^{\\frac{m}{n}} = \\sqrt[n]{a^m}$",
                     "example": "$8^{\\frac{2}{3}} = \\sqrt[3]{8^2} = \\sqrt[3]{64} = 4$",
-                    "description": "El denominador del exponente es el <strong>índice</strong> de la raíz y el numerador es el exponente del radicando."
+                    "description": "Para $a \\geq 0$ (o cualquier $a$ si $n$ es impar) se <strong>define</strong> $a^{m/n}$ como la raíz $n$-ésima de $a^m$, de modo que se mantenga la regla de la potencia de una potencia: $\\left(a^{1/n}\\right)^n = a$. El denominador del exponente es el <strong>índice</strong> de la raíz y el numerador es el exponente del radicando (la raíz se define en el tema siguiente).",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Exponente racional y negativo",
                     "formula": "$a^{-\\frac{m}{n}} = \\frac{1}{\\sqrt[n]{a^m}}$",
                     "example": "$4^{-\\frac{3}{2}} = \\frac{1}{\\sqrt{4^3}} = \\frac{1}{8}$",
-                    "description": "Se combinan las dos reglas anteriores: primero se invierte la base y después se calcula la raíz."
+                    "description": "Se combinan las dos definiciones anteriores: primero se invierte la base (o se pone el resultado en el denominador) y después se calcula la raíz.",
+                    "kind": "definicion"
                 }
             ]
         }

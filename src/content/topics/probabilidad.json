@@ -5,43 +5,75 @@
     "menuOrder": 3,
     "sections": [
         {
+            "title": "Principio de multiplicación, factorial y números combinatorios",
+            "items": [
+                {
+                    "title": "Principio de multiplicación",
+                    "kind": "propiedad",
+                    "description": "Si una tarea se puede realizar en $m$ formas distintas y, después, una segunda tarea se puede realizar en $n$ formas distintas (sin importar cómo se hizo la primera), entonces las dos tareas, una a continuación de otra, se pueden realizar de $m \\cdot n$ formas. Se extiende a cualquier número de tareas. Es la base de todas las fórmulas de combinatoria.",
+                    "formula": "$\\text{formas} = m \\cdot n \\cdot p \\cdots$",
+                    "example": "Un menú se compone de un primero (3 opciones), un segundo (4 opciones) y un postre (2 opciones): hay $3 \\cdot 4 \\cdot 2 = 24$ menús distintos."
+                },
+                {
+                    "title": "Factorial",
+                    "kind": "definicion",
+                    "description": "El <strong>factorial</strong> de un número natural $n$ es el producto de todos los naturales de $1$ a $n$. Por convenio, $0! = 1$. Crece muy deprisa.",
+                    "formula": "$n! = n \\cdot (n-1) \\cdot (n-2) \\cdots 2 \\cdot 1 \\qquad 0! = 1$",
+                    "example": "$4! = 4 \\cdot 3 \\cdot 2 \\cdot 1 = 24 \\qquad 6! = 720 \\qquad \\dfrac{7!}{5!} = 7 \\cdot 6 = 42$"
+                },
+                {
+                    "title": "Número combinatorio",
+                    "kind": "definicion",
+                    "description": "El <strong>número combinatorio</strong> $\\binom{n}{k}$ (se lee «$n$ sobre $k$»), con $0 \\leq k \\leq n$, se define mediante factoriales. Cuenta de cuántas formas se pueden elegir $k$ elementos de entre $n$ sin importar el orden. Cumple $\\binom{n}{0} = \\binom{n}{n} = 1$ y $\\binom{n}{k} = \\binom{n}{n-k}$.",
+                    "formula": "$\\binom{n}{k} = \\dfrac{n!}{k!\\,(n-k)!}$",
+                    "example": "$\\binom{5}{2} = \\dfrac{5!}{2!\\,3!} = \\dfrac{120}{12} = 10 \\qquad \\binom{7}{5} = \\binom{7}{2} = 21$"
+                }
+            ]
+        },
+        {
             "title": "Combinatoria",
             "items": [
                 {
                     "title": "Permutaciones",
                     "formula": "$P_n = n!$",
                     "example": "¿De cuántas formas pueden sentarse 5 personas en un banco? $P_5 = 5! = 120$ formas.",
-                    "description": "Se utilizan todos los elementos del conjunto y el orden importa. No hay repetición."
+                    "description": "Una <strong>permutación</strong> de $n$ elementos es cada una de las formas de ordenar todos ellos, sin repetir. Se utilizan todos los elementos y el orden importa. Por el principio de multiplicación hay $n$ opciones para el primer lugar, $n-1$ para el segundo, etc.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Permutaciones con repetición",
                     "formula": "$PR_n^{a,b,c} = \\frac{n!}{a! \\cdot b! \\cdot c!}$",
                     "example": "¿Cuántas palabras distintas se pueden formar con las letras de la palabra COCO? $PR_4^{2,2} = \\frac{4!}{2! \\cdot 2!} = 6$ palabras.",
-                    "description": "Se utilizan todos los elementos donde algunos están repetidos. El orden importa."
+                    "description": "Son las formas de ordenar $n$ elementos de los que algunos se repiten: $a$ iguales de un tipo, $b$ de otro, $c$ de otro, con $a + b + c = n$. Se utilizan todos los elementos y el orden importa. Se divide $n!$ entre las formas de reordenar los elementos idénticos.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Variaciones",
                     "formula": "$V_n^k = \\frac{n!}{(n-k)!}$",
                     "example": "¿Cuántos números de 3 cifras distintas se pueden formar con los dígitos 1, 2, 3, 4, 5? $V_5^3 = \\frac{5!}{2!} = 60$ números.",
-                    "description": "Se elige un subconjunto de $k$ elementos de un total de $n$. El orden importa y no hay repetición."
+                    "description": "Una <strong>variación</strong> de $n$ elementos tomados de $k$ en $k$ es cada una de las formas de elegir y ordenar $k$ elementos distintos entre $n$ ($k \\leq n$). El orden importa y no hay repetición.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Variaciones con repetición",
                     "formula": "$VR_n^k = n^k$",
                     "example": "¿Cuántos resultados posibles hay al lanzar una moneda 3 veces? $VR_2^3 = 2^3 = 8$ resultados.",
-                    "description": "Se elige un subconjunto de $k$ elementos pudiendo repetirse. El orden importa."
+                    "description": "Son las formas de elegir y ordenar $k$ elementos de $n$ pudiendo repetirse el mismo. El orden importa. Cada uno de los $k$ lugares puede ocuparse de $n$ formas.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Combinaciones",
                     "formula": "$C_n^k = \\binom{n}{k} = \\frac{n!}{k!(n-k)!}$",
                     "example": "En un grupo de 10 personas, ¿cuántos comités de 3 personas se pueden formar? $C_{10}^3 = \\frac{10!}{3!7!} = 120$ comités.",
-                    "description": "Se elige un subconjunto de $k$ elementos. El orden NO importa y no hay repetición."
+                    "description": "Una <strong>combinación</strong> de $n$ elementos tomados de $k$ en $k$ es cada subconjunto de $k$ elementos elegidos entre $n$. El orden <strong>no</strong> importa y no hay repetición. Cada subconjunto de $k$ elementos se puede ordenar de $k!$ formas, por eso $C_n^k = V_n^k / k!$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Combinaciones con repetición",
                     "formula": "$CR_n^k = \\binom{n+k-1}{k}$",
                     "example": "En una pastelería hay 4 tipos de pasteles. ¿De cuántas formas se pueden elegir 6 pasteles? $CR_4^6 = \\binom{4+6-1}{6} = \\binom{9}{6} = 84$ formas.",
-                    "description": "Se elige un subconjunto de $k$ elementos pudiendo repetirse. El orden NO importa."
+                    "description": "Son las formas de elegir $k$ elementos de $n$ tipos pudiendo repetir el mismo tipo. El orden <strong>no</strong> importa.",
+                    "kind": "definicion"
                 }
             ]
         },
@@ -50,15 +82,18 @@
             "items": [
                 {
                     "title": "¿Importa el orden?",
-                    "description": "Es la primera pregunta. Si el orden de los elementos cambia el resultado (como en una contraseña), es Variación o Permutación. Si el orden NO importa (como elegir un grupo de amigos), es siempre una Combinación."
+                    "description": "Es la primera pregunta. Si el orden de los elementos cambia el resultado (como en una contraseña), es Variación o Permutación. Si el orden NO importa (como elegir un grupo de amigos), es siempre una Combinación.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "¿Se usan todos los elementos?",
-                    "description": "Si importa el orden y usamos TODOS los elementos disponibles, es una Permutación. Si solo elegimos una parte del total, es una Variación."
+                    "description": "Si importa el orden y usamos TODOS los elementos disponibles, es una Permutación. Si solo elegimos una parte del total, es una Variación.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "¿Se pueden repetir?",
-                    "description": "Una vez decidido el tipo (V, P o C), comprueba si el problema permite usar el mismo elemento varias veces. Si es así, utilizaremos la versión 'con repetición' de la fórmula."
+                    "description": "Una vez decidido el tipo (V, P o C), comprueba si el problema permite usar el mismo elemento varias veces. Si es así, utilizaremos la versión 'con repetición' de la fórmula.",
+                    "kind": "procedimiento"
                 }
             ]
         },
@@ -68,32 +103,38 @@
                 {
                     "title": "Experimento aleatorio",
                     "description": "Aquel cuyo resultado no se puede predecir con exactitud antes de realizarlo, incluso si se repite bajo las mismas condiciones.",
-                    "example": "Lanzar una moneda, tirar un dado o extraer una carta de una baraja."
+                    "example": "Lanzar una moneda, tirar un dado o extraer una carta de una baraja.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Espacio muestral ($E$)",
                     "description": "Conjunto formado por todos los resultados posibles de un experimento aleatorio.",
-                    "example": "En el lanzamiento de una moneda, el espacio muestral es $E = \\{\\text{cara, cruz}\\}$."
+                    "example": "En el lanzamiento de una moneda, el espacio muestral es $E = \\{\\text{cara, cruz}\\}$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Sucesos elementales",
                     "description": "Cada uno de los resultados simples e individuales que pueden ocurrir en un experimento aleatorio (componentes del espacio muestral).",
-                    "example": "Obtener un '5' al lanzar un dado de seis caras."
+                    "example": "Obtener un '5' al lanzar un dado de seis caras.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Sucesos compuestos",
                     "description": "Cualquier suceso que se puede descomponer en otros más simples; es decir, subconjuntos del espacio muestral formados por dos o más sucesos elementales.",
-                    "example": "Obtener un número impar al lanzar un dado: $A = \\{1, 3, 5\\}$."
+                    "example": "Obtener un número impar al lanzar un dado: $A = \\{1, 3, 5\\}$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Suceso seguro",
                     "description": "Aquel que siempre ocurre porque está formado por todos los resultados posibles del espacio muestral. Coincide con $E$.",
-                    "example": "Obtener un número del 1 al 6 al lanzar un dado de seis caras."
+                    "example": "Obtener un número del 1 al 6 al lanzar un dado de seis caras.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Suceso imposible",
                     "description": "Aquel que nunca puede ocurrir. Se representa con el símbolo del conjunto vacío $\\emptyset$.",
-                    "example": "Obtener un '7' al lanzar un dado de seis caras."
+                    "example": "Obtener un '7' al lanzar un dado de seis caras.",
+                    "kind": "definicion"
                 }
             ]
         },
@@ -103,32 +144,45 @@
                 {
                     "title": "Unión ($A \\cup B$)",
                     "description": "El suceso que ocurre cuando ocurre $A$, ocurre $B$ o ambos a la vez. Es el conjunto de elementos que pertenecen a $A$, a $B$ o a ambos.",
-                    "example": "Al lanzar un dado, si $A = \\{2, 4, 6\\}$ (pares) y $B = \\{1, 2, 3\\}$ (menores que 4), entonces $A \\cup B = \\{1, 2, 3, 4, 6\\}$."
+                    "example": "Al lanzar un dado, si $A = \\{2, 4, 6\\}$ (pares) y $B = \\{1, 2, 3\\}$ (menores que 4), entonces $A \\cup B = \\{1, 2, 3, 4, 6\\}$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Intersección ($A \\cap B$)",
                     "description": "El suceso que ocurre cuando ocurren simultáneamente $A$ y $B$. Es el conjunto de elementos comunes a $A$ y $B$.",
-                    "example": "Si $A = \\{2, 4, 6\\}$ y $B = \\{1, 2, 3\\}$, entonces $A \\cap B = \\{2\\}$."
+                    "example": "Si $A = \\{2, 4, 6\\}$ y $B = \\{1, 2, 3\\}$, entonces $A \\cap B = \\{2\\}$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Sucesos compatibles e incompatibles",
                     "description": "Indican si dos sucesos pueden ocurrir al mismo tiempo o no:<br><ul><li><strong>Incompatibles:</strong> No tienen ningún resultado en común. Si ocurre uno, no puede ocurrir el otro ($A \\cap B = \\emptyset$).</li><li><strong>Compatibles:</strong> Tienen al menos un resultado en común. Pueden ocurrir simultáneamente ($A \\cap B \\neq \\emptyset$).</li></ul>",
-                    "example": "Al lanzar un dado:<br>• <strong>Incompatibles:</strong> 'Sacar un 1' y 'Sacar un 6' (imposible ambos a la vez).<br>• <strong>Compatibles:</strong> 'Sacar par' (2, 4, 6) y 'Sacar mayor que 3' (4, 5, 6). Si sale un 4 o un 6, ocurren los dos."
+                    "example": "Al lanzar un dado:<br>• <strong>Incompatibles:</strong> 'Sacar un 1' y 'Sacar un 6' (imposible ambos a la vez).<br>• <strong>Compatibles:</strong> 'Sacar par' (2, 4, 6) y 'Sacar mayor que 3' (4, 5, 6). Si sale un 4 o un 6, ocurren los dos.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Suceso contrario o complementario ($\\bar{A}$)",
                     "description": "Aquel que ocurre siempre que no ocurre $A$. Está formado por todos los elementos del espacio muestral que no están en $A$.",
-                    "example": "Si $A = \\{\\text{sacar un 6}\\}$ al lanzar un dado, su contrario es $\\bar{A} = \\{1, 2, 3, 4, 5\\}$."
+                    "example": "Si $A = \\{\\text{sacar un 6}\\}$ al lanzar un dado, su contrario es $\\bar{A} = \\{1, 2, 3, 4, 5\\}$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Diferencia de sucesos ($A - B$)",
                     "description": "El suceso que ocurre cuando ocurre $A$ pero no ocurre $B$. Equivale a $A \\cap \\bar{B}$.",
-                    "example": "Si $A = \\{1, 2, 3, 4\\}$ y $B = \\{3, 4, 5, 6\\}$, la diferencia $A - B = \\{1, 2\\}$."
+                    "example": "Si $A = \\{1, 2, 3, 4\\}$ y $B = \\{3, 4, 5, 6\\}$, la diferencia $A - B = \\{1, 2\\}$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Leyes de De Morgan",
                     "description": "Relacionan el contrario de la unión y la intersección:<br>1. $\\overline{A \\cup B} = \\bar{A} \\cap \\bar{B}$ (El contrario de la unión es la intersección de los contrarios).<br>2. $\\overline{A \\cap B} = \\bar{A} \\cup \\bar{B}$ (El contrario de la intersección es la unión de los contrarios).",
-                    "example": "El contrario de 'sacar un 1 o un 2' es 'no sacar un 1 Y no sacar un 2'."
+                    "example": "El contrario de «sacar un 1 o un 2» es «no sacar un 1 y no sacar un 2», es decir, $\\{3, 4, 5, 6\\}$.<br>El contrario de «par y mayor que $3$» ($\\{4, 6\\}$) es «impar o menor o igual que $3$»: $\\{1, 2, 3, 5\\}$ ✓",
+                    "kind": "teorema",
+                    "formula": "$\\overline{A \\cup B} = \\bar{A} \\cap \\bar{B} \\qquad \\overline{A \\cap B} = \\bar{A} \\cup \\bar{B}$"
+                },
+                {
+                    "title": "Operaciones con sucesos y diagramas de Venn",
+                    "kind": "definicion",
+                    "description": "Los sucesos son <strong>subconjuntos</strong> del espacio muestral $E$, así que se operan como conjuntos y se visualizan en <strong>diagramas de Venn</strong>: el rectángulo es $E$ y cada círculo, un suceso. La <strong>unión</strong> $A \\cup B$ ($A$ o $B$), la <strong>intersección</strong> $A \\cap B$ ($A$ y $B$), el <strong>contrario</strong> $\\bar{A}$ (no $A$) y la <strong>diferencia</strong> $A - B$ ($A$ pero no $B$) se definen en las tarjetas siguientes.",
+                    "example": "<img src='/ejemplos/probabilidad/venn.png' alt='Cuatro diagramas de Venn con sombreado: A unión B, A intersección B, contrario de A y A menos B' width='1308' height='253' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>"
                 }
             ]
         },
@@ -136,44 +190,52 @@
             "title": "Propiedades y cálculo de probabilidades",
             "items": [
                 {
-                    "title": "Definición de probabilidad",
-                    "description": "La probabilidad es una medida cuantitativa, expresada como un número entre 0 y 1, que indica la mayor o menor posibilidad de que un suceso ocurra. Un valor de 0 indica que el suceso es imposible ($P(\\emptyset)=0$) y un valor de 1 indica que el suceso es seguro ($P(E)=1$).",
-                    "example": "La probabilidad de que salga cara al lanzar una moneda es 0,5 (o 50%)."
+                    "title": "Probabilidad (axiomas de Kolmogorov)",
+                    "description": "La <strong>probabilidad</strong> es una función $P$ que asigna a cada suceso $A$ un número $P(A)$ y cumple tres axiomas:<br>1. $P(A) \\geq 0$ para todo suceso $A$.<br>2. $P(E) = 1$ (el suceso seguro tiene probabilidad $1$).<br>3. Si $A$ y $B$ son incompatibles, $P(A \\cup B) = P(A) + P(B)$.<br>De ellos se deduce que $0 \\leq P(A) \\leq 1$ y que $P(\\emptyset) = 0$. Un valor $0$ indica un suceso imposible y un valor $1$ un suceso seguro.",
+                    "example": "La probabilidad de que salga cara al lanzar una moneda equilibrada es $0{,}5$ (el $50\\,\\%$), y $P(\\text{cara}) + P(\\text{cruz}) = 1$.",
+                    "formula": "$P(A) \\ge 0 \\qquad P(E) = 1 \\qquad A \\cap B = \\emptyset \\Rightarrow P(A \\cup B) = P(A) + P(B)$",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Ley de los grandes números",
                     "description": "Señala que al repetir un experimento muchas veces, la frecuencia relativa de un suceso tiende a estabilizarse en torno a su probabilidad teórica.",
-                    "example": "Si lanzamos una moneda 1000 veces, la proporción de caras será muy próxima a 0,5."
+                    "example": "Si lanzamos una moneda 1000 veces, la proporción de caras será muy próxima a 0,5.",
+                    "kind": "teorema"
                 },
                 {
                     "title": "Regla de Laplace",
                     "formula": "$P(A) = \\frac{\\text{Casos favorables}}{\\text{Casos posibles}}$",
-                    "description": "Se aplica cuando todos los sucesos elementales son equiprobables (tienen la misma probabilidad).",
-                    "example": "Probabilidad de sacar un 5 en un dado: $P(5) = \\frac{1}{6}$."
+                    "description": "Si todos los sucesos elementales son <strong>equiprobables</strong> (tienen la misma probabilidad), la probabilidad de un suceso $A$ es el cociente entre el número de casos favorables a $A$ y el número de casos posibles.",
+                    "example": "Probabilidad de sacar un $5$ en un dado: $P(5) = \\dfrac{1}{6}$.<br>Probabilidad de sacar un número par: $P = \\dfrac{3}{6} = \\dfrac{1}{2}$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Probabilidad del suceso contrario",
                     "formula": "$P(\\bar{A}) = 1 - P(A)$",
-                    "description": "La probabilidad de que no ocurra un suceso es 1 menos la probabilidad de que ocurra.",
-                    "example": "Si la probabilidad de lluvia es 0,3, la de que no llueva es $1 - 0{,}3 = 0{,}7$."
+                    "description": "Como $A$ y $\\bar{A}$ son incompatibles y su unión es $E$, el tercer axioma da $P(A) + P(\\bar{A}) = P(E) = 1$.",
+                    "example": "Si la probabilidad de lluvia es 0,3, la de que no llueva es $1 - 0{,}3 = 0{,}7$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Unión de sucesos compatibles",
                     "formula": "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$",
-                    "description": "Para calcular la probabilidad de que ocurra A o B, sumamos sus probabilidades y restamos la de su intersección (para no contarla dos veces).",
-                    "example": "Si $P(A)=0{,}6$, $P(B)=0{,}4$ y $P(A \\cap B)=0{,}2$, entonces $P(A \\cup B) = 0{,}6 + 0{,}4 - 0{,}2 = 0{,}8$."
+                    "description": "La probabilidad de que ocurra $A$ o $B$ es la suma de sus probabilidades menos la de su intersección (para no contar dos veces los resultados comunes).",
+                    "example": "Si $P(A)=0{,}6$, $P(B)=0{,}4$ y $P(A \\cap B)=0{,}2$, entonces $P(A \\cup B) = 0{,}6 + 0{,}4 - 0{,}2 = 0{,}8$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Unión de sucesos incompatibles",
                     "formula": "$P(A \\cup B) = P(A) + P(B)$",
-                    "description": "Si los sucesos son incompatibles ($A \\cap B = \\emptyset$), su intersección es 0.",
-                    "example": "Al lanzar un dado, $P(\\text{sacar 1 o 2}) = P(1) + P(2) = \\frac{1}{6} + \\frac{1}{6} = \\frac{2}{6} = \\frac{1}{3}$."
+                    "description": "Si los sucesos son incompatibles ($A \\cap B = \\emptyset$), su intersección tiene probabilidad $0$ y la fórmula anterior se reduce a la suma (es el tercer axioma).",
+                    "example": "Al lanzar un dado, $P(\\text{sacar 1 o 2}) = P(1) + P(2) = \\frac{1}{6} + \\frac{1}{6} = \\frac{2}{6} = \\frac{1}{3}$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Probabilidad de $A$ y no $B$ ($A \\cap \\bar{B}$)",
                     "formula": "$P(A \\cap \\bar{B}) = P(A) - P(A \\cap B)$",
                     "description": "La probabilidad de que ocurra A y NO ocurra B es igual a la probabilidad de A quitándole su parte compartida con B.",
-                    "example": "Si $P(A)=0{,}5$ y la parte compartida es $P(A \\cap B)=0{,}1$, entonces la probabilidad de que ocurra solo A es $0{,}5 - 0{,}1 = 0{,}4$."
+                    "example": "Si $P(A)=0{,}5$ y la parte compartida es $P(A \\cap B)=0{,}1$, entonces la probabilidad de que ocurra solo A es $0{,}5 - 0{,}1 = 0{,}4$.",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -183,25 +245,30 @@
                 {
                     "title": "Probabilidad condicionada",
                     "formula": "$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$",
-                    "description": "Es la probabilidad de que ocurra el suceso $A$ sabiendo que ya ha ocurrido el suceso $B$.",
-                    "example": "En una urna con 3 bolas rojas y 2 azules, la probabilidad de que la segunda sea roja sabiendo que la primera fue azul (sin devolución) es $P(R_2|A_1) = \\frac{3}{4}$."
+                    "description": "La probabilidad de que ocurra $A$ <strong>sabiendo</strong> que ya ha ocurrido $B$ (con $P(B) > 0$) es la proporción que representa $A \\cap B$ dentro de $B$.",
+                    "example": "En una urna con $3$ bolas rojas y $2$ azules, se extraen dos bolas sin devolución. La probabilidad de que la segunda sea roja sabiendo que la primera fue azul es $P(R_2 \\mid A_1) = \\dfrac{3}{4}$: quedan $4$ bolas y $3$ son rojas.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Sucesos independientes",
                     "formula": "$P(A \\cap B) = P(A) \\cdot P(B)$",
-                    "description": "Dos sucesos son independientes si la ocurrencia de uno no afecta a la probabilidad del otro. En este caso, $P(A|B) = P(A)$.",
-                    "example": "Lanzar un dado y una moneda: sacar un 6 no influye en si sale cara o cruz."
+                    "description": "Dos sucesos son <strong>independientes</strong> si la ocurrencia de uno no afecta a la probabilidad del otro: $P(A \\mid B) = P(A)$. Equivale a que la probabilidad de la intersección sea el producto de las probabilidades.",
+                    "example": "Lanzar un dado y una moneda: $P(\\text{6 y cara}) = \\frac{1}{6} \\cdot \\frac{1}{2} = \\frac{1}{12}$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Sucesos dependientes",
                     "formula": "$P(A \\cap B) = P(A) \\cdot P(B|A)$",
-                    "description": "Dos sucesos son dependientes si la probabilidad de que ocurra uno se ve alterada por la ocurrencia del otro.",
-                    "example": "Extraer dos cartas de una baraja sin devolver la primera al mazo."
+                    "description": "Dos sucesos son <strong>dependientes</strong> si no son independientes: la ocurrencia de uno altera la probabilidad del otro. En ese caso la intersección se calcula con la probabilidad condicionada.",
+                    "example": "Extraer dos cartas de una baraja española (40 cartas) sin devolver la primera. $P(\\text{dos oros}) = \\frac{10}{40} \\cdot \\frac{9}{39} = \\frac{3}{52}$.",
+                    "kind": "definicion"
                 },
                 {
-                    "title": "Producto de probabilidades",
-                    "description": "Permite calcular la probabilidad de la intersección ($A \\cap B$) dependiendo de si son dependientes o independientes.",
-                    "example": "Si son independientes: $P(A \\cap B) = P(A) \\cdot P(B)$. Si son dependientes: $P(A \\cap B) = P(A) \\cdot P(B|A)$."
+                    "title": "Regla del producto",
+                    "description": "Despejando en la definición de probabilidad condicionada se obtiene la probabilidad de la intersección. Si los sucesos son independientes, $P(B \\mid A) = P(B)$ y queda el producto simple.",
+                    "example": "Independientes: $P(A) = 0{,}5$, $P(B) = 0{,}4 \\Rightarrow P(A \\cap B) = 0{,}2$.<br>Dependientes: $P(A) = 0{,}5$, $P(B \\mid A) = 0{,}3 \\Rightarrow P(A \\cap B) = 0{,}15$.",
+                    "kind": "teorema",
+                    "formula": "$P(A \\cap B) = P(A) \\cdot P(B \\mid A) \\qquad \\text{(independientes: } P(A \\cap B) = P(A) \\cdot P(B)\\text{)}$"
                 }
             ]
         },
@@ -209,25 +276,36 @@
             "title": "Experimentos compuestos",
             "items": [
                 {
-                    "title": "Experimentos compuestos",
-                    "description": "Son procesos que ocurren en varias etapas (ej. elegir una caja y luego sacar una bola). La mejor forma de resolverlos es dibujando un <strong>Diagrama de Árbol</strong>.",
-                    "example": "Imagina que tienes dos cajas:<br>• <strong>Caja 1:</strong> Tiene 8 bolas rojas y 2 azules ($P(R)=0{,}8$).<br>• <strong>Caja 2:</strong> Tiene 4 bolas rojas y 6 azules ($P(R)=0{,}4$).<br>Primero eliges una caja al azar (50% cada una) y luego sacas una bola."
+                    "title": "Experimento compuesto",
+                    "description": "Un <strong>experimento compuesto</strong> es un proceso que ocurre en varias etapas (por ejemplo, elegir una caja y luego sacar una bola). Se resuelve dibujando un <strong>diagrama de árbol</strong>.",
+                    "example": "Imagina que tienes dos cajas:<br>• <strong>Caja 1:</strong> Tiene 8 bolas rojas y 2 azules ($P(R)=0{,}8$).<br>• <strong>Caja 2:</strong> Tiene 4 bolas rojas y 6 azules ($P(R)=0{,}4$).<br>Primero eliges una caja al azar (50% cada una) y luego sacas una bola.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Diagrama de decisión (árbol)",
-                    "description": "Es el esquema visual para entender todos los pasos del ejemplo anterior:<br><br><div class='diagram-tree'><strong>INICIO</strong>\n├── <strong>Caja 1 (0,5)</strong> ─── 🔴 Roja (0,8)\n│                └── 🔵 Azul (0,2)\n└── <strong>Caja 2 (0,5)</strong> ─── 🔴 Roja (0,4)\n                 └── 🔵 Azul (0,6)</div><br><strong>Regla:</strong> Para hallar la probabilidad de un camino, multiplica sus ramas ($0{,}5 \\cdot 0{,}8$)."
+                    "description": "Es el esquema visual para entender todos los pasos del ejemplo anterior:<br><br><div class='diagram-tree'><strong>INICIO</strong>\n├── <strong>Caja 1 (0,5)</strong> ─── 🔴 Roja (0,8)\n│                └── 🔵 Azul (0,2)\n└── <strong>Caja 2 (0,5)</strong> ─── 🔴 Roja (0,4)\n                 └── 🔵 Azul (0,6)</div><br><strong>Regla:</strong> Para hallar la probabilidad de un camino, multiplica sus ramas ($0{,}5 \\cdot 0{,}8$).",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Sistema completo de sucesos",
+                    "kind": "definicion",
+                    "description": "Los sucesos $A_1, A_2, \\dots, A_n$ forman un <strong>sistema completo de sucesos</strong> si son incompatibles dos a dos y su unión es el espacio muestral, es decir, si en cada realización del experimento ocurre <strong>exactamente uno</strong> de ellos. Sus probabilidades suman $1$.",
+                    "formula": "$A_i \\cap A_j = \\emptyset \\ (i \\neq j) \\qquad A_1 \\cup \\cdots \\cup A_n = E \\qquad \\sum P(A_i) = 1$",
+                    "example": "«Elegir la caja 1» y «elegir la caja 2» forman un sistema completo. También $A$ y $\\bar{A}$ para cualquier suceso $A$."
                 },
                 {
                     "title": "Teorema de la probabilidad total",
-                    "formula": "$P(B) = P(A_1) \\cdot P(B|A_1) + P(A_2) \\cdot P(B|A_2)$",
-                    "description": "Sirve para calcular la probabilidad final de un suceso (ej. sacar Roja) sumando todos los caminos que llegan a él.",
-                    "example": "<strong>¿Probabilidad de que la bola sea Roja?</strong><br>Camino 1: $0{,}5 \\cdot 0{,}8 = 0{,}4$<br>Camino 2: $0{,}5 \\cdot 0{,}4 = 0{,}2$<br><strong>Total: $0{,}4 + 0{,}2 = 0{,}6$ (60%)</strong>"
+                    "formula": "$P(B) = P(A_1) \\cdot P(B \\mid A_1) + \\cdots + P(A_n) \\cdot P(B \\mid A_n)$",
+                    "description": "Si $A_1, \\dots, A_n$ es un sistema completo de sucesos y $B$ otro suceso, la probabilidad de $B$ se obtiene sumando todos los caminos del árbol que llegan a $B$.",
+                    "example": "<strong>¿Probabilidad de que la bola sea Roja?</strong><br>Camino 1: $0{,}5 \\cdot 0{,}8 = 0{,}4$<br>Camino 2: $0{,}5 \\cdot 0{,}4 = 0{,}2$<br><strong>Total: $0{,}4 + 0{,}2 = 0{,}6$ (60%)</strong>",
+                    "kind": "teorema"
                 },
                 {
                     "title": "Teorema de Bayes",
-                    "formula": "$P(A_i|B) = \\frac{P(A_i) \\cdot P(B|A_i)}{P(B)}$",
-                    "description": "Se usa cuando ya sabemos el resultado final (ej. la bola es Roja) y queremos saber cuál fue la probabilidad de que viniera de una causa concreta (ej. la Caja 1). Es el camino inverso.",
-                    "example": "<strong>Si sabemos que la bola es Roja, ¿probabilidad de que sea de la Caja 1?</strong><br>$\\frac{\\text{Prob. de ese camino}}{\\text{Prob. Total}} = \\frac{0{,}5 \\cdot 0{,}8}{0{,}6} = \\frac{0{,}4}{0{,}6} = 0{,}67$ (67%)"
+                    "formula": "$P(A_i \\mid B) = \\dfrac{P(A_i) \\cdot P(B \\mid A_i)}{P(B)} = \\dfrac{P(A_i) \\cdot P(B \\mid A_i)}{\\sum_j P(A_j) \\cdot P(B \\mid A_j)}$",
+                    "description": "Se usa cuando ya se conoce el resultado final $B$ (la bola es roja) y se quiere hallar la probabilidad de que viniera de una causa concreta $A_i$ (la caja 1): es el camino inverso del árbol. El denominador es la probabilidad total de $B$.",
+                    "example": "<strong>Si sabemos que la bola es Roja, ¿probabilidad de que sea de la Caja 1?</strong><br>$\\frac{\\text{Prob. de ese camino}}{\\text{Prob. Total}} = \\frac{0{,}5 \\cdot 0{,}8}{0{,}6} = \\frac{0{,}4}{0{,}6} = 0{,}67$ (67%)",
+                    "kind": "teorema"
                 }
             ]
         }

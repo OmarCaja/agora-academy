@@ -2,6 +2,8 @@ import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
+import { KINDS } from './data/itemKinds';
+
 const topics = defineCollection({
     loader: glob({ pattern: "**/*.json", base: "./src/content/topics" }),
     schema: z.object({
@@ -13,6 +15,8 @@ const topics = defineCollection({
             title: z.string(),
             items: z.array(z.object({
                 title: z.string(),
+                // What the card is: shown as a label above the title.
+                kind: z.enum(KINDS).optional(),
                 formula: z.string().optional(),
                 example: z.string().optional(),
                 description: z.string().optional()

@@ -8,14 +8,18 @@
             "title": "Concepto de derivada",
             "items": [
                 {
-                    "title": "Definición de derivada",
-                    "description": "La <strong>derivada</strong> de una función $f(x)$ en un punto $x=a$, denotada $f'(a)$, mide la tasa de variación instantánea de la función en ese punto, es decir, la pendiente de la recta tangente a la curva en $x=a$. Se define como el límite: $f'(a) = \\lim_{h \\to 0} \\dfrac{f(a+h) - f(a)}{h}$.",
-                    "example": "Para $f(x) = x^2$ en $x=3$: $f'(3) = \\lim_{h \\to 0} \\dfrac{(3+h)^2 - 3^2}{h} = \\lim_{h \\to 0} \\dfrac{6h+h^2}{h} = \\lim_{h \\to 0} (6+h) = 6$."
+                    "title": "Derivada en un punto",
+                    "description": "Sea $f$ una función definida en un entorno de $a$. La <strong>derivada</strong> de $f$ en $a$ es, cuando existe y es finito, el límite del cociente incremental (la pendiente de la recta secante que pasa por $(a, f(a))$ y $(a+h, f(a+h))$ cuando $h \\to 0$). Se escribe $f'(a)$. Si existe, se dice que $f$ es <strong>derivable</strong> en $a$; su valor es la <strong>tasa de variación instantánea</strong> de $f$ en $a$ y la pendiente de la recta tangente a la gráfica en ese punto.",
+                    "example": "Para $f(x) = x^2$ en $x=3$: $f'(3) = \\lim_{h \\to 0} \\dfrac{(3+h)^2 - 3^2}{h} = \\lim_{h \\to 0} \\dfrac{6h+h^2}{h} = \\lim_{h \\to 0} (6+h) = 6$.<br><img src='/ejemplos/derivadas/secante-tangente.png' alt='Rectas secantes que se acercan a la recta tangente en el punto (a, f(a)) cuando h tiende a 0' width='764' height='640' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "kind": "definicion",
+                    "formula": "$f'(a) = \\lim_{h \\to 0} \\dfrac{f(a+h) - f(a)}{h}$"
                 },
                 {
                     "title": "Función derivada",
-                    "description": "Si calculamos $f'(x)$ para un punto genérico $x$ en lugar de uno fijo $a$, obtenemos la <strong>función derivada</strong> $f'(x)$, que asigna a cada punto la pendiente de la tangente en ese punto. También se denota $\\dfrac{dy}{dx}$ o $y'$.",
-                    "example": "La función derivada de $f(x) = x^2$ es $f'(x) = 2x$. Así, $f'(3) = 6$, $f'(0) = 0$ y $f'(-1) = -2$."
+                    "description": "La <strong>función derivada</strong> de $f$ es la función $f'$ que asigna a cada $x$ donde $f$ es derivable el valor $f'(x)$. También se denota $y'$ o $\\dfrac{dy}{dx}$. Toda función derivable en un punto es continua en él, pero no al revés ($\\lvert x \\rvert$ es continua en $0$ y no es derivable).",
+                    "example": "La función derivada de $f(x) = x^2$ es $f'(x) = 2x$. Así, $f'(3) = 6$, $f'(0) = 0$ y $f'(-1) = -2$.",
+                    "kind": "definicion",
+                    "formula": "$f'(x) = \\lim_{h \\to 0} \\dfrac{f(x+h) - f(x)}{h}$"
                 }
             ]
         },
@@ -23,30 +27,39 @@
             "title": "Reglas de derivación",
             "items": [
                 {
-                    "title": "Suma y resta",
+                    "title": "Derivada de una suma o diferencia",
                     "formula": "$(f \\pm g)' = f' \\pm g'$",
-                    "example": "Si $f(x) = x^3 + \\sin x$, entonces $f'(x) = 3x^2 + \\cos x$."
+                    "example": "Si $f(x) = x^3 + \\sin x$, entonces $f'(x) = 3x^2 + \\cos x$.",
+                    "kind": "teorema",
+                    "description": "La derivada de una suma (o diferencia) de funciones derivables es la suma (o diferencia) de sus derivadas."
                 },
                 {
-                    "title": "Producto por constante",
+                    "title": "Derivada del producto por una constante",
                     "formula": "$(k \\cdot f)' = k \\cdot f'$",
-                    "example": "Si $f(x) = 5x^4$, entonces $f'(x) = 5 \\cdot 4x^3 = 20x^3$."
+                    "example": "Si $f(x) = 5x^4$, entonces $f'(x) = 5 \\cdot 4x^3 = 20x^3$.",
+                    "kind": "teorema",
+                    "description": "Una constante multiplicativa sale fuera de la derivada."
                 },
                 {
-                    "title": "Producto de funciones",
+                    "title": "Derivada de un producto",
                     "formula": "$(f \\cdot g)' = f' \\cdot g + f \\cdot g'$",
-                    "example": "Si $f(x) = x^2 \\cdot \\ln x$: $f'(x) = 2x \\cdot \\ln x + x^2 \\cdot \\dfrac{1}{x} = 2x\\ln x + x$."
+                    "example": "Si $f(x) = x^2 \\cdot \\ln x$: $f'(x) = 2x \\cdot \\ln x + x^2 \\cdot \\dfrac{1}{x} = 2x\\ln x + x$.",
+                    "kind": "teorema",
+                    "description": "La derivada de un producto es la derivada del primero por el segundo, más el primero por la derivada del segundo. <strong>No</strong> es el producto de las derivadas."
                 },
                 {
-                    "title": "Cociente de funciones",
+                    "title": "Derivada de un cociente",
                     "formula": "$\\left(\\dfrac{f}{g}\\right)' = \\dfrac{f' \\cdot g - f \\cdot g'}{g^2}$",
-                    "example": "Si $f(x) = \\dfrac{x}{x+1}$: $f'(x) = \\dfrac{1\\cdot(x+1) - x\\cdot 1}{(x+1)^2} = \\dfrac{1}{(x+1)^2}$."
+                    "example": "Si $f(x) = \\dfrac{x}{x+1}$: $f'(x) = \\dfrac{1\\cdot(x+1) - x\\cdot 1}{(x+1)^2} = \\dfrac{1}{(x+1)^2}$.",
+                    "kind": "teorema",
+                    "description": "Para $g(x) \\neq 0$: derivada del numerador por el denominador, menos numerador por derivada del denominador, todo partido por el denominador al cuadrado."
                 },
                 {
                     "title": "Regla de la cadena",
                     "formula": "$(f \\circ g)'(x) = f'(g(x)) \\cdot g'(x)$",
-                    "description": "Se usa para derivar <strong>funciones compuestas</strong>: se deriva la función «de fuera» dejando la de dentro igual, y se multiplica por la derivada de la función «de dentro».",
-                    "example": "Si $f(x) = \\sin(x^2)$, la función de fuera es $\\sin(u)$ y la de dentro $u=x^2$: $f'(x) = \\cos(x^2) \\cdot 2x$."
+                    "description": "Para derivar una <strong>función compuesta</strong> $f(g(x))$: se deriva la función «de fuera» $f$ evaluada en la de dentro $g(x)$, y se multiplica por la derivada de la función «de dentro».",
+                    "example": "Si $f(x) = \\sin(x^2)$, la función de fuera es $\\sin(u)$ y la de dentro $u=x^2$: $f'(x) = \\cos(x^2) \\cdot 2x$.",
+                    "kind": "teorema"
                 }
             ]
         },
@@ -55,8 +68,9 @@
             "items": [
                 {
                     "title": "Derivadas de funciones elementales",
-                    "description": "Tabla con las derivadas más habituales, expresadas para una función compuesta $u=u(x)$ (aplicando la regla de la cadena).",
-                    "example": "<table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 10px'>Función</th><th style='border:1px solid var(--border-color);padding:6px 10px'>Derivada</th></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$k$ (constante)</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$0$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$x$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$1$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$u^n$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$n \\cdot u^{n-1} \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\sqrt{u}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{2\\sqrt{u}}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{1}{u}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$-\\dfrac{u'}{u^2}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$e^u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$e^u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$a^u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$a^u \\cdot \\ln a \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\ln u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{u}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\log_a u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{u \\cdot \\ln a}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\sin u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\cos u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\cos u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$-\\sin u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\tan u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$(1 + \\tan^2 u) \\cdot u'$</td></tr></table>"
+                    "description": "Tabla con las derivadas más habituales, expresadas para una función $u = u(x)$ (el factor $u'$ viene de la regla de la cadena).",
+                    "example": "<table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 10px'>Función</th><th style='border:1px solid var(--border-color);padding:6px 10px'>Derivada</th></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$k$ (constante)</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$0$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$x$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$1$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$u^n$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$n \\cdot u^{n-1} \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\sqrt{u}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{2\\sqrt{u}}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{1}{u}$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$-\\dfrac{u'}{u^2}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$e^u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$e^u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$a^u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$a^u \\cdot \\ln a \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\ln u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{u}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\log_a u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\dfrac{u'}{u \\cdot \\ln a}$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\sin u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\cos u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\cos u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$-\\sin u \\cdot u'$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 10px'>$\\tan u$</td><td style='border:1px solid var(--border-color);padding:6px 10px'>$(1 + \\tan^2 u) \\cdot u'$</td></tr></table>",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -64,10 +78,11 @@
             "title": "Recta tangente",
             "items": [
                 {
-                    "title": "Ecuación de la recta tangente",
+                    "title": "Recta tangente",
                     "formula": "$y - f(a) = f'(a)\\,(x - a)$",
                     "example": "Tangente a $f(x) = x^2 - 3x$ en $x = 1$:<br>$f(1) = -2$, $f'(x) = 2x - 3$, $f'(1) = -1$<br>$y - (-2) = -1 \\cdot (x - 1) \\implies y = -x - 1$",
-                    "description": "La recta tangente pasa por el punto $(a, f(a))$ y su pendiente es $f'(a)$. Se necesitan dos datos: el punto (sustituyendo en $f$) y la pendiente (sustituyendo en $f'$)."
+                    "description": "La <strong>recta tangente</strong> a la gráfica de $f$ en el punto $(a, f(a))$ es la recta que pasa por él con pendiente $f'(a)$: es la posición límite de las rectas secantes cuando el segundo punto se acerca a $(a, f(a))$. Se necesitan dos datos: el punto (sustituyendo en $f$) y la pendiente (sustituyendo en $f'$).",
+                    "kind": "definicion"
                 }
             ]
         },
@@ -75,22 +90,25 @@
             "title": "Monotonía y extremos relativos",
             "items": [
                 {
-                    "title": "Crecimiento y decrecimiento",
+                    "title": "Criterio de la primera derivada: monotonía",
                     "formula": "$f'(x) > 0 \\implies f \\text{ creciente} \\qquad f'(x) < 0 \\implies f \\text{ decreciente}$",
                     "example": "$f(x) = x^3 - 3x$: $f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)$<br>• En $(-\\infty, -1)$: $f'(-2) = 9 > 0$, creciente.<br>• En $(-1, 1)$: $f'(0) = -3 < 0$, decreciente.<br>• En $(1, +\\infty)$: $f'(2) = 9 > 0$, creciente.",
-                    "description": "Pasos: 1) calcular $f'(x)$; 2) resolver $f'(x) = 0$ y buscar los puntos donde $f'$ no existe; 3) con esos puntos y los que no están en el dominio, dividir la recta en intervalos; 4) estudiar el signo de $f'$ en cada intervalo probando un valor."
+                    "description": "Si $f$ es derivable en un intervalo: si $f'(x) > 0$ en todo el intervalo, $f$ es <strong>estrictamente creciente</strong>; si $f'(x) < 0$, <strong>estrictamente decreciente</strong>. <strong>Procedimiento:</strong> 1) calcular $f'(x)$; 2) resolver $f'(x) = 0$ y localizar los puntos donde $f$ o $f'$ no existen; 3) dividir la recta en intervalos con esos puntos; 4) estudiar el signo de $f'$ en cada intervalo probando un valor.",
+                    "kind": "teorema"
                 },
                 {
-                    "title": "Máximos y mínimos relativos",
+                    "title": "Extremos relativos: condición necesaria y criterio",
                     "formula": "$f'(a) = 0 \\text{ y } f' \\text{ pasa de } + \\text{ a } - \\implies \\text{máximo} \\qquad f' \\text{ pasa de } - \\text{ a } + \\implies \\text{mínimo}$",
                     "example": "En $f(x) = x^3 - 3x$:<br>• Máximo relativo en $x = -1$: $f(-1) = 2$, punto $(-1, 2)$.<br>• Mínimo relativo en $x = 1$: $f(1) = -2$, punto $(1, -2)$.",
-                    "description": "Los extremos relativos están donde la función cambia de crecer a decrecer, o al revés. No basta con $f'(a) = 0$: en $f(x) = x^3$, $f'(0) = 0$ pero la función crece a los dos lados y no hay extremo."
+                    "description": "Si $f$ es derivable en $a$ y tiene en $a$ un extremo relativo, entonces $f'(a) = 0$ (<strong>condición necesaria</strong>). El recíproco es falso: en $f(x) = x^3$, $f'(0) = 0$ pero no hay extremo. Para decidir, se estudia el signo de $f'$ alrededor de $a$: si pasa de $+$ a $-$ hay un máximo relativo y si pasa de $-$ a $+$ hay un mínimo relativo.",
+                    "kind": "teorema"
                 },
                 {
                     "title": "Criterio de la segunda derivada",
                     "formula": "$f'(a) = 0 \\text{ y } f''(a) < 0 \\implies \\text{máximo} \\qquad f'(a) = 0 \\text{ y } f''(a) > 0 \\implies \\text{mínimo}$",
                     "example": "$f(x) = x^3 - 3x$, $f''(x) = 6x$:<br>$f''(-1) = -6 < 0 \\implies$ máximo en $x = -1$<br>$f''(1) = 6 > 0 \\implies$ mínimo en $x = 1$",
-                    "description": "Es una forma rápida de clasificar los puntos con $f'(a) = 0$. Si $f''(a) = 0$, el criterio no decide y hay que estudiar el signo de $f'$."
+                    "description": "Si $f'(a) = 0$ y $f''(a)$ existe: si $f''(a) < 0$ hay un máximo relativo, y si $f''(a) > 0$ hay un mínimo relativo. Si $f''(a) = 0$, el criterio no decide y hay que estudiar el signo de $f'$.",
+                    "kind": "teorema"
                 }
             ]
         },
@@ -98,16 +116,18 @@
             "title": "Curvatura y puntos de inflexión",
             "items": [
                 {
-                    "title": "Concavidad y convexidad",
+                    "title": "Criterio de la segunda derivada: curvatura",
                     "formula": "$f''(x) > 0 \\implies f \\text{ convexa } (\\cup) \\qquad f''(x) < 0 \\implies f \\text{ cóncava } (\\cap)$",
                     "example": "$f(x) = x^3 - 3x$, $f''(x) = 6x$:<br>• En $(-\\infty, 0)$: $f'' < 0$, cóncava $(\\cap)$.<br>• En $(0, +\\infty)$: $f'' > 0$, convexa $(\\cup)$.",
-                    "description": "Se estudia el signo de $f''$ igual que se estudia el de $f'$ para la monotonía. Algunos libros llaman a $\\cup$ «cóncava hacia arriba»; aquí seguimos el criterio de la mayoría de libros de texto españoles."
+                    "description": "Si $f$ es dos veces derivable en un intervalo: si $f''(x) > 0$, $f$ es <strong>convexa</strong> ($\\cup$) y si $f''(x) < 0$ es <strong>cóncava</strong> ($\\cap$). Se estudia el signo de $f''$ igual que el de $f'$ en la monotonía. Aquí se sigue el convenio de los libros de texto españoles (algunos autores llaman a $\\cup$ «cóncava hacia arriba»).",
+                    "kind": "teorema"
                 },
                 {
                     "title": "Puntos de inflexión",
                     "formula": "$f''(a) = 0 \\text{ y } f'' \\text{ cambia de signo en } a$",
                     "example": "En $f(x) = x^3 - 3x$, $f''$ cambia de signo en $x = 0$: punto de inflexión en $(0, f(0)) = (0, 0)$.",
-                    "description": "Son los puntos donde la función cambia de curvatura."
+                    "description": "Un <strong>punto de inflexión</strong> es un punto de la gráfica donde la función cambia de curvatura (de cóncava a convexa o al revés). Si $f$ es dos veces derivable, en él $f''(a) = 0$ y $f''$ cambia de signo (que sea $0$ no basta: $x^4$ tiene $f''(0)=0$ y no hay inflexión).",
+                    "kind": "definicion"
                 }
             ]
         },
@@ -117,13 +137,15 @@
                 {
                     "title": "Cómo resolver un problema de optimización",
                     "formula": "$\\text{función a optimizar} \\rightarrow \\text{una sola variable} \\rightarrow f'(x) = 0 \\rightarrow \\text{comprobar máximo o mínimo}$",
-                    "description": "1) Identifica qué hay que hacer máximo o mínimo y escribe su fórmula. 2) Si tiene dos variables, usa el dato del enunciado (la <strong>ligadura</strong>) para dejar una sola. 3) Deriva e iguala a cero. 4) Comprueba con $f''$ o con el signo de $f'$ si es máximo o mínimo. 5) Responde a la pregunta con todas las medidas que se piden y sus unidades."
+                    "description": "1) Identifica qué hay que hacer máximo o mínimo y escribe su fórmula. 2) Si tiene dos variables, usa el dato del enunciado (la <strong>ligadura</strong>) para dejar una sola. 3) Deriva e iguala a cero. 4) Comprueba con $f''$ o con el signo de $f'$ si es máximo o mínimo. 5) Responde a la pregunta con todas las medidas que se piden y sus unidades.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Ejemplo: rectángulo de área máxima",
                     "formula": "$A(x) = x(20 - x) = 20x - x^2$",
                     "example": "Con $40$ m de cuerda se quiere rodear un rectángulo de área máxima.<br>Lados $x$ e $y$: $2x + 2y = 40 \\implies y = 20 - x$<br>$A'(x) = 20 - 2x = 0 \\implies x = 10$<br>$A''(x) = -2 < 0 \\implies$ máximo<br>El rectángulo es un cuadrado de $10$ m de lado, con área $100\\ \\text{m}^2$.",
-                    "description": "El perímetro es la ligadura que permite expresar $y$ en función de $x$."
+                    "description": "El perímetro es la ligadura que permite expresar $y$ en función de $x$.",
+                    "kind": "procedimiento"
                 }
             ]
         }

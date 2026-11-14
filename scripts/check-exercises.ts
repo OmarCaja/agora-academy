@@ -5,6 +5,7 @@ import fs from "node:fs";
 import { formatDefaultTitle } from "../src/utils/discoverExercises.ts";
 import { byRank } from "../src/utils/sort.ts";
 import { BOOKS } from "../src/data/books.ts";
+import { KINDS } from "../src/data/itemKinds.ts";
 import { levelOrder, pdfNameOverrides, subjects, topicOrder, topicTitleOverrides } from "../src/data/exercises.ts";
 
 assert.equal(formatDefaultTitle("algebra-1.pdf"), "Álgebra 1");
@@ -31,6 +32,19 @@ const topicExists = (key: string) =>
     subjects.some(({ dir }) => levelOrder.some((level) => fs.existsSync(`public/ejercicios/${dir}/${level}/${key}`)));
 for (const key of [...Object.keys(topicTitleOverrides), ...Object.keys(topicOrder)]) {
     assert.ok(topicExists(key), `no topic folder public/ejercicios/<level>/${key}`);
+}
+
+// Theory topics: every card declares what it is (`kind`) and an example never
+// stands alone: it follows a statement (description and/or formula).
+for (const file of fs.readdirSync("src/content/topics").filter((f) => f.endsWith(".json"))) {
+    const topic = JSON.parse(fs.readFileSync(`src/content/topics/${file}`, "utf8"));
+    for (const section of topic.sections) {
+        for (const item of section.items) {
+            const where = `${file} > ${section.title} > ${item.title}`;
+            assert.ok(KINDS.includes(item.kind), `topic card without a valid kind: ${where}`);
+            assert.ok(item.kind === "ejemplo" || item.description || item.formula, `card has no statement before its example: ${where}`);
+        }
+    }
 }
 
 console.log("check-exercises: ok");

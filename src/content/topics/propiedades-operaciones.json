@@ -8,28 +8,39 @@
             "title": "Propiedades estructurales",
             "items": [
                 {
+                    "title": "Propiedad de una operación",
+                    "kind": "definicion",
+                    "description": "Una <strong>operación</strong> entre dos números asigna a cada pareja $(a, b)$ un único número, como en $a + b$ o $a \\cdot b$. Una <strong>propiedad</strong> de la operación es una igualdad que se cumple para <strong>cualesquiera</strong> números $a$, $b$, $c$ (no solo para algunos). Para demostrar que una propiedad <strong>no</strong> se cumple basta un solo <strong>contraejemplo</strong>.",
+                    "formula": "$\\text{propiedad: } \\ \\forall\\, a, b, c \\ \\ \\text{se cumple la igualdad}$",
+                    "example": "$a + b = b + a$ es una propiedad de la suma. Sin embargo, $8 - 3 = 5$ y $3 - 8 = -5$ es un contraejemplo: la resta no cumple $a - b = b - a$."
+                },
+                {
                     "title": "Propiedad conmutativa",
                     "formula": "$a + b = b + a$  /  $a \\cdot b = b \\cdot a$",
                     "example": "$5 + 3 = 3 + 5 = 8$  /  $4 \\cdot 2 = 2 \\cdot 4 = 8$",
-                    "description": "El orden de los números no altera el resultado. Se cumple en la suma y en la multiplicación, pero <strong>no</strong> en la resta ni en la división: $8 - 3 \\neq 3 - 8$."
+                    "description": "El <strong>orden</strong> de los dos números no altera el resultado. Se cumple en la suma y en la multiplicación, pero <strong>no</strong> en la resta ni en la división (contraejemplos: $8 - 3 \\neq 3 - 8$ y $8 : 4 \\neq 4 : 8$).",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Propiedad asociativa",
                     "formula": "$(a + b) + c = a + (b + c)$ / $(a \\cdot b) \\cdot c = a \\cdot (b \\cdot c)$",
                     "example": "$(2 + 3) + 4 = 5 + 4 = 9$ / $(2 \\cdot 3) \\cdot 4 = 6 \\cdot 4 = 24$",
-                    "description": "La forma en que se agrupan los sumandos o factores no cambia el resultado."
+                    "description": "La forma en que se <strong>agrupan</strong> tres sumandos o tres factores no cambia el resultado, por eso se puede escribir $a + b + c$ sin paréntesis. No se cumple en la resta: $(8 - 4) - 2 = 2$ pero $8 - (4 - 2) = 6$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Propiedad distributiva",
-                    "formula": "$a \\cdot (b + c) = (a \\cdot b) + (a \\cdot c)$",
+                    "formula": "$a \\cdot (b + c) = a \\cdot b + a \\cdot c \\qquad a \\cdot (b - c) = a \\cdot b - a \\cdot c$",
                     "example": "$3 \\cdot (4 + 5) = (3 \\cdot 4) + (3 \\cdot 5) = 12 + 15 = 27$",
-                    "description": "Multiplicar un número por una suma es igual a sumar los productos de ese número por cada sumando. Leída al revés, sirve para <strong>sacar factor común</strong>."
+                    "description": "La multiplicación es <strong>distributiva respecto de la suma</strong>: multiplicar un número por una suma es igual a sumar los productos de ese número por cada sumando. Leída de derecha a izquierda, permite <strong>sacar factor común</strong>.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Sacar factor común",
                     "formula": "$a \\cdot b + a \\cdot c = a \\cdot (b + c)$",
                     "example": "$7 \\cdot 13 + 7 \\cdot 7 = 7 \\cdot (13 + 7) = 7 \\cdot 20 = 140$",
-                    "description": "Si todos los sumandos tienen un factor repetido, se escribe una sola vez fuera del paréntesis. Facilita muchos cálculos mentales y es la base de la factorización en álgebra."
+                    "description": "Si todos los sumandos tienen un factor repetido, se escribe una sola vez fuera de un paréntesis que contiene lo que queda de cada sumando. Es la propiedad distributiva leída al revés, facilita muchos cálculos mentales y es la base de la factorización en álgebra.",
+                    "kind": "procedimiento"
                 }
             ]
         },
@@ -40,19 +51,22 @@
                     "title": "Elemento neutro (identidad)",
                     "formula": "$a + 0 = a$ / $a \\cdot 1 = a$",
                     "example": "$12 + 0 = 12$ / $15 \\cdot 1 = 15$",
-                    "description": "Existe un número que al ser operado con cualquier otro, mantiene el valor original de este último."
+                    "description": "Un <strong>elemento neutro</strong> de una operación es un número que, operado con cualquier otro, deja a este último igual. El neutro de la suma es el $0$ y el de la multiplicación es el $1$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Elemento inverso (simétrico)",
                     "formula": "$a + (-a) = 0 \\qquad a \\cdot \\dfrac{1}{a} = 1 \\ (a \\neq 0)$",
                     "example": "$7 + (-7) = 0 \\qquad 4 \\cdot \\dfrac{1}{4} = 1 \\qquad \\dfrac{2}{3} \\cdot \\dfrac{3}{2} = 1$",
-                    "description": "El <strong>opuesto</strong> de $a$ es $-a$ y el <strong>inverso</strong> de $a$ es $\\dfrac{1}{a}$. Al operar un número con su opuesto (en la suma) o con su inverso (en la multiplicación) se obtiene el elemento neutro. El $0$ no tiene inverso."
+                    "description": "El <strong>opuesto</strong> de $a$ es $-a$ (inverso para la suma) y el <strong>inverso</strong> de $a \\neq 0$ es $\\dfrac{1}{a}$ (inverso para el producto). Al operar un número con su opuesto, o con su inverso, se obtiene el elemento neutro de esa operación. El $0$ no tiene inverso, porque ningún número multiplicado por $0$ da $1$.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Elemento absorbente",
                     "formula": "$a \\cdot 0 = 0$",
                     "example": "$1234 \\cdot 0 = 0$",
-                    "description": "En la multiplicación, cualquier número multiplicado por cero resulta siempre en cero."
+                    "description": "Un <strong>elemento absorbente</strong> de una operación es un número que, operado con cualquier otro, da siempre ese mismo número. En la multiplicación es el $0$. La suma no tiene elemento absorbente.",
+                    "kind": "definicion"
                 }
             ]
         }

@@ -9,11 +9,15 @@
             "items": [
                 {
                     "title": "Población y muestra",
-                    "description": "<ul><li><strong>Población:</strong> Conjunto total de elementos objeto de estudio.</li><li><strong>Muestra:</strong> Subconjunto representativo de la población seleccionado para el estudio.</li><li><strong>Individuo:</strong> Cada uno de los elementos de la población.</li></ul>"
+                    "description": "<ul><li><strong>Población:</strong> Conjunto total de elementos objeto de estudio.</li><li><strong>Muestra:</strong> Subconjunto representativo de la población seleccionado para el estudio.</li><li><strong>Individuo:</strong> Cada uno de los elementos de la población.</li></ul>",
+                    "kind": "definicion",
+                    "example": "Se quiere conocer cuántos hermanos tienen los $800$ alumnos de un instituto. La población son los $800$ alumnos; si se pregunta solo a $20$ elegidos al azar, esos $20$ forman una muestra. Cada alumno es un individuo."
                 },
                 {
                     "title": "Variable estadística",
-                    "description": "Es la característica o propiedad que se estudia. Tipos:<br><ul><li><strong>Cualitativa:</strong> No se mide con números (ej. color de ojos).</li><li><strong>Cuantitativa Discreta:</strong> Toma valores aislados (ej. número de hermanos: 0, 1, 2...).</li><li><strong>Cuantitativa Continua:</strong> Puede tomar cualquier valor de un intervalo (ej. altura, peso).</li></ul>"
+                    "description": "Una <strong>variable estadística</strong> es la característica que se estudia en cada individuo de la población. Tipos:<br><ul><li><strong>Cualitativa:</strong> sus valores son categorías, no números (color de ojos).</li><li><strong>Cuantitativa discreta:</strong> toma valores numéricos aislados (número de hermanos: $0, 1, 2, \\dots$).</li><li><strong>Cuantitativa continua:</strong> puede tomar cualquier valor de un intervalo (altura, peso); se agrupa en intervalos y cada uno se representa por su <strong>marca de clase</strong> (el punto medio).</li></ul>",
+                    "kind": "definicion",
+                    "example": "Color de pelo: cualitativa. Número de hermanos: cuantitativa discreta. Estatura en cm: cuantitativa continua; el intervalo $[160, 170)$ tiene marca de clase $165$."
                 }
             ]
         },
@@ -21,14 +25,25 @@
             "title": "Tablas de frecuencias",
             "items": [
                 {
-                    "title": "Frecuencias simples",
+                    "title": "Tabla de frecuencias",
+                    "kind": "definicion",
+                    "description": "Una <strong>tabla de frecuencias</strong> recoge cada valor distinto $x_i$ de la variable con las veces que aparece. Si hay $k$ valores distintos y $N$ datos en total, se definen:<br>• <strong>Frecuencia absoluta</strong> $f_i$: número de veces que aparece $x_i$. Cumple $\\sum f_i = N$.<br>• <strong>Frecuencia relativa</strong> $h_i$: proporción de datos que valen $x_i$. Cumple $\\sum h_i = 1$.<br>• <strong>Frecuencias acumuladas</strong> $F_i$ y $H_i$: suma de las frecuencias (absolutas o relativas) hasta el valor $x_i$ inclusive. La última es $F_k = N$ y $H_k = 1$.",
+                    "formula": "$h_i = \\dfrac{f_i}{N} \\qquad F_i = f_1 + \\cdots + f_i \\qquad H_i = h_1 + \\cdots + h_i$",
+                    "example": "Número de hermanos de $20$ alumnos: $0$ (3 alumnos), $1$ (8), $2$ (6), $3$ (2) y $4$ (1), con $N = 20$.$$\\begin{array}{c|ccccc} x_i & 0 & 1 & 2 & 3 & 4 \\\\ \\hline f_i & 3 & 8 & 6 & 2 & 1 \\\\ h_i & 0{,}15 & 0{,}40 & 0{,}30 & 0{,}10 & 0{,}05 \\\\ F_i & 3 & 11 & 17 & 19 & 20 \\\\ H_i & 0{,}15 & 0{,}55 & 0{,}85 & 0{,}95 & 1 \\end{array}$$Por ejemplo, $h_2 = \\frac{8}{20} = 0{,}40$ y $F_3 = 3 + 8 + 6 = 17$: hay $17$ alumnos con $2$ hermanos o menos."
+                },
+                {
+                    "title": "Frecuencia absoluta y relativa",
                     "formula": "$$h_i = \\frac{f_i}{N}$$",
-                    "description": "<ul><li><strong>Frecuencia absoluta ($f_i$):</strong> Número de veces que aparece un dato. La suma total es $N$.</li><li><strong>Frecuencia relativa ($h_i$):</strong> Proporción del dato respecto al total. $\\sum h_i = 1$.</li></ul>"
+                    "description": "<ul><li><strong>Frecuencia absoluta ($f_i$):</strong> Número de veces que aparece un dato. La suma total es $N$.</li><li><strong>Frecuencia relativa ($h_i$):</strong> Proporción del dato respecto al total. $\\sum h_i = 1$.</li></ul>",
+                    "kind": "definicion",
+                    "example": "En la tabla anterior, el valor $x_2 = 1$ aparece $f_2 = 8$ veces: su frecuencia relativa es $h_2 = \\frac{8}{20} = 0{,}40$, es decir, el $40\\,\\%$ de los alumnos."
                 },
                 {
                     "title": "Frecuencias acumuladas",
                     "formula": "$$F_i = f_1 + f_2 + ... + f_i$$",
-                    "description": "<ul><li><strong>Frecuencia absoluta acumulada ($F_i$):</strong> Suma de las frecuencias absolutas hasta la posición $i$.</li><li><strong>Frecuencia relativa acumulada ($H_i$):</strong> Suma de las frecuencias relativas hasta la posición $i$.</li></ul><br>Son fundamentales para calcular la mediana y los cuantiles."
+                    "description": "<ul><li><strong>Frecuencia absoluta acumulada ($F_i$):</strong> Suma de las frecuencias absolutas hasta la posición $i$.</li><li><strong>Frecuencia relativa acumulada ($H_i$):</strong> Suma de las frecuencias relativas hasta la posición $i$.</li></ul><br>Son fundamentales para calcular la mediana y los cuantiles.",
+                    "kind": "definicion",
+                    "example": "$F_2 = f_1 + f_2 = 3 + 8 = 11$: $11$ alumnos tienen $1$ hermano o menos. $H_2 = 0{,}15 + 0{,}40 = 0{,}55$: el $55\\,\\%$."
                 }
             ]
         },
@@ -38,18 +53,21 @@
                 {
                     "title": "Media aritmética",
                     "formula": "$$\\bar{x} = \\frac{\\sum_{i=1}^{k} x_i \\cdot f_i}{N}$$",
-                    "example": "$$\\begin{gathered}\\text{Datos: } 2, 3, 3, 5, 7 \\quad (N=5) \\\\ \\bar{x} = \\frac{2+3+3+5+7}{5} = \\frac{20}{5} = 4\\end{gathered}$$",
-                    "description": "Es el valor promedio de los datos. Es muy sensible a valores extremos."
+                    "example": "Datos: $2, 3, 3, 5, 7$ $(N=5)$: $\\bar{x} = \\dfrac{2+3+3+5+7}{5} = \\dfrac{20}{5} = 4$<br>Con la tabla de hermanos: $\\bar{x} = \\dfrac{0 \\cdot 3 + 1 \\cdot 8 + 2 \\cdot 6 + 3 \\cdot 2 + 4 \\cdot 1}{20} = \\dfrac{30}{20} = 1{,}5$",
+                    "description": "La <strong>media aritmética</strong> es el valor promedio de los datos: la suma de todos los datos dividida entre $N$. Con una tabla de frecuencias, cada valor se multiplica por su frecuencia. Es muy sensible a los valores extremos. Notación: $\\sum$ significa «suma de».",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Moda ($M_o$)",
-                    "description": "Es el valor de la variable con mayor frecuencia absoluta ($f_i$). Puede haber más de una moda.",
-                    "example": "Datos: $2, 3, 3, 5, 7$<br>$M_o = 3$, porque es el que más se repite"
+                    "description": "La <strong>moda</strong> es el valor de la variable con mayor frecuencia absoluta. Puede haber más de una moda (distribución bimodal, etc.). Es el único parámetro de centralización que tiene sentido para variables cualitativas.",
+                    "example": "Datos $2, 3, 3, 5, 7$: $M_o = 3$ (aparece dos veces).<br>Tabla de hermanos: $M_o = 1$ ($f = 8$ es la mayor).",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Mediana ($M_e$)",
                     "description": "Es el valor que ocupa la posición central cuando los datos están ordenados.<ul><li><strong>$N$ impar:</strong> es el dato central.</li><li><strong>$N$ par:</strong> es la media de los dos datos centrales.</li></ul>En una tabla de frecuencias se calcula $\\frac{N}{2}$ y se busca el primer valor cuya $F_i$ <strong>supera</strong> $\\frac{N}{2}$. Si alguna $F_i$ es exactamente igual a $\\frac{N}{2}$, la mediana es la media entre ese valor y el siguiente.",
-                    "example": "Datos: $2, 3, 3, 5, 7, 8$ $(N = 6)$<br>Los datos centrales son el $3$ y el $5$, así que $M_e = \\dfrac{3 + 5}{2} = 4$"
+                    "example": "Datos: $2, 3, 3, 5, 7, 8$ $(N = 6)$: los datos centrales son el $3$ y el $5$, así que $M_e = \\dfrac{3 + 5}{2} = 4$.<br>Tabla de hermanos: $\\frac{N}{2} = 10$ y el primer $F_i$ mayor que $10$ es $F_2 = 11$, que corresponde a $x = 1$: $M_e = 1$.",
+                    "kind": "definicion"
                 }
             ]
         },
@@ -59,24 +77,30 @@
                 {
                     "title": "Rango o recorrido",
                     "formula": "$$R = x_{max} - x_{min}$$",
-                    "description": "Diferencia entre el valor máximo y el mínimo. Mide la amplitud total de los datos."
+                    "description": "El <strong>rango</strong> es la diferencia entre el valor máximo y el mínimo. Mide la amplitud total de los datos, pero depende solo de los dos extremos.",
+                    "kind": "definicion",
+                    "example": "Datos $2, 3, 3, 5, 7$: $R = 7 - 2 = 5$."
                 },
                 {
                     "title": "Varianza",
-                    "formula": "$$\\sigma^2 = \\frac{\\sum x_i^2 \\cdot f_i}{N} - \\bar{x}^2$$",
-                    "example": "$$\\begin{gathered}\\text{Si } \\bar{x}=4 \\text{ y } \\frac{\\sum x_i^2 f_i}{N} = 18{,}5 \\\\ \\sigma^2 = 18{,}5 - 4^2 = 18{,}5 - 16 = 2{,}5\\end{gathered}$$",
-                    "description": "Es la media de los cuadrados de las distancias de cada dato a la media. Nunca es negativa, y vale $0$ solo si todos los datos son iguales. Sus unidades son las de los datos al cuadrado."
+                    "formula": "$\\sigma^2 = \\dfrac{\\sum (x_i - \\bar{x})^2 \\cdot f_i}{N} = \\dfrac{\\sum x_i^2 \\cdot f_i}{N} - \\bar{x}^2$",
+                    "example": "Datos $2, 3, 3, 5, 7$ con $\\bar{x} = 4$: $\\dfrac{\\sum x_i^2}{N} = \\dfrac{4 + 9 + 9 + 25 + 49}{5} = 19{,}2$, luego $\\sigma^2 = 19{,}2 - 4^2 = 3{,}2$.<br>Comprobación con la definición: $\\frac{(-2)^2 + (-1)^2 + (-1)^2 + 1^2 + 3^2}{5} = \\frac{16}{5} = 3{,}2$ ✓",
+                    "description": "La <strong>varianza</strong> $\\sigma^2$ es la media de los cuadrados de las distancias de cada dato a la media. Nunca es negativa, y vale $0$ solo si todos los datos son iguales. Sus unidades son las de los datos al cuadrado. Desarrollando el cuadrado se obtiene la forma abreviada, más cómoda para calcular.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Desviación típica",
                     "formula": "$$\\sigma = \\sqrt{\\sigma^2}$$",
-                    "example": "$$\\text{Si } \\sigma^2 = 2{,}5 \\rightarrow \\sigma = \\sqrt{2{,}5} \\approx 1{,}58$$",
-                    "description": "Raíz de la varianza. Se mide en las mismas unidades que los datos, lo que la hace más interpretable."
+                    "example": "Con $\\sigma^2 = 3{,}2$: $\\sigma = \\sqrt{3{,}2} \\approx 1{,}79$.",
+                    "description": "Raíz de la varianza. Se mide en las mismas unidades que los datos, lo que la hace más interpretable.",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Coeficiente de variación",
                     "formula": "$$CV = \\frac{\\sigma}{\\lvert \\bar{x} \\rvert}$$",
-                    "description": "No tiene unidades, así que permite comparar la dispersión de poblaciones distintas (por ejemplo, el peso de elefantes y el de ratones). Cuanto mayor es, más dispersos están los datos. Se suele dar en porcentaje: $CV = 0{,}15$ significa un $15\\,\\%$."
+                    "description": "No tiene unidades, así que permite comparar la dispersión de poblaciones distintas (por ejemplo, el peso de elefantes y el de ratones). Cuanto mayor es, más dispersos están los datos. Se suele dar en porcentaje: $CV = 0{,}15$ significa un $15\\,\\%$.",
+                    "kind": "definicion",
+                    "example": "Datos $2, 3, 3, 5, 7$: $CV = \\dfrac{1{,}79}{4} \\approx 0{,}45$, es decir, un $45\\,\\%$.<br>Tabla de hermanos: $\\sigma \\approx 1{,}02$ y $\\bar{x} = 1{,}5$, luego $CV \\approx 0{,}68$: la variable es más dispersa, en proporción a su media."
                 }
             ]
         },
@@ -85,15 +109,21 @@
             "items": [
                 {
                     "title": "Cuartiles",
-                    "description": "Dividen la distribución en 4 partes iguales ($Q_1$, $Q_2$, $Q_3$).<br><br>Para calcular el cuartil $Q_k$ ($k=1, 2, 3$), calculamos la posición $P = \\frac{k \\cdot N}{4}$:<br><ul><li>Si $P$ <strong>no es entero</strong>, redondeamos al siguiente entero. $Q_k$ es el valor en esa posición.</li><li>Si $P$ <strong>es entero</strong>, $Q_k$ es la media de los valores en las posiciones $P$ y $P+1$.</li></ul>"
+                    "description": "Los <strong>cuartiles</strong> $Q_1$, $Q_2$, $Q_3$ dividen los datos ordenados en $4$ partes con la misma cantidad de datos ($Q_2$ es la mediana). Para $Q_k$ ($k = 1, 2, 3$) se calcula la posición $P = \\frac{k \\cdot N}{4}$:<ul><li>Si $P$ <strong>no es entero</strong>, se redondea al siguiente entero y $Q_k$ es el valor en esa posición.</li><li>Si $P$ <strong>es entero</strong>, $Q_k$ es la media de los valores en las posiciones $P$ y $P+1$.</li></ul>",
+                    "kind": "definicion",
+                    "example": "Tabla de hermanos ($N = 20$, datos ordenados: tres $0$, ocho $1$, seis $2$, dos $3$, un $4$):<br>• $Q_1$: $P = 5$ entero → media de las posiciones $5$ y $6$ (ambas valen $1$) → $Q_1 = 1$.<br>• $Q_2$: $P = 10$ → posiciones $10$ y $11$ (ambas $1$) → $Q_2 = 1$.<br>• $Q_3$: $P = 15$ → posiciones $15$ y $16$ (ambas $2$) → $Q_3 = 2$."
                 },
                 {
                     "title": "Percentiles ($P_k$)",
-                    "description": "Valor que deja por debajo el $k$% de los datos. Posición $= \\frac{k \\cdot N}{100}$."
+                    "description": "El <strong>percentil</strong> $P_k$ es el valor que deja por debajo el $k\\,\\%$ de los datos ordenados. Se calcula como los cuartiles, con la posición $P = \\frac{k \\cdot N}{100}$: si no es entera, se redondea al siguiente entero; si es entera, se toma la media de las posiciones $P$ y $P+1$. Cuartiles y mediana son percentiles: $Q_1 = P_{25}$, $M_e = P_{50}$, $Q_3 = P_{75}$.",
+                    "kind": "definicion",
+                    "example": "Tabla de hermanos: $P_{90}$: posición $\\frac{90 \\cdot 20}{100} = 18$, entera → media de las posiciones $18$ y $19$ (ambas valen $3$) → $P_{90} = 3$: el $90\\,\\%$ de los alumnos tiene $3$ hermanos o menos."
                 },
                 {
                     "title": "Diagrama de caja y bigotes",
-                    "description": "Representación gráfica basada en los cuartiles.<ul><li><strong>Caja:</strong> va desde $Q_1$ hasta $Q_3$. La línea interior es la mediana ($M_e$). Su anchura es el <strong>rango intercuartílico</strong> ($RI = Q_3 - Q_1$), donde está el $50\\,\\%$ central de los datos.</li><li><strong>Bigotes:</strong> llegan hasta el dato mínimo y el dato máximo. Si se quieren señalar datos atípicos, los bigotes llegan solo hasta el último dato que está a menos de $1{,}5 \\cdot RI$ de la caja, y los datos más alejados se marcan como puntos aislados.</li></ul>"
+                    "description": "Representación gráfica basada en los cuartiles.<ul><li><strong>Caja:</strong> va desde $Q_1$ hasta $Q_3$. La línea interior es la mediana ($M_e$). Su anchura es el <strong>rango intercuartílico</strong> ($RI = Q_3 - Q_1$), donde está el $50\\,\\%$ central de los datos.</li><li><strong>Bigotes:</strong> llegan hasta el dato mínimo y el dato máximo. Si se quieren señalar datos atípicos, los bigotes llegan solo hasta el último dato que está a menos de $1{,}5 \\cdot RI$ de la caja, y los datos más alejados se marcan como puntos aislados.</li></ul>",
+                    "kind": "procedimiento",
+                    "example": "Tabla de hermanos: mínimo $0$, $Q_1 = 1$, $M_e = 1$, $Q_3 = 2$, máximo $4$. El rango intercuartílico es $RI = 2 - 1 = 1$.<br>Límite superior para datos atípicos: $Q_3 + 1{,}5 \\cdot RI = 3{,}5$. El dato $4$ lo supera, así que es un valor atípico (se marca como punto aislado) y el bigote superior llega solo hasta $3$.<br><img src='/ejemplos/estadistica-unidimensional/caja-bigotes.png' alt='Diagrama de caja con mínimo 0, Q1 igual a la mediana 1, Q3 igual a 2, bigote hasta 3 y dato atípico en 4' width='750' height='321' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>"
                 }
             ]
         }
