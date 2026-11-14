@@ -10,7 +10,7 @@
  *   #noResults (optional)                                   — shown when nothing matches
  *   [data-search-reset] (optional)                          — button that clears the query
  *
- * How a query matches (all words, any order, synonyms, small typos) lives in utils/searchMatch.js.
+ * How a query matches (all words, any order, synonyms) lives in utils/searchMatch.js.
  */
 import { matches, parseQuery, prepare, score } from "../utils/searchMatch";
 
