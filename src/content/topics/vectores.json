@@ -1,6 +1,6 @@
 {
     "title": "Vectores",
-    "description": "Espacios de vectores ($V_2$ y $V_3$) y qué cambia según la dimensión. Vectores en el plano y en el espacio: módulo, dirección y sentido, vector unitario. Suma, resta y producto por un escalar, dependencia lineal, bases, coordenadas y sistemas de referencia. Producto escalar (ángulo, proyección y perpendicularidad), producto vectorial y producto mixto con sus aplicaciones a áreas y volúmenes.",
+    "description": "Espacios de vectores (V₂ y V₃) y qué cambia según la dimensión. Vectores en el plano y en el espacio: módulo, dirección y sentido, vector unitario. Suma, resta y producto por un escalar, dependencia lineal, bases, coordenadas y sistemas de referencia. Producto escalar (ángulo, proyección y perpendicularidad), producto vectorial y producto mixto con sus aplicaciones a áreas y volúmenes.",
     "menuGroup": "Geometría",
     "menuOrder": 1,
     "sections": [

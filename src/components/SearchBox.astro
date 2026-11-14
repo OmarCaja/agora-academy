@@ -4,22 +4,11 @@ interface Props {
     label: string;
     countSingular: string;
     countPlural: string;
-    // Show the "Todo / Definiciones / Teoremas…" buttons that restrict the results to one kind of card.
-    kinds?: boolean;
     // Another script (the site-wide search page) drives this box; search.js leaves it alone.
     external?: boolean;
 }
 
-const { placeholder, label, countSingular, countPlural, kinds = false, external = false } = Astro.props;
-const CHIPS: [string, string][] = [
-    ["", "Todo"],
-    ["definicion", "Definiciones"],
-    ["teorema", "Teoremas"],
-    ["propiedad", "Propiedades"],
-    ["procedimiento", "Procedimientos"],
-    ["observacion", "Observaciones"],
-    ["ejemplo", "Ejemplos"],
-];
+const { placeholder, label, countSingular, countPlural, external = false } = Astro.props;
 
 import { Icon } from "astro-icon/components";
 ---
@@ -46,17 +35,6 @@ import { Icon } from "astro-icon/components";
             <Icon name="ph:x-bold" class="clear-icon" aria-hidden="true" />
         </button>
     </div>
-    {
-        kinds && (
-            <div class="kind-chips" role="group" aria-label="Filtrar por tipo de contenido">
-                {CHIPS.map(([kind, name]) => (
-                    <button type="button" class="kind-chip meta-label" data-kind-chip={kind} aria-pressed={kind === "" ? "true" : "false"}>
-                        {name}
-                    </button>
-                ))}
-            </div>
-        )
-    }
     <p
         id="searchCount"
         class="search-count"
@@ -166,29 +144,6 @@ import { Icon } from "astro-icon/components";
     :global(.clear-icon) {
         width: 16px;
         height: 16px;
-    }
-
-    .kind-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: var(--spacing-xs);
-    }
-
-    .kind-chip {
-        padding: 6px 12px;
-        font-family: var(--font-family);
-        color: var(--text-primary);
-        background: var(--bg-raised);
-        border: var(--border-width) solid var(--border-color);
-        border-radius: var(--radius);
-        cursor: pointer;
-        transition: background var(--transition), color var(--transition);
-    }
-
-    .kind-chip[aria-pressed="true"] {
-        color: var(--on-accent);
-        background: var(--accent);
     }
 
     .search-count {

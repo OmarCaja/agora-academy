@@ -8,7 +8,6 @@ import SearchBox from "../components/SearchBox.astro";
 import NoResults from "../components/NoResults.astro";
 import { BOOKS } from "../data/books";
 import { sortTopics } from "../data/topics";
-import { KIND_LABELS } from "../data/itemKinds";
 
 // Books follow the site's topic order (by their first chapter) and are grouped by that chapter's
 // menuGroup (its domain). Each lists its chapters with their sections, and carries every concept
@@ -21,7 +20,6 @@ const books = [...BOOKS]
         const chapters = b.topics.map((slug) => topics[rank(slug)]).filter(Boolean);
         // Page of every chapter, section and card in the PDF (recorded by scripts/build-book.mjs).
         const at = b.at;
-        const hit = (t: string, k: string, l: string, p: number | undefined) => ({ t, k, l, p, u: b.url });
         return {
             group: chapters[0]?.data.menuGroup ?? "Otros",
             url: b.url,
@@ -35,14 +33,9 @@ const books = [...BOOKS]
                 title: c.data.title,
                 sections: c.data.sections.map((s, j) => ({ title: s.title, page: at[`${c.id}-${j}`] })),
             })),
-            // Every section and concept of the book, for the search: as text, and as a link to its page.
+            // Every section and concept title of the book, so the search finds a book by what is inside it.
             hits: chapters.flatMap((c) =>
-                c.data.sections.flatMap((s, j) => [
-                    hit(`${c.data.title} › ${s.title}`, "", "Sección", at[`${c.id}-${j}`]),
-                    ...s.items.map((i, k) =>
-                        hit(`${c.data.title} › ${s.title} › ${i.title.replace(/\$/g, "")}`, i.kind, KIND_LABELS[i.kind], at[`${c.id}-${j}-${k}`]),
-                    ),
-                ]),
+                c.data.sections.flatMap((s) => [s.title, ...s.items.map((i) => i.title.replace(/\$/g, ""))]),
             ),
         };
     });
@@ -100,7 +93,6 @@ const schema = {
             label="Buscar libros (pulsa / para enfocar)"
             countSingular="libro encontrado"
             countPlural="libros encontrados"
-            kinds
         />
         {
             groups.map((g) => (
