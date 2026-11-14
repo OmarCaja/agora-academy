@@ -91,7 +91,7 @@ async function buildBook(book, keepHtml) {
   </section>`).join('');
 
   // Alphabetical index of the book's definitions and theorems, each with its page.
-  const plain = t => t.replace(/\$[^$]*\$/g, ' ').replace(/<[^>]+>/g, ' ').replace(/[^\p{L}\p{N} ]+/gu, ' ').replace(/\s+/g, ' ').trim();
+  const plain = t => t.replace(/\$([^$]*)\$/g, ' $1 ').replace(/<[^>]+>/g, ' ').replace(/[^\p{L}\p{N} ]+/gu, ' ').replace(/\s+/g, ' ').trim();
   const concepts = chapters.flatMap(ch => ch.sections.flatMap((sec, j) => sec.items.flatMap((it, k) =>
     it.kind === 'definicion' || it.kind === 'teorema'
       ? [{ id: id(ch, j, k), title: it.title, kind: it.kind, key: plain(it.title).replace(/^qu[eé] es (el |la |los |las |un |una )?/i, '') }] : [])));
