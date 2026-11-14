@@ -25,8 +25,9 @@ assert.deepEqual(
 for (const url of Object.keys(pdfNameOverrides)) {
     assert.ok(fs.existsSync(`public${url}`), `pdfNameOverrides: no such PDF ${url}`);
 }
-for (const { url } of BOOKS) {
+for (const { url, pages } of BOOKS) {
     assert.ok(fs.existsSync(`public${url}`), `scripts/books.json: no such PDF ${url}`);
+    assert.ok(Number.isInteger(pages) && pages > 0, `scripts/books.json: missing page count for ${url} (run pnpm books)`);
 }
 const topicExists = (key: string) =>
     subjects.some(({ dir }) => levelOrder.some((level) => fs.existsSync(`public/ejercicios/${dir}/${level}/${key}`)));

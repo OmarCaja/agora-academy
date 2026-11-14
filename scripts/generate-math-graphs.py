@@ -833,7 +833,7 @@ save(fig, 'proyeccion.png')
 # ════════════════════════════════════════════════════════════════════════════
 #  PROGRAMACIÓN LINEAL
 # ════════════════════════════════════════════════════════════════════════════
-OUT = "public/ejemplos/programacion-lineal"
+OUT = "public/ejemplos/inecuaciones-programacion-lineal"
 os.makedirs(OUT, exist_ok=True)
 
 def plane(ax, xlim, ylim):
@@ -1068,6 +1068,66 @@ for row, (num, den) in enumerate([(1, 2), (2, 4), (4, 8)]):
     ax.text(-0.2, yb + 0.35, f'$\\frac{{{num}}}{{{den}}}$', ha='right', va='center', fontsize=15)
 ax.set_xlim(-0.9, 4.2); ax.set_ylim(-0.1, 2.9); ax.axis('off')
 save(fig, 'fracciones-equivalentes.png')
+
+# ════════════════════════════════════════════════════════════════════════════
+#  Inequalities in one variable (topic inecuaciones-programacion-lineal)
+# ════════════════════════════════════════════════════════════════════════════
+OUT = "public/ejemplos/inecuaciones-programacion-lineal"
+os.makedirs(OUT, exist_ok=True)
+
+def numline(ax, y, lo, hi, segs, label=None, ticks=None):
+    """Number line at height y. segs = [(a, b, a_closed, b_closed)]; a/b may be -inf/inf."""
+    ax.annotate('', xy=(hi + 0.4, y), xytext=(lo - 0.4, y), arrowprops=dict(arrowstyle='->', color=GRAY, lw=1.2))
+    for t in (ticks if ticks is not None else range(int(np.ceil(lo)), int(np.floor(hi)) + 1)):
+        ax.plot([t, t], [y - 0.06, y + 0.06], color=GRAY, lw=1)
+        ax.text(t, y - 0.2, f'${t}$'.replace('-', '{-}'), ha='center', va='top', fontsize=9, color=GRAY)
+    for a, b, ac, bc in segs:
+        aa, bb = max(a, lo - 0.4), min(b, hi + 0.4)
+        ax.plot([aa, bb], [y, y], color=INK, lw=4.5, solid_capstyle='butt', zorder=3)
+        if a != -np.inf:
+            ax.plot(a, y, 'o', mfc=INK if ac else 'white', mec=INK, ms=9, mew=2, zorder=5)
+        if b != np.inf:
+            ax.plot(b, y, 'o', mfc=INK if bc else 'white', mec=INK, ms=9, mew=2, zorder=5)
+    if label:
+        ax.text(lo - 0.6, y, label, ha='right', va='center', fontsize=11)
+
+I = np.inf
+# ── Interval types on the number line ────────────────────────────────────────
+fig, ax = plt.subplots(figsize=(7, 3.4))
+rows = [('$[-1, 3]$', [(-1, 3, True, True)]), ('$(-1, 3)$', [(-1, 3, False, False)]),
+        ('$[-1, 3)$', [(-1, 3, True, False)]), ('$(-\\infty, 2]$', [(-I, 2, False, True)]),
+        ('$(1, +\\infty)$', [(1, I, False, False)])]
+for k, (lab, segs) in enumerate(rows):
+    numline(ax, 4 - k, -3, 5, segs, lab, ticks=range(-3, 6, 1) if k == 4 else [])
+ax.set_xlim(-6.2, 5.8); ax.set_ylim(-1.5, 4.5); ax.axis('off')
+ax.text(0, -1.2, '$\\bullet$ extremo incluido   $\\circ$ extremo excluido', ha='center', fontsize=10, color=GRAY)
+save(fig, 'intervalos.png')
+
+# ── Parabola sign: x² − x − 6 ≤ 0 ────────────────────────────────────────────
+fig, ax = plt.subplots(figsize=(5.4, 4.4))
+draw_axes(ax, (-4, 5), (-8, 8))
+ax.set_ylabel('y', rotation=0)
+x = np.linspace(-3.6, 4.6, 300); y = x ** 2 - x - 6
+ax.plot(x, y, color=INK, lw=2.5, zorder=4)
+m = (x >= -2) & (x <= 3)
+ax.fill_between(x[m], y[m], 0, color='#d0d0d0', zorder=2)
+ax.plot([-2, 3], [0, 0], color=INK, lw=5, solid_capstyle='butt', zorder=5)
+ax.plot([-2, 3], [0, 0], 'o', color=INK, ms=8, zorder=6)
+ax.text(-2, 1.0, '$-2$', ha='center', fontsize=11); ax.text(3, 1.0, '$3$', ha='center', fontsize=11)
+ax.text(0.5, -4, '$y \\leq 0$', ha='center', fontsize=12)
+ax.text(-3.3, 1.8, '$y > 0$', ha='center', fontsize=12); ax.text(4.3, 1.8, '$y > 0$', ha='center', fontsize=12)
+ax.set_title('$x^2 - x - 6 \\leq 0 \\Leftrightarrow x \\in [-2, 3]$')
+save(fig, 'parabola-signo.png')
+
+# ── System in one variable: intersection of solutions ───────────────────────
+fig, ax = plt.subplots(figsize=(7, 3.2))
+numline(ax, 3, -1, 8, [(2, I, False, False)], '$x > 2$', ticks=range(-1, 9))
+numline(ax, 2, -1, 8, [(-I, 5, False, True)], '$x \\leq 5$', ticks=[])
+numline(ax, 1, -1, 8, [(2, 5, False, True)], 'solución\n$(2, 5]$', ticks=[])
+for xv in (2, 5):
+    ax.plot([xv, xv], [0.7, 3.2], ls=':', color=LGRAY, lw=1.2, zorder=1)
+ax.set_xlim(-4.5, 8.8); ax.set_ylim(0.3, 3.6); ax.axis('off')
+save(fig, 'sistema-una-incognita.png')
 
 # ════════════════════════════════════════════════════════════════════════════
 #  ↑ ADD YOUR NEW GRAPHS HERE, following the same pattern

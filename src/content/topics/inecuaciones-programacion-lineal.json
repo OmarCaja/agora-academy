@@ -1,0 +1,281 @@
+{
+    "title": "Inecuaciones y programación lineal",
+    "description": "Desigualdades, intervalos e inecuaciones de una incógnita (primer grado, segundo grado, polinómicas, racionales y con valor absoluto) y sus sistemas. Inecuaciones lineales con dos incógnitas y semiplanos, sistemas y región factible, y programación lineal: planteamiento, método analítico (vértices) y método gráfico, con casos especiales y soluciones enteras.",
+    "menuGroup": "Álgebra",
+    "menuOrder": 6,
+    "sections": [
+        {
+            "title": "Desigualdades e intervalos",
+            "items": [
+                {
+                    "title": "Desigualdad",
+                    "kind": "definicion",
+                    "description": "Una <strong>desigualdad</strong> compara dos expresiones con uno de los signos $<$ (menor que), $>$ (mayor que), $\\leq$ (menor o igual) o $\\geq$ (mayor o igual). Para números reales, $a < b$ significa que $b - a$ es positivo; es decir, $a$ queda a la izquierda de $b$ en la recta numérica. Entre dos números reales cualesquiera se cumple siempre una y solo una de estas relaciones: $a < b$, $a = b$ o $a > b$.",
+                    "formula": "$a < b \\iff b - a > 0 \\qquad a \\leq b \\iff a < b \\ \\text{ o } \\ a = b$",
+                    "example": "$-3 < 2$ porque $2 - (-3) = 5 > 0$.<br>$5 \\geq 5$ es cierta (se cumple la igualdad). $\\dfrac{1}{3} < \\dfrac{1}{2}$ porque $\\dfrac{1}{2} - \\dfrac{1}{3} = \\dfrac{1}{6} > 0$."
+                },
+                {
+                    "title": "Intervalo",
+                    "kind": "definicion",
+                    "description": "Un <strong>intervalo</strong> es el conjunto de los números reales comprendidos entre dos valores, los <strong>extremos</strong>. Si el extremo pertenece al intervalo se escribe con corchete $[\\ ]$ (y en la recta se marca con un punto relleno $\\bullet$); si no pertenece, con paréntesis $(\\ )$ (punto hueco $\\circ$). Los símbolos $+\\infty$ y $-\\infty$ no son números, por lo que su extremo es siempre un paréntesis.",
+                    "formula": "$[a, b] = \\{x : a \\le x \\le b\\} \\quad (a, b) = \\{x : a < x < b\\} \\quad [a, b) = \\{x : a \\le x < b\\} \\quad (a, +\\infty) = \\{x : x > a\\} \\quad (-\\infty, a] = \\{x : x \\le a\\}$",
+                    "example": "$[-1, 3]$: de $-1$ a $3$, ambos incluidos. $(-1, 3)$: sin los extremos. $(-\\infty, 2]$: todos los números menores o iguales que $2$. $x \\geq 5$ se escribe $[5, +\\infty)$.<br><img src='/ejemplos/inecuaciones-programacion-lineal/intervalos.png' alt='Rectas numéricas con los intervalos [-1,3], (-1,3), [-1,3), (-infinito,2] y (1,+infinito)' width='843' height='422' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>"
+                },
+                {
+                    "title": "Propiedades de las desigualdades",
+                    "kind": "propiedad",
+                    "description": "Estas reglas permiten transformar una desigualdad en otra equivalente (con las mismas soluciones):<br>1. <strong>Sumar o restar</strong> el mismo número a los dos miembros mantiene el sentido.<br>2. <strong>Multiplicar o dividir</strong> los dos miembros por un número <strong>positivo</strong> mantiene el sentido.<br>3. <strong>Multiplicar o dividir</strong> los dos miembros por un número <strong>negativo</strong> <strong>invierte</strong> el sentido de la desigualdad. Es el error más frecuente al resolver inecuaciones.<br>Por ejemplo, $2 < 5$ es cierta; si multiplicamos por $-3$ queda $-6 > -15$, y no $-6 < -15$.",
+                    "formula": "$a < b \\Rightarrow a + c < b + c \\qquad a < b,\\ c > 0 \\Rightarrow ac < bc \\qquad a < b,\\ c < 0 \\Rightarrow ac > bc$",
+                    "example": "De $3 < 7$: sumando $4$ queda $7 < 11$; multiplicando por $2$ queda $6 < 14$; multiplicando por $-2$ queda $-6 > -14$ (sentido invertido)."
+                },
+                {
+                    "title": "Unión e intersección de intervalos",
+                    "kind": "definicion",
+                    "description": "La <strong>intersección</strong> $A \\cap B$ de dos conjuntos son los números que pertenecen a $A$ <strong>y</strong> a $B$; la <strong>unión</strong> $A \\cup B$, los que pertenecen a $A$ <strong>o</strong> a $B$ (o a ambos). Con intervalos se obtienen dibujándolos en la misma recta numérica.",
+                    "formula": "$x \\in A \\cap B \\iff x \\in A \\ \\text{ y } \\ x \\in B \\qquad x \\in A \\cup B \\iff x \\in A \\ \\text{ o } \\ x \\in B$",
+                    "example": "$(-2, 5] \\cap [1, 8) = [1, 5]$ (lo que tienen en común).<br>$(-2, 5] \\cup [1, 8) = (-2, 8)$.<br>$(-\\infty, 1) \\cap (3, +\\infty) = \\emptyset$ (no tienen ningún punto en común) y su unión se deja indicada: $(-\\infty, 1) \\cup (3, +\\infty)$."
+                }
+            ]
+        },
+        {
+            "title": "Inecuaciones de primer grado con una incógnita",
+            "items": [
+                {
+                    "title": "Inecuación y solución",
+                    "kind": "definicion",
+                    "description": "Una <strong>inecuación</strong> es una desigualdad en la que aparece una incógnita, como $2x - 3 < 5$. Una <strong>solución</strong> es un valor de la incógnita para el que la desigualdad es cierta. Resolver la inecuación es hallar el <strong>conjunto de todas sus soluciones</strong>, que normalmente es un intervalo (o unión de intervalos). Dos inecuaciones son <strong>equivalentes</strong> si tienen las mismas soluciones. Una inecuación de <strong>primer grado</strong> se puede reducir a la forma $ax + b < 0$ (o con $>$, $\\leq$, $\\geq$) con $a \\neq 0$.",
+                    "formula": "$ax + b < 0 \\ (a \\neq 0)$",
+                    "example": "En $2x - 3 < 5$: $x = 1$ es solución porque $-1 < 5$ es cierto; $x = 4$ no lo es, porque $5 < 5$ es falso. Resolviéndola: $2x < 8 \\Rightarrow x < 4$; el conjunto solución es $(-\\infty, 4)$."
+                },
+                {
+                    "title": "Resolución de una inecuación de primer grado",
+                    "kind": "procedimiento",
+                    "description": "<ol><li>Si hay denominadores, <strong>multiplica</strong> los dos miembros por su m.c.m. (positivo, así que el sentido se mantiene).</li><li>Quita paréntesis.</li><li>Lleva los términos con $x$ a un miembro y los números al otro (sumando o restando).</li><li><strong>Divide</strong> entre el coeficiente de $x$. Si es <strong>negativo</strong>, invierte el sentido.</li><li>Escribe la solución como intervalo y represéntala en la recta.</li></ol>",
+                    "example": "• $3x - 5 \\leq 7 \\Rightarrow 3x \\leq 12 \\Rightarrow x \\leq 4$. Solución: $(-\\infty, 4]$.<br>• $-2x + 3 > 9 \\Rightarrow -2x > 6 \\Rightarrow x \\textcolor{#d46a6a}{<} -3$ (se divide entre $-2$ y se invierte el sentido). Solución: $(-\\infty, -3)$.<br>• $\\dfrac{x - 1}{2} \\geq \\dfrac{x + 2}{3} - 1$. Multiplicamos por $6$: $3(x - 1) \\geq 2(x + 2) - 6 \\Rightarrow 3x - 3 \\geq 2x - 2 \\Rightarrow x \\geq 1$. Solución: $[1, +\\infty)$.<br>Comprobación del último: $x = 3$ da $1 \\geq 1{,}67 - 1 = 0{,}67$ ✓; $x = 0$ da $-0{,}5 \\geq 0{,}67 - 1 = -0{,}33$, falso ✓."
+                },
+                {
+                    "title": "Sin solución o con todos los reales",
+                    "kind": "observacion",
+                    "description": "Al simplificar puede desaparecer la incógnita y quedar una desigualdad entre números. Si es <strong>cierta</strong>, la inecuación se cumple para <strong>todo</strong> número real; si es <strong>falsa</strong>, <strong>no tiene solución</strong>.",
+                    "example": "• $2x + 1 < 2x + 3 \\Rightarrow 1 < 3$, cierto: solución $\\mathbb{R}$.<br>• $3x - 2 \\geq 3x + 1 \\Rightarrow -2 \\geq 1$, falso: sin solución, $\\emptyset$."
+                }
+            ]
+        },
+        {
+            "title": "Inecuaciones de segundo grado",
+            "items": [
+                {
+                    "title": "Inecuación de segundo grado",
+                    "kind": "definicion",
+                    "description": "Una <strong>inecuación de segundo grado</strong> es la que se puede escribir en la forma $ax^2 + bx + c > 0$ (o con $<$, $\\geq$, $\\leq$) con $a \\neq 0$. Sus soluciones son los valores de $x$ para los que la parábola $y = ax^2 + bx + c$ está por encima del eje $X$ (si pide $>0$) o por debajo (si pide $<0$); por eso se estudia el <strong>signo</strong> de la función cuadrática.",
+                    "formula": "$ax^2 + bx + c \\ \\square \\ 0 \\qquad (\\square \\in \\{<, \\leq, >, \\geq\\},\\ a \\neq 0)$",
+                    "example": "$x^2 - x - 6 \\leq 0$ pregunta cuándo la parábola $y = x^2 - x - 6$ queda en el eje $X$ o debajo de él."
+                },
+                {
+                    "title": "Signo de una función cuadrática",
+                    "kind": "teorema",
+                    "description": "Sea $f(x) = ax^2 + bx + c$ y $\\Delta = b^2 - 4ac$.<br>• Si $\\Delta > 0$ hay dos raíces $x_1 < x_2$: $f$ tiene el signo de $a$ <strong>fuera</strong> de las raíces y el signo contrario <strong>entre</strong> ellas.<br>• Si $\\Delta = 0$ hay una raíz doble $x_0$: $f$ tiene el signo de $a$ en todo $x \\neq x_0$ y vale $0$ en $x_0$.<br>• Si $\\Delta < 0$ no hay raíces: $f$ tiene el signo de $a$ para todo $x$.",
+                    "example": "$x^2 - x - 6$: $a = 1 > 0$ y raíces $-2$ y $3$ (de $x^2 - x - 6 = (x+2)(x-3)$). Es positiva fuera de $[-2, 3]$ y negativa dentro.<br>$-x^2 + 4$: $a < 0$, raíces $\\pm 2$: es negativa fuera de $[-2, 2]$ y positiva dentro."
+                },
+                {
+                    "title": "Resolución de una inecuación de segundo grado",
+                    "kind": "procedimiento",
+                    "description": "<ol><li>Pasa todo a un miembro y deja $0$ en el otro: $ax^2 + bx + c \\ \\square \\ 0$.</li><li>Resuelve $ax^2 + bx + c = 0$ para hallar las raíces.</li><li>Dibuja (o imagina) la parábola: hacia arriba si $a > 0$, hacia abajo si $a < 0$.</li><li>Elige los intervalos donde se cumple el signo pedido. Los extremos (las raíces) <strong>se incluyen solo si la desigualdad es $\\leq$ o $\\geq$</strong>.</li></ol>",
+                    "example": "• $x^2 - x - 6 \\leq 0$: raíces $-2$ y $3$, parábola hacia arriba, queremos $\\leq 0$ (entre las raíces, con ellas): solución $[-2, 3]$.<br><img src='/ejemplos/inecuaciones-programacion-lineal/parabola-signo.png' alt='Parábola x al cuadrado menos x menos 6 con la zona por debajo del eje X entre -2 y 3' width='713' height='643' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><br>• $x^2 - x - 6 > 0$: fuera de las raíces: $(-\\infty, -2) \\cup (3, +\\infty)$.<br>• $x^2 - 6x + 9 \\leq 0$, o sea $(x-3)^2 \\leq 0$: $\\Delta = 0$, solo se anula en $x = 3$: solución $\\{3\\}$. En cambio $x^2 - 6x + 9 > 0$ vale para todo $x \\neq 3$.<br>• $x^2 - 4x + 5 > 0$: $\\Delta = 16 - 20 < 0$ y $a > 0$, luego es siempre positiva: solución $\\mathbb{R}$. Y $x^2 - 4x + 5 < 0$ no tiene solución."
+                }
+            ]
+        },
+        {
+            "title": "Inecuaciones polinómicas y racionales",
+            "items": [
+                {
+                    "title": "Inecuación polinómica y racional",
+                    "kind": "definicion",
+                    "description": "Una inecuación <strong>polinómica</strong> es de la forma $P(x) \\ \\square \\ 0$ con $P$ un polinomio de grado cualquiera. Una inecuación <strong>racional</strong> es de la forma $\\dfrac{P(x)}{Q(x)} \\ \\square \\ 0$ con $P$ y $Q$ polinomios. En una racional, los valores que anulan el denominador no están en el dominio, así que <strong>nunca son solución</strong>.",
+                    "formula": "$P(x) \\ \\square \\ 0 \\qquad \\dfrac{P(x)}{Q(x)} \\ \\square \\ 0 \\qquad (\\square \\in \\{<, \\leq, >, \\geq\\})$",
+                    "example": "$(x+1)(x-2)(x-4) < 0$ es polinómica de grado $3$. $\\dfrac{x - 1}{x + 2} \\geq 0$ es racional, y $x = -2$ no puede ser solución."
+                },
+                {
+                    "title": "Método de la tabla de signos",
+                    "kind": "procedimiento",
+                    "description": "<ol><li>Pasa todo a un miembro, deja $0$ en el otro y <strong>opera</strong> hasta tener un solo cociente (o producto).</li><li><strong>Factoriza</strong> numerador y denominador.</li><li>Halla los <strong>puntos críticos</strong>: las raíces del numerador y del denominador. Dividen la recta en intervalos.</li><li>En cada intervalo estudia el <strong>signo de cada factor</strong> y multiplica (o divide) los signos.</li><li>Escoge los intervalos con el signo pedido. Las raíces del numerador se incluyen solo si es $\\leq$ o $\\geq$; las del denominador, <strong>nunca</strong>.</li></ol><strong>Error típico:</strong> multiplicar los dos miembros por el denominador sin saber si es positivo o negativo; hay que pasar todo a un lado.",
+                    "example": "• $(x+1)(x-2)(x-4) < 0$. Puntos críticos: $-1$, $2$, $4$.<br>$$\\begin{array}{c|cccc} & (-\\infty,-1) & (-1,2) & (2,4) & (4,+\\infty) \\\\ \\hline x+1 & - & + & + & + \\\\ x-2 & - & - & + & + \\\\ x-4 & - & - & - & + \\\\ \\hline \\text{producto} & - & + & - & + \\end{array}$$ Queremos $<0$: solución $(-\\infty, -1) \\cup (2, 4)$.<br>• $\\dfrac{x-1}{x+2} \\geq 0$. Puntos críticos: $1$ (numerador, incluido) y $-2$ (denominador, excluido).<br>$$\\begin{array}{c|ccc} & (-\\infty,-2) & (-2,1) & (1,+\\infty) \\\\ \\hline x-1 & - & - & + \\\\ x+2 & - & + & + \\\\ \\hline \\text{cociente} & + & - & + \\end{array}$$ Solución: $(-\\infty, -2) \\cup [1, +\\infty)$.<br>• $\\dfrac{x+1}{x-1} \\leq 2$. Pasamos todo a un lado: $\\dfrac{x+1}{x-1} - 2 = \\dfrac{x + 1 - 2x + 2}{x - 1} = \\dfrac{3 - x}{x - 1} \\leq 0$. Puntos críticos: $1$ (excluido) y $3$ (incluido). El cociente es negativo en $(-\\infty, 1)$, positivo en $(1, 3)$ y negativo en $(3, +\\infty)$. Solución: $(-\\infty, 1) \\cup [3, +\\infty)$."
+                }
+            ]
+        },
+        {
+            "title": "Inecuaciones con valor absoluto",
+            "items": [
+                {
+                    "title": "Valor absoluto e inecuaciones",
+                    "kind": "definicion",
+                    "description": "El <strong>valor absoluto</strong> $\\lvert x \\rvert$ es la distancia de $x$ a $0$ en la recta. Por tanto $\\lvert x - c \\rvert$ es la distancia de $x$ a $c$. Para $a > 0$:<br>• $\\lvert x \\rvert < a$ significa que $x$ está a distancia menor que $a$ del $0$: $-a < x < a$.<br>• $\\lvert x \\rvert > a$ significa que está más lejos: $x < -a$ <strong>o</strong> $x > a$.<br>Si $a \\leq 0$: $\\lvert x \\rvert < a$ no tiene solución y $\\lvert x \\rvert > a$ se cumple casi siempre (para $a < 0$, para todo $x$).",
+                    "formula": "$\\lvert x \\rvert < a \\iff -a < x < a \\qquad \\lvert x \\rvert > a \\iff x < -a \\ \\text{ o } \\ x > a \\qquad (a > 0)$",
+                    "example": "• $\\lvert x - 2 \\rvert < 3 \\Rightarrow -3 < x - 2 < 3 \\Rightarrow -1 < x < 5$: solución $(-1, 5)$ (los números a menos de $3$ unidades de $2$).<br>• $\\lvert 2x + 1 \\rvert \\geq 5 \\Rightarrow 2x + 1 \\leq -5$ o $2x + 1 \\geq 5 \\Rightarrow x \\leq -3$ o $x \\geq 2$: solución $(-\\infty, -3] \\cup [2, +\\infty)$."
+                }
+            ]
+        },
+        {
+            "title": "Sistemas de inecuaciones con una incógnita",
+            "items": [
+                {
+                    "title": "Sistema de inecuaciones con una incógnita",
+                    "kind": "definicion",
+                    "description": "Un <strong>sistema de inecuaciones</strong> con una incógnita es un conjunto de varias inecuaciones en la misma incógnita que deben cumplirse <strong>a la vez</strong>. Su solución es la <strong>intersección</strong> de las soluciones de cada una.",
+                    "formula": "$\\begin{cases} f_1(x) \\ \\square \\ 0 \\\\ f_2(x) \\ \\square \\ 0 \\end{cases} \\quad S = S_1 \\cap S_2$",
+                    "example": "$\\begin{cases} 2x - 1 > 3 \\\\ x + 4 \\leq 9 \\end{cases}$ pide $x$ que cumpla las dos inecuaciones a la vez."
+                },
+                {
+                    "title": "Resolución de un sistema de inecuaciones",
+                    "kind": "procedimiento",
+                    "description": "<ol><li><strong>Resuelve cada inecuación</strong> por separado y escribe su solución como intervalo.</li><li><strong>Represéntalas</strong> en rectas numéricas alineadas.</li><li>La solución del sistema es la <strong>parte común</strong> (intersección). Si no hay parte común, el sistema no tiene solución.</li></ol>",
+                    "example": "• $\\begin{cases} 2x - 1 > 3 \\\\ x + 4 \\leq 9 \\end{cases}$: de la primera, $2x > 4 \\Rightarrow x > 2$; de la segunda, $x \\leq 5$. Intersección: $(2, 5]$.<br><img src='/ejemplos/inecuaciones-programacion-lineal/sistema-una-incognita.png' alt='Tres rectas numéricas: x mayor que 2, x menor o igual que 5 y la intersección (2,5]' width='843' height='399' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><br>• $\\begin{cases} 3x + 2 \\geq -4 \\\\ -x + 1 > -2 \\end{cases}$: $3x \\geq -6 \\Rightarrow x \\geq -2$; $-x > -3 \\Rightarrow x < 3$ (se invierte el sentido). Solución: $[-2, 3)$.<br>• $\\begin{cases} x < 1 \\\\ x > 3 \\end{cases}$: ningún número es menor que $1$ y mayor que $3$ a la vez. Sin solución: $\\emptyset$.<br>• Con una inecuación de segundo grado: $\\begin{cases} x^2 - 4 \\leq 0 \\\\ x - 1 > 0 \\end{cases}$: la primera da $[-2, 2]$ y la segunda $(1, +\\infty)$. Solución: $(1, 2]$."
+                }
+            ]
+        },
+        {
+            "title": "Inecuaciones lineales con dos incógnitas",
+            "items": [
+                {
+                    "title": "Inecuación lineal con dos incógnitas",
+                    "description": "Es una desigualdad en la que aparecen $x$ e $y$ con exponente 1. Una <strong>solución</strong> es cualquier par $(x, y)$ que la cumple. Hay infinitas soluciones y, en el plano, llenan un <strong>semiplano</strong>: una de las dos mitades en que una recta divide el plano.",
+                    "formula": "$$ax + by \\le c \\qquad ax + by \\ge c \\qquad ax + by < c \\qquad ax + by > c$$",
+                    "example": "Sea $2x + y \\le 4$.<br>• $(0, 0)$ es solución: $2 \\cdot 0 + 0 = 0 \\le 4$ ✓<br>• $(3, 1)$ no lo es: $2 \\cdot 3 + 1 = 7 > 4$ ✗",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Cómo representar una inecuación",
+                    "description": "<strong>1.</strong> Dibuja la <strong>recta frontera</strong>, cambiando el signo de la desigualdad por $=$ (basta con dos puntos, por ejemplo los cortes con los ejes).<br><strong>2.</strong> Trázala <strong>continua</strong> si la desigualdad es $\\le$ o $\\ge$ (los puntos de la recta son solución) y <strong>discontinua</strong> si es $<$ o $>$ (no lo son).<br><strong>3.</strong> Elige un <strong>punto de prueba</strong> que no esté en la recta (el $(0,0)$ si no pasa por él) y sustitúyelo: si cumple la desigualdad, la solución es el semiplano que lo contiene; si no, el otro.<br><strong>4.</strong> Sombrea el semiplano solución.",
+                    "example": "Representar $2x + y \\le 4$:<br>• Recta $2x + y = 4$: cortes $(2, 0)$ y $(0, 4)$.<br>• Trazo continuo, porque es $\\le$.<br>• Prueba $(0, 0)$: $0 \\le 4$ es cierto → semiplano que contiene al origen (en la figura, la zona rayada).<br><img src='/ejemplos/inecuaciones-programacion-lineal/semiplano.png' alt='Semiplano 2x + y ≤ 4' width='620' height='567' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Desigualdades estrictas",
+                    "description": "Con $<$ o $>$ la recta frontera <strong>no pertenece</strong> a la solución, así que se dibuja <strong>discontinua</strong>. El resto del método es idéntico.",
+                    "example": "Representar $x - y > 1$:<br>• Recta $x - y = 1$: puntos $(1, 0)$ y $(0, -1)$, trazo discontinuo.<br>• Prueba $(0, 0)$: $0 > 1$ es falso → la solución es el semiplano que <strong>no</strong> contiene al origen, el que queda por debajo de la recta.<br>• Comprobación: $(3, 0)$ está por debajo y $3 - 0 = 3 > 1$ ✓",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Rectas verticales, horizontales y que pasan por el origen",
+                    "description": "• $x \\ge a$ es el semiplano a la derecha de la recta vertical $x = a$; $x \\le a$, a la izquierda.<br>• $y \\ge b$ es el semiplano por encima de la recta horizontal $y = b$; $y \\le b$, por debajo.<br>• Si la recta frontera <strong>pasa por el origen</strong>, el $(0,0)$ no sirve como punto de prueba: usa otro, por ejemplo $(1, 0)$ o $(0, 1)$.",
+                    "example": "• $x \\ge 2$: derecha de $x = 2$, recta incluida.<br>• $y < 3$: debajo de $y = 3$, recta no incluida.<br>• $x \\ge 0$ e $y \\ge 0$ juntas: el primer cuadrante.<br>• $y \\ge 2x$: la recta pasa por $(0,0)$ y $(1,2)$. Prueba $(1, 0)$: $0 \\ge 2$ es falso → solución: el semiplano de arriba, que no contiene a $(1, 0)$.",
+                    "kind": "procedimiento"
+                }
+            ]
+        },
+        {
+            "title": "Sistemas de inecuaciones lineales con dos incógnitas",
+            "items": [
+                {
+                    "title": "Sistema de inecuaciones lineales",
+                    "description": "Es un conjunto de varias inecuaciones con las mismas incógnitas. Su <strong>solución</strong> son los pares $(x, y)$ que cumplen <strong>todas a la vez</strong>; gráficamente, es la <strong>intersección</strong> de los semiplanos de cada inecuación.",
+                    "example": "$$\\begin{cases} x \\ge 0 \\\\ y \\ge 0 \\\\ x + y \\le 4 \\\\ x \\le 3 \\end{cases}$$ • $(1, 1)$ es solución: cumple las cuatro ($1 \\ge 0$, $1 \\ge 0$, $2 \\le 4$, $1 \\le 3$).<br>• $(3, 2)$ no lo es: $3 + 2 = 5 > 4$.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Resolución gráfica",
+                    "description": "Representa cada inecuación con el método anterior sobre los mismos ejes. La solución del sistema es la <strong>zona donde coinciden todos los semiplanos</strong>. Truco: en vez de sombrear lo que vale, tacha lo que <strong>no</strong> vale en cada inecuación; lo que quede sin tachar es la solución.",
+                    "example": "Para el sistema anterior:<br>• $x \\ge 0$: a la derecha del eje $y$.<br>• $y \\ge 0$: por encima del eje $x$.<br>• $x + y \\le 4$: bajo la recta $x + y = 4$ (prueba $(0,0)$: $0 \\le 4$ ✓).<br>• $x \\le 3$: a la izquierda de la recta $x = 3$.<br>La región es un cuadrilátero:<br><img src='/ejemplos/inecuaciones-programacion-lineal/sistema-inecuaciones.png' alt='Región del sistema x ≥ 0, y ≥ 0, x + y ≤ 4, x ≤ 3' width='606' height='567' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Vértices de la región",
+                    "description": "Los <strong>vértices</strong> son los puntos donde se cortan las rectas frontera. Para hallarlos, resuelve el sistema formado por cada pareja de rectas y <strong>quédate solo con los puntos que cumplen todas las demás inecuaciones</strong>: un punto de corte que se sale de la región no es vértice.",
+                    "example": "Rectas: $x = 0$, $y = 0$, $x + y = 4$, $x = 3$.<br>• $x = 0$ e $y = 0$: $(0, 0)$ ✓<br>• $x = 0$ y $x + y = 4$: $(0, 4)$ ✓<br>• $y = 0$ y $x + y = 4$: $(4, 0)$ ✗, no cumple $x \\le 3$<br>• $y = 0$ y $x = 3$: $(3, 0)$ ✓<br>• $x + y = 4$ y $x = 3$: $(3, 1)$ ✓<br>• $x = 0$ y $x = 3$: son paralelas, no se cortan.<br>Vértices: $(0,0)$, $(3,0)$, $(3,1)$, $(0,4)$.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Región acotada, no acotada o vacía",
+                    "description": "La región de soluciones puede ser un <strong>polígono</strong> (región <strong>acotada</strong>), una zona que se extiende sin límite (<strong>no acotada</strong>) o no existir (<strong>vacía</strong>: el sistema no tiene solución).",
+                    "example": "• Acotada: el cuadrilátero de arriba.<br>• No acotada: $x \\ge 0$, $y \\ge 0$, $x + y \\ge 4$ se extiende hacia arriba y a la derecha sin fin.<br>• Vacía: $x + y \\le 2$ y $x + y \\ge 5$ exigirían $5 \\le x + y \\le 2$, imposible.",
+                    "kind": "definicion"
+                }
+            ]
+        },
+        {
+            "title": "¿Qué es la programación lineal?",
+            "items": [
+                {
+                    "title": "Problema de programación lineal",
+                    "description": "La <strong>programación lineal</strong> busca el <strong>máximo</strong> o el <strong>mínimo</strong> de una función lineal cuando las incógnitas deben cumplir un sistema de inecuaciones. Sus elementos son:<br>• <strong>Función objetivo</strong> $f(x, y) = ax + by$: lo que queremos maximizar (beneficio) o minimizar (coste).<br>• <strong>Restricciones</strong>: las inecuaciones que limitan las variables (recursos, capacidades...). Casi siempre incluyen $x \\ge 0$, $y \\ge 0$.<br>• <strong>Región factible</strong>: los puntos que cumplen todas las restricciones.<br>• <strong>Solución óptima</strong>: el punto de la región factible donde $f$ alcanza su máximo o mínimo.",
+                    "formula": "$$\\text{Optimizar } f(x, y) = ax + by \\quad \\text{sujeto a} \\quad \\begin{cases} a_1 x + b_1 y \\le c_1 \\\\ a_2 x + b_2 y \\le c_2 \\\\ x \\ge 0, \\ y \\ge 0 \\end{cases}$$",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Dónde está el óptimo",
+                    "description": "Si la región factible es <strong>acotada</strong>, $f$ alcanza su máximo y su mínimo, y lo hace en <strong>vértices</strong> de la región. Si dos vértices consecutivos dan el mismo valor óptimo, también lo dan <strong>todos los puntos del lado</strong> que los une (infinitas soluciones). Si la región es <strong>no acotada</strong>, puede que no exista el máximo o el mínimo.<br>¿Por qué? Como $f$ es lineal, al ir moviéndonos por la región el valor de $f$ crece o decrece siempre en una misma dirección, y el último punto en esa dirección es una esquina.",
+                    "kind": "teorema"
+                },
+                {
+                    "title": "Cómo plantear un problema",
+                    "description": "<strong>1.</strong> Define las variables $x$ e $y$ (qué cuentan y en qué unidades).<br><strong>2.</strong> Ordena los datos, por ejemplo en una tabla.<br><strong>3.</strong> Escribe una inecuación por cada limitación y añade $x \\ge 0$, $y \\ge 0$.<br><strong>4.</strong> Escribe la función objetivo e indica si hay que maximizarla o minimizarla.",
+                    "example": "Una pastelería hace tartas ($x$) y bizcochos ($y$). Cada tarta lleva 2 kg de harina y 1 kg de azúcar; cada bizcocho, 1 kg de harina y 2 kg de azúcar. Dispone de 10 kg de harina y 8 kg de azúcar. Gana 3 € por tarta y 2 € por bizcocho. ¿Cuántas de cada debe hacer para ganar lo máximo?<br>• Harina: $2x + y \\le 10$<br>• Azúcar: $x + 2y \\le 8$<br>• $x \\ge 0$, $y \\ge 0$<br>• Maximizar $f(x, y) = 3x + 2y$",
+                    "kind": "procedimiento"
+                }
+            ]
+        },
+        {
+            "title": "Método analítico (vértices)",
+            "items": [
+                {
+                    "title": "Pasos",
+                    "description": "<strong>1.</strong> Plantea el problema y representa la región factible.<br><strong>2.</strong> Calcula sus <strong>vértices</strong> resolviendo los sistemas de las rectas frontera y descartando los que incumplen alguna restricción.<br><strong>3.</strong> <strong>Evalúa $f$</strong> en cada vértice.<br><strong>4.</strong> Elige el mayor valor (máximo) o el menor (mínimo).<br><strong>5.</strong> Interpreta el resultado en el contexto del problema.",
+                    "example": "Pastelería ($2x + y \\le 10$, $x + 2y \\le 8$, $x, y \\ge 0$; $f = 3x + 2y$):<br>• Ejes: $(0, 0)$ ✓<br>• $y = 0$ y $2x + y = 10$: $(5, 0)$ ✓ ($5 + 0 \\le 8$)<br>• $y = 0$ y $x + 2y = 8$: $(8, 0)$ ✗ ($2 \\cdot 8 = 16 > 10$)<br>• $x = 0$ y $x + 2y = 8$: $(0, 4)$ ✓ ($0 + 4 \\le 10$)<br>• $x = 0$ y $2x + y = 10$: $(0, 10)$ ✗ ($0 + 20 > 8$)<br>• Las dos rectas: de $y = 10 - 2x$ sale $x + 20 - 4x = 8$, luego $x = 4$, $y = 2$: $(4, 2)$ ✓<br>$$\\begin{array}{c|c} \\text{vértice} & f = 3x + 2y \\\\ \\hline (0,0) & 0 \\\\ (5,0) & 15 \\\\ (0,4) & 8 \\\\ (4,2) & \\textcolor{#4fa66e}{16} \\end{array}$$ <strong>Máximo:</strong> 16 € en $(4, 2)$, es decir, 4 tartas y 2 bizcochos. <strong>Mínimo:</strong> 0 en $(0, 0)$ (no hacer nada).",
+                    "kind": "procedimiento"
+                }
+            ]
+        },
+        {
+            "title": "Método gráfico",
+            "items": [
+                {
+                    "title": "De la función objetivo a la recta a dibujar",
+                    "description": "Para ver cómo se comporta $f$ sobre el plano, <strong>igualamos la función objetivo a un valor</strong> y <strong>despejamos $y$</strong>. Obtenemos una recta $y = mx + n$ que dibujamos sobre los ejes. Cada valor distinto da una recta <strong>paralela</strong> (misma pendiente $m = -a/b$), y todos los puntos de una de ellas dan el mismo valor de $f$. Empezamos por $f = 0$ (pasa por el origen) y la <strong>desplazamos paralelamente</strong> por la región: el primer y el último punto que toca son el mínimo y el máximo.",
+                    "formula": "$$ax + by = 0 \\ \\Rightarrow \\ y = -\\dfrac{a}{b}\\,x$$",
+                    "example": "Con $f(x, y) = 3x + 2y$:<br>• Igualamos a 0: $3x + 2y = 0$, y despejando, $y = -\\tfrac{3}{2}x$. Es la recta que dibujamos (pasa por $(0,0)$ y por $(2,-3)$).<br>• Si la igualamos a otro valor, p. ej. $3x + 2y = 15$, queda $y = \\tfrac{15 - 3x}{2}$: misma pendiente $-\\tfrac{3}{2}$, y pasa por $(5, 0)$.<br>Todas son paralelas; las que están más arriba y a la derecha dan valores mayores de $f$.",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Pasos (maximizar)",
+                    "description": "<strong>1.</strong> Representa la región factible.<br><strong>2.</strong> Iguala $f$ a 0, despeja $y$ y dibuja esa recta.<br><strong>3.</strong> Desplázala paralelamente en el sentido en que $f$ crece (compruébalo evaluando $f$ en dos puntos).<br><strong>4.</strong> El <strong>último</strong> vértice (o lado) que toca antes de salir de la región es el <strong>máximo</strong>; el <strong>primero</strong>, el <strong>mínimo</strong>.<br><strong>5.</strong> Halla las coordenadas de ese vértice resolviendo el sistema de sus dos rectas y calcula $f$ en él.",
+                    "example": "Pastelería: región de vértices $(0,0)$, $(5,0)$, $(4,2)$, $(0,4)$.<br>• La recta $y = -\\tfrac{3}{2}x$, de $3x + 2y = 0$ (punteada), toca la región por primera vez en $(0,0)$: <strong>mínimo</strong> $f = 0$.<br>• Al desplazarla pasa por $(0,4)$ ($f = 8$), por $(5,0)$ ($f = 15$, punteada) y la última recta que corta la región es la que pasa por $(4, 2)$ (discontinua): <strong>máximo</strong> $f = 3 \\cdot 4 + 2 \\cdot 2 = 16$.<br><img src='/ejemplos/inecuaciones-programacion-lineal/maximo.png' alt='Región factible y rectas paralelas de f = 3x + 2y' width='679' height='604' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Región no acotada: minimizar",
+                    "description": "En una región no acotada, mira hacia dónde crece $f$. Si la recta paralela puede avanzar sin fin dentro de la región en el sentido que mejora $f$, <strong>ese óptimo no existe</strong>; el otro suele alcanzarse en un vértice.",
+                    "example": "Minimizar $f = 2x + 3y$ con $x + y \\ge 4$, $x + 3y \\ge 6$, $x \\ge 0$, $y \\ge 0$.<br>• Vértices: $(0, 4)$, $(6, 0)$ y el corte de $x + y = 4$ con $x + 3y = 6$: restando, $2y = 2$, $y = 1$, $x = 3$ → $(3, 1)$.<br>• $f(0,4) = 12$, $f(3,1) = 9$, $f(6,0) = 12$.<br><strong>Mínimo:</strong> 9 en $(3, 1)$ (la recta discontinua $2x + 3y = 9$ es la primera en tocar la región).<br><strong>No hay máximo:</strong> $f(0, 100) = 300$, $f(0, 1000) = 3000$... crece sin límite.<br><img src='/ejemplos/inecuaciones-programacion-lineal/minimo.png' alt='Región no acotada y recta paralela de f = 2x + 3y' width='679' height='613' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "kind": "procedimiento"
+                }
+            ]
+        },
+        {
+            "title": "Casos especiales",
+            "items": [
+                {
+                    "title": "Infinitas soluciones",
+                    "description": "Si la recta de $f$ es <strong>paralela a un lado</strong> de la región, todos los puntos de ese lado son óptimos.",
+                    "example": "Maximizar $f = x + 2y$ en la región de la pastelería. $f(0,0) = 0$, $f(5,0) = 5$, $f(0,4) = 8$, $f(4,2) = 8$.<br>Hay dos vértices con el máximo 8: el lado que los une está sobre la recta $x + 2y = 8$ (la misma dirección que $f$), así que <strong>todos los puntos de ese segmento</strong> son óptimos.",
+                    "kind": "observacion"
+                },
+                {
+                    "title": "Sin solución",
+                    "description": "No hay solución cuando la región factible es <strong>vacía</strong> o cuando es <strong>no acotada</strong> y $f$ mejora indefinidamente.",
+                    "example": "Maximizar $f = x + y$ con $x \\ge 0$, $y \\ge 0$, $x + y \\ge 4$: la región es no acotada y $f(100, 0) = 100$, $f(1000, 0) = 1000$... no hay máximo.",
+                    "kind": "observacion"
+                },
+                {
+                    "title": "Soluciones enteras",
+                    "description": "Si $x$ e $y$ cuentan objetos (tartas, personas...) deben ser <strong>enteros</strong>. Si el vértice óptimo ya es entero, es la solución. Si no, hay que buscar entre los <strong>puntos enteros de la región</strong> cercanos al vértice. Redondear sin comprobar puede salirse de la región.",
+                    "example": "Maximizar $f = x + y$ con $2x + y \\le 7$, $x + 2y \\le 7$, $x, y \\ge 0$ (enteros).<br>• El vértice óptimo es $\\left(\\tfrac{7}{3}, \\tfrac{7}{3}\\right)$ (resolviendo $2x + y = 7$ con $x + 2y = 7$), con $f = \\tfrac{14}{3} \\approx 4{,}67$, no entero.<br>• Redondear a $(3, 3)$ no vale: $2 \\cdot 3 + 3 = 9 > 7$.<br>• Entre los puntos enteros de la región, el mayor valor posible es $f = 4$, que se alcanza en $(1, 3)$, $(2, 2)$ y $(3, 1)$.",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Errores frecuentes",
+                    "description": "• Olvidar las restricciones $x \\ge 0$, $y \\ge 0$.<br>• Dar por vértice un punto de corte que incumple alguna restricción.<br>• Usar el origen como punto de prueba cuando la recta pasa por él.<br>• Quedarse con el vértice que da el valor máximo cuando el problema pide <strong>minimizar</strong> (o al revés).<br>• No interpretar el resultado: la respuesta debe decir cuántas unidades de cada cosa y cuál es el valor de $f$.",
+                    "kind": "observacion"
+                }
+            ]
+        }
+    ]
+}

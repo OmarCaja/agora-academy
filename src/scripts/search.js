@@ -62,6 +62,12 @@ const initSearchFilter = () => {
         }
         updateKbdVisibility();
 
+        // Every word of the query must appear (in any order, accents and case ignored) somewhere in the
+        // section title, the item's search text or its rendered text: "matriz inversa" finds
+        // "Inversa de una matriz", and one more word narrows the results.
+        const terms = query.split(/\s+/).filter(Boolean);
+        const matchesAll = (text) => terms.every((term) => text.includes(term));
+
         sections.forEach((section) => {
             const sectionText = normalizeText(section.dataset.searchText || "");
             let sectionMatches = 0;
@@ -69,14 +75,27 @@ const initSearchFilter = () => {
             section.querySelectorAll("[data-search-item]").forEach((item) => {
                 const matches =
                     query === "" ||
-                    sectionText.includes(query) ||
-                    normalizeText(item.dataset.searchText || "").includes(query) ||
-                    normalizeText(item.textContent || "").includes(query);
+                    matchesAll(
+                        `${sectionText} ${normalizeText(item.dataset.searchText || "")} ${normalizeText(item.textContent || "")}`,
+                    );
 
                 item.style.display = matches ? "" : "none";
                 if (matches) {
                     sectionMatches++;
                     totalMatches++;
+                }
+
+                // Items that list what they contain (data-hits) show where the query matched.
+                const hitsBox = item.querySelector("[data-search-hits]");
+                if (hitsBox) {
+                    const hits =
+                        query && item.dataset.hits
+                            ? JSON.parse(item.dataset.hits).filter((hit) => matchesAll(normalizeText(hit)))
+                            : [];
+                    hitsBox.hidden = hits.length === 0;
+                    hitsBox.textContent = hits.length
+                        ? `Coincide en: ${hits.slice(0, 4).join(" · ")}${hits.length > 4 ? ` · y ${hits.length - 4} más` : ""}`
+                        : "";
                 }
             });
 

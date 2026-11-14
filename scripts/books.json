@@ -7,7 +7,8 @@
       "ecuaciones-exponenciales-logaritmicas"
     ],
     "title": "Potencias, raíces y logaritmos",
-    "out": "public/libros/potencias-raices-logaritmos.pdf"
+    "out": "public/libros/potencias-raices-logaritmos.pdf",
+    "pages": 28
   },
   {
     "topics": [
@@ -16,7 +17,8 @@
       "divisibilidad"
     ],
     "title": "Aritmética",
-    "out": "public/libros/aritmetica.pdf"
+    "out": "public/libros/aritmetica.pdf",
+    "pages": 21
   },
   {
     "topics": [
@@ -24,7 +26,8 @@
       "identidades-notables"
     ],
     "title": "Introducción al álgebra",
-    "out": "public/libros/introduccion-algebra.pdf"
+    "out": "public/libros/introduccion-algebra.pdf",
+    "pages": 23
   },
   {
     "topics": [
@@ -34,7 +37,8 @@
       "distribuciones-probabilidad"
     ],
     "title": "Estadística y probabilidad",
-    "out": "public/libros/estadistica-probabilidad.pdf"
+    "out": "public/libros/estadistica-probabilidad.pdf",
+    "pages": 47
   },
   {
     "topics": [
@@ -44,35 +48,40 @@
       "derivadas"
     ],
     "title": "Funciones, límites y derivadas",
-    "out": "public/libros/funciones-limites-derivadas.pdf"
+    "out": "public/libros/funciones-limites-derivadas.pdf",
+    "pages": 54
   },
   {
     "topics": [
       "fracciones"
     ],
     "title": "Operaciones con fracciones",
-    "out": "public/libros/fracciones.pdf"
+    "out": "public/libros/fracciones.pdf",
+    "pages": 14
   },
   {
     "topics": [
       "proporcionalidad-porcentajes"
     ],
     "title": "Razones, proporcionalidad y porcentajes",
-    "out": "public/libros/proporcionalidad-porcentajes.pdf"
+    "out": "public/libros/proporcionalidad-porcentajes.pdf",
+    "pages": 11
   },
   {
     "topics": [
       "trigonometria"
     ],
     "title": "Trigonometría",
-    "out": "public/libros/trigonometria.pdf"
+    "out": "public/libros/trigonometria.pdf",
+    "pages": 21
   },
   {
     "topics": [
       "unidades-notacion-cientifica"
     ],
     "title": "Unidades y notación científica",
-    "out": "public/libros/unidades-notacion-cientifica.pdf"
+    "out": "public/libros/unidades-notacion-cientifica.pdf",
+    "pages": 14
   },
   {
     "topics": [
@@ -81,41 +90,47 @@
       "sistemas-de-ecuaciones"
     ],
     "title": "Matrices, determinantes y sistemas de ecuaciones",
-    "out": "public/libros/matrices-determinantes-sistemas-de-ecuaciones.pdf"
+    "out": "public/libros/matrices-determinantes-sistemas-de-ecuaciones.pdf",
+    "pages": 50
   },
   {
     "topics": [
       "grafos"
     ],
     "title": "Grafos",
-    "out": "public/libros/grafos.pdf"
+    "out": "public/libros/grafos.pdf",
+    "pages": 13
   },
   {
     "topics": [
       "interes-simple-compuesto"
     ],
     "title": "Interés simple y compuesto",
-    "out": "public/libros/interes-simple-compuesto.pdf"
+    "out": "public/libros/interes-simple-compuesto.pdf",
+    "pages": 11
   },
   {
     "topics": [
       "vectores"
     ],
     "title": "Vectores",
-    "out": "public/libros/vectores.pdf"
+    "out": "public/libros/vectores.pdf",
+    "pages": 26
   },
   {
     "topics": [
       "operaciones-decimales"
     ],
     "title": "Operaciones con números decimales",
-    "out": "public/libros/operaciones-decimales.pdf"
+    "out": "public/libros/operaciones-decimales.pdf",
+    "pages": 11
   },
   {
     "topics": [
-      "programacion-lineal"
+      "inecuaciones-programacion-lineal"
     ],
-    "title": "Programación lineal",
-    "out": "public/libros/programacion-lineal.pdf"
+    "title": "Inecuaciones y programación lineal",
+    "out": "public/libros/inecuaciones-programacion-lineal.pdf",
+    "pages": 27
   }
 ]

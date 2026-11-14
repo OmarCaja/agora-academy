@@ -21,6 +21,7 @@ import { parseArgs } from 'node:util';
 import { renderMath } from '../src/utils/math.ts';
 import { SITE_NAME, SITE_URL, ADDRESS } from '../src/data/site.ts';
 import { KIND_LABELS } from '../src/data/itemKinds.ts';
+import { PDFDocument } from 'pdf-lib';
 import { fail, escapeHtml as esc, findChrome } from './pdf.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -39,7 +40,8 @@ const { values: args } = parseArgs({ options: {
 const books = JSON.parse(fs.readFileSync(BOOKS, 'utf8'));
 
 if (args.all) {
-  for (const book of books) await buildBook(book, args.html);
+  for (const book of books) book.pages = await buildBook(book, args.html);
+  fs.writeFileSync(BOOKS, JSON.stringify(books, null, 2) + '\n');
 } else {
   if (!args.topics || !args.title || !args.out) {
     console.log('Usage: build-book.mjs --topics a,b --title "..." --out file.pdf [--html] | --all');
@@ -47,7 +49,7 @@ if (args.all) {
   }
   const book = { topics: args.topics.split(',').map(s => s.trim()), title: args.title,
     out: path.relative(root, path.resolve(args.out)) };
-  await buildBook(book, args.html);
+  book.pages = await buildBook(book, args.html);
   const i = books.findIndex(b => b.out === book.out);
   if (i === -1) books.push(book); else books[i] = book;
   fs.writeFileSync(BOOKS, JSON.stringify(books, null, 2) + '\n');
@@ -190,5 +192,27 @@ async function buildBook(book, keepHtml) {
   // renderMath doesn't throw on bad LaTeX; it emits .katex-error spans that render as red text.
   const katexErrors = (html.match(/class="katex-error"/g) || []).length;
   if (katexErrors) console.error(`Warning: ${katexErrors} formula(s) failed to render (search katex-error with --html).`);
+  const pages = await setPdfMetadata(out, book, chapters);
   console.log(path.relative(process.cwd(), out));
+  return pages;
+}
+
+// Chrome only writes the page title into the PDF. Add what readers and search engines show in
+// the file's properties: author, subject (what the book covers) and keywords (chapter and
+// section titles). Returns the page count, which the /books page lists.
+async function setPdfMetadata(file, book, chapters) {
+  const pdf = await PDFDocument.load(fs.readFileSync(file));
+  const sections = chapters.flatMap(ch => ch.sections.map(sec => sec.title));
+  pdf.setTitle(book.title);
+  pdf.setAuthor(SITE_NAME);
+  pdf.setSubject(`${chapters.map(ch => ch.title).join(', ')}. ${chapters.map(ch => ch.description).join(' ')}`.slice(0, 1000));
+  pdf.setKeywords([...chapters.map(ch => ch.title), ...sections]);
+  pdf.setCreator(SITE_NAME);
+  pdf.setProducer(SITE_URL.replace(/^https?:\/\//, ''));
+  pdf.setLanguage('es');
+  const now = new Date();
+  pdf.setCreationDate(now);
+  pdf.setModificationDate(now);
+  fs.writeFileSync(file, await pdf.save());
+  return pdf.getPageCount();
 }
