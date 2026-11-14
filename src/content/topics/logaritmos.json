@@ -9,19 +9,21 @@
             "items": [
                 {
                     "title": "Definición de logaritmo",
-                    "formula": "$\\log_a b = c \\iff a^c = b$",
-                    "example": "$\\log_2 8 = 3 \\iff 2^3 = 8$",
-                    "description": "El logaritmo es el exponente al que hay que elevar la base para obtener el argumento."
+                    "formula": "$\\log_a b = c \\iff a^c = b \\qquad (a > 0,\\ a \\neq 1,\\ b > 0)$",
+                    "example": "$\\log_2 8 = 3 \\iff 2^3 = 8 \\qquad \\log_3 \\dfrac{1}{9} = -2 \\iff 3^{-2} = \\dfrac{1}{9}$",
+                    "description": "El logaritmo es el <strong>exponente</strong> al que hay que elevar la base para obtener el argumento. La base debe ser positiva y distinta de $1$, y solo existen logaritmos de números <strong>positivos</strong>: $\\log_2 (-8)$ y $\\log_2 0$ no existen."
                 },
                 {
                     "title": "Logaritmo de la base",
                     "formula": "$\\log_a a = 1$",
-                    "example": "$\\log_5 5 = 1$"
+                    "example": "$\\log_5 5 = 1$",
+                    "description": "Porque $a^1 = a$."
                 },
                 {
                     "title": "Logaritmo de uno",
                     "formula": "$\\log_a 1 = 0$",
-                    "example": "$\\log_7 1 = 0$"
+                    "example": "$\\log_7 1 = 0$",
+                    "description": "Porque $a^0 = 1$."
                 },
                 {
                     "title": "Logaritmo decimal y neperiano",
@@ -37,17 +39,26 @@
                 {
                     "title": "Logaritmo de un producto",
                     "formula": "$\\log_a (M \\cdot N) = \\log_a M + \\log_a N$",
-                    "example": "$\\log_2 (4 \\cdot 8) = \\log_2 4 + \\log_2 8 = 2 + 3 = 5$"
+                    "example": "$\\log_2 (4 \\cdot 8) = \\log_2 4 + \\log_2 8 = 2 + 3 = 5$",
+                    "description": "El logaritmo de un producto es la <strong>suma</strong> de los logaritmos."
                 },
                 {
                     "title": "Logaritmo de un cociente",
-                    "formula": "$\\log_a (M / N) = \\log_a M - \\log_a N$",
-                    "example": "$\\log_2 (16 / 4) = \\log_2 16 - \\log_2 4 = 4 - 2 = 2$"
+                    "formula": "$\\log_a \\dfrac{M}{N} = \\log_a M - \\log_a N$",
+                    "example": "$\\log_2 \\dfrac{16}{4} = \\log_2 16 - \\log_2 4 = 4 - 2 = 2$",
+                    "description": "El logaritmo de un cociente es la <strong>resta</strong> de los logaritmos."
                 },
                 {
                     "title": "Logaritmo de una potencia",
                     "formula": "$\\log_a (M^n) = n \\cdot \\log_a M$",
-                    "example": "$\\log_3 (9^4) = 4 \\cdot \\log_3 9 = 4 \\cdot 2 = 8$"
+                    "example": "$\\log_3 (9^4) = 4 \\cdot \\log_3 9 = 4 \\cdot 2 = 8$",
+                    "description": "El exponente del argumento <strong>baja multiplicando</strong>. Es la propiedad clave para despejar incógnitas que están en un exponente."
+                },
+                {
+                    "title": "Errores frecuentes",
+                    "formula": "$\\log_a (M + N) \\neq \\log_a M + \\log_a N \\qquad \\dfrac{\\log_a M}{\\log_a N} \\neq \\log_a \\dfrac{M}{N}$",
+                    "example": "$\\log (10 + 10) = \\log 20 \\approx 1{,}30 \\qquad \\log 10 + \\log 10 = 2$",
+                    "description": "No hay ninguna propiedad para el logaritmo de una suma o de una resta, ni para el cociente de dos logaritmos."
                 }
             ]
         },
@@ -57,12 +68,14 @@
                 {
                     "title": "Logaritmo de una raíz",
                     "formula": "$\\log_a \\sqrt[n]{M} = \\frac{1}{n} \\log_a M$",
-                    "example": "$\\log_2 \\sqrt[3]{8} = \\frac{1}{3} \\log_2 8 = \\frac{1}{3} \\cdot 3 = 1$"
+                    "example": "$\\log_2 \\sqrt[3]{8} = \\frac{1}{3} \\log_2 8 = \\frac{1}{3} \\cdot 3 = 1$",
+                    "description": "Es un caso particular del logaritmo de una potencia, porque $\\sqrt[n]{M} = M^{\\frac{1}{n}}$."
                 },
                 {
                     "title": "Cambio de base",
                     "formula": "$\\log_a M = \\frac{\\log_b M}{\\log_b a}$",
-                    "example": "$\\log_4 16 = \\frac{\\log_2 16}{\\log_2 4} = \\frac{4}{2} = 2$"
+                    "example": "$\\log_4 16 = \\frac{\\log_2 16}{\\log_2 4} = \\frac{4}{2} = 2$",
+                    "description": "Permite calcular cualquier logaritmo con la calculadora, que solo trae $\\log$ (base $10$) y $\\ln$ (base $e$): $\\log_a M = \\dfrac{\\log M}{\\log a}$."
                 }
             ]
         }

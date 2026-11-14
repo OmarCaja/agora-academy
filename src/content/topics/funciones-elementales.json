@@ -70,7 +70,7 @@
                 {
                     "title": "Logaritmos de base fraccionaria",
                     "description": "Cuando la base $a$ está entre 0 y 1 ($0 < a < 1$), la función logarítmica es **decreciente**.",
-                    "example": "La función $f(x) = \\log_{0.5}(x)$ decrece a medida que $x$ aumenta. Corta al eje X en $(1, 0)$ y tiene una asíntota vertical en $x=0$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/logaritmica-decreciente.png' alt='Logaritmo decreciente' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Comparativa: base $a=2$ vs base $a=0.5$</figcaption></figure>"
+                    "example": "La función $f(x) = \\log_{0{,}5}(x)$ decrece a medida que $x$ aumenta. Corta al eje X en $(1, 0)$ y tiene una asíntota vertical en $x=0$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/logaritmica-decreciente.png' alt='Logaritmo decreciente' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Comparativa: base $a=2$ vs base $a=0{,}5$</figcaption></figure>"
                 }
             ]
         }

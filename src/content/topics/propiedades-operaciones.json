@@ -11,7 +11,7 @@
                     "title": "Propiedad conmutativa",
                     "formula": "$a + b = b + a$  /  $a \\cdot b = b \\cdot a$",
                     "example": "$5 + 3 = 3 + 5 = 8$  /  $4 \\cdot 2 = 2 \\cdot 4 = 8$",
-                    "description": "El orden de los números no altera el resultado final de la operación."
+                    "description": "El orden de los números no altera el resultado. Se cumple en la suma y en la multiplicación, pero <strong>no</strong> en la resta ni en la división: $8 - 3 \\neq 3 - 8$."
                 },
                 {
                     "title": "Propiedad asociativa",
@@ -23,7 +23,13 @@
                     "title": "Propiedad distributiva",
                     "formula": "$a \\cdot (b + c) = (a \\cdot b) + (a \\cdot c)$",
                     "example": "$3 \\cdot (4 + 5) = (3 \\cdot 4) + (3 \\cdot 5) = 12 + 15 = 27$",
-                    "description": "Multiplicar un número por una suma es igual a sumar los productos de dicho número por cada sumando."
+                    "description": "Multiplicar un número por una suma es igual a sumar los productos de ese número por cada sumando. Leída al revés, sirve para <strong>sacar factor común</strong>."
+                },
+                {
+                    "title": "Sacar factor común",
+                    "formula": "$a \\cdot b + a \\cdot c = a \\cdot (b + c)$",
+                    "example": "$7 \\cdot 13 + 7 \\cdot 7 = 7 \\cdot (13 + 7) = 7 \\cdot 20 = 140$",
+                    "description": "Si todos los sumandos tienen un factor repetido, se escribe una sola vez fuera del paréntesis. Facilita muchos cálculos mentales y es la base de la factorización en álgebra."
                 }
             ]
         },
@@ -38,14 +44,14 @@
                 },
                 {
                     "title": "Elemento inverso (simétrico)",
-                    "formula": "$a + (-a) = 0$ / $a \\cdot (1/a) = 1$",
-                    "example": "$7 + (-7) = 0$ / $4 \\cdot (1/4) = 1$",
-                    "description": "Operar un número con su inverso devuelve el elemento neutro de dicha operación."
+                    "formula": "$a + (-a) = 0 \\qquad a \\cdot \\dfrac{1}{a} = 1 \\ (a \\neq 0)$",
+                    "example": "$7 + (-7) = 0 \\qquad 4 \\cdot \\dfrac{1}{4} = 1 \\qquad \\dfrac{2}{3} \\cdot \\dfrac{3}{2} = 1$",
+                    "description": "El <strong>opuesto</strong> de $a$ es $-a$ y el <strong>inverso</strong> de $a$ es $\\dfrac{1}{a}$. Al operar un número con su opuesto (en la suma) o con su inverso (en la multiplicación) se obtiene el elemento neutro. El $0$ no tiene inverso."
                 },
                 {
                     "title": "Elemento absorbente",
                     "formula": "$a \\cdot 0 = 0$",
-                    "example": "$1.234 \\cdot 0 = 0$",
+                    "example": "$1234 \\cdot 0 = 0$",
                     "description": "En la multiplicación, cualquier número multiplicado por cero resulta siempre en cero."
                 }
             ]

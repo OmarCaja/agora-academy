@@ -3,7 +3,8 @@
     "topics": [
       "potencias",
       "raices",
-      "logaritmos"
+      "logaritmos",
+      "ecuaciones-exponenciales-logaritmicas"
     ],
     "title": "Potencias, raíces y logaritmos",
     "out": "public/libros/potencias-raices-logaritmos.pdf"
@@ -11,7 +12,8 @@
   {
     "topics": [
       "jerarquia",
-      "propiedades-operaciones"
+      "propiedades-operaciones",
+      "divisibilidad"
     ],
     "title": "Aritmética",
     "out": "public/libros/aritmetica.pdf"
@@ -43,13 +45,6 @@
     ],
     "title": "Funciones, límites y derivadas",
     "out": "public/libros/funciones-limites-derivadas.pdf"
-  },
-  {
-    "topics": [
-      "divisibilidad"
-    ],
-    "title": "Factorización de números",
-    "out": "public/libros/divisibilidad.pdf"
   },
   {
     "topics": [
@@ -122,12 +117,5 @@
     ],
     "title": "Programación lineal",
     "out": "public/libros/programacion-lineal.pdf"
-  },
-  {
-    "topics": [
-      "ecuaciones-exponenciales-logaritmicas"
-    ],
-    "title": "Ecuaciones exponenciales y logarítmicas",
-    "out": "public/libros/ecuaciones-exponenciales-logaritmicas.pdf"
   }
 ]

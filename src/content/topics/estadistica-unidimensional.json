@@ -43,11 +43,13 @@
                 },
                 {
                     "title": "Moda ($M_o$)",
-                    "description": "Es el valor de la variable con mayor frecuencia absoluta ($f_i$)."
+                    "description": "Es el valor de la variable con mayor frecuencia absoluta ($f_i$). Puede haber más de una moda.",
+                    "example": "Datos: $2, 3, 3, 5, 7$<br>$M_o = 3$, porque es el que más se repite"
                 },
                 {
                     "title": "Mediana ($M_e$)",
-                    "description": "Es el valor que ocupa la posición central.<ul><li><strong>$N$ impar:</strong> Es el dato central.</li><li><strong>$N$ par:</strong> Es la media de los dos datos centrales.</li></ul>En tablas con frecuencias, se busca el primer valor donde $F_i \\ge N/2$."
+                    "description": "Es el valor que ocupa la posición central cuando los datos están ordenados.<ul><li><strong>$N$ impar:</strong> es el dato central.</li><li><strong>$N$ par:</strong> es la media de los dos datos centrales.</li></ul>En una tabla de frecuencias se calcula $\\frac{N}{2}$ y se busca el primer valor cuya $F_i$ <strong>supera</strong> $\\frac{N}{2}$. Si alguna $F_i$ es exactamente igual a $\\frac{N}{2}$, la mediana es la media entre ese valor y el siguiente.",
+                    "example": "Datos: $2, 3, 3, 5, 7, 8$ $(N = 6)$<br>Los datos centrales son el $3$ y el $5$, así que $M_e = \\dfrac{3 + 5}{2} = 4$"
                 }
             ]
         },
@@ -62,19 +64,19 @@
                 {
                     "title": "Varianza",
                     "formula": "$$\\sigma^2 = \\frac{\\sum x_i^2 \\cdot f_i}{N} - \\bar{x}^2$$",
-                    "example": "$$\\begin{gathered}\\text{Si } \\bar{x}=4 \\text{ y } \\frac{\\sum x_i^2 f_i}{N} = 18.5 \\\\ \\sigma^2 = 18.5 - 4^2 = 18.5 - 16 = 2.5\\end{gathered}$$",
-                    "description": "Promedio de los cuadrados de las distancias a la media. Es siempre positiva."
+                    "example": "$$\\begin{gathered}\\text{Si } \\bar{x}=4 \\text{ y } \\frac{\\sum x_i^2 f_i}{N} = 18{,}5 \\\\ \\sigma^2 = 18{,}5 - 4^2 = 18{,}5 - 16 = 2{,}5\\end{gathered}$$",
+                    "description": "Es la media de los cuadrados de las distancias de cada dato a la media. Nunca es negativa, y vale $0$ solo si todos los datos son iguales. Sus unidades son las de los datos al cuadrado."
                 },
                 {
                     "title": "Desviación típica",
                     "formula": "$$\\sigma = \\sqrt{\\sigma^2}$$",
-                    "example": "$$\\text{Si } \\sigma^2 = 2.5 \\rightarrow \\sigma = \\sqrt{2.5} \\approx 1.58$$",
+                    "example": "$$\\text{Si } \\sigma^2 = 2{,}5 \\rightarrow \\sigma = \\sqrt{2{,}5} \\approx 1{,}58$$",
                     "description": "Raíz de la varianza. Se mide en las mismas unidades que los datos, lo que la hace más interpretable."
                 },
                 {
                     "title": "Coeficiente de variación",
-                    "formula": "$$CV = \\frac{\\sigma}{|\\bar{x}|}$$",
-                    "description": "Adimensional. Permite comparar la dispersión de poblaciones distintas (ej. peso de elefantes vs ratones). $CV < 0.1$ indica poca dispersión."
+                    "formula": "$$CV = \\frac{\\sigma}{\\lvert \\bar{x} \\rvert}$$",
+                    "description": "No tiene unidades, así que permite comparar la dispersión de poblaciones distintas (por ejemplo, el peso de elefantes y el de ratones). Cuanto mayor es, más dispersos están los datos. Se suele dar en porcentaje: $CV = 0{,}15$ significa un $15\\,\\%$."
                 }
             ]
         },
@@ -91,7 +93,7 @@
                 },
                 {
                     "title": "Diagrama de caja y bigotes",
-                    "description": "Representación gráfica basada en los cuartiles.<br><ul><li><strong>Caja:</strong> Va desde $Q_1$ a $Q_3$. La línea interior es la Mediana ($Me$). El ancho es el <strong>Rango Intercuartílico</strong> ($IQR = Q_3 - Q_1$).</li><li><strong>Bigotes:</strong> Se extienden hasta el mínimo y máximo, o hasta 1.5 veces el IQR, el valor que sea menor.</li></ul>"
+                    "description": "Representación gráfica basada en los cuartiles.<ul><li><strong>Caja:</strong> va desde $Q_1$ hasta $Q_3$. La línea interior es la mediana ($M_e$). Su anchura es el <strong>rango intercuartílico</strong> ($RI = Q_3 - Q_1$), donde está el $50\\,\\%$ central de los datos.</li><li><strong>Bigotes:</strong> llegan hasta el dato mínimo y el dato máximo. Si se quieren señalar datos atípicos, los bigotes llegan solo hasta el último dato que está a menos de $1{,}5 \\cdot RI$ de la caja, y los datos más alejados se marcan como puntos aislados.</li></ul>"
                 }
             ]
         }

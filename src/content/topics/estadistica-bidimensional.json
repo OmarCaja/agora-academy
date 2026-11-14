@@ -36,7 +36,7 @@
                 {
                     "title": "Covarianza ($\\sigma_{xy}$)",
                     "formula": "$$\\sigma_{xy} = \\frac{\\sum f_{ij} x_i y_j}{N} - \\bar{x}\\bar{y}$$",
-                    "description": "Es la media del producto de las desviaciones de cada variable respecto a su media. Indica si hay relación lineal y su sentido.<br><ul><li>$\\sigma_{xy} > 0$: Correlación positiva (directa).</li><li>$\\sigma_{xy} < 0$: Correlación negativa (inversa).</li><li>$\\sigma_{xy} = 0$: No hay correlación (incorrelación).</li></ul>"
+                    "description": "Es la media del producto de las desviaciones de cada variable respecto a su media. Indica si hay relación lineal y su sentido.<br><ul><li>$\\sigma_{xy} > 0$: Correlación positiva (directa).</li><li>$\\sigma_{xy} < 0$: Correlación negativa (inversa).</li><li>$\\sigma_{xy} = 0$: No hay correlación lineal.</li></ul>"
                 }
             ]
         },
@@ -50,7 +50,7 @@
                 {
                     "title": "Coeficiente de correlación lineal ($r$)",
                     "formula": "$$r = \\frac{\\sigma_{xy}}{\\sigma_x \\cdot \\sigma_y}$$",
-                    "description": "Mide el grado de asociación lineal y el sentido de la correlación. Es adimensional y varía entre $-1$ y $1$.<br><ul><li>$r > 0$: Correlación directa.</li><li>$r < 0$: Correlación inversa.</li><li>$|r| \\approx 1$: Correlación fuerte (puntos alineados).</li><li>$r \\approx 0$: Correlación débil (nube de puntos redonda).</li></ul>"
+                    "description": "Mide el grado de asociación lineal y el sentido de la correlación. Es adimensional y varía entre $-1$ y $1$.<br><ul><li>$r > 0$: Correlación directa.</li><li>$r < 0$: Correlación inversa.</li><li>$\\lvert r \\rvert \\approx 1$: Correlación fuerte (puntos alineados).</li><li>$r \\approx 0$: Correlación débil (nube de puntos redonda).</li></ul>"
                 }
             ]
         },
@@ -70,6 +70,28 @@
                     "title": "Recta de regresión de X sobre Y",
                     "formula": "$$x - \\bar{x} = \\frac{\\sigma_{xy}}{\\sigma_y^2} (y - \\bar{y})$$",
                     "description": "Minimiza las distancias horizontales. Se utiliza para estimar el valor de $X$ suponiendo conocido un valor de $Y$. No es la misma recta que la anterior (salvo dependencia funcional)."
+                }
+            ]
+        },
+        {
+            "title": "Ejemplo resuelto",
+            "items": [
+                {
+                    "title": "Datos y parámetros",
+                    "formula": "$$\\begin{array}{c|ccccc} x_i & 2 & 3 & 4 & 5 & 6 \\\\ \\hline y_i & 4 & 5 & 7 & 8 & 11 \\end{array}$$",
+                    "example": "$\\sum x_i = 20$, $\\sum y_i = 35$, $\\sum x_i^2 = 90$, $\\sum y_i^2 = 275$, $\\sum x_i y_i = 157$, $N = 5$<br>$\\bar{x} = 4$, $\\bar{y} = 7$<br>$\\sigma_x^2 = \\dfrac{90}{5} - 16 = 2$, $\\sigma_y^2 = \\dfrac{275}{5} - 49 = 6$<br>$\\sigma_{xy} = \\dfrac{157}{5} - 4 \\cdot 7 = 3{,}4$",
+                    "description": "Gasto en publicidad $x$ y ventas $y$ de una empresa (en miles de euros) durante cinco meses. Primero se calculan las sumas, después las medias, las varianzas y la covarianza."
+                },
+                {
+                    "title": "Correlación",
+                    "formula": "$$r = \\frac{3{,}4}{\\sqrt{2} \\cdot \\sqrt{6}} \\approx 0{,}98$$",
+                    "description": "$r$ es positivo y muy próximo a $1$: la correlación es directa y muy fuerte. Cuanto más se invierte en publicidad, más se vende."
+                },
+                {
+                    "title": "Recta de regresión y estimación",
+                    "formula": "$$y - 7 = \\frac{3{,}4}{2}(x - 4) \\implies y = 1{,}7x + 0{,}2$$",
+                    "example": "Para un gasto de $x = 5{,}5$: $y = 1{,}7 \\cdot 5{,}5 + 0{,}2 = 9{,}55$ miles de euros",
+                    "description": "La estimación es fiable porque $r$ está muy cerca de $1$ y $x = 5{,}5$ está dentro del rango de los datos. Si el valor de $x$ queda lejos de los datos observados, la estimación es menos fiable."
                 }
             ]
         }

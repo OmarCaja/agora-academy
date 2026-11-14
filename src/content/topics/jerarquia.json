@@ -23,13 +23,13 @@
                     "title": "3. Multiplicación y división",
                     "formula": "$a \\cdot b \\quad \\text{y} \\quad a : b$",
                     "example": "$12 : 2 \\cdot 3 = 6 \\cdot 3 = 18$",
-                    "description": "Tienen la misma prioridad. Se resuelven estrictamente de <strong>izquierda a derecha</strong>."
+                    "description": "Tienen la misma prioridad. Se resuelven estrictamente de <strong>izquierda a derecha</strong>. Cuidado: $12 : 2 \\cdot 3$ no es $12 : 6$."
                 },
                 {
                     "title": "4. Suma y resta",
                     "formula": "$a + b \\quad \\text{y} \\quad a - b$",
                     "example": "$10 - 4 + 2 = 6 + 2 = 8$",
-                    "description": "Es el último paso. Al igual que el nivel anterior, se resuelven de <strong>izquierda a derecha</strong>."
+                    "description": "Es el último paso. Al igual que el nivel anterior, se resuelven de <strong>izquierda a derecha</strong>. Error frecuente: en $2 + 3 \\cdot 4$ primero se multiplica, así que el resultado es $2 + 12 = 14$, no $5 \\cdot 4 = 20$."
                 }
             ]
         },
@@ -38,15 +38,27 @@
             "items": [
                 {
                     "title": "Multiplicación y división",
-                    "formula": "$(-a) \\cdot (-b) = +(a \\cdot b)$",
-                    "example": "$-4 \\cdot (-3) = 12 \\quad / \\quad -10 : 2 = -5$",
-                    "description": "Signos <strong>iguales</strong> resultan en positivo (+). Signos <strong>distintos</strong> resultan en negativo (-)."
+                    "formula": "$(+) \\cdot (+) = + \\qquad (-) \\cdot (-) = + \\qquad (+) \\cdot (-) = - \\qquad (-) \\cdot (+) = -$",
+                    "example": "$(-4) \\cdot (-3) = 12 \\qquad (-10) : 2 = -5 \\qquad 6 : (-3) = -2$",
+                    "description": "Signos <strong>iguales</strong> dan resultado positivo (+). Signos <strong>distintos</strong> dan resultado negativo (−). La división sigue la misma regla que la multiplicación."
+                },
+                {
+                    "title": "Suma y resta de números enteros",
+                    "formula": "$\\text{mismo signo: se suman} \\qquad \\text{distinto signo: se restan}$",
+                    "example": "$-5 - 3 = -8 \\qquad -5 + 3 = -2 \\qquad 5 - 8 = -3$",
+                    "description": "Si los dos números tienen el <strong>mismo signo</strong>, se suman sus valores absolutos y se deja ese signo. Si tienen <strong>distinto signo</strong>, se restan sus valores absolutos y se pone el signo del que tiene mayor valor absoluto."
                 },
                 {
                     "title": "Doble signo negativo",
                     "formula": "$a - (-b) = a + b$",
                     "example": "$7 - (-2) = 7 + 2 = 9$",
                     "description": "Restar un número negativo es equivalente a <strong>sumar</strong> su valor absoluto."
+                },
+                {
+                    "title": "Potencias de números negativos",
+                    "formula": "$(-a)^n \\neq -a^n$",
+                    "example": "$(-3)^2 = (-3) \\cdot (-3) = 9 \\qquad -3^2 = -(3 \\cdot 3) = -9$",
+                    "description": "Si el signo menos está <strong>dentro</strong> del paréntesis, también se eleva. Si está <strong>fuera</strong>, la potencia solo afecta al número. Con exponente par, $(-a)^n$ es positivo; con exponente impar, negativo."
                 }
             ]
         },
@@ -56,8 +68,8 @@
                 {
                     "title": "Resolución paso a paso",
                     "formula": "$7 - [2^3 + (-6 : 2)] \\cdot (-2)$",
-                    "example": "$\\rightarrow 7 - [8 + (-3)] \\cdot (-2) \\rightarrow 7 - [5] \\cdot (-2) \\rightarrow 7 - (-10) = 17$",
-                    "description": "En este ejemplo aplicamos: 1º Potencias y Paréntesis internos, 2º Operación dentro del corchete, 3º Multiplicación (con regla de signos) y 4º Resta final."
+                    "example": "$7 - [2^3 + (-6 : 2)] \\cdot (-2)$<br>$= 7 - [8 + (-3)] \\cdot (-2)$<br>$= 7 - 5 \\cdot (-2)$<br>$= 7 - (-10) = 7 + 10 = 17$",
+                    "description": "Orden seguido: 1º, dentro del corchete, la potencia $2^3 = 8$ y la división $-6 : 2 = -3$; 2º, la suma dentro del corchete; 3º, la multiplicación, aplicando la regla de los signos; 4º, la resta final."
                 }
             ]
         }

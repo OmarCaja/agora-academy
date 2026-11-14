@@ -28,6 +28,10 @@ const SPANISH_ACCENT_WORDS: Record<string, string> = {
     examenes: "exámenes",
     limites: "límites",
     estadistica: "estadística",
+    trigonometria: "trigonometría",
+    interes: "interés",
+    raices: "raíces",
+    matematica: "matemática",
 };
 
 export function formatDefaultTitle(slugOrFilename: string): string {
@@ -79,7 +83,13 @@ export function discoverExercises(subject = subjects[0]): Record<string, LevelDa
                         topicMap.set(topicKey, { title: topicTitle, pdfs: [] });
                     }
 
-                    const name = pdfNameOverrides[url] || formatDefaultTitle(entry.name);
+                    // A sheet named after its own folder ("interes-simple-compuesto-1.pdf"
+                    // in interes-simple-compuesto/) takes the topic title plus its number,
+                    // so a topic override also fixes its PDFs' names.
+                    const base = entry.name.replace(/-(\d+)\.pdf$/i, "");
+                    const num = entry.name.match(/-(\d+)\.pdf$/i)?.[1];
+                    const fromTopic = num && base === relativePath.at(-1) ? `${topicTitle} ${num}` : undefined;
+                    const name = pdfNameOverrides[url] || fromTopic || formatDefaultTitle(entry.name);
                     topicMap.get(topicKey)!.pdfs.push({ name, url });
                 }
             }

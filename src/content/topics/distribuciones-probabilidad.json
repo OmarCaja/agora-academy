@@ -34,7 +34,7 @@
                     "title": "Desviación típica",
                     "formula": "$$\\sigma^2 = \\sum_{i} x_i^2 \\cdot p_i - \\mu^2 \\qquad \\sigma = \\sqrt{\\sigma^2}$$",
                     "description": "La <strong>varianza</strong> $\\sigma^2$ mide la dispersión de la variable respecto a su media. La <strong>desviación típica</strong> $\\sigma$ es su raíz cuadrada y se expresa en las mismas unidades que la variable.",
-                    "example": "Para el ejemplo anterior ($\\mu = 1$):<br>$$\\sigma^2 = 0^2 \\cdot \\frac{1}{4} + 1^2 \\cdot \\frac{2}{4} + 2^2 \\cdot \\frac{1}{4} - 1^2 = 0 + \\frac{2}{4} + \\frac{4}{4} - 1 = \\frac{6}{4} - 1 = 0.5$$<br>$$\\sigma = \\sqrt{0.5} \\approx 0.71$$"
+                    "example": "Para el ejemplo anterior ($\\mu = 1$):<br>$$\\sigma^2 = 0^2 \\cdot \\frac{1}{4} + 1^2 \\cdot \\frac{2}{4} + 2^2 \\cdot \\frac{1}{4} - 1^2 = 0 + \\frac{2}{4} + \\frac{4}{4} - 1 = \\frac{6}{4} - 1 = 0{,}5$$<br>$$\\sigma = \\sqrt{0{,}5} \\approx 0{,}71$$"
                 }
             ]
         },
@@ -50,13 +50,13 @@
                     "title": "Función de probabilidad",
                     "formula": "$$P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}, \\quad k = 0, 1, \\ldots, n$$",
                     "description": "Donde $\\binom{n}{k} = \\frac{n!}{k!(n-k)!}$ es el número combinatorio que cuenta las formas de elegir $k$ éxitos entre $n$ intentos.",
-                    "example": "Se lanza una moneda 5 veces. ¿Probabilidad de obtener exactamente 3 caras? Con $X \\sim B(5, 0.5)$:<br>$$P(X=3) = \\binom{5}{3} \\cdot 0.5^3 \\cdot 0.5^2 = 10 \\cdot 0.125 \\cdot 0.25 = 0.3125$$"
+                    "example": "Se lanza una moneda 5 veces. ¿Probabilidad de obtener exactamente 3 caras? Con $X \\sim B(5, 0{,}5)$:<br>$$P(X=3) = \\binom{5}{3} \\cdot 0{,}5^3 \\cdot 0{,}5^2 = 10 \\cdot 0{,}125 \\cdot 0{,}25 = 0{,}3125$$"
                 },
                 {
                     "title": "Media, varianza y desviación típica",
                     "formula": "$$\\mu = n \\cdot p \\qquad \\sigma^2 = n \\cdot p \\cdot (1-p) \\qquad \\sigma = \\sqrt{n \\cdot p \\cdot (1-p)}$$",
                     "description": "Son fórmulas directas que evitan calcular toda la distribución. La media indica el número esperado de éxitos, la varianza mide la dispersión y la desviación típica se expresa en las mismas unidades que la variable.",
-                    "example": "Si $X \\sim B(20, 0.3)$ (20 preguntas de test, probabilidad de acertar 0.3):<br>$$\\mu = 20 \\cdot 0.3 = 6 \\text{ aciertos esperados}$$<br>$$\\sigma^2 = 20 \\cdot 0.3 \\cdot 0.7 = 4.2$$<br>$$\\sigma = \\sqrt{4.2} \\approx 2.05$$"
+                    "example": "Si $X \\sim B(20, 0{,}3)$ (20 preguntas de test, probabilidad de acertar 0,3):<br>$$\\mu = 20 \\cdot 0{,}3 = 6 \\text{ aciertos esperados}$$<br>$$\\sigma^2 = 20 \\cdot 0{,}3 \\cdot 0{,}7 = 4{,}2$$<br>$$\\sigma = \\sqrt{4{,}2} \\approx 2{,}05$$"
                 }
             ]
         },
@@ -76,13 +76,13 @@
                 {
                     "title": "Cómo usar la tabla: propiedades clave",
                     "description": "Con la tabla de la normal estándar solo obtenemos $P(Z \\leq z)$. Para otros casos usamos:<br><ul><li><strong>Cola derecha:</strong> $P(Z > z) = 1 - \\Phi(z)$</li><li><strong>Intervalo:</strong> $P(a < Z < b) = \\Phi(b) - \\Phi(a)$</li><li><strong>Valores negativos:</strong> $\\Phi(-z) = 1 - \\Phi(z)$ (por simetría)</li></ul>",
-                    "example": "<strong>Ejemplo:</strong> Calcular $P(Z > 1.5)$ y $P(-1 < Z < 2)$:<br><br>• $P(Z > 1.5) = 1 - \\Phi(1.5) = 1 - 0.9332 = 0.0668$<br>• $P(-1 < Z < 2) = \\Phi(2) - \\Phi(-1) = \\Phi(2) - (1 - \\Phi(1))$<br>$= 0.9772 - (1 - 0.8413) = 0.9772 - 0.1587 = 0.8185$"
+                    "example": "<strong>Ejemplo:</strong> Calcular $P(Z > 1{,}5)$ y $P(-1 < Z < 2)$:<br><br>• $P(Z > 1{,}5) = 1 - \\Phi(1{,}5) = 1 - 0{,}9332 = 0{,}0668$<br>• $P(-1 < Z < 2) = \\Phi(2) - \\Phi(-1) = \\Phi(2) - (1 - \\Phi(1))$<br>$= 0{,}9772 - (1 - 0{,}8413) = 0{,}9772 - 0{,}1587 = 0{,}8185$"
                 },
                 {
                     "title": "Tipificación: de $N(\\mu, \\sigma)$ a $N(0,1)$",
                     "formula": "$$Z = \\frac{X - \\mu}{\\sigma}$$",
                     "description": "Para calcular probabilidades con una normal cualquiera $X \\sim N(\\mu, \\sigma)$, se <strong>tipifica</strong> (estandariza) la variable restando la media y dividiendo por la desviación típica. Así se obtiene una variable $Z \\sim N(0,1)$ y se puede usar la tabla.",
-                    "example": "<strong>Ejemplo completo:</strong> Las notas de un examen siguen $X \\sim N(6, 1.5)$. ¿Qué porcentaje de alumnos sacó más de un 8?<br><br>1. Tipificamos: $z = \\dfrac{8 - 6}{1.5} = \\dfrac{2}{1.5} \\approx 1.33$<br>2. Buscamos en la tabla: $\\Phi(1.33) = 0.9082$<br>3. Cola derecha: $P(X > 8) = 1 - 0.9082 = 0.0918$<br><br>Aproximadamente el <strong>9.2% de los alumnos</strong> sacó más de un 8."
+                    "example": "<strong>Ejemplo completo:</strong> Las notas de un examen siguen $X \\sim N(6, 1{,}5)$. ¿Qué porcentaje de alumnos sacó más de un 8?<br><br>1. Tipificamos: $z = \\dfrac{8 - 6}{1{,}5} = \\dfrac{2}{1{,}5} \\approx 1{,}33$<br>2. Buscamos en la tabla: $\\Phi(1{,}33) = 0{,}9082$<br>3. Cola derecha: $P(X > 8) = 1 - 0{,}9082 = 0{,}0918$<br><br>Aproximadamente el <strong>9,2% de los alumnos</strong> sacó más de un 8."
                 }
             ]
         },
@@ -91,14 +91,14 @@
             "items": [
                 {
                     "title": "Corrección de continuidad de Yates",
-                    "description": "Cuando $n$ es grande y $p$ no es extremo, la binomial $B(n,p)$ se puede aproximar por una normal $N(\\mu, \\sigma)$ con $\\mu = np$ y $\\sigma = \\sqrt{np(1-p)}$. Como la binomial es <strong>discreta</strong> y la normal es <strong>continua</strong>, se aplica la <strong>corrección por continuidad de Yates</strong>, que consiste en ampliar 0.5 el intervalo por cada lado antes de tipificar.<br><br><strong>Criterio de aplicación:</strong> $n \\cdot p \\geq 5$ y $n \\cdot (1-p) \\geq 5$.",
-                    "example": "<table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 8px'>Probabilidad original (discreta)</th><th style='border:1px solid var(--border-color);padding:6px 8px'>Aproximación continua (con Yates)</th></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X = k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(k - 0.5 \\lt X \\lt k + 0.5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\leq k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k + 0.5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\geq k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k - 0.5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k - 0.5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k + 0.5)$</td></tr></table>"
+                    "description": "Cuando $n$ es grande y $p$ no es extremo, la binomial $B(n,p)$ se puede aproximar por una normal $N(\\mu, \\sigma)$ con $\\mu = np$ y $\\sigma = \\sqrt{np(1-p)}$. Como la binomial es <strong>discreta</strong> y la normal es <strong>continua</strong>, se aplica la <strong>corrección por continuidad de Yates</strong>, que consiste en ampliar 0,5 el intervalo por cada lado antes de tipificar.<br><br><strong>Criterio de aplicación:</strong> $n \\cdot p \\geq 5$ y $n \\cdot (1-p) \\geq 5$.",
+                    "example": "<table style='border-collapse:collapse;width:100%;text-align:center'><tr><th style='border:1px solid var(--border-color);padding:6px 8px'>Probabilidad original (discreta)</th><th style='border:1px solid var(--border-color);padding:6px 8px'>Aproximación continua (con Yates)</th></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X = k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(k - 0{,}5 \\lt X \\lt k + 0{,}5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\leq k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k + 0{,}5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\geq k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k - 0{,}5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\lt k - 0{,}5)$</td></tr><tr><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k)$</td><td style='border:1px solid var(--border-color);padding:6px 8px'>$P(X \\gt k + 0{,}5)$</td></tr></table>"
                 },
                 {
                     "title": "Ejemplo de aproximación paso a paso",
                     "formula": "$$Z = \\frac{X - \\mu}{\\sigma} = \\frac{X - np}{\\sqrt{np(1-p)}}$$",
                     "description": "Una vez aplicada la corrección de Yates, se tipifica el valor corregido y se usa la tabla de la normal estándar.",
-                    "example": "<strong>Ejemplo:</strong> $X \\sim B(100, 0.4)$. Calcular $P(X \\leq 35)$.<br><br><strong>1. Comprobar criterio:</strong> $np = 40 \\geq 5$ y $n(1-p) = 60 \\geq 5$ ✓<br><strong>2. Parámetros:</strong> $\\mu = 100 \\cdot 0.4 = 40$, $\\quad \\sigma = \\sqrt{100 \\cdot 0.4 \\cdot 0.6} = \\sqrt{24} \\approx 4.90$<br><strong>3. Corrección de Yates</strong> ($X \\leq k \\to X \\lt k + 0.5$): $P(X \\leq 35) \\approx P(X \\lt 35.5)$<br><strong>4. Tipificar:</strong> $z = \\dfrac{35.5 - 40}{4.90} \\approx -0.92$<br><strong>5. Tabla</strong> (simetría): $\\Phi(-0.92) = 1 - \\Phi(0.92) = 1 - 0.8212 = \\mathbf{0.1788}$"
+                    "example": "<strong>Ejemplo:</strong> $X \\sim B(100, 0{,}4)$. Calcular $P(X \\leq 35)$.<br><br><strong>1. Comprobar criterio:</strong> $np = 40 \\geq 5$ y $n(1-p) = 60 \\geq 5$ ✓<br><strong>2. Parámetros:</strong> $\\mu = 100 \\cdot 0{,}4 = 40$, $\\quad \\sigma = \\sqrt{100 \\cdot 0{,}4 \\cdot 0{,}6} = \\sqrt{24} \\approx 4{,}90$<br><strong>3. Corrección de Yates</strong> ($X \\leq k \\to X \\lt k + 0{,}5$): $P(X \\leq 35) \\approx P(X \\lt 35{,}5)$<br><strong>4. Tipificar:</strong> $z = \\dfrac{35{,}5 - 40}{4{,}90} \\approx -0{,}92$<br><strong>5. Tabla</strong> (simetría): $\\Phi(-0{,}92) = 1 - \\Phi(0{,}92) = 1 - 0{,}8212 = \\mathbf{0{,}1788}$"
                 }
             ]
         }

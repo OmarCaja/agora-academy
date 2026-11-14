@@ -138,12 +138,12 @@
                 {
                     "title": "Definición de probabilidad",
                     "description": "La probabilidad es una medida cuantitativa, expresada como un número entre 0 y 1, que indica la mayor o menor posibilidad de que un suceso ocurra. Un valor de 0 indica que el suceso es imposible ($P(\\emptyset)=0$) y un valor de 1 indica que el suceso es seguro ($P(E)=1$).",
-                    "example": "La probabilidad de que salga cara al lanzar una moneda es 0.5 (o 50%)."
+                    "example": "La probabilidad de que salga cara al lanzar una moneda es 0,5 (o 50%)."
                 },
                 {
                     "title": "Ley de los grandes números",
                     "description": "Señala que al repetir un experimento muchas veces, la frecuencia relativa de un suceso tiende a estabilizarse en torno a su probabilidad teórica.",
-                    "example": "Si lanzamos una moneda 1000 veces, la proporción de caras será muy próxima a 0.5."
+                    "example": "Si lanzamos una moneda 1000 veces, la proporción de caras será muy próxima a 0,5."
                 },
                 {
                     "title": "Regla de Laplace",
@@ -155,13 +155,13 @@
                     "title": "Probabilidad del suceso contrario",
                     "formula": "$P(\\bar{A}) = 1 - P(A)$",
                     "description": "La probabilidad de que no ocurra un suceso es 1 menos la probabilidad de que ocurra.",
-                    "example": "Si la probabilidad de lluvia es 0.3, la de que no llueva es $1 - 0.3 = 0.7$."
+                    "example": "Si la probabilidad de lluvia es 0,3, la de que no llueva es $1 - 0{,}3 = 0{,}7$."
                 },
                 {
                     "title": "Unión de sucesos compatibles",
                     "formula": "$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$",
                     "description": "Para calcular la probabilidad de que ocurra A o B, sumamos sus probabilidades y restamos la de su intersección (para no contarla dos veces).",
-                    "example": "Si $P(A)=0.6$, $P(B)=0.4$ y $P(A \\cap B)=0.2$, entonces $P(A \\cup B) = 0.6 + 0.4 - 0.2 = 0.8$."
+                    "example": "Si $P(A)=0{,}6$, $P(B)=0{,}4$ y $P(A \\cap B)=0{,}2$, entonces $P(A \\cup B) = 0{,}6 + 0{,}4 - 0{,}2 = 0{,}8$."
                 },
                 {
                     "title": "Unión de sucesos incompatibles",
@@ -173,7 +173,7 @@
                     "title": "Probabilidad de $A$ y no $B$ ($A \\cap \\bar{B}$)",
                     "formula": "$P(A \\cap \\bar{B}) = P(A) - P(A \\cap B)$",
                     "description": "La probabilidad de que ocurra A y NO ocurra B es igual a la probabilidad de A quitándole su parte compartida con B.",
-                    "example": "Si $P(A)=0.5$ y la parte compartida es $P(A \\cap B)=0.1$, entonces la probabilidad de que ocurra solo A es $0.5 - 0.1 = 0.4$."
+                    "example": "Si $P(A)=0{,}5$ y la parte compartida es $P(A \\cap B)=0{,}1$, entonces la probabilidad de que ocurra solo A es $0{,}5 - 0{,}1 = 0{,}4$."
                 }
             ]
         },
@@ -211,23 +211,23 @@
                 {
                     "title": "Experimentos compuestos",
                     "description": "Son procesos que ocurren en varias etapas (ej. elegir una caja y luego sacar una bola). La mejor forma de resolverlos es dibujando un <strong>Diagrama de Árbol</strong>.",
-                    "example": "Imagina que tienes dos cajas:<br>• <strong>Caja 1:</strong> Tiene 8 bolas rojas y 2 azules ($P(R)=0.8$).<br>• <strong>Caja 2:</strong> Tiene 4 bolas rojas y 6 azules ($P(R)=0.4$).<br>Primero eliges una caja al azar (50% cada una) y luego sacas una bola."
+                    "example": "Imagina que tienes dos cajas:<br>• <strong>Caja 1:</strong> Tiene 8 bolas rojas y 2 azules ($P(R)=0{,}8$).<br>• <strong>Caja 2:</strong> Tiene 4 bolas rojas y 6 azules ($P(R)=0{,}4$).<br>Primero eliges una caja al azar (50% cada una) y luego sacas una bola."
                 },
                 {
                     "title": "Diagrama de decisión (árbol)",
-                    "description": "Es el esquema visual para entender todos los pasos del ejemplo anterior:<br><br><div class='diagram-tree'><strong>INICIO</strong>\n├── <strong>Caja 1 (0.5)</strong> ─── 🔴 Roja (0.8)\n│                └── 🔵 Azul (0.2)\n└── <strong>Caja 2 (0.5)</strong> ─── 🔴 Roja (0.4)\n                 └── 🔵 Azul (0.6)</div><br><strong>Regla:</strong> Para hallar la probabilidad de un camino, multiplica sus ramas ($0.5 \\cdot 0.8$)."
+                    "description": "Es el esquema visual para entender todos los pasos del ejemplo anterior:<br><br><div class='diagram-tree'><strong>INICIO</strong>\n├── <strong>Caja 1 (0,5)</strong> ─── 🔴 Roja (0,8)\n│                └── 🔵 Azul (0,2)\n└── <strong>Caja 2 (0,5)</strong> ─── 🔴 Roja (0,4)\n                 └── 🔵 Azul (0,6)</div><br><strong>Regla:</strong> Para hallar la probabilidad de un camino, multiplica sus ramas ($0{,}5 \\cdot 0{,}8$)."
                 },
                 {
                     "title": "Teorema de la probabilidad total",
                     "formula": "$P(B) = P(A_1) \\cdot P(B|A_1) + P(A_2) \\cdot P(B|A_2)$",
                     "description": "Sirve para calcular la probabilidad final de un suceso (ej. sacar Roja) sumando todos los caminos que llegan a él.",
-                    "example": "<strong>¿Probabilidad de que la bola sea Roja?</strong><br>Camino 1: $0.5 \\cdot 0.8 = 0.4$<br>Camino 2: $0.5 \\cdot 0.4 = 0.2$<br><strong>Total: $0.4 + 0.2 = 0.6$ (60%)</strong>"
+                    "example": "<strong>¿Probabilidad de que la bola sea Roja?</strong><br>Camino 1: $0{,}5 \\cdot 0{,}8 = 0{,}4$<br>Camino 2: $0{,}5 \\cdot 0{,}4 = 0{,}2$<br><strong>Total: $0{,}4 + 0{,}2 = 0{,}6$ (60%)</strong>"
                 },
                 {
                     "title": "Teorema de Bayes",
                     "formula": "$P(A_i|B) = \\frac{P(A_i) \\cdot P(B|A_i)}{P(B)}$",
                     "description": "Se usa cuando ya sabemos el resultado final (ej. la bola es Roja) y queremos saber cuál fue la probabilidad de que viniera de una causa concreta (ej. la Caja 1). Es el camino inverso.",
-                    "example": "<strong>Si sabemos que la bola es Roja, ¿probabilidad de que sea de la Caja 1?</strong><br>$\\frac{\\text{Prob. de ese camino}}{\\text{Prob. Total}} = \\frac{0.5 \\cdot 0.8}{0.6} = \\frac{0.4}{0.6} = 0.67$ (67%)"
+                    "example": "<strong>Si sabemos que la bola es Roja, ¿probabilidad de que sea de la Caja 1?</strong><br>$\\frac{\\text{Prob. de ese camino}}{\\text{Prob. Total}} = \\frac{0{,}5 \\cdot 0{,}8}{0{,}6} = \\frac{0{,}4}{0{,}6} = 0{,}67$ (67%)"
                 }
             ]
         }
