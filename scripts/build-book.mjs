@@ -21,7 +21,7 @@ import { parseArgs } from 'node:util';
 import { renderMath } from '../src/utils/math.ts';
 import { SITE_NAME, SITE_URL, ADDRESS } from '../src/data/site.ts';
 import { KIND_LABELS } from '../src/data/itemKinds.ts';
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument, PDFName, PDFHexString } from 'pdf-lib';
 import { fail, escapeHtml as esc, findChrome } from './pdf.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -147,7 +147,14 @@ async function buildBook(book, keepHtml) {
   <script>window.PagedConfig = { auto: false }; new Image().src = '/wait';</script>
   <script src="${PAGEDJS}"></script>
   <script>document.addEventListener('DOMContentLoaded', () =>
-    document.fonts.ready.then(() => PagedPolyfill.preview()).finally(() => fetch('/done')));</script>
+    document.fonts.ready.then(() => PagedPolyfill.preview()).then(() => {
+      // Page (0-based, as in the PDF) where every chapter and section heading ended up: the PDF outline.
+      const pages = [...document.querySelectorAll('.pagedjs_page')], at = {};
+      document.querySelectorAll('.chapter-head[id], h2[id]').forEach(el => {
+        const page = el.closest('.pagedjs_page'); if (page) at[el.id] = pages.indexOf(page);
+      });
+      return fetch('/outline', { method: 'POST', body: JSON.stringify(at) });
+    }).finally(() => fetch('/done')));</script>
   </head><body>
   <section class="cover">
     <div class="brand"><img src="/public/favicon/logo.png" alt="">${esc(SITE_NAME)}</div>
@@ -167,6 +174,7 @@ async function buildBook(book, keepHtml) {
   // Chrome's --print-to-pdf prints on the load event, so a detached /wait image keeps the
   // page loading until Paged.js reports /done (or 60 s pass). The polyfill's own auto-start
   // waits for load, so the page starts it at DOMContentLoaded instead.
+  let headingPages = {};
   const waiting = [];
   const release = () => waiting.splice(0).forEach(r => { r.statusCode = 204; r.end(); });
   const timeout = setTimeout(release, 60000);
@@ -175,6 +183,11 @@ async function buildBook(book, keepHtml) {
     const url = decodeURIComponent(new URL(req.url, 'http://x').pathname);
     if (url === '/book.html') return res.end(html);
     if (url === '/wait') return waiting.push(res);
+    if (url === '/outline') {
+      let body = ''; req.on('data', c => body += c);
+      req.on('end', () => { try { headingPages = JSON.parse(body); } catch {} res.end(); });
+      return;
+    }
     if (url === '/done') { clearTimeout(timeout); res.end(); return release(); }
     const file = path.join(root, path.normalize(url));
     if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.statusCode = 404; return res.end(); }
@@ -192,15 +205,41 @@ async function buildBook(book, keepHtml) {
   // renderMath doesn't throw on bad LaTeX; it emits .katex-error spans that render as red text.
   const katexErrors = (html.match(/class="katex-error"/g) || []).length;
   if (katexErrors) console.error(`Warning: ${katexErrors} formula(s) failed to render (search katex-error with --html).`);
-  const pages = await setPdfMetadata(out, book, chapters);
+  const pages = await setPdfMetadata(out, book, chapters, headingPages, id);
   console.log(path.relative(process.cwd(), out));
   return pages;
+}
+
+// PDF bookmarks (the outline panel of any reader): a chapter per topic, a child per section.
+// Entries whose heading page is unknown are skipped.
+function addOutline(pdf, nodes) {
+  const ctx = pdf.context, pages = pdf.getPages();
+  const build = (list, parent) => {
+    const items = list.filter(n => Number.isInteger(n.page) && pages[n.page]);
+    const refs = items.map(() => ctx.nextRef());
+    items.forEach((n, k) => {
+      const kids = build(n.children || [], refs[k]);
+      const dict = { Title: PDFHexString.fromText(n.title), Parent: parent,
+        Dest: [pages[n.page].ref, PDFName.of('XYZ'), null, null, null] };
+      if (k > 0) dict.Prev = refs[k - 1];
+      if (k < items.length - 1) dict.Next = refs[k + 1];
+      if (kids.first) { dict.First = kids.first; dict.Last = kids.last; dict.Count = kids.count; }
+      ctx.assign(refs[k], ctx.obj(dict));
+    });
+    return { first: refs[0], last: refs[refs.length - 1], count: items.length };
+  };
+  const root = ctx.nextRef();
+  const top = build(nodes, root);
+  if (!top.first) return;
+  ctx.assign(root, ctx.obj({ Type: 'Outlines', First: top.first, Last: top.last, Count: top.count }));
+  pdf.catalog.set(PDFName.of('Outlines'), root);
+  pdf.catalog.set(PDFName.of('PageMode'), PDFName.of('UseOutlines'));
 }
 
 // Chrome only writes the page title into the PDF. Add what readers and search engines show in
 // the file's properties: author, subject (what the book covers) and keywords (chapter and
 // section titles). Returns the page count, which the /books page lists.
-async function setPdfMetadata(file, book, chapters) {
+async function setPdfMetadata(file, book, chapters, headingPages, id) {
   const pdf = await PDFDocument.load(fs.readFileSync(file));
   const sections = chapters.flatMap(ch => ch.sections.map(sec => sec.title));
   pdf.setTitle(book.title);
@@ -213,6 +252,10 @@ async function setPdfMetadata(file, book, chapters) {
   const now = new Date();
   pdf.setCreationDate(now);
   pdf.setModificationDate(now);
+  addOutline(pdf, chapters.map((ch, i) => ({
+    title: `${i + 1}. ${ch.title}`, page: headingPages[id(ch)],
+    children: ch.sections.map((sec, j) => ({ title: sec.title.replace(/\$/g, ''), page: headingPages[id(ch, j)] })),
+  })));
   fs.writeFileSync(file, await pdf.save());
   return pdf.getPageCount();
 }
