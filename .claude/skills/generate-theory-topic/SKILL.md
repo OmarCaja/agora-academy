@@ -39,11 +39,13 @@ Use `src/content/topics/matrices.json` as the reference for tone and depth. Read
 - Section titles are short, sometimes phrased as questions (`¿Qué es una matriz?`).
 
 **Items** (`items[]`, each rendered as one card)
+- `kind` (required): `definicion` (a concept is introduced, formally), `teorema` (a statement that needs proof or is a named result), `propiedad` (a rule that follows from definitions), `procedimiento` (a method, with steps), `observacion` (a warning or remark, e.g. a common mistake), `ejemplo` (a worked example that has no statement of its own and applies the cards above it). It is shown as a label on the card.
+- **Definitions come first.** Never use a term before its `definicion` card, and never put an example before the statement it illustrates: the card order is `description` → `formula` → `example`. State definitions formally (hypotheses, conditions such as $b \neq 0$, quantifiers) and give at least one example with intermediate steps after every definition. Justify properties briefly (a one-line proof or reason) when it is within reach of the level.
 - `title`: the concept or rule. It may contain inline math (`Elementos de una matriz: $a_{ij}$`).
-- `description`: the explanation, addressed to the student, clear and plain. Bold key terms with `<strong>`, break lines with `<br>`. Explain the *why* and the common mistake when there is one.
+- `description`: the statement and its explanation, addressed to the student, clear and plain (for a `definicion`, the definition itself). Bold key terms with `<strong>`, break lines with `<br>`. Explain the *why* and the common mistake when there is one.
 - `formula`: the rule or definition alone, usually as `$$…$$`.
 - `example`: a worked example with numbers and intermediate steps, never just the result. Several short cases separated by `<br>` and `•` are fine.
-- Every item has at least `description` or `formula`, and almost every item has an `example`. Procedures (Gauss, solving an equation) get step-by-step examples.
+- Every item except `ejemplo` cards has `description` or `formula` (`pnpm check` fails otherwise), and almost every item has an `example`. Procedures (Gauss, solving an equation) get step-by-step examples.
 
 **Math**
 - All math, however small (`$x$`, `$A$`), in KaTeX LaTeX: `$…$` inline, `$$…$$` display.

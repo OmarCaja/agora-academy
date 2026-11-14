@@ -907,6 +907,169 @@ ax.text(0.15, 2.45, '$f=9$', fontsize=10, color=INK, rotation=-33, bbox=dict(fc=
 save(fig, 'minimo.png')
 
 # ════════════════════════════════════════════════════════════════════════════
+#  Figures that accompany the definitions of the theory topics
+#  (identidades-notables, derivadas, limites, estadistica-*, probabilidad,
+#  distribuciones-probabilidad, fracciones). Single ink, hatch/linestyle for roles.
+# ════════════════════════════════════════════════════════════════════════════
+from matplotlib.patches import Rectangle, Circle, Polygon
+
+def box(ax, x, y, w, h, label, hatch=None, fc='white', fs=13):
+    ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=INK, lw=1.8, hatch=hatch, zorder=2))
+    ax.text(x + w / 2, y + h / 2, label, ha='center', va='center', fontsize=fs, color=INK,
+            bbox=dict(fc='white', ec='none', pad=1.2), zorder=4)
+
+def blank(ax, xlim, ylim):
+    ax.set_xlim(xlim); ax.set_ylim(ylim); ax.set_aspect('equal'); ax.axis('off')
+
+# ── (a+b)² as areas ───────────────────────────────────────────────────────────
+OUT = "public/ejemplos/identidades-notables"
+os.makedirs(OUT, exist_ok=True)
+fig, ax = plt.subplots(figsize=(4.6, 4.6))
+a, b = 3, 2
+box(ax, 0, b, a, a, '$a^2$')
+box(ax, a, b, b, a, '$ab$', hatch='///')
+box(ax, 0, 0, a, b, '$ab$', hatch='///')
+box(ax, a, 0, b, b, '$b^2$')
+ax.text(a / 2, a + b + 0.25, '$a$', ha='center', fontsize=14); ax.text(a + b / 2, a + b + 0.25, '$b$', ha='center', fontsize=14)
+ax.text(-0.3, b + a / 2, '$a$', va='center', ha='right', fontsize=14); ax.text(-0.3, b / 2, '$b$', va='center', ha='right', fontsize=14)
+ax.set_title('$(a+b)^2 = a^2 + 2ab + b^2$', fontsize=13)
+blank(ax, (-0.8, a + b + 0.6), (-0.4, a + b + 0.9))
+save(fig, 'cuadrado-suma.png')
+
+# ── a² − b² = (a+b)(a−b) ──────────────────────────────────────────────────────
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.6, 3.6), gridspec_kw={'width_ratios': [1, 1.25]})
+a, b = 4, 1.5
+box(ax1, 0, 0, a - b, a, '', hatch='///')
+box(ax1, a - b, b, b, a - b, '', hatch='///')
+ax1.add_patch(Rectangle((a - b, 0), b, b, fc='white', ec=INK, lw=1.8, ls='--', zorder=2))
+ax1.text(a - b / 2, b / 2, '$b^2$', ha='center', va='center', fontsize=12)
+ax1.text(a / 2, a + 0.2, '$a$', ha='center', fontsize=13)
+ax1.set_title('$a^2 - b^2$ (zona rayada)', fontsize=12)
+blank(ax1, (-0.3, a + 0.4), (-0.3, a + 0.8))
+box(ax2, 0, 0, a, a - b, '$a(a-b)$', hatch='///', fs=12)
+box(ax2, a, 0, b, a - b, '$b(a-b)$', hatch='///', fs=11)
+ax2.text((a + b) / 2, a - b + 0.2, '$a + b$', ha='center', fontsize=13)
+ax2.text(-0.15, (a - b) / 2, '$a - b$', ha='right', va='center', fontsize=13)
+ax2.set_title('$(a+b)(a-b)$ (mismas piezas recolocadas)', fontsize=12)
+blank(ax2, (-1.3, a + b + 0.3), (-0.3, a + 0.8))
+save(fig, 'diferencia-cuadrados.png')
+
+# ── Secant lines tending to the tangent ──────────────────────────────────────
+OUT = "public/ejemplos/derivadas"
+os.makedirs(OUT, exist_ok=True)
+fig, ax = plt.subplots(figsize=(5.4, 4.4))
+draw_axes(ax, (-0.6, 5), (-0.4, 5))
+f = lambda x: x ** 2 / 4 + 0.5
+x = np.linspace(-0.3, 4.6, 300)
+ax.plot(x, f(x), color=INK, lw=2.5, zorder=4)
+a0 = 1.0
+xx = np.array([-0.3, 4.6])
+for h, ls in [(3, ':'), (1.8, '-.'), (0.9, '--')]:
+    m = (f(a0 + h) - f(a0)) / h
+    ax.plot(xx, f(a0) + m * (xx - a0), ls=ls, color=LGRAY, lw=1.5, zorder=3)
+    ax.plot(a0 + h, f(a0 + h), 'o', color=INK, ms=5, zorder=6)
+mt = a0 / 2
+ax.plot(xx, f(a0) + mt * (xx - a0), color=INK, lw=2, zorder=5)
+ax.plot(a0, f(a0), 'o', color=INK, ms=8, zorder=7)
+ax.text(a0 - 0.1, f(a0) + 0.3, '$(a, f(a))$', ha='right', fontsize=11)
+ax.text(3.4, 2.15, 'tangente', fontsize=11, rotation=18)
+ax.text(4.65, f(4.0) + 0.15, 'secantes\n($h \\to 0$)', fontsize=10, color=GRAY, va='center')
+ax.set_title("La tangente es el límite de las secantes")
+save(fig, 'secante-tangente.png')
+
+# ── ε–δ picture of a limit ───────────────────────────────────────────────────
+OUT = "public/ejemplos/limites"
+os.makedirs(OUT, exist_ok=True)
+fig, ax = plt.subplots(figsize=(5.4, 4.4))
+draw_axes(ax, (-0.3, 4.6), (-0.3, 3.6))
+g = lambda x: 1 + 0.9 * (x - 2) + 0.15 * (x - 2) ** 2
+x = np.linspace(0.2, 4.0, 300)
+ax.plot(x, g(x), color=INK, lw=2.5, zorder=4)
+c, L, eps, dl = 2.0, 1.0, 0.6, 0.5
+ax.axhspan(L - eps, L + eps, color='#e8e8e8', zorder=1)
+ax.axvspan(c - dl, c + dl, color='#d9d9d9', alpha=0.6, zorder=1)
+ax.plot([c, c], [0, L], ls='--', color=LGRAY, lw=1.2); ax.plot([0, c], [L, L], ls='--', color=LGRAY, lw=1.2)
+ax.plot(c, L, 'o', mfc='white', mec=INK, ms=8, zorder=6)
+ax.set_xticks([c - dl, c, c + dl]); ax.set_xticklabels(['$c-\\delta$', '$c$', '$c+\\delta$'])
+ax.set_yticks([L - eps, L, L + eps]); ax.set_yticklabels(['$L-\\varepsilon$', '$L$', '$L+\\varepsilon$'])
+ax.set_title('Si $x$ está en la banda vertical, $f(x)$ está en la horizontal')
+save(fig, 'epsilon-delta.png')
+
+# ── Correlation types ────────────────────────────────────────────────────────
+OUT = "public/ejemplos/estadistica-bidimensional"
+os.makedirs(OUT, exist_ok=True)
+rng = np.random.default_rng(7)
+fig, axs = plt.subplots(1, 3, figsize=(9.6, 3.2))
+xs = rng.uniform(0, 10, 40)
+panels = [(xs, 0.9 * xs + rng.normal(0, 1.0, 40), 'Directa y fuerte\n$r$ próximo a $1$'),
+          (xs, 10 - 0.8 * xs + rng.normal(0, 1.8, 40), 'Inversa y moderada\n$r<0$'),
+          (xs, rng.uniform(0, 10, 40), 'Nula\n$r$ próximo a $0$')]
+for ax, (u, v, t) in zip(axs, panels):
+    ax.scatter(u, v, s=22, color=INK, zorder=3)
+    ax.set_title(t, fontsize=11); ax.set_xticks([]); ax.set_yticks([]); ax.set_xlabel('$X$'); ax.set_ylabel('$Y$')
+save(fig, 'correlacion.png')
+
+# ── Box plot with an outlier ─────────────────────────────────────────────────
+OUT = "public/ejemplos/estadistica-unidimensional"
+os.makedirs(OUT, exist_ok=True)
+fig, ax = plt.subplots(figsize=(6.2, 2.2))
+ax.add_patch(Rectangle((1, 0.3), 1, 0.4, fc='#e8e8e8', ec=INK, lw=2))
+ax.plot([1, 1], [0.3, 0.7], color=INK, lw=3)  # median = Q1 here
+ax.plot([0, 1], [0.5, 0.5], color=INK, lw=2); ax.plot([2, 3], [0.5, 0.5], color=INK, lw=2)
+ax.plot([0, 0], [0.38, 0.62], color=INK, lw=2); ax.plot([3, 3], [0.38, 0.62], color=INK, lw=2)
+ax.plot(4, 0.5, 'o', color=INK, ms=7)
+for xv, lab in [(0, '$\\min = 0$'), (1, '$Q_1 = M_e = 1$'), (2, '$Q_3 = 2$'), (3, 'bigote: $3$'), (4, 'atípico: $4$')]:
+    ax.text(xv, 0.82, lab, ha='center', fontsize=9)
+ax.set_xlim(-0.6, 4.6); ax.set_ylim(0, 1.1); ax.set_yticks([]); ax.set_xticks(range(0, 5))
+ax.spines['left'].set_visible(False); ax.spines['top'].set_visible(False); ax.spines['right'].set_visible(False)
+ax.grid(False)
+save(fig, 'caja-bigotes.png')
+
+# ── Venn diagrams ────────────────────────────────────────────────────────────
+OUT = "public/ejemplos/probabilidad"
+os.makedirs(OUT, exist_ok=True)
+gx, gy = np.meshgrid(np.linspace(-2.4, 2.4, 500), np.linspace(-1.6, 1.6, 340))
+inA = (gx + 0.7) ** 2 + gy ** 2 <= 1.0
+inB = (gx - 0.7) ** 2 + gy ** 2 <= 1.0
+fig, axs = plt.subplots(1, 4, figsize=(11, 2.9))
+for ax, (m, t) in zip(axs, [(inA | inB, '$A \\cup B$'), (inA & inB, '$A \\cap B$'), (~inA, '$\\bar{A}$'), (inA & ~inB, '$A - B$')]):
+    ax.add_patch(Rectangle((-2.4, -1.6), 4.8, 3.2, fc='white', ec=INK, lw=1.5))
+    ax.imshow(np.where(m, 0.78, 1.0), extent=(-2.4, 2.4, -1.6, 1.6), origin='lower', cmap='gray', vmin=0, vmax=1, zorder=1)
+    ax.add_patch(Circle((-0.7, 0), 1, fc='none', ec=INK, lw=1.8, zorder=3)); ax.add_patch(Circle((0.7, 0), 1, fc='none', ec=INK, lw=1.8, zorder=3))
+    ax.text(-1.25, 0, '$A$', fontsize=13, ha='center', va='center', zorder=5); ax.text(1.25, 0, '$B$', fontsize=13, ha='center', va='center', zorder=5)
+    ax.text(-2.25, 1.35, '$E$', fontsize=11, va='center', zorder=5)
+    ax.set_title(t, fontsize=13); ax.set_xlim(-2.4, 2.4); ax.set_ylim(-1.6, 1.6); ax.set_aspect('equal'); ax.axis('off')
+save(fig, 'venn.png')
+
+# ── Normal curve 68–95–99.7 ──────────────────────────────────────────────────
+OUT = "public/ejemplos/distribuciones-probabilidad"
+os.makedirs(OUT, exist_ok=True)
+fig, ax = plt.subplots(figsize=(6.4, 3.6))
+x = np.linspace(-4, 4, 600); y = np.exp(-x ** 2 / 2) / np.sqrt(2 * np.pi)
+ax.plot(x, y, color=INK, lw=2.5, zorder=4)
+for k, shade, lab, yy in [(3, '#f0f0f0', '$99{,}7\\,\\%$', 0.03), (2, '#dcdcdc', '$95\\,\\%$', 0.06), (1, '#bdbdbd', '$68\\,\\%$', 0.09)]:
+    m = np.abs(x) <= k
+    ax.fill_between(x[m], 0, y[m], color=shade, zorder=1)
+    ax.annotate('', xy=(-k, yy), xytext=(k, yy), arrowprops=dict(arrowstyle='<->', color=INK, lw=1.2), zorder=6)
+    ax.text(0, yy + 0.008, lab, ha='center', fontsize=10, zorder=6, bbox=dict(fc='white', ec='none', pad=1))
+ax.set_xticks([-3, -2, -1, 0, 1, 2, 3]); ax.set_xticklabels(['$\\mu-3\\sigma$', '$\\mu-2\\sigma$', '$\\mu-\\sigma$', '$\\mu$', '$\\mu+\\sigma$', '$\\mu+2\\sigma$', '$\\mu+3\\sigma$'], fontsize=9)
+ax.set_yticks([]); ax.grid(False)
+for sp in ('left', 'top', 'right'): ax.spines[sp].set_visible(False)
+save(fig, 'campana-normal.png')
+
+# ── Equivalent fractions as bars ─────────────────────────────────────────────
+OUT = "public/ejemplos/fracciones"
+os.makedirs(OUT, exist_ok=True)
+fig, ax = plt.subplots(figsize=(6, 2.6))
+for row, (num, den) in enumerate([(1, 2), (2, 4), (4, 8)]):
+    yb = 2 - row
+    for i in range(den):
+        ax.add_patch(Rectangle((i * 4 / den, yb), 4 / den, 0.7, fc='#bdbdbd' if i < num else 'white', ec=INK, lw=1.6, hatch=None))
+    ax.text(-0.2, yb + 0.35, f'$\\frac{{{num}}}{{{den}}}$', ha='right', va='center', fontsize=15)
+ax.set_xlim(-0.9, 4.2); ax.set_ylim(-0.1, 2.9); ax.axis('off')
+save(fig, 'fracciones-equivalentes.png')
+
+# ════════════════════════════════════════════════════════════════════════════
 #  ↑ ADD YOUR NEW GRAPHS HERE, following the same pattern
 # ════════════════════════════════════════════════════════════════════════════
 

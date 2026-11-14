@@ -8,19 +8,25 @@
             "title": "Funciones polinómicas",
             "items": [
                 {
-                    "title": "Primer grado (lineales y afines)",
-                    "description": "Su gráfica es una recta con ecuación $f(x) = mx + n$. <br><br><strong>Dominio:</strong> Son todos los números reales ($\\mathbb{R}$), ya que siempre podemos calcular su valor. <br><br><strong>Recorrido:</strong> También son todos los reales ($\\mathbb{R}$), salvo en las rectas horizontales.",
-                    "example": "La función $f(x) = 2x - 1$ tiene pendiente $m = 2$ y corta al eje Y en $n = -1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/lineal.png' alt='Función lineal' width='669' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Gráfica de $f(x)=2x-1$</figcaption></figure>"
+                    "title": "Función afín y función lineal",
+                    "description": "Una función <strong>afín</strong> es una función de la forma $f(x) = mx + n$, con $m$ y $n$ números reales. Su gráfica es una <strong>recta</strong>: $m$ es la <strong>pendiente</strong> (lo que varía $f$ al aumentar $x$ una unidad) y $n$ la <strong>ordenada en el origen</strong> (corte con el eje $Y$). Si $n = 0$ se llama <strong>lineal</strong> y su gráfica pasa por el origen. Si $m > 0$ es creciente, si $m < 0$ decreciente y si $m = 0$ es constante.<br><br><strong>Dominio:</strong> $\\mathbb{R}$. <strong>Recorrido:</strong> $\\mathbb{R}$ si $m \\neq 0$; si $m = 0$ es solo $\\{n\\}$.",
+                    "example": "La función $f(x) = 2x - 1$ tiene pendiente $m = 2$ y corta al eje Y en $n = -1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/lineal.png' alt='Función lineal' width='669' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Gráfica de $f(x)=2x-1$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$f(x) = mx + n \\qquad m = \\dfrac{f(x_2) - f(x_1)}{x_2 - x_1}$"
                 },
                 {
-                    "title": "Segundo grado (cuadráticas)",
-                    "description": "Tienen la forma $f(x) = ax^2 + bx + c$ y su gráfica es una parábola. <br><br><strong>Dominio:</strong> Todos los números reales ($\\mathbb{R}$). <br><br><strong>Recorrido:</strong> Va desde el vértice hacia arriba (forma de U, $a>0$) o hacia abajo (forma de montaña, $a<0$).",
-                    "example": "Consideremos $f(x) = x^2 - 4x + 3$. Su vértice está en $x_v = \\frac{4}{2} = 2$. Evaluando, obtenemos $f(2) = -1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/cuadratica.png' alt='Función cuadrática' width='677' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Gráfica de $f(x)=x^2-4x+3$</figcaption></figure>"
+                    "title": "Función cuadrática",
+                    "description": "Una función <strong>cuadrática</strong> es una función de la forma $f(x) = ax^2 + bx + c$ con $a \\neq 0$. Su gráfica es una <strong>parábola</strong> con eje vertical y <strong>vértice</strong> en $x_v = -\\dfrac{b}{2a}$. Si $a > 0$ tiene forma de U (el vértice es el mínimo) y si $a < 0$ de montaña (el vértice es el máximo).<br><br><strong>Dominio:</strong> $\\mathbb{R}$. <strong>Recorrido:</strong> $[f(x_v), +\\infty)$ si $a > 0$ y $(-\\infty, f(x_v)]$ si $a < 0$.",
+                    "example": "Consideremos $f(x) = x^2 - 4x + 3$. Su vértice está en $x_v = \\frac{4}{2} = 2$. Evaluando, obtenemos $f(2) = -1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/cuadratica.png' alt='Función cuadrática' width='677' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Gráfica de $f(x)=x^2-4x+3$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$f(x) = ax^2 + bx + c \\quad (a \\neq 0) \\qquad x_v = -\\dfrac{b}{2a}$"
                 },
                 {
                     "title": "Traslaciones de la parábola",
-                    "description": "Partiendo de la función básica $f(x) = x^2$, podemos desplazarla: <br><ul><li><strong>Vertical:</strong> $f(x) + k$ sube la gráfica $k$ unidades si $k>0$, y la baja si $k<0$.</li><li><strong>Horizontal:</strong> $f(x-h)$ desplaza la gráfica $h$ unidades a la derecha si $h>0$, y a la izquierda si $h<0$.</li></ul>",
-                    "example": "La función $g(x) = (x-2)^2 + 1$ es la parábola $x^2$ desplazada 2 unidades a la derecha y 1 unidad hacia arriba. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-cuadratica.png' alt='Traslación cuadrática' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Comparativa entre $x^2$ y $(x-2)^2+1$</figcaption></figure>"
+                    "description": "Si se conoce la gráfica de $f$, la de $g(x) = f(x - h) + k$ es la misma gráfica <strong>trasladada</strong>: $h$ unidades horizontalmente (a la derecha si $h>0$, a la izquierda si $h<0$) y $k$ unidades verticalmente (hacia arriba si $k>0$, hacia abajo si $k<0$). Aplicado a $f(x) = ax^2$ da la <strong>forma canónica</strong> de la parábola, cuyo vértice es $(h, k)$.",
+                    "example": "La función $g(x) = (x-2)^2 + 1$ es la parábola $x^2$ desplazada 2 unidades a la derecha y 1 unidad hacia arriba. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-cuadratica.png' alt='Traslación cuadrática' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Comparativa entre $x^2$ y $(x-2)^2+1$</figcaption></figure>",
+                    "kind": "propiedad",
+                    "formula": "$g(x) = a(x - h)^2 + k \\qquad \\text{vértice } (h, k)$"
                 }
             ]
         },
@@ -28,9 +34,11 @@
             "title": "Funciones racionales",
             "items": [
                 {
-                    "title": "Racionales (cociente de polinomios)",
-                    "description": "Son divisiones entre polinomios: $f(x) = \\frac{P(x)}{Q(x)}$. <br><br><strong>Dominio:</strong> Son todos los números reales ($\\mathbb{R}$) menos los valores que hacen que el denominador sea $0$ (no se puede dividir por $0$). <br><br><strong>Recorrido:</strong> Son todos los reales ($\\mathbb{R}$) menos los valores donde haya asíntotas horizontales.",
-                    "example": "Para $f(x) = \\frac{1}{x-2} + 1$, la gráfica de la hipérbola base se ha trasladado $2$ unidades a la derecha y $1$ unidad hacia arriba. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-racional.png' alt='Función racional trasladada' width='669' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Traslación de $1/x$ a $\\frac{1}{x+2}-1$</figcaption></figure>"
+                    "title": "Función racional",
+                    "description": "Una función <strong>racional</strong> es un cociente de polinomios, $f(x) = \\dfrac{P(x)}{Q(x)}$ con $Q$ no nulo. <br><br><strong>Dominio:</strong> $\\mathbb{R}$ menos los valores que anulan el denominador. En un cero de $Q$ que no se anula también en $P$, la gráfica tiene una asíntota vertical. <strong>Recorrido:</strong> depende de cada función y se estudia caso por caso; la gráfica no corta a sus asíntotas horizontales en el infinito, aunque a veces sí las atraviesa en valores finitos. El ejemplo básico es la hipérbola $f(x) = \\dfrac{1}{x}$, con dominio y recorrido $\\mathbb{R} \\setminus \\{0\\}$.",
+                    "example": "Para $f(x) = \\frac{1}{x-2} + 1$, la gráfica de la hipérbola base se ha trasladado $2$ unidades a la derecha y $1$ unidad hacia arriba. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-racional.png' alt='Función racional trasladada' width='669' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Traslación de $1/x$ a $\\frac{1}{x+2}-1$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$f(x) = \\dfrac{P(x)}{Q(x)} \\qquad \\text{Dom}(f) = \\{x : Q(x) \\neq 0\\}$"
                 }
             ]
         },
@@ -38,14 +46,17 @@
             "title": "Funciones radicales",
             "items": [
                 {
-                    "title": "Radicales",
-                    "description": "Son las funciones que tienen raíces, como $f(x) = \\sqrt{x}$. <br><br><strong>Dominio:</strong> Si la raíz es de índice par, lo de dentro debe ser positivo o $0$. Si es impar, pueden ser todos los reales ($\\mathbb{R}$). <br><br><strong>Recorrido:</strong> El resultado de una raíz par se toma siempre como positivo o cero: $[0, +\\infty)$.",
-                    "example": "Para la función $f(x) = \\sqrt{x+3} + 2$, la curva básica $\\sqrt{x}$ se desplaza 3 unidades a la izquierda y 2 hacia arriba. El dominio es $[-3, +\\infty)$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-radical.png' alt='Función radical trasladada' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Traslación de $\\sqrt{x}$ a $\\sqrt{x+3}+2$</figcaption></figure>"
+                    "title": "Función radical",
+                    "description": "Una función <strong>radical</strong> es una función en la que la variable aparece dentro de una raíz, como $f(x) = \\sqrt{x}$. <br><br><strong>Dominio:</strong> si el índice es par, el radicando debe ser mayor o igual que $0$; si es impar, no hay restricción por la raíz. <strong>Recorrido:</strong> una raíz de índice par es siempre mayor o igual que $0$, por lo que $\\sqrt{x}$ tiene recorrido $[0, +\\infty)$.",
+                    "example": "Para la función $f(x) = \\sqrt{x+3} + 2$, la curva básica $\\sqrt{x}$ se desplaza 3 unidades a la izquierda y 2 hacia arriba. El dominio es $[-3, +\\infty)$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-radical.png' alt='Función radical trasladada' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Traslación de $\\sqrt{x}$ a $\\sqrt{x+3}+2$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$f(x) = \\sqrt[n]{g(x)} \\qquad n \\ \\text{par} \\Rightarrow \\text{Dom}(f) = \\{x : g(x) \\ge 0\\}$"
                 },
                 {
                     "title": "Reflexión en el eje Y",
-                    "description": "Si cambiamos el signo de la $x$ dentro de la raíz, obtenemos $f(x) = \\sqrt{-x}$. Esto refleja la gráfica respecto al eje Y.",
-                    "example": "Para $f(x) = \\sqrt{-x}$, el dominio cambia a $(-\\infty, 0]$, ya que lo de dentro debe ser positivo ($-x \\geq 0 \\Rightarrow x \\leq 0$). <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/radical-reflexion.png' alt='Reflexión radical' width='669' height='711' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Comparativa entre $\\sqrt{x}$ y $\\sqrt{-x}$</figcaption></figure>"
+                    "description": "La gráfica de $g(x) = f(-x)$ es la de $f$ <strong>reflejada respecto del eje $Y$</strong>. Para la raíz, $f(x) = \\sqrt{-x}$ tiene dominio $(-\\infty, 0]$ porque exige $-x \\geq 0$.",
+                    "example": "Para $f(x) = \\sqrt{-x}$, el dominio cambia a $(-\\infty, 0]$, ya que lo de dentro debe ser positivo ($-x \\geq 0 \\Rightarrow x \\leq 0$). <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/radical-reflexion.png' alt='Reflexión radical' width='669' height='711' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Comparativa entre $\\sqrt{x}$ y $\\sqrt{-x}$</figcaption></figure>",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -53,9 +64,11 @@
             "title": "Funciones exponenciales",
             "items": [
                 {
-                    "title": "Exponenciales",
-                    "description": "Tienen la incógnita en el exponente, por ejemplo $f(x) = 2^x$. <br><br><strong>Dominio:</strong> Son todos los números reales ($\\mathbb{R}$). <br><br><strong>Recorrido:</strong> Su resultado es siempre mayor que el valor de la asíntota horizontal.",
-                    "example": "Si trasladamos $f(x)=2^x$ para obtener $g(x)=2^{x-1}-2$, la gráfica se mueve 1 unidad a la derecha y 2 unidades hacia abajo. La asíntota pasa de $y=0$ a $y=-2$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-exponencial.png' alt='Traslación exponencial' width='669' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Traslación de $2^x$ a $2^{x-1}-2$</figcaption></figure>"
+                    "title": "Función exponencial",
+                    "description": "Una función <strong>exponencial</strong> tiene la forma $f(x) = a^x$, con base $a > 0$ y $a \\neq 1$. <br><br><strong>Dominio:</strong> $\\mathbb{R}$. <strong>Recorrido:</strong> $(0, +\\infty)$: una potencia de base positiva nunca es cero ni negativa. Pasa por $(0, 1)$ y tiene la recta $y = 0$ como <strong>asíntota horizontal</strong>. Si $a > 1$ es creciente; si $0 < a < 1$, decreciente. Al trasladarla, $g(x) = a^{x-h} + k$ tiene asíntota $y = k$ y recorrido $(k, +\\infty)$.",
+                    "example": "Si trasladamos $f(x)=2^x$ para obtener $g(x)=2^{x-1}-2$, la gráfica se mueve 1 unidad a la derecha y 2 unidades hacia abajo. La asíntota pasa de $y=0$ a $y=-2$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-exponencial.png' alt='Traslación exponencial' width='669' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Traslación de $2^x$ a $2^{x-1}-2$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$f(x) = a^x \\quad (a > 0,\\ a \\neq 1)$"
                 }
             ]
         },
@@ -63,14 +76,17 @@
             "title": "Funciones logarítmicas",
             "items": [
                 {
-                    "title": "Logarítmicas",
-                    "description": "Tienen la forma $f(x) = \\log_a(x)$. Son la inversa de las exponenciales. <br><br><strong>Dominio:</strong> El argumento debe ser mayor que $0$. <br><br><strong>Recorrido:</strong> Todos los números reales ($\\mathbb{R}$).",
-                    "example": "Para $f(x) = \\log_2(x+2) + 1$, la gráfica básica se desplaza 2 unidades a la izquierda y 1 unidad hacia arriba. La asíntota vertical se mueve a $x=-2$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-logaritmica.png' alt='Traslación logarítmica' width='669' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Traslación de $\\log_2(x)$ a $\\log_2(x+2)+1$</figcaption></figure>"
+                    "title": "Función logarítmica",
+                    "description": "Una función <strong>logarítmica</strong> tiene la forma $f(x) = \\log_a x$, con $a > 0$ y $a \\neq 1$. Es la <strong>inversa</strong> de la exponencial de la misma base: $y = \\log_a x \\iff a^y = x$. <br><br><strong>Dominio:</strong> $(0, +\\infty)$ (el argumento debe ser positivo). <strong>Recorrido:</strong> $\\mathbb{R}$. Pasa por $(1, 0)$ y tiene la recta $x = 0$ como <strong>asíntota vertical</strong>. Si $a > 1$ es creciente.",
+                    "example": "Para $f(x) = \\log_2(x+2) + 1$, la gráfica básica se desplaza 2 unidades a la izquierda y 1 unidad hacia arriba. La asíntota vertical se mueve a $x=-2$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/traslacion-logaritmica.png' alt='Traslación logarítmica' width='669' height='707' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Traslación de $\\log_2(x)$ a $\\log_2(x+2)+1$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$f(x) = \\log_a x \\quad (a > 0,\\ a \\neq 1) \\qquad y = \\log_a x \\iff a^y = x$"
                 },
                 {
                     "title": "Logaritmos de base fraccionaria",
-                    "description": "Cuando la base $a$ está entre 0 y 1 ($0 < a < 1$), la función logarítmica es **decreciente**.",
-                    "example": "La función $f(x) = \\log_{0{,}5}(x)$ decrece a medida que $x$ aumenta. Corta al eje X en $(1, 0)$ y tiene una asíntota vertical en $x=0$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/logaritmica-decreciente.png' alt='Logaritmo decreciente' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Comparativa: base $a=2$ vs base $a=0{,}5$</figcaption></figure>"
+                    "description": "Cuando la base está entre $0$ y $1$ ($0 < a < 1$), la función logarítmica es <strong>decreciente</strong>. <em>Razón:</em> $\\log_a x = \\dfrac{\\ln x}{\\ln a}$ y, si $0 < a < 1$, $\\ln a < 0$, de modo que se invierte el sentido de la desigualdad.",
+                    "example": "La función $f(x) = \\log_{0{,}5}(x)$ decrece a medida que $x$ aumenta. Corta al eje X en $(1, 0)$ y tiene una asíntota vertical en $x=0$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones-elementales/logaritmica-decreciente.png' alt='Logaritmo decreciente' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Comparativa: base $a=2$ vs base $a=0{,}5$</figcaption></figure>",
+                    "kind": "propiedad"
                 }
             ]
         }

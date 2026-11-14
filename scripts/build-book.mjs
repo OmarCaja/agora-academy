@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { renderMath } from '../src/utils/math.ts';
 import { SITE_NAME, SITE_URL, ADDRESS } from '../src/data/site.ts';
+import { KIND_LABELS } from '../src/data/itemKinds.ts';
 import { fail, escapeHtml as esc, findChrome } from './pdf.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -76,10 +77,11 @@ async function buildBook(book, keepHtml) {
     <h2 id="${id(ch, j)}">${content(sec.title)}</h2>
     ${sec.items.map(it => `
     <div class="item">
+      ${it.kind ? `<p class="kind kind-${it.kind}">${KIND_LABELS[it.kind]}</p>` : ''}
       <h3>${content(it.title)}</h3>
+      ${it.description ? `<div class="description">${content(it.description)}</div>` : ''}
       ${it.formula ? `<div class="formula">${content(it.formula)}</div>` : ''}
       ${it.example ? `<p class="label">Ejemplo:</p><div class="example">${content(it.example)}</div>` : ''}
-      ${it.description ? `<div class="description">${content(it.description)}</div>` : ''}
     </div>`).join('')}`).join('')}
   </section>`).join('');
 
@@ -131,6 +133,9 @@ async function buildBook(book, keepHtml) {
     .item h3 { font-size: 11pt; margin: 0 0 3mm; padding-bottom: 1mm; border-bottom: 2px solid #1f1f1f; display: inline-block; }
     .formula, .example { background: #f5f5f5; border: 1px solid #1f1f1f; padding: 3mm 4mm; margin: 2mm 0 3mm; overflow: hidden; }
     .formula .katex-display, .example .katex-display { margin: .3em 0; }
+    .kind { display: table; margin: 0 0 2mm; padding: .3mm 2.5mm; border: 1px solid #1f1f1f; font-size: 7.5pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .kind-definicion { background: #1f1f1f; color: #fff; }
+    .item:has(.kind-definicion), .item:has(.kind-teorema) { border-left-width: 3mm; }
     .label { margin: 0; font-size: 8.5pt; font-weight: 700; color: #666; text-transform: uppercase; }
     .description { color: #333; }
     .description p { margin: 0 0 2mm; }

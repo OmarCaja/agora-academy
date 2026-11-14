@@ -5,41 +5,75 @@
     "menuOrder": 4,
     "sections": [
         {
+            "title": "Concepto de fracción",
+            "items": [
+                {
+                    "title": "Fracción",
+                    "kind": "definicion",
+                    "description": "Una <strong>fracción</strong> es una expresión $\\dfrac{a}{b}$, con $a$ y $b$ números enteros y $b \\neq 0$. El <strong>denominador</strong> $b$ indica en cuántas partes iguales se divide la unidad y el <strong>numerador</strong> $a$ cuántas de esas partes se toman. Su valor es el cociente $a : b$.",
+                    "formula": "$\\dfrac{a}{b} = a : b \\qquad (b \\neq 0)$",
+                    "example": "$\\dfrac{3}{4}$ significa dividir la unidad en $4$ partes iguales y tomar $3$ de ellas: vale $3 : 4 = 0{,}75$.<br>$\\dfrac{5}{1} = 5$ y $\\dfrac{0}{7} = 0$, pero $\\dfrac{7}{0}$ no existe."
+                },
+                {
+                    "title": "Fracción propia e impropia",
+                    "kind": "definicion",
+                    "description": "Una fracción es <strong>propia</strong> si su numerador es menor que su denominador (vale menos que $1$) e <strong>impropia</strong> si el numerador es mayor o igual que el denominador (vale $1$ o más). Una fracción impropia se puede escribir como <strong>número mixto</strong>: entero más fracción propia, usando la división entera (cociente y resto).",
+                    "formula": "$\\dfrac{a}{b} = c + \\dfrac{r}{b} \\quad \\text{si } a = b \\cdot c + r,\\ 0 \\le r < b$",
+                    "example": "$\\dfrac{2}{5}$ es propia (vale $0{,}4$).<br>$\\dfrac{17}{5}$ es impropia: $17 = 5 \\cdot 3 + 2$, luego $\\dfrac{17}{5} = 3 + \\dfrac{2}{5} = 3\\tfrac{2}{5}$."
+                }
+            ]
+        },
+        {
             "title": "Fracciones equivalentes",
             "items": [
                 {
-                    "title": "¿Qué son las fracciones equivalentes?",
-                    "description": "Dos fracciones son <strong>equivalentes</strong> si representan la misma cantidad aunque tengan números distintos. Comer $\\frac{1}{2}$ de una pizza es lo mismo que comer $\\frac{2}{4}$ o $\\frac{4}{8}$.",
-                    "example": "$\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8} = 0{,}5$"
+                    "title": "Fracciones equivalentes",
+                    "description": "Dos fracciones $\\dfrac{a}{b}$ y $\\dfrac{c}{d}$ son <strong>equivalentes</strong> si representan el mismo número, es decir, si los productos cruzados coinciden. Comer $\\frac{1}{2}$ de una pizza es lo mismo que comer $\\frac{2}{4}$ o $\\frac{4}{8}$.",
+                    "example": "$\\dfrac{1}{2} = \\dfrac{2}{4} = \\dfrac{4}{8} = 0{,}5$ porque $1 \\cdot 4 = 2 \\cdot 2$ y $1 \\cdot 8 = 2 \\cdot 4$.<br><img src='/ejemplos/fracciones/fracciones-equivalentes.png' alt='Tres barras iguales divididas en 2, 4 y 8 partes con sombreada la misma cantidad: un medio, dos cuartos y cuatro octavos' width='727' height='330' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "kind": "definicion",
+                    "formula": "$\\dfrac{a}{b} = \\dfrac{c}{d} \\iff a \\cdot d = b \\cdot c$"
                 },
                 {
                     "title": "Amplificar una fracción",
                     "formula": "$$\\frac{a}{b} = \\frac{a \\cdot k}{b \\cdot k} \\quad (k \\neq 0)$$",
-                    "description": "<strong>Amplificar</strong> es multiplicar numerador y denominador por el <strong>mismo</strong> número. Se obtiene una fracción equivalente con términos más grandes. Ojo: si solo multiplicas uno de los dos términos, la fracción cambia de valor.",
-                    "example": "Fracciones equivalentes a $\\frac{3}{5}$:<br>• $\\frac{3 \\cdot 2}{5 \\cdot 2} = \\frac{6}{10}$<br>• $\\frac{3 \\cdot 3}{5 \\cdot 3} = \\frac{9}{15}$<br>• $\\frac{3 \\cdot 4}{5 \\cdot 4} = \\frac{12}{20}$"
+                    "description": "<strong>Amplificar</strong> es multiplicar numerador y denominador por el <strong>mismo</strong> número $k \\neq 0$. Se obtiene una fracción equivalente con términos más grandes (porque $a \\cdot (b k) = b \\cdot (a k)$). Si solo se multiplica uno de los dos términos, la fracción cambia de valor.",
+                    "example": "Fracciones equivalentes a $\\frac{3}{5}$:<br>• $\\frac{3 \\cdot 2}{5 \\cdot 2} = \\frac{6}{10}$<br>• $\\frac{3 \\cdot 3}{5 \\cdot 3} = \\frac{9}{15}$<br>• $\\frac{3 \\cdot 4}{5 \\cdot 4} = \\frac{12}{20}$",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Simplificar una fracción",
                     "formula": "$$\\frac{a}{b} = \\frac{a : k}{b : k} \\quad (k \\neq 0)$$",
                     "example": "$\\frac{12}{18}$: $\\text{mcd}(12, 18) = 6$, así que $\\frac{12}{18} = \\frac{12 : 6}{18 : 6} = \\frac{2}{3}$<br>• También por pasos: $\\frac{12}{18} = \\frac{6}{9} = \\frac{2}{3}$ (dividiendo entre 2 y luego entre 3)",
-                    "description": "<strong>Simplificar</strong> es dividir numerador y denominador por el mismo número. Si dividimos por su <strong>máximo común divisor</strong>, llegamos directamente a la <strong>fracción irreducible</strong>, la que ya no se puede simplificar más."
+                    "description": "<strong>Simplificar</strong> es dividir numerador y denominador entre un divisor común $k \\neq 0$. Se obtiene una fracción equivalente con términos más pequeños. Si se divide entre su <strong>máximo común divisor</strong>, se llega directamente a la fracción irreducible.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Fracción irreducible",
+                    "kind": "definicion",
+                    "description": "Una fracción es <strong>irreducible</strong> cuando su numerador y su denominador no tienen más divisor común que $1$, es decir, cuando $\\text{m.c.d.}(a, b) = 1$. Toda fracción es equivalente a una única fracción irreducible (con denominador positivo), que se obtiene dividiendo numerador y denominador entre su m.c.d.",
+                    "formula": "$\\dfrac{a}{b} \\ \\text{irreducible} \\iff \\text{m.c.d.}(a, b) = 1$",
+                    "example": "$\\dfrac{6}{15}$ no es irreducible (m.c.d. $=3$); $\\dfrac{2}{5}$ sí lo es."
                 },
                 {
                     "title": "Comprobar si dos fracciones son equivalentes",
                     "formula": "$\\frac{a}{b} = \\frac{c}{d} \\iff a \\cdot d = b \\cdot c$",
                     "example": "• $\\frac{2}{5}$ y $\\frac{6}{15}$: $2 \\cdot 15 = 30$ y $5 \\cdot 6 = 30$ → <strong>sí</strong> son equivalentes<br>• $\\frac{3}{4}$ y $\\frac{5}{8}$: $3 \\cdot 8 = 24$ y $4 \\cdot 5 = 20$ → <strong>no</strong> son equivalentes",
-                    "description": "Multiplicamos <strong>en cruz</strong>: si los dos productos coinciden, las fracciones son equivalentes. Si no, no lo son."
+                    "description": "Se aplica la definición de equivalencia: se multiplica <strong>en cruz</strong> y se comparan los dos productos. Si coinciden, las fracciones son equivalentes; si no, no lo son.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Calcular el término que falta",
                     "formula": "$$\\frac{a}{b} = \\frac{x}{d} \\implies x = \\frac{a \\cdot d}{b}$$",
                     "description": "Si sabemos que dos fracciones son equivalentes y falta un término, igualamos los productos cruzados y despejamos $x$.",
-                    "example": "• $\\frac{3}{4} = \\frac{x}{20} \\implies 4 \\cdot x = 3 \\cdot 20 \\implies x = \\frac{60}{4} = 15$<br>• $\\frac{6}{x} = \\frac{9}{12} \\implies 9 \\cdot x = 6 \\cdot 12 \\implies x = \\frac{72}{9} = 8$"
+                    "example": "• $\\frac{3}{4} = \\frac{x}{20} \\implies 4 \\cdot x = 3 \\cdot 20 \\implies x = \\frac{60}{4} = 15$<br>• $\\frac{6}{x} = \\frac{9}{12} \\implies 9 \\cdot x = 6 \\cdot 12 \\implies x = \\frac{72}{9} = 8$",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Reducir a común denominador",
-                    "description": "Para comparar, sumar o restar fracciones con distinto denominador, las cambiamos por fracciones equivalentes con el <strong>mismo denominador</strong>: el $\\text{mcm}$ de los denominadores.",
-                    "example": "$\\frac{2}{3}$ y $\\frac{3}{4}$: $\\text{mcm}(3, 4) = 12$<br>• $\\frac{2}{3} = \\frac{2 \\cdot 4}{3 \\cdot 4} = \\frac{8}{12}$<br>• $\\frac{3}{4} = \\frac{3 \\cdot 3}{4 \\cdot 3} = \\frac{9}{12}$<br>Como $8 < 9$, $\\frac{2}{3} < \\frac{3}{4}$"
+                    "description": "Para comparar, sumar o restar fracciones con distinto denominador, se sustituyen por fracciones equivalentes con el <strong>mismo denominador</strong>. Se toma como denominador común el $\\text{m.c.m.}$ de los denominadores (el menor posible).",
+                    "example": "$\\frac{2}{3}$ y $\\frac{3}{4}$: $\\text{mcm}(3, 4) = 12$<br>• $\\frac{2}{3} = \\frac{2 \\cdot 4}{3 \\cdot 4} = \\frac{8}{12}$<br>• $\\frac{3}{4} = \\frac{3 \\cdot 3}{4 \\cdot 3} = \\frac{9}{12}$<br>Como $8 < 9$, $\\frac{2}{3} < \\frac{3}{4}$",
+                    "kind": "procedimiento",
+                    "formula": "$\\dfrac{a}{b} = \\dfrac{a \\cdot (m : b)}{m} \\qquad m = \\text{m.c.m.}(b, d)$"
                 }
             ]
         },
@@ -50,25 +84,29 @@
                     "title": "Suma (mismo denominador)",
                     "formula": "$\\frac{a}{c} + \\frac{b}{c} = \\frac{a + b}{c}$",
                     "example": "$\\frac{2}{7} + \\frac{3}{7} = \\frac{5}{7}$",
-                    "description": "Se mantiene el denominador y se suman los numeradores."
+                    "description": "Se mantiene el denominador y se suman los numeradores.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Resta (mismo denominador)",
                     "formula": "$\\frac{a}{c} - \\frac{b}{c} = \\frac{a - b}{c}$",
                     "example": "$\\frac{5}{8} - \\frac{2}{8} = \\frac{3}{8}$",
-                    "description": "Se mantiene el denominador y se restan los numeradores."
+                    "description": "Se mantiene el denominador y se restan los numeradores.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Sumar (distinto denominador)",
                     "formula": "$\\frac{a}{b} + \\frac{c}{d} = \\frac{(m:b) \\cdot a + (m:d) \\cdot c}{m}$",
                     "example": "$\\frac{1}{4} + \\frac{1}{6} = \\frac{3}{12} + \\frac{2}{12} = \\frac{5}{12}$",
-                    "description": "PASOS: 1. Hallar $m = \\text{mcm}(b,d)$. 2. Dividir $m$ entre cada denominador y multiplicar por su numerador. 3. Sumar los resultados."
+                    "description": "<strong>Pasos.</strong> 1) Se halla $m = \\text{m.c.m.}(b, d)$. 2) Se divide $m$ entre cada denominador y se multiplica por el numerador correspondiente. 3) Se suman los resultados sobre el denominador $m$ y, si se puede, se simplifica.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Restar (distinto denominador)",
                     "formula": "$\\frac{a}{b} - \\frac{c}{d} = \\frac{(m:b) \\cdot a - (m:d) \\cdot c}{m}$",
                     "example": "$\\frac{3}{4} - \\frac{1}{6} = \\frac{9}{12} - \\frac{2}{12} = \\frac{7}{12}$",
-                    "description": "PASOS: 1. Hallar $m = \\text{mcm}(b,d)$. 2. Dividir $m$ entre cada denominador y multiplicar por su numerador. 3. Restar los resultados."
+                    "description": "<strong>Pasos.</strong> 1) Se halla $m = \\text{m.c.m.}(b, d)$. 2) Se divide $m$ entre cada denominador y se multiplica por el numerador correspondiente. 3) Se restan los resultados sobre el denominador $m$ y, si se puede, se simplifica.",
+                    "kind": "procedimiento"
                 }
             ]
         },
@@ -76,33 +114,37 @@
             "title": "Multiplicación y división",
             "items": [
                 {
-                    "title": "Multiplicación",
-                    "formula": "$\\frac{a}{b} \\cdot \\frac{c}{d} = \\frac{a \\cdot c}{b \\cdot d}$",
-                    "example": "$\\frac{2}{3} \\cdot \\frac{4}{5} = \\frac{8}{15}$",
-                    "description": "Se multiplica <strong>en línea</strong>: numerador por numerador y denominador por denominador."
+                    "title": "Fracción inversa",
+                    "formula": "$\\left(\\dfrac{a}{b}\\right)^{-1} = \\dfrac{b}{a} \\qquad \\dfrac{a}{b} \\cdot \\dfrac{b}{a} = 1$",
+                    "example": "$\\left(\\dfrac{3}{4}\\right)^{-1} = \\dfrac{4}{3}$ y comprobamos que $\\dfrac{3}{4} \\cdot \\dfrac{4}{3} = \\dfrac{12}{12} = 1$.<br>La inversa de $5 = \\dfrac{5}{1}$ es $\\dfrac{1}{5}$.",
+                    "description": "La <strong>fracción inversa</strong> de $\\dfrac{a}{b}$ (con $a \\neq 0$) es $\\dfrac{b}{a}$: la que resulta de intercambiar numerador y denominador. Es la fracción que, multiplicada por $\\dfrac{a}{b}$, da $1$. Se escribe con exponente $-1$. La fracción $\\dfrac{0}{b}$ no tiene inversa.",
+                    "kind": "definicion"
                 },
                 {
-                    "title": "División",
+                    "title": "Multiplicación de fracciones",
+                    "formula": "$\\frac{a}{b} \\cdot \\frac{c}{d} = \\frac{a \\cdot c}{b \\cdot d}$",
+                    "example": "$\\frac{2}{3} \\cdot \\frac{4}{5} = \\frac{8}{15}$",
+                    "description": "Se multiplica <strong>en línea</strong>: numerador por numerador y denominador por denominador.",
+                    "kind": "propiedad"
+                },
+                {
+                    "title": "División de fracciones",
                     "formula": "$\\frac{a}{b} : \\frac{c}{d} = \\frac{a}{b} \\cdot \\frac{d}{c} = \\frac{a \\cdot d}{b \\cdot c}$",
                     "example": "$\\frac{3}{4} : \\frac{2}{5} = \\frac{3 \\cdot 5}{4 \\cdot 2} = \\frac{15}{8}$",
-                    "description": "Se multiplica por la <strong>fracción inversa</strong> del divisor (multiplicación en cruz)."
+                    "description": "Se multiplica por la <strong>fracción inversa</strong> del divisor (multiplicación en cruz).",
+                    "kind": "propiedad"
                 }
             ]
         },
         {
-            "title": "Propiedades de potencias",
+            "title": "Potencias de fracciones",
             "items": [
                 {
-                    "title": "Inversa de una fracción",
-                    "formula": "$(\\frac{a}{b})^{-1} = \\frac{b}{a}$",
-                    "example": "$(\\frac{3}{4})^{-1} = \\frac{4}{3}$",
-                    "description": "Un exponente negativo invierte la posición del numerador y el denominador."
-                },
-                {
                     "title": "Potencia de una fracción",
-                    "formula": "$(\\frac{a}{b})^n = \\frac{a^n}{b^n}$",
-                    "example": "$(\\frac{2}{3})^3 = \\frac{2^3}{3^3} = \\frac{8}{27}$",
-                    "description": "El exponente afecta tanto al numerador como al denominador."
+                    "kind": "definicion",
+                    "description": "Elevar una fracción a un exponente natural $n$ es multiplicarla por sí misma $n$ veces; el exponente afecta al numerador y al denominador. Un exponente negativo equivale a elevar la fracción inversa.",
+                    "formula": "$\\left(\\dfrac{a}{b}\\right)^n = \\dfrac{a^n}{b^n} \\qquad \\left(\\dfrac{a}{b}\\right)^{-n} = \\left(\\dfrac{b}{a}\\right)^{n}$",
+                    "example": "$\\left(\\dfrac{2}{3}\\right)^3 = \\dfrac{2}{3}\\cdot\\dfrac{2}{3}\\cdot\\dfrac{2}{3} = \\dfrac{2^3}{3^3} = \\dfrac{8}{27}$<br>$\\left(\\dfrac{2}{3}\\right)^{-2} = \\left(\\dfrac{3}{2}\\right)^{2} = \\dfrac{9}{4}$"
                 }
             ]
         },
@@ -113,7 +155,8 @@
                     "title": "Fracción de una cantidad",
                     "formula": "$\\frac{a}{b} \\text{ de } C = \\frac{a \\cdot C}{b}$",
                     "example": "$\\frac{2}{3} \\text{ de } 15 = 2 \\cdot (15 : 3) = 10$",
-                    "description": "Se multiplica la cantidad por el numerador y se divide por el denominador (o viceversa)."
+                    "description": "Calcular la fracción $\\dfrac{a}{b}$ de una cantidad $C$ es repartir $C$ en $b$ partes iguales y quedarse con $a$ de ellas: se divide $C$ entre el denominador y se multiplica por el numerador.",
+                    "kind": "procedimiento"
                 }
             ]
         },
@@ -121,32 +164,37 @@
             "title": "Fracción generatriz",
             "items": [
                 {
-                    "title": "¿Qué es la fracción generatriz?",
-                    "description": "Es la fracción irreducible que, al dividir numerador entre denominador, da un número decimal. Solo la tienen los decimales <strong>exactos</strong> y los <strong>periódicos</strong>. El <strong>periodo</strong> es la cifra o grupo de cifras que se repite, y se marca con una barra encima.<br>• <strong>Exacto</strong>: tiene un número finito de decimales.<br>• <strong>Periódico puro</strong>: el periodo empieza justo después de la coma.<br>• <strong>Periódico mixto</strong>: hay cifras entre la coma y el periodo (el <strong>anteperiodo</strong>).",
-                    "example": "• Exacto: $0{,}75$<br>• Periódico puro: $1{,}\\overline{27} = 1{,}272727\\ldots$<br>• Periódico mixto: $0{,}1\\overline{6} = 0{,}16666\\ldots$"
+                    "title": "Fracción generatriz y tipos de decimales",
+                    "description": "Un número decimal <strong>exacto</strong> tiene un número finito de cifras decimales. Uno <strong>periódico</strong> tiene infinitas cifras decimales que, a partir de cierto lugar, repiten un mismo grupo de cifras llamado <strong>periodo</strong> (se marca con una barra encima). Si el periodo empieza justo después de la coma el decimal es <strong>periódico puro</strong>; si hay cifras entre la coma y el periodo (el <strong>anteperiodo</strong>) es <strong>periódico mixto</strong>.<br>La <strong>fracción generatriz</strong> de un decimal exacto o periódico es la fracción irreducible cuyo valor (el cociente numerador : denominador) es ese número. Todo decimal exacto o periódico tiene fracción generatriz y, recíprocamente, toda fracción da un decimal exacto o periódico.",
+                    "example": "• Exacto: $0{,}75 = \\frac{3}{4}$<br>• Periódico puro: $1{,}\\overline{27} = 1{,}272727\\ldots$ (periodo $27$)<br>• Periódico mixto: $0{,}1\\overline{6} = 0{,}16666\\ldots$ (anteperiodo $1$, periodo $6$)",
+                    "kind": "definicion"
                 },
                 {
                     "title": "Decimal exacto",
                     "formula": "$$\\text{Fracción} = \\frac{\\text{número sin coma}}{1 \\text{ seguido de tantos ceros como decimales}}$$",
                     "description": "Escribimos el número sin la coma en el numerador y, en el denominador, un 1 seguido de tantos ceros como cifras decimales. Después simplificamos.",
-                    "example": "• $0{,}75 = \\frac{75}{100} = \\frac{3}{4}$<br>• $2{,}35 = \\frac{235}{100} = \\frac{47}{20}$"
+                    "example": "• $0{,}75 = \\frac{75}{100} = \\frac{3}{4}$<br>• $2{,}35 = \\frac{235}{100} = \\frac{47}{20}$",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Decimal periódico puro",
                     "formula": "$$\\text{Fracción} = \\frac{\\text{número sin coma} - \\text{parte entera}}{\\text{tantos 9 como cifras tiene el periodo}}$$",
                     "description": "En el numerador restamos al número completo (sin coma, con el periodo una sola vez) su parte entera. En el denominador ponemos un 9 por cada cifra del periodo.",
-                    "example": "• $0{,}\\overline{3} = \\frac{3 - 0}{9} = \\frac{3}{9} = \\frac{1}{3}$<br>• $1{,}\\overline{27} = \\frac{127 - 1}{99} = \\frac{126}{99} = \\frac{14}{11}$"
+                    "example": "• $0{,}\\overline{3} = \\frac{3 - 0}{9} = \\frac{3}{9} = \\frac{1}{3}$<br>• $1{,}\\overline{27} = \\frac{127 - 1}{99} = \\frac{126}{99} = \\frac{14}{11}$",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Decimal periódico mixto",
                     "formula": "$$\\text{Fracción} = \\frac{\\text{número sin coma} - \\text{parte no periódica}}{\\text{tantos 9 como cifras del periodo y tantos 0 como del anteperiodo}}$$",
                     "description": "En el numerador restamos al número completo la parte que <strong>no</strong> se repite (parte entera y anteperiodo). En el denominador ponemos primero un 9 por cada cifra del periodo y después un 0 por cada cifra del anteperiodo.<br>Error típico: poner los ceros delante de los nueves ($\\textcolor{#d46a6a}{09}$ en vez de $\\textcolor{#4fa66e}{90}$).",
-                    "example": "• $0{,}1\\overline{6} = \\frac{16 - 1}{90} = \\frac{15}{90} = \\frac{1}{6}$<br>• $2{,}3\\overline{45} = \\frac{2345 - 23}{990} = \\frac{2322}{990} = \\frac{129}{55}$"
+                    "example": "• $0{,}1\\overline{6} = \\frac{16 - 1}{90} = \\frac{15}{90} = \\frac{1}{6}$<br>• $2{,}3\\overline{45} = \\frac{2345 - 23}{990} = \\frac{2322}{990} = \\frac{129}{55}$",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "¿Por qué funciona la regla?",
                     "description": "Llamamos $x$ al decimal y lo multiplicamos por potencias de 10 hasta tener dos números con <strong>la misma parte decimal</strong>. Al restarlos, los decimales infinitos desaparecen y queda una ecuación sencilla.",
-                    "example": "$x = 0{,}1\\overline{6}$<br>• $100x = 16{,}666\\ldots$<br>• $10x = 1{,}666\\ldots$<br>Restando: $100x - 10x = 16 - 1 \\implies 90x = 15 \\implies x = \\frac{15}{90} = \\frac{1}{6}$<br>Comprobación: $1 : 6 = 0{,}1666\\ldots$ ✓"
+                    "example": "$x = 0{,}1\\overline{6}$<br>• $100x = 16{,}666\\ldots$<br>• $10x = 1{,}666\\ldots$<br>Restando: $100x - 10x = 16 - 1 \\implies 90x = 15 \\implies x = \\frac{15}{90} = \\frac{1}{6}$<br>Comprobación: $1 : 6 = 0{,}1666\\ldots$ ✓",
+                    "kind": "observacion"
                 }
             ]
         }

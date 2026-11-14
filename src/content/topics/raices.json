@@ -8,10 +8,11 @@
             "title": "Fundamentos",
             "items": [
                 {
-                    "title": "Definición de raíz",
+                    "title": "Raíz $n$-ésima",
                     "formula": "$\\sqrt[n]{a} = b \\iff b^n = a$",
                     "example": "$\\sqrt{25} = 5 \\iff 5^2 = 25 \\qquad \\sqrt[3]{-8} = -2 \\iff (-2)^3 = -8$",
-                    "description": "$n$ es el <strong>índice</strong> y $a$ el <strong>radicando</strong>. Cuando el índice es $2$ no se escribe. Si el índice es par, el radicando no puede ser negativo: $\\sqrt{-4}$ no existe en los números reales. Si es impar, sí: $\\sqrt[3]{-8} = -2$."
+                    "description": "La <strong>raíz</strong> $n$-ésima de $a$ es el número $b$ que elevado a $n$ da $a$. El número natural $n \\geq 2$ es el <strong>índice</strong> y $a$ el <strong>radicando</strong>; cuando el índice es $2$ no se escribe. Si el índice es par, el radicando no puede ser negativo (no hay números reales cuyo cuadrado sea negativo) y la raíz se toma positiva: $\\sqrt{-4}$ no existe en los reales y $\\sqrt{25} = 5$ (no $-5$). Si el índice es impar, sí existe: $\\sqrt[3]{-8} = -2$.",
+                    "kind": "definicion"
                 }
             ]
         },
@@ -22,31 +23,36 @@
                     "title": "Raíz de un producto",
                     "formula": "$\\sqrt[n]{a \\cdot b} = \\sqrt[n]{a} \\cdot \\sqrt[n]{b}$",
                     "example": "$\\sqrt{4 \\cdot 9} = \\sqrt{4} \\cdot \\sqrt{9} = 2 \\cdot 3 = 6$",
-                    "description": "La raíz de un producto es el producto de las raíces. Con índice par, $a$ y $b$ deben ser positivos o cero."
+                    "description": "La raíz de un producto es el producto de las raíces. Con índice par, $a$ y $b$ deben ser positivos o cero. Se justifica porque $\\left(\\sqrt[n]{a} \\cdot \\sqrt[n]{b}\\right)^n = a \\cdot b$.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Raíz de un cociente",
                     "formula": "$\\sqrt[n]{\\frac{a}{b}} = \\frac{\\sqrt[n]{a}}{\\sqrt[n]{b}}$",
                     "example": "$\\sqrt{\\frac{100}{4}} = \\frac{\\sqrt{100}}{\\sqrt{4}} = \\frac{10}{2} = 5$",
-                    "description": "La raíz de un cociente es el cociente de las raíces ($b \\neq 0$)."
+                    "description": "La raíz de un cociente es el cociente de las raíces ($b \\neq 0$).",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Raíz de una potencia",
                     "formula": "$\\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$",
                     "example": "$\\sqrt{4^3} = (\\sqrt{4})^3 = 2^3 = 8$",
-                    "description": "Da igual hacer primero la potencia y luego la raíz, o al revés. Elegir el orden adecuado simplifica las cuentas."
+                    "description": "Da igual hacer primero la potencia y luego la raíz, o al revés. Elegir el orden adecuado simplifica las cuentas.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Raíz de una raíz",
                     "formula": "$\\sqrt[m]{\\sqrt[n]{a}} = \\sqrt[m \\cdot n]{a}$",
                     "example": "$\\sqrt[3]{\\sqrt{64}} = \\sqrt[3 \\cdot 2]{64} = \\sqrt[6]{64} = 2$",
-                    "description": "Una raíz dentro de otra se convierte en una sola raíz cuyo índice es el <strong>producto</strong> de los índices."
+                    "description": "Una raíz dentro de otra se convierte en una sola raíz cuyo índice es el <strong>producto</strong> de los índices.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Raíz de una suma",
                     "formula": "$\\sqrt{a + b} \\neq \\sqrt{a} + \\sqrt{b}$",
                     "example": "$\\sqrt{9 + 16} = \\sqrt{25} = 5 \\qquad \\sqrt{9} + \\sqrt{16} = 3 + 4 = 7$",
-                    "description": "Error muy frecuente: la raíz se reparte en productos y cocientes, pero <strong>no</strong> en sumas ni restas."
+                    "description": "Error muy frecuente: la raíz se reparte en productos y cocientes, pero <strong>no</strong> en sumas ni restas.",
+                    "kind": "observacion"
                 }
             ]
         },
@@ -57,25 +63,36 @@
                     "title": "Extraer factores de una raíz",
                     "formula": "$\\sqrt[n]{a^n \\cdot b} = a\\sqrt[n]{b}$",
                     "example": "$\\sqrt{72} = \\sqrt{2^3 \\cdot 3^2} = \\sqrt{2^2 \\cdot 2 \\cdot 3^2} = 2 \\cdot 3\\sqrt{2} = 6\\sqrt{2}$",
-                    "description": "Se descompone el radicando en factores primos. Cada grupo de $n$ factores iguales sale fuera de la raíz como un solo factor; lo que no completa un grupo se queda dentro."
+                    "description": "Se descompone el radicando en factores primos. Cada grupo de $n$ factores iguales sale fuera de la raíz como un solo factor; lo que no completa un grupo se queda dentro.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Introducir factores en una raíz",
                     "formula": "$a\\sqrt[n]{b} = \\sqrt[n]{a^n \\cdot b}$",
                     "example": "$3\\sqrt{2} = \\sqrt{3^2 \\cdot 2} = \\sqrt{18}$",
-                    "description": "Es la operación contraria: el factor de fuera entra elevado al índice de la raíz."
+                    "description": "Es la operación contraria: el factor de fuera entra elevado al índice de la raíz.",
+                    "kind": "propiedad"
+                },
+                {
+                    "title": "Radicales semejantes",
+                    "kind": "definicion",
+                    "description": "Dos radicales son <strong>semejantes</strong> si tienen el mismo índice y el mismo radicando; solo pueden diferir en el coeficiente que los multiplica.",
+                    "formula": "$a\\sqrt[n]{c} \\quad \\text{y} \\quad b\\sqrt[n]{c} \\ \\text{son semejantes}$",
+                    "example": "$3\\sqrt{5}$ y $-2\\sqrt{5}$ son semejantes. $\\sqrt{5}$ y $\\sqrt{3}$ no lo son (distinto radicando) ni $\\sqrt{5}$ y $\\sqrt[3]{5}$ (distinto índice)."
                 },
                 {
                     "title": "Suma y resta de radicales",
                     "formula": "$a\\sqrt[n]{c} + b\\sqrt[n]{c} = (a + b)\\sqrt[n]{c}$",
                     "example": "$\\sqrt{50} + \\sqrt{18} - \\sqrt{8} = 5\\sqrt{2} + 3\\sqrt{2} - 2\\sqrt{2} = 6\\sqrt{2}$",
-                    "description": "Solo se pueden sumar radicales <strong>semejantes</strong>: mismo índice y mismo radicando. Antes de sumar conviene extraer factores para que aparezcan radicales semejantes."
+                    "description": "Solo se pueden sumar radicales <strong>semejantes</strong>: se suman los coeficientes y se mantiene el radical (propiedad distributiva). Antes de sumar conviene extraer factores para que aparezcan radicales semejantes.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Producto de radicales de distinto índice",
-                    "formula": "$\\sqrt[n]{a} \\cdot \\sqrt[m]{b} = \\sqrt[\\text{m.c.m.}(n, m)]{\\cdots}$",
+                    "formula": "$\\sqrt[n]{a} \\cdot \\sqrt[m]{b} = \\sqrt[k]{a^{k/n} \\cdot b^{k/m}} \\qquad k = \\text{m.c.m.}(n, m)$",
                     "example": "$\\sqrt{2} \\cdot \\sqrt[3]{2} = \\sqrt[6]{2^3} \\cdot \\sqrt[6]{2^2} = \\sqrt[6]{2^5}$",
-                    "description": "Se reducen a <strong>índice común</strong> (el m.c.m. de los índices) y después se multiplican los radicandos. También se puede pasar a exponentes fraccionarios: $2^{\\frac{1}{2}} \\cdot 2^{\\frac{1}{3}} = 2^{\\frac{5}{6}}$."
+                    "description": "Se reducen a <strong>índice común</strong> (el m.c.m. de los índices) y después se multiplican los radicandos. También se puede pasar a exponentes fraccionarios: $2^{\\frac{1}{2}} \\cdot 2^{\\frac{1}{3}} = 2^{\\frac{5}{6}}$.",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -83,16 +100,32 @@
             "title": "Racionalización de raíces",
             "items": [
                 {
+                    "title": "Racionalizar",
+                    "kind": "definicion",
+                    "description": "<strong>Racionalizar</strong> una fracción es hallar otra equivalente que no tenga raíces en el denominador. Se consigue multiplicando numerador y denominador por una expresión adecuada, de modo que el valor de la fracción no cambia.",
+                    "formula": "$\\dfrac{a}{b} = \\dfrac{a \\cdot k}{b \\cdot k} \\qquad (k \\neq 0)$",
+                    "example": "$\\dfrac{1}{\\sqrt{2}} = \\dfrac{1 \\cdot \\sqrt{2}}{\\sqrt{2} \\cdot \\sqrt{2}} = \\dfrac{\\sqrt{2}}{2}$"
+                },
+                {
                     "title": "Raíz en el denominador",
                     "formula": "$\\frac{a}{\\sqrt[n]{b^k}} = \\frac{a}{\\sqrt[n]{b^k}} \\cdot \\frac{\\sqrt[n]{b^{n-k}}}{\\sqrt[n]{b^{n-k}}} = \\frac{a \\cdot \\sqrt[n]{b^{n-k}}}{b}$",
                     "example": "$\\frac{3}{\\sqrt{5}} = \\frac{3}{\\sqrt{5}} \\cdot \\frac{\\sqrt{5}}{\\sqrt{5}} = \\frac{3\\sqrt{5}}{5}$",
-                    "description": "Se multiplica por $\\sqrt[n]{b^{n-k}}$ para que la suma de exponentes dentro de la raíz dé $n$ ($k + (n-k) = n$), y el denominador se reduzca a $b$. Si $k=1$, basta con multiplicar por la propia raíz."
+                    "description": "Se multiplica por $\\sqrt[n]{b^{n-k}}$ para que la suma de exponentes dentro de la raíz dé $n$ ($k + (n-k) = n$), y el denominador se reduzca a $b$. Si $k=1$ y $n = 2$, basta con multiplicar por la propia raíz.",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Conjugado de un binomio",
+                    "kind": "definicion",
+                    "description": "El <strong>conjugado</strong> de un binomio $c + \\sqrt{d}$ es $c - \\sqrt{d}$ (se cambia el signo central). Su producto es una diferencia de cuadrados en la que la raíz desaparece.",
+                    "formula": "$(c + \\sqrt{d})(c - \\sqrt{d}) = c^2 - d$",
+                    "example": "$(3 + \\sqrt{5})(3 - \\sqrt{5}) = 9 - 5 = 4$"
                 },
                 {
                     "title": "Binomio con raíz en el denominador",
                     "formula": "$\\frac{a}{c + \\sqrt{d}} = \\frac{a}{c + \\sqrt{d}} \\cdot \\frac{c - \\sqrt{d}}{c - \\sqrt{d}} = \\frac{a(c - \\sqrt{d})}{c^2 - d}$",
                     "example": "$\\frac{2}{3 + \\sqrt{5}} = \\frac{2(3 - \\sqrt{5})}{9 - 5} = \\frac{2(3 - \\sqrt{5})}{4} = \\frac{3 - \\sqrt{5}}{2}$",
-                    "description": "Se multiplica por el <strong>conjugado</strong> del denominador (se cambia el signo central). Al aplicar la <em>suma por diferencia</em> se obtiene una diferencia de cuadrados $(c+\\sqrt{d})(c-\\sqrt{d}) = c^2 - d$, eliminando la raíz."
+                    "description": "Se multiplica numerador y denominador por el <strong>conjugado</strong> del denominador. Al aplicar la <em>suma por diferencia</em> se obtiene una diferencia de cuadrados, que elimina la raíz.",
+                    "kind": "procedimiento"
                 }
             ]
         },
@@ -100,10 +133,11 @@
             "title": "Potencias y raíces",
             "items": [
                 {
-                    "title": "Exponente fraccionario",
+                    "title": "Exponente fraccionario y raíces",
                     "formula": "$a^{\\frac{m}{n}} = \\sqrt[n]{a^m}$",
-                    "example": "$8^{\\frac{2}{3}} = \\sqrt[3]{8^2} = \\sqrt[3]{64} = 4$",
-                    "description": "Cualquier raíz puede expresarse como una potencia con <strong>exponente racional</strong>."
+                    "example": "$8^{\\frac{2}{3}} = \\sqrt[3]{8^2} = \\sqrt[3]{64} = 4$<br>$\\sqrt[3]{x^2} = x^{2/3}$ y $\\sqrt{5} \\cdot \\sqrt[3]{5} = 5^{1/2} \\cdot 5^{1/3} = 5^{5/6}$",
+                    "description": "Cualquier raíz puede expresarse como una potencia de <strong>exponente racional</strong> y viceversa (para $a \\geq 0$). Así las propiedades de las raíces se deducen de las de las potencias.",
+                    "kind": "propiedad"
                 }
             ]
         }

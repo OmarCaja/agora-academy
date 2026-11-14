@@ -1,12 +1,15 @@
 ---
+import { KIND_LABELS, type Kind } from "../data/itemKinds";
+
 interface Props {
     title: string;
+    kind?: Kind;
     formula?: string;
     example?: string;
     description?: string;
 }
 
-const { title, formula, example, description } = Astro.props;
+const { title, kind, formula, example, description } = Astro.props;
 
 import { renderMath } from "../utils/math";
 
@@ -16,8 +19,15 @@ const processedDescription = description ? renderMath(description) : undefined;
 const processedTitle = renderMath(title);
 ---
 
-<div class="info-box property-box">
+<div class:list={["info-box", "property-box", kind && `kind-${kind}`]}>
+    {kind && <p class="kind-label meta-label">{KIND_LABELS[kind]}</p>}
     <h3 set:html={processedTitle} />
+
+    {
+        processedDescription && (
+            <div class="description" set:html={processedDescription} />
+        )
+    }
 
     {
         processedFormula && (
@@ -39,12 +49,6 @@ const processedTitle = renderMath(title);
             </div>
         )
     }
-
-    {
-        processedDescription && (
-            <div class="description" set:html={processedDescription} />
-        )
-    }
 </div>
 
 <style>
@@ -57,7 +61,7 @@ const processedTitle = renderMath(title);
 
     .formula-container,
     .example-container {
-        margin: var(--spacing-md) 0;
+        margin: var(--spacing-md) 0 0;
     }
 
     .formula {
@@ -110,8 +114,32 @@ const processedTitle = renderMath(title);
         color: var(--text-muted);
     }
 
+    .kind-label {
+        display: block;
+        width: fit-content;
+        margin: 0 0 var(--spacing-xs);
+        padding: 2px 10px;
+        border: var(--border-width) solid var(--border-color);
+        color: var(--text-primary);
+    }
+
+    /* A definition is the one card the rest of the section builds on: inverted label, heavy left rule. */
+    .kind-definicion {
+        border-left-width: 10px;
+    }
+
+    .kind-definicion .kind-label {
+        background: var(--accent);
+        color: var(--on-accent);
+    }
+
+    .kind-teorema {
+        border-left-width: 10px;
+        border-left-style: double;
+    }
+
     .description {
-        margin-top: var(--spacing-md);
+        margin-top: 0;
         font-size: var(--font-size-md);
         color: var(--text-tertiary);
         line-height: 1.6;

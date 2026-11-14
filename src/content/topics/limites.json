@@ -8,9 +8,37 @@
             "title": "Concepto de límite",
             "items": [
                 {
-                    "title": "Definición de límite",
-                    "description": "El <strong>límite</strong> de una función $f(x)$ cuando $x$ se aproxima a un valor $c$, denotado como $\\lim_{x \\to c} f(x) = L$, significa que a medida que $x$ toma valores cada vez más cercanos a $c$ (por ambos lados), el valor de la función $f(x)$ se aproxima a $L$. No es necesario que la función esté definida en el propio punto $x=c$. <br><br>Para que un límite exista matemáticamente, <strong>ambos límites laterales deben existir y ser iguales entre sí</strong>: $\\lim_{x \\to c^-} f(x) = \\lim_{x \\to c^+} f(x) = L$.",
-                    "example": "Si observamos la función $f(x) = \\dfrac{x^2 - 4}{x - 2}$, no está definida en $x=2$. Sin embargo, notamos que al acercarnos a $x=2$, el valor de $f(x)$ se acerca a $4$. Por tanto, $\\lim_{x \\to 2} f(x) = 4$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/limites/limite-definicion.png' alt='Gráfica del concepto de límite mostrando cómo y se acerca a L cuando x se acerca a c' width='669' height='709' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Cuando $x \\to c$, $f(x) \\to L$</figcaption></figure>"
+                    "title": "Límite de una función en un punto",
+                    "description": "Sea $f$ una función y $c$ un número real. Se dice que el <strong>límite</strong> de $f(x)$ cuando $x$ tiende a $c$ es $L$, y se escribe $\\lim_{x \\to c} f(x) = L$, cuando $f(x)$ se acerca tanto como se quiera a $L$ al tomar $x$ suficientemente cerca de $c$ (con $x \\neq c$). No hace falta que $f$ esté definida en $c$: el límite depende de lo que ocurre <strong>cerca</strong> de $c$, no en $c$.<br>De forma rigurosa (definición de Cauchy): para todo $\\varepsilon > 0$ existe un $\\delta > 0$ tal que si $0 < \\lvert x - c \\rvert < \\delta$, entonces $\\lvert f(x) - L \\rvert < \\varepsilon$.",
+                    "example": "Si observamos la función $f(x) = \\dfrac{x^2 - 4}{x - 2}$, no está definida en $x=2$. Sin embargo, notamos que al acercarnos a $x=2$, el valor de $f(x)$ se acerca a $4$. Por tanto, $\\lim_{x \\to 2} f(x) = 4$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/limites/limite-definicion.png' alt='Gráfica del concepto de límite mostrando cómo y se acerca a L cuando x se acerca a c' width='669' height='709' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Cuando $x \\to c$, $f(x) \\to L$</figcaption></figure><br><img src='/ejemplos/limites/epsilon-delta.png' alt='Banda horizontal de anchura 2ε alrededor de L y banda vertical de anchura 2δ alrededor de c' width='862' height='640' loading='lazy' decoding='async' style='max-width:300px; height:auto;'>",
+                    "kind": "definicion",
+                    "formula": "$\\lim_{x \\to c} f(x) = L \\iff \\forall \\varepsilon > 0 \\ \\exists \\delta > 0 : \\ 0 < \\lvert x - c \\rvert < \\delta \\Rightarrow \\lvert f(x) - L \\rvert < \\varepsilon$"
+                },
+                {
+                    "title": "Límites laterales",
+                    "kind": "definicion",
+                    "description": "El <strong>límite por la izquierda</strong>, $\\lim_{x \\to c^-} f(x)$, es el valor al que se acerca $f(x)$ cuando $x$ tiende a $c$ con $x < c$; el <strong>límite por la derecha</strong>, $\\lim_{x \\to c^+} f(x)$, cuando $x > c$. El límite $\\lim_{x \\to c} f(x)$ existe si y solo si existen los dos límites laterales y son iguales.",
+                    "formula": "$\\lim_{x \\to c} f(x) = L \\iff \\lim_{x \\to c^-} f(x) = \\lim_{x \\to c^+} f(x) = L$",
+                    "example": "$f(x) = \\dfrac{\\lvert x \\rvert}{x}$ cerca de $0$: por la derecha $f(x) = 1$ y por la izquierda $f(x) = -1$. Los límites laterales son distintos, luego $\\lim_{x \\to 0} f(x)$ no existe."
+                },
+                {
+                    "title": "Límites infinitos y límites en el infinito",
+                    "kind": "definicion",
+                    "description": "Se escribe $\\lim_{x \\to c} f(x) = +\\infty$ (o $-\\infty$) cuando $f(x)$ se hace tan grande (o tan negativo) como se quiera al acercarse $x$ a $c$. Se escribe $\\lim_{x \\to +\\infty} f(x) = L$ cuando $f(x)$ se acerca a $L$ al hacerse $x$ tan grande como se quiera. El símbolo $\\infty$ no es un número: indica un comportamiento.",
+                    "formula": "$\\lim_{x \\to c} f(x) = +\\infty \\qquad \\lim_{x \\to +\\infty} f(x) = L \\qquad \\lim_{x \\to -\\infty} f(x) = L$",
+                    "example": "$\\lim_{x \\to 0^+} \\dfrac{1}{x} = +\\infty \\qquad \\lim_{x \\to 0^-} \\dfrac{1}{x} = -\\infty \\qquad \\lim_{x \\to +\\infty} \\dfrac{1}{x} = 0$"
+                }
+            ]
+        },
+        {
+            "title": "Cálculo de límites",
+            "items": [
+                {
+                    "title": "Álgebra de límites",
+                    "kind": "propiedad",
+                    "description": "Si $\\lim_{x \\to c} f(x) = L_1$ y $\\lim_{x \\to c} g(x) = L_2$ son números reales, el límite de una suma, una diferencia, un producto o un cociente (con $L_2 \\neq 0$) es la suma, diferencia, producto o cociente de los límites. Por tanto, para <strong>funciones continuas</strong> (polinomios, racionales en su dominio, exponenciales, etc.) basta <strong>sustituir</strong> $x$ por $c$.",
+                    "formula": "$\\lim (f \\pm g) = L_1 \\pm L_2 \\quad \\lim (f \\cdot g) = L_1 \\cdot L_2 \\quad \\lim \\dfrac{f}{g} = \\dfrac{L_1}{L_2} \\ (L_2 \\neq 0)$",
+                    "example": "$\\lim_{x \\to 2} (x^2 + 3x) = 4 + 6 = 10 \\qquad \\lim_{x \\to 3} \\dfrac{x+1}{x-1} = \\dfrac{4}{2} = 2$"
                 }
             ]
         },
@@ -18,24 +46,35 @@
             "title": "Indeterminaciones",
             "items": [
                 {
+                    "title": "Indeterminación",
+                    "kind": "definicion",
+                    "description": "Una <strong>indeterminación</strong> es una expresión del tipo $\\frac{0}{0}$, $\\frac{\\infty}{\\infty}$, $\\infty - \\infty$, $0 \\cdot \\infty$, $1^\\infty$, $\\infty^0$ o $0^0$ que aparece al sustituir en el límite y <strong>no determina por sí sola</strong> el valor del límite: según las funciones el límite puede valer cualquier número, $\\pm\\infty$ o no existir. Hay que transformar la expresión para <strong>resolverla</strong>.",
+                    "formula": "$\\dfrac{0}{0}, \\ \\dfrac{\\infty}{\\infty}, \\ \\infty - \\infty, \\ 0 \\cdot \\infty, \\ 1^\\infty, \\ \\infty^0, \\ 0^0$",
+                    "example": "Tanto $\\lim_{x \\to 0} \\dfrac{2x}{x}$ como $\\lim_{x \\to 0} \\dfrac{x^2}{x}$ son del tipo $\\frac{0}{0}$, pero valen $2$ y $0$ respectivamente. Por eso $\\frac{0}{0}$ no es un número."
+                },
+                {
                     "title": "Infinito entre infinito ($\\frac{\\infty}{\\infty}$)",
                     "description": "Aparece comúnmente en el cálculo de límites de funciones racionales (cociente de dos polinomios) cuando $x \\to \\pm\\infty$. Para resolverla, se comparan los <strong>grados</strong> de los polinomios del numerador y del denominador. Alternativamente, se puede aplicar la Regla de L'Hôpital.",
-                    "example": "<ul><li>Si el grado del numerador es mayor: el límite es $\\pm\\infty$. Ejemplo: $\\lim_{x\\to\\infty} \\frac{x^3}{x^2+1} = \\infty$.</li><li>Si el grado del denominador es mayor: el límite es $0$. Ejemplo: $\\lim_{x\\to\\infty} \\frac{3x}{x^2+1} = 0$.</li><li>Si los grados son iguales: se dividen los coeficientes principales. Ejemplo: $\\lim_{x\\to\\infty} \\frac{2x^2+1}{3x^2-x} = \\frac{2}{3}$.</li></ul>"
+                    "example": "<ul><li>Si el grado del numerador es mayor: el límite es $\\pm\\infty$. Ejemplo: $\\lim_{x\\to\\infty} \\frac{x^3}{x^2+1} = \\infty$.</li><li>Si el grado del denominador es mayor: el límite es $0$. Ejemplo: $\\lim_{x\\to\\infty} \\frac{3x}{x^2+1} = 0$.</li><li>Si los grados son iguales: se dividen los coeficientes principales. Ejemplo: $\\lim_{x\\to\\infty} \\frac{2x^2+1}{3x^2-x} = \\frac{2}{3}$.</li></ul>",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Cero entre cero ($\\frac{0}{0}$)",
                     "description": "Se presenta al calcular un límite puntual, $\\lim_{x \\to a}$, obteniendo que tanto el numerador como el denominador se anulan simultáneamente. Para evitarla, generalmente se debe <strong>factorizar</strong> el numerador y el denominador (usando Ruffini o resolviendo ecuaciones de segundo grado) y simplificar el factor $(x-a)$ que se repite. También se puede usar L'Hôpital.",
-                    "example": "Para resolver $\\lim_{x\\to 1} \\frac{x^2-1}{x-1}$:<br>Al sustituir $x=1$ queda $\\frac{0}{0}$. Factorizamos el numerador: $\\frac{(x-1)(x+1)}{x-1}$. Simplificamos el factor común $(x-1)$ y nos queda $\\lim_{x\\to 1} (x+1)$. Ahora sustituimos otra vez $x=1$ y obtenemos el resultado: $1+1 = 2$."
+                    "example": "Para resolver $\\lim_{x\\to 1} \\frac{x^2-1}{x-1}$:<br>Al sustituir $x=1$ queda $\\frac{0}{0}$. Factorizamos el numerador: $\\frac{(x-1)(x+1)}{x-1}$. Simplificamos el factor común $(x-1)$ y nos queda $\\lim_{x\\to 1} (x+1)$. Ahora sustituimos otra vez $x=1$ y obtenemos el resultado: $1+1 = 2$.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Infinito menos infinito ($\\infty - \\infty$)",
                     "description": "Ocurre en restas de polinomios, fracciones o raíces donde ambos términos tienden a infinito. <ul><li><strong>Con sumas de fracciones:</strong> Operar (hacer múltiplo común) para obtener un solo cociente y pasar a $\\frac{\\infty}{\\infty}$.</li><li><strong>Con raíces cuadradas:</strong> Multiplicar y dividir por el <strong>conjugado</strong> de la expresión.</li></ul>",
-                    "example": "Sea $\\lim_{x\\to\\infty} (\\sqrt{x^2+x} - x)$. Da $\\infty-\\infty$. Multiplicamos y dividimos por su conjugado $(\\sqrt{x^2+x} + x)$:<br>$\\lim_{x\\to\\infty} \\frac{(\\sqrt{x^2+x}-x)(\\sqrt{x^2+x}+x)}{\\sqrt{x^2+x}+x}$ = $\\lim_{x\\to\\infty} \\frac{x^2+x-x^2}{\\sqrt{x^2+x}+x}$ = $\\lim_{x\\to\\infty} \\frac{x}{\\sqrt{x^2+x}+x}$. Ahora la indeterminación es $\\frac{\\infty}{\\infty}$ y da $\\frac{1}{1+1} = \\frac{1}{2}$."
+                    "example": "Sea $\\lim_{x\\to\\infty} (\\sqrt{x^2+x} - x)$. Da $\\infty-\\infty$. Multiplicamos y dividimos por su conjugado $(\\sqrt{x^2+x} + x)$:<br>$\\lim_{x\\to\\infty} \\frac{(\\sqrt{x^2+x}-x)(\\sqrt{x^2+x}+x)}{\\sqrt{x^2+x}+x}$ = $\\lim_{x\\to\\infty} \\frac{x^2+x-x^2}{\\sqrt{x^2+x}+x}$ = $\\lim_{x\\to\\infty} \\frac{x}{\\sqrt{x^2+x}+x}$. Ahora la indeterminación es $\\frac{\\infty}{\\infty}$ y da $\\frac{1}{1+1} = \\frac{1}{2}$.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "Uno elevado a infinito ($1^\\infty$)",
                     "description": "Suele aparecer al relacionar el límite con el número $e$, definido como $\\lim_{x\\to\\infty} \\left(1 + \\frac{1}{x}\\right)^x = e$. Para resolverla en funciones $f(x)^{g(x)}$ se aplica una fórmula simplificada: $\\lim f(x)^{g(x)} = e^{\\lim g(x)\\cdot(f(x)-1)}$.",
-                    "example": "Cálculo de $\\lim_{x\\to\\infty} \\left(\\frac{x+1}{x}\\right)^x$. Al sustituir da $1^\\infty$. <br>Aplicando la fórmula: $e^{\\lim_{x\\to\\infty} x \\cdot (\\frac{x+1}{x} - 1)}$. Restamos el paréntesis: $\\frac{x+1}{x}-1 = \\frac{x+1-x}{x} = \\frac{1}{x}$. <br>El límite en el exponente es $\\lim_{x\\to\\infty} x \\cdot \\frac{1}{x} = 1$. Por tanto, el resultado final es $e^1 = e$."
+                    "example": "Cálculo de $\\lim_{x\\to\\infty} \\left(\\frac{x+1}{x}\\right)^x$. Al sustituir da $1^\\infty$. <br>Aplicando la fórmula: $e^{\\lim_{x\\to\\infty} x \\cdot (\\frac{x+1}{x} - 1)}$. Restamos el paréntesis: $\\frac{x+1}{x}-1 = \\frac{x+1-x}{x} = \\frac{1}{x}$. <br>El límite en el exponente es $\\lim_{x\\to\\infty} x \\cdot \\frac{1}{x} = 1$. Por tanto, el resultado final es $e^1 = e$.",
+                    "kind": "procedimiento"
                 }
             ]
         },
@@ -44,18 +83,24 @@
             "items": [
                 {
                     "title": "Asíntota vertical",
-                    "description": "Corresponde a la recta vertical de ecuación $x = a$ a la que la función se acerca indefinidamente tomando valores de $+\\infty$ o $-\\infty$. Se suelen encontrar calculando los límites en los puntos donde el denominador de la función se hace cero y no se pueden simplificar.",
-                    "example": "La función $f(x) = \\dfrac{1}{x-1}$ tiene una asíntota vertical en $x=1$ porque los límites laterales cuando $x \\to 1$ son infinitos. $\\lim_{x\\to 1^+}f(x) = +\\infty$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/limites/asintota-vertical.png' alt='Asíntota vertical' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Asíntota vertical en $x=1$</figcaption></figure>"
+                    "description": "La recta $x = a$ es una <strong>asíntota vertical</strong> de $f$ si al menos uno de los límites laterales en $a$ es infinito. La gráfica se acerca indefinidamente a esa recta. Se buscan en los puntos donde el denominador se anula y no se puede simplificar.",
+                    "example": "La función $f(x) = \\dfrac{1}{x-1}$ tiene una asíntota vertical en $x=1$ porque los límites laterales cuando $x \\to 1$ son infinitos. $\\lim_{x\\to 1^+}f(x) = +\\infty$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/limites/asintota-vertical.png' alt='Asíntota vertical' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Asíntota vertical en $x=1$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$x = a \\ \\text{asíntota vertical} \\iff \\lim_{x \\to a^-} f(x) = \\pm\\infty \\ \\ \\text{o} \\ \\ \\lim_{x \\to a^+} f(x) = \\pm\\infty$"
                 },
                 {
                     "title": "Asíntota horizontal",
-                    "description": "Son rectas horizontales de la forma $y = L$. Ocurren cuando al irse $x$ a $+\\infty$ o $-\\infty$, el límite de $f(x)$ da un número real finito: $\\lim_{x\\to\\pm\\infty} f(x) = L$.",
-                    "example": "Para $f(x) = \\dfrac{2x}{x+1}$, al calcular su límite cuando $x \\to \\infty$, se produce una indeterminación $\\frac{\\infty}{\\infty}$. Como los grados son iguales, dividimos sus coeficientes principales: $\\frac{2}{1} = 2$. Luego $y=2$ es una asíntota horizontal. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/limites/asintota-horizontal.png' alt='Asíntota horizontal' width='684' height='709' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Asíntota horizontal en $y=2$</figcaption></figure>"
+                    "description": "La recta $y = L$ es una <strong>asíntota horizontal</strong> de $f$ si el límite de $f(x)$ cuando $x$ tiende a $+\\infty$ o a $-\\infty$ es el número real $L$. Puede haber una distinta en cada extremo.",
+                    "example": "Para $f(x) = \\dfrac{2x}{x+1}$, al calcular su límite cuando $x \\to \\infty$, se produce una indeterminación $\\frac{\\infty}{\\infty}$. Como los grados son iguales, dividimos sus coeficientes principales: $\\frac{2}{1} = 2$. Luego $y=2$ es una asíntota horizontal. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/limites/asintota-horizontal.png' alt='Asíntota horizontal' width='684' height='709' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Asíntota horizontal en $y=2$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$y = L \\ \\text{asíntota horizontal} \\iff \\lim_{x \\to +\\infty} f(x) = L \\ \\ \\text{o} \\ \\ \\lim_{x \\to -\\infty} f(x) = L$"
                 },
                 {
                     "title": "Asíntota oblicua",
-                    "description": "Es una recta inclinada de la forma $y = mx + n$ (con $m \\neq 0$). Si una función racional no tiene asíntota horizontal, podrá tener asíntota oblicua siempre que el grado del numerador sea exactamente 1 unidad mayor que el del denominador. Los parámetros se deducen de: $m = \\lim_{x\\to\\infty} \\frac{f(x)}{x}$ y $n = \\lim_{x\\to\\infty} (f(x) - mx)$.",
-                    "example": "Para $f(x) = \\frac{x^2+1}{x}$:<br>Calculamos $m = \\lim_{x\\to\\infty} \\frac{x^2+1}{x^2} = 1$.<br>Calculamos $n = \\lim_{x\\to\\infty} \\left(\\frac{x^2+1}{x} - x\\right) = \\lim_{x\\to\\infty} \\frac{1}{x} = 0$.<br>Por tanto, la asíntota oblicua es $y = 1x + 0 \\Rightarrow y = x$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/limites/asintota-oblicua.png' alt='Asíntota oblicua' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Asíntota oblicua $y=x$</figcaption></figure>"
+                    "description": "La recta $y = mx + n$ con $m \\neq 0$ es una <strong>asíntota oblicua</strong> de $f$ si la distancia vertical entre la gráfica y la recta tiende a $0$ en el infinito. No existe si ya hay asíntota horizontal en ese extremo. En una función racional existe cuando el grado del numerador es exactamente una unidad mayor que el del denominador. Sus parámetros se obtienen con los límites siguientes.",
+                    "example": "Para $f(x) = \\frac{x^2+1}{x}$:<br>Calculamos $m = \\lim_{x\\to\\infty} \\frac{x^2+1}{x^2} = 1$.<br>Calculamos $n = \\lim_{x\\to\\infty} \\left(\\frac{x^2+1}{x} - x\\right) = \\lim_{x\\to\\infty} \\frac{1}{x} = 0$.<br>Por tanto, la asíntota oblicua es $y = 1x + 0 \\Rightarrow y = x$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/limites/asintota-oblicua.png' alt='Asíntota oblicua' width='669' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Asíntota oblicua $y=x$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$m = \\lim_{x \\to \\infty} \\dfrac{f(x)}{x} \\qquad n = \\lim_{x \\to \\infty} \\big(f(x) - mx\\big)$"
                 }
             ]
         },
@@ -65,22 +110,30 @@
                 {
                     "title": "Función continua",
                     "description": "Una función es <strong>continua en un punto</strong> $x = a$ si se cumplen tres condiciones simultáneamente: <br>① $f(a)$ está definida.<br>② Existe $\\lim_{x \\to a} f(x)$.<br>③ $\\lim_{x \\to a} f(x) = f(a)$.<br><br>Una función es continua si lo es en todos los puntos de su dominio.",
-                    "example": "La función $f(x) = x^2$ es continua en todo $\\mathbb{R}$. Los polinomios, las funciones trigonométricas y la exponencial son siempre continuas en su dominio."
+                    "example": "La función $f(x) = x^2$ es continua en todo $\\mathbb{R}$. Los polinomios, las funciones trigonométricas y la exponencial son siempre continuas en su dominio.",
+                    "kind": "definicion",
+                    "formula": "$f \\ \\text{continua en } a \\iff \\lim_{x \\to a} f(x) = f(a)$"
                 },
                 {
                     "title": "Discontinuidad evitable",
                     "description": "Se produce cuando existe el límite en el punto pero <strong>la función no está definida</strong> allí (o toma un valor distinto al límite). Se llama evitable porque se puede redefinir la función en ese punto para hacerla continua.",
-                    "example": "La función $f(x) = \\dfrac{x^2 - 1}{x - 1}$ es discontinua en $x = 1$, pero $\\lim_{x \\to 1} f(x) = 2$. Redefiniendo $f(1) = 2$ la función se vuelve continua. Observa el círculo hueco en $x=1$: indica que ese punto no está definido. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-evitable.png' alt='Gráfica de discontinuidad evitable' width='680' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad evitable en $x=1$</figcaption></figure>"
+                    "example": "La función $f(x) = \\dfrac{x^2 - 1}{x - 1}$ es discontinua en $x = 1$, pero $\\lim_{x \\to 1} f(x) = 2$. Redefiniendo $f(1) = 2$ la función se vuelve continua. Observa el círculo hueco en $x=1$: indica que ese punto no está definido. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-evitable.png' alt='Gráfica de discontinuidad evitable' width='680' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad evitable en $x=1$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$\\lim_{x \\to a} f(x) = L \\in \\mathbb{R} \\quad \\text{pero} \\quad f(a) \\ \\text{no existe o} \\ f(a) \\neq L$"
                 },
                 {
                     "title": "Discontinuidad de salto finito",
                     "description": "Los límites laterales <strong>existen ambos</strong> y son <strong>finitos</strong>, pero son diferentes entre sí. El <em>salto</em> es la diferencia entre el límite por la derecha y por la izquierda: $\\lim_{x \\to a^+} f(x) - \\lim_{x \\to a^-} f(x)$.",
-                    "example": "La función $f(x) = \\begin{cases} x & \\text{si } x < 0 \\\\ x + 1 & \\text{si } x \\geq 0 \\end{cases}$ tiene una discontinuidad de salto finito en $x = 0$. El salto vale $1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-salto.png' alt='Gráfica de discontinuidad de salto' width='661' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad de salto finito en $x=0$</figcaption></figure>"
+                    "example": "La función $f(x) = \\begin{cases} x & \\text{si } x < 0 \\\\ x + 1 & \\text{si } x \\geq 0 \\end{cases}$ tiene una discontinuidad de salto finito en $x = 0$. El salto vale $1$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-salto.png' alt='Gráfica de discontinuidad de salto' width='661' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad de salto finito en $x=0$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$\\lim_{x \\to a^-} f(x) = L_1 \\in \\mathbb{R}, \\quad \\lim_{x \\to a^+} f(x) = L_2 \\in \\mathbb{R}, \\quad L_1 \\neq L_2$"
                 },
                 {
                     "title": "Discontinuidad de salto infinito",
                     "description": "Alguno de los límites laterales (por la izquierda o por la derecha) es <strong>infinito</strong>. La función presenta una <em>asíntota vertical</em> en el punto de discontinuidad.",
-                    "example": "La función $f(x) = \\dfrac{1}{x}$ tiene una discontinuidad de salto infinito en $x = 0$, ya que $\\lim_{x \\to 0^+} f(x) = +\\infty$ y $\\lim_{x \\to 0^-} f(x) = -\\infty$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-salto-infinito.png' alt='Gráfica de salto infinito' width='673' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad de salto infinito de $f(x)=\\frac{1}{x}$ en $x=0$</figcaption></figure>"
+                    "example": "La función $f(x) = \\dfrac{1}{x}$ tiene una discontinuidad de salto infinito en $x = 0$, ya que $\\lim_{x \\to 0^+} f(x) = +\\infty$ y $\\lim_{x \\to 0^-} f(x) = -\\infty$. <br><br><figure style='margin:0;text-align:center'><img src='/ejemplos/funciones/discontinuidad-salto-infinito.png' alt='Gráfica de salto infinito' width='673' height='705' loading='lazy' decoding='async' style='max-width:300px; height:auto;'><figcaption style='font-size:0.85em;color:var(--text-muted);margin-top:4px'>Discontinuidad de salto infinito de $f(x)=\\frac{1}{x}$ en $x=0$</figcaption></figure>",
+                    "kind": "definicion",
+                    "formula": "$\\lim_{x \\to a^-} f(x) = \\pm\\infty \\quad \\text{o} \\quad \\lim_{x \\to a^+} f(x) = \\pm\\infty$"
                 }
             ]
         }

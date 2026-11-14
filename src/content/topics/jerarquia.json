@@ -8,28 +8,39 @@
             "title": "Jerarquía de operaciones",
             "items": [
                 {
+                    "title": "Operación combinada",
+                    "kind": "definicion",
+                    "description": "Una <strong>operación combinada</strong> es una expresión numérica en la que aparecen varias operaciones (suma, resta, multiplicación, división, potencias, raíces) y, a veces, signos de agrupación. Para que tenga <strong>un único valor</strong>, todo el mundo debe resolverla en el mismo orden: es la <strong>jerarquía de operaciones</strong>, una convención que se enuncia en los cuatro niveles siguientes (de mayor a menor prioridad).",
+                    "formula": "$\\text{paréntesis} \\;>\\; \\text{potencias y raíces} \\;>\\; \\cdot \\ \\text{y} \\ : \\;>\\; + \\ \\text{y} \\ -$",
+                    "example": "$2 + 3 \\cdot 4$ podría leerse como $(2+3)\\cdot 4 = 20$ o como $2 + (3 \\cdot 4) = 14$. La jerarquía decide: primero la multiplicación, luego la suma, así que el valor es $14$."
+                },
+                {
                     "title": "1. Paréntesis y agrupación",
                     "formula": "$() \\rightarrow [] \\rightarrow \\{\\}$",
-                    "example": "$5 \\cdot (2 + 3) = 5 \\cdot 5 = 25$",
-                    "description": "Se resuelven primero las operaciones dentro de los paréntesis, desde los más internos hacia los externos."
+                    "example": "$5 \\cdot (2 + 3) = 5 \\cdot 5 = 25$<br>$[\\,3 + (8 - 2)\\,] \\cdot 2 = [\\,3 + 6\\,] \\cdot 2 = 9 \\cdot 2 = 18$",
+                    "description": "Se resuelven primero las operaciones contenidas en los signos de agrupación (paréntesis $( )$, corchetes $[ ]$ y llaves $\\{ \\}$), de los más internos a los más externos. Si una fracción tiene operaciones en el numerador o en el denominador, cada uno se calcula como si estuviera entre paréntesis.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "2. Exponentes y raíces",
                     "formula": "$a^n \\quad \\text{y} \\quad \\sqrt[n]{a}$",
-                    "example": "$2 + 3^2 = 2 + 9 = 11$",
-                    "description": "Una vez eliminados los paréntesis, se calculan las potencias y las raíces."
+                    "example": "$2 + 3^2 = 2 + 9 = 11$<br>$\\sqrt{16} + 2^3 = 4 + 8 = 12$",
+                    "description": "Una vez resueltos los signos de agrupación, se calculan las potencias y las raíces. La potencia $a^n$ (con $n$ natural) es el producto de $n$ factores iguales a $a$; la raíz $\\sqrt[n]{a}$ es la operación inversa.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "3. Multiplicación y división",
                     "formula": "$a \\cdot b \\quad \\text{y} \\quad a : b$",
-                    "example": "$12 : 2 \\cdot 3 = 6 \\cdot 3 = 18$",
-                    "description": "Tienen la misma prioridad. Se resuelven estrictamente de <strong>izquierda a derecha</strong>. Cuidado: $12 : 2 \\cdot 3$ no es $12 : 6$."
+                    "example": "$12 : 2 \\cdot 3 = 6 \\cdot 3 = 18$<br>$4 \\cdot 6 : 3 = 24 : 3 = 8$",
+                    "description": "Tienen <strong>la misma prioridad</strong>: se resuelven en el orden en que aparecen, de <strong>izquierda a derecha</strong>. Por ejemplo, $12 : 2 \\cdot 3$ vale $6 \\cdot 3 = 18$ y no $12 : 6 = 2$.",
+                    "kind": "procedimiento"
                 },
                 {
                     "title": "4. Suma y resta",
                     "formula": "$a + b \\quad \\text{y} \\quad a - b$",
-                    "example": "$10 - 4 + 2 = 6 + 2 = 8$",
-                    "description": "Es el último paso. Al igual que el nivel anterior, se resuelven de <strong>izquierda a derecha</strong>. Error frecuente: en $2 + 3 \\cdot 4$ primero se multiplica, así que el resultado es $2 + 12 = 14$, no $5 \\cdot 4 = 20$."
+                    "example": "$10 - 4 + 2 = 6 + 2 = 8$<br>$2 + 3 \\cdot 4 = 2 + 12 = 14$",
+                    "description": "Es el último nivel. Tienen la misma prioridad y se resuelven de <strong>izquierda a derecha</strong>. Error frecuente: en $2 + 3 \\cdot 4$ primero se multiplica, de modo que el resultado es $2 + 12 = 14$ y no $5 \\cdot 4 = 20$.",
+                    "kind": "procedimiento"
                 }
             ]
         },
@@ -37,28 +48,39 @@
             "title": "Regla de los signos",
             "items": [
                 {
+                    "title": "Números enteros, opuesto y valor absoluto",
+                    "kind": "definicion",
+                    "description": "Los <strong>números enteros</strong> son los naturales, sus opuestos (negativos) y el cero. El <strong>opuesto</strong> de $a$ es el número $-a$ que cumple $a + (-a) = 0$. El <strong>valor absoluto</strong> de $a$, que se escribe $\\lvert a \\rvert$, es la distancia de $a$ al $0$ en la recta numérica, por lo que nunca es negativo.",
+                    "formula": "$\\mathbb{Z} = \\{\\dots, -2, -1, 0, 1, 2, \\dots\\} \\qquad \\lvert a \\rvert = \\begin{cases} a & \\text{si } a \\geq 0 \\\\ -a & \\text{si } a < 0 \\end{cases}$",
+                    "example": "El opuesto de $5$ es $-5$ y el opuesto de $-3$ es $3$.<br>$\\lvert 4 \\rvert = 4$ y $\\lvert -7 \\rvert = 7$."
+                },
+                {
                     "title": "Multiplicación y división",
                     "formula": "$(+) \\cdot (+) = + \\qquad (-) \\cdot (-) = + \\qquad (+) \\cdot (-) = - \\qquad (-) \\cdot (+) = -$",
                     "example": "$(-4) \\cdot (-3) = 12 \\qquad (-10) : 2 = -5 \\qquad 6 : (-3) = -2$",
-                    "description": "Signos <strong>iguales</strong> dan resultado positivo (+). Signos <strong>distintos</strong> dan resultado negativo (−). La división sigue la misma regla que la multiplicación."
+                    "description": "Signos <strong>iguales</strong> dan resultado positivo $(+)$; signos <strong>distintos</strong> dan resultado negativo $(-)$. La división sigue la misma regla que la multiplicación (siempre que el divisor no sea $0$).",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Suma y resta de números enteros",
-                    "formula": "$\\text{mismo signo: se suman} \\qquad \\text{distinto signo: se restan}$",
+                    "formula": "$(-a) + (-b) = -(a+b) \\qquad a + (-b) = \\pm(\\lvert a \\rvert - \\lvert b \\rvert) \\ \\text{(signo del de mayor valor absoluto)}$",
                     "example": "$-5 - 3 = -8 \\qquad -5 + 3 = -2 \\qquad 5 - 8 = -3$",
-                    "description": "Si los dos números tienen el <strong>mismo signo</strong>, se suman sus valores absolutos y se deja ese signo. Si tienen <strong>distinto signo</strong>, se restan sus valores absolutos y se pone el signo del que tiene mayor valor absoluto."
+                    "description": "Si los dos números tienen el <strong>mismo signo</strong>, se suman sus valores absolutos y se deja ese signo. Si tienen <strong>distinto signo</strong>, se restan sus valores absolutos (el mayor menos el menor) y se pone el signo del que tiene mayor valor absoluto.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Doble signo negativo",
                     "formula": "$a - (-b) = a + b$",
                     "example": "$7 - (-2) = 7 + 2 = 9$",
-                    "description": "Restar un número negativo es equivalente a <strong>sumar</strong> su valor absoluto."
+                    "description": "Restar un número equivale a <strong>sumar su opuesto</strong>: $a - b = a + (-b)$. Como el opuesto de $-b$ es $b$, restar un número negativo equivale a <strong>sumar</strong> su valor absoluto.",
+                    "kind": "propiedad"
                 },
                 {
                     "title": "Potencias de números negativos",
-                    "formula": "$(-a)^n \\neq -a^n$",
+                    "formula": "$(-a)^n \\neq -a^n \\qquad (-a)^{\\text{par}} > 0 \\qquad (-a)^{\\text{impar}} < 0 \\quad (a>0)$",
                     "example": "$(-3)^2 = (-3) \\cdot (-3) = 9 \\qquad -3^2 = -(3 \\cdot 3) = -9$",
-                    "description": "Si el signo menos está <strong>dentro</strong> del paréntesis, también se eleva. Si está <strong>fuera</strong>, la potencia solo afecta al número. Con exponente par, $(-a)^n$ es positivo; con exponente impar, negativo."
+                    "description": "Si el signo menos está <strong>dentro</strong> del paréntesis, la base es $-a$ y también se eleva; si está <strong>fuera</strong>, la potencia solo afecta a $a$ y el signo se aplica después. Con exponente <strong>par</strong>, $(-a)^n$ es positivo; con exponente <strong>impar</strong>, negativo (cada pareja de factores negativos da $+$).",
+                    "kind": "propiedad"
                 }
             ]
         },
@@ -69,7 +91,8 @@
                     "title": "Resolución paso a paso",
                     "formula": "$7 - [2^3 + (-6 : 2)] \\cdot (-2)$",
                     "example": "$7 - [2^3 + (-6 : 2)] \\cdot (-2)$<br>$= 7 - [8 + (-3)] \\cdot (-2)$<br>$= 7 - 5 \\cdot (-2)$<br>$= 7 - (-10) = 7 + 10 = 17$",
-                    "description": "Orden seguido: 1º, dentro del corchete, la potencia $2^3 = 8$ y la división $-6 : 2 = -3$; 2º, la suma dentro del corchete; 3º, la multiplicación, aplicando la regla de los signos; 4º, la resta final."
+                    "description": "Se aplica la jerarquía de operaciones: 1º, dentro del corchete, la potencia $2^3 = 8$ y la división $-6 : 2 = -3$; 2º, la suma dentro del corchete; 3º, la multiplicación, aplicando la regla de los signos; 4º, la resta final (restar un negativo es sumar).",
+                    "kind": "procedimiento"
                 }
             ]
         }
