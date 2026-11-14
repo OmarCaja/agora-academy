@@ -8,7 +8,8 @@
     ],
     "title": "Potencias, raíces y logaritmos",
     "out": "public/libros/potencias-raices-logaritmos.pdf",
-    "pages": 28
+    "pages": 29,
+    "at": {"potencias":3,"potencias-0":3,"potencias-0-0":3,"potencias-0-1":3,"potencias-1":4,"potencias-1-0":4,"potencias-1-1":4,"potencias-1-2":5,"potencias-2":5,"potencias-2-0":5,"potencias-2-1":6,"potencias-2-2":6,"potencias-2-3":6,"potencias-2-4":7,"potencias-2-5":7,"potencias-3":8,"potencias-3-0":8,"potencias-3-1":8,"potencias-3-2":9,"potencias-3-3":9,"raices":10,"raices-0":10,"raices-0-0":10,"raices-1":11,"raices-1-0":11,"raices-1-1":11,"raices-1-2":12,"raices-1-3":12,"raices-1-4":12,"raices-2":13,"raices-2-0":13,"raices-2-1":13,"raices-2-2":14,"raices-2-3":14,"raices-2-4":15,"raices-3":15,"raices-3-0":15,"raices-3-1":16,"raices-3-2":16,"raices-3-3":17,"raices-4":17,"raices-4-0":17,"logaritmos":18,"logaritmos-0":18,"logaritmos-0-0":18,"logaritmos-0-1":19,"logaritmos-0-2":19,"logaritmos-0-3":19,"logaritmos-1":20,"logaritmos-1-0":20,"logaritmos-1-1":20,"logaritmos-1-2":21,"logaritmos-1-3":21,"logaritmos-2":22,"logaritmos-2-0":22,"logaritmos-2-1":22,"ecuaciones-exponenciales-logaritmicas":23,"ecuaciones-exponenciales-logaritmicas-0":23,"ecuaciones-exponenciales-logaritmicas-0-0":23,"ecuaciones-exponenciales-logaritmicas-0-1":24,"ecuaciones-exponenciales-logaritmicas-0-2":24,"ecuaciones-exponenciales-logaritmicas-0-3":25,"ecuaciones-exponenciales-logaritmicas-0-4":25,"ecuaciones-exponenciales-logaritmicas-1":26,"ecuaciones-exponenciales-logaritmicas-1-0":26,"ecuaciones-exponenciales-logaritmicas-1-1":26,"ecuaciones-exponenciales-logaritmicas-1-2":27,"ecuaciones-exponenciales-logaritmicas-1-3":27,"ecuaciones-exponenciales-logaritmicas-1-4":28}
   },
   {
     "topics": [
@@ -18,7 +19,8 @@
     ],
     "title": "Aritmética",
     "out": "public/libros/aritmetica.pdf",
-    "pages": 21
+    "pages": 22,
+    "at": {"jerarquia":3,"jerarquia-0":3,"jerarquia-0-0":3,"jerarquia-0-1":4,"jerarquia-0-2":4,"jerarquia-0-3":5,"jerarquia-0-4":5,"jerarquia-1":6,"jerarquia-1-0":6,"jerarquia-1-1":6,"jerarquia-1-2":7,"jerarquia-1-3":7,"jerarquia-1-4":8,"jerarquia-2":8,"jerarquia-2-0":8,"propiedades-operaciones":9,"propiedades-operaciones-0":9,"propiedades-operaciones-0-0":9,"propiedades-operaciones-0-1":10,"propiedades-operaciones-0-2":10,"propiedades-operaciones-0-3":11,"propiedades-operaciones-0-4":11,"propiedades-operaciones-1":12,"propiedades-operaciones-1-0":12,"propiedades-operaciones-1-1":12,"propiedades-operaciones-1-2":13,"divisibilidad":14,"divisibilidad-0":14,"divisibilidad-0-0":14,"divisibilidad-0-1":15,"divisibilidad-1":15,"divisibilidad-1-0":15,"divisibilidad-1-1":16,"divisibilidad-1-2":16,"divisibilidad-2":16,"divisibilidad-2-0":16,"divisibilidad-2-1":17,"divisibilidad-2-2":17,"divisibilidad-3":18,"divisibilidad-3-0":18,"divisibilidad-3-1":18,"divisibilidad-4":19,"divisibilidad-4-0":19,"divisibilidad-4-1":19,"divisibilidad-4-2":20,"divisibilidad-5":20,"divisibilidad-5-0":20,"divisibilidad-5-1":21,"divisibilidad-5-2":21}
   },
   {
     "topics": [
@@ -27,7 +29,8 @@
     ],
     "title": "Introducción al álgebra",
     "out": "public/libros/introduccion-algebra.pdf",
-    "pages": 23
+    "pages": 25,
+    "at": {"algebra":3,"algebra-0":3,"algebra-0-0":3,"algebra-0-1":3,"algebra-0-2":4,"algebra-0-3":4,"algebra-1":5,"algebra-1-0":5,"algebra-1-1":5,"algebra-1-2":6,"algebra-2":6,"algebra-2-0":6,"algebra-2-1":7,"algebra-2-2":7,"algebra-2-3":7,"algebra-2-4":8,"algebra-2-5":8,"algebra-3":9,"algebra-3-0":9,"algebra-3-1":9,"algebra-3-2":10,"algebra-4":10,"algebra-4-0":10,"algebra-4-1":11,"algebra-4-2":11,"algebra-5":12,"algebra-5-0":12,"algebra-5-1":13,"algebra-5-2":13,"algebra-6":14,"algebra-6-0":14,"algebra-6-1":14,"algebra-6-2":15,"algebra-7":15,"algebra-7-0":15,"algebra-7-1":16,"algebra-7-2":16,"algebra-7-3":17,"algebra-7-4":17,"identidades-notables":18,"identidades-notables-0":18,"identidades-notables-0-0":18,"identidades-notables-1":19,"identidades-notables-1-0":19,"identidades-notables-1-1":20,"identidades-notables-1-2":20,"identidades-notables-2":21,"identidades-notables-2-0":21,"identidades-notables-3":21,"identidades-notables-3-0":21,"identidades-notables-3-1":22,"identidades-notables-4":22,"identidades-notables-4-0":22,"identidades-notables-4-1":23,"identidades-notables-4-2":23}
   },
   {
     "topics": [
@@ -38,7 +41,8 @@
     ],
     "title": "Estadística y probabilidad",
     "out": "public/libros/estadistica-probabilidad.pdf",
-    "pages": 47
+    "pages": 50,
+    "at": {"estadistica-unidimensional":3,"estadistica-unidimensional-0":3,"estadistica-unidimensional-0-0":3,"estadistica-unidimensional-0-1":4,"estadistica-unidimensional-1":5,"estadistica-unidimensional-1-0":5,"estadistica-unidimensional-1-1":6,"estadistica-unidimensional-1-2":6,"estadistica-unidimensional-2":7,"estadistica-unidimensional-2-0":7,"estadistica-unidimensional-2-1":7,"estadistica-unidimensional-2-2":8,"estadistica-unidimensional-3":8,"estadistica-unidimensional-3-0":8,"estadistica-unidimensional-3-1":9,"estadistica-unidimensional-3-2":9,"estadistica-unidimensional-3-3":10,"estadistica-unidimensional-4":10,"estadistica-unidimensional-4-0":10,"estadistica-unidimensional-4-1":11,"estadistica-unidimensional-4-2":11,"estadistica-bidimensional":12,"estadistica-bidimensional-0":12,"estadistica-bidimensional-0-0":12,"estadistica-bidimensional-0-1":13,"estadistica-bidimensional-1":13,"estadistica-bidimensional-1-0":13,"estadistica-bidimensional-1-1":14,"estadistica-bidimensional-2":14,"estadistica-bidimensional-2-0":14,"estadistica-bidimensional-3":15,"estadistica-bidimensional-3-0":15,"estadistica-bidimensional-3-1":16,"estadistica-bidimensional-4":16,"estadistica-bidimensional-4-0":16,"estadistica-bidimensional-4-1":17,"estadistica-bidimensional-4-2":17,"estadistica-bidimensional-5":18,"estadistica-bidimensional-5-0":18,"estadistica-bidimensional-5-1":18,"estadistica-bidimensional-5-2":19,"probabilidad":20,"probabilidad-0":20,"probabilidad-0-0":20,"probabilidad-0-1":21,"probabilidad-0-2":21,"probabilidad-1":22,"probabilidad-1-0":22,"probabilidad-1-1":22,"probabilidad-1-2":23,"probabilidad-1-3":23,"probabilidad-1-4":24,"probabilidad-1-5":24,"probabilidad-2":24,"probabilidad-2-0":24,"probabilidad-2-1":25,"probabilidad-2-2":25,"probabilidad-3":25,"probabilidad-3-0":25,"probabilidad-3-1":25,"probabilidad-3-2":26,"probabilidad-3-3":26,"probabilidad-3-4":26,"probabilidad-3-5":27,"probabilidad-4":27,"probabilidad-4-0":27,"probabilidad-4-1":27,"probabilidad-4-2":28,"probabilidad-4-3":28,"probabilidad-4-4":28,"probabilidad-4-5":29,"probabilidad-4-6":29,"probabilidad-5":30,"probabilidad-5-0":30,"probabilidad-5-1":30,"probabilidad-5-2":31,"probabilidad-5-3":31,"probabilidad-5-4":32,"probabilidad-5-5":32,"probabilidad-5-6":33,"probabilidad-6":33,"probabilidad-6-0":33,"probabilidad-6-1":34,"probabilidad-6-2":34,"probabilidad-6-3":35,"probabilidad-7":35,"probabilidad-7-0":35,"probabilidad-7-1":36,"probabilidad-7-2":36,"probabilidad-7-3":37,"probabilidad-7-4":37,"distribuciones-probabilidad":38,"distribuciones-probabilidad-0":38,"distribuciones-probabilidad-0-0":38,"distribuciones-probabilidad-0-1":39,"distribuciones-probabilidad-0-2":39,"distribuciones-probabilidad-0-3":40,"distribuciones-probabilidad-0-4":40,"distribuciones-probabilidad-1":41,"distribuciones-probabilidad-1-0":41,"distribuciones-probabilidad-1-1":41,"distribuciones-probabilidad-1-2":42,"distribuciones-probabilidad-2":42,"distribuciones-probabilidad-2-0":42,"distribuciones-probabilidad-2-1":43,"distribuciones-probabilidad-2-2":44,"distribuciones-probabilidad-2-3":44,"distribuciones-probabilidad-2-4":45,"distribuciones-probabilidad-3":46,"distribuciones-probabilidad-3-0":46,"distribuciones-probabilidad-3-1":47}
   },
   {
     "topics": [
@@ -49,7 +53,8 @@
     ],
     "title": "Funciones, límites y derivadas",
     "out": "public/libros/funciones-limites-derivadas.pdf",
-    "pages": 54
+    "pages": 56,
+    "at": {"funciones":3,"funciones-0":3,"funciones-0-0":3,"funciones-0-1":4,"funciones-0-2":4,"funciones-1":5,"funciones-1-0":5,"funciones-1-1":6,"funciones-1-2":7,"funciones-1-3":8,"funciones-2":8,"funciones-2-0":8,"funciones-2-1":9,"funciones-2-2":9,"funciones-2-3":10,"funciones-3":11,"funciones-3-0":11,"funciones-4":12,"funciones-4-0":12,"funciones-4-1":13,"funciones-5":14,"funciones-5-0":14,"funciones-5-1":15,"funciones-5-2":16,"funciones-6":17,"funciones-6-0":17,"funciones-7":18,"funciones-7-0":18,"funciones-8":18,"funciones-8-0":18,"funciones-8-1":19,"funciones-8-2":19,"funciones-elementales":20,"funciones-elementales-0":21,"funciones-elementales-0-0":21,"funciones-elementales-0-1":22,"funciones-elementales-0-2":23,"funciones-elementales-1":24,"funciones-elementales-1-0":24,"funciones-elementales-2":25,"funciones-elementales-2-0":25,"funciones-elementales-2-1":26,"funciones-elementales-3":27,"funciones-elementales-3-0":27,"funciones-elementales-4":28,"funciones-elementales-4-0":28,"funciones-elementales-4-1":29,"limites":30,"limites-0":31,"limites-0-0":32,"limites-0-1":34,"limites-0-2":34,"limites-1":35,"limites-1-0":35,"limites-2":35,"limites-2-0":35,"limites-2-1":36,"limites-2-2":36,"limites-2-3":37,"limites-2-4":37,"limites-3":38,"limites-3-0":38,"limites-3-1":39,"limites-3-2":40,"limites-4":41,"limites-4-0":41,"limites-4-1":42,"limites-4-2":43,"limites-4-3":44,"derivadas":45,"derivadas-0":46,"derivadas-0-0":46,"derivadas-0-1":47,"derivadas-1":47,"derivadas-1-0":47,"derivadas-1-1":48,"derivadas-1-2":48,"derivadas-1-3":48,"derivadas-1-4":49,"derivadas-2":50,"derivadas-2-0":50,"derivadas-3":51,"derivadas-3-0":51,"derivadas-4":51,"derivadas-4-0":51,"derivadas-4-1":52,"derivadas-4-2":52,"derivadas-5":53,"derivadas-5-0":53,"derivadas-5-1":53,"derivadas-6":54,"derivadas-6-0":54,"derivadas-6-1":54}
   },
   {
     "topics": [
@@ -57,7 +62,8 @@
     ],
     "title": "Operaciones con fracciones",
     "out": "public/libros/fracciones.pdf",
-    "pages": 14
+    "pages": 15,
+    "at": {"fracciones":3,"fracciones-0":3,"fracciones-0-0":3,"fracciones-0-1":4,"fracciones-1":4,"fracciones-1-0":4,"fracciones-1-1":5,"fracciones-1-2":5,"fracciones-1-3":6,"fracciones-1-4":6,"fracciones-1-5":7,"fracciones-1-6":7,"fracciones-2":8,"fracciones-2-0":8,"fracciones-2-1":8,"fracciones-2-2":8,"fracciones-2-3":9,"fracciones-3":9,"fracciones-3-0":9,"fracciones-3-1":10,"fracciones-3-2":10,"fracciones-4":11,"fracciones-4-0":11,"fracciones-5":11,"fracciones-5-0":11,"fracciones-6":12,"fracciones-6-0":12,"fracciones-6-1":12,"fracciones-6-2":13,"fracciones-6-3":13,"fracciones-6-4":14}
   },
   {
     "topics": [
@@ -65,7 +71,8 @@
     ],
     "title": "Razones, proporcionalidad y porcentajes",
     "out": "public/libros/proporcionalidad-porcentajes.pdf",
-    "pages": 11
+    "pages": 12,
+    "at": {"proporcionalidad-porcentajes":3,"proporcionalidad-porcentajes-0":3,"proporcionalidad-porcentajes-0-0":3,"proporcionalidad-porcentajes-0-1":4,"proporcionalidad-porcentajes-0-2":4,"proporcionalidad-porcentajes-0-3":4,"proporcionalidad-porcentajes-1":5,"proporcionalidad-porcentajes-1-0":5,"proporcionalidad-porcentajes-1-1":5,"proporcionalidad-porcentajes-2":6,"proporcionalidad-porcentajes-2-0":6,"proporcionalidad-porcentajes-2-1":6,"proporcionalidad-porcentajes-3":7,"proporcionalidad-porcentajes-3-0":7,"proporcionalidad-porcentajes-3-1":7,"proporcionalidad-porcentajes-4":8,"proporcionalidad-porcentajes-4-0":8,"proporcionalidad-porcentajes-4-1":8,"proporcionalidad-porcentajes-4-2":9,"proporcionalidad-porcentajes-4-3":9,"proporcionalidad-porcentajes-4-4":10,"proporcionalidad-porcentajes-4-5":10,"proporcionalidad-porcentajes-4-6":11}
   },
   {
     "topics": [
@@ -73,7 +80,8 @@
     ],
     "title": "Trigonometría",
     "out": "public/libros/trigonometria.pdf",
-    "pages": 21
+    "pages": 23,
+    "at": {"trigonometria":3,"trigonometria-0":3,"trigonometria-0-0":3,"trigonometria-0-1":4,"trigonometria-0-2":4,"trigonometria-0-3":5,"trigonometria-0-4":5,"trigonometria-1":6,"trigonometria-1-0":6,"trigonometria-1-1":7,"trigonometria-2":7,"trigonometria-2-0":7,"trigonometria-2-1":8,"trigonometria-2-2":8,"trigonometria-2-3":9,"trigonometria-3":9,"trigonometria-3-0":9,"trigonometria-3-1":10,"trigonometria-3-2":10,"trigonometria-4":11,"trigonometria-4-0":11,"trigonometria-4-1":12,"trigonometria-4-2":12,"trigonometria-5":13,"trigonometria-5-0":13,"trigonometria-5-1":13,"trigonometria-5-2":14,"trigonometria-5-3":14,"trigonometria-6":15,"trigonometria-6-0":15,"trigonometria-6-1":16,"trigonometria-6-2":17,"trigonometria-6-3":18,"trigonometria-7":18,"trigonometria-7-0":18,"trigonometria-7-1":19,"trigonometria-7-2":19,"trigonometria-8":20,"trigonometria-8-0":20,"trigonometria-8-1":21,"trigonometria-8-2":21}
   },
   {
     "topics": [
@@ -81,7 +89,8 @@
     ],
     "title": "Unidades y notación científica",
     "out": "public/libros/unidades-notacion-cientifica.pdf",
-    "pages": 14
+    "pages": 15,
+    "at": {"unidades-notacion-cientifica":3,"unidades-notacion-cientifica-0":3,"unidades-notacion-cientifica-0-0":3,"unidades-notacion-cientifica-0-1":4,"unidades-notacion-cientifica-0-2":4,"unidades-notacion-cientifica-1":5,"unidades-notacion-cientifica-1-0":5,"unidades-notacion-cientifica-1-1":6,"unidades-notacion-cientifica-1-2":6,"unidades-notacion-cientifica-1-3":7,"unidades-notacion-cientifica-1-4":7,"unidades-notacion-cientifica-1-5":8,"unidades-notacion-cientifica-2":8,"unidades-notacion-cientifica-2-0":8,"unidades-notacion-cientifica-2-1":9,"unidades-notacion-cientifica-2-2":9,"unidades-notacion-cientifica-2-3":10,"unidades-notacion-cientifica-2-4":10,"unidades-notacion-cientifica-2-5":11,"unidades-notacion-cientifica-3":11,"unidades-notacion-cientifica-3-0":11,"unidades-notacion-cientifica-3-1":12,"unidades-notacion-cientifica-3-2":12,"unidades-notacion-cientifica-3-3":12,"unidades-notacion-cientifica-3-4":13,"unidades-notacion-cientifica-3-5":13,"unidades-notacion-cientifica-4":14,"unidades-notacion-cientifica-4-0":14,"unidades-notacion-cientifica-4-1":14}
   },
   {
     "topics": [
@@ -91,7 +100,8 @@
     ],
     "title": "Matrices, determinantes y sistemas de ecuaciones",
     "out": "public/libros/matrices-determinantes-sistemas-de-ecuaciones.pdf",
-    "pages": 50
+    "pages": 52,
+    "at": {"matrices":3,"matrices-0":3,"matrices-0-0":3,"matrices-0-1":4,"matrices-0-2":4,"matrices-0-3":5,"matrices-0-4":5,"matrices-0-5":6,"matrices-0-6":6,"matrices-1":7,"matrices-1-0":7,"matrices-1-1":7,"matrices-1-2":8,"matrices-2":8,"matrices-2-0":8,"matrices-2-1":9,"matrices-2-2":9,"matrices-3":10,"matrices-3-0":10,"matrices-3-1":10,"matrices-3-2":11,"matrices-4":11,"matrices-4-0":11,"matrices-4-1":12,"matrices-4-2":12,"matrices-4-3":13,"matrices-4-4":13,"matrices-4-5":13,"matrices-5":14,"matrices-5-0":14,"matrices-5-1":14,"matrices-5-2":15,"matrices-5-3":15,"matrices-5-4":16,"matrices-6":16,"matrices-6-0":16,"matrices-6-1":17,"matrices-6-2":18,"matrices-6-3":18,"matrices-6-4":19,"matrices-6-5":20,"matrices-6-6":20,"matrices-7":21,"matrices-7-0":21,"matrices-7-1":22,"determinantes":23,"determinantes-0":23,"determinantes-0-0":23,"determinantes-1":24,"determinantes-1-0":24,"determinantes-1-1":25,"determinantes-2":26,"determinantes-2-0":26,"determinantes-2-1":27,"determinantes-2-2":27,"determinantes-2-3":28,"determinantes-3":28,"determinantes-3-0":28,"determinantes-3-1":29,"determinantes-3-2":29,"determinantes-3-3":30,"determinantes-3-4":30,"determinantes-3-5":31,"determinantes-3-6":31,"determinantes-3-7":31,"determinantes-4":32,"determinantes-4-0":32,"determinantes-5":33,"determinantes-5-0":33,"determinantes-5-1":33,"determinantes-5-2":34,"determinantes-5-3":34,"determinantes-6":35,"determinantes-6-0":35,"determinantes-6-1":35,"determinantes-6-2":36,"determinantes-6-3":36,"determinantes-6-4":37,"sistemas-de-ecuaciones":38,"sistemas-de-ecuaciones-0":38,"sistemas-de-ecuaciones-0-0":38,"sistemas-de-ecuaciones-0-1":39,"sistemas-de-ecuaciones-0-2":39,"sistemas-de-ecuaciones-1":40,"sistemas-de-ecuaciones-1-0":40,"sistemas-de-ecuaciones-1-1":41,"sistemas-de-ecuaciones-1-2":41,"sistemas-de-ecuaciones-2":42,"sistemas-de-ecuaciones-2-0":42,"sistemas-de-ecuaciones-2-1":43,"sistemas-de-ecuaciones-2-2":43,"sistemas-de-ecuaciones-3":44,"sistemas-de-ecuaciones-3-0":44,"sistemas-de-ecuaciones-3-1":44,"sistemas-de-ecuaciones-3-2":45,"sistemas-de-ecuaciones-3-3":45,"sistemas-de-ecuaciones-3-4":46,"sistemas-de-ecuaciones-4":46,"sistemas-de-ecuaciones-4-0":46,"sistemas-de-ecuaciones-4-1":47,"sistemas-de-ecuaciones-4-2":48,"sistemas-de-ecuaciones-5":48,"sistemas-de-ecuaciones-5-0":48,"sistemas-de-ecuaciones-5-1":49,"sistemas-de-ecuaciones-5-2":49,"sistemas-de-ecuaciones-5-3":50}
   },
   {
     "topics": [
@@ -99,7 +109,8 @@
     ],
     "title": "Grafos",
     "out": "public/libros/grafos.pdf",
-    "pages": 13
+    "pages": 14,
+    "at": {"grafos":3,"grafos-0":3,"grafos-0-0":3,"grafos-1":4,"grafos-1-0":4,"grafos-1-1":4,"grafos-2":5,"grafos-2-0":5,"grafos-2-1":6,"grafos-3":7,"grafos-3-0":7,"grafos-3-1":7,"grafos-3-2":8,"grafos-3-3":8,"grafos-4":9,"grafos-4-0":9,"grafos-4-1":10,"grafos-4-2":11,"grafos-4-3":11,"grafos-5":12,"grafos-5-0":12,"grafos-5-1":13}
   },
   {
     "topics": [
@@ -107,7 +118,8 @@
     ],
     "title": "Interés simple y compuesto",
     "out": "public/libros/interes-simple-compuesto.pdf",
-    "pages": 11
+    "pages": 12,
+    "at": {"interes-simple-compuesto":3,"interes-simple-compuesto-0":3,"interes-simple-compuesto-0-0":3,"interes-simple-compuesto-0-1":4,"interes-simple-compuesto-1":4,"interes-simple-compuesto-1-0":4,"interes-simple-compuesto-1-1":5,"interes-simple-compuesto-1-2":5,"interes-simple-compuesto-2":6,"interes-simple-compuesto-2-0":6,"interes-simple-compuesto-2-1":6,"interes-simple-compuesto-2-2":7,"interes-simple-compuesto-3":8,"interes-simple-compuesto-3-0":8,"interes-simple-compuesto-3-1":8,"interes-simple-compuesto-3-2":9,"interes-simple-compuesto-4":10,"interes-simple-compuesto-4-0":10,"interes-simple-compuesto-5":11,"interes-simple-compuesto-5-0":11}
   },
   {
     "topics": [
@@ -115,7 +127,8 @@
     ],
     "title": "Vectores",
     "out": "public/libros/vectores.pdf",
-    "pages": 26
+    "pages": 28,
+    "at": {"vectores":3,"vectores-0":3,"vectores-0-0":3,"vectores-0-1":4,"vectores-0-2":4,"vectores-0-3":5,"vectores-1":6,"vectores-1-0":6,"vectores-1-1":7,"vectores-1-2":7,"vectores-2":8,"vectores-2-0":8,"vectores-2-1":9,"vectores-2-2":9,"vectores-2-3":10,"vectores-2-4":10,"vectores-3":11,"vectores-3-0":11,"vectores-3-1":12,"vectores-3-2":13,"vectores-3-3":14,"vectores-3-4":15,"vectores-3-5":16,"vectores-4":17,"vectores-4-0":17,"vectores-4-1":17,"vectores-4-2":18,"vectores-4-3":18,"vectores-4-4":19,"vectores-4-5":20,"vectores-5":21,"vectores-5-0":21,"vectores-5-1":22,"vectores-5-2":22,"vectores-5-3":23,"vectores-5-4":24,"vectores-6":25,"vectores-6-0":25,"vectores-6-1":25,"vectores-6-2":26}
   },
   {
     "topics": [
@@ -123,7 +136,8 @@
     ],
     "title": "Operaciones con números decimales",
     "out": "public/libros/operaciones-decimales.pdf",
-    "pages": 11
+    "pages": 12,
+    "at": {"operaciones-decimales":3,"operaciones-decimales-0":3,"operaciones-decimales-0-0":3,"operaciones-decimales-0-1":4,"operaciones-decimales-0-2":4,"operaciones-decimales-1":5,"operaciones-decimales-1-0":5,"operaciones-decimales-1-1":5,"operaciones-decimales-1-2":6,"operaciones-decimales-2":6,"operaciones-decimales-2-0":6,"operaciones-decimales-2-1":7,"operaciones-decimales-2-2":7,"operaciones-decimales-3":8,"operaciones-decimales-3-0":8,"operaciones-decimales-3-1":8,"operaciones-decimales-3-2":9,"operaciones-decimales-3-3":9,"operaciones-decimales-3-4":10,"operaciones-decimales-4":10,"operaciones-decimales-4-0":10,"operaciones-decimales-4-1":10,"operaciones-decimales-4-2":11}
   },
   {
     "topics": [
@@ -131,6 +145,7 @@
     ],
     "title": "Inecuaciones y programación lineal",
     "out": "public/libros/inecuaciones-programacion-lineal.pdf",
-    "pages": 27
+    "pages": 28,
+    "at": {"inecuaciones-programacion-lineal":3,"inecuaciones-programacion-lineal-0":3,"inecuaciones-programacion-lineal-0-0":3,"inecuaciones-programacion-lineal-0-1":4,"inecuaciones-programacion-lineal-0-2":5,"inecuaciones-programacion-lineal-0-3":5,"inecuaciones-programacion-lineal-1":6,"inecuaciones-programacion-lineal-1-0":6,"inecuaciones-programacion-lineal-1-1":7,"inecuaciones-programacion-lineal-1-2":7,"inecuaciones-programacion-lineal-2":8,"inecuaciones-programacion-lineal-2-0":8,"inecuaciones-programacion-lineal-2-1":8,"inecuaciones-programacion-lineal-2-2":9,"inecuaciones-programacion-lineal-3":10,"inecuaciones-programacion-lineal-3-0":10,"inecuaciones-programacion-lineal-3-1":11,"inecuaciones-programacion-lineal-4":12,"inecuaciones-programacion-lineal-4-0":12,"inecuaciones-programacion-lineal-5":12,"inecuaciones-programacion-lineal-5-0":12,"inecuaciones-programacion-lineal-5-1":13,"inecuaciones-programacion-lineal-6":14,"inecuaciones-programacion-lineal-6-0":14,"inecuaciones-programacion-lineal-6-1":15,"inecuaciones-programacion-lineal-6-2":16,"inecuaciones-programacion-lineal-6-3":16,"inecuaciones-programacion-lineal-7":17,"inecuaciones-programacion-lineal-7-0":17,"inecuaciones-programacion-lineal-7-1":18,"inecuaciones-programacion-lineal-7-2":19,"inecuaciones-programacion-lineal-7-3":19,"inecuaciones-programacion-lineal-8":20,"inecuaciones-programacion-lineal-8-0":20,"inecuaciones-programacion-lineal-8-1":20,"inecuaciones-programacion-lineal-8-2":21,"inecuaciones-programacion-lineal-9":22,"inecuaciones-programacion-lineal-9-0":22,"inecuaciones-programacion-lineal-10":23,"inecuaciones-programacion-lineal-10-0":23,"inecuaciones-programacion-lineal-10-1":24,"inecuaciones-programacion-lineal-10-2":25,"inecuaciones-programacion-lineal-11":26,"inecuaciones-programacion-lineal-11-0":26,"inecuaciones-programacion-lineal-11-1":26,"inecuaciones-programacion-lineal-11-2":27,"inecuaciones-programacion-lineal-11-3":27}
   }
 ]

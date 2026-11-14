@@ -38,10 +38,13 @@ const { values: args } = parseArgs({ options: {
   topics: { type: 'string' }, title: { type: 'string' },
   out: { type: 'string' }, html: { type: 'boolean' }, all: { type: 'boolean' } } });
 const books = JSON.parse(fs.readFileSync(BOOKS, 'utf8'));
+// `at` maps every chapter, section and card id to its (1-based) PDF page: keep it on one line per book.
+const writeBooks = () => fs.writeFileSync(BOOKS, '[\n' + books.map(({ at, ...rest }) =>
+  JSON.stringify(rest, null, 2).replace(/\n}$/, `,\n  "at": ${JSON.stringify(at ?? {})}\n}`).replace(/^/gm, '  ')).join(',\n') + '\n]\n');
 
 if (args.all) {
-  for (const book of books) book.pages = await buildBook(book, args.html);
-  fs.writeFileSync(BOOKS, JSON.stringify(books, null, 2) + '\n');
+  for (const book of books) Object.assign(book, await buildBook(book, args.html));
+  writeBooks();
 } else {
   if (!args.topics || !args.title || !args.out) {
     console.log('Usage: build-book.mjs --topics a,b --title "..." --out file.pdf [--html] | --all');
@@ -49,10 +52,10 @@ if (args.all) {
   }
   const book = { topics: args.topics.split(',').map(s => s.trim()), title: args.title,
     out: path.relative(root, path.resolve(args.out)) };
-  book.pages = await buildBook(book, args.html);
+  Object.assign(book, await buildBook(book, args.html));
   const i = books.findIndex(b => b.out === book.out);
   if (i === -1) books.push(book); else books[i] = book;
-  fs.writeFileSync(BOOKS, JSON.stringify(books, null, 2) + '\n');
+  writeBooks();
 }
 
 async function buildBook(book, keepHtml) {
@@ -61,7 +64,7 @@ async function buildBook(book, keepHtml) {
     if (!fs.existsSync(file)) fail('Topic not found: ' + file);
     return { slug: slug.trim(), ...JSON.parse(fs.readFileSync(file, 'utf8')) };
   });
-  const id = (ch, j) => j === undefined ? ch.slug : `${ch.slug}-${j}`;
+  const id = (ch, j, k) => j === undefined ? ch.slug : k === undefined ? `${ch.slug}-${j}` : `${ch.slug}-${j}-${k}`;
 
   const toc = chapters.map((ch, i) => `
     <li class="toc-chapter"><a href="#${id(ch)}"><span>${i + 1}. ${esc(ch.title)}</span></a>
@@ -77,8 +80,8 @@ async function buildBook(book, keepHtml) {
     </header>
     ${ch.sections.map((sec, j) => `
     <h2 id="${id(ch, j)}">${content(sec.title)}</h2>
-    ${sec.items.map(it => `
-    <div class="item">
+    ${sec.items.map((it, k) => `
+    <div class="item" id="${id(ch, j, k)}">
       ${it.kind ? `<p class="kind kind-${it.kind}">${KIND_LABELS[it.kind]}</p>` : ''}
       <h3>${content(it.title)}</h3>
       ${it.description ? `<div class="description">${content(it.description)}</div>` : ''}
@@ -86,6 +89,21 @@ async function buildBook(book, keepHtml) {
       ${it.example ? `<p class="label">Ejemplo:</p><div class="example">${content(it.example)}</div>` : ''}
     </div>`).join('')}`).join('')}
   </section>`).join('');
+
+  // Alphabetical index of the book's definitions and theorems, each with its page.
+  const plain = t => t.replace(/\$[^$]*\$/g, ' ').replace(/<[^>]+>/g, ' ').replace(/[^\p{L}\p{N} ]+/gu, ' ').replace(/\s+/g, ' ').trim();
+  const concepts = chapters.flatMap(ch => ch.sections.flatMap((sec, j) => sec.items.flatMap((it, k) =>
+    it.kind === 'definicion' || it.kind === 'teorema'
+      ? [{ id: id(ch, j, k), title: it.title, kind: it.kind, key: plain(it.title) }] : [])));
+  const letterOf = c => { const l = c.key.charAt(0).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase(); return /[A-Z]/.test(l) ? l : '#'; };
+  const byLetter = new Map();
+  for (const c of concepts.sort((a, b) => (a.key || '~').localeCompare(b.key || '~', 'es')))
+    (byLetter.get(letterOf(c)) ?? byLetter.set(letterOf(c), []).get(letterOf(c))).push(c);
+  const conceptIndex = concepts.length ? `
+  <nav class="concept-index"><h1>Índice de conceptos</h1>
+    ${[...byLetter].map(([letter, list]) => `<h2 class="letter">${letter}</h2><ol>${list.map(c =>
+      `<li><a href="#${c.id}"><span>${content(c.title)} <em>${KIND_LABELS[c.kind]}</em></span></a></li>`).join('')}</ol>`).join('')}
+  </nav>` : '';
 
   const year = new Date().getFullYear();
   const html = `<!doctype html>
@@ -102,6 +120,7 @@ async function buildBook(book, keepHtml) {
     @page cover { margin: 0; @top-left { content: none; } @top-right { content: none; }
       @bottom-left { content: none; } @bottom-right { content: none; } }
     @page toc { @top-right { content: "Índice"; } }
+    @page index { @top-right { content: "Índice de conceptos"; } }
 
     body { font: 10pt/1.55 "Space Mono", monospace; color: #1f1f1f; }
     a { color: inherit; text-decoration: none; }
@@ -120,6 +139,15 @@ async function buildBook(book, keepHtml) {
     .toc ol { list-style: none; padding: 0; margin: 0; }
     .toc-chapter { font-weight: 700; font-size: 11pt; margin-bottom: 6mm; }
     .toc-chapter ol { font-weight: 400; font-size: 9.5pt; margin: 2mm 0 0 6mm; }
+    .concept-index { page: index; break-before: page; }
+    .concept-index h1 { font-size: 22pt; text-transform: uppercase; margin: 0 0 8mm; string-set: chapter "Índice de conceptos"; }
+    .concept-index .letter { font-size: 12pt; margin: 5mm 0 1.5mm; padding: 0 0 .5mm; border-bottom: 2px solid #1f1f1f; break-after: avoid; }
+    .concept-index ol { list-style: none; padding: 0; margin: 0; font-size: 9pt; }
+    .concept-index a { display: flex; align-items: baseline; }
+    .concept-index a span { flex: 1; display: flex; gap: 2mm; }
+    .concept-index a span::after { content: ""; flex: 1; border-bottom: 1px dotted #1f1f1f; margin: 0 1mm; order: 2; }
+    .concept-index em { font-style: normal; font-size: 7pt; color: #666; text-transform: uppercase; order: 1; white-space: nowrap; }
+    .concept-index a::after { content: target-counter(attr(href), page); }
     .toc a { display: flex; align-items: baseline; }
     .toc a span { flex: 1; display: flex; }
     .toc a span::after { content: ""; flex: 1; border-bottom: 1px dotted #1f1f1f; margin: 0 2mm; }
@@ -150,7 +178,7 @@ async function buildBook(book, keepHtml) {
     document.fonts.ready.then(() => PagedPolyfill.preview()).then(() => {
       // Page (0-based, as in the PDF) where every chapter and section heading ended up: the PDF outline.
       const pages = [...document.querySelectorAll('.pagedjs_page')], at = {};
-      document.querySelectorAll('.chapter-head[id], h2[id]').forEach(el => {
+      document.querySelectorAll('.chapter-head[id], h2[id], .item[id]').forEach(el => {
         const page = el.closest('.pagedjs_page'); if (page) at[el.id] = pages.indexOf(page);
       });
       return fetch('/outline', { method: 'POST', body: JSON.stringify(at) });
@@ -164,6 +192,7 @@ async function buildBook(book, keepHtml) {
   </section>
   <nav class="toc"><h1>Índice</h1><ol>${toc}</ol></nav>
   ${body}
+  ${conceptIndex}
   </body></html>`;
 
   const out = path.resolve(root, book.out);
@@ -185,7 +214,7 @@ async function buildBook(book, keepHtml) {
     if (url === '/wait') return waiting.push(res);
     if (url === '/outline') {
       let body = ''; req.on('data', c => body += c);
-      req.on('end', () => { try { headingPages = JSON.parse(body); } catch {} res.end(); });
+      req.on('end', () => { try { headingPages = JSON.parse(body); } catch { console.error('Warning: could not read heading pages; the PDF will have no bookmarks.'); } res.end(); });
       return;
     }
     if (url === '/done') { clearTimeout(timeout); res.end(); return release(); }
@@ -205,9 +234,10 @@ async function buildBook(book, keepHtml) {
   // renderMath doesn't throw on bad LaTeX; it emits .katex-error spans that render as red text.
   const katexErrors = (html.match(/class="katex-error"/g) || []).length;
   if (katexErrors) console.error(`Warning: ${katexErrors} formula(s) failed to render (search katex-error with --html).`);
+  if (!Object.keys(headingPages).length) console.error(`Warning: no heading pages reported for ${book.title}; the PDF has no bookmarks and /books no deep links.`);
   const pages = await setPdfMetadata(out, book, chapters, headingPages, id);
   console.log(path.relative(process.cwd(), out));
-  return pages;
+  return { pages, at: Object.fromEntries(Object.entries(headingPages).map(([k, v]) => [k, v + 1])) };
 }
 
 // PDF bookmarks (the outline panel of any reader): a chapter per topic, a child per section.
@@ -252,7 +282,7 @@ async function setPdfMetadata(file, book, chapters, headingPages, id) {
   const now = new Date();
   pdf.setCreationDate(now);
   pdf.setModificationDate(now);
-  addOutline(pdf, chapters.map((ch, i) => ({
+  if (Object.keys(headingPages).length) addOutline(pdf, chapters.map((ch, i) => ({
     title: `${i + 1}. ${ch.title}`, page: headingPages[id(ch)],
     children: ch.sections.map((sec, j) => ({ title: sec.title.replace(/\$/g, ''), page: headingPages[id(ch, j)] })),
   })));
