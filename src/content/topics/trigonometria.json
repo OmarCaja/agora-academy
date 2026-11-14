@@ -1,6 +1,6 @@
 {
     "title": "Trigonometría",
-    "description": "Grados y radianes, razones trigonométricas (seno, coseno, tangente y sus inversas), identidad fundamental, razones de 30°, 45° y 60°, circunferencia goniométrica, fórmulas del ángulo suma, resta, doble y mitad, teoremas del seno y del coseno y ecuaciones trigonométricas.",
+    "description": "Grados y radianes, razones trigonométricas (seno, coseno, tangente y sus inversas), identidad fundamental, razones de 30°, 45° y 60°, circunferencia goniométrica, fórmulas del ángulo suma, resta, doble y mitad, teoremas del seno y del coseno, circunferencia circunscrita, área del triángulo (fórmula de Herón y con el radio) y ecuaciones trigonométricas.",
     "menuGroup": "Trigonometría",
     "menuOrder": 1,
     "sections": [
@@ -169,10 +169,39 @@
                     "example": "$A = 45^\\circ$, $B = 60^\\circ$ y $a = 10$:<br>• $C = 180^\\circ - 45^\\circ - 60^\\circ = 75^\\circ$<br>• $b = \\dfrac{a \\sin B}{\\sin A} = \\dfrac{10 \\cdot \\frac{\\sqrt{3}}{2}}{\\frac{\\sqrt{2}}{2}} = 5\\sqrt{6} \\approx 12{,}25$<br>• $c = \\dfrac{a \\sin C}{\\sin A} = \\dfrac{10 \\cdot \\sin 75^\\circ}{\\sin 45^\\circ} \\approx 13{,}66$"
                 },
                 {
+                    "title": "Teorema del seno y circunferencia circunscrita",
+                    "description": "El cociente común del teorema del seno tiene un significado geométrico: es el <strong>diámetro de la circunferencia circunscrita</strong> al triángulo, la que pasa por sus tres vértices. Si $R$ es su radio, cada lado es el diámetro por el seno del ángulo opuesto. Así, con un lado y su ángulo opuesto se obtiene $R$, y con $R$ se obtiene cualquier lado conociendo su ángulo opuesto.",
+                    "formula": "$$\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C} = 2R$$$$a = 2R\\sin A \\qquad b = 2R\\sin B \\qquad c = 2R\\sin C$$",
+                    "example": "• $a = 10$ y $A = 30^\\circ$:<br>$$2R = \\dfrac{10}{\\sin 30^\\circ} = \\dfrac{10}{0{,}5} = 20 \\Rightarrow R = 10$$• $b = 8$ y $B = 45^\\circ$:<br>$$2R = \\dfrac{8}{\\frac{\\sqrt{2}}{2}} = 8\\sqrt{2} \\Rightarrow R = 4\\sqrt{2} \\approx 5{,}66$$• $R = 6$ y $A = 40^\\circ$:<br>$$a = 2R\\sin A = 12 \\cdot \\sin 40^\\circ \\approx 7{,}71$$"
+                },
+                {
                     "title": "Teorema del coseno",
                     "description": "Es una <strong>generalización del teorema de Pitágoras</strong>: si $A = 90^\\circ$, entonces $\\cos A = 0$ y queda $a^2 = b^2 + c^2$. Se usa cuando conocemos <strong>dos lados y el ángulo que forman</strong>, o <strong>los tres lados</strong> (para hallar los ángulos despejando el coseno).",
                     "formula": "$$a^2 = b^2 + c^2 - 2bc\\cos A$$$$b^2 = a^2 + c^2 - 2ac\\cos B \\qquad c^2 = a^2 + b^2 - 2ab\\cos C$$",
                     "example": "• Dos lados y el ángulo que forman: $b = 5$, $c = 8$, $A = 60^\\circ$:<br>$$a^2 = 25 + 64 - 2 \\cdot 5 \\cdot 8 \\cdot \\dfrac{1}{2} = 89 - 40 = 49 \\Rightarrow a = 7$$• Los tres lados: $a = 7$, $b = 5$, $c = 8$:<br>$$\\cos B = \\dfrac{a^2 + c^2 - b^2}{2ac} = \\dfrac{49 + 64 - 25}{112} = \\dfrac{11}{14} \\Rightarrow B \\approx 38^\\circ\\,12'\\,48''$$"
+                }
+            ]
+        },
+        {
+            "title": "Área de un triángulo",
+            "items": [
+                {
+                    "title": "Dos lados y el ángulo que forman",
+                    "description": "El área es la mitad del producto de dos lados por el seno del ángulo <strong>comprendido entre ellos</strong>. Sale de $S = \\frac{1}{2}\\,\\text{base}\\cdot\\text{altura}$, porque la altura sobre el lado $c$ es $b\\sin A$.",
+                    "formula": "$$S = \\dfrac{1}{2}\\,b\\,c\\sin A = \\dfrac{1}{2}\\,a\\,c\\sin B = \\dfrac{1}{2}\\,a\\,b\\sin C$$",
+                    "example": "$b = 7$, $c = 9$ y $A = 60^\\circ$:<br>$$S = \\dfrac{1}{2} \\cdot 7 \\cdot 9 \\cdot \\sin 60^\\circ = \\dfrac{63\\sqrt{3}}{4} \\approx 27{,}28$$"
+                },
+                {
+                    "title": "Fórmula de Herón: los tres lados",
+                    "description": "Cuando solo conocemos los <strong>tres lados</strong>, no hace falta calcular ningún ángulo. Se halla el semiperímetro $s$ y se aplica la fórmula.",
+                    "formula": "$$s = \\dfrac{a + b + c}{2} \\qquad S = \\sqrt{s\\,(s-a)\\,(s-b)\\,(s-c)}$$",
+                    "example": "$a = 13$, $b = 14$ y $c = 15$:<br>$$s = \\dfrac{13 + 14 + 15}{2} = 21$$$$S = \\sqrt{21 \\cdot 8 \\cdot 7 \\cdot 6} = \\sqrt{7056} = 84$$"
+                },
+                {
+                    "title": "Área con el radio de la circunferencia circunscrita",
+                    "description": "Si se conocen los tres lados y el radio $R$ de la circunferencia circunscrita, el área es el producto de los lados dividido entre $4R$. Sale de $S = \\frac{1}{2}\\,a\\,b\\sin C$ al sustituir $\\sin C = \\dfrac{c}{2R}$ (teorema del seno). Despejando, también sirve para calcular $R$ a partir de los lados y el área, por ejemplo con la fórmula de Herón. Conocido $R$, el área del círculo circunscrito es $\\pi R^2$.",
+                    "formula": "$$S = \\dfrac{a\\,b\\,c}{4R} \\qquad R = \\dfrac{a\\,b\\,c}{4S} \\qquad \\text{Área del círculo} = \\pi R^2$$",
+                    "example": "• Lados $13$, $14$, $15$ (área $S = 84$ por Herón):<br>$$R = \\dfrac{13 \\cdot 14 \\cdot 15}{4 \\cdot 84} = \\dfrac{65}{8} = 8{,}125$$$$\\text{Área del círculo circunscrito} = \\pi \\cdot \\left(\\dfrac{65}{8}\\right)^2 = \\dfrac{4225\\pi}{64} \\approx 207{,}39$$• Lados $6$, $8$, $10$ con $R = 5$ (el diámetro es la hipotenusa):<br>$$S = \\dfrac{6 \\cdot 8 \\cdot 10}{4 \\cdot 5} = 24$$que coincide con $\\dfrac{6 \\cdot 8}{2} = 24$."
                 }
             ]
         },
