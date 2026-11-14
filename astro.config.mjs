@@ -4,6 +4,7 @@ import icon from 'astro-icon';
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { SITE_URL } from './src/data/site.ts';
+import { RENAMED_TOPICS } from './src/data/topics.ts';
 
 // Old root-level topic URLs (/<slug>/) indexed by Google -> /theory/<slug>/
 const topicRedirects = Object.fromEntries(
@@ -12,6 +13,11 @@ const topicRedirects = Object.fromEntries(
         .map((f) => f.slice(0, -5))
         .map((slug) => [`/${slug}`, `/theory/${slug}/`]),
 );
+// Renamed topics: the old /<slug>/ and /theory/<slug>/ URLs go to the new page.
+for (const [oldSlug, slug] of Object.entries(RENAMED_TOPICS)) {
+    topicRedirects[`/${oldSlug}`] = `/theory/${slug}/`;
+    topicRedirects[`/theory/${oldSlug}`] = `/theory/${slug}/`;
+}
 
 // KaTeX renders with throwOnError: false, so a broken formula would ship as red
 // text. Fail the build instead.

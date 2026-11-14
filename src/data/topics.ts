@@ -13,6 +13,11 @@ export const GROUP_ORDER: string[] = [
     "Física y química",
 ];
 
+// Topics whose slug changed: old slug -> current slug. astro.config.mjs redirects the old URLs.
+export const RENAMED_TOPICS: Record<string, string> = {
+    "programacion-lineal": "inecuaciones-programacion-lineal",
+};
+
 interface TopicLike {
     data: { title: string; menuGroup?: string; menuOrder?: number };
 }

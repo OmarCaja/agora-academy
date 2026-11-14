@@ -1,0 +1,186 @@
+---
+import { Icon } from "astro-icon/components";
+
+// One row per book PDF: name, size, what it covers (chapters with their sections) and
+// the concepts the search can find. PdfList is the plain counterpart for exercise sheets.
+export interface BookRow {
+    url: string;
+    name: string;
+    description: string;
+    pages?: number;
+    chapters: { title: string; sections: string[] }[];
+    // Every section and concept title of the book, as "Chapter › Section › Concept".
+    hits: string[];
+}
+
+interface Props {
+    books: BookRow[];
+}
+
+const { books } = Astro.props;
+
+const hintId = `pdf-hint${(books[0]?.url ?? "").replace(/\.pdf$/i, "").replace(/[^a-z0-9]+/gi, "-")}`;
+const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+---
+
+<p id={hintId} hidden>PDF, se abre en una pestaña nueva</p>
+<ul class="book-list">
+    {
+        books.map((book) => {
+            const sectionCount = book.chapters.reduce((n, ch) => n + ch.sections.length, 0);
+            return (
+                <li
+                    data-search-item
+                    data-search-text={[book.name, book.description, ...book.hits].join(" ")}
+                    data-hits={JSON.stringify(book.hits)}
+                >
+                    <a href={book.url} target="_blank" rel="noopener noreferrer" class="book-link" aria-describedby={hintId}>
+                        <div class="book-icon">
+                            <Icon name="ph:file-pdf" class="book-pdf-icon" aria-hidden="true" />
+                        </div>
+                        <span class="book-name">{book.name}</span>
+                        <span class="book-meta meta-label">
+                            {count(book.chapters.length, "tema", "temas")} · {count(sectionCount, "sección", "secciones")}
+                            {book.pages ? ` · ${count(book.pages, "página", "páginas")}` : ""}
+                        </span>
+                        <Icon name="ph:arrow-right" class="book-arrow" aria-hidden="true" />
+                        <p class="book-desc">{book.description}</p>
+                        <ul class="book-chapters">
+                            {book.chapters.map((ch) => (
+                                <li>
+                                    <strong>{ch.title}</strong>
+                                    <span>{ch.sections.join(" · ")}</span>
+                                </li>
+                            ))}
+                        </ul>
+                        <p class="search-hits" data-search-hits hidden></p>
+                    </a>
+                </li>
+            );
+        })
+    }
+</ul>
+
+<style>
+    .book-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .book-link {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        column-gap: var(--spacing-sm);
+        row-gap: var(--spacing-xs);
+        padding: var(--spacing-sm);
+        text-decoration: none;
+        color: var(--text-primary);
+        border: var(--border-width) solid var(--border-color);
+        border-radius: var(--radius);
+        background: var(--bg-secondary);
+        box-shadow: 3px 3px 0 var(--shadow-color);
+        transition:
+            transform var(--transition),
+            box-shadow var(--transition),
+            background var(--transition);
+    }
+
+    .book-link:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--shadow-color);
+    }
+
+    .book-link:active {
+        transform: translate(1px, 1px);
+        box-shadow: 1px 1px 0 var(--shadow-color);
+    }
+
+    .book-icon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--on-accent);
+        background: var(--accent);
+    }
+
+    :global(.book-pdf-icon) {
+        width: 20px;
+        height: 20px;
+    }
+
+    .book-name {
+        font-size: var(--step-1);
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .book-meta {
+        grid-column: 2;
+        grid-row: 2;
+        color: var(--text-muted);
+    }
+
+    .book-link :global(.book-arrow) {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        width: 18px;
+        height: 18px;
+        color: var(--accent);
+        transition: transform var(--transition);
+    }
+
+    .book-link:hover :global(.book-arrow) {
+        transform: translateX(4px);
+    }
+
+    .book-desc,
+    .book-chapters,
+    .search-hits {
+        grid-column: 1 / -1;
+        margin: 0;
+    }
+
+    .book-desc {
+        font-size: var(--font-size-sm);
+        line-height: 1.5;
+        color: var(--text-tertiary);
+    }
+
+    .book-chapters {
+        list-style: none;
+        padding: var(--spacing-xs) 0 0;
+        border-top: 1px solid var(--rule-color);
+        display: grid;
+        gap: 6px;
+        font-size: var(--font-size-sm);
+        line-height: 1.5;
+    }
+
+    .book-chapters strong {
+        display: block;
+    }
+
+    .book-chapters span {
+        color: var(--text-muted);
+        font-weight: 400;
+    }
+
+    .search-hits {
+        font-size: var(--font-size-sm);
+        line-height: 1.5;
+        padding: var(--spacing-xs);
+        border-left: 4px solid var(--accent);
+        background: var(--bg-primary);
+    }
+
+    .search-hits[hidden] {
+        display: none;
+    }
+</style>

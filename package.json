@@ -22,6 +22,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "pagedjs": "^0.4.3",
+    "pdf-lib": "^1.17.1",
     "typescript": "^6.0.3"
   }
 }

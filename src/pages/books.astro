@@ -3,27 +3,39 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
-import PdfList from "../components/PdfList.astro";
+import BookList from "../components/BookList.astro";
 import SearchBox from "../components/SearchBox.astro";
 import NoResults from "../components/NoResults.astro";
 import { BOOKS } from "../data/books";
 import { sortTopics } from "../data/topics";
 
-// Books follow the site's topic order (by their first chapter), are grouped by that chapter's
-// menuGroup (its domain) and list their chapters (skipped for single-chapter books).
+// Books follow the site's topic order (by their first chapter) and are grouped by that chapter's
+// menuGroup (its domain). Each lists its chapters with their sections, and carries every concept
+// title of the book so the search can find a book by what is inside it.
 const topics = sortTopics(await getCollection("topics"));
 const rank = (slug: string) => topics.findIndex((t) => t.id === slug);
 const books = [...BOOKS]
     .sort((a, b) => rank(a.topics[0]) - rank(b.topics[0]))
-    .map((b) => ({
-        group: topics[rank(b.topics[0])]?.data.menuGroup ?? "Otros",
-        url: b.url,
-        name: b.title,
-        detail:
-            b.topics.length > 1
-                ? b.topics.map((slug) => topics[rank(slug)]?.data.title ?? slug).join(" · ")
-                : undefined,
-    }));
+    .map((b) => {
+        const chapters = b.topics.map((slug) => topics[rank(slug)]).filter(Boolean);
+        return {
+            group: chapters[0]?.data.menuGroup ?? "Otros",
+            url: b.url,
+            name: b.title,
+            pages: (b as { pages?: number }).pages,
+            description:
+                chapters.length === 1
+                    ? chapters[0].data.description
+                    : `Reúne ${chapters.length} temas: ${chapters.map((c) => c.data.title).join(", ").replace(/\.$/, "")}.`,
+            chapters: chapters.map((c) => ({ title: c.data.title, sections: c.data.sections.map((s) => s.title) })),
+            hits: chapters.flatMap((c) =>
+                c.data.sections.flatMap((s) => [
+                    `${c.data.title} › ${s.title}`,
+                    ...s.items.map((i) => `${c.data.title} › ${s.title} › ${i.title.replace(/\$/g, "")}`),
+                ]),
+            ),
+        };
+    });
 
 // Sorted by topic order, so groups come out in GROUP_ORDER by first appearance.
 const groups: { title: string; books: typeof books }[] = [];
@@ -32,19 +44,49 @@ for (const b of books) {
     if (g) g.books.push(b);
     else groups.push({ title: b.group, books: [b] });
 }
+
+const totalPages = books.reduce((n, b) => n + (b.pages ?? 0), 0);
+const description = `${books.length} libros de teoría de matemáticas en PDF para descargar${
+    totalPages ? ` (${totalPages} páginas)` : ""
+}: ${groups.map((g) => g.title).join(", ")}. Definiciones, teoremas, procedimientos y ejemplos resueltos.`;
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Libros PDF de teoría de matemáticas",
+    numberOfItems: books.length,
+    itemListElement: books.map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+            "@type": "Book",
+            name: b.name,
+            description: b.description,
+            url: new URL(b.url, Astro.site).href,
+            inLanguage: "es",
+            bookFormat: "https://schema.org/EBook",
+            encodingFormat: "application/pdf",
+            ...(b.pages ? { numberOfPages: b.pages } : {}),
+            genre: b.group,
+            keywords: b.chapters.flatMap((c) => [c.title, ...c.sections]).join(", "),
+            hasPart: b.chapters.map((c) => ({ "@type": "Chapter", name: c.title })),
+        },
+    })),
+};
 ---
 
 <BaseLayout
     title="Libros PDF"
-    description="Libros de teoría de matemáticas en PDF para descargar: fórmulas, ejemplos resueltos y explicaciones."
+    description={description}
     currentPage="books"
+    schema={schema}
 >
     <div class="content-section measure">
         <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Libros PDF" }]} />
         <Header title="LIBROS PDF" />
         <p class="intro">La teoría de la web reunida en libros para descargar e imprimir.</p>
         <SearchBox
-            placeholder="Buscar libros..."
+            placeholder="Buscar libros o conceptos (p. ej. Sarrus, Bayes)..."
             label="Buscar libros (pulsa / para enfocar)"
             countSingular="libro encontrado"
             countPlural="libros encontrados"
@@ -53,7 +95,7 @@ for (const b of books) {
             groups.map((g) => (
                 <section class="group" data-search-section data-search-text={g.title}>
                     <h2>{g.title}</h2>
-                    <PdfList pdfs={g.books} />
+                    <BookList books={g.books} />
                 </section>
             ))
         }
