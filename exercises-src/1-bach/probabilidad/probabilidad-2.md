@@ -13,7 +13,7 @@ En un experimento aleatorio se sabe que $P(\overline{A}) = 0{,}6$, $P(B) = 0{,}5
 
 ### Ejercicio 2 (2 puntos) - Tabla de contingencia
 
-Se ha realizado un estudio sobre los hábitos de lectura y el nivel de estudios de $150$ personas. Completa la tabla:
+Se ha realizado un estudio sobre los hábitos de lectura y el nivel de estudios de $150$ personas. **(0,5p)** Completa la tabla:
 
 $$\begin{array}{l|c|c|c} & \text{Lee (L)} & \text{No lee (NL)} & \text{Total} \\ \hline \text{Con estudios universitarios (U)} & & & 60 \\ \text{Sin estudios universitarios (S)} & & 55 & \\ \hline \text{Total} & 70 & & 150 \end{array}$$
 
