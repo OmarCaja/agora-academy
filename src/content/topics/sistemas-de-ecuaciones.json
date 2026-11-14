@@ -1,6 +1,6 @@
 {
     "title": "Sistemas de ecuaciones",
-    "description": "Sistemas de ecuaciones lineales: resolución por el método de Gauss, expresión matricial $AX = B$, clasificación de los sistemas, discusión con el teorema de Rouché-Frobenius y regla de Cramer.",
+    "description": "Sistemas de ecuaciones lineales: resolución por el método de Gauss, expresión matricial AX = B, clasificación de los sistemas, discusión con el teorema de Rouché-Frobenius y regla de Cramer.",
     "menuGroup": "Álgebra",
     "menuOrder": 5,
     "sections": [

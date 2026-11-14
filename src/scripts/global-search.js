@@ -59,8 +59,6 @@ const init = () => {
     const more = document.getElementById("moreResults");
     const clearBtn = document.getElementById("clearSearch");
     const kbd = document.getElementById("searchKbd");
-    const chips = document.querySelectorAll("[data-kind-chip]");
-    let kind = "";
     let shown = PAGE;
     let results = [];
 
@@ -76,7 +74,7 @@ const init = () => {
         if (kbd) kbd.style.display = rawValue ? "none" : "inline-flex";
         history.replaceState(null, "", rawValue ? `?q=${encodeURIComponent(rawValue)}` : location.pathname);
 
-        if (!terms.length && !kind) {
+        if (!terms.length) {
             results = [];
             count.textContent = "";
             empty.hidden = true;
@@ -84,8 +82,8 @@ const init = () => {
         }
         const entries = await load();
         results = entries
-            .filter((e) => (!kind || e.k === kind) && (terms.length === 0 || matches(terms, e.text)))
-            .map((e) => ({ e, s: terms.length ? score(terms, e) : 0 }))
+            .filter((e) => matches(terms, e.text))
+            .map((e) => ({ e, s: score(terms, e) }))
             .sort((a, b) => b.s - a.s)
             .map(({ e }) => e);
         shown = PAGE;
@@ -99,13 +97,6 @@ const init = () => {
         shown += PAGE;
         render();
     });
-    chips.forEach((chip) =>
-        chip.addEventListener("click", () => {
-            kind = chip.dataset.kindChip;
-            chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
-            run();
-        }),
-    );
     clearBtn?.addEventListener("click", () => {
         input.value = "";
         run();

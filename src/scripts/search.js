@@ -5,12 +5,7 @@
  *   #siteSearch / #searchKbd / #clearSearch / #searchCount  — the search box
  *   [data-search-section][data-search-text]                 — a collapsible group
  *   [data-search-item][data-search-text]                    — a filterable row
- *   [data-kind-chip="<kind>"] (optional)                    — buttons that restrict to one kind of card;
- *                                                             items list their kinds in data-kinds
  *   [data-search-title] (optional, on items)                — enables relevance ordering of the items
- *   [data-hits] + [data-search-hits] (optional, on items)   — JSON list of everything an item contains
- *                                                             ({t: text, k: kind, l: kind label, p: page, u: pdf url});
- *                                                             the matching ones are listed as links
  *   #tocWrapper (optional)                                  — hidden while filtering
  *   #noResults (optional)                                   — shown when nothing matches
  *   [data-search-reset] (optional)                          — button that clears the query
@@ -54,8 +49,6 @@ const initSearchFilter = () => {
     const tocWrapper = document.getElementById("tocWrapper");
     const noResults = document.getElementById("noResults");
     const sections = document.querySelectorAll("[data-search-section]");
-    const chips = document.querySelectorAll("[data-kind-chip]");
-    let activeKind = "";
 
     // Remember the page order so relevance ordering can be undone when the query is cleared.
     const rankable = new Set();
@@ -70,33 +63,6 @@ const initSearchFilter = () => {
         if (!kbdBadge) return;
         const isFocused = document.activeElement === input;
         kbdBadge.style.display = isFocused || input.value.trim() ? "none" : "inline-flex";
-    };
-
-    const hasKind = (item) => !activeKind || (item.dataset.kinds || "").split(" ").includes(activeKind);
-
-    const showHits = (item, terms) => {
-        const box = item.querySelector("[data-search-hits]");
-        if (!box) return;
-        const hits =
-            (terms.length || activeKind) && item.dataset.hits
-                ? JSON.parse(item.dataset.hits).filter(
-                      (hit) => (!activeKind || hit.k === activeKind) && matches(terms, prepare(`${hit.l} ${hit.t}`)),
-                  )
-                : [];
-        box.hidden = hits.length === 0;
-        box.replaceChildren();
-        if (!hits.length) return;
-        box.append("Coincide en: ");
-        hits.slice(0, 4).forEach((hit, i) => {
-            if (i) box.append(" · ");
-            const link = document.createElement("a");
-            link.textContent = `${hit.l}: ${hit.t}`;
-            link.href = hit.p ? `${hit.u}#page=${hit.p}` : hit.u;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            box.append(link);
-        });
-        if (hits.length > 4) box.append(` · y ${hits.length - 4} más`);
     };
 
     const updateSearch = () => {
@@ -116,14 +82,13 @@ const initSearchFilter = () => {
 
             section.querySelectorAll("[data-search-item]").forEach((item) => {
                 const text = `${sectionText} ${prepare(item.dataset.searchText || "")} ${prepare(item.textContent || "")}`;
-                const matched = hasKind(item) && (terms.length === 0 || matches(terms, text));
+                const matched = terms.length === 0 || matches(terms, text);
 
                 item.style.display = matched ? "" : "none";
                 if (matched) {
                     sectionMatches++;
                     totalMatches++;
                 }
-                showHits(item, matched ? terms : []);
                 if (item.dataset.searchTitle !== undefined) {
                     item.dataset.score = String(
                         matched && terms.length
@@ -154,7 +119,7 @@ const initSearchFilter = () => {
         });
 
         if (tocWrapper) {
-            tocWrapper.style.display = terms.length || activeKind ? "none" : "";
+            tocWrapper.style.display = terms.length ? "none" : "";
         }
 
         if (noResults) {
@@ -165,7 +130,7 @@ const initSearchFilter = () => {
             const noun = totalMatches === 1
                 ? searchCount.dataset.countSingular
                 : searchCount.dataset.countPlural;
-            searchCount.textContent = terms.length || activeKind ? `${totalMatches} ${noun}` : "";
+            searchCount.textContent = terms.length ? `${totalMatches} ${noun}` : "";
         }
     };
 
@@ -173,18 +138,8 @@ const initSearchFilter = () => {
     input.addEventListener("focus", updateKbdVisibility);
     input.addEventListener("blur", updateKbdVisibility);
 
-    chips.forEach((chip) =>
-        chip.addEventListener("click", () => {
-            activeKind = chip.dataset.kindChip;
-            chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
-            updateSearch();
-        }),
-    );
-
     const clearSearch = () => {
         input.value = "";
-        activeKind = "";
-        chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.kindChip === "")));
         updateSearch();
         input.focus();
     };

@@ -3,22 +3,14 @@ import { Icon } from "astro-icon/components";
 
 // One row per book PDF: name, size, what it covers (chapters with their sections) and
 // the concepts the search can find. PdfList is the plain counterpart for exercise sheets.
-export interface BookHit {
-    t: string; // "Chapter › Section › Concept"
-    k: string; // kind of card (definicion, teorema…), empty for a section
-    l: string; // its label (Definición, Teorema…), "Sección" for a section
-    p?: number; // page in the PDF
-    u: string; // PDF url
-}
-
 export interface BookRow {
     url: string;
     name: string;
     description: string;
     pages?: number;
     chapters: { title: string; sections: { title: string; page?: number }[] }[];
-    // Every section and concept of the book: what the search can find and link to.
-    hits: BookHit[];
+    // Every section and concept title of the book: searchable, not shown.
+    hits: string[];
 }
 
 interface Props {
@@ -42,9 +34,7 @@ const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : 
                     data-search-item
                     data-search-title={book.name}
                     data-search-headings={book.chapters.flatMap((c) => [c.title, ...c.sections.map((s) => s.title)]).join(" ")}
-                    data-search-text={[book.name, book.description, ...book.hits.map((h) => `${h.l} ${h.t}`)].join(" ")}
-                    data-kinds={[...new Set(book.hits.map((h) => h.k).filter(Boolean))].join(" ")}
-                    data-hits={JSON.stringify(book.hits)}
+                    data-search-text={[book.name, book.description, ...book.hits].join(" ")}
                 >
                     <a href={book.url} target="_blank" rel="noopener noreferrer" class="book-link" aria-describedby={hintId}>
                         <div class="book-icon">
@@ -80,7 +70,6 @@ const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : 
                                 </li>
                             ))}
                         </ul>
-                        <p class="search-hits" data-search-hits hidden></p>
                     </div>
                 </li>
             );
@@ -168,21 +157,18 @@ const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : 
     }
 
     .book-desc,
-    .book-chapters,
-    .search-hits {
+    .book-chapters {
         margin: 0;
     }
 
-    .book-chapters a,
-    .search-hits :global(a) {
+    .book-chapters a {
         color: inherit;
         text-decoration: underline;
         text-decoration-thickness: 1px;
         text-underline-offset: 3px;
     }
 
-    .book-chapters a:hover,
-    .search-hits :global(a:hover) {
+    .book-chapters a:hover {
         text-decoration-thickness: 2px;
         color: var(--text-primary);
     }
@@ -210,17 +196,5 @@ const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : 
     .book-chapters span {
         color: var(--text-muted);
         font-weight: 400;
-    }
-
-    .search-hits {
-        font-size: var(--font-size-sm);
-        line-height: 1.5;
-        padding: var(--spacing-xs);
-        border-left: 4px solid var(--accent);
-        background: var(--bg-primary);
-    }
-
-    .search-hits[hidden] {
-        display: none;
     }
 </style>
