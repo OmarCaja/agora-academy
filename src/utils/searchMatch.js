@@ -5,13 +5,19 @@
  * accents and dots ("m.c.d." = "mcd"). Each term can be satisfied by:
  *   - the word itself, or its singular ("determinantes" finds "determinante"),
  *   - a synonym from src/data/searchAliases.ts (a multi-word alias is read as one term),
- *   - a close misspelling of a word in the text (one wrong letter from 5 letters, two from 8).
+ *   - a close misspelling of a word in the text (one wrong letter, from 5 letters, same first letter).
+ * A term must match at the START of a word of the text ("ecuacion" does not find "inecuaciones"),
+ * and is accepted as a prefix ("inecuacion" finds "inecuaciones").
  */
 import { normalizeText } from "./normalizeText";
 import { ALIASES } from "../data/searchAliases";
 
-/** Lowercase, no accents, no dots: the form every text and query is compared in. */
-export const prepare = (text) => normalizeText(text).replace(/\./g, "");
+/** Lowercase, no accents, no dots, words separated by single spaces: the form every text and query is compared in. */
+export const prepare = (text) =>
+    normalizeText(text)
+        .replace(/\./g, "")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
 
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -41,6 +47,9 @@ export const parseQuery = (query) => {
     return terms;
 };
 
+/** Is `alt` found at the start of a word of the prepared text? Up to 3 letters it must be the whole word. */
+const atWordStart = (text, alt) => (alt.length <= 3 ? ` ${text} `.includes(` ${alt} `) : ` ${text}`.includes(` ${alt}`));
+
 /** True if the words differ by at most `max` single-letter edits. */
 const withinDistance = (a, b, max) => {
     if (Math.abs(a.length - b.length) > max) return false;
@@ -62,7 +71,7 @@ const wordsCache = new Map();
 const wordsOf = (text) => {
     let words = wordsCache.get(text);
     if (!words) {
-        words = [...new Set(text.split(/[^a-z0-9]+/).filter((w) => w.length >= 4))];
+        words = [...new Set(text.split(" ").filter((w) => w.length >= 4))];
         if (wordsCache.size > 2000) wordsCache.clear();
         wordsCache.set(text, words);
     }
@@ -71,13 +80,12 @@ const wordsOf = (text) => {
 
 /** Does a prepared text satisfy every term? Exact first; misspellings only if that fails. */
 export const matches = (terms, text) => {
-    const missing = terms.filter((alts) => !alts.some((alt) => text.includes(alt)));
+    const missing = terms.filter((alts) => !alts.some((alt) => atWordStart(text, alt)));
     if (missing.length === 0) return true;
     return missing.every((alts) =>
         alts.some((alt) => {
             if (alt.length < 5 || alt.includes(" ")) return false;
-            const max = alt.length >= 8 ? 2 : 1;
-            return wordsOf(text).some((w) => withinDistance(w, alt, max));
+            return wordsOf(text).some((w) => w[0] === alt[0] && withinDistance(w, alt, 1));
         }),
     );
 };
@@ -87,8 +95,8 @@ export const score = (terms, { title = "", headings = "", text = "" }) =>
     terms.reduce(
         (sum, alts) =>
             sum +
-            (alts.some((a) => title.includes(a)) ? 10 : 0) +
-            (alts.some((a) => headings.includes(a)) ? 4 : 0) +
-            (alts.some((a) => text.includes(a)) ? 1 : 0),
+            (alts.some((a) => atWordStart(title, a)) ? 10 : 0) +
+            (alts.some((a) => atWordStart(headings, a)) ? 4 : 0) +
+            (alts.some((a) => atWordStart(text, a)) ? 1 : 0),
         0,
     );
