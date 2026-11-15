@@ -277,8 +277,6 @@ const reasons = [
 		grid-template-columns: 1fr;
 		gap: var(--spacing-lg);
 		padding-top: var(--spacing-md);
-		padding-bottom: var(--spacing-xl);
-		border-bottom: 1px solid var(--rule-color);
 	}
 
 	@media (min-width: 900px) {
@@ -287,8 +285,45 @@ const reasons = [
 			align-items: end;
 			gap: var(--spacing-2xl);
 			padding-top: var(--spacing-xl);
+		}
+	}
+
+	/* ===== SECTION RHYTHM ===== */
+	/* Every section owns the same space and is separated from the previous one by
+	   the same 1px rule, so the page reads as evenly spaced bands. */
+	.hero,
+	.materials,
+	.reasons,
+	.contact {
+		margin-bottom: 0;
+		padding-bottom: var(--spacing-xl);
+	}
+
+	.materials,
+	.reasons,
+	.contact {
+		padding-top: var(--spacing-xl);
+		border-top: 1px solid var(--rule-color);
+	}
+
+	@media (min-width: 900px) {
+		.hero,
+		.materials,
+		.reasons,
+		.contact {
 			padding-bottom: var(--spacing-2xl);
 		}
+
+		.materials,
+		.reasons,
+		.contact {
+			padding-top: var(--spacing-2xl);
+		}
+	}
+
+	/* The search sits inside the hero: it is not a band of its own. */
+	.finder {
+		margin-bottom: 0;
 	}
 
 	.hero-title {
@@ -787,10 +822,6 @@ const reasons = [
 		border-top: 1px solid var(--rule-color);
 	}
 
-	.reason:last-child {
-		border-bottom: 1px solid var(--rule-color);
-	}
-
 	.reason-icon {
 		width: 26px;
 		height: 26px;
@@ -870,8 +901,6 @@ const reasons = [
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: var(--spacing-lg);
-		padding-top: var(--spacing-lg);
-		border-top: var(--border-width) solid var(--border-color);
 	}
 
 	.contact-head p {
