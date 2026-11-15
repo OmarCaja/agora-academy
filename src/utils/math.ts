@@ -10,7 +10,7 @@ const render = (formula: string, displayMode: boolean) => {
     try {
         return katex.renderToString(formula, { displayMode, throwOnError: true });
     } catch (e) {
-        return `<span class="katex-error" style="color:#cc0000" title="${escapeHtml(String(e))}">${escapeHtml(formula)}</span>`;
+        return `<span class="katex-error" style="text-decoration:underline wavy" title="${escapeHtml(String(e))}">${escapeHtml(formula)}</span>`;
     }
 };
 

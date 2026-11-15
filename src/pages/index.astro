@@ -89,7 +89,7 @@ const reasons = [
 			</div>
 
 			{/* Site-wide search: same engine as /buscar */}
-					<section class="finder reveal" style="--i: 2" aria-labelledby="finder-title">
+			<section class="finder reveal" style="--i: 2" aria-labelledby="finder-title">
 				<h2 id="finder-title">Busca cualquier concepto</h2>
 				<p class="section-lead">
 					Definiciones, teoremas y procedimientos de todos los temas, con
@@ -281,7 +281,7 @@ const reasons = [
 	@media (min-width: 900px) {
 		.hero {
 			grid-template-columns: 1.15fr 0.85fr;
-			align-items: end;
+			align-items: center;
 			gap: var(--spacing-2xl);
 			padding-top: var(--spacing-xl);
 		}
@@ -441,15 +441,20 @@ const reasons = [
 	.finder .section-lead {
 		margin-bottom: var(--spacing-md);
 	}
+	@media (max-width: 899px) {
+		/* Students search on a phone: keep the box above the fold. */
+		.finder .section-lead {
+			display: none;
+		}
+	}
 	.finder-form {
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--spacing-sm);
-		
 	}
 	.finder-field {
 		position: relative;
-		flex: 1 1 280px;
+		flex: 1 1 200px;
 		display: flex;
 		align-items: center;
 	}
@@ -471,7 +476,7 @@ const reasons = [
 		border: var(--border-width) solid var(--border-color);
 		border-radius: var(--radius);
 		box-shadow: 3px 3px 0 var(--shadow-color);
-		outline: none;
+		transition: transform var(--transition), box-shadow var(--transition);
 		-webkit-appearance: none;
 		appearance: none;
 	}
@@ -480,6 +485,9 @@ const reasons = [
 		opacity: 1;
 	}
 	.finder-field input:focus {
+		/* Same lift as buttons and cards on hover. */
+		outline: none;
+		transform: translate(-2px, -2px);
 		box-shadow: 5px 5px 0 var(--shadow-color);
 	}
 	.finder-field input::-webkit-search-cancel-button {
@@ -488,6 +496,27 @@ const reasons = [
 	}
 	.finder-form .btn {
 		cursor: pointer;
+	}
+	@media (max-width: 599px) {
+		/* The button wrapped under the box as an orphan: make it a full-width thumb target. */
+		.finder-form .btn {
+			flex: 1 1 100%;
+			justify-content: center;
+		}
+	}
+	.finder-field.nudge {
+		animation: nudge 0.35s var(--ease);
+	}
+	@keyframes nudge {
+		20% { transform: translateX(-6px); }
+		45% { transform: translateX(5px); }
+		70% { transform: translateX(-3px); }
+		100% { transform: none; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.finder-field.nudge {
+			animation: none;
+		}
 	}
 
 	.finder-kbd {
@@ -521,14 +550,17 @@ const reasons = [
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 8px 14px;
-		margin-top: var(--spacing-sm);
+		gap: 0 14px;
+		margin-top: var(--spacing-xs);
 		font-size: var(--font-size-sm);
 	}
 	.finder-examples .meta-label {
 		color: var(--text-muted);
 	}
 	.finder-examples a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
 		color: var(--text-primary);
 		text-decoration: underline;
 		text-underline-offset: 3px;

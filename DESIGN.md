@@ -159,7 +159,7 @@ Fills, rules and icons that once took a chromatic hue now take **Ink** (`#1f1f1f
 - **Body** (400, 1rem, line-height 1.65): all running text. Constrained to roughly 46-52ch in lead paragraphs; the reading column caps at 820px.
 - **Label** (700, 0.78rem, tracking 0.08em, uppercase): counts, metadata, pager direction. Used sparingly, and never as a decorative eyebrow above a section headline.
 
-**Documented exceptions:** the footer wordmark (`.footer-logo`, "ÁGORA") sits outside this ramp at `1.3rem` with 3px tracking and an accent underline — a small logotype treatment, not running text. The full-screen mobile menu's top-level items (`.menu-item`, `.menu-group-title`) run `1.125rem`, growing to `1.25rem` above 768px — sized for a touch-target list, not the reading column, so they sit a half-step above Body rather than on it. Nested (second-level) menu items step back down to Body's `1rem`.
+**Documented exceptions:** the footer wordmark (`.footer-logo`, "ÁGORA") sits outside this ramp at `1.3rem` with 3px tracking and an accent underline — a small logotype treatment, not running text. The full-screen mobile menu's top-level items (`.menu-item`, `.menu-group-title`) run `1.125rem`, growing to `1.25rem` above 768px — sized for a touch-target list, not the reading column, so they sit a half-step above Body rather than on it. Nested (second-level) menu items step back down to Body's `1rem`. The homepage hero brand line (`.hero-title-brand`) also uses `1.3rem` with 3px tracking, and the falling-pi easter egg digits use `2rem`: both are decorative one-offs outside the ramp. Print CSS uses pure `#ffffff` / `#000000` on purpose (paper output), and the dev-only KaTeX error marker is drawn as a wavy underline in ink, never a hue.
 
 ### Named Rules
 

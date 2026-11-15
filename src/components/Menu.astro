@@ -302,7 +302,7 @@ const isSectionActive = (section: MenuSection) => {
         text-decoration: none;
         padding: 12px 20px;
         border-left: 3px solid transparent;
-        transition: all var(--transition);
+        transition: color var(--transition), border-left-color var(--transition);
         display: block;
         line-height: 1.4;
     }
@@ -327,7 +327,7 @@ const isSectionActive = (section: MenuSection) => {
         color: var(--text-muted);
         padding: 8px 20px;
         font-weight: 700;
-        transition: all var(--transition);
+        transition: color var(--transition), border-left-color var(--transition);
         width: 100%;
         text-align: left;
         background: none;
@@ -407,7 +407,7 @@ const isSectionActive = (section: MenuSection) => {
 
     .menu-link {
         text-decoration: none;
-        transition: all var(--transition);
+        transition: color var(--transition), border-left-color var(--transition);
         cursor: pointer;
     }
 

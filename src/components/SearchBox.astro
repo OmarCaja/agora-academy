@@ -78,9 +78,8 @@ import { Icon } from "astro-icon/components";
         background: var(--bg-raised);
         border: var(--border-width) solid var(--border-color);
         border-radius: var(--radius);
-        outline: none;
         box-shadow: 2px 2px 0 var(--shadow-color);
-        transition: all var(--transition);
+        transition: transform var(--transition), box-shadow var(--transition);
         -webkit-appearance: none;
         appearance: none;
     }
@@ -101,7 +100,9 @@ import { Icon } from "astro-icon/components";
     }
 
     #siteSearch:focus {
-        border-color: var(--accent);
+        /* Same lift as buttons and cards on hover. */
+        outline: none;
+        transform: translate(-2px, -2px);
         box-shadow: 4px 4px 0 var(--shadow-color);
     }
 
