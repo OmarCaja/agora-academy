@@ -20,7 +20,9 @@ Validate changes with `pnpm check && pnpm build`; CI runs exactly that before de
 
 ### Pull requests
 
-Whenever the user requests a change to the repo, finish by creating a pull request for it, without waiting to be asked. Then run the `review-pr` skill (`.claude/skills/review-pr/SKILL.md`) on it right away. It reviews the PR with a subagent and squash-merges it into `main` if the review is clean, which deploys the site.
+**Remote/cloud sessions:** whenever the user requests a change to the repo, finish by creating a pull request for it, without waiting to be asked. Then run the `review-pr` skill (`.claude/skills/review-pr/SKILL.md`) on it right away. It reviews the PR with a subagent and squash-merges it into `main` if the review is clean, which deploys the site.
+
+**Local sessions (the user's own machine):** do not create a branch, commit, push, open a PR or run `review-pr`. Leave the changes uncommitted in the working tree on `main`, after running `pnpm check && pnpm build`; the user tests them locally and commits them. Only commit, push or open a PR locally if the user asks.
 
 ### Site facts
 
