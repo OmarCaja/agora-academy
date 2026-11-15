@@ -4,7 +4,6 @@ import { Icon } from "astro-icon/components";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LevelTags from "../components/LevelTags.astro";
 import ContactItem from "../components/ContactItem.astro";
-import HeroTangent from "../components/HeroTangent.astro";
 import { discoverExercises } from "../utils/discoverExercises";
 import { subjects } from "../data/exercises";
 import fs from "node:fs";
@@ -59,7 +58,7 @@ const reasons = [
 	currentPage="index"
 >
 	<div class="content-section">
-		{/* ── Hero: asymmetric split ───────────────────────────────── */}
+		{/* ── Hero ─────────────────────────────────────────────────── */}
 		<section class="hero">
 			<div class="hero-copy">
 				<h1 class="hero-title reveal" style="--i: 0">
@@ -89,45 +88,41 @@ const reasons = [
 				</div>
 			</div>
 
-			<div class="hero-figure">
-				<HeroTangent />
-			</div>
-		</section>
-
-		{/* ── Site-wide search: the same engine as /buscar ──────────── */}
-		<section class="finder reveal" aria-labelledby="finder-title">
-			<h2 id="finder-title">Busca cualquier concepto</h2>
-			<p class="section-lead">
-				Definiciones, teoremas y procedimientos de todos los temas, con
-				enlace a la web y a la página del libro PDF.
-			</p>
-			<form action="/buscar/" method="get" role="search" class="finder-form">
-				<label class="sr-only" for="finder-input">Buscar en toda la web</label>
-				<div class="finder-field">
-					<Icon name="ph:magnifying-glass" class="finder-icon" aria-hidden="true" />
-					<input
-						type="search"
-						id="finder-input"
-						name="q"
-						placeholder="p. ej. regla de Sarrus, mcd, inecuaciones…"
-						autocomplete="off"
-						required
-					/>
-					<kbd class="finder-kbd" aria-hidden="true">/</kbd>
-				</div>
-				<button type="submit" class="btn btn-solid">
-					Buscar
-					<Icon name="ph:arrow-right" aria-hidden="true" />
-				</button>
-			</form>
-			<p class="finder-examples">
-				<span class="meta-label">Prueba con</span>
-				{
-					["regla de Sarrus", "mcd", "inecuaciones", "Bayes", "derivada"].map((term) => (
-						<a href={`/buscar/?q=${encodeURIComponent(term)}`}>{term}</a>
-					))
-				}
-			</p>
+			{/* Site-wide search: same engine as /buscar */}
+					<section class="finder reveal" style="--i: 2" aria-labelledby="finder-title">
+				<h2 id="finder-title">Busca cualquier concepto</h2>
+				<p class="section-lead">
+					Definiciones, teoremas y procedimientos de todos los temas, con
+					enlace a la web y a la página del libro PDF.
+				</p>
+				<form action="/buscar/" method="get" role="search" class="finder-form">
+					<label class="sr-only" for="finder-input">Buscar en toda la web</label>
+					<div class="finder-field">
+						<Icon name="ph:magnifying-glass" class="finder-icon" aria-hidden="true" />
+						<input
+							type="search"
+							id="finder-input"
+							name="q"
+							placeholder="p. ej. Sarrus, mcd…"
+							autocomplete="off"
+							required
+						/>
+						<kbd class="finder-kbd" aria-hidden="true">/</kbd>
+					</div>
+					<button type="submit" class="btn btn-solid">
+						Buscar
+						<Icon name="ph:arrow-right" aria-hidden="true" />
+					</button>
+				</form>
+				<p class="finder-examples">
+					<span class="meta-label">Prueba con</span>
+					{
+						["regla de Sarrus", "mcd", "inecuaciones", "Bayes", "derivada"].map((term) => (
+							<a href={`/buscar/?q=${encodeURIComponent(term)}`}>{term}</a>
+						))
+					}
+				</p>
+			</section>
 		</section>
 
 		{/* ── Materials: bento, one cell per item ──────────────────── */}
@@ -280,11 +275,20 @@ const reasons = [
 	.hero {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: var(--spacing-md);
-		align-items: center;
+		gap: var(--spacing-lg);
 		padding-top: var(--spacing-md);
 		padding-bottom: var(--spacing-xl);
 		border-bottom: 1px solid var(--rule-color);
+	}
+
+	@media (min-width: 900px) {
+		.hero {
+			grid-template-columns: 1.15fr 0.85fr;
+			align-items: end;
+			gap: var(--spacing-2xl);
+			padding-top: var(--spacing-xl);
+			padding-bottom: var(--spacing-2xl);
+		}
 	}
 
 	.hero-title {
@@ -307,7 +311,7 @@ const reasons = [
 		font-size: var(--step-5);
 		line-height: 1.08;
 		letter-spacing: -0.035em;
-		max-width: 15ch;
+		max-width: 18ch;
 		text-wrap: balance;
 	}
 
@@ -337,31 +341,9 @@ const reasons = [
 		gap: var(--spacing-sm);
 	}
 
-	.hero-figure {
-		justify-self: center;
-		width: 100%;
-		/* Kept small on mobile so its top edge peeks into the first
-		   viewport instead of sitting entirely below the fold. */
-		max-width: 260px;
-	}
-
 	@media (min-width: 900px) {
-		.hero {
-			/* Deliberately uneven: the message owns more of the page than the
-			   figure, and the figure sits off the vertical centre line. */
-			grid-template-columns: 1.25fr 0.75fr;
-			gap: var(--spacing-2xl);
-			padding-top: var(--spacing-lg);
-			padding-bottom: var(--spacing-2xl);
-		}
-
 		.hero-levels {
 			margin-bottom: var(--spacing-lg);
-		}
-
-		.hero-figure {
-			max-width: none;
-			transform: translateY(8px);
 		}
 	}
 
@@ -419,8 +401,8 @@ const reasons = [
 
 	/* ===== SECTION LEAD ===== */
 	/* ── Site-wide search ── */
-	.finder {
-		margin-top: var(--spacing-2xl);
+	.finder h2 {
+		font-size: var(--step-2);
 	}
 	.finder .section-lead {
 		margin-bottom: var(--spacing-md);
@@ -429,7 +411,7 @@ const reasons = [
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--spacing-sm);
-		max-width: 720px;
+		
 	}
 	.finder-field {
 		position: relative;
@@ -447,7 +429,7 @@ const reasons = [
 	}
 	.finder-field input {
 		width: 100%;
-		padding: 13px 14px 13px 42px;
+		padding: 13px 44px 13px 42px;
 		font-family: var(--font-family);
 		font-size: 1rem;
 		color: var(--text-primary);

@@ -410,8 +410,7 @@ p.meta-label {
     .search-container,
     .progress-container,
     .scroll-to-top,
-    .skip-link,
-    .hero-figure {
+    .skip-link {
         display: none !important;
     }
 
