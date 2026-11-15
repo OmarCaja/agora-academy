@@ -20,7 +20,7 @@ for (const entry of sortTopics(await getCollection("topics"))) {
     const count = entry.data.sections.length;
     group.items.push({
         title: entry.data.title,
-        href: `/theory/${entry.id}/`,
+        href: `/teoria/${entry.id}/`,
         detail: renderMath(entry.data.description),
         meta: `${count} ${count === 1 ? "sección" : "secciones"}`,
     });
@@ -30,7 +30,7 @@ for (const entry of sortTopics(await getCollection("topics"))) {
 <BaseLayout
     title="Teoría de matemáticas"
     description="Apuntes de matemáticas por temas para E.S.O. y Bachillerato: fórmulas, ejemplos resueltos y gráficas."
-    currentPage="theory"
+    currentPage="teoria"
 >
     <div class="content-section measure">
         <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Teoría" }]} />

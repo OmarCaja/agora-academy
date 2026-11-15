@@ -1,11 +1,11 @@
 ---
 name: generate-book
-description: Generates an Ágora Academy theory book as a PDF (cover, table of contents with page numbers, running header and footer) from the existing theory topics, saves it to public/libros and lists it on the website's /books page. Use it whenever the user asks to create, generate, update or regenerate a book, a PDF book, a dossier, a compilation or downloadable notes/theory of one or more topics or a course (e.g. «hazme un libro de límites y derivadas», «libro de 2º de Bachillerato», «regenera el libro de matrices»), even if they don't mention PDF or the website.
+description: Generates an Ágora Academy theory book as a PDF (cover, table of contents with page numbers, running header and footer) from the existing theory topics, saves it to public/libros and lists it on the website's /libros page. Use it whenever the user asks to create, generate, update or regenerate a book, a PDF book, a dossier, a compilation or downloadable notes/theory of one or more topics or a course (e.g. «hazme un libro de límites y derivadas», «libro de 2º de Bachillerato», «regenera el libro de matrices»), even if they don't mention PDF or the website.
 ---
 
 # Generate Ágora theory books
 
-Flow: pick topics from `src/content/topics/*.json` → `scripts/build-book.mjs` lays them out (site's `renderMath` for KaTeX, Paged.js from `node_modules` for pagination, headless Chrome for the PDF) → the PDF lands in `public/libros/` → `/books` lists it automatically.
+Flow: pick topics from `src/content/topics/*.json` → `scripts/build-book.mjs` lays them out (site's `renderMath` for KaTeX, Paged.js from `node_modules` for pagination, headless Chrome for the PDF) → the PDF lands in `public/libros/` → `/libros` lists it automatically.
 
 Requirements: `pnpm install` done and Google Chrome or Chromium installed (found automatically; override with `CHROME=/path/to/chrome`). No network needed. The book only reuses existing theory; it never writes new content. If a topic the user asks for doesn't exist, say so and offer the `generate-theory-topic` skill first.
 
@@ -58,7 +58,7 @@ Check: the title fits the cover without awkward breaks, every chapter and sectio
 
 ## 6. Check it on the website
 
-`/books` reads `scripts/books.json`: each book shows under its `--title`, with its chapters, in the site's topic order. Each theory page links to the book that contains it («Descargar en PDF»). Nothing to edit: run `pnpm build` and confirm the book appears in `dist/books/index.html`.
+`/libros` reads `scripts/books.json`: each book shows under its `--title`, with its chapters, in the site's topic order. Each theory page links to the book that contains it («Descargar en PDF»). Nothing to edit: run `pnpm build` and confirm the book appears in `dist/libros/index.html`.
 
 ## 7. Report
 

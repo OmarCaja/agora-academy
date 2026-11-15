@@ -1,6 +1,7 @@
 {
     "title": "Probabilidad y combinatoria",
     "description": "Estudio de las diferentes formas de agrupar y ordenar elementos de un conjunto, junto con los fundamentos del cálculo de probabilidades.",
+    "levels": ["4-eso", "1-bach"],
     "menuGroup": "Estadística y probabilidad",
     "menuOrder": 3,
     "sections": [

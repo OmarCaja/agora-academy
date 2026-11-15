@@ -1,6 +1,6 @@
 ---
 name: generate-theory-topic
-description: Creates or extends an Ágora Academy theory topic page (/theory/<slug>) as a JSON file in src/content/topics, with KaTeX formulas, worked examples and optional matplotlib graphs. Use it whenever the user asks to create, write, add or expand theory, a topic, notes, a summary or a "tema" for a math subject (e.g. «crea el tema de integrales», «añade teoría de vectores para 1º Bach», «amplía matrices con determinantes»), even if they don't mention JSON or the website.
+description: Creates or extends an Ágora Academy theory topic page (/teoria/<slug>) as a JSON file in src/content/topics, with KaTeX formulas, worked examples and optional matplotlib graphs. Use it whenever the user asks to create, write, add or expand theory, a topic, notes, a summary or a "tema" for a math subject (e.g. «crea el tema de integrales», «añade teoría de vectores para 1º Bach», «amplía matrices con determinantes»), even if they don't mention JSON or the website.
 ---
 
 # Generate Ágora theory topics
@@ -23,6 +23,8 @@ grep -h '"menuGroup"\|"menuOrder"' src/content/topics/*.json | sort | uniq -c
 ## 2. Pick slug, group and order
 
 - **Slug**: the file name, lowercase, no accents, hyphenated, in Spanish (`estadistica-bidimensional`). It becomes the URL.
+- **`levels`**: the courses the topic is taught in, as `levelOrder` keys from `src/data/exercises.ts` (`["4-eso", "1-bach"]`). They go into the page title, so list only where it is really taught.
+- **`description`**: it is the meta description Google shows; keep it under ~160 characters.
 - **`menuGroup`**: one of the strings in `src/data/topics.ts` (`GROUP_ORDER`), copied exactly, accents included. A new group only if nothing fits; then add it to `GROUP_ORDER` too.
 - **`menuOrder`**: position inside the group in teaching order (prerequisites first). If it slots between existing topics, bump the `menuOrder` of the ones after it.
 
@@ -79,9 +81,9 @@ Inside JSON strings use single quotes for the attributes. `alt` is required.
 pnpm build
 ```
 
-The build fails on schema errors (missing `title`, wrong types) and on broken LaTeX, including undefined commands («Broken KaTeX formulas in: theory/<slug>/index.html»). To see which formulas, `grep -o 'katex-error[^>]*>[^<]*' dist/theory/<slug>/index.html` (the `title` holds KaTeX's message); in `pnpm dev` they show as red source text.
+The build fails on schema errors (missing `title`, wrong types) and on broken LaTeX, including undefined commands («Broken KaTeX formulas in: teoria/<slug>/index.html»). To see which formulas, `grep -o 'katex-error[^>]*>[^<]*' dist/teoria/<slug>/index.html` (the `title` holds KaTeX's message); in `pnpm dev` they show as red source text.
 
-Optionally look at the page with `pnpm dev` at `/theory/<slug>`, in light and dark theme.
+Optionally look at the page with `pnpm dev` at `/teoria/<slug>`, in light and dark theme.
 
 Once the build passes, every topic must have a book PDF. If no book in `scripts/books.json` lists the topic, create one for it alone (the build records it in `books.json`):
 
@@ -97,6 +99,6 @@ pnpm books
 
 ## 7. Report to the user
 
-Reply briefly with the file path, the URL (`/theory/<slug>`), the sections created and the decisions made without asking (level, group, order, graphs).
+Reply briefly with the file path, the URL (`/teoria/<slug>`), the sections created and the decisions made without asking (level, group, order, graphs).
 
 Don't commit or push unless the user asks.

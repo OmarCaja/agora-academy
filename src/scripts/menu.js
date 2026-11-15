@@ -13,7 +13,7 @@ const SELECTORS = {
     closeMenu: "[data-close-menu]",
     navHome: ".nav-home",
     navContact: ".nav-contacto",
-    pageLinks: "a[href^='/theory/'], a[href^='/exercises/']"
+    pageLinks: "a[href^='/teoria/'], a[href^='/ejercicios/']"
 };
 
 const CLASSES = {

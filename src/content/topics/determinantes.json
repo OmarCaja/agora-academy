@@ -1,6 +1,7 @@
 {
     "title": "Determinantes",
-    "description": "Qué es el determinante de una matriz cuadrada y cómo se calcula: orden 2, orden 3 (regla de Sarrus) y cualquier orden por adjuntos. Propiedades de los determinantes, rango de una matriz por menores y matriz inversa mediante la matriz adjunta.",
+    "description": "Determinante de una matriz cuadrada: orden 2, regla de Sarrus y desarrollo por adjuntos. Propiedades, rango por menores y matriz inversa por la adjunta.",
+    "levels": ["2-bach"],
     "menuGroup": "Álgebra",
     "menuOrder": 4,
     "sections": [

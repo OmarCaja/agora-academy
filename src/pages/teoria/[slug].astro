@@ -13,6 +13,7 @@ import { BOOKS } from "../../data/books";
 import { slugify } from "../../utils/slugify";
 import { Icon } from "astro-icon/components";
 import { SITE_NAME } from "../../data/site";
+import { formatLevels, levelTitleOverrides } from "../../data/exercises";
 
 export async function getStaticPaths() {
     const topics = await getCollection("topics");
@@ -23,7 +24,8 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { title, description, sections, menuGroup } = entry.data;
+const { title, description, sections, menuGroup, levels } = entry.data;
+const levelsLabel = formatLevels(levels);
 
 const allTopics = sortTopics(await getCollection("topics"));
 
@@ -32,10 +34,10 @@ const prevEntry = currentIndex > 0 ? allTopics[currentIndex - 1] : undefined;
 const nextEntry = currentIndex < allTopics.length - 1 ? allTopics[currentIndex + 1] : undefined;
 
 const prevTopic = prevEntry
-    ? { title: prevEntry.data.title, slug: `theory/${prevEntry.id}`, group: prevEntry.data.menuGroup }
+    ? { title: prevEntry.data.title, slug: `teoria/${prevEntry.id}`, group: prevEntry.data.menuGroup }
     : undefined;
 const nextTopic = nextEntry
-    ? { title: nextEntry.data.title, slug: `theory/${nextEntry.id}`, group: nextEntry.data.menuGroup }
+    ? { title: nextEntry.data.title, slug: `teoria/${nextEntry.id}`, group: nextEntry.data.menuGroup }
     : undefined;
 
 // Calculate metadata stats
@@ -68,7 +70,7 @@ const topicSchema = {
     name: title,
     description: description,
     learningResourceType: "Tutorial",
-    educationalLevel: ["ESO", "Bachillerato"],
+    educationalLevel: levels.map((l) => levelTitleOverrides[l] ?? l),
     inLanguage: "es",
     author: {
         "@type": "Organization",
@@ -83,10 +85,10 @@ const topicSchema = {
 ---
 
 <BaseLayout
-    title={`${title}`}
+    title={`${title} (${levelsLabel})`}
     description={description ||
         `Aprende sobre ${title} en ${SITE_NAME}.`}
-    currentPage={`theory/${entry.id}`}
+    currentPage={`teoria/${entry.id}`}
     schema={topicSchema}
     showProgressBar={true}
 >
@@ -94,7 +96,7 @@ const topicSchema = {
         <Breadcrumbs
             items={[
                 { label: "Inicio", href: "/" },
-                { label: "Teoría", href: "/theory/" },
+                { label: "Teoría", href: "/teoria/" },
                 ...(menuGroup && menuGroup !== title ? [{ label: menuGroup }] : []),
                 { label: title },
             ]}
@@ -104,7 +106,7 @@ const topicSchema = {
 
         <div class="topic-meta">
             <p class="topic-stats">
-                ~{estimatedReadTime} min de lectura · {sections.length} {sections.length === 1 ? "sección" : "secciones"}
+                {levelsLabel} · ~{estimatedReadTime} min de lectura · {sections.length} {sections.length === 1 ? "sección" : "secciones"}
                 {totalFormulas > 0 && ` · ${totalFormulas} ${totalFormulas === 1 ? "fórmula" : "fórmulas"}`}
             </p>
             {book && (

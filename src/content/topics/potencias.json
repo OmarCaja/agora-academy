@@ -1,6 +1,7 @@
 {
     "title": "Propiedades de las potencias",
     "description": "Propiedades de las potencias explicadas con ejemplos: exponente cero, uno y negativo, signo de las potencias, operaciones con potencias y exponentes fraccionarios.",
+    "levels": ["1-eso", "2-eso", "3-eso"],
     "menuGroup": "Potencias, raíces y logaritmos",
     "menuOrder": 1,
     "sections": [

@@ -20,7 +20,7 @@ const levelLinks = subjects.flatMap((subject) =>
     Object.entries(discoverExercises(subject)).map(([key, level]) => {
         const count = level.topics.reduce((n, topic) => n + topic.pdfs.length, 0);
         return {
-            href: `/exercises/${key}/`,
+            href: `/ejercicios/${key}/`,
             title: level.title,
             subject: subject.title,
             meta: `${count} ${count === 1 ? "PDF" : "PDFs"}`,
@@ -81,7 +81,7 @@ const reasons = [
 						Contacto
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
-					<a href="/theory/" class="btn btn-line">
+					<a href="/teoria/" class="btn btn-line">
 						Ver teoría
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
@@ -133,7 +133,7 @@ const reasons = [
 			</p>
 
 			<div class="bento">
-				<a href="/theory/" class="cell cell-wide cell-accent reveal" style="--i: 2">
+				<a href="/teoria/" class="cell cell-wide cell-accent reveal" style="--i: 2">
 					<Icon name="ph:function" class="cell-icon" aria-hidden="true" />
 					<span class="cell-title">Teoría</span>
 					<span class="cell-desc">Apuntes y fórmulas con ejemplos resueltos y gráficas.</span>
@@ -146,7 +146,7 @@ const reasons = [
 					</span>
 				</a>
 
-				<a href="/books/" class="cell reveal" style="--i: 3">
+				<a href="/libros/" class="cell reveal" style="--i: 3">
 					<Icon name="ph:books" class="cell-icon" aria-hidden="true" />
 					<span class="cell-title">Libros PDF</span>
 					<span class="cell-desc">La teoría reunida en libros para descargar e imprimir.</span>
@@ -164,7 +164,7 @@ const reasons = [
 			<div class="courses reveal">
 				<div class="courses-head">
 					<h3>Ejercicios por curso</h3>
-					<a href="/exercises/" class="all-link">
+					<a href="/ejercicios/" class="all-link">
 						Ver todos
 						<Icon name="ph:arrow-right" aria-hidden="true" />
 					</a>
@@ -489,6 +489,15 @@ const reasons = [
 		outline: none;
 		transform: translate(-2px, -2px);
 		box-shadow: 5px 5px 0 var(--shadow-color);
+	}
+	/* The lift's transform paints the input over its icon: keep the icon on
+	   top and move it with the input. */
+	.finder-field :global(.finder-icon) {
+		z-index: 1;
+		transition: transform var(--transition);
+	}
+	.finder-field:focus-within :global(.finder-icon) {
+		transform: translate(-2px, -2px);
 	}
 	.finder-field input::-webkit-search-cancel-button {
 		-webkit-appearance: none;

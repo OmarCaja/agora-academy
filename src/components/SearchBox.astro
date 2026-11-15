@@ -106,6 +106,19 @@ import { Icon } from "astro-icon/components";
         box-shadow: 4px 4px 0 var(--shadow-color);
     }
 
+    /* The lift's transform paints the input over the icon, key hint and clear
+       button that sit on it: keep them on top and move them with it. */
+    :global(.search-icon),
+    .search-kbd,
+    .clear-btn {
+        z-index: 1;
+        transition: transform var(--transition);
+    }
+    .search-input-wrapper:focus-within :global(.search-icon),
+    .search-input-wrapper:focus-within .search-kbd {
+        transform: translate(-2px, -2px);
+    }
+
     .search-kbd {
         position: absolute;
         right: 14px;
@@ -140,6 +153,14 @@ import { Icon } from "astro-icon/components";
     .clear-btn:hover {
         color: var(--text-primary);
         transform: scale(1.1);
+    }
+
+    .search-input-wrapper:focus-within .clear-btn {
+        transform: translate(-2px, -2px);
+    }
+
+    .search-input-wrapper:focus-within .clear-btn:hover {
+        transform: translate(-2px, -2px) scale(1.1);
     }
 
     :global(.clear-icon) {

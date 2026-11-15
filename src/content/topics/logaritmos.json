@@ -1,6 +1,7 @@
 {
     "title": "Propiedades de los logaritmos",
     "description": "Aprende la definición de logaritmo, los logaritmos decimal y neperiano y sus propiedades fundamentales: logaritmo de un producto, cociente, potencia y cambio de base.",
+    "levels": ["4-eso", "1-bach"],
     "menuGroup": "Potencias, raíces y logaritmos",
     "menuOrder": 3,
     "sections": [

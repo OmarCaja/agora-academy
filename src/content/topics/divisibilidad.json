@@ -1,6 +1,7 @@
 {
     "title": "Divisibilidad: m.c.d. y m.c.m.",
     "description": "Múltiplos y divisores, criterios de divisibilidad, números primos, descomposición en factores primos y cálculo del máximo común divisor y del mínimo común múltiplo, con problemas resueltos.",
+    "levels": ["1-eso"],
     "menuGroup": "Aritmética",
     "menuOrder": 3,
     "sections": [

@@ -20,6 +20,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import katex from 'katex';
 import { fail, escapeHtml, findChrome } from '../../../../scripts/pdf.mjs';
 import { SITE_NAME, SITE_URL, ADDRESS } from '../../../../src/data/site.ts';
+import { levelTitleOverrides, subjects } from '../../../../src/data/exercises.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const PUBLIC_DIR = path.join(root, 'public/ejercicios');
@@ -134,6 +135,18 @@ ${body}
 </td></tr></tbody></table></body></html>`;
 }
 
+// The PDF's title (Chrome takes it from <title>; Google shows it in search
+// results): "<first # heading> (<n>) - <course>", e.g.
+// "Examen de matrices (3) - 2º Bachillerato". `rel` is the sheet's folder
+// relative to public/ejercicios.
+function sheetTitle(markdown, rel, name) {
+  const heading = markdown.match(/^# (.+)$/m)?.[1].trim() ?? name;
+  const n = name.match(/-(\d+)$/)?.[1];
+  const parts = rel.split(path.sep);
+  const level = subjects.some(s => s.dir && s.dir === parts[0]) ? parts[1] : parts[0];
+  return `${heading}${n ? ` (${n})` : ''} - ${levelTitleOverrides[level] ?? level}`;
+}
+
 function nextName(outDir, base) {
   const pdfs = fs.existsSync(outDir) ? fs.readdirSync(outDir).filter(f => /-\d+\.pdf$/.test(f)) : [];
   if (!base) {
@@ -171,7 +184,7 @@ if (rerender) {
 fs.mkdirSync(outDir, { recursive: true });
 const pdfPath = path.join(outDir, name + '.pdf');
 
-const html = page(name, toHtml(markdown, path.dirname(source)));
+const html = page(sheetTitle(markdown, path.relative(PUBLIC_DIR, outDir), name), toHtml(markdown, path.dirname(source)));
 const htmlPath = args.html ? path.join(outDir, name + '.html') : path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'agora-')), name + '.html');
 fs.writeFileSync(htmlPath, html);
 

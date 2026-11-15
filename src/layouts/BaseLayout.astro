@@ -1,5 +1,5 @@
 ---
-import { SITE_NAME, SHORT_NAME, LEVELS, PHONE, EMAIL, ADDRESS } from "../data/site";
+import { SITE_NAME, SHORT_NAME, LEVELS, PHONE, EMAIL, ADDRESS, INSTAGRAM_HANDLE, OPENING_HOURS } from "../data/site";
 
 interface Props {
   title: string;
@@ -13,8 +13,9 @@ const { title, description, currentPage = "index", schema, showProgressBar = fal
 
 // Astro parses <title> as raw text, so anything more complex than a bare
 // identifier inside it is silently dropped (every page shipped an empty title).
-// Build the string here, interpolate it there.
-const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+// Build the string here, interpolate it there. Inner pages get a short brand
+// suffix so the page's own words fit in Google's ~60-character title.
+const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SHORT_NAME} ${ADDRESS.city}`;
 
 // Single branded 1200x630 card, regenerated with scripts/generate-og-card.py.
 const ogImage = new URL("/og/agora-og.png", Astro.site);
@@ -122,11 +123,19 @@ import "../styles/global.css";
       set:html={JSON.stringify([
         {
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
+          "@type": ["LocalBusiness", "EducationalOrganization"],
           name: SITE_NAME,
           image: new URL("/favicon/logo.png", Astro.site).href,
           "@id": Astro.site,
           url: Astro.site,
+          sameAs: [`https://www.instagram.com/${INSTAGRAM_HANDLE}/`],
+          areaServed: { "@type": "City", name: ADDRESS.city },
+          openingHoursSpecification: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: OPENING_HOURS.days,
+            opens: OPENING_HOURS.opens,
+            closes: OPENING_HOURS.closes,
+          },
           telephone: PHONE,
           email: EMAIL,
           address: {

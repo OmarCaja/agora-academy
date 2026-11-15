@@ -21,19 +21,22 @@ const data = level ? discoverAllExercises()[level] : null;
 if (!data) {
     throw new Error(`Data not found for level: ${level}`);
 }
+
+const topicList = new Intl.ListFormat("es").format(data.topics.map((t) => t.title.toLowerCase()));
+const description = `Ejercicios y exámenes de ${data.subject.toLowerCase()} de ${data.title} en PDF para descargar gratis: ${topicList}.`;
 ---
 
 <BaseLayout
     title={`Ejercicios de ${data.subject.toLowerCase()} ${data.title}`}
-    description={`Ejercicios de ${data.subject.toLowerCase()} para ${data.title}`}
-    currentPage={`exercises/${level}`}
+    description={description}
+    currentPage={`ejercicios/${level}`}
     showProgressBar={true}
 >
     <div class="content-section measure">
         <Breadcrumbs
             items={[
                 { label: "Inicio", href: "/" },
-                { label: "Ejercicios", href: "/exercises/" },
+                { label: "Ejercicios", href: "/ejercicios/" },
                 { label: data.subject },
                 { label: data.title },
             ]}

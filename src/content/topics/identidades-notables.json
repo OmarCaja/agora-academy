@@ -1,6 +1,7 @@
 {
     "title": "Identidades notables",
     "description": "Cuadrado de una suma, cuadrado de una diferencia, suma por diferencia y cubo de un binomio, con su uso para desarrollar, factorizar y simplificar expresiones algebraicas.",
+    "levels": ["2-eso", "3-eso"],
     "menuGroup": "Álgebra",
     "menuOrder": 2,
     "sections": [

@@ -29,7 +29,7 @@ export async function GET() {
                 s: section.title,
                 c: topic.data.title,
                 g: topic.data.menuGroup ?? "",
-                w: `/theory/${topic.id}/#${slugify(section.title)}-${k + 1}`,
+                w: `/teoria/${topic.id}/#${slugify(section.title)}-${k + 1}`,
                 x: plain(item.description ?? "").slice(0, 600),
                 ...(book ? { u: book.url, b: book.title } : {}),
                 ...(book && at[`${topic.id}-${j}-${k}`] ? { p: at[`${topic.id}-${j}-${k}`] } : {}),

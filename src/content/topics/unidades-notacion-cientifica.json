@@ -1,6 +1,7 @@
 {
     "title": "Unidades y notación científica",
-    "description": "Magnitudes y unidades del Sistema Internacional, múltiplos y submúltiplos de longitud, masa, capacidad, superficie, volumen y tiempo, cambio de unidades con factores de conversión y notación científica.",
+    "description": "Unidades del Sistema Internacional, múltiplos y submúltiplos, cambio de unidades con factores de conversión y notación científica.",
+    "levels": ["2-eso", "3-eso"],
     "menuGroup": "Física y química",
     "menuOrder": 1,
     "sections": [

@@ -1,6 +1,7 @@
 {
     "title": "Jerarquía y reglas de los signos",
     "description": "Orden de prioridad en operaciones combinadas y leyes fundamentales para números positivos y negativos.",
+    "levels": ["1-eso"],
     "menuGroup": "Aritmética",
     "menuOrder": 1,
     "sections": [

@@ -1,6 +1,7 @@
 {
     "title": "Estadística unidimensional",
     "description": "Resumen estructurado de estadística unidimensional: conceptos básicos, tablas de frecuencias y parámetros estadísticos.",
+    "levels": ["3-eso", "4-eso", "1-bach"],
     "menuGroup": "Estadística y probabilidad",
     "menuOrder": 1,
     "sections": [

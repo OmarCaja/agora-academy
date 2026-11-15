@@ -44,7 +44,7 @@ export function formatDefaultTitle(slugOrFilename: string): string {
 }
 
 // Levels of one subject, keyed by their path under public/ejercicios
-// ("2-eso", "fisica-y-quimica/2-eso"), which is also their /exercises/ slug.
+// ("2-eso", "fisica-y-quimica/2-eso"), which is also their /ejercicios/ slug.
 export function discoverExercises(subject = subjects[0]): Record<string, LevelData> {
     const prefix = subject.dir ? `${subject.dir}/` : "";
     const fullBaseDir = path.resolve(process.cwd(), "public/ejercicios", subject.dir);

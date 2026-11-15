@@ -1,6 +1,7 @@
 {
     "title": "Razones, proporcionalidad y porcentajes",
     "description": "Conceptos fundamentales para comprender la relación entre magnitudes, resolver problemas con reglas de tres y dominar el cálculo porcentual.",
+    "levels": ["1-eso", "2-eso"],
     "menuGroup": "Aritmética",
     "menuOrder": 6,
     "sections": [

@@ -15,7 +15,7 @@ const groups = subjects
             const count = level.topics.reduce((n, topic) => n + topic.pdfs.length, 0);
             return {
                 title: level.title,
-                href: `/exercises/${key}/`,
+                href: `/ejercicios/${key}/`,
                 detail: level.topics.map((topic) => topic.title).join(" · "),
                 meta: `${count} ${count === 1 ? "PDF" : "PDFs"}`,
             };
@@ -27,7 +27,7 @@ const groups = subjects
 <BaseLayout
     title="Ejercicios y exámenes"
     description="Ejercicios y modelos de examen en PDF, clasificados por asignatura y curso, para E.S.O. y Bachillerato."
-    currentPage="exercises"
+    currentPage="ejercicios"
 >
     <div class="content-section measure">
         <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Ejercicios" }]} />

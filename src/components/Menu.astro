@@ -33,7 +33,7 @@ for (const entry of sortTopics(await getCollection("topics"))) {
     const groupName = entry.data.menuGroup || "General";
     if (!theoryGroupMap.has(groupName)) theoryGroupMap.set(groupName, []);
     theoryGroupMap.get(groupName)!.push({
-        slug: `theory/${entry.id}`,
+        slug: `teoria/${entry.id}`,
         label: entry.data.title,
     });
 }
@@ -43,7 +43,7 @@ const exerciseGroups: MenuGroup[] = subjects
     .map((subject) => ({
         title: subject.title,
         items: Object.entries(discoverExercises(subject)).map(([key, data]) => ({
-            slug: `exercises/${key}`,
+            slug: `ejercicios/${key}`,
             label: data.title,
         })),
     }))
@@ -52,12 +52,12 @@ const exerciseGroups: MenuGroup[] = subjects
 const menuSections: MenuSection[] = [
     {
         title: "Teoría",
-        index: { slug: "theory", label: "Todos los temas" },
+        index: { slug: "teoria", label: "Todos los temas" },
         groups: theoryGroups,
     },
     {
         title: "Ejercicios",
-        index: { slug: "exercises", label: "Todos los cursos" },
+        index: { slug: "ejercicios", label: "Todos los cursos" },
         groups: exerciseGroups,
     },
 ];
@@ -210,10 +210,10 @@ const isSectionActive = (section: MenuSection) => {
 
             <div class="menu-group">
                 <a
-                    href="/books/"
+                    href="/libros/"
                     data-close-menu
-                    class:list={["menu-group-title", "menu-link", { active: currentPage === "books" }]}
-                    aria-current={currentPage === "books" ? "page" : undefined}
+                    class:list={["menu-group-title", "menu-link", { active: currentPage === "libros" }]}
+                    aria-current={currentPage === "libros" ? "page" : undefined}
                 >
                     Libros PDF
                 </a>

@@ -1,6 +1,7 @@
 {
     "title": "Inecuaciones y programación lineal",
-    "description": "Desigualdades, intervalos e inecuaciones de una incógnita (primer grado, segundo grado, polinómicas, racionales y con valor absoluto) y sus sistemas. Inecuaciones lineales con dos incógnitas y semiplanos, sistemas y región factible, y programación lineal: planteamiento, método analítico (vértices) y método gráfico, con casos especiales y soluciones enteras.",
+    "description": "Inecuaciones de una y dos incógnitas (lineales, de segundo grado, racionales y con valor absoluto), sus sistemas y programación lineal: región factible y vértices.",
+    "levels": ["1-bach", "2-bach"],
     "menuGroup": "Álgebra",
     "menuOrder": 6,
     "sections": [

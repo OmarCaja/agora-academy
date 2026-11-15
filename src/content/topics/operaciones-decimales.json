@@ -1,6 +1,7 @@
 {
     "title": "Operaciones con números decimales",
-    "description": "Partes de un número decimal y cómo compararlos. Suma, resta, multiplicación y división de decimales, multiplicar y dividir por 10, 100 y 1000, división con decimales en el divisor y redondeo del resultado.",
+    "description": "Números decimales: cómo compararlos, suma, resta, multiplicación y división (también por 10, 100 y 1000), decimales en el divisor y redondeo.",
+    "levels": ["1-eso"],
     "menuGroup": "Aritmética",
     "menuOrder": 5,
     "sections": [

@@ -1,6 +1,7 @@
 {
     "title": "Grafos",
     "description": "Qué es un grafo, vértices y aristas, grafos dirigidos y no dirigidos. Matriz de adyacencia, conexiones con transbordos o pasos intermedios mediante las potencias A², A³… y matriz de accesibilidad.",
+    "levels": ["2-bach"],
     "menuGroup": "Álgebra",
     "menuOrder": 7,
     "sections": [

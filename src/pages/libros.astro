@@ -49,9 +49,9 @@ for (const b of books) {
 }
 
 const totalPages = books.reduce((n, b) => n + (b.pages ?? 0), 0);
-const description = `${books.length} libros de teoría de matemáticas en PDF para descargar${
+const description = `${books.length} libros de teoría de matemáticas en PDF para descargar gratis${
     totalPages ? ` (${totalPages} páginas)` : ""
-}: ${groups.map((g) => g.title).join(", ")}. Definiciones, teoremas, procedimientos y ejemplos resueltos.`;
+}, con definiciones, teoremas, procedimientos y ejemplos resueltos.`;
 
 const schema = {
     "@context": "https://schema.org",
@@ -81,7 +81,7 @@ const schema = {
 <BaseLayout
     title="Libros PDF"
     description={description}
-    currentPage="books"
+    currentPage="libros"
     schema={schema}
 >
     <div class="content-section measure">

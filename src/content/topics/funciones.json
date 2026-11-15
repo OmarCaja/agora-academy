@@ -1,6 +1,7 @@
 {
     "title": "Funciones",
     "description": "Introducción al concepto de función: dominio, recorrido, monotonía, curvatura, máximos y mínimos, puntos de corte, signo, simetría, periodicidad, composición y función inversa.",
+    "levels": ["4-eso", "1-bach"],
     "menuGroup": "Funciones, límites y derivadas",
     "menuOrder": 1,
     "sections": [

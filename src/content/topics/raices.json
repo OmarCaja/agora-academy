@@ -1,6 +1,7 @@
 {
     "title": "Propiedades de las raíces",
     "description": "Propiedades de las raíces con ejemplos: raíz de un producto, de un cociente, de una potencia y de una raíz, extracción e introducción de factores, suma de radicales y racionalización.",
+    "levels": ["3-eso", "4-eso"],
     "menuGroup": "Potencias, raíces y logaritmos",
     "menuOrder": 2,
     "sections": [

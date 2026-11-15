@@ -235,7 +235,7 @@ async function buildBook(book, keepHtml) {
   // renderMath doesn't throw on bad LaTeX; it emits .katex-error spans that render as red text.
   const katexErrors = (html.match(/class="katex-error"/g) || []).length;
   if (katexErrors) console.error(`Warning: ${katexErrors} formula(s) failed to render (search katex-error with --html).`);
-  if (!Object.keys(headingPages).length) console.error(`Warning: no heading pages reported for ${book.title}; the PDF has no bookmarks and /books no deep links.`);
+  if (!Object.keys(headingPages).length) console.error(`Warning: no heading pages reported for ${book.title}; the PDF has no bookmarks and /libros no deep links.`);
   const pages = await setPdfMetadata(out, book, chapters, headingPages, id);
   console.log(path.relative(process.cwd(), out));
   return { pages, at: Object.fromEntries(Object.entries(headingPages).map(([k, v]) => [k, v + 1])) };
@@ -269,7 +269,7 @@ function addOutline(pdf, nodes) {
 
 // Chrome only writes the page title into the PDF. Add what readers and search engines show in
 // the file's properties: author, subject (what the book covers) and keywords (chapter and
-// section titles). Returns the page count, which the /books page lists.
+// section titles). Returns the page count, which the /libros page lists.
 async function setPdfMetadata(file, book, chapters, headingPages, id) {
   const pdf = await PDFDocument.load(fs.readFileSync(file));
   const sections = chapters.flatMap(ch => ch.sections.map(sec => sec.title));

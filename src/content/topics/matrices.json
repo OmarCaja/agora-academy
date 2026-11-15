@@ -1,6 +1,7 @@
 {
     "title": "Matrices",
-    "description": "Qué es una matriz, tipos de matrices y operaciones: suma, producto por un escalar y producto de matrices. Cálculo del rango por el método de Gauss, matriz inversa (Gauss-Jordan y sistema de ecuaciones) y ecuaciones matriciales.",
+    "description": "Tipos de matrices y operaciones: suma, producto por un escalar y producto de matrices. Rango por Gauss, matriz inversa y ecuaciones matriciales.",
+    "levels": ["2-bach"],
     "menuGroup": "Álgebra",
     "menuOrder": 3,
     "sections": [

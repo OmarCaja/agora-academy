@@ -1,6 +1,7 @@
 {
     "title": "Límites y continuidad",
     "description": "Estudio del límite de una función, resolución de indeterminaciones, asíntotas cartesianas y tipos de discontinuidad.",
+    "levels": ["1-bach", "2-bach"],
     "menuGroup": "Funciones, límites y derivadas",
     "menuOrder": 3,
     "sections": [

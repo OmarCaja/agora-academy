@@ -24,7 +24,7 @@ interface TopicLike {
 
 // The single topic order (group, then menuOrder, then title), shared by the
 // nav tree (Menu.astro) and the theory prev/next pagination
-// (pages/theory/[slug].astro) so the two can never drift apart.
+// (pages/teoria/[slug].astro) so the two can never drift apart.
 export const sortTopics = <T extends TopicLike>(topics: T[]): T[] => {
     const withinGroup = byRank<T>(
         (t) => t.data.menuOrder,

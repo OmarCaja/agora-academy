@@ -13,6 +13,13 @@ export const EMAIL = "info@agoraacademy.es";
 export const INSTAGRAM_HANDLE = "academia.agora.cuenca";
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/?hl=es`;
 
+// Schema.org day names (LocalBusiness JSON-LD in BaseLayout).
+export const OPENING_HOURS = {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "17:00",
+    closes: "20:00",
+};
+
 export const ADDRESS = {
     street: "Calle Fermín Caballero, 3 (edificio Máster)",
     floor: "Planta 6 [thegoodspace]",

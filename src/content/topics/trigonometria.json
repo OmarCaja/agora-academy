@@ -1,6 +1,7 @@
 {
     "title": "Trigonometría",
-    "description": "Grados y radianes, razones trigonométricas (seno, coseno, tangente y sus inversas), identidad fundamental, razones de 30°, 45° y 60°, circunferencia goniométrica, fórmulas del ángulo suma, resta, doble y mitad, teoremas del seno y del coseno, circunferencia circunscrita, área del triángulo (fórmula de Herón y con el radio) y ecuaciones trigonométricas.",
+    "description": "Grados y radianes, razones trigonométricas, circunferencia goniométrica, ángulo suma, doble y mitad, teoremas del seno y del coseno, área y ecuaciones trigonométricas.",
+    "levels": ["4-eso", "1-bach"],
     "menuGroup": "Trigonometría",
     "menuOrder": 1,
     "sections": [

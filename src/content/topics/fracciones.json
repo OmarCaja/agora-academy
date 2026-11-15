@@ -1,6 +1,7 @@
 {
     "title": "Operaciones con fracciones",
     "description": "Guía completa para dominar las fracciones: fracciones equivalentes, amplificación y simplificación, operaciones básicas, potencias, inversas y fracción generatriz de un decimal.",
+    "levels": ["1-eso", "2-eso"],
     "menuGroup": "Aritmética",
     "menuOrder": 4,
     "sections": [

@@ -27,6 +27,19 @@ export const levelTitleOverrides: Record<string, string> = {
     "2-bach": "2º Bachillerato",
 };
 
+// A theory topic's `levels` as one phrase for its page title:
+// ["1-eso", "2-eso"] -> "1º y 2º ESO", ["4-eso", "1-bach"] -> "4º ESO y 1º Bachillerato".
+const STAGES: Record<string, string> = { eso: "ESO", bach: "Bachillerato" };
+export const formatLevels = (levels: readonly string[]): string => {
+    const byStage = new Map<string, string[]>();
+    for (const level of [...levels].sort((a, b) => levelOrder.indexOf(a) - levelOrder.indexOf(b))) {
+        const [n, stage] = level.split("-");
+        byStage.set(stage, [...(byStage.get(stage) ?? []), `${n}º`]);
+    }
+    const list = new Intl.ListFormat("es");
+    return list.format([...byStage].map(([stage, ns]) => `${list.format(ns)} ${STAGES[stage]}`));
+};
+
 export const topicTitleOverrides: Record<string, string> = {
     "razones-y-proporcionalidad": "Proporcionalidad y porcentajes",
     "semejanza-trigonometria": "Semejanza y trigonometría",

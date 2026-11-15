@@ -1,6 +1,7 @@
 {
     "title": "Ecuaciones exponenciales y logarítmicas",
     "description": "Aprende a resolver ecuaciones exponenciales (igualando bases, tomando logaritmos, sacando factor común o con cambio de variable) y ecuaciones logarítmicas, comprobando siempre las soluciones.",
+    "levels": ["4-eso", "1-bach"],
     "menuGroup": "Potencias, raíces y logaritmos",
     "menuOrder": 4,
     "sections": [

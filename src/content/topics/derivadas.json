@@ -1,6 +1,7 @@
 {
     "title": "Derivadas",
     "description": "Concepto de derivada, reglas de derivación, tabla de derivadas y aplicaciones: recta tangente, monotonía, extremos relativos, curvatura, puntos de inflexión y problemas de optimización.",
+    "levels": ["1-bach", "2-bach"],
     "menuGroup": "Funciones, límites y derivadas",
     "menuOrder": 4,
     "sections": [
