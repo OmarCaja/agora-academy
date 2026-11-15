@@ -112,20 +112,14 @@ const reasons = [
 						placeholder="p. ej. regla de Sarrus, mcd, inecuaciones…"
 						autocomplete="off"
 						required
-						role="combobox"
-						aria-expanded="false"
-						aria-controls="finder-list"
-						aria-autocomplete="list"
 					/>
 					<kbd class="finder-kbd" aria-hidden="true">/</kbd>
-					<div id="finder-panel" class="finder-panel" hidden></div>
 				</div>
 				<button type="submit" class="btn btn-solid">
 					Buscar
 					<Icon name="ph:arrow-right" aria-hidden="true" />
 				</button>
 			</form>
-			<p id="finder-status" class="sr-only" aria-live="polite"></p>
 			<p class="finder-examples">
 				<span class="meta-label">Prueba con</span>
 				{
@@ -480,7 +474,6 @@ const reasons = [
 		cursor: pointer;
 	}
 
-	/* Live results: a hard-edged sheet that wipes open from the box. */
 	.finder-kbd {
 		position: absolute;
 		right: 12px;
@@ -508,106 +501,6 @@ const reasons = [
 	.finder-form .btn:focus-visible {
 		outline: var(--border-width) solid var(--text-primary);
 		outline-offset: 3px;
-	}
-	.finder-panel {
-		position: absolute;
-		top: calc(100% + 8px);
-		left: 0;
-		right: 0;
-		z-index: 20;
-		background: var(--bg-raised);
-		border: var(--border-width) solid var(--border-color);
-		box-shadow: 6px 6px 0 var(--shadow-color);
-		animation: finder-wipe 0.32s var(--ease) both;
-	}
-	@keyframes finder-wipe {
-		from {
-			clip-path: inset(0 0 100% 0);
-		}
-		to {
-			clip-path: inset(-2px -8px -8px -2px);
-		}
-	}
-	:global(.finder-list) {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		max-height: min(60vh, 440px);
-		overflow-y: auto;
-	}
-	:global(.finder-row) {
-		border-bottom: 1px solid var(--rule-color);
-		animation: finder-in 0.28s var(--ease) both;
-		animation-delay: calc(var(--n) * 28ms);
-	}
-	@keyframes finder-in {
-		from {
-			opacity: 0;
-			transform: translateX(-10px);
-		}
-	}
-	:global(.finder-link) {
-		display: grid;
-		gap: 2px 12px;
-		padding: 11px 14px;
-		color: var(--text-primary);
-		text-decoration: none;
-		grid-template-columns: 1fr auto;
-	}
-	:global(.finder-title) {
-		grid-column: 1 / -1;
-		font-weight: 700;
-	}
-	:global(.finder-kind) {
-		display: inline-block;
-		margin-right: 8px;
-		padding: 0 7px;
-		border: 1px solid currentColor;
-		font-weight: 400;
-	}
-	:global(.finder-where) {
-		font-size: var(--font-size-sm);
-		color: var(--text-muted);
-	}
-	:global(.finder-page) {
-		color: var(--text-muted);
-		white-space: nowrap;
-	}
-	:global(.finder-row[aria-selected="true"] .finder-link) {
-		background: var(--text-primary);
-		color: var(--bg-primary);
-	}
-	:global(.finder-row[aria-selected="true"] .finder-where),
-	:global(.finder-row[aria-selected="true"] .finder-page) {
-		color: var(--bg-primary);
-		opacity: 0.8;
-	}
-	.finder-panel :global(mark) {
-		background: transparent;
-		color: inherit;
-		text-decoration: underline;
-		text-decoration-thickness: 3px;
-		text-underline-offset: 3px;
-	}
-	:global(.finder-foot),
-	:global(.finder-empty) {
-		margin: 0;
-		padding: 11px 14px;
-		font-size: var(--font-size-sm);
-	}
-	:global(.finder-foot a) {
-		color: var(--text-primary);
-		font-weight: 700;
-		text-underline-offset: 3px;
-	}
-	:global(.finder-empty) {
-		color: var(--text-muted);
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.finder-panel,
-		:global(.finder-row) {
-			animation: none;
-		}
 	}
 	.finder-examples {
 		display: flex;
