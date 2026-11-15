@@ -11,3 +11,12 @@ document.addEventListener("keydown", (e) => {
         input.focus();
     }
 });
+
+// An empty search just refocuses the box instead of showing the browser's "required" bubble.
+document.addEventListener("submit", (e) => {
+    const input = e.target.querySelector?.("#finder-input");
+    if (input && !input.value.trim()) {
+        e.preventDefault();
+        input.focus();
+    }
+});
