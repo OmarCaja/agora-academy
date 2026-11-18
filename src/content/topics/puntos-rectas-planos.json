@@ -1,0 +1,60 @@
+{
+    "title": "Puntos, rectas y planos",
+    "description": "Punto, recta y plano en el espacio: sistema de referencia, vector director, vectores directores, recta por dos puntos y plano por tres puntos.",
+    "levels": [
+        "2-bach"
+    ],
+    "menuGroup": "Geometría",
+    "menuOrder": 2,
+    "sections": [
+        {
+            "title": "¿Qué es un punto?",
+            "items": [
+                {
+                    "title": "Punto del espacio",
+                    "description": "Fijamos un <strong>sistema de referencia</strong> $\\mathcal{R} = \\{O;\\ \\vec{i}, \\vec{j}, \\vec{k}\\}$: un punto $O$ (el <strong>origen</strong>) y la base canónica de $V_3$. Cada <strong>punto</strong> $P$ del espacio queda determinado por su <strong>vector de posición</strong> $\\overrightarrow{OP}$, y las <strong>coordenadas</strong> de $P$ son las de ese vector.<br>Un punto es una <strong>posición</strong> y un vector es un <strong>desplazamiento</strong>: los dos se escriben con tres números, pero no son lo mismo. Restando dos puntos (extremo menos origen) se obtiene un vector.",
+                    "formula": "$$P(x, y, z) \\iff \\overrightarrow{OP} = x\\,\\vec{i} + y\\,\\vec{j} + z\\,\\vec{k} = (x, y, z)$$",
+                    "example": "$P(2, -1, 3)$ es el punto al que se llega desde $O$ avanzando 2 en el eje $X$, $-1$ en el $Y$ y 3 en el $Z$.<br>Con $Q(5, 1, 3)$: $\\overrightarrow{PQ} = (5 - 2,\\ 1 - (-1),\\ 3 - 3) = (3, 2, 0)$.",
+                    "kind": "definicion"
+                }
+            ]
+        },
+        {
+            "title": "¿Qué es una recta?",
+            "items": [
+                {
+                    "title": "Recta: punto y vector director",
+                    "description": "Una <strong>recta</strong> $r$ queda determinada por un <strong>punto</strong> $A$ de ella y un <strong>vector director</strong> $\\vec{v} \\neq \\vec{0}$, que marca su dirección. Está formada por los puntos $X$ a los que se llega desde $A$ desplazándose un múltiplo de $\\vec{v}$.<br>Ni el punto ni el vector son únicos: sirve <strong>cualquier punto</strong> de la recta y <strong>cualquier vector paralelo</strong> a $\\vec{v}$ (no nulo).",
+                    "formula": "$$r = \\{X \\mid \\overrightarrow{AX} = \\lambda\\,\\vec{v},\\ \\lambda \\in \\mathbb{R}\\} \\qquad \\vec{v} \\neq \\vec{0}$$",
+                    "example": "La recta que pasa por $A(1, -2, 3)$ con dirección $\\vec{v} = (2, 1, -1)$:<br>• $\\lambda = 0$: $A(1, -2, 3)$.<br>• $\\lambda = 1$: $(1 + 2,\\ -2 + 1,\\ 3 - 1) = (3, -1, 2)$.<br>• $\\lambda = -1$: $(-1, -3, 4)$.<br>$(4, 2, -2)$ o $(-2, -1, 1)$ también son vectores directores de $r$.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Recta que pasa por dos puntos",
+                    "description": "Por dos puntos distintos $A$ y $B$ pasa <strong>una única recta</strong>: la de punto $A$ (o $B$) y vector director $\\overrightarrow{AB}$.",
+                    "formula": "$$A \\neq B \\Rightarrow r = \\{X \\mid \\overrightarrow{AX} = \\lambda\\,\\overrightarrow{AB},\\ \\lambda \\in \\mathbb{R}\\}$$",
+                    "example": "$A(1, 0, 2)$ y $B(3, -1, 4)$: $\\vec{v} = \\overrightarrow{AB} = (2, -1, 2)$. La recta pasa por $A$ ($\\lambda = 0$) y por $B$ ($\\lambda = 1$).",
+                    "kind": "propiedad"
+                }
+            ]
+        },
+        {
+            "title": "¿Qué es un plano?",
+            "items": [
+                {
+                    "title": "Plano: punto y dos vectores directores",
+                    "description": "Un <strong>plano</strong> $\\pi$ queda determinado por un <strong>punto</strong> $A$ y dos <strong>vectores directores</strong> $\\vec{u}$ y $\\vec{v}$ <strong>no paralelos</strong> (linealmente independientes). Está formado por los puntos $X$ a los que se llega desde $A$ con una combinación lineal de $\\vec{u}$ y $\\vec{v}$.<br>Si $\\vec{u}$ y $\\vec{v}$ fueran paralelos, solo darían una dirección y se obtendría una recta, no un plano.",
+                    "formula": "$$\\pi = \\{X \\mid \\overrightarrow{AX} = \\lambda\\,\\vec{u} + \\mu\\,\\vec{v},\\ \\lambda, \\mu \\in \\mathbb{R}\\} \\qquad \\vec{u} \\nparallel \\vec{v}$$",
+                    "example": "$A(1, 0, 2)$, $\\vec{u} = (1, 2, -1)$, $\\vec{v} = (0, 1, 3)$: no son proporcionales ($v_1 = 0$ pero $u_1 = 1 \\neq 0$), luego determinan un plano.<br>Con $\\lambda = 1$, $\\mu = 1$: $(1 + 1 + 0,\\ 0 + 2 + 1,\\ 2 - 1 + 3) = (2, 3, 4) \\in \\pi$.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Puntos alineados y plano por tres puntos",
+                    "description": "Tres puntos $A$, $B$, $C$ están <strong>alineados</strong> si $\\overrightarrow{AB}$ y $\\overrightarrow{AC}$ son paralelos (proporcionales). Si <strong>no están alineados</strong>, determinan <strong>un único plano</strong>: el de punto $A$ y vectores directores $\\overrightarrow{AB}$ y $\\overrightarrow{AC}$.<br>Por tres puntos alineados pasan infinitos planos (todos los que contienen su recta).",
+                    "example": "$A(1, 0, 2)$, $B(3, -1, 4)$, $C(5, -2, 6)$, $D(0, 1, 1)$:<br>• $\\overrightarrow{AB} = (2, -1, 2)$, $\\overrightarrow{AC} = (4, -2, 4) = 2\\,\\overrightarrow{AB}$ → $A$, $B$, $C$ <strong>alineados</strong>.<br>• $\\overrightarrow{AD} = (-1, 1, -1)$ no es proporcional a $\\overrightarrow{AB}$ ($\\tfrac{-1}{2} \\neq \\tfrac{1}{-1}$) → $A$, $B$, $D$ <strong>determinan un plano</strong>.",
+                    "kind": "propiedad"
+                }
+            ]
+        }
+    ]
+}

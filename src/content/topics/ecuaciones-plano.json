@@ -1,0 +1,98 @@
+{
+    "title": "Ecuaciones del plano",
+    "description": "Ecuaciones del plano en el espacio: vectorial, paramétricas y general, cómo pasar de unas a otras con determinantes y el vector normal.",
+    "levels": [
+        "2-bach"
+    ],
+    "menuGroup": "Geometría",
+    "menuOrder": 4,
+    "sections": [
+        {
+            "title": "Ecuación vectorial",
+            "items": [
+                {
+                    "title": "Ecuación vectorial",
+                    "description": "Es la definición de plano escrita con vectores de posición: el punto genérico $X(x, y, z)$ se obtiene sumando al punto $A$ una <strong>combinación lineal</strong> de los dos vectores directores $\\vec{u}$ y $\\vec{v}$. Tiene <strong>dos parámetros</strong>, $\\lambda$ y $\\mu$ (uno por cada vector director), y se escribe como <strong>una sola igualdad entre vectores</strong>.",
+                    "formula": "$$(x, y, z) = (a_1, a_2, a_3) + \\lambda\\,(u_1, u_2, u_3) + \\mu\\,(v_1, v_2, v_3), \\quad \\lambda, \\mu \\in \\mathbb{R}$$",
+                    "example": "$A(1, 0, 2)$, $\\vec{u} = (1, 2, -1)$, $\\vec{v} = (0, 1, 3)$: $$\\pi: (x, y, z) = (1, 0, 2) + \\lambda\\,(1, 2, -1) + \\mu\\,(0, 1, 3)$$ Con $\\lambda = 1$, $\\mu = 1$: $(1, 0, 2) + (1, 2, -1) + (0, 1, 3) = (2, 3, 4) \\in \\pi$.",
+                    "kind": "definicion"
+                }
+            ]
+        },
+        {
+            "title": "Ecuaciones paramétricas",
+            "items": [
+                {
+                    "title": "Ecuaciones paramétricas",
+                    "description": "Se obtienen de la ecuación vectorial <strong>igualando coordenada a coordenada</strong>: son <strong>tres ecuaciones</strong>, una para $x$, otra para $y$ y otra para $z$, con los mismos dos parámetros $\\lambda$ y $\\mu$.<br>Para comprobar si un punto <strong>pertenece</strong> al plano, se sustituye y se buscan $\\lambda$ y $\\mu$ con dos de las ecuaciones; el punto es del plano si esos valores cumplen también la tercera.",
+                    "formula": "$$\\begin{cases} x = a_1 + \\lambda u_1 + \\mu v_1 \\\\ y = a_2 + \\lambda u_2 + \\mu v_2 \\\\ z = a_3 + \\lambda u_3 + \\mu v_3 \\end{cases} \\quad \\lambda, \\mu \\in \\mathbb{R}$$",
+                    "example": "Del plano anterior: $$\\pi: \\begin{cases} x = 1 + \\lambda \\\\ y = 2\\lambda + \\mu \\\\ z = 2 - \\lambda + 3\\mu \\end{cases}$$ ¿$P(2, 3, 4) \\in \\pi$? De $x$: $\\lambda = 1$; de $y$: $3 = 2 + \\mu \\Rightarrow \\mu = 1$; en $z$: $2 - 1 + 3 = 4$ ✓ → <strong>sí</strong>.<br>¿$Q(2, 3, 0) \\in \\pi$? Mismos $\\lambda = 1$, $\\mu = 1$, pero $z = 4 \\neq 0$ → <strong>no</strong>.",
+                    "kind": "definicion"
+                }
+            ]
+        },
+        {
+            "title": "Ecuación general",
+            "items": [
+                {
+                    "title": "Ecuación general (implícita)",
+                    "description": "Es una única ecuación lineal en $x$, $y$, $z$, sin parámetros. Los puntos del plano son exactamente los que la cumplen.<br>Es la más útil para comprobar si un punto <strong>pertenece</strong> al plano (se sustituye) y para estudiar posiciones relativas.",
+                    "formula": "$$\\pi: Ax + By + Cz + D = 0 \\qquad (A, B, C) \\neq (0, 0, 0)$$",
+                    "example": "$\\pi: 7x - 3y + z - 9 = 0$.<br>• $(1, 0, 2)$: $7 - 0 + 2 - 9 = 0$ → pertenece.<br>• $(1, 1, 1)$: $7 - 3 + 1 - 9 = -4 \\neq 0$ → no pertenece.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "De vectorial o paramétricas a general: con un determinante",
+                    "description": "Un punto $X(x, y, z)$ está en el plano si y solo si $\\overrightarrow{AX}$ es <strong>combinación lineal</strong> de $\\vec{u}$ y $\\vec{v}$, es decir, si los tres vectores $\\overrightarrow{AX}$, $\\vec{u}$, $\\vec{v}$ son <strong>linealmente dependientes</strong> (coplanarios). Tres vectores de $V_3$ son dependientes si y solo si su <strong>determinante es cero</strong>.<br>Se escribe ese determinante, se desarrolla por la primera fila y se simplifica.",
+                    "formula": "$$\\begin{vmatrix} x - a_1 & y - a_2 & z - a_3 \\\\ u_1 & u_2 & u_3 \\\\ v_1 & v_2 & v_3 \\end{vmatrix} = 0$$",
+                    "example": "$A(1, 0, 2)$, $\\vec{u} = (1, 2, -1)$, $\\vec{v} = (0, 1, 3)$: $$\\begin{vmatrix} x - 1 & y & z - 2 \\\\ 1 & 2 & -1 \\\\ 0 & 1 & 3 \\end{vmatrix} = (x - 1)\\begin{vmatrix} 2 & -1 \\\\ 1 & 3 \\end{vmatrix} - y\\begin{vmatrix} 1 & -1 \\\\ 0 & 3 \\end{vmatrix} + (z - 2)\\begin{vmatrix} 1 & 2 \\\\ 0 & 1 \\end{vmatrix}$$ $$= 7(x - 1) - 3y + (z - 2) = 0 \\Rightarrow \\pi: 7x - 3y + z - 9 = 0$$",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Plano que pasa por tres puntos",
+                    "description": "Si $A$, $B$, $C$ no están alineados, se toma el punto $A$ y los vectores directores $\\overrightarrow{AB}$ y $\\overrightarrow{AC}$, y se aplica el determinante anterior.<br>Si sale el determinante idénticamente nulo ($0 = 0$), es que los puntos estaban alineados.",
+                    "formula": "$$\\begin{vmatrix} x - a_1 & y - a_2 & z - a_3 \\\\ b_1 - a_1 & b_2 - a_2 & b_3 - a_3 \\\\ c_1 - a_1 & c_2 - a_2 & c_3 - a_3 \\end{vmatrix} = 0$$",
+                    "example": "$P(1, 0, 0)$, $Q(0, 2, 0)$, $R(0, 0, 3)$: $\\overrightarrow{PQ} = (-1, 2, 0)$, $\\overrightarrow{PR} = (-1, 0, 3)$. $$\\begin{vmatrix} x - 1 & y & z \\\\ -1 & 2 & 0 \\\\ -1 & 0 & 3 \\end{vmatrix} = 6(x - 1) - y\\,(-3) + z\\,(2) = 0 \\Rightarrow 6x + 3y + 2z - 6 = 0$$ Comprobación: $Q$: $6 - 6 = 0$ ✓; $R$: $6 - 6 = 0$ ✓.",
+                    "kind": "procedimiento"
+                }
+            ]
+        },
+        {
+            "title": "Vector normal",
+            "items": [
+                {
+                    "title": "Vector normal del plano",
+                    "description": "Un <strong>vector normal</strong> de un plano es un vector no nulo <strong>perpendicular</strong> a él (a todos sus vectores directores). En la ecuación general, los coeficientes de $x$, $y$, $z$ forman un vector normal.<br><strong>Por qué</strong>: si $P$ y $Q$ son del plano, restando sus ecuaciones queda $A(p_1 - q_1) + B(p_2 - q_2) + C(p_3 - q_3) = 0$, es decir, $\\vec{n} \\cdot \\overrightarrow{QP} = 0$.<br>Un punto y un vector normal también determinan el plano: se escribe $Ax + By + Cz + D = 0$ con $\\vec{n}$ y se halla $D$ sustituyendo el punto.",
+                    "formula": "$$\\pi: Ax + By + Cz + D = 0 \\Rightarrow \\vec{n} = (A, B, C) \\perp \\pi$$",
+                    "example": "• $\\pi: 7x - 3y + z - 9 = 0 \\Rightarrow \\vec{n} = (7, -3, 1)$. Comprobación con $\\vec{u} = (1, 2, -1)$: $7 - 6 - 1 = 0$ ✓.<br>• Plano por $P(1, 1, 0)$ con $\\vec{n} = (2, -1, 3)$: $2x - y + 3z + D = 0$; con $P$: $2 - 1 + 0 + D = 0 \\Rightarrow D = -1$. $$\\pi: 2x - y + 3z - 1 = 0$$",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "El vector normal es $\\vec{u} \\times \\vec{v}$",
+                    "description": "Al desarrollar el determinante por la primera fila, los coeficientes de $x$, $y$, $z$ son los adjuntos de esa fila, que son justo las coordenadas del <strong>producto vectorial</strong> $\\vec{u} \\times \\vec{v}$. Es lógico: $\\vec{u} \\times \\vec{v}$ es perpendicular a los dos vectores directores.<br>Así se obtiene la ecuación general en dos pasos: $\\vec{n} = \\vec{u} \\times \\vec{v}$ y luego $D$ con el punto.",
+                    "formula": "$$\\vec{n} = \\vec{u} \\times \\vec{v} = \\begin{vmatrix} \\vec{i} & \\vec{j} & \\vec{k} \\\\ u_1 & u_2 & u_3 \\\\ v_1 & v_2 & v_3 \\end{vmatrix}$$",
+                    "example": "$\\vec{u} = (1, 2, -1)$, $\\vec{v} = (0, 1, 3)$: $$\\vec{u} \\times \\vec{v} = (2 \\cdot 3 - (-1) \\cdot 1,\\ (-1) \\cdot 0 - 1 \\cdot 3,\\ 1 \\cdot 1 - 2 \\cdot 0) = (7, -3, 1)$$ Los mismos coeficientes que en $7x - 3y + z - 9 = 0$ ✓.",
+                    "kind": "propiedad"
+                },
+                {
+                    "title": "Vector director de una recta dada en implícitas",
+                    "description": "Si $r$ es la intersección de dos planos con normales $\\vec{n}_1$ y $\\vec{n}_2$, su dirección es perpendicular a ambas normales, así que un vector director es su producto vectorial. Para un punto, se da un valor a una incógnita y se resuelve el sistema $2 \\times 2$ que queda.",
+                    "formula": "$$\\vec{v} = \\vec{n}_1 \\times \\vec{n}_2$$",
+                    "example": "$r: \\begin{cases} x - 2y - 5 = 0 \\\\ y + z - 1 = 0 \\end{cases}$: $\\vec{n}_1 = (1, -2, 0)$, $\\vec{n}_2 = (0, 1, 1)$. $$\\vec{v} = \\vec{n}_1 \\times \\vec{n}_2 = (-2 \\cdot 1 - 0 \\cdot 1,\\ 0 \\cdot 0 - 1 \\cdot 1,\\ 1 \\cdot 1 - (-2) \\cdot 0) = (-2, -1, 1)$$ Es paralelo a $(2, 1, -1)$, el vector que obtuvimos resolviendo el sistema ✓. Con $y = 0$: $x = 5$, $z = 1$ → punto $(5, 0, 1)$.",
+                    "kind": "propiedad"
+                }
+            ]
+        },
+        {
+            "title": "De la ecuación general a las paramétricas",
+            "items": [
+                {
+                    "title": "De general a paramétricas",
+                    "description": "La ecuación general es un sistema de una ecuación con tres incógnitas: compatible indeterminado con <strong>dos parámetros</strong>. Se despeja una incógnita (cuyo coeficiente no sea $0$) y las otras dos pasan a ser $\\lambda$ y $\\mu$.",
+                    "example": "$\\pi: 2x - y + 3z - 4 = 0 \\Rightarrow y = 2x + 3z - 4$. Con $x = \\lambda$, $z = \\mu$: $$\\pi: \\begin{cases} x = \\lambda \\\\ y = -4 + 2\\lambda + 3\\mu \\\\ z = \\mu \\end{cases} \\Rightarrow A(0, -4, 0),\\ \\vec{u} = (1, 2, 0),\\ \\vec{v} = (0, 3, 1)$$ Comprobación: $\\vec{n} = (2, -1, 3)$ y $\\vec{n} \\cdot \\vec{u} = 2 - 2 + 0 = 0$, $\\vec{n} \\cdot \\vec{v} = 0 - 3 + 3 = 0$ ✓.",
+                    "kind": "procedimiento"
+                }
+            ]
+        }
+    ]
+}

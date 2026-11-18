@@ -1,0 +1,118 @@
+{
+    "title": "Posiciones relativas",
+    "description": "Posiciones relativas en el espacio de dos rectas, recta y plano, dos planos y tres planos, estudiadas con rangos y determinantes.",
+    "levels": [
+        "2-bach"
+    ],
+    "menuGroup": "Geometría",
+    "menuOrder": 5,
+    "sections": [
+        {
+            "title": "Posiciones relativas de dos rectas",
+            "items": [
+                {
+                    "title": "Posiciones de dos rectas en el espacio",
+                    "description": "Dos rectas del espacio pueden estar:<br>• <strong>Coincidentes</strong>: son la misma recta (infinitos puntos comunes).<br>• <strong>Paralelas</strong>: misma dirección y ningún punto común.<br>• <strong>Secantes</strong>: se cortan en un único punto.<br>• <strong>Se cruzan</strong>: ni se cortan ni son paralelas. Esto <strong>no ocurre en el plano</strong>: son rectas que no están en un mismo plano.<br>Las tres primeras son <strong>coplanarias</strong> (hay un plano que contiene a las dos).",
+                    "example": "En un cubo, la arista de abajo delante y la de arriba a la derecha <strong>se cruzan</strong>: no se tocan y no son paralelas. Dos aristas opuestas de una misma cara son <strong>paralelas</strong>; dos aristas que comparten vértice son <strong>secantes</strong>.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Estudio con los vectores y un determinante",
+                    "description": "Sean $r$ (punto $A$, vector $\\vec{u}$) y $s$ (punto $B$, vector $\\vec{v}$). Se forman la matriz $M$ con los dos vectores directores y la matriz $M'$ añadiendo $\\overrightarrow{AB}$:<br>• $\\operatorname{rg}(M)$ dice si las direcciones son iguales (rango 1) o distintas (rango 2).<br>• $\\det(M') = 0$ dice si $\\vec{u}$, $\\vec{v}$ y $\\overrightarrow{AB}$ son coplanarios, es decir, si las rectas están en un mismo plano.",
+                    "formula": "$$M = \\begin{pmatrix} \\vec{u} \\\\ \\vec{v} \\end{pmatrix} \\quad M' = \\begin{pmatrix} \\vec{u} \\\\ \\vec{v} \\\\ \\overrightarrow{AB} \\end{pmatrix} \\qquad \\begin{array}{c|c|l} \\operatorname{rg}(M) & \\operatorname{rg}(M') & \\text{Posición} \\\\ \\hline 1 & 1 & \\text{Coincidentes} \\\\ 1 & 2 & \\text{Paralelas} \\\\ 2 & 2 & \\text{Secantes} \\\\ 2 & 3 & \\text{Se cruzan} \\end{array}$$",
+                    "example": "Atajo práctico: calcula primero $\\det(M')$.<br>• $\\det(M') \\neq 0$ → <strong>se cruzan</strong>.<br>• $\\det(M') = 0$ → coplanarias: si $\\vec{u} \\parallel \\vec{v}$, paralelas o coincidentes (mira si $A \\in s$); si no, secantes.",
+                    "kind": "teorema"
+                },
+                {
+                    "title": "Ejemplos: paralelas, coincidentes, secantes y se cruzan",
+                    "example": "<strong>1.</strong> $r: (1, 0, 2) + \\lambda\\,(2, -1, 1)$, $s: (0, 1, 1) + \\mu\\,(-4, 2, -2)$.<br>$\\vec{v} = -2\\,\\vec{u}$ → $\\operatorname{rg}(M) = 1$. $\\overrightarrow{AB} = (-1, 1, -1)$ y $\\begin{vmatrix} 2 & -1 \\\\ -1 & 1 \\end{vmatrix} = 1 \\neq 0$ → $\\operatorname{rg}(M') = 2$: <strong>paralelas</strong>.<br><strong>2.</strong> Si $s: (3, -1, 3) + \\mu\\,(-4, 2, -2)$: $\\overrightarrow{AB} = (2, -1, 1) = \\vec{u}$ → $\\operatorname{rg}(M') = 1$: <strong>coincidentes</strong>.<br><strong>3.</strong> $r: (1, 0, 2) + \\lambda\\,(1, 1, -1)$, $s: (2, 0, 0) + \\mu\\,(0, 1, 1)$. $\\overrightarrow{AB} = (1, 0, -2)$: $$\\det(M') = \\begin{vmatrix} 1 & 1 & -1 \\\\ 0 & 1 & 1 \\\\ 1 & 0 & -2 \\end{vmatrix} = -2 - 1 \\cdot (0 - 1) + (-1)(0 - 1) = 0$$ y $\\vec{u} \\nparallel \\vec{v}$ → <strong>secantes</strong>. Igualando: $1 + \\lambda = 2$, $\\lambda = \\mu$, $2 - \\lambda = \\mu$ → $\\lambda = \\mu = 1$, punto de corte $\\textcolor{#4fa66e}{(2, 1, 1)}$.<br><strong>4.</strong> $r: (1, 0, 0) + \\lambda\\,(1, 1, 0)$, $s: (0, 0, 1) + \\mu\\,(1, 0, 1)$. $\\overrightarrow{AB} = (-1, 0, 1)$: $$\\det(M') = \\begin{vmatrix} 1 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ -1 & 0 & 1 \\end{vmatrix} = 1 \\cdot 0 - 1 \\cdot (1 + 1) + 0 = -2 \\neq 0$$ → <strong>se cruzan</strong>.",
+                    "kind": "ejemplo"
+                },
+                {
+                    "title": "Estudio con las ecuaciones implícitas",
+                    "description": "Si las dos rectas vienen en implícitas, sus cuatro ecuaciones forman un sistema de 4 ecuaciones con 3 incógnitas. Se comparan el rango de la matriz de coeficientes $A$ ($4 \\times 3$) y el de la ampliada $A^*$ ($4 \\times 4$), como en Rouché-Frobenius: si los rangos son iguales hay puntos comunes, y $\\operatorname{rg}(A)$ indica si las direcciones coinciden.<br>Para ver si $\\operatorname{rg}(A^*) = 4$ basta con calcular $\\det(A^*)$.",
+                    "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(A) & \\operatorname{rg}(A^*) & \\text{Posición} \\\\ \\hline 2 & 2 & \\text{Coincidentes} \\\\ 2 & 3 & \\text{Paralelas} \\\\ 3 & 3 & \\text{Secantes} \\\\ 3 & 4 & \\text{Se cruzan} \\end{array}$$",
+                    "example": "$r: \\begin{cases} x - y = 0 \\\\ z = 1 \\end{cases}$ $s: \\begin{cases} x + y = 2 \\\\ z = 3 \\end{cases}$ $$A^* = \\left(\\begin{array}{ccc|c} 1 & -1 & 0 & 0 \\\\ 0 & 0 & 1 & 1 \\\\ 1 & 1 & 0 & 2 \\\\ 0 & 0 & 1 & 3 \\end{array}\\right)$$ En $A$, $\\begin{vmatrix} 1 & -1 & 0 \\\\ 0 & 0 & 1 \\\\ 1 & 1 & 0 \\end{vmatrix} = -2 \\neq 0$ → $\\operatorname{rg}(A) = 3$. $\\det(A^*) = -4 \\neq 0$ → $\\operatorname{rg}(A^*) = 4$: <strong>se cruzan</strong>.<br>Se ve también a ojo: $r$ está en el plano $z = 1$, $s$ en $z = 3$ (no se cortan), y sus direcciones $(1, 1, 0)$ y $(1, -1, 0)$ no son paralelas.",
+                    "kind": "procedimiento"
+                }
+            ]
+        },
+        {
+            "title": "Posiciones relativas de recta y plano",
+            "items": [
+                {
+                    "title": "Posiciones de una recta y un plano",
+                    "description": "Una recta $r$ y un plano $\\pi$ pueden estar:<br>• <strong>Recta contenida en el plano</strong>: todos los puntos de $r$ son de $\\pi$.<br>• <strong>Paralelos</strong>: no tienen ningún punto común.<br>• <strong>Secantes</strong>: se cortan en un único punto.",
+                    "example": "En una habitación, la línea donde se juntan suelo y pared está <strong>contenida</strong> en el suelo; la línea donde se juntan techo y pared es <strong>paralela</strong> al suelo; la arista vertical de una esquina es <strong>secante</strong> al suelo.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Estudio con rangos y determinantes",
+                    "description": "Con $r$ en implícitas (dos ecuaciones) y $\\pi$ en general (una), queda un sistema de 3 ecuaciones con 3 incógnitas. Sus soluciones son los puntos comunes.<br>• $\\det(A) \\neq 0$: $\\operatorname{rg}(A) = 3 = \\operatorname{rg}(A^*)$, sistema compatible determinado → <strong>secantes</strong> (el punto de corte es la solución, por Cramer o Gauss).<br>• $\\det(A) = 0$: $\\operatorname{rg}(A) = 2$ (las ecuaciones de $r$ ya dan rango 2) y se mira $A^*$.",
+                    "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(A) & \\operatorname{rg}(A^*) & \\text{Posición} \\\\ \\hline 3 & 3 & \\text{Secantes (un punto)} \\\\ 2 & 3 & \\text{Paralelos} \\\\ 2 & 2 & \\text{Recta contenida en el plano} \\end{array}$$",
+                    "example": "$r: \\begin{cases} x - y = 1 \\\\ y + z = 2 \\end{cases}$, $\\pi: x + y + z = 6$. $$\\det(A) = \\begin{vmatrix} 1 & -1 & 0 \\\\ 0 & 1 & 1 \\\\ 1 & 1 & 1 \\end{vmatrix} = 1 \\cdot (1 - 1) + 1 \\cdot (0 - 1) + 0 = -1 \\neq 0$$ → <strong>secantes</strong>. Resolviendo: $\\textcolor{#4fa66e}{(4, 3, -1)}$. Comprobación: $4 - 3 = 1$ ✓, $3 - 1 = 2$ ✓, $4 + 3 - 1 = 6$ ✓.",
+                    "kind": "teorema"
+                },
+                {
+                    "title": "Discusión con un parámetro",
+                    "description": "Cuando las ecuaciones tienen parámetros, se calcula $\\det(A)$ en función de ellos y se iguala a $0$: los valores que lo anulan son los casos especiales (paralelos o contenida); para el resto, la recta y el plano son secantes.",
+                    "example": "$r: \\begin{cases} x - y = 1 \\\\ y + z = 2 \\end{cases}$, $\\pi: x + mz = k$. $$\\det(A) = \\begin{vmatrix} 1 & -1 & 0 \\\\ 0 & 1 & 1 \\\\ 1 & 0 & m \\end{vmatrix} = m - 1$$ • $m \\neq 1$: <strong>secantes</strong>.<br>• $m = 1$: $\\pi: x + z = k$. Los coeficientes $(1, 0, 1)$ son la suma de las dos filas de $r$, que suman $1 + 2 = 3$ a la derecha, así que la última fila de $A^*$ menos las otras dos es $(0, 0, 0 \\mid k - 3)$:<br>&nbsp;&nbsp;– $k = 3$: $\\operatorname{rg}(A^*) = 2$ → <strong>recta contenida</strong>.<br>&nbsp;&nbsp;– $k \\neq 3$: $\\operatorname{rg}(A^*) = 3$ → <strong>paralelos</strong>.",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "Estudio con el vector director y el normal",
+                    "description": "Si la recta viene con punto $A$ y vector $\\vec{v}$, y el plano con su ecuación general (normal $\\vec{n}$), hay un camino más corto:<br>• $\\vec{v} \\cdot \\vec{n} \\neq 0$ → <strong>secantes</strong> (la recta no es perpendicular a la normal, así que «atraviesa» el plano).<br>• $\\vec{v} \\cdot \\vec{n} = 0$ → la recta es paralela a la dirección del plano: si $A \\in \\pi$, <strong>contenida</strong>; si $A \\notin \\pi$, <strong>paralelos</strong>.<br>Para el punto de corte, se sustituyen las paramétricas de $r$ en la ecuación de $\\pi$ y se despeja $\\lambda$.",
+                    "example": "$r: (1, 2, 0) + \\lambda\\,(1, 1, 2)$:<br>• $\\pi_1: x + y - z = 3$. $\\vec{v} \\cdot \\vec{n} = 1 + 1 - 2 = 0$ y $A$: $1 + 2 - 0 = 3$ ✓ → <strong>contenida</strong>.<br>• $\\pi_2: x + y - z = 5$. Mismo producto $0$, pero $1 + 2 - 0 = 3 \\neq 5$ → <strong>paralelos</strong>.<br>• $\\pi_3: 2x - y + z = 1$. $\\vec{v} \\cdot \\vec{n} = 2 - 1 + 2 = 3 \\neq 0$ → <strong>secantes</strong>: $2(1 + \\lambda) - (2 + \\lambda) + 2\\lambda = 1 \\Rightarrow 3\\lambda = 1 \\Rightarrow \\lambda = \\tfrac{1}{3}$, punto $\\left(\\tfrac{4}{3}, \\tfrac{7}{3}, \\tfrac{2}{3}\\right)$.",
+                    "kind": "propiedad"
+                }
+            ]
+        },
+        {
+            "title": "Posiciones relativas de dos planos",
+            "items": [
+                {
+                    "title": "Posiciones de dos planos",
+                    "description": "Dos planos pueden ser:<br>• <strong>Coincidentes</strong>: son el mismo plano.<br>• <strong>Paralelos</strong>: no tienen ningún punto común.<br>• <strong>Secantes</strong>: se cortan en una <strong>recta</strong> (en el espacio, dos planos nunca se cortan en un solo punto).",
+                    "example": "El suelo y el techo de una habitación son <strong>paralelos</strong>; el suelo y una pared son <strong>secantes</strong> y se cortan en la línea del rodapié.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Estudio con rangos",
+                    "description": "Las dos ecuaciones generales forman un sistema de 2 ecuaciones con 3 incógnitas, con matriz de coeficientes $A$ ($2 \\times 3$) y ampliada $A^*$ ($2 \\times 4$).<br>$\\operatorname{rg}(A) = 1$ significa que las normales son proporcionales (planos paralelos o coincidentes); $\\operatorname{rg}(A^*)$ decide si hay puntos comunes.<br>En la práctica equivale a comparar cocientes: $\\tfrac{A}{A'} = \\tfrac{B}{B'} = \\tfrac{C}{C'} = \\tfrac{D}{D'}$ coincidentes; los tres primeros iguales pero distinto del cuarto, paralelos; si los tres primeros no son iguales, secantes.",
+                    "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(A) & \\operatorname{rg}(A^*) & \\text{Posición} \\\\ \\hline 1 & 1 & \\text{Coincidentes} \\\\ 1 & 2 & \\text{Paralelos} \\\\ 2 & 2 & \\text{Secantes (una recta)} \\end{array}$$",
+                    "example": "$\\pi_1: 2x - y + 3z = 1$.<br>• $\\pi_2: 4x - 2y + 6z = 2$: $\\tfrac{2}{4} = \\tfrac{-1}{-2} = \\tfrac{3}{6} = \\tfrac{1}{2}$ → <strong>coincidentes</strong>.<br>• $\\pi_2: 4x - 2y + 6z = 5$: $\\operatorname{rg}(A) = 1$, pero $\\begin{vmatrix} 2 & 1 \\\\ 4 & 5 \\end{vmatrix} = 6 \\neq 0$ → $\\operatorname{rg}(A^*) = 2$: <strong>paralelos</strong>.<br>• $\\pi_2: x + y - z = 2$: $\\begin{vmatrix} 2 & -1 \\\\ 1 & 1 \\end{vmatrix} = 3 \\neq 0$ → $\\operatorname{rg}(A) = 2$: <strong>secantes</strong>. La recta de corte tiene $\\vec{v} = \\vec{n}_1 \\times \\vec{n}_2 = (-2, 5, 3)$ y, con $z = 0$, pasa por $(1, 1, 0)$.",
+                    "kind": "teorema"
+                }
+            ]
+        },
+        {
+            "title": "Posiciones relativas de tres planos",
+            "items": [
+                {
+                    "title": "Posiciones de tres planos",
+                    "description": "Tres planos $\\pi_1$, $\\pi_2$, $\\pi_3$ pueden:<br>• Cortarse en <strong>un único punto</strong> (como dos paredes y el suelo en una esquina).<br>• Cortarse en <strong>una recta</strong> común (como las hojas de un libro abierto): se dice que forman un <strong>haz</strong>.<br>• Cortarse <strong>dos a dos</strong> en tres rectas paralelas, sin punto común a los tres (forman un <strong>prisma</strong> triangular abierto).<br>• Tener <strong>dos planos paralelos</strong> y el tercero cortándolos (en dos rectas paralelas).<br>• Ser los tres <strong>paralelos</strong>, o tener planos <strong>coincidentes</strong>.",
+                    "example": "Piensa en una caja: dos caras laterales y el fondo se cortan en un punto (una esquina); las dos tapas (arriba y abajo) son paralelas y cualquier cara lateral las corta.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Estudio con rangos y determinantes",
+                    "description": "Las tres ecuaciones forman un sistema $3 \\times 3$ con matriz $A$ y ampliada $A^*$. Por Rouché-Frobenius, $\\operatorname{rg}(A) = \\operatorname{rg}(A^*)$ si y solo si hay puntos comunes a los tres planos. Cuando hay dos casos posibles para los mismos rangos, se distinguen mirando si hay <strong>filas proporcionales</strong>: dos filas de $A$ proporcionales son planos paralelos o coincidentes, y si también lo son en $A^*$, coincidentes.",
+                    "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(A) & \\operatorname{rg}(A^*) & \\text{Posición} \\\\ \\hline 3 & 3 & \\text{Se cortan en un punto} \\\\ 2 & 3 & \\begin{array}{l} \\text{Sin filas proporcionales: prisma} \\\\ \\text{Dos paralelos y el tercero secante} \\end{array} \\\\ 2 & 2 & \\begin{array}{l} \\text{Distintos: haz (una recta común)} \\\\ \\text{Dos coincidentes y el tercero secante} \\end{array} \\\\ 1 & 2 & \\begin{array}{l} \\text{Tres paralelos} \\\\ \\text{Dos coincidentes y el tercero paralelo} \\end{array} \\\\ 1 & 1 & \\text{Tres coincidentes} \\end{array}$$",
+                    "example": "Orden práctico:<br>1. Calcula $\\det(A)$. Si es $\\neq 0$, los planos se cortan en un punto (resuélvelo por Cramer).<br>2. Si es $0$, halla ${rg}(A)$ y ${rg}(A^*)$ (orlando menores).<br>3. Mira si hay filas proporcionales para elegir el caso de la tabla.",
+                    "kind": "teorema"
+                },
+                {
+                    "title": "Ejemplos de cada caso",
+                    "example": "<strong>1. Un punto</strong>: $\\begin{cases} x + y + z = 6 \\\\ x - y + z = 2 \\\\ 2x + y - z = 1 \\end{cases}$ $\\det(A) = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & -1 & 1 \\\\ 2 & 1 & -1 \\end{vmatrix} = 6 \\neq 0$ → se cortan en $\\textcolor{#4fa66e}{(1, 2, 3)}$.<br><strong>2. Prisma</strong>: $\\begin{cases} x + y + z = 1 \\\\ x - y + z = 2 \\\\ 2x + 2z = 5 \\end{cases}$ La 3.ª fila de $A$ es la suma de las dos primeras, pero $1 + 2 = 3 \\neq 5$: $\\operatorname{rg}(A) = 2$, $\\operatorname{rg}(A^*) = 3$, sin filas proporcionales → se cortan dos a dos.<br><strong>3. Dos paralelos</strong>: $\\begin{cases} x + y + z = 1 \\\\ x + y + z = 4 \\\\ x - y + 2z = 0 \\end{cases}$ $\\operatorname{rg}(A) = 2$, $\\operatorname{rg}(A^*) = 3$; las dos primeras filas de $A$ son iguales y las de $A^*$ no → $\\pi_1 \\parallel \\pi_2$ y $\\pi_3$ los corta.<br><strong>4. Haz</strong>: $\\begin{cases} x + y + z = 1 \\\\ x - y + z = 2 \\\\ 2x + 2z = 3 \\end{cases}$ Ahora $1 + 2 = 3$: $\\operatorname{rg}(A) = \\operatorname{rg}(A^*) = 2$ y no hay planos iguales → los tres pasan por la recta $\\left(\\tfrac{3}{2}, -\\tfrac{1}{2}, 0\\right) + \\lambda\\,(-1, 0, 1)$.<br><strong>5. Tres paralelos</strong>: $\\begin{cases} x + y + z = 1 \\\\ 2x + 2y + 2z = 5 \\\\ x + y + z = 3 \\end{cases}$ $\\operatorname{rg}(A) = 1$, $\\operatorname{rg}(A^*) = 2$ y ninguna fila de $A^*$ es proporcional a otra → tres planos paralelos distintos.",
+                    "kind": "ejemplo"
+                },
+                {
+                    "title": "Discusión con un parámetro",
+                    "description": "Se calcula $\\det(A)$ en función del parámetro y se buscan sus raíces. Para los demás valores los planos se cortan en un punto; cada raíz se estudia aparte sustituyéndola y calculando rangos.",
+                    "example": "$\\begin{cases} x + y + az = 1 \\\\ x + ay + z = 1 \\\\ ax + y + z = 1 \\end{cases}$ $$\\det(A) = \\begin{vmatrix} 1 & 1 & a \\\\ 1 & a & 1 \\\\ a & 1 & 1 \\end{vmatrix} = -a^3 + 3a - 2 = -(a - 1)^2(a + 2)$$ • $a \\neq 1$ y $a \\neq -2$: se cortan en <strong>un punto</strong>.<br>• $a = 1$: las tres ecuaciones son $x + y + z = 1$ → <strong>tres planos coincidentes</strong>.<br>• $a = -2$: las filas de $A$ suman $(0, 0, 0)$, luego $\\operatorname{rg}(A) = 2$; los términos independientes suman $3 \\neq 0$, luego $\\operatorname{rg}(A^*) = 3$. Ninguna fila es proporcional a otra → <strong>prisma</strong>.",
+                    "kind": "procedimiento"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,79 @@
+{
+    "title": "Ecuaciones de la recta",
+    "description": "Ecuaciones de la recta en el espacio: vectorial, paramétricas, continua e implícitas, y cómo pasar de unas a otras.",
+    "levels": [
+        "2-bach"
+    ],
+    "menuGroup": "Geometría",
+    "menuOrder": 3,
+    "sections": [
+        {
+            "title": "Ecuación vectorial y paramétricas",
+            "items": [
+                {
+                    "title": "Ecuación vectorial",
+                    "description": "Es la definición de recta escrita con vectores de posición: el punto genérico $X(x, y, z)$ se obtiene sumando al punto $A$ un múltiplo del vector director $\\vec{v}$. Cada valor del <strong>parámetro</strong> $\\lambda$ da un punto de la recta.",
+                    "formula": "$$(x, y, z) = (a_1, a_2, a_3) + \\lambda\\,(v_1, v_2, v_3), \\quad \\lambda \\in \\mathbb{R}$$",
+                    "example": "Recta por $A(1, -2, 3)$ con $\\vec{v} = (2, 1, -1)$:<br>$$r: (x, y, z) = (1, -2, 3) + \\lambda\\,(2, 1, -1)$$ Recta por $A(1, 0, 2)$ y $B(3, -1, 4)$: $\\vec{v} = \\overrightarrow{AB} = (2, -1, 2)$ y $$(x, y, z) = (1, 0, 2) + \\lambda\\,(2, -1, 2)$$",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Ecuaciones paramétricas",
+                    "description": "Se obtienen igualando coordenada a coordenada en la ecuación vectorial. Son las más cómodas para <strong>dar puntos</strong> (se elige $\\lambda$) y para comprobar si un punto <strong>pertenece</strong> a la recta: debe salir el <strong>mismo</strong> $\\lambda$ en las tres ecuaciones.",
+                    "formula": "$$\\begin{cases} x = a_1 + \\lambda v_1 \\\\ y = a_2 + \\lambda v_2 \\\\ z = a_3 + \\lambda v_3 \\end{cases} \\quad \\lambda \\in \\mathbb{R}$$",
+                    "example": "$$r: \\begin{cases} x = 1 + 2\\lambda \\\\ y = -2 + \\lambda \\\\ z = 3 - \\lambda \\end{cases}$$ • ¿$P(5, 0, 1) \\in r$? $5 = 1 + 2\\lambda \\Rightarrow \\lambda = 2$; $0 = -2 + \\lambda \\Rightarrow \\lambda = 2$; $1 = 3 - \\lambda \\Rightarrow \\lambda = 2$. Mismo $\\lambda$ → <strong>sí</strong>.<br>• ¿$Q(3, 0, 2) \\in r$? $\\lambda = 1$, $\\lambda = 2$, $\\lambda = 1$. Distintos → <strong>no</strong>.",
+                    "kind": "definicion"
+                }
+            ]
+        },
+        {
+            "title": "Ecuación continua",
+            "items": [
+                {
+                    "title": "Ecuación continua",
+                    "description": "Si todas las coordenadas del vector director son <strong>no nulas</strong>, se despeja $\\lambda$ en cada ecuación paramétrica y se igualan los resultados. Desaparece el parámetro.<br>De ella se leen directamente un punto (los números que se <strong>restan</strong> a $x$, $y$, $z$) y el vector director (los <strong>denominadores</strong>).",
+                    "formula": "$$\\dfrac{x - a_1}{v_1} = \\dfrac{y - a_2}{v_2} = \\dfrac{z - a_3}{v_3} \\qquad v_1, v_2, v_3 \\neq 0$$",
+                    "example": "De $x = 1 + 2\\lambda$, $y = -2 + \\lambda$, $z = 3 - \\lambda$: $\\lambda = \\dfrac{x - 1}{2} = \\dfrac{y + 2}{1} = \\dfrac{z - 3}{-1}$, es decir, $$r: \\dfrac{x - 1}{2} = \\dfrac{y + 2}{1} = \\dfrac{z - 3}{-1}$$ Cuidado con los signos: $y + 2 = y - (-2)$, así que el punto es $A(1, \\textcolor{#d46a6a}{-2}, 3)$.",
+                    "kind": "definicion"
+                },
+                {
+                    "title": "Vector director con una coordenada nula",
+                    "description": "Si una coordenada de $\\vec{v}$ es $0$, no se puede dividir entre ella. Esa coordenada del punto <strong>no cambia</strong> al mover $\\lambda$, y se escribe aparte como una igualdad.<br>Algunos libros escriben $\\tfrac{y - 4}{0}$ como notación, entendiendo que significa $y - 4 = 0$; no es una división.",
+                    "formula": "$$v_2 = 0: \\quad \\dfrac{x - a_1}{v_1} = \\dfrac{z - a_3}{v_3}, \\quad y = a_2$$",
+                    "example": "$A(1, 4, 0)$, $\\vec{v} = (2, 0, -3)$: paramétricas $x = 1 + 2\\lambda$, $y = 4$, $z = -3\\lambda$. Continua: $$\\dfrac{x - 1}{2} = \\dfrac{z}{-3}, \\quad y = 4$$",
+                    "kind": "observacion"
+                }
+            ]
+        },
+        {
+            "title": "Ecuaciones implícitas",
+            "items": [
+                {
+                    "title": "Ecuaciones implícitas (cartesianas)",
+                    "description": "Una recta también se puede dar como la <strong>intersección de dos planos</strong> no paralelos: los puntos que cumplen a la vez dos ecuaciones lineales. Para que sea una recta, la matriz de coeficientes debe tener <strong>rango 2</strong> (si no, los planos serían paralelos o el mismo).<br>Una misma recta tiene infinitas parejas de ecuaciones implícitas (pasan por ella infinitos planos).",
+                    "formula": "$$r: \\begin{cases} A_1 x + B_1 y + C_1 z + D_1 = 0 \\\\ A_2 x + B_2 y + C_2 z + D_2 = 0 \\end{cases} \\qquad \\operatorname{rg}\\begin{pmatrix} A_1 & B_1 & C_1 \\\\ A_2 & B_2 & C_2 \\end{pmatrix} = 2$$",
+                    "example": "$$r: \\begin{cases} x - 2y - 5 = 0 \\\\ y + z - 1 = 0 \\end{cases}$$ $\\begin{vmatrix} 1 & -2 \\\\ 0 & 1 \\end{vmatrix} = 1 \\neq 0$ → rango 2: es una recta.",
+                    "kind": "definicion"
+                }
+            ]
+        },
+        {
+            "title": "Cómo pasar de unas a otras",
+            "items": [
+                {
+                    "title": "De continua a implícitas",
+                    "description": "Se toman dos de las igualdades de la ecuación continua (la 1.ª con la 2.ª y la 2.ª con la 3.ª, por ejemplo) y se <strong>multiplica en cruz</strong>. Cada igualdad es la ecuación de un plano que contiene a la recta.<br>Si partes de la vectorial o las paramétricas, pasa antes a continua.",
+                    "formula": "$$\\dfrac{x - a_1}{v_1} = \\dfrac{y - a_2}{v_2} \\Rightarrow v_2(x - a_1) = v_1(y - a_2)$$",
+                    "example": "$\\dfrac{x - 1}{2} = \\dfrac{y + 2}{1} = \\dfrac{z - 3}{-1}$:<br>• $\\dfrac{x - 1}{2} = \\dfrac{y + 2}{1} \\Rightarrow x - 1 = 2y + 4 \\Rightarrow x - 2y - 5 = 0$<br>• $\\dfrac{y + 2}{1} = \\dfrac{z - 3}{-1} \\Rightarrow -y - 2 = z - 3 \\Rightarrow y + z - 1 = 0$<br>Comprobación con $A(1, -2, 3)$: $1 + 4 - 5 = 0$ ✓ y $-2 + 3 - 1 = 0$ ✓.",
+                    "kind": "procedimiento"
+                },
+                {
+                    "title": "De implícitas a paramétricas",
+                    "description": "Las implícitas son un sistema compatible indeterminado con un parámetro: se <strong>resuelve</strong> tomando una incógnita como parámetro ($y = \\lambda$, por ejemplo) y despejando las otras dos en función de $\\lambda$. El término independiente da un punto y los coeficientes de $\\lambda$, el vector director.<br>Elige como parámetro una incógnita que permita despejar las otras dos (si una incógnita no aparece en ninguna ecuación, debe ser ella).",
+                    "example": "$\\begin{cases} x - 2y - 5 = 0 \\\\ y + z - 1 = 0 \\end{cases}$ con $y = \\lambda$: $x = 5 + 2\\lambda$, $z = 1 - \\lambda$. $$r: \\begin{cases} x = 5 + 2\\lambda \\\\ y = \\lambda \\\\ z = 1 - \\lambda \\end{cases} \\quad \\Rightarrow \\quad A'(5, 0, 1),\\ \\vec{v} = (2, 1, -1)$$ Es la misma recta de antes con otro punto: $(5, 0, 1) = (1, -2, 3) + 2\\,(2, 1, -1)$ ✓.",
+                    "kind": "procedimiento"
+                }
+            ]
+        }
+    ]
+}
