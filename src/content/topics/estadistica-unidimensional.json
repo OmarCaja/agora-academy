@@ -128,5 +128,30 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Variables",
+            "text": "Cualitativas (categorías) o cuantitativas: discretas (valores aislados) o continuas (intervalos, se usa la marca de clase)."
+        },
+        {
+            "title": "Frecuencias",
+            "text": "$f_i$ absoluta, $h_i$ relativa, $F_i$ y $H_i$ acumuladas.",
+            "formula": "$$h_i = \\dfrac{f_i}{N} \\qquad F_i = f_1 + \\cdots + f_i$$"
+        },
+        {
+            "title": "Centralización",
+            "text": "Moda: el valor más frecuente. Mediana: el valor central de los datos ordenados.",
+            "formula": "$$\\bar{x} = \\dfrac{\\sum x_i f_i}{N}$$"
+        },
+        {
+            "title": "Dispersión",
+            "formula": "$$R = x_{\\max} - x_{\\min} \\qquad \\sigma^2 = \\dfrac{\\sum x_i^2 f_i}{N} - \\bar{x}^2 \\qquad \\sigma = \\sqrt{\\sigma^2} \\qquad CV = \\dfrac{\\sigma}{\\lvert \\bar{x} \\rvert}$$"
+        },
+        {
+            "title": "Posición",
+            "text": "$Q_1$, $Q_2 = M_e$, $Q_3$ dividen los datos en cuatro partes; $P_k$ deja el $k\\%$ por debajo. Diagrama de caja: de $Q_1$ a $Q_3$, con la mediana dentro.",
+            "formula": "$$\\text{posición de } Q_k = \\dfrac{k \\cdot N}{4}$$"
+        }
     ]
 }

@@ -137,5 +137,34 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Valor de las cifras",
+            "text": "Añadir o quitar ceros a la derecha de la última cifra decimal no cambia el número.",
+            "formula": "$$12{,}345 = 12 + \\dfrac{3}{10} + \\dfrac{4}{100} + \\dfrac{5}{1000}$$"
+        },
+        {
+            "title": "Suma y resta",
+            "text": "Se colocan las comas alineadas, se rellenan con ceros y se opera como con enteros. La resta se comprueba sumando: diferencia + sustraendo = minuendo."
+        },
+        {
+            "title": "Multiplicación",
+            "text": "Se multiplica sin comas y se separan tantos decimales como sumen los dos factores.",
+            "formula": "$$\\text{decimales del producto} = \\text{decimales del primer factor} + \\text{decimales del segundo}$$"
+        },
+        {
+            "title": "División con decimales en el divisor",
+            "text": "Se multiplican dividendo y divisor por la misma potencia de 10 hasta que el divisor sea entero.",
+            "formula": "$$\\dfrac{a}{b} = \\dfrac{a \\times 10^n}{b \\times 10^n}$$"
+        },
+        {
+            "title": "Por y entre 10, 100, 1000...",
+            "formula": "$$a \\times 10^n:\\ \\text{coma } n \\text{ lugares a la derecha} \\qquad a \\div 10^n:\\ \\text{coma } n \\text{ lugares a la izquierda}$$"
+        },
+        {
+            "title": "Redondeo",
+            "text": "Si la cifra siguiente es 5 o más, se sube una unidad la última cifra que se deja; si es menor, se deja igual."
+        }
     ]
 }

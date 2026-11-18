@@ -240,5 +240,35 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Monomios",
+            "text": "Coeficiente por parte literal; su grado es la suma de los exponentes. Solo se suman los <strong>semejantes</strong> (misma parte literal).",
+            "formula": "$$a x^n \\pm b x^n = (a \\pm b) x^n \\qquad a x^n \\cdot b x^m = ab\\, x^{n+m} \\qquad \\dfrac{a x^n}{b x^m} = \\dfrac{a}{b} x^{n-m}$$"
+        },
+        {
+            "title": "Ecuación de primer grado",
+            "text": "Lo que suma pasa restando, lo que multiplica pasa dividiendo (y al revés).",
+            "formula": "$$ax + b = 0 \\ (a \\neq 0) \\Rightarrow x = -\\dfrac{b}{a}$$"
+        },
+        {
+            "title": "Polinomios",
+            "text": "Grado: el mayor de sus términos. Valor numérico $P(a)$: sustituir $x$ por $a$. Raíz: $P(a) = 0$."
+        },
+        {
+            "title": "División de polinomios",
+            "text": "Se ordena y completa el dividendo con ceros. Para dividir entre $(x - a)$, Ruffini.",
+            "formula": "$$D(x) = d(x) \\cdot C(x) + R(x) \\qquad \\text{grado } R < \\text{grado } d$$"
+        },
+        {
+            "title": "Teoremas del resto y del factor",
+            "formula": "$$\\text{resto de } P(x) : (x - a) = P(a) \\qquad P(a) = 0 \\iff (x - a) \\text{ es factor de } P(x)$$"
+        },
+        {
+            "title": "Factorizar",
+            "text": "1. Factor común. 2. Identidades notables. 3. Ruffini con los divisores del término independiente. 4. Si queda grado 2, la fórmula de la ecuación de segundo grado.",
+            "formula": "$$ax^2 + bx + c = a(x - x_1)(x - x_2)$$"
+        }
     ]
 }

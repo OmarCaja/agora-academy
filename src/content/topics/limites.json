@@ -138,5 +138,31 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Límite y límites laterales",
+            "text": "El límite existe si los dos laterales existen y coinciden.",
+            "formula": "$$\\lim_{x \\to c} f(x) = L \\iff \\lim_{x \\to c^-} f(x) = \\lim_{x \\to c^+} f(x) = L$$"
+        },
+        {
+            "title": "Indeterminaciones",
+            "formula": "$$\\dfrac{0}{0} \\quad \\dfrac{\\infty}{\\infty} \\quad \\infty - \\infty \\quad 0 \\cdot \\infty \\quad 1^\\infty \\quad \\infty^0 \\quad 0^0$$"
+        },
+        {
+            "title": "Cómo resolverlas",
+            "text": "• $\\tfrac{\\infty}{\\infty}$: comparar grados (o dividir por la mayor potencia).<br>• $\\tfrac{0}{0}$: factorizar y simplificar, o multiplicar por el conjugado si hay raíces.<br>• $\\infty - \\infty$: operar las fracciones o multiplicar por el conjugado.<br>• $1^\\infty$: con el número $e$.",
+            "formula": "$$\\lim f(x)^{g(x)} = e^{\\lim g(x)\\,(f(x) - 1)} \\qquad \\text{si } f \\to 1,\\ g \\to \\infty$$"
+        },
+        {
+            "title": "Asíntotas",
+            "text": "Vertical $x = a$: límite infinito en $a$ (candidatos: ceros del denominador). Horizontal $y = L$: límite finito en $\\pm\\infty$. Oblicua $y = mx + n$ si no hay horizontal:",
+            "formula": "$$m = \\lim_{x \\to \\infty} \\dfrac{f(x)}{x} \\qquad n = \\lim_{x \\to \\infty} \\big(f(x) - mx\\big)$$"
+        },
+        {
+            "title": "Continuidad",
+            "text": "Discontinuidades: <strong>evitable</strong> (el límite existe pero no vale $f(a)$), <strong>salto finito</strong> (laterales finitos distintos), <strong>salto infinito</strong> (algún lateral infinito).",
+            "formula": "$$f \\text{ continua en } a \\iff \\lim_{x \\to a} f(x) = f(a)$$"
+        }
     ]
 }

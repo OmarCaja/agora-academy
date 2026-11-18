@@ -133,5 +133,27 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Grafo",
+            "text": "Vértices unidos por aristas. En un grafo <strong>dirigido</strong> las aristas tienen sentido (flechas).",
+            "formula": "$$G = (V, E)$$"
+        },
+        {
+            "title": "Matriz de adyacencia",
+            "text": "Fila = origen, columna = destino. Un grafo no dirigido tiene matriz simétrica.",
+            "formula": "$$a_{ij} = \\begin{cases} 1 & \\text{si hay arista de } i \\text{ a } j \\\\ 0 & \\text{si no} \\end{cases} \\qquad \\text{no dirigido} \\iff A^t = A$$"
+        },
+        {
+            "title": "Caminos y transbordos",
+            "text": "Longitud de un camino: número de aristas. $k$ pasos son $k - 1$ transbordos.",
+            "formula": "$$(A^k)_{ij} = \\text{número de caminos de } i \\text{ a } j \\text{ de longitud } k$$"
+        },
+        {
+            "title": "Matriz de accesibilidad",
+            "text": "Un $0$ en la posición $(i, j)$ indica que no se puede llegar de $i$ a $j$ ($n$ = número de vértices).",
+            "formula": "$$\\text{Acc} = A + A^2 + \\cdots + A^{n-1}$$"
+        }
     ]
 }

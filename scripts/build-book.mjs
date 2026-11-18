@@ -90,6 +90,16 @@ async function buildBook(book, keepHtml) {
     </div>`).join('')}`).join('')}
   </section>`).join('');
 
+  // «Resumen»: each topic's hand-written key points and formulas (`summary` in its JSON).
+  const summarised = chapters.filter(ch => ch.summary?.length);
+  const summary = summarised.length ? `
+  <section class="summary"><h1 id="resumen">Resumen</h1>
+    ${summarised.map(ch => `<h2>${chapters.indexOf(ch) + 1}. ${esc(ch.title)}</h2>
+    ${ch.summary.map(p => `<div class="point"><h3>${content(p.title)}</h3>
+      ${p.text ? `<div class="description">${content(p.text)}</div>` : ''}
+      ${p.formula ? `<div class="formula">${content(p.formula)}</div>` : ''}</div>`).join('')}`).join('')}
+  </section>` : '';
+
   // Alphabetical index of the book's definitions and theorems, each with its page.
   const plain = t => t.replace(/\$([^$]*)\$/g, ' $1 ').replace(/<[^>]+>/g, ' ').replace(/[^\p{L}\p{N} ]+/gu, ' ').replace(/\s+/g, ' ').trim();
   const concepts = chapters.flatMap(ch => ch.sections.flatMap((sec, j) => sec.items.flatMap((it, k) =>
@@ -100,7 +110,7 @@ async function buildBook(book, keepHtml) {
   for (const c of concepts.sort((a, b) => (a.key || '~').localeCompare(b.key || '~', 'es')))
     (byLetter.get(letterOf(c)) ?? byLetter.set(letterOf(c), []).get(letterOf(c))).push(c);
   const conceptIndex = concepts.length ? `
-  <nav class="concept-index"><h1>Índice de conceptos</h1>
+  <nav class="concept-index"><h1 id="indice-conceptos">Índice de conceptos</h1>
     ${[...byLetter].map(([letter, list]) => `<h2 class="letter">${letter}</h2><ol>${list.map(c =>
       `<li><a href="#${c.id}"><span><span class="t">${content(c.title)}</span><em>${KIND_LABELS[c.kind]}</em></span></a></li>`).join('')}</ol>`).join('')}
   </nav>` : '';
@@ -121,6 +131,7 @@ async function buildBook(book, keepHtml) {
       @bottom-left { content: none; } @bottom-right { content: none; } }
     @page toc { @top-right { content: "Índice"; } }
     @page index { @top-right { content: "Índice de conceptos"; } }
+    @page summary { @top-right { content: "Resumen"; } }
 
     body { font: 10pt/1.55 "Space Mono", monospace; color: #1f1f1f; }
     a { color: inherit; text-decoration: none; }
@@ -139,6 +150,12 @@ async function buildBook(book, keepHtml) {
     .toc ol { list-style: none; padding: 0; margin: 0; }
     .toc-chapter { font-weight: 700; font-size: 11pt; margin-bottom: 6mm; }
     .toc-chapter ol { font-weight: 400; font-size: 9.5pt; margin: 2mm 0 0 6mm; }
+    .summary { page: summary; break-before: page; font-size: 9pt; }
+    .summary h1 { font-size: 22pt; text-transform: uppercase; margin: 0 0 6mm; }
+    .summary h2 { margin-top: 7mm; }
+    .summary .point { border-bottom: 1px solid #1f1f1f; padding: 0 0 2.5mm; margin: 0 0 3mm; break-inside: avoid; }
+    .summary h3 { font-size: 10pt; margin: 0 0 1mm; }
+    .summary .formula { margin: 1.5mm 0 0; padding: 2mm 3mm; }
     .concept-index { page: index; break-before: page; }
     .concept-index h1 { font-size: 22pt; text-transform: uppercase; margin: 0 0 8mm; string-set: chapter "Índice de conceptos"; }
     .concept-index .letter { font-size: 12pt; margin: 5mm 0 1.5mm; padding: .5mm 0 .5mm 4mm; border-bottom: 2px solid #1f1f1f; break-after: avoid; }
@@ -179,7 +196,7 @@ async function buildBook(book, keepHtml) {
     document.fonts.ready.then(() => PagedPolyfill.preview()).then(() => {
       // Page (0-based, as in the PDF) where every chapter and section heading ended up: the PDF outline.
       const pages = [...document.querySelectorAll('.pagedjs_page')], at = {};
-      document.querySelectorAll('.chapter-head[id], h2[id], .item[id]').forEach(el => {
+      document.querySelectorAll('.chapter-head[id], h2[id], .item[id], #resumen, #indice-conceptos').forEach(el => {
         const page = el.closest('.pagedjs_page'); if (page) at[el.id] = pages.indexOf(page);
       });
       return fetch('/outline', { method: 'POST', body: JSON.stringify(at) });
@@ -191,8 +208,10 @@ async function buildBook(book, keepHtml) {
     <h1>${esc(book.title)}</h1>
     <footer>${ADDRESS.city} · ${year}</footer>
   </section>
-  <nav class="toc"><h1>Índice</h1><ol>${toc}</ol></nav>
+  <nav class="toc"><h1>Índice</h1><ol>${toc}${[summary && ['resumen', 'Resumen'], conceptIndex && ['indice-conceptos', 'Índice de conceptos']]
+    .filter(Boolean).map(([href, t]) => `<li class="toc-chapter"><a href="#${href}"><span>${t}</span></a></li>`).join('')}</ol></nav>
   ${body}
+  ${summary}
   ${conceptIndex}
   </body></html>`;
 
@@ -283,10 +302,10 @@ async function setPdfMetadata(file, book, chapters, headingPages, id) {
   const now = new Date();
   pdf.setCreationDate(now);
   pdf.setModificationDate(now);
-  if (Object.keys(headingPages).length) addOutline(pdf, chapters.map((ch, i) => ({
+  if (Object.keys(headingPages).length) addOutline(pdf, [...chapters.map((ch, i) => ({
     title: `${i + 1}. ${ch.title}`, page: headingPages[id(ch)],
     children: ch.sections.map((sec, j) => ({ title: sec.title.replace(/\$/g, ''), page: headingPages[id(ch, j)] })),
-  })));
+  })), { title: 'Resumen', page: headingPages.resumen }, { title: 'Índice de conceptos', page: headingPages['indice-conceptos'] }]);
   fs.writeFileSync(file, await pdf.save());
   return pdf.getPageCount();
 }

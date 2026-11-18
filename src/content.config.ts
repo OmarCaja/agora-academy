@@ -24,7 +24,13 @@ const topics = defineCollection({
                 example: z.string().optional(),
                 description: z.string().optional()
             }))
-        }))
+        })),
+        // Hand-written key points and formulas, printed in the «Resumen» at the end of each book PDF.
+        summary: z.array(z.object({
+            title: z.string(),
+            text: z.string().optional(),
+            formula: z.string().optional()
+        })).optional()
     })
 });
 

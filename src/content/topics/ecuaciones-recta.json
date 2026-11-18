@@ -75,5 +75,30 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Vectorial",
+            "formula": "$$(x, y, z) = (a_1, a_2, a_3) + \\lambda\\,(v_1, v_2, v_3)$$"
+        },
+        {
+            "title": "Paramétricas",
+            "text": "Un punto es de la recta si da el <strong>mismo</strong> $\\lambda$ en las tres.",
+            "formula": "$$x = a_1 + \\lambda v_1, \\quad y = a_2 + \\lambda v_2, \\quad z = a_3 + \\lambda v_3$$"
+        },
+        {
+            "title": "Continua",
+            "text": "Requiere $v_1, v_2, v_3 \\neq 0$; si una coordenada de $\\vec{v}$ es $0$, esa coordenada se escribe aparte ($y = a_2$).",
+            "formula": "$$\\dfrac{x - a_1}{v_1} = \\dfrac{y - a_2}{v_2} = \\dfrac{z - a_3}{v_3}$$"
+        },
+        {
+            "title": "Implícitas",
+            "text": "Dos planos no paralelos: la matriz de coeficientes tiene rango 2.",
+            "formula": "$$\\begin{cases} A_1 x + B_1 y + C_1 z + D_1 = 0 \\\\ A_2 x + B_2 y + C_2 z + D_2 = 0 \\end{cases}$$"
+        },
+        {
+            "title": "Cómo pasar de unas a otras",
+            "text": "• Vectorial → paramétricas: igualar coordenada a coordenada.<br>• Paramétricas → continua: despejar $\\lambda$ e igualar.<br>• Continua → implícitas: tomar dos igualdades y multiplicar en cruz.<br>• Implícitas → paramétricas: resolver el sistema con una incógnita como parámetro (o $\\vec{v} = \\vec{n}_1 \\times \\vec{n}_2$)."
+        }
     ]
 }

@@ -142,5 +142,30 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Definición",
+            "formula": "$$\\sqrt[n]{a} = b \\iff b^n = a \\qquad \\sqrt[n]{a^m} = a^{\\frac{m}{n}}$$"
+        },
+        {
+            "title": "Propiedades",
+            "text": "No hay regla para la suma: $\\sqrt{a + b} \\neq \\sqrt{a} + \\sqrt{b}$.",
+            "formula": "$$\\sqrt[n]{ab} = \\sqrt[n]{a}\\sqrt[n]{b} \\quad \\sqrt[n]{\\tfrac{a}{b}} = \\dfrac{\\sqrt[n]{a}}{\\sqrt[n]{b}} \\quad \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m \\quad \\sqrt[m]{\\sqrt[n]{a}} = \\sqrt[mn]{a}$$"
+        },
+        {
+            "title": "Extraer e introducir factores",
+            "formula": "$$\\sqrt[n]{a^n b} = a\\sqrt[n]{b}$$"
+        },
+        {
+            "title": "Suma y producto de radicales",
+            "text": "Solo se suman radicales semejantes (mismo índice y radicando). Con distinto índice, se reduce a índice común $k = \\text{m.c.m.}(n, m)$.",
+            "formula": "$$a\\sqrt[n]{c} + b\\sqrt[n]{c} = (a + b)\\sqrt[n]{c}$$"
+        },
+        {
+            "title": "Racionalizar",
+            "text": "Raíz sola: multiplicar por la raíz que complete el exponente. Binomio: multiplicar por el conjugado.",
+            "formula": "$$\\dfrac{a}{\\sqrt[n]{b^k}} = \\dfrac{a\\sqrt[n]{b^{n-k}}}{b} \\qquad \\dfrac{a}{c + \\sqrt{d}} = \\dfrac{a(c - \\sqrt{d})}{c^2 - d}$$"
+        }
     ]
 }

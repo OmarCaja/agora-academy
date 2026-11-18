@@ -84,5 +84,30 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Exponenciales: igualar bases",
+            "formula": "$$a^{f(x)} = a^{g(x)} \\iff f(x) = g(x)$$"
+        },
+        {
+            "title": "Exponenciales: tomar logaritmos",
+            "text": "Cuando no se pueden igualar las bases.",
+            "formula": "$$a^x = b \\iff x = \\log_a b = \\dfrac{\\ln b}{\\ln a}$$"
+        },
+        {
+            "title": "Exponenciales: factor común y cambio de variable",
+            "text": "Si aparecen $a^{x+n}$, se saca $a^x$ factor común. Si aparecen $a^{2x}$ y $a^x$, se hace $t = a^x$ (solo valen las soluciones $t > 0$).",
+            "formula": "$$a^{x+n} = a^n \\cdot a^x \\qquad t = a^x$$"
+        },
+        {
+            "title": "Logarítmicas",
+            "text": "Se agrupan los logaritmos con las propiedades y se aplica la definición o se igualan argumentos.",
+            "formula": "$$\\log_a f(x) = c \\iff f(x) = a^c \\qquad \\log_a f(x) = \\log_a g(x) \\iff f(x) = g(x)$$"
+        },
+        {
+            "title": "Comprobar las soluciones",
+            "text": "En las logarítmicas hay que sustituir: se descarta toda solución que haga algún argumento $\\leq 0$."
+        }
     ]
 }

@@ -278,5 +278,38 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Desigualdades",
+            "text": "Al multiplicar o dividir por un número <strong>negativo</strong>, cambia el sentido.",
+            "formula": "$$a < b,\\ c > 0 \\Rightarrow ac < bc \\qquad a < b,\\ c < 0 \\Rightarrow ac > bc$$"
+        },
+        {
+            "title": "Primer grado",
+            "text": "Se resuelve como una ecuación, cuidando el sentido. La solución es un intervalo."
+        },
+        {
+            "title": "Segundo grado, polinómicas y racionales",
+            "text": "Todo a un miembro, factorizar, hallar raíces (y polos) y estudiar el signo en cada intervalo con una tabla. Los polos nunca entran en la solución."
+        },
+        {
+            "title": "Valor absoluto",
+            "text": "Para $a > 0$:",
+            "formula": "$$\\lvert x \\rvert < a \\iff -a < x < a \\qquad \\lvert x \\rvert > a \\iff x < -a \\text{ o } x > a$$"
+        },
+        {
+            "title": "Sistemas",
+            "text": "Con una incógnita: intersección de las soluciones. Con dos: se dibuja cada recta frontera (discontinua si es estricta), se prueba un punto para elegir el semiplano y la solución es la zona común."
+        },
+        {
+            "title": "Programación lineal",
+            "text": "Si la región factible es acotada, el máximo y el mínimo se alcanzan en vértices. Método analítico: evaluar $f$ en cada vértice. Gráfico: desplazar la recta $ax + by = 0$.",
+            "formula": "$$\\text{Optimizar } f(x, y) = ax + by \\text{ sujeto a las restricciones}$$"
+        },
+        {
+            "title": "Casos especiales",
+            "text": "Dos vértices óptimos → infinitas soluciones (todo el lado). Región vacía, o no acotada en la dirección de mejora → sin solución."
+        }
     ]
 }

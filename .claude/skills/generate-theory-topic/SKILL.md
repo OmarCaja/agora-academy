@@ -49,6 +49,8 @@ Use `src/content/topics/matrices.json` as the reference for tone and depth. Read
 - `example`: a worked example with numbers and intermediate steps, never just the result. Several short cases separated by `<br>` and `•` are fine.
 - Every item except `ejemplo` cards has `description` or `formula` (`pnpm check` fails otherwise), and almost every item has an `example`. Procedures (Gauss, solving an equation) get step-by-step examples.
 
+**Summary** (`summary[]`, hand-written): the key points and formulas of the topic, printed in the «Resumen» at the end of every book PDF that includes it. Each point has a short `title`, an optional one-line `text` and an optional `formula`. Keep it a revision sheet: the formulas and criteria a student needs, without examples or explanations (4–8 points). Write it for every new topic and update it when the topic changes.
+
 **Math**
 - All math, however small (`$x$`, `$A$`), in KaTeX LaTeX: `$…$` inline, `$$…$$` display.
 - Each formula on one line; backslashes doubled in JSON (`\\dfrac`, matrix row break `\\\\`).

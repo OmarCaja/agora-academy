@@ -198,5 +198,31 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Orden 2 y Sarrus",
+            "formula": "$$\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc \\qquad \\lvert A \\rvert_{3} = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}$$"
+        },
+        {
+            "title": "Adjunto y desarrollo por una fila",
+            "text": "$\\alpha_{ij}$: menor al quitar la fila $i$ y la columna $j$. Conviene desarrollar por la fila o columna con más ceros.",
+            "formula": "$$A_{ij} = (-1)^{i+j} \\alpha_{ij} \\qquad \\lvert A \\rvert = a_{i1} A_{i1} + \\cdots + a_{in} A_{in}$$"
+        },
+        {
+            "title": "Propiedades",
+            "text": "Intercambiar dos filas cambia el signo. Filas iguales, proporcionales o combinación lineal → $0$. Sumar a una fila un múltiplo de otra no lo cambia (sirve para hacer ceros).",
+            "formula": "$$\\lvert kA \\rvert = k^n \\lvert A \\rvert \\qquad \\lvert A^t \\rvert = \\lvert A \\rvert \\qquad \\lvert AB \\rvert = \\lvert A \\rvert \\lvert B \\rvert \\qquad \\lvert A^{-1} \\rvert = \\dfrac{1}{\\lvert A \\rvert}$$"
+        },
+        {
+            "title": "Rango por menores",
+            "text": "Se orlan menores no nulos hasta que todos los de orden siguiente sean $0$.",
+            "formula": "$$\\operatorname{rg}(A) = k \\iff \\text{hay un menor de orden } k \\neq 0 \\text{ y todos los de orden } k + 1 \\text{ son } 0$$"
+        },
+        {
+            "title": "Matriz inversa",
+            "text": "$A$ tiene inversa si y solo si $\\lvert A \\rvert \\neq 0$.",
+            "formula": "$$A^{-1} = \\dfrac{1}{\\lvert A \\rvert} \\cdot (\\text{Adj}(A))^t$$"
+        }
     ]
 }

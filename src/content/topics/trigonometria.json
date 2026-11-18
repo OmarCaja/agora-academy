@@ -264,5 +264,46 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Grados y radianes",
+            "formula": "$$180^\\circ = \\pi \\text{ rad} \\qquad \\text{rad} = \\text{grados} \\cdot \\dfrac{\\pi}{180}$$"
+        },
+        {
+            "title": "Razones",
+            "text": "En un triángulo rectángulo, con $a$ cateto opuesto, $b$ contiguo y $c$ hipotenusa.",
+            "formula": "$$\\sin\\alpha = \\dfrac{a}{c} \\quad \\cos\\alpha = \\dfrac{b}{c} \\quad \\operatorname{tg}\\,\\alpha = \\dfrac{a}{b} = \\dfrac{\\sin\\alpha}{\\cos\\alpha}$$"
+        },
+        {
+            "title": "Relaciones fundamentales",
+            "formula": "$$\\sin^2\\alpha + \\cos^2\\alpha = 1 \\qquad 1 + \\operatorname{tg}^2\\alpha = \\dfrac{1}{\\cos^2\\alpha}$$"
+        },
+        {
+            "title": "Ángulos notables",
+            "formula": "$$\\begin{array}{c|c|c|c|c|c} \\alpha & 0^\\circ & 30^\\circ & 45^\\circ & 60^\\circ & 90^\\circ \\\\ \\hline \\sin & 0 & \\frac{1}{2} & \\frac{\\sqrt{2}}{2} & \\frac{\\sqrt{3}}{2} & 1 \\\\ \\cos & 1 & \\frac{\\sqrt{3}}{2} & \\frac{\\sqrt{2}}{2} & \\frac{1}{2} & 0 \\\\ \\operatorname{tg} & 0 & \\frac{\\sqrt{3}}{3} & 1 & \\sqrt{3} & \\nexists \\end{array}$$"
+        },
+        {
+            "title": "Signos por cuadrante",
+            "text": "I: todas positivas. II: solo el seno. III: solo la tangente. IV: solo el coseno."
+        },
+        {
+            "title": "Suma, resta y ángulo doble",
+            "formula": "$$\\sin(\\alpha \\pm \\beta) = \\sin\\alpha\\cos\\beta \\pm \\cos\\alpha\\sin\\beta \\qquad \\cos(\\alpha \\pm \\beta) = \\cos\\alpha\\cos\\beta \\mp \\sin\\alpha\\sin\\beta$$ $$\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha \\qquad \\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha$$"
+        },
+        {
+            "title": "Teoremas del seno y del coseno",
+            "text": "Para cualquier triángulo ($R$: radio de la circunferencia circunscrita).",
+            "formula": "$$\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C} = 2R \\qquad a^2 = b^2 + c^2 - 2bc\\cos A$$"
+        },
+        {
+            "title": "Área de un triángulo",
+            "formula": "$$S = \\dfrac{1}{2}\\,bc\\sin A \\qquad S = \\sqrt{s(s - a)(s - b)(s - c)},\\ s = \\dfrac{a + b + c}{2}$$"
+        },
+        {
+            "title": "Ecuaciones trigonométricas",
+            "text": "Hay dos ángulos por vuelta para el seno y el coseno. No dividas entre $\\sin x$ o $\\cos x$: saca factor común.",
+            "formula": "$$\\sin x = \\sin\\alpha \\Rightarrow x = \\alpha + 360^\\circ k \\ \\text{ o } \\ x = 180^\\circ - \\alpha + 360^\\circ k \\qquad \\cos x = \\cos\\alpha \\Rightarrow x = \\pm\\alpha + 360^\\circ k$$"
+        }
     ]
 }

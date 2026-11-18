@@ -164,5 +164,34 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Expresión matricial",
+            "text": "$A$ matriz de coeficientes, $A^*$ ampliada con los términos independientes. Si $A$ tiene inversa:",
+            "formula": "$$AX = B \\Rightarrow X = A^{-1} B$$"
+        },
+        {
+            "title": "Clasificación",
+            "text": "<strong>SCD</strong>: solución única. <strong>SCI</strong>: infinitas. <strong>SI</strong>: ninguna. Un sistema homogéneo ($AX = O$) siempre es compatible."
+        },
+        {
+            "title": "Gauss",
+            "text": "Se escalona la matriz ampliada. Fila $0 = k$ ($k \\neq 0$) → SI; tantas ecuaciones como incógnitas → SCD; menos ecuaciones → SCI."
+        },
+        {
+            "title": "Rouché-Frobenius",
+            "text": "$n$ = número de incógnitas.",
+            "formula": "$$\\operatorname{rg}(A) = \\operatorname{rg}(A^*) = n \\Rightarrow \\text{SCD} \\qquad \\operatorname{rg}(A) = \\operatorname{rg}(A^*) < n \\Rightarrow \\text{SCI} \\qquad \\operatorname{rg}(A) \\neq \\operatorname{rg}(A^*) \\Rightarrow \\text{SI}$$"
+        },
+        {
+            "title": "Discusión con un parámetro",
+            "text": "Se iguala $\\lvert A \\rvert = 0$: para los demás valores, SCD; cada raíz se estudia con rangos."
+        },
+        {
+            "title": "Cramer",
+            "text": "Para $\\lvert A \\rvert \\neq 0$: cada incógnita es el determinante con su columna sustituida por los términos independientes, entre $\\lvert A \\rvert$.",
+            "formula": "$$x_i = \\dfrac{\\lvert A_i \\rvert}{\\lvert A \\rvert}$$"
+        }
     ]
 }

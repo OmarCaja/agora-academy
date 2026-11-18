@@ -114,5 +114,32 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Dos rectas (vectores)",
+            "text": "$r$: $A$, $\\vec{u}$; $s$: $B$, $\\vec{v}$. Si $\\det(\\vec{u}, \\vec{v}, \\overrightarrow{AB}) \\neq 0$, se cruzan.",
+            "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(\\vec{u}, \\vec{v}) & \\operatorname{rg}(\\vec{u}, \\vec{v}, \\overrightarrow{AB}) & \\\\ \\hline 1 & 1 & \\text{Coincidentes} \\\\ 1 & 2 & \\text{Paralelas} \\\\ 2 & 2 & \\text{Secantes} \\\\ 2 & 3 & \\text{Se cruzan} \\end{array}$$"
+        },
+        {
+            "title": "Dos rectas (implícitas)",
+            "text": "Sistema de 4 ecuaciones: $A$ es $4 \\times 3$, $A^*$ es $4 \\times 4$.",
+            "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(A) & \\operatorname{rg}(A^*) & \\\\ \\hline 2 & 2 & \\text{Coincidentes} \\\\ 2 & 3 & \\text{Paralelas} \\\\ 3 & 3 & \\text{Secantes} \\\\ 3 & 4 & \\text{Se cruzan} \\end{array}$$"
+        },
+        {
+            "title": "Recta y plano",
+            "text": "Sistema $3 \\times 3$. Con vectores: $\\vec{v} \\cdot \\vec{n} \\neq 0$ secantes; si $\\vec{v} \\cdot \\vec{n} = 0$, contenida si $A \\in \\pi$ y paralelos si no.",
+            "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(A) & \\operatorname{rg}(A^*) & \\\\ \\hline 3 & 3 & \\text{Secantes} \\\\ 2 & 3 & \\text{Paralelos} \\\\ 2 & 2 & \\text{Contenida} \\end{array}$$"
+        },
+        {
+            "title": "Dos planos",
+            "text": "Equivale a comparar $\\tfrac{A}{A'}$, $\\tfrac{B}{B'}$, $\\tfrac{C}{C'}$, $\\tfrac{D}{D'}$.",
+            "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(A) & \\operatorname{rg}(A^*) & \\\\ \\hline 1 & 1 & \\text{Coincidentes} \\\\ 1 & 2 & \\text{Paralelos} \\\\ 2 & 2 & \\text{Secantes (recta)} \\end{array}$$"
+        },
+        {
+            "title": "Tres planos",
+            "text": "Primero $\\det(A)$: si es $\\neq 0$, un punto. Si no, rangos y filas proporcionales.",
+            "formula": "$$\\begin{array}{c|c|l} \\operatorname{rg}(A) & \\operatorname{rg}(A^*) & \\\\ \\hline 3 & 3 & \\text{Un punto} \\\\ 2 & 3 & \\text{Prisma, o dos paralelos y uno secante} \\\\ 2 & 2 & \\text{Haz (recta), o dos coincidentes y uno secante} \\\\ 1 & 2 & \\text{Paralelos, o dos coincidentes y uno paralelo} \\\\ 1 & 1 & \\text{Coincidentes} \\end{array}$$"
+        }
     ]
 }

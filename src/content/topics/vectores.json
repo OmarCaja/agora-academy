@@ -261,5 +261,41 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Vector entre dos puntos y módulo",
+            "text": "Extremo menos origen.",
+            "formula": "$$\\overrightarrow{AB} = (b_1 - a_1,\\ b_2 - a_2,\\ b_3 - a_3) \\qquad \\lvert \\vec{u} \\rvert = \\sqrt{u_1^2 + u_2^2 + u_3^2} \\qquad \\vec{e} = \\dfrac{\\vec{u}}{\\lvert \\vec{u} \\rvert}$$"
+        },
+        {
+            "title": "Operaciones y paralelismo",
+            "text": "Coordenada a coordenada. Dos vectores son paralelos si son proporcionales.",
+            "formula": "$$\\vec{u} \\pm \\vec{v} = (u_1 \\pm v_1, u_2 \\pm v_2, u_3 \\pm v_3) \\qquad k\\vec{u} = (ku_1, ku_2, ku_3) \\qquad \\vec{u} \\parallel \\vec{v} \\iff \\dfrac{v_1}{u_1} = \\dfrac{v_2}{u_2} = \\dfrac{v_3}{u_3}$$"
+        },
+        {
+            "title": "Independencia y bases",
+            "text": "Tres vectores de $V_3$ son independientes (y forman base) si su determinante no es $0$. Base canónica: $\\vec{i}, \\vec{j}, \\vec{k}$.",
+            "formula": "$$\\det(\\vec{u}, \\vec{v}, \\vec{w}) \\neq 0 \\iff \\{\\vec{u}, \\vec{v}, \\vec{w}\\} \\text{ base de } V_3$$"
+        },
+        {
+            "title": "Producto escalar",
+            "text": "Da un número. Perpendiculares si vale $0$.",
+            "formula": "$$\\vec{u} \\cdot \\vec{v} = \\lvert \\vec{u} \\rvert \\lvert \\vec{v} \\rvert \\cos\\alpha = u_1v_1 + u_2v_2 + u_3v_3 \\qquad \\cos\\alpha = \\dfrac{\\vec{u} \\cdot \\vec{v}}{\\lvert \\vec{u} \\rvert \\lvert \\vec{v} \\rvert}$$"
+        },
+        {
+            "title": "Proyección",
+            "formula": "$$\\text{proy}_{\\vec{v}}\\,\\vec{u} = \\dfrac{\\vec{u} \\cdot \\vec{v}}{\\lvert \\vec{v} \\rvert}$$"
+        },
+        {
+            "title": "Producto vectorial",
+            "text": "Da un vector perpendicular a $\\vec{u}$ y $\\vec{v}$; es $\\vec{0}$ si son paralelos. Su módulo es el área del paralelogramo.",
+            "formula": "$$\\vec{u} \\times \\vec{v} = \\begin{vmatrix} \\vec{i} & \\vec{j} & \\vec{k} \\\\ u_1 & u_2 & u_3 \\\\ v_1 & v_2 & v_3 \\end{vmatrix} \\qquad S_{\\triangle ABC} = \\dfrac{1}{2}\\lvert \\overrightarrow{AB} \\times \\overrightarrow{AC} \\rvert$$"
+        },
+        {
+            "title": "Producto mixto",
+            "text": "Es $0$ si los vectores son coplanarios. Su valor absoluto es el volumen del paralelepípedo.",
+            "formula": "$$[\\vec{u}, \\vec{v}, \\vec{w}] = \\begin{vmatrix} u_1 & u_2 & u_3 \\\\ v_1 & v_2 & v_3 \\\\ w_1 & w_2 & w_3 \\end{vmatrix} \\qquad V_{\\text{tetraedro}} = \\dfrac{1}{6}\\lvert [\\overrightarrow{AB}, \\overrightarrow{AC}, \\overrightarrow{AD}] \\rvert$$"
+        }
     ]
 }

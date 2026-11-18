@@ -146,5 +146,32 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Múltiplo y divisor",
+            "formula": "$$b = a \\cdot k \\iff b \\text{ es múltiplo de } a \\iff a \\text{ es divisor de } b$$"
+        },
+        {
+            "title": "Criterios de divisibilidad",
+            "text": "• 2: acaba en cifra par. • 5: acaba en 0 o 5. • 10: acaba en 0.<br>• 3 y 9: la suma de cifras es múltiplo de 3 (o de 9).<br>• 11: (cifras en posición impar) − (cifras en posición par) es 0 o múltiplo de 11."
+        },
+        {
+            "title": "Primos y factorización",
+            "text": "Un primo solo tiene los divisores 1 y él mismo. Todo número se descompone de forma única en factores primos.",
+            "formula": "$$n = p_1^{a_1} \\cdot p_2^{a_2} \\cdots p_k^{a_k}$$"
+        },
+        {
+            "title": "m.c.d.",
+            "text": "Factores <strong>comunes</strong> elevados al <strong>menor</strong> exponente. Se usa para repartir en partes iguales lo más grandes posible."
+        },
+        {
+            "title": "m.c.m.",
+            "text": "Factores <strong>comunes y no comunes</strong> elevados al <strong>mayor</strong> exponente. Se usa cuando algo vuelve a coincidir."
+        },
+        {
+            "title": "Relación entre ambos",
+            "formula": "$$a \\cdot b = \\text{m.c.d.}(a, b) \\cdot \\text{m.c.m.}(a, b)$$"
+        }
     ]
 }

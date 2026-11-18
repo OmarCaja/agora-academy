@@ -149,5 +149,36 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Proporción",
+            "text": "Igualdad de dos razones; el producto de extremos es igual al de medios.",
+            "formula": "$$\\dfrac{a}{b} = \\dfrac{c}{d} \\iff a \\cdot d = b \\cdot c$$"
+        },
+        {
+            "title": "Proporcionalidad directa e inversa",
+            "text": "Directa: si una se duplica, la otra también. Inversa: si una se duplica, la otra se reduce a la mitad.",
+            "formula": "$$\\text{directa: } \\dfrac{y}{x} = k \\qquad \\text{inversa: } x \\cdot y = k$$"
+        },
+        {
+            "title": "Regla de tres",
+            "text": "$a \\to b$, $c \\to x$.",
+            "formula": "$$\\text{directa: } x = \\dfrac{b \\cdot c}{a} \\qquad \\text{inversa: } x = \\dfrac{a \\cdot b}{c}$$"
+        },
+        {
+            "title": "Repartos proporcionales",
+            "text": "Directo: se reparte $C$ en proporción a $a, b, c$ ($S = a + b + c$). Inverso: en proporción a $\\tfrac{1}{a}, \\tfrac{1}{b}, \\tfrac{1}{c}$.",
+            "formula": "$$x = \\dfrac{C \\cdot a}{S}$$"
+        },
+        {
+            "title": "Porcentajes",
+            "formula": "$$a\\% \\text{ de } C = C \\cdot \\dfrac{a}{100} \\qquad \\text{porcentaje} = \\dfrac{P}{T} \\cdot 100$$"
+        },
+        {
+            "title": "Aumentos y disminuciones",
+            "text": "Se multiplica por el índice de variación; las variaciones sucesivas se encadenan multiplicando.",
+            "formula": "$$C_f = C_i \\left(1 \\pm \\dfrac{r}{100}\\right) \\qquad C_f = C_i \\cdot IV_1 \\cdot IV_2 \\cdots IV_n$$"
+        }
     ]
 }

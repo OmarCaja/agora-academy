@@ -150,5 +150,39 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Definición",
+            "text": "Es la pendiente de la recta tangente en $x = a$.",
+            "formula": "$$f'(a) = \\lim_{h \\to 0} \\dfrac{f(a + h) - f(a)}{h}$$"
+        },
+        {
+            "title": "Reglas",
+            "formula": "$$(f \\pm g)' = f' \\pm g' \\quad (kf)' = kf' \\quad (fg)' = f'g + fg' \\quad \\left(\\dfrac{f}{g}\\right)' = \\dfrac{f'g - fg'}{g^2} \\quad (f \\circ g)' = f'(g) \\cdot g'$$"
+        },
+        {
+            "title": "Tabla básica",
+            "text": "Con $u = u(x)$:",
+            "formula": "$$(u^n)' = n u^{n-1} u' \\quad (\\sqrt{u})' = \\dfrac{u'}{2\\sqrt{u}} \\quad (e^u)' = u' e^u \\quad (a^u)' = u' a^u \\ln a \\quad (\\ln u)' = \\dfrac{u'}{u}$$ $$(\\sin u)' = u' \\cos u \\quad (\\cos u)' = -u' \\sin u \\quad (\\operatorname{tg}\\, u)' = \\dfrac{u'}{\\cos^2 u}$$"
+        },
+        {
+            "title": "Recta tangente",
+            "formula": "$$y - f(a) = f'(a)\\,(x - a)$$"
+        },
+        {
+            "title": "Monotonía y extremos",
+            "text": "Los extremos se buscan donde $f'(x) = 0$.",
+            "formula": "$$f' > 0 \\Rightarrow \\text{creciente} \\quad f' < 0 \\Rightarrow \\text{decreciente} \\qquad f'(a) = 0:\\ f''(a) < 0 \\Rightarrow \\text{máx.},\\ f''(a) > 0 \\Rightarrow \\text{mín.}$$"
+        },
+        {
+            "title": "Curvatura e inflexión",
+            "text": "Punto de inflexión: $f''(a) = 0$ y $f''$ cambia de signo.",
+            "formula": "$$f'' > 0 \\Rightarrow \\text{convexa } (\\cup) \\qquad f'' < 0 \\Rightarrow \\text{cóncava } (\\cap)$$"
+        },
+        {
+            "title": "Optimización",
+            "text": "Función a optimizar → dejarla en una sola variable con la condición del enunciado → $f'(x) = 0$ → comprobar si es máximo o mínimo."
+        }
     ]
 }

@@ -90,5 +90,29 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Definición",
+            "text": "Solo existe el logaritmo de números positivos.",
+            "formula": "$$\\log_a b = c \\iff a^c = b \\qquad (a > 0,\\ a \\neq 1,\\ b > 0)$$"
+        },
+        {
+            "title": "Valores básicos",
+            "text": "$\\log$ es en base 10 y $\\ln$ en base $e$.",
+            "formula": "$$\\log_a a = 1 \\qquad \\log_a 1 = 0$$"
+        },
+        {
+            "title": "Propiedades",
+            "formula": "$$\\log_a (MN) = \\log_a M + \\log_a N \\quad \\log_a \\dfrac{M}{N} = \\log_a M - \\log_a N \\quad \\log_a M^n = n \\log_a M \\quad \\log_a \\sqrt[n]{M} = \\dfrac{1}{n}\\log_a M$$"
+        },
+        {
+            "title": "Errores frecuentes",
+            "formula": "$$\\log_a (M + N) \\neq \\log_a M + \\log_a N \\qquad \\dfrac{\\log_a M}{\\log_a N} \\neq \\log_a \\dfrac{M}{N}$$"
+        },
+        {
+            "title": "Cambio de base",
+            "formula": "$$\\log_a M = \\dfrac{\\log_b M}{\\log_b a}$$"
+        }
     ]
 }

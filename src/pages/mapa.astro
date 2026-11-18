@@ -1,0 +1,249 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import SearchBox from "../components/SearchBox.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout
+    title="Mapa de conceptos"
+    description="Mapa interactivo de todos los conceptos de matemáticas de la web y cómo se relacionan. Pulsa un concepto para abrir su página del libro PDF o de la web."
+    currentPage="mapa"
+>
+    <div class="content-section">
+        <Breadcrumbs items={[{ label: "Inicio", href: "/" }, { label: "Mapa de conceptos" }]} />
+        <Header title="MAPA DE CONCEPTOS" />
+        <p class="intro">
+            Cada punto es una definición o un teorema, del color de su tema. Las líneas unen cada concepto con su tema y con los
+            conceptos que nombra. Pulsa un punto para abrirlo en el libro PDF o en la web; arrastra para moverte y usa la rueda o
+            pellizca para hacer zoom.
+        </p>
+        <SearchBox
+            placeholder="Buscar un concepto en el mapa (p. ej. rango, Bayes)..."
+            label="Buscar un concepto en el mapa (pulsa / para enfocar)"
+            countSingular="concepto"
+            countPlural="conceptos"
+            external
+        />
+        <div class="map">
+            <canvas id="conceptMap" role="img" aria-label="Mapa de conceptos: grafo de los temas y conceptos de la web"></canvas>
+            <div class="controls">
+                <button type="button" id="mapFit" class="control" aria-label="Centrar el mapa" title="Centrar el mapa">
+                    <Icon name="ph:crosshair-simple-bold" aria-hidden="true" />
+                </button>
+                <button type="button" id="mapFull" class="control" aria-label="Pantalla completa" title="Pantalla completa" aria-pressed="false">
+                    <Icon name="ph:corners-out-bold" class="icon-enter" aria-hidden="true" />
+                    <Icon name="ph:corners-in-bold" class="icon-exit" aria-hidden="true" />
+                </button>
+            </div>
+            <div id="mapPanel" class="panel" hidden>
+                <button type="button" class="close" id="mapPanelClose" aria-label="Cerrar">×</button>
+                <p class="panel-where" id="mapPanelWhere"></p>
+                <p class="panel-title" id="mapPanelTitle"></p>
+                <p class="panel-links">
+                    <a id="mapPanelPdf" target="_blank" rel="noopener">Abrir en el PDF</a>
+                    <a id="mapPanelWeb">Ver en la web</a>
+                </p>
+            </div>
+        </div>
+        <ul id="mapLegend" class="legend" aria-label="Temas"></ul>
+    </div>
+</BaseLayout>
+
+<script>
+    import "../scripts/concept-map.js";
+</script>
+
+<style>
+    .intro {
+        max-width: var(--measure);
+        color: var(--text-muted);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .map {
+        position: relative;
+        height: clamp(420px, 72vh, 820px);
+        background: var(--bg-raised);
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+        overflow: hidden;
+    }
+
+    /* Full screen: the Fullscreen API, or a fixed overlay where elements can't go full screen. */
+    .map:fullscreen,
+    .map.is-full {
+        height: 100%;
+        border: none;
+        box-shadow: none;
+    }
+
+    .map.is-full {
+        position: fixed;
+        inset: 0;
+        z-index: 1002; /* above GlobalNav (1001) */
+    }
+
+    /* Same icon button as ScrollToTop. */
+    .controls {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .control {
+        width: 46px;
+        height: 46px;
+        background: var(--bg-raised);
+        color: var(--text-primary);
+        border: var(--border-width) solid var(--border-color);
+        border-radius: var(--radius);
+        box-shadow: 3px 3px 0 var(--shadow-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+            transform var(--transition),
+            background var(--transition),
+            color var(--transition),
+            box-shadow var(--transition);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .control:hover {
+        background: var(--accent);
+        color: var(--on-accent);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 5px 5px 0 var(--shadow-color);
+    }
+
+    .control:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 var(--shadow-color);
+    }
+
+    .control :global(svg) {
+        width: 18px;
+        height: 18px;
+    }
+
+    .control :global(.icon-exit),
+    .control[aria-pressed="true"] :global(.icon-enter) {
+        display: none;
+    }
+
+    .control[aria-pressed="true"] :global(.icon-exit) {
+        display: block;
+    }
+
+    canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+        cursor: grab;
+    }
+
+    .panel {
+        position: absolute;
+        left: var(--spacing-sm);
+        bottom: var(--spacing-sm);
+        max-width: min(360px, calc(100% - 2 * var(--spacing-sm)));
+        padding: var(--spacing-sm);
+        padding-right: 36px;
+        background: var(--bg-secondary);
+        border: var(--border-width) solid var(--border-color);
+        box-shadow: 3px 3px 0 var(--shadow-color);
+    }
+
+    .panel[hidden] {
+        display: none;
+    }
+
+    .panel p {
+        margin: 0;
+    }
+
+    .panel-where {
+        font-size: var(--font-size-xs);
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .panel-title {
+        margin: 4px 0 8px !important;
+        font-family: var(--font-family);
+        font-weight: 700;
+    }
+
+    .panel-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+        font-size: var(--font-size-sm);
+        font-weight: 700;
+    }
+
+    .panel-links a {
+        color: var(--text-primary);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    .panel-links a[hidden] {
+        display: none;
+    }
+
+    .close {
+        position: absolute;
+        top: 4px;
+        right: 6px;
+        padding: 2px 8px;
+        font-size: 1.2rem;
+        color: var(--text-primary);
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .legend {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        margin: var(--spacing-md) 0 0;
+        padding: 0;
+        font-size: var(--font-size-xs);
+    }
+
+    .legend :global(button) {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 2px 0;
+        font: inherit;
+        color: var(--text-secondary);
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .legend :global(button:hover) {
+        color: var(--text-primary);
+        text-decoration: underline;
+    }
+
+    .legend :global(.dot) {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--c);
+    }
+</style>

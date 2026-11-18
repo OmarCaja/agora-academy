@@ -199,5 +199,35 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Fracciones equivalentes",
+            "text": "Se obtienen amplificando o simplificando (multiplicando o dividiendo arriba y abajo por el mismo número). Irreducible: m.c.d.$(a, b) = 1$.",
+            "formula": "$$\\dfrac{a}{b} = \\dfrac{c}{d} \\iff a \\cdot d = b \\cdot c$$"
+        },
+        {
+            "title": "Suma y resta",
+            "text": "Se reducen a común denominador con el m.c.m. de los denominadores.",
+            "formula": "$$\\dfrac{a}{b} \\pm \\dfrac{c}{d} = \\dfrac{(m : b) \\cdot a \\pm (m : d) \\cdot c}{m} \\qquad m = \\text{m.c.m.}(b, d)$$"
+        },
+        {
+            "title": "Producto y cociente",
+            "text": "Dividir es multiplicar por la inversa.",
+            "formula": "$$\\dfrac{a}{b} \\cdot \\dfrac{c}{d} = \\dfrac{a \\cdot c}{b \\cdot d} \\qquad \\dfrac{a}{b} : \\dfrac{c}{d} = \\dfrac{a \\cdot d}{b \\cdot c}$$"
+        },
+        {
+            "title": "Potencias",
+            "formula": "$$\\left(\\dfrac{a}{b}\\right)^n = \\dfrac{a^n}{b^n} \\qquad \\left(\\dfrac{a}{b}\\right)^{-n} = \\left(\\dfrac{b}{a}\\right)^n$$"
+        },
+        {
+            "title": "Fracción de una cantidad",
+            "formula": "$$\\dfrac{a}{b} \\text{ de } C = \\dfrac{a \\cdot C}{b}$$"
+        },
+        {
+            "title": "Fracción generatriz",
+            "text": "• Exacto: número sin coma entre 1 seguido de tantos ceros como decimales.<br>• Periódico puro: (número sin coma − parte entera) entre tantos 9 como cifras del periodo.<br>• Periódico mixto: (número sin coma − parte no periódica) entre tantos 9 como cifras del periodo y tantos 0 como del anteperiodo.",
+            "formula": "$$1{,}25 = \\dfrac{125}{100} \\qquad 2{,}\\overline{3} = \\dfrac{23 - 2}{9} \\qquad 1{,}2\\overline{3} = \\dfrac{123 - 12}{90}$$"
+        }
     ]
 }

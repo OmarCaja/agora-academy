@@ -67,8 +67,8 @@ export default defineConfig({
     redirects,
     integrations: [
         sitemap({
-            // /buscar/ is empty until its script runs: nothing to index.
-            filter: (page) => new URL(page).pathname !== '/buscar/',
+            // /buscar/ and /mapa/ are empty until their scripts run: nothing to index.
+            filter: (page) => !['/buscar/', '/mapa/'].includes(new URL(page).pathname),
             serialize(item) {
                 const source = pageSource(new URL(item.url).pathname);
                 const lastmod = source && lastCommit(source);

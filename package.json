@@ -17,6 +17,10 @@
     "@iconify-json/ph": "^1.2.2",
     "astro": "7.4.4",
     "astro-icon": "^1.2.0",
+    "d3-drag": "^3.0.1",
+    "d3-force": "^3.0.1",
+    "d3-selection": "^3.0.1",
+    "d3-zoom": "^3.0.1",
     "katex": "^0.19.0"
   },
   "devDependencies": {

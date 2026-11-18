@@ -232,6 +232,17 @@ const isSectionActive = (section: MenuSection) => {
 
             <div class="menu-group">
                 <a
+                    href="/mapa/"
+                    data-close-menu
+                    class:list={["menu-group-title", "menu-link", { active: currentPage === "mapa" }]}
+                    aria-current={currentPage === "mapa" ? "page" : undefined}
+                >
+                    Mapa de conceptos
+                </a>
+            </div>
+
+            <div class="menu-group">
+                <a
                     href="/#contacto"
                     data-close-menu
                     class:list={["menu-group-title", "menu-link", "nav-contacto"]}

@@ -97,5 +97,32 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Orden de las operaciones",
+            "text": "De izquierda a derecha dentro de cada nivel.",
+            "formula": "$$\\text{paréntesis} \\;>\\; \\text{potencias y raíces} \\;>\\; \\cdot \\ \\text{y} \\ : \\;>\\; + \\ \\text{y} \\ -$$"
+        },
+        {
+            "title": "Paréntesis",
+            "text": "Se resuelven de dentro hacia fuera.",
+            "formula": "$$() \\rightarrow [\\,] \\rightarrow \\{\\}$$"
+        },
+        {
+            "title": "Signos al multiplicar y dividir",
+            "text": "Signos iguales dan $+$; signos distintos dan $-$.",
+            "formula": "$$(+) \\cdot (+) = + \\quad (-) \\cdot (-) = + \\quad (+) \\cdot (-) = - \\quad (-) \\cdot (+) = -$$"
+        },
+        {
+            "title": "Signos al sumar y restar",
+            "text": "Mismo signo: se suman y se deja el signo. Distinto signo: se restan y se deja el signo del de mayor valor absoluto.",
+            "formula": "$$a - (-b) = a + b$$"
+        },
+        {
+            "title": "Potencias de negativos",
+            "text": "Con exponente par sale positivo; con impar, negativo. El paréntesis importa.",
+            "formula": "$$(-a)^n \\neq -a^n \\qquad (-2)^4 = 16 \\qquad -2^4 = -16$$"
+        }
     ]
 }

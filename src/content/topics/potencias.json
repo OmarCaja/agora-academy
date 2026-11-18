@@ -130,5 +130,29 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Definición",
+            "formula": "$$a^n = \\underbrace{a \\cdot a \\cdots a}_{n} \\qquad a^1 = a \\qquad a^0 = 1 \\ (a \\neq 0)$$"
+        },
+        {
+            "title": "Signo",
+            "text": "Base negativa: exponente par → positivo; impar → negativo.",
+            "formula": "$$(-a)^n \\neq -a^n$$"
+        },
+        {
+            "title": "Misma base",
+            "formula": "$$a^m \\cdot a^n = a^{m+n} \\qquad a^m : a^n = a^{m-n} \\qquad (a^m)^n = a^{m \\cdot n}$$"
+        },
+        {
+            "title": "Mismo exponente",
+            "text": "No hay regla para la suma: $(a + b)^n \\neq a^n + b^n$.",
+            "formula": "$$a^n \\cdot b^n = (a \\cdot b)^n \\qquad a^n : b^n = (a : b)^n$$"
+        },
+        {
+            "title": "Exponentes negativos y fraccionarios",
+            "formula": "$$a^{-n} = \\dfrac{1}{a^n} \\qquad a^{\\frac{m}{n}} = \\sqrt[n]{a^m} \\qquad a^{-\\frac{m}{n}} = \\dfrac{1}{\\sqrt[n]{a^m}}$$"
+        }
     ]
 }

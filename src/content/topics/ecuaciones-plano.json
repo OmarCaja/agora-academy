@@ -94,5 +94,33 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Vectorial",
+            "formula": "$$(x, y, z) = (a_1, a_2, a_3) + \\lambda\\,(u_1, u_2, u_3) + \\mu\\,(v_1, v_2, v_3)$$"
+        },
+        {
+            "title": "Paramétricas",
+            "formula": "$$x = a_1 + \\lambda u_1 + \\mu v_1, \\quad y = a_2 + \\lambda u_2 + \\mu v_2, \\quad z = a_3 + \\lambda u_3 + \\mu v_3$$"
+        },
+        {
+            "title": "General",
+            "text": "Se obtiene con un determinante: $\\overrightarrow{AX}$, $\\vec{u}$ y $\\vec{v}$ deben ser dependientes. Por tres puntos, se usan $\\overrightarrow{AB}$ y $\\overrightarrow{AC}$.",
+            "formula": "$$Ax + By + Cz + D = 0 \\iff \\begin{vmatrix} x - a_1 & y - a_2 & z - a_3 \\\\ u_1 & u_2 & u_3 \\\\ v_1 & v_2 & v_3 \\end{vmatrix} = 0$$"
+        },
+        {
+            "title": "Vector normal",
+            "text": "Perpendicular al plano. Con un punto y $\\vec{n}$, se halla $D$ sustituyendo el punto.",
+            "formula": "$$\\vec{n} = (A, B, C) = \\vec{u} \\times \\vec{v}$$"
+        },
+        {
+            "title": "General → paramétricas",
+            "text": "Despejar una incógnita y tomar las otras dos como $\\lambda$ y $\\mu$."
+        },
+        {
+            "title": "Director de una recta en implícitas",
+            "formula": "$$\\vec{v} = \\vec{n}_1 \\times \\vec{n}_2$$"
+        }
     ]
 }

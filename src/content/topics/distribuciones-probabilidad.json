@@ -125,5 +125,32 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Variable aleatoria discreta",
+            "text": "Las probabilidades suman 1.",
+            "formula": "$$\\mu = \\sum x_i p_i \\qquad \\sigma^2 = \\sum x_i^2 p_i - \\mu^2 \\qquad F(x) = P(X \\leq x)$$"
+        },
+        {
+            "title": "Binomial $B(n, p)$",
+            "text": "Número de éxitos en $n$ pruebas independientes con la misma probabilidad de éxito $p$.",
+            "formula": "$$P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k} \\qquad \\mu = np \\qquad \\sigma = \\sqrt{np(1 - p)}$$"
+        },
+        {
+            "title": "Normal $N(\\mu, \\sigma)$",
+            "text": "Continua: la probabilidad es un área y $P(X = a) = 0$. Se tipifica para usar la tabla de $N(0, 1)$.",
+            "formula": "$$Z = \\dfrac{X - \\mu}{\\sigma}$$"
+        },
+        {
+            "title": "Uso de la tabla",
+            "text": "La tabla da $\\Phi(z) = P(Z \\leq z)$.",
+            "formula": "$$P(Z > z) = 1 - \\Phi(z) \\qquad P(Z \\leq -z) = 1 - \\Phi(z) \\qquad P(a \\leq Z \\leq b) = \\Phi(b) - \\Phi(a)$$"
+        },
+        {
+            "title": "Binomial aproximada por la normal",
+            "text": "Si $np \\geq 5$ y $n(1 - p) \\geq 5$. Corrección de Yates: $P(X = k) \\approx P(k - 0{,}5 \\leq X' \\leq k + 0{,}5)$.",
+            "formula": "$$B(n, p) \\approx N\\big(np,\\ \\sqrt{np(1 - p)}\\big)$$"
+        }
     ]
 }

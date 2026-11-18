@@ -264,5 +264,41 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Matriz y dimensión",
+            "text": "$m \\times n$: $m$ filas y $n$ columnas; $a_{ij}$ está en la fila $i$, columna $j$. Traspuesta: filas por columnas.",
+            "formula": "$$(A^t)_{ij} = a_{ji} \\qquad A \\text{ simétrica} \\iff A^t = A$$"
+        },
+        {
+            "title": "Suma y producto por un escalar",
+            "text": "Solo se suman matrices de la misma dimensión, elemento a elemento.",
+            "formula": "$$(A \\pm B)_{ij} = a_{ij} \\pm b_{ij} \\qquad (k \\cdot A)_{ij} = k \\cdot a_{ij}$$"
+        },
+        {
+            "title": "Producto de matrices",
+            "text": "Columnas de $A$ = filas de $B$. Fila por columna. <strong>No es conmutativo</strong>: $AB \\neq BA$ en general.",
+            "formula": "$$A_{m \\times n} \\cdot B_{n \\times p} = C_{m \\times p} \\qquad c_{ij} = a_{i1} b_{1j} + \\cdots + a_{in} b_{nj}$$"
+        },
+        {
+            "title": "Propiedades",
+            "formula": "$$(A \\cdot B)^t = B^t \\cdot A^t \\qquad A \\cdot I = I \\cdot A = A \\qquad (A \\cdot B)^{-1} = B^{-1} \\cdot A^{-1}$$"
+        },
+        {
+            "title": "Rango (Gauss)",
+            "text": "Número de filas no nulas tras escalonar con operaciones elementales.",
+            "formula": "$$\\operatorname{rg}(A) \\leq \\min(m, n)$$"
+        },
+        {
+            "title": "Matriz inversa",
+            "text": "Solo para cuadradas de rango máximo. Por Gauss-Jordan:",
+            "formula": "$$A \\cdot A^{-1} = A^{-1} \\cdot A = I \\qquad (A \\mid I) \\longrightarrow (I \\mid A^{-1})$$"
+        },
+        {
+            "title": "Ecuaciones matriciales",
+            "text": "Se despeja multiplicando por la inversa por el lado correcto.",
+            "formula": "$$AX = B \\Rightarrow X = A^{-1} B \\qquad XA = B \\Rightarrow X = B A^{-1}$$"
+        }
     ]
 }

@@ -197,5 +197,34 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Función, dominio y recorrido",
+            "text": "A cada $x$ del dominio le corresponde un <strong>único</strong> $y$. Dominio: donde $f$ está definida (cuidado con denominadores nulos, raíces pares de negativos y logaritmos de no positivos).",
+            "formula": "$$\\text{Dom}(f) = \\{x : f(x) \\text{ existe}\\} \\qquad \\text{Im}(f) = \\{f(x) : x \\in \\text{Dom}(f)\\}$$"
+        },
+        {
+            "title": "Cortes con los ejes",
+            "text": "Eje $Y$: $x = 0$, punto $(0, f(0))$. Eje $X$: resolver $f(x) = 0$ (los ceros), que separan los intervalos de signo."
+        },
+        {
+            "title": "Monotonía, curvatura y extremos",
+            "text": "Creciente si al aumentar $x$ aumenta $f(x)$. Convexa ($\\cup$) o cóncava ($\\cap$); el punto de inflexión es donde cambia. Máximo y mínimo relativos: el mayor o menor valor cerca del punto; absolutos, en todo el dominio."
+        },
+        {
+            "title": "Simetría",
+            "formula": "$$\\text{par: } f(-x) = f(x) \\ (\\text{eje } Y) \\qquad \\text{impar: } f(-x) = -f(x) \\ (\\text{origen})$$"
+        },
+        {
+            "title": "Periodicidad",
+            "text": "$T$ es el periodo.",
+            "formula": "$$f(x + T) = f(x)$$"
+        },
+        {
+            "title": "Composición e inversa",
+            "text": "Inversa: se cambia $f(x)$ por $y$, se intercambian $x$ e $y$ y se despeja $y$.",
+            "formula": "$$(g \\circ f)(x) = g(f(x)) \\qquad (f \\circ f^{-1})(x) = (f^{-1} \\circ f)(x) = x$$"
+        }
     ]
 }

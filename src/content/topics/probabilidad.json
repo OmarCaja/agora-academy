@@ -310,5 +310,35 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Factorial y número combinatorio",
+            "formula": "$$n! = n(n - 1)\\cdots 1 \\qquad 0! = 1 \\qquad \\binom{n}{k} = \\dfrac{n!}{k!\\,(n - k)!}$$"
+        },
+        {
+            "title": "Combinatoria",
+            "text": "¿Importa el orden? No → combinaciones. Sí → ¿se usan todos? Sí → permutaciones; no → variaciones. Después, ¿se repiten?",
+            "formula": "$$P_n = n! \\quad V_n^k = \\dfrac{n!}{(n - k)!} \\quad VR_n^k = n^k \\quad C_n^k = \\binom{n}{k} \\quad PR_n^{a,b,c} = \\dfrac{n!}{a!\\,b!\\,c!} \\quad CR_n^k = \\binom{n + k - 1}{k}$$"
+        },
+        {
+            "title": "Sucesos",
+            "text": "Unión: ocurre $A$ o $B$. Intersección: ocurren los dos. Incompatibles: $A \\cap B = \\emptyset$.",
+            "formula": "$$\\overline{A \\cup B} = \\bar{A} \\cap \\bar{B} \\qquad \\overline{A \\cap B} = \\bar{A} \\cup \\bar{B}$$"
+        },
+        {
+            "title": "Laplace y propiedades",
+            "text": "Laplace solo si los resultados son equiprobables.",
+            "formula": "$$P(A) = \\dfrac{\\text{favorables}}{\\text{posibles}} \\qquad P(\\bar{A}) = 1 - P(A) \\qquad P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$"
+        },
+        {
+            "title": "Condicionada e independencia",
+            "formula": "$$P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)} \\qquad P(A \\cap B) = P(A) \\cdot P(B \\mid A) \\qquad \\text{independientes} \\iff P(A \\cap B) = P(A) \\cdot P(B)$$"
+        },
+        {
+            "title": "Probabilidad total y Bayes",
+            "text": "Con un sistema completo de sucesos $A_1, \\dots, A_n$ (diagrama de árbol).",
+            "formula": "$$P(B) = \\sum P(A_i)\\,P(B \\mid A_i) \\qquad P(A_i \\mid B) = \\dfrac{P(A_i)\\,P(B \\mid A_i)}{P(B)}$$"
+        }
     ]
 }

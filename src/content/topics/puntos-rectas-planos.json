@@ -56,5 +56,26 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Punto",
+            "text": "Sus coordenadas son las de su vector de posición. Un vector entre dos puntos es <strong>extremo menos origen</strong>.",
+            "formula": "$$P(x, y, z) \\iff \\overrightarrow{OP} = (x, y, z) \\qquad \\overrightarrow{AB} = (b_1 - a_1,\\ b_2 - a_2,\\ b_3 - a_3)$$"
+        },
+        {
+            "title": "Recta",
+            "text": "Se determina con un punto $A$ y un vector director $\\vec{v} \\neq \\vec{0}$, o con dos puntos distintos ($\\vec{v} = \\overrightarrow{AB}$).",
+            "formula": "$$\\overrightarrow{AX} = \\lambda\\,\\vec{v}$$"
+        },
+        {
+            "title": "Plano",
+            "text": "Se determina con un punto $A$ y dos vectores directores no paralelos, o con tres puntos no alineados ($\\overrightarrow{AB}$, $\\overrightarrow{AC}$).",
+            "formula": "$$\\overrightarrow{AX} = \\lambda\\,\\vec{u} + \\mu\\,\\vec{v} \\qquad \\vec{u} \\nparallel \\vec{v}$$"
+        },
+        {
+            "title": "Puntos alineados",
+            "text": "$A$, $B$, $C$ están alineados si $\\overrightarrow{AB}$ y $\\overrightarrow{AC}$ son proporcionales."
+        }
     ]
 }

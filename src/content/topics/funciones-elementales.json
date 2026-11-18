@@ -91,5 +91,35 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Afín y lineal",
+            "text": "Recta de pendiente $m$ y ordenada en el origen $n$ (lineal si $n = 0$).",
+            "formula": "$$f(x) = mx + n \\qquad m = \\dfrac{f(x_2) - f(x_1)}{x_2 - x_1}$$"
+        },
+        {
+            "title": "Cuadrática",
+            "text": "Parábola: hacia arriba si $a > 0$, hacia abajo si $a < 0$.",
+            "formula": "$$f(x) = ax^2 + bx + c \\qquad x_v = -\\dfrac{b}{2a} \\qquad a(x - h)^2 + k:\\ \\text{vértice } (h, k)$$"
+        },
+        {
+            "title": "Racional",
+            "formula": "$$f(x) = \\dfrac{P(x)}{Q(x)} \\qquad \\text{Dom}(f) = \\{x : Q(x) \\neq 0\\}$$"
+        },
+        {
+            "title": "Radical",
+            "formula": "$$f(x) = \\sqrt[n]{g(x)} \\qquad n \\text{ par} \\Rightarrow \\text{Dom}(f) = \\{x : g(x) \\geq 0\\}$$"
+        },
+        {
+            "title": "Exponencial",
+            "text": "Pasa por $(0, 1)$, siempre positiva; creciente si $a > 1$, decreciente si $0 < a < 1$.",
+            "formula": "$$f(x) = a^x \\quad (a > 0,\\ a \\neq 1)$$"
+        },
+        {
+            "title": "Logarítmica",
+            "text": "Inversa de la exponencial. Dominio $(0, +\\infty)$, pasa por $(1, 0)$; creciente si $a > 1$, decreciente si $0 < a < 1$.",
+            "formula": "$$f(x) = \\log_a x \\qquad y = \\log_a x \\iff a^y = x$$"
+        }
     ]
 }

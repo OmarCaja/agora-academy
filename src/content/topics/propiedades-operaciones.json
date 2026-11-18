@@ -71,5 +71,30 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Conmutativa",
+            "text": "El orden no cambia el resultado (no vale para la resta ni la división).",
+            "formula": "$$a + b = b + a \\qquad a \\cdot b = b \\cdot a$$"
+        },
+        {
+            "title": "Asociativa",
+            "text": "Se pueden agrupar como se quiera.",
+            "formula": "$$(a + b) + c = a + (b + c) \\qquad (a \\cdot b) \\cdot c = a \\cdot (b \\cdot c)$$"
+        },
+        {
+            "title": "Distributiva y factor común",
+            "text": "Leída al revés, es sacar factor común.",
+            "formula": "$$a \\cdot (b + c) = a \\cdot b + a \\cdot c \\qquad a \\cdot b + a \\cdot c = a \\cdot (b + c)$$"
+        },
+        {
+            "title": "Elementos neutros",
+            "formula": "$$a + 0 = a \\qquad a \\cdot 1 = a$$"
+        },
+        {
+            "title": "Elementos inversos y absorbente",
+            "formula": "$$a + (-a) = 0 \\qquad a \\cdot \\dfrac{1}{a} = 1\\ (a \\neq 0) \\qquad a \\cdot 0 = 0$$"
+        }
     ]
 }

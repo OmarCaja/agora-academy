@@ -118,5 +118,26 @@
                 }
             ]
         }
+    ],
+    "summary": [
+        {
+            "title": "Variable bidimensional",
+            "text": "Estudia dos caracteres $(X, Y)$ a la vez. Marginales: cada variable por separado. Condicionada: una variable fijado un valor de la otra."
+        },
+        {
+            "title": "Covarianza",
+            "text": "Positiva: relación directa; negativa: inversa.",
+            "formula": "$$\\sigma_{xy} = \\dfrac{\\sum f_{ij}\\, x_i y_j}{N} - \\bar{x}\\,\\bar{y}$$"
+        },
+        {
+            "title": "Coeficiente de correlación",
+            "text": "$-1 \\leq r \\leq 1$. Cerca de $\\pm 1$: correlación fuerte; cerca de $0$: débil. El signo es el de la covarianza.",
+            "formula": "$$r = \\dfrac{\\sigma_{xy}}{\\sigma_x \\sigma_y}$$"
+        },
+        {
+            "title": "Rectas de regresión",
+            "text": "Ambas pasan por $(\\bar{x}, \\bar{y})$. Para estimar $y$ se usa la de $Y$ sobre $X$; las estimaciones son fiables si $\\lvert r \\rvert$ es próximo a 1.",
+            "formula": "$$y - \\bar{y} = \\dfrac{\\sigma_{xy}}{\\sigma_x^2}(x - \\bar{x}) \\qquad x - \\bar{x} = \\dfrac{\\sigma_{xy}}{\\sigma_y^2}(y - \\bar{y})$$"
+        }
     ]
 }
