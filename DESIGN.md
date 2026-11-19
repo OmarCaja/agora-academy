@@ -175,7 +175,7 @@ The page runs on two fixed widths. **Shell** (1120px) governs composition: the h
 
 The spacing scale is 10 / 15 / 20 / 40 / 60 / 88px. Section rhythm is 40px on mobile and 88px from 768px up; cards use 22px internal padding, boxed content 25px rising to 35px on desktop.
 
-Composition is deliberately asymmetric. The hero is a 1.25fr / 0.75fr split from 900px, with the figure nudged 8px off the vertical centre. The "why" list uses a progressive indent (0, 8%, 16%, 24%) to give a stack of four items a diagonal edge instead of four identical rows. Every one of these asymmetries collapses to a single flat column below 900px; asymmetry is a desktop affordance, never a mobile one.
+Composition is deliberately asymmetric. The hero is a single type-led column; the site-wide search is its own band right under it, a 0.8fr / 1.2fr split from 900px (heading and lead left, field right). The "why" list uses a progressive indent (0, 8%, 16%, 24%) to give a stack of four items a diagonal edge instead of four identical rows. Every one of these asymmetries collapses to a single flat column below 900px; asymmetry is a desktop affordance, never a mobile one.
 
 Breakpoints in use: 480, 600, 640, 768, 900, 960px. The navigation is a fixed 48px bar at all sizes and must always render on one line.
 

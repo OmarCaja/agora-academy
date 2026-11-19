@@ -87,14 +87,18 @@ const reasons = [
 					</a>
 				</div>
 			</div>
+		</section>
 
-			{/* Site-wide search: same engine as /buscar */}
-			<section class="finder reveal" style="--i: 2" aria-labelledby="finder-title">
+		{/* ── Site-wide search: same engine as /buscar ────────────── */}
+		<section class="finder" aria-labelledby="finder-title">
+			<div class="finder-intro reveal">
 				<h2 id="finder-title">Busca cualquier concepto</h2>
 				<p class="section-lead">
 					Definiciones, teoremas y procedimientos de todos los temas, con
 					enlace a la web y a la página del libro PDF.
 				</p>
+			</div>
+			<div class="finder-body reveal" style="--i: 1">
 				<form action="/buscar/" method="get" role="search" class="finder-form">
 					<label class="sr-only" for="finder-input">Buscar en toda la web</label>
 					<div class="finder-field">
@@ -121,7 +125,7 @@ const reasons = [
 						))
 					}
 				</p>
-			</section>
+			</div>
 		</section>
 
 		{/* ── Materials: bento, one cell per item ──────────────────── */}
@@ -272,17 +276,11 @@ const reasons = [
 <style>
 	/* ===== HERO ===== */
 	.hero {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: var(--spacing-lg);
 		padding-top: var(--spacing-md);
 	}
 
 	@media (min-width: 900px) {
 		.hero {
-			grid-template-columns: 1.15fr 0.85fr;
-			align-items: center;
-			gap: var(--spacing-2xl);
 			padding-top: var(--spacing-xl);
 		}
 	}
@@ -291,6 +289,7 @@ const reasons = [
 	/* Every section owns the same space and is separated from the previous one by
 	   the same 1px rule, so the page reads as evenly spaced bands. */
 	.hero,
+	.finder,
 	.materials,
 	.reasons,
 	.contact {
@@ -298,6 +297,7 @@ const reasons = [
 		padding-bottom: var(--spacing-xl);
 	}
 
+	.finder,
 	.materials,
 	.reasons,
 	.contact {
@@ -307,12 +307,14 @@ const reasons = [
 
 	@media (min-width: 900px) {
 		.hero,
+		.finder,
 		.materials,
 		.reasons,
 		.contact {
 			padding-bottom: var(--spacing-2xl);
 		}
 
+		.finder,
 		.materials,
 		.reasons,
 		.contact {
@@ -320,9 +322,37 @@ const reasons = [
 		}
 	}
 
-	/* The search sits inside the hero: it is not a band of its own. */
+	/* The search is its own band right under the hero. From 900px it splits like
+	   the hero copy reads: what it finds on the left, the field on the right, so the
+	   box gets the width for its placeholder and the example terms on one line. */
 	.finder {
+		display: grid;
+		gap: var(--spacing-md);
+	}
+
+	.finder-intro .section-lead {
 		margin-bottom: 0;
+	}
+
+	@media (max-width: 899px) {
+		/* Students search on a phone: keep the box as close to the fold as the
+		   band allows, so the lead goes and the band tightens. */
+		.finder {
+			padding-top: var(--spacing-lg);
+			gap: var(--spacing-sm);
+		}
+
+		.finder-intro .section-lead {
+			display: none;
+		}
+	}
+
+	@media (min-width: 900px) {
+		.finder {
+			grid-template-columns: 0.8fr 1.2fr;
+			align-items: center;
+			gap: var(--spacing-2xl);
+		}
 	}
 
 	.hero-title {
@@ -435,18 +465,6 @@ const reasons = [
 
 	/* ===== SECTION LEAD ===== */
 	/* ── Site-wide search ── */
-	.finder h2 {
-		font-size: var(--step-2);
-	}
-	.finder .section-lead {
-		margin-bottom: var(--spacing-md);
-	}
-	@media (max-width: 899px) {
-		/* Students search on a phone: keep the box above the fold. */
-		.finder .section-lead {
-			display: none;
-		}
-	}
 	.finder-form {
 		display: flex;
 		flex-wrap: wrap;

@@ -123,19 +123,21 @@ const processedTitle = renderMath(title);
         color: var(--text-primary);
     }
 
-    /* A definition is the one card the rest of the section builds on: inverted label, heavy left rule. */
-    .kind-definicion {
-        border-left-width: 10px;
+    /* Theory cards drop the info-box frame and shadow (as in the book PDFs): a thin rule separates them. */
+    .property-box {
+        background: none;
+        border: none;
+        border-bottom: 1px solid var(--rule-color);
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0 0 var(--spacing-md);
+        margin-bottom: 0;
     }
 
+    /* A definition is the one card the rest of the section builds on: inverted label. */
     .kind-definicion .kind-label {
         background: var(--accent);
         color: var(--on-accent);
-    }
-
-    .kind-teorema {
-        border-left-width: 10px;
-        border-left-style: double;
     }
 
     .description {

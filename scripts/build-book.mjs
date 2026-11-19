@@ -177,13 +177,13 @@ async function buildBook(book, keepHtml) {
     .chapter-num { font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin: 10mm 0 2mm; color: #666; }
     .chapter-desc { margin: 0; color: #444; }
     h2 { font-size: 14pt; margin: 9mm 0 4mm; padding-left: 3mm; border-left: 3mm solid #1f1f1f; break-after: avoid; }
-    .item { border: 1.5px solid #1f1f1f; box-shadow: 2mm 2mm 0 #1f1f1f; padding: 4mm 5mm; margin: 0 2mm 6mm 0; break-inside: avoid; }
+    .item { border-bottom: 1px solid #ccc; padding: 4mm 0; break-inside: avoid; }
+    h2 + .item { padding-top: 0; }
     .item h3 { font-size: 11pt; margin: 0 0 3mm; padding-bottom: 1mm; border-bottom: 2px solid #1f1f1f; display: inline-block; }
     .formula, .example { background: #f5f5f5; border: 1px solid #1f1f1f; padding: 3mm 4mm; margin: 2mm 0 3mm; overflow: hidden; }
     .formula .katex-display, .example .katex-display { margin: .3em 0; }
     .kind { display: table; margin: 0 0 2mm; padding: .3mm 2.5mm; border: 1px solid #1f1f1f; font-size: 7.5pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .kind-definicion { background: #1f1f1f; color: #fff; }
-    .item:has(.kind-definicion), .item:has(.kind-teorema) { border-left-width: 3mm; }
     .label { margin: 0; font-size: 8.5pt; font-weight: 700; color: #666; text-transform: uppercase; }
     .description { color: #333; }
     .description p { margin: 0 0 2mm; }

@@ -1,6 +1,6 @@
 {
     "title": "Ecuaciones exponenciales y logarítmicas",
-    "description": "Aprende a resolver ecuaciones exponenciales (igualando bases, tomando logaritmos, sacando factor común o con cambio de variable) y ecuaciones logarítmicas, comprobando siempre las soluciones.",
+    "description": "Resuelve ecuaciones exponenciales y logarítmicas (igualando bases, tomando logaritmos o con cambio de variable) y sus sistemas, comprobando las soluciones.",
     "levels": ["4-eso", "1-bach"],
     "menuGroup": "Potencias, raíces y logaritmos",
     "menuOrder": 4,
@@ -83,6 +83,44 @@
                     "kind": "procedimiento"
                 }
             ]
+        },
+        {
+            "title": "Sistemas de ecuaciones exponenciales y logarítmicas",
+            "items": [
+                {
+                    "title": "Sistema de ecuaciones exponenciales o logarítmicas",
+                    "kind": "definicion",
+                    "description": "Un <strong>sistema de ecuaciones exponenciales</strong> (o <strong>logarítmicas</strong>) es un sistema en el que las incógnitas aparecen en exponentes (o en argumentos de logaritmos) en al menos una de sus ecuaciones. Una <strong>solución</strong> es un par $(x, y)$ que cumple todas las ecuaciones a la vez. La idea es transformarlo, con los mismos métodos que las ecuaciones, en un <strong>sistema algebraico</strong> (lineal o de segundo grado) que ya sabemos resolver.",
+                    "formula": "$$\\begin{cases} 2^{x} \\cdot 2^{y} = 32 \\\\ 3^{x-y} = 3 \\end{cases} \\qquad \\begin{cases} \\log x + \\log y = 3 \\\\ \\log x - \\log y = 1 \\end{cases}$$",
+                    "example": "$(x, y) = (3, 2)$ es solución del primer sistema: $2^{3} \\cdot 2^{2} = 8 \\cdot 4 = 32$ y $3^{3-2} = 3$."
+                },
+                {
+                    "title": "Sistemas exponenciales: igualar bases",
+                    "kind": "procedimiento",
+                    "formula": "$$a^{f(x,y)} = a^{c} \\iff f(x,y) = c$$",
+                    "description": "Si en cada ecuación se puede dejar una sola potencia en cada miembro con la <strong>misma base</strong>, se igualan los exponentes y queda un sistema de ecuaciones lineales. Pasos:<br><strong>1.</strong> Con las propiedades de las potencias ($a^{x} \\cdot a^{y} = a^{x+y}$, $\\dfrac{a^{x}}{a^{y}} = a^{x-y}$), deja una sola potencia en cada miembro.<br><strong>2.</strong> Escribe los números como potencias de esa misma base (descomponiendo en factores primos).<br><strong>3.</strong> Iguala los exponentes de cada ecuación.<br><strong>4.</strong> Resuelve el sistema lineal (reducción, sustitución o igualación).<br><strong>5.</strong> Comprueba la solución en el sistema original.",
+                    "example": "$\\begin{cases} 2^{x} \\cdot 2^{y} = 32 \\\\ 3^{x-y} = 3 \\end{cases}$<br><strong>1.</strong> En la primera ecuación, el producto de potencias de la misma base suma los exponentes: $2^{x} \\cdot 2^{y} = 2^{x+y}$.<br><strong>2.</strong> Escribimos los números como potencias: $32 = 2^{5}$ y $3 = 3^{1}$.<br>$\\quad \\begin{cases} 2^{x+y} = 2^{5} \\\\ 3^{x-y} = 3^{1} \\end{cases}$<br><strong>3.</strong> Igualamos los exponentes: $\\begin{cases} x + y = 5 \\\\ x - y = 1 \\end{cases}$<br><strong>4.</strong> Por reducción, sumamos las dos ecuaciones: $(x + y) + (x - y) = 5 + 1 \\Rightarrow 2x = 6 \\Rightarrow \\textcolor{#4fa66e}{x = 3}$<br>$\\quad$ Sustituimos en la primera: $3 + y = 5 \\Rightarrow \\textcolor{#4fa66e}{y = 2}$<br><strong>5.</strong> Comprobación: $2^{3} \\cdot 2^{2} = 8 \\cdot 4 = 32$ ✓ &nbsp; y &nbsp; $3^{3-2} = 3^{1} = 3$ ✓"
+                },
+                {
+                    "title": "Sistemas exponenciales: cambio de variable",
+                    "kind": "procedimiento",
+                    "formula": "$$u = a^{x}, \\quad v = b^{y} \\qquad (u > 0,\\ v > 0)$$",
+                    "description": "Si aparecen <strong>sumas</strong> de potencias, no se pueden igualar exponentes. Pasos:<br><strong>1.</strong> Separa las potencias con exponentes compuestos: $a^{x+n} = a^{n} \\cdot a^{x}$, $a^{x-n} = \\dfrac{a^{x}}{a^{n}}$.<br><strong>2.</strong> Haz el cambio $u = a^{x}$, $v = b^{y}$: queda un sistema lineal en $u$ y $v$.<br><strong>3.</strong> Resuelve ese sistema. Como las potencias son siempre positivas, <strong>se descartan los valores de $u$ o $v$ negativos o nulos</strong>.<br><strong>4.</strong> Deshaz el cambio: cada igualdad $a^{x} = u$ es una ecuación exponencial sencilla.<br><strong>5.</strong> Comprueba la solución en el sistema original.",
+                    "example": "$\\begin{cases} 2^{x} + 3^{y} = 7 \\\\ 2^{x+1} - 3^{y} = 5 \\end{cases}$<br><strong>1.</strong> Separamos $2^{x+1} = 2^{1} \\cdot 2^{x} = 2 \\cdot 2^{x}$: $\\begin{cases} 2^{x} + 3^{y} = 7 \\\\ 2 \\cdot 2^{x} - 3^{y} = 5 \\end{cases}$<br><strong>2.</strong> Cambio $u = 2^{x}$, $v = 3^{y}$: $\\begin{cases} u + v = 7 \\\\ 2u - v = 5 \\end{cases}$<br><strong>3.</strong> Por reducción, sumamos las dos ecuaciones: $(u + v) + (2u - v) = 7 + 5 \\Rightarrow 3u = 12 \\Rightarrow u = 4$<br>$\\quad$ Sustituimos en la primera: $4 + v = 7 \\Rightarrow v = 3$. Los dos valores son positivos, así que valen.<br><strong>4.</strong> Deshacemos el cambio:<br>$\\quad 2^{x} = 4 = 2^{2} \\Rightarrow \\textcolor{#4fa66e}{x = 2}$<br>$\\quad 3^{y} = 3 = 3^{1} \\Rightarrow \\textcolor{#4fa66e}{y = 1}$<br><strong>5.</strong> Comprobación: $2^{2} + 3^{1} = 4 + 3 = 7$ ✓ &nbsp; y &nbsp; $2^{3} - 3^{1} = 8 - 3 = 5$ ✓"
+                },
+                {
+                    "title": "Sistemas logarítmicos",
+                    "kind": "procedimiento",
+                    "formula": "$$\\log x + \\log y = \\log(xy) \\qquad \\log x - \\log y = \\log\\dfrac{x}{y}$$",
+                    "description": "Hay dos caminos:<br>• <strong>Cambio de variable</strong>, si cada logaritmo aparece solo: se llama $u = \\log x$, $v = \\log y$, se resuelve el sistema lineal en $u$ y $v$ y se deshace el cambio con la definición ($\\log x = u \\iff x = 10^{u}$).<br>• <strong>Agrupar</strong>: con las propiedades del producto y del cociente se deja un solo logaritmo en cada miembro, se escriben los números como logaritmos ($2 = \\log 100$) y se igualan los argumentos; queda un sistema algebraico en $x$ e $y$, que se resuelve por sustitución.<br>En los dos casos hay que <strong>comprobar</strong> cada solución en el sistema original: se descarta si algún argumento queda negativo o cero.",
+                    "example": "$\\begin{cases} \\log x + \\log y = 3 \\\\ \\log x - \\log y = 1 \\end{cases}$<br><strong>1.</strong> Cambio $u = \\log x$, $v = \\log y$: $\\begin{cases} u + v = 3 \\\\ u - v = 1 \\end{cases}$<br><strong>2.</strong> Sumamos las dos ecuaciones: $2u = 4 \\Rightarrow u = 2$. Sustituimos en la primera: $2 + v = 3 \\Rightarrow v = 1$<br><strong>3.</strong> Deshacemos el cambio con la definición:<br>$\\quad \\log x = 2 \\Rightarrow x = 10^{2} \\Rightarrow \\textcolor{#4fa66e}{x = 100}$<br>$\\quad \\log y = 1 \\Rightarrow y = 10^{1} \\Rightarrow \\textcolor{#4fa66e}{y = 10}$<br><strong>4.</strong> Comprobación (los argumentos son positivos):<br>$\\quad \\log 100 + \\log 10 = 2 + 1 = 3$ ✓ &nbsp; y &nbsp; $\\log 100 - \\log 10 = 2 - 1 = 1$ ✓"
+                },
+                {
+                    "title": "Sistema logarítmico agrupando logaritmos",
+                    "kind": "ejemplo",
+                    "example": "$\\begin{cases} x - y = 15 \\\\ \\log x + \\log y = 2 \\end{cases}$<br><strong>1.</strong> En la segunda ecuación, la suma de logaritmos es el logaritmo del producto y $2 = \\log 10^{2} = \\log 100$:<br>$\\quad \\log(xy) = \\log 100 \\Rightarrow xy = 100$<br><strong>2.</strong> Queda el sistema algebraico $\\begin{cases} x - y = 15 \\\\ xy = 100 \\end{cases}$<br><strong>3.</strong> Despejamos $x$ en la primera, $x = y + 15$, y sustituimos en la segunda:<br>$\\quad (y + 15)\\,y = 100 \\Rightarrow y^2 + 15y - 100 = 0$<br><strong>4.</strong> Resolvemos la ecuación de segundo grado:<br>$\\quad y = \\dfrac{-15 \\pm \\sqrt{15^2 - 4 \\cdot 1 \\cdot (-100)}}{2} = \\dfrac{-15 \\pm \\sqrt{625}}{2} = \\dfrac{-15 \\pm 25}{2} \\Rightarrow y = 5,\\ y = -20$<br><strong>5.</strong> Calculamos $x = y + 15$ para cada valor:<br>$\\quad y = 5 \\Rightarrow x = 20$<br>$\\quad y = -20 \\Rightarrow x = -5$<br><strong>6.</strong> Comprobamos:<br>$\\quad (20, 5)$: $20 - 5 = 15$ ✓ &nbsp; y &nbsp; $\\log 20 + \\log 5 = \\log 100 = 2$ ✓<br>$\\quad \\textcolor{#d46a6a}{(-5, -20)}$: se descarta, porque $\\log(-5)$ y $\\log(-20)$ no existen.<br>$\\quad$ Solución: $\\textcolor{#4fa66e}{x = 20},\\ \\textcolor{#4fa66e}{y = 5}$"
+                }
+            ]
         }
     ],
     "summary": [
@@ -108,6 +146,11 @@
         {
             "title": "Comprobar las soluciones",
             "text": "En las logarítmicas hay que sustituir: se descarta toda solución que haga algún argumento $\\leq 0$."
+        },
+        {
+            "title": "Sistemas",
+            "text": "Se pasa a un sistema algebraico igualando exponentes, agrupando logaritmos o con un cambio de variable ($u = a^x$ con $u > 0$; $u = \\log x$), y se comprueban las soluciones.",
+            "formula": "$$a^{x} \\cdot a^{y} = a^{x+y} \\qquad \\log x + \\log y = \\log(xy)$$"
         }
     ]
 }
