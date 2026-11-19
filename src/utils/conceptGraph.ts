@@ -139,5 +139,20 @@ export function buildConceptMap(topics: Topic[], books: Book[]) {
             }
         }
 
-    return { topics: topics.map((t) => t.data.title), nodes, links };
+    // Keep the map simple: a node linked to another and to that one's parent (a concept's topic, a
+    // topic's group) keeps only the link to the parent. "Álgebra" names the "Identidad" concept and
+    // already links to its topic "Identidades notables", so it links to the topic alone.
+    const parent = new Map<string, string>([...topicOf, ...topics.map((t) => [`t:${t.id}`, groupNode.get(groupOf(t))!] as const)]);
+    const linked = (a: string, b: string) => seen.has(a < b ? `${a}|${b}` : `${b}|${a}`);
+    // A node's link to its own parent is the tree, never redundant, and doesn't count as a link to
+    // a sibling's parent (every concept links to its own topic).
+    // The link to the parent must survive itself to stand in (each step goes one level up, so it ends).
+    const redundant = (a: string, b: string): boolean => {
+        const p = parent.get(b);
+        return p !== undefined && p !== a && p !== b && p !== parent.get(a) && parent.get(a) !== b && linked(a, p) && !dropped(a, p);
+    };
+    const dropped = (a: string, b: string) => redundant(a, b) || redundant(b, a);
+    const kept = links.filter(([a, b]) => !dropped(a, b));
+
+    return { topics: topics.map((t) => t.data.title), nodes, links: kept };
 }
