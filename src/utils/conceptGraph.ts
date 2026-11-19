@@ -27,12 +27,15 @@ export interface MapNode {
 // Concepts whose name means something else in other branches, so they only take mentions from
 // their own: the space line and plane of Geometría (not the lines of functions or regression),
 // a proportion a/b = c/d (not "the proportion of data"), a ratio (not the trigonometric ratios),
-// an algebraic identity (not the identity function), the combinatorics counts (not "percentage
-// variations"), etc.
+// the combinatorics counts (not "percentage variations"), etc.
 const BRANCH_ONLY = new Set([
-    "recta", "plano", "proporcion", "razon", "identidad", "variaciones", "permutaciones", "regla del producto",
+    "recta", "plano", "proporcion", "razon", "variaciones", "permutaciones", "regla del producto",
     "valor numerico",
 ]);
+// Concepts (by title, as `prepare` leaves it) whose name means something else even in their own
+// group, so they only take mentions from their own topic: an algebraic identity (not the identity
+// matrix), and the mean and variance of a random variable (not those of a data set).
+const OWN_TOPIC = new Set(["identidad", "media esperanza matematica", "varianza y desviacion tipica"]);
 // Phrases that use a concept's name without meaning it: "en función de λ".
 const IDIOMS = /(^| )en funcion (de|del)( |$)/g;
 // Names too generic to count as a mention of one concept.
@@ -41,6 +44,8 @@ const GENERIC = new Set([
     "producto", "division", "multiplicacion", "sentido", "direccion", "solucion", "condicion", "calculo", "negativo",
     // Same word, another meaning elsewhere: secant planes, tangent line.
     "secante", "tangente", "interseccion", "union", "aristas", "vertices", "camino",
+    // Search synonyms too loose for a link: "potencias de 10" are not always scientific notation.
+    "potencias de 10",
 ]);
 const CONCEPT_KINDS = new Set(["definicion", "teorema"]);
 
@@ -65,9 +70,12 @@ export const conceptTerms = (title: string): string[] => {
     let names = base.split(/,| y | e | o /).map((n) => prepare(n).replace(/^(el|la|los|las|un|una) /, "")).filter(Boolean);
     // "Exponente racional y negativo": a one-word part after a longer name is an adjective, not a name.
     if (names.length > 1 && names[0].includes(" ")) names = names.filter((n) => n.includes(" "));
+    // "Media y varianza de la binomial": one-word parts share the qualifier of the last one.
+    const qualifier = names.length > 1 && names.slice(0, -1).every((n) => !n.includes(" ")) ? names.at(-1)!.match(/^\S+( de .+)$/)?.[1] : undefined;
+    if (qualifier) names = names.map((n, i) => (i < names.length - 1 && !qualifier.includes(n) ? n + qualifier : n));
     names = names.filter((n) => n.length >= 4 && !GENERIC.has(n));
     // Synonyms from the site search ("mcd" for "maximo comun divisor").
-    const extra = names.flatMap((n) => ALIASES.find((g) => g.includes(n))?.filter((m) => m !== n && m.length >= 3) ?? []);
+    const extra = names.flatMap((n) => ALIASES.find((g) => g.includes(n))?.filter((m) => m !== n && m.length >= 3 && !GENERIC.has(m)) ?? []);
     return [...new Set([...names, ...extra])];
 };
 
@@ -95,6 +103,7 @@ export function buildConceptMap(topics: Topic[], books: Book[]) {
     const cards: { id: string; owner: string; text: string }[] = [];
     const terms = new Map<string, string[]>(); // name -> concepts it names
     const branchOnly = new Set<string>(); // concepts linked only from their own group
+    const ownTopic = new Set<string>(); // concepts linked only from their own topic
     topics.forEach((topic, ti) => {
         const book = books.find((b) => b.topics.includes(topic.id));
         const pdf = (key: string) => (book?.at[key] ? `${book.url}#page=${book.at[key]}` : undefined);
@@ -114,6 +123,7 @@ export function buildConceptMap(topics: Topic[], books: Book[]) {
                     link(tid, id);
                     const names = conceptTerms(item.title);
                     if (names.some((t) => BRANCH_ONLY.has(t))) branchOnly.add(id);
+                    if (OWN_TOPIC.has(prepare(item.title))) ownTopic.add(id);
                     for (const t of names) terms.set(t, [...(terms.get(t) ?? []), id]);
                 }
                 cards.push({ id: isConcept ? id : tid, owner: tid, text: prepare(strip(`${item.description ?? ""} ${item.example ?? ""}`)).replace(IDIOMS, " ") });
@@ -130,8 +140,8 @@ export function buildConceptMap(topics: Topic[], books: Book[]) {
             // A name shared by several concepts ("rango" of a matrix and of a data set) points to the
             // one in the same topic, else in the same group; with no such hint it is skipped.
             const same = ids.filter((id) => topicOf.get(id) === card.owner);
-            const near = ids.filter((id) => groupById.get(topicOf.get(id)!) === groupById.get(card.owner));
-            const far = ids.length === 1 && !branchOnly.has(ids[0]) ? ids : [];
+            const near = ids.filter((id) => !ownTopic.has(id) && groupById.get(topicOf.get(id)!) === groupById.get(card.owner));
+            const far = ids.length === 1 && !branchOnly.has(ids[0]) && !ownTopic.has(ids[0]) ? ids : [];
             for (const id of same.length ? same : near.length ? near : far) {
                 // A topic already links to its own concepts.
                 if (card.id === card.owner && topicOf.get(id) === card.owner) continue;
