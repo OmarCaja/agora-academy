@@ -30,8 +30,17 @@ export interface MapNode {
 // the combinatorics counts (not "percentage variations"), etc.
 const BRANCH_ONLY = new Set([
     "recta", "plano", "proporcion", "razon", "variaciones", "permutaciones", "regla del producto",
-    "valor numerico",
+    "valor numerico", "limite",
 ]);
+// Short names other topics use for a concept whose title is longer (keyed by a name `conceptTerms`
+// gives it). Only mentions from other topics count: inside its own topic every card uses the word.
+const SHORT_NAMES: Record<string, string[]> = {
+    "determinante de una matriz cuadrada": ["determinante"],
+    "limite de una funcion en un punto": ["limite"],
+    "potencia de exponente natural": ["potencia"],
+    "vector fijo": ["vector"],
+    "segun el numero de soluciones": ["sistema compatible", "sistema incompatible"],
+};
 // Concepts (by title, as `prepare` leaves it) whose name means something else even in their own
 // group, so they only take mentions from their own topic: an algebraic identity (not the identity
 // matrix), and the mean and variance of a random variable (not those of a data set).
@@ -52,7 +61,7 @@ const CONCEPT_KINDS = new Set(["definicion", "teorema"]);
 const strip = (html: string) => html.replace(/\$[^$]*\$/g, " ").replace(/<[^>]+>/g, " ");
 
 // Title as plain text for the canvas: formulas kept, LaTeX commands dropped (a few symbols kept).
-const SYMBOLS: Record<string, string> = { cdot: "·", times: "×", infty: "∞", to: "→", alpha: "α", sigma: "σ", mu: "μ", cap: "∩", cup: "∪", pi: "π", lambda: "λ", neq: "≠", leq: "≤", geq: "≥" };
+const SYMBOLS: Record<string, string> = { cdot: "·", times: "×", infty: "∞", to: "→", alpha: "α", sigma: "σ", mu: "μ", cap: "∩", cup: "∪", pi: "π", lambda: "λ", neq: "≠", leq: "≤", geq: "≥", sin: "sen", cos: "cos", tan: "tg", sec: "sec" };
 const plainTitle = (title: string) =>
     title
         .replace(/<[^>]+>/g, " ")
@@ -104,6 +113,7 @@ export function buildConceptMap(topics: Topic[], books: Book[]) {
     const terms = new Map<string, string[]>(); // name -> concepts it names
     const branchOnly = new Set<string>(); // concepts linked only from their own group
     const ownTopic = new Set<string>(); // concepts linked only from their own topic
+    const shortNames = new Set<string>(); // names that only count from other topics
     topics.forEach((topic, ti) => {
         const book = books.find((b) => b.topics.includes(topic.id));
         const pdf = (key: string) => (book?.at[key] ? `${book.url}#page=${book.at[key]}` : undefined);
@@ -121,7 +131,11 @@ export function buildConceptMap(topics: Topic[], books: Book[]) {
                         web: `/teoria/${topic.id}/#${slugify(section.title)}-${k + 1}`, pdf: pdf(`${topic.id}-${j}-${k}`),
                     });
                     link(tid, id);
-                    const names = conceptTerms(item.title);
+                    // A card titled with a formula alone ("Definición: $\vec{u} \cdot \vec{v}$") goes by its section's name.
+                    const own = conceptTerms(item.title);
+                    const short = own.flatMap((n) => SHORT_NAMES[n] ?? []);
+                    const names = [...(own.length ? own : conceptTerms(section.title)), ...short];
+                    for (const t of short) shortNames.add(t);
                     if (names.some((t) => BRANCH_ONLY.has(t))) branchOnly.add(id);
                     if (OWN_TOPIC.has(prepare(item.title))) ownTopic.add(id);
                     for (const t of names) terms.set(t, [...(terms.get(t) ?? []), id]);
@@ -133,10 +147,10 @@ export function buildConceptMap(topics: Topic[], books: Book[]) {
 
     const topicOf = new Map(nodes.filter((n) => n.type === "concept").map((n) => [n.id, `t:${n.id.slice(2).replace(/-\d+-\d+$/, "")}`]));
     const groupById = new Map(topics.map((t) => [`t:${t.id}`, groupOf(t)]));
-    const patterns = [...terms].map(([t, ids]) => ({ re: mentionRe(t), ids }));
+    const patterns = [...terms].map(([t, ids]) => ({ re: mentionRe(t), ids, short: shortNames.has(t) }));
     for (const card of cards)
-        for (const { re, ids } of patterns) {
-            if (!re.test(card.text)) continue;
+        for (const { re, ids, short } of patterns) {
+            if (!re.test(card.text) || (short && ids.some((id) => topicOf.get(id) === card.owner))) continue;
             // A name shared by several concepts ("rango" of a matrix and of a data set) points to the
             // one in the same topic, else in the same group; with no such hint it is skipped.
             const same = ids.filter((id) => topicOf.get(id) === card.owner);
@@ -145,24 +159,12 @@ export function buildConceptMap(topics: Topic[], books: Book[]) {
             for (const id of same.length ? same : near.length ? near : far) {
                 // A topic already links to its own concepts.
                 if (card.id === card.owner && topicOf.get(id) === card.owner) continue;
-                link(card.id, id);
+                // Keep the map simple: a mention across topics links the two topics, not their cards.
+                // "Función exponencial" names "Asíntota horizontal", so "Funciones elementales" links to "Límites".
+                if (topicOf.get(id) === card.owner) link(card.id, id);
+                else link(card.owner, topicOf.get(id)!);
             }
         }
 
-    // Keep the map simple: a node linked to another and to that one's parent (a concept's topic, a
-    // topic's group) keeps only the link to the parent. "Álgebra" names the "Identidad" concept and
-    // already links to its topic "Identidades notables", so it links to the topic alone.
-    const parent = new Map<string, string>([...topicOf, ...topics.map((t) => [`t:${t.id}`, groupNode.get(groupOf(t))!] as const)]);
-    const linked = (a: string, b: string) => seen.has(a < b ? `${a}|${b}` : `${b}|${a}`);
-    // A node's link to its own parent is the tree, never redundant, and doesn't count as a link to
-    // a sibling's parent (every concept links to its own topic).
-    // The link to the parent must survive itself to stand in (each step goes one level up, so it ends).
-    const redundant = (a: string, b: string): boolean => {
-        const p = parent.get(b);
-        return p !== undefined && p !== a && p !== b && p !== parent.get(a) && parent.get(a) !== b && linked(a, p) && !dropped(a, p);
-    };
-    const dropped = (a: string, b: string) => redundant(a, b) || redundant(b, a);
-    const kept = links.filter(([a, b]) => !dropped(a, b));
-
-    return { topics: topics.map((t) => t.data.title), nodes, links: kept };
+    return { topics: topics.map((t) => t.data.title), nodes, links };
 }

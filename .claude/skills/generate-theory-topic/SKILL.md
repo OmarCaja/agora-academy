@@ -87,6 +87,25 @@ The build fails on schema errors (missing `title`, wrong types) and on broken La
 
 Optionally look at the page with `pnpm dev` at `/teoria/<slug>`, in light and dark theme.
 
+### Check the topic's links on the concept map
+
+The concept map (`/mapa`, built by `src/utils/conceptGraph.ts`) is rebuilt from the topic JSON on every build. A definition or theorem card becomes a node, and its names come from its title (the part before a colon, without formulas). A card that names a concept in its `description`/`example` gets a link: card to concept inside one topic, **topic to topic** when the concept belongs to another topic. So the topic's links depend on its wording. After `pnpm build`, list every link between the topic and other topics:
+
+```bash
+node -e 'const s=process.argv[1],m=require("./dist/mapa.json"),n=Object.fromEntries(m.nodes.map(x=>[x.id,x])),t="t:"+s,top=x=>x.startsWith("c:")?"t:"+x.slice(2).replace(/-\d+-\d+$/,""):x,own=x=>top(x)===t;for(const[a,b]of m.links){if(own(a)===own(b))continue;const[i,o]=own(a)?[a,b]:[b,a];if(!(n[i].type==="topic"&&n[o].type==="group"))console.log(n[i].label,"—",n[o].label)}' <slug>
+```
+
+Check the list both ways:
+- **Every link makes sense**: the other topic really is a prerequisite or a use of this one. A link that comes from the same word with another meaning (as «límite superior» in statistics is not the limit of a function) is wrong.
+- **No prerequisite is missing**: each topic the content builds on (derivatives on limits, plane equations on vectors…) should appear. Also check the reverse: topics that use the new concepts should link to it.
+
+Fix wrong or missing links at the root, in this order:
+1. **Wording**: name the prerequisite concept in the card text as its definition card calls it, and give definition cards titles that are the name students read (`Determinante`, not a long sentence). A card titled with a formula alone goes by its section title.
+2. **Tables in `src/utils/conceptGraph.ts`**, each with its comment explaining the rule: `SHORT_NAMES` (the short name other topics use for a long title), `BRANCH_ONLY` / `OWN_TOPIC` (a name that means something else outside its group/topic), `GENERIC` (too common to mean one concept), `IDIOMS` (phrases such as «en función de»).
+3. `src/data/searchAliases.ts`, only for true synonyms (it also drives the site search).
+
+Then rebuild and run the command again. Changes to the tables also affect other topics' links, so look at `/mapa` (`pnpm dev`) to make sure nothing else broke.
+
 Once the build passes, every topic must have a book PDF. If no book in `scripts/books.json` lists the topic, create one for it alone (the build records it in `books.json`):
 
 ```bash
@@ -101,6 +120,6 @@ pnpm books
 
 ## 7. Report to the user
 
-Reply briefly with the file path, the URL (`/teoria/<slug>`), the sections created and the decisions made without asking (level, group, order, graphs).
+Reply briefly with the file path, the URL (`/teoria/<slug>`), the sections created, the topics it links to on the concept map (and any link fixed) and the decisions made without asking (level, group, order, graphs).
 
 Don't commit or push unless the user asks.
