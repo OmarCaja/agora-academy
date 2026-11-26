@@ -6,3 +6,5 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - astro@7.1.6
   - astro@7.2.7
+overrides:
+  "@emnapi/runtime": 1.11.3
