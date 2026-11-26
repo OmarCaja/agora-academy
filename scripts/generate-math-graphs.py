@@ -1130,6 +1130,58 @@ ax.set_xlim(-4.5, 8.8); ax.set_ylim(0.3, 3.6); ax.axis('off')
 save(fig, 'sistema-una-incognita.png')
 
 # ════════════════════════════════════════════════════════════════════════════
+#  VECTORES: geometric interpretation of the cross and triple products
+# ════════════════════════════════════════════════════════════════════════════
+OUT = "public/ejemplos/vectores"
+os.makedirs(OUT, exist_ok=True)
+
+# ── Area of the parallelogram: base |u|, height |v| sin(alpha) ──────────────
+fig, ax = plt.subplots(figsize=(4.8, 3.2))
+bare(ax)
+O, u, v = np.array([0.0, 0.0]), np.array([3.4, 0.0]), np.array([1.2, 2.0])
+ax.add_patch(Polygon([O, u, u + v, v], closed=True, fc='#ececec', ec='none'))
+arrow(ax, O, u); arrow(ax, O, v)
+for a, b in [(u, u + v), (v, u + v)]:
+    ax.plot([a[0], b[0]], [a[1], b[1]], color=INK, lw=1.4)
+ax.plot([v[0], v[0]], [0, v[1]], ls=':', color=INK, lw=1.5)
+ax.add_patch(patches.Rectangle((v[0], 0), 0.18, 0.18, fill=False, ec=INK, lw=1))
+ax.add_patch(patches.Arc(O, 1.2, 1.2, theta1=0, theta2=np.degrees(np.arctan2(v[1], v[0])), color=INK, lw=1.2))
+ax.text(0.7, 0.2, r'$\alpha$', fontsize=13, color=INK)
+ax.text(u[0] / 2, -0.45, r'$\vec{u}$   base $=|\vec{u}|$', fontsize=13, color=INK, ha='center')
+ax.text(v[0] / 2 - 0.55, v[1] / 2, r'$\vec{v}$', fontsize=15, color=INK)
+ax.text(v[0] + 0.12, v[1] / 2 - 0.05, r'$h=|\vec{v}|\sin\alpha$', fontsize=13, color=INK)
+ax.set_xlim(-0.8, 5.0); ax.set_ylim(-0.8, 2.5)
+save(fig, 'area-paralelogramo.png')
+
+# ── Volume of the parallelepiped: base area |v x w|, height h ───────────────
+fig, ax = plt.subplots(figsize=(4.8, 3.8))
+bare(ax)
+O = np.array([0.0, 0.0])
+v, w, u = np.array([3.0, 0.0]), np.array([1.3, 1.0]), np.array([0.6, 2.2])
+hid = w                                   # the one vertex hidden behind the solid
+def face(*pts, fc='none'):
+    ax.add_patch(Polygon(pts, closed=True, fc=fc, ec='none'))
+face(O, v, v + w, w, fc='#dcdcdc')        # base
+face(u, u + v, u + v + w, u + w, fc='#f3f3f3')  # top
+def seg(a, b, hidden=False):
+    ax.plot([a[0], b[0]], [a[1], b[1]], color=INK, lw=1.4 if hidden else 1.6, ls='--' if hidden else '-')
+for a, b in [(O, v), (v, v + w), (u, u + v), (u + v, u + v + w), (u + w, u + v + w), (O, u),
+             (v, u + v), (v + w, u + v + w), (u, u + w)]:
+    seg(a, b)
+for b in (O, w + v, w + u):
+    seg(hid, b, hidden=True)
+arrow(ax, O, v, lw=2.5); arrow(ax, O, w, lw=2.5); arrow(ax, O, u, lw=2.5)
+foot = np.array([u[0], u[0] * w[1] / w[0]])    # point of the base under the tip of u
+ax.plot([u[0], foot[0]], [u[1], foot[1]], ls=':', color=INK, lw=1.5)
+ax.text(1.5, -0.45, r'$\vec{v}$', fontsize=15, color=INK, ha='center')
+ax.text(0.95, 0.12, r'$\vec{w}$', fontsize=15, color=INK)
+ax.text(-0.45, 1.1, r'$\vec{u}$', fontsize=15, color=INK)
+ax.text(2.2, 0.42, 'base\n$|\\vec{v}\\times\\vec{w}|$', fontsize=11, color=INK, ha='center', va='center')
+ax.text(u[0] + 0.1, (u[1] + foot[1]) / 2 - 0.1, r'$h$', fontsize=13, color=INK)
+ax.set_xlim(-0.9, 5.2); ax.set_ylim(-0.8, 3.4)
+save(fig, 'volumen-paralelepipedo.png')
+
+# ════════════════════════════════════════════════════════════════════════════
 #  ↑ ADD YOUR NEW GRAPHS HERE, following the same pattern
 # ════════════════════════════════════════════════════════════════════════════
 
